@@ -14,6 +14,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_deployment_data import ActionDeploymentData, ActionDeploymentDataPlain
 from .action_resource import ActionResource, ActionResourcePlain
@@ -52,28 +54,65 @@ class ActionRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
+    id: StrictInt = Field(description="The Id of the given action")
     status: ActionStatus
-    status_human_readable: str
+    status_human_readable: StrictStr = Field(
+        description="Human readable version of action status"
+    )
     status_reason_code: ActionStatusReasonCode
-    status_reason_human_readable: str
+    status_reason_human_readable: StrictStr = Field(
+        description="Human readable version of the status reason code"
+    )
     type: ActionType
-    type_human_readable: str
-    url_web_permalink: str
+    type_human_readable: StrictStr = Field(
+        description="Human readable version of the action type"
+    )
+    url_web_permalink: StrictStr = Field(
+        description="The permalink URL to the action details on Devopness web app"
+    )
     action_data: Optional[ActionDeploymentData]
     triggered_from: ActionTriggeredFrom
     resource: ActionResource
-    summary: ActionSummary
-    targets: List[ActionTarget]
-    started_at: Optional[str]
-    completed_at: Optional[str]
-    created_at: str
-    updated_at: str
+    summary: Optional[ActionSummary] = None
+    targets: Optional[List[ActionTarget]] = Field(
+        default=None, description="List of actions dispatched to cloud resource targets"
+    )
+    started_at: Optional[StrictStr] = Field(
+        description="The date and time when the action started execution (i.e., left the `pending/queued` status)"
+    )
+    completed_at: Optional[StrictStr] = Field(
+        description="The date and time when the action has finished execution"
+    )
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class ActionRelationPlain(TypedDict, total=False):
     """
-    Plain version of ActionRelation.
+    Plain version of ActionRelation
+
+    Attributes:
+        id (int): The Id of the given action
+        status (ActionStatus):
+        status_human_readable (str): Human readable version of action status
+        status_reason_code (ActionStatusReasonCode):
+        status_reason_human_readable (str): Human readable version of the status reason code
+        type (ActionType):
+        type_human_readable (str): Human readable version of the action type
+        url_web_permalink (str): The permalink URL to the action details on Devopness web app
+        action_data (ActionDeploymentData, optional):
+        triggered_from (ActionTriggeredFrom):
+        resource (ActionResource):
+        summary (ActionSummary):
+        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
+        started_at (str, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (str, optional): The date and time when the action has finished execution
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

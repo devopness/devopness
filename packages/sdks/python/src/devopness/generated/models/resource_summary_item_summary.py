@@ -9,7 +9,10 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
+
+from pydantic import Field, StrictFloat, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -22,12 +25,17 @@ class ResourceSummaryItemSummary(DevopnessBaseModel):
         count (float): Total number of entries of this resource
     """
 
-    count: float
+    count: Union[StrictFloat, StrictInt] = Field(
+        description="Total number of entries of this resource"
+    )
 
 
 class ResourceSummaryItemSummaryPlain(TypedDict, total=False):
     """
-    Plain version of ResourceSummaryItemSummary.
+    Plain version of ResourceSummaryItemSummary
+
+    Attributes:
+        count (float): Total number of entries of this resource
     """
 
     count: Required[float]

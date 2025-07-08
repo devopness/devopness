@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .triggered_action_summary import (
@@ -31,16 +34,29 @@ class TriggeredActionStats(DevopnessBaseModel):
         summary (TriggeredActionSummary):
     """
 
-    resource_type: str
-    action_type: str
-    resource_type_human_readable: str
-    action_type_human_readable: str
-    summary: TriggeredActionSummary
+    resource_type: Optional[StrictStr] = Field(
+        default=None, description="Type of resource used in the action"
+    )
+    action_type: Optional[StrictStr] = Field(default=None, description="Type of action")
+    resource_type_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the resource type"
+    )
+    action_type_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Type of action human readable"
+    )
+    summary: Optional[TriggeredActionSummary] = None
 
 
 class TriggeredActionStatsPlain(TypedDict, total=False):
     """
-    Plain version of TriggeredActionStats.
+    Plain version of TriggeredActionStats
+
+    Attributes:
+        resource_type (str): Type of resource used in the action
+        action_type (str): Type of action
+        resource_type_human_readable (str): Human readable version of the resource type
+        action_type_human_readable (str): Type of action human readable
+        summary (TriggeredActionSummary):
     """
 
     resource_type: Required[str]

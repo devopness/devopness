@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field
+
 from .. import DevopnessBaseModel
 from .credential_provider import CredentialProvider, CredentialProviderPlain
 from .credential_provider_type import (
@@ -30,13 +32,21 @@ class CredentialOptions(DevopnessBaseModel):
         supported_providers (List[CredentialProvider]): The list of supported credential providers
     """
 
-    provider_types: List[CredentialProviderType]
-    supported_providers: List[CredentialProvider]
+    provider_types: List[CredentialProviderType] = Field(
+        description="The list of credential provider types"
+    )
+    supported_providers: List[CredentialProvider] = Field(
+        description="The list of supported credential providers"
+    )
 
 
 class CredentialOptionsPlain(TypedDict, total=False):
     """
-    Plain version of CredentialOptions.
+    Plain version of CredentialOptions
+
+    Attributes:
+        provider_types (List[CredentialProviderType]): The list of credential provider types
+        supported_providers (List[CredentialProvider]): The list of supported credential providers
     """
 
     provider_types: Required[

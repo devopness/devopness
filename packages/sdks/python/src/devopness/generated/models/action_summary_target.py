@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt
+
 from .. import DevopnessBaseModel
 
 
@@ -26,16 +28,25 @@ class ActionSummaryTarget(DevopnessBaseModel):
         failed (int): The number of action targets failed
     """
 
-    count: int
-    pending: int
-    in_progress: int
-    completed: int
-    failed: int
+    count: StrictInt = Field(description="The total number of action targets")
+    pending: StrictInt = Field(description="The number of action targets pending")
+    in_progress: StrictInt = Field(
+        description="The number of action targets in progress"
+    )
+    completed: StrictInt = Field(description="The number of action targets completed")
+    failed: StrictInt = Field(description="The number of action targets failed")
 
 
 class ActionSummaryTargetPlain(TypedDict, total=False):
     """
-    Plain version of ActionSummaryTarget.
+    Plain version of ActionSummaryTarget
+
+    Attributes:
+        count (int): The total number of action targets
+        pending (int): The number of action targets pending
+        in_progress (int): The number of action targets in progress
+        completed (int): The number of action targets completed
+        failed (int): The number of action targets failed
     """
 
     count: Required[int]

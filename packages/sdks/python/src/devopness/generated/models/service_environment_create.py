@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 from .resource_to_be_linked import ResourceToBeLinked, ResourceToBeLinkedPlain
@@ -31,16 +34,30 @@ class ServiceEnvironmentCreate(DevopnessBaseModel):
         version (str): The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.
     """
 
-    linked_resources: List[ResourceToBeLinked]
-    auto_start: bool
-    initial_state: ServiceInitialState
+    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+        default=None, description="The resources to be linked with this resource"
+    )
+    auto_start: Optional[StrictBool] = Field(
+        default=None,
+        description="Tells if the service should start automatically on operating system boot.",
+    )
+    initial_state: Optional[ServiceInitialState] = ServiceInitialState.STARTED
     type: ServiceType
-    version: str
+    version: StrictStr = Field(
+        description="The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters."
+    )
 
 
 class ServiceEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of ServiceEnvironmentCreate.
+    Plain version of ServiceEnvironmentCreate
+
+    Attributes:
+        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
+        auto_start (bool): Tells if the service should start automatically on operating system boot.
+        initial_state (ServiceInitialState):
+        type (ServiceType):
+        version (str): The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.
     """
 
     linked_resources: Required[

@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -23,13 +25,19 @@ class CredentialProviderType(DevopnessBaseModel):
         type_human_readable (str): Human readable version of provider type
     """
 
-    type: str
-    type_human_readable: str
+    type: StrictStr = Field(description="Type of provider.")
+    type_human_readable: StrictStr = Field(
+        description="Human readable version of provider type"
+    )
 
 
 class CredentialProviderTypePlain(TypedDict, total=False):
     """
-    Plain version of CredentialProviderType.
+    Plain version of CredentialProviderType
+
+    Attributes:
+        type (str): Type of provider.
+        type_human_readable (str): Human readable version of provider type
     """
 
     type: Required[str]

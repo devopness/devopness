@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .static_billing_info import StaticBillingInfo, StaticBillingInfoPlain
 
@@ -28,13 +30,18 @@ class UserProfileOptions(DevopnessBaseModel):
     """
 
     billing: StaticBillingInfo
-    languages: List[str]
-    timezones: List[str]
+    languages: List[StrictStr] = Field(description="Supported languages")
+    timezones: List[StrictStr] = Field(description="Supported time zones")
 
 
 class UserProfileOptionsPlain(TypedDict, total=False):
     """
-    Plain version of UserProfileOptions.
+    Plain version of UserProfileOptions
+
+    Attributes:
+        billing (StaticBillingInfo):
+        languages (List[str]): Supported languages
+        timezones (List[str]): Supported time zones
     """
 
     billing: Required[

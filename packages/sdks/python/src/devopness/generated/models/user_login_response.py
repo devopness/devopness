@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -25,15 +27,27 @@ class UserLoginResponse(DevopnessBaseModel):
         refresh_token (str): A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint
     """
 
-    token_type: str
-    expires_in: int
-    access_token: str
-    refresh_token: str
+    token_type: StrictStr = Field(
+        description="The type of the authorization token being issued"
+    )
+    expires_in: StrictInt = Field(
+        description="The number of seconds remaining to the token expiration time, to be counted since the token issue date and time"
+    )
+    access_token: StrictStr = Field(description="The issued JWT access token")
+    refresh_token: StrictStr = Field(
+        description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint"
+    )
 
 
 class UserLoginResponsePlain(TypedDict, total=False):
     """
-    Plain version of UserLoginResponse.
+    Plain version of UserLoginResponse
+
+    Attributes:
+        token_type (str): The type of the authorization token being issued
+        expires_in (int): The number of seconds remaining to the token expiration time, to be counted since the token issue date and time
+        access_token (str): The issued JWT access token
+        refresh_token (str): A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint
     """
 
     token_type: Required[str]

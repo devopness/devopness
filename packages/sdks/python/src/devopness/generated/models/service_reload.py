@@ -8,9 +8,12 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -23,12 +26,17 @@ class ServiceReload(DevopnessBaseModel):
         servers (List[int]): List of valid resource IDs
     """
 
-    servers: List[int]
+    servers: Optional[List[StrictInt]] = Field(
+        default=None, description="List of valid resource IDs"
+    )
 
 
 class ServiceReloadPlain(TypedDict, total=False):
     """
-    Plain version of ServiceReload.
+    Plain version of ServiceReload
+
+    Attributes:
+        servers (List[int]): List of valid resource IDs
     """
 
     servers: Required[List[int]]

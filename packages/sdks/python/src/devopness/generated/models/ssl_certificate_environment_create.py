@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .ssl_certificate_issuer import SslCertificateIssuer, SslCertificateIssuerPlain
@@ -34,17 +37,33 @@ class SslCertificateEnvironmentCreate(DevopnessBaseModel):
         custom_certificate (str): The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through &#x60;devopness&#x60;. This field is required when &lt;code&gt;issuer&lt;/code&gt; is &lt;code&gt;custom&lt;/code&gt;. Must be at least 100 characters. Must not be greater than 4096 characters.
     """
 
-    virtual_host_id: int
+    virtual_host_id: StrictInt = Field(
+        description="The ID of the virtual host to which this SSL certificate will be issued."
+    )
     issuer: SslCertificateIssuer
-    type: SslCertificateType
-    validation_level: SslCertificateValidationLevel
-    custom_private_key: str
-    custom_certificate: str
+    type: Optional[SslCertificateType] = None
+    validation_level: Optional[SslCertificateValidationLevel] = None
+    custom_private_key: Optional[StrictStr] = Field(
+        default=None,
+        description="The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
+    )
+    custom_certificate: Optional[StrictStr] = Field(
+        default=None,
+        description="The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
+    )
 
 
 class SslCertificateEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of SslCertificateEnvironmentCreate.
+    Plain version of SslCertificateEnvironmentCreate
+
+    Attributes:
+        virtual_host_id (int): The ID of the virtual host to which this SSL certificate will be issued.
+        issuer (SslCertificateIssuer):
+        type (SslCertificateType):
+        validation_level (SslCertificateValidationLevel):
+        custom_private_key (str): The private key provided by the Certification Authority, when the certificate has not been automatically issued through &#x60;devopness&#x60;. This field is required when &lt;code&gt;issuer&lt;/code&gt; is &lt;code&gt;custom&lt;/code&gt;. Must be at least 100 characters. Must not be greater than 4096 characters.
+        custom_certificate (str): The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through &#x60;devopness&#x60;. This field is required when &lt;code&gt;issuer&lt;/code&gt; is &lt;code&gt;custom&lt;/code&gt;. Must be at least 100 characters. Must not be greater than 4096 characters.
     """
 
     virtual_host_id: Required[int]

@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .cloud_provider_service_code import (
@@ -42,15 +45,22 @@ class CloudProviderService(DevopnessBaseModel):
     """
 
     code: CloudProviderServiceCode
-    name: str
-    provider: ProviderRelation
-    regions: List[CloudProviderServiceRegion]
-    resource_types: List[CloudProviderServiceResourceType]
+    name: StrictStr = Field(description="The full name of the cloud service")
+    provider: Optional[ProviderRelation] = None
+    regions: Optional[List[CloudProviderServiceRegion]] = None
+    resource_types: Optional[List[CloudProviderServiceResourceType]] = None
 
 
 class CloudProviderServicePlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderService.
+    Plain version of CloudProviderService
+
+    Attributes:
+        code (CloudProviderServiceCode):
+        name (str): The full name of the cloud service
+        provider (ProviderRelation):
+        regions (List[CloudProviderServiceRegion]):
+        resource_types (List[CloudProviderServiceResourceType]):
     """
 
     code: Required[

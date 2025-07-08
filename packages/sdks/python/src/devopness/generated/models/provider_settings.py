@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .cloud_provider_service import CloudProviderService, CloudProviderServicePlain
@@ -28,14 +31,24 @@ class ProviderSettings(DevopnessBaseModel):
         cloud_services (List[CloudProviderService]):
     """
 
-    connect_url: str
-    input_settings: List[ProviderInputSettings]
-    cloud_services: List[CloudProviderService]
+    connect_url: Optional[StrictStr] = Field(
+        default=None,
+        description="The URL used to connect Devopness to a credential provider of type `source_provider`",
+    )
+    input_settings: List[ProviderInputSettings] = Field(
+        description="The list of input settings for credentials of specific provider"
+    )
+    cloud_services: Optional[List[CloudProviderService]] = None
 
 
 class ProviderSettingsPlain(TypedDict, total=False):
     """
-    Plain version of ProviderSettings.
+    Plain version of ProviderSettings
+
+    Attributes:
+        connect_url (str): The URL used to connect Devopness to a credential provider of type &#x60;source_provider&#x60;
+        input_settings (List[ProviderInputSettings]): The list of input settings for credentials of specific provider
+        cloud_services (List[CloudProviderService]):
     """
 
     connect_url: Required[str]

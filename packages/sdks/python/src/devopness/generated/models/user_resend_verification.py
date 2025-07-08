@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,17 @@ class UserResendVerification(DevopnessBaseModel):
         email (str): The user email to resend the verification link to. Must be a valid email address.
     """
 
-    email: str
+    email: StrictStr = Field(
+        description="The user email to resend the verification link to. Must be a valid email address."
+    )
 
 
 class UserResendVerificationPlain(TypedDict, total=False):
     """
-    Plain version of UserResendVerification.
+    Plain version of UserResendVerification
+
+    Attributes:
+        email (str): The user email to resend the verification link to. Must be a valid email address.
     """
 
     email: Required[str]

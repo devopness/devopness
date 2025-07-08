@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,17 @@ class InvitationTeamCreate(DevopnessBaseModel):
         email (str): The user email to send the invitation. Must be a valid email address.
     """
 
-    email: str
+    email: StrictStr = Field(
+        description="The user email to send the invitation. Must be a valid email address."
+    )
 
 
 class InvitationTeamCreatePlain(TypedDict, total=False):
     """
-    Plain version of InvitationTeamCreate.
+    Plain version of InvitationTeamCreate
+
+    Attributes:
+        email (str): The user email to send the invitation. Must be a valid email address.
     """
 
     email: Required[str]

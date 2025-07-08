@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -26,16 +29,26 @@ class PipelineSettingsVariable(DevopnessBaseModel):
         required (bool):
     """
 
-    name: str
-    human_readable: str
-    hint: str
-    type: str
-    required: bool
+    name: Optional[StrictStr] = None
+    human_readable: Optional[StrictStr] = None
+    hint: Optional[StrictStr] = Field(
+        default=None,
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+    )
+    type: Optional[StrictStr] = None
+    required: Optional[StrictBool] = None
 
 
 class PipelineSettingsVariablePlain(TypedDict, total=False):
     """
-    Plain version of PipelineSettingsVariable.
+    Plain version of PipelineSettingsVariable
+
+    Attributes:
+        name (str):
+        human_readable (str):
+        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+        type (str):
+        required (bool):
     """
 
     name: Required[str]

@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .linked_resource_data import LinkedResourceData, LinkedResourceDataPlain
@@ -32,18 +35,33 @@ class ResourceLinkRelation(DevopnessBaseModel):
         children (List[ResourceLinkChild]):
     """
 
-    link_type: str
-    resource_type_human_readable: str
-    resource_type: str
-    resource_id: int
-    can_be_unlinked: bool
+    link_type: StrictStr = Field(
+        description="The link type to related resource (`child` or `parent`)"
+    )
+    resource_type_human_readable: StrictStr = Field(
+        description="The human readable resource type"
+    )
+    resource_type: StrictStr = Field(description="The linked resource type")
+    resource_id: StrictInt = Field(description="The linked resource ID")
+    can_be_unlinked: StrictBool = Field(
+        description="If false, the link cannot be manually removed"
+    )
     linked_resource_data: LinkedResourceData
-    children: List[ResourceLinkChild]
+    children: Optional[List[ResourceLinkChild]] = None
 
 
 class ResourceLinkRelationPlain(TypedDict, total=False):
     """
-    Plain version of ResourceLinkRelation.
+    Plain version of ResourceLinkRelation
+
+    Attributes:
+        link_type (str): The link type to related resource (&#x60;child&#x60; or &#x60;parent&#x60;)
+        resource_type_human_readable (str): The human readable resource type
+        resource_type (str): The linked resource type
+        resource_id (int): The linked resource ID
+        can_be_unlinked (bool): If false, the link cannot be manually removed
+        linked_resource_data (LinkedResourceData):
+        children (List[ResourceLinkChild]):
     """
 
     link_type: Required[str]

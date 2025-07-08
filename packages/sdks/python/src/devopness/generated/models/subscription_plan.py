@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -24,14 +27,19 @@ class SubscriptionPlan(DevopnessBaseModel):
         allow_subscriptions (bool):
     """
 
-    provider_plan_id: str
-    human_readable: str
-    allow_subscriptions: bool
+    provider_plan_id: Optional[StrictStr] = None
+    human_readable: Optional[StrictStr] = None
+    allow_subscriptions: Optional[StrictBool] = None
 
 
 class SubscriptionPlanPlain(TypedDict, total=False):
     """
-    Plain version of SubscriptionPlan.
+    Plain version of SubscriptionPlan
+
+    Attributes:
+        provider_plan_id (str):
+        human_readable (str):
+        allow_subscriptions (bool):
     """
 
     provider_plan_id: Required[str]

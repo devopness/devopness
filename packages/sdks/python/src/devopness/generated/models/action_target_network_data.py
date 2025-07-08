@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .network_provision_input import NetworkProvisionInput, NetworkProvisionInputPlain
@@ -28,16 +31,28 @@ class ActionTargetNetworkData(DevopnessBaseModel):
         provision_input (NetworkProvisionInput):
     """
 
-    id: int
-    name: str
-    provider_name: str
-    provider_name_human_readable: str
+    id: StrictInt = Field(description="The unique id of the network")
+    name: StrictStr = Field(description="The networks's name")
+    provider_name: Optional[StrictStr] = Field(
+        default=None, description="The name of the network's cloud provider."
+    )
+    provider_name_human_readable: Optional[StrictStr] = Field(
+        default=None,
+        description="The human readable version of the cloud provider's name",
+    )
     provision_input: NetworkProvisionInput
 
 
 class ActionTargetNetworkDataPlain(TypedDict, total=False):
     """
-    Plain version of ActionTargetNetworkData.
+    Plain version of ActionTargetNetworkData
+
+    Attributes:
+        id (int): The unique id of the network
+        name (str): The networks&#39;s name
+        provider_name (str): The name of the network&#39;s cloud provider.
+        provider_name_human_readable (str): The human readable version of the cloud provider&#39;s name
+        provision_input (NetworkProvisionInput):
     """
 
     id: Required[int]

@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,17 @@ class CredentialGoogleCloud(DevopnessBaseModel):
         service_account_key (str): The JSON key to service account of Google Cloud provider
     """
 
-    service_account_key: str
+    service_account_key: StrictStr = Field(
+        description="The JSON key to service account of Google Cloud provider"
+    )
 
 
 class CredentialGoogleCloudPlain(TypedDict, total=False):
     """
-    Plain version of CredentialGoogleCloud.
+    Plain version of CredentialGoogleCloud
+
+    Attributes:
+        service_account_key (str): The JSON key to service account of Google Cloud provider
     """
 
     service_account_key: Required[str]

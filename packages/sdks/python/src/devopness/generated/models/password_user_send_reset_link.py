@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,17 @@ class PasswordUserSendResetLink(DevopnessBaseModel):
         email (str): The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.
     """
 
-    email: str
+    email: StrictStr = Field(
+        description="The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters."
+    )
 
 
 class PasswordUserSendResetLinkPlain(TypedDict, total=False):
     """
-    Plain version of PasswordUserSendResetLink.
+    Plain version of PasswordUserSendResetLink
+
+    Attributes:
+        email (str): The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.
     """
 
     email: Required[str]

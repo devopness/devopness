@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,15 @@ class StaticNetworkRuleProtocolDefaults(DevopnessBaseModel):
         port (int, optional): The default port for the protocol
     """
 
-    port: Optional[int]
+    port: Optional[StrictInt] = Field(description="The default port for the protocol")
 
 
 class StaticNetworkRuleProtocolDefaultsPlain(TypedDict, total=False):
     """
-    Plain version of StaticNetworkRuleProtocolDefaults.
+    Plain version of StaticNetworkRuleProtocolDefaults
+
+    Attributes:
+        port (int, optional): The default port for the protocol
     """
 
     port: Optional[int]

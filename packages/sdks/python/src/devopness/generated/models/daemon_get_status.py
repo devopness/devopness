@@ -8,9 +8,12 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -23,12 +26,17 @@ class DaemonGetStatus(DevopnessBaseModel):
         servers (List[int]): List of valid resource IDs
     """
 
-    servers: List[int]
+    servers: Optional[List[StrictInt]] = Field(
+        default=None, description="List of valid resource IDs"
+    )
 
 
 class DaemonGetStatusPlain(TypedDict, total=False):
     """
-    Plain version of DaemonGetStatus.
+    Plain version of DaemonGetStatus
+
+    Attributes:
+        servers (List[int]): List of valid resource IDs
     """
 
     servers: Required[List[int]]

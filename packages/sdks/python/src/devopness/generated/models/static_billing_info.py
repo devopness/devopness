@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field
 
 from .. import DevopnessBaseModel
 from .subscription_plan import SubscriptionPlan, SubscriptionPlanPlain
@@ -25,12 +28,17 @@ class StaticBillingInfo(DevopnessBaseModel):
         subscription_plans (List[SubscriptionPlan]): The list of subscription plans
     """
 
-    subscription_plans: List[SubscriptionPlan]
+    subscription_plans: Optional[List[Optional[SubscriptionPlan]]] = Field(
+        default=None, description="The list of subscription plans"
+    )
 
 
 class StaticBillingInfoPlain(TypedDict, total=False):
     """
-    Plain version of StaticBillingInfo.
+    Plain version of StaticBillingInfo
+
+    Attributes:
+        subscription_plans (List[SubscriptionPlan]): The list of subscription plans
     """
 
     subscription_plans: Required[

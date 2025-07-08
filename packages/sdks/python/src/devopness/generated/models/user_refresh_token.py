@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,17 @@ class UserRefreshToken(DevopnessBaseModel):
         refresh_token (str): A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint.
     """
 
-    refresh_token: str
+    refresh_token: StrictStr = Field(
+        description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint."
+    )
 
 
 class UserRefreshTokenPlain(TypedDict, total=False):
     """
-    Plain version of UserRefreshToken.
+    Plain version of UserRefreshToken
+
+    Attributes:
+        refresh_token (str): A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint.
     """
 
     refresh_token: Required[str]

@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -23,13 +25,17 @@ class ProviderTypeListInner(DevopnessBaseModel):
         type_human_readable (str):
     """
 
-    type: str
-    type_human_readable: str
+    type: StrictStr
+    type_human_readable: StrictStr
 
 
 class ProviderTypeListInnerPlain(TypedDict, total=False):
     """
-    Plain version of ProviderTypeListInner.
+    Plain version of ProviderTypeListInner
+
+    Attributes:
+        type (str):
+        type_human_readable (str):
     """
 
     type: Required[str]

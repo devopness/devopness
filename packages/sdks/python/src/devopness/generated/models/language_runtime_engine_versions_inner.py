@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -22,12 +25,15 @@ class LanguageRuntimeEngineVersionsInner(DevopnessBaseModel):
         version (str):
     """
 
-    version: str
+    version: Optional[StrictStr] = None
 
 
 class LanguageRuntimeEngineVersionsInnerPlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntimeEngineVersionsInner.
+    Plain version of LanguageRuntimeEngineVersionsInner
+
+    Attributes:
+        version (str):
     """
 
     version: Required[str]

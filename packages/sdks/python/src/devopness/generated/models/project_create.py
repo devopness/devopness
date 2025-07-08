@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -25,15 +28,30 @@ class ProjectCreate(DevopnessBaseModel):
         logo_url (str): A URL path to the project&#39;s logo image. Must be a valid URL.
     """
 
-    name: str
-    organization_id: int
-    logo_image: str
-    logo_url: str
+    name: StrictStr = Field(
+        description="The name of the project. Must not be greater than 60 characters."
+    )
+    organization_id: Optional[StrictInt] = Field(
+        default=None, description="The ID of the organization that owns the project."
+    )
+    logo_image: Optional[StrictStr] = Field(
+        default=None, description="A base64 string representation of the logo image."
+    )
+    logo_url: Optional[StrictStr] = Field(
+        default=None,
+        description="A URL path to the project's logo image. Must be a valid URL.",
+    )
 
 
 class ProjectCreatePlain(TypedDict, total=False):
     """
-    Plain version of ProjectCreate.
+    Plain version of ProjectCreate
+
+    Attributes:
+        name (str): The name of the project. Must not be greater than 60 characters.
+        organization_id (int): The ID of the organization that owns the project.
+        logo_image (str): A base64 string representation of the logo image.
+        logo_url (str): A URL path to the project&#39;s logo image. Must be a valid URL.
     """
 
     name: Required[str]

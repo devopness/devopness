@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -23,13 +25,19 @@ class ResourceToBeLinked(DevopnessBaseModel):
         resource_id (int): The ID of the resource to be linked
     """
 
-    resource_type: str
-    resource_id: int
+    resource_type: StrictStr = Field(
+        description="The type of the resource to be linked"
+    )
+    resource_id: StrictInt = Field(description="The ID of the resource to be linked")
 
 
 class ResourceToBeLinkedPlain(TypedDict, total=False):
     """
-    Plain version of ResourceToBeLinked.
+    Plain version of ResourceToBeLinked
+
+    Attributes:
+        resource_type (str): The type of the resource to be linked
+        resource_id (int): The ID of the resource to be linked
     """
 
     resource_type: Required[str]

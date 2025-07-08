@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictStr
+
 from .. import DevopnessBaseModel
 from .cloud_provider_input_settings_default_value import (
     CloudProviderInputSettingsDefaultValue,
@@ -36,16 +38,27 @@ class CloudProviderInputSettings(DevopnessBaseModel):
         validation (CloudProviderPropertyValidation):
     """
 
-    name: str
-    name_human_readable: str
+    name: StrictStr = Field(description="Name of the property")
+    name_human_readable: StrictStr = Field(
+        description="Human readable version of the property's name"
+    )
     default_value: Optional[CloudProviderInputSettingsDefaultValue]
-    sensitive: bool
+    sensitive: StrictBool = Field(
+        description="Defines if the property data is a sensitive content"
+    )
     validation: CloudProviderPropertyValidation
 
 
 class CloudProviderInputSettingsPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderInputSettings.
+    Plain version of CloudProviderInputSettings
+
+    Attributes:
+        name (str): Name of the property
+        name_human_readable (str): Human readable version of the property&#39;s name
+        default_value (CloudProviderInputSettingsDefaultValue, optional):
+        sensitive (bool): Defines if the property data is a sensitive content
+        validation (CloudProviderPropertyValidation):
     """
 
     name: Required[str]

@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -24,14 +27,23 @@ class SubnetProvisionInputSettingsDigitalOcean(DevopnessBaseModel):
         cidr_block (str): The IP CIDR range of the subnet
     """
 
-    region: str
-    region_human_readable: str
-    cidr_block: str
+    region: StrictStr = Field(
+        description="The cloud provider region where the subnet will be created"
+    )
+    region_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the subnet region"
+    )
+    cidr_block: StrictStr = Field(description="The IP CIDR range of the subnet")
 
 
 class SubnetProvisionInputSettingsDigitalOceanPlain(TypedDict, total=False):
     """
-    Plain version of SubnetProvisionInputSettingsDigitalOcean.
+    Plain version of SubnetProvisionInputSettingsDigitalOcean
+
+    Attributes:
+        region (str): The cloud provider region where the subnet will be created
+        region_human_readable (str): Human readable version of the subnet region
+        cidr_block (str): The IP CIDR range of the subnet
     """
 
     region: Required[str]

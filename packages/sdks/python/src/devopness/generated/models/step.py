@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .pipeline_step_runner_name import (
     PipelineStepRunnerName,
@@ -41,25 +43,59 @@ class Step(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    name: Optional[str] = None
-    description: Optional[str] = None
-    type: str
-    run_as_user: str
-    command: str
+    id: StrictInt = Field(description="The unique ID of the given pipeline step")
+    name: Optional[StrictStr] = Field(
+        default=None, description="The pipeline step's name"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="The pipeline step's description"
+    )
+    type: StrictStr = Field(description="The pipeline step's type")
+    run_as_user: StrictStr = Field(
+        description="The name of the Unix user on behalf of which the script will be executed"
+    )
+    command: StrictStr = Field(
+        description="A command line or multiline bash pipeline step"
+    )
     runner: PipelineStepRunnerName
-    script_id: int
-    pipeline_id: int
-    trigger_order: int
-    is_auto_generated: bool
-    is_default_step: bool
-    created_at: str
-    updated_at: str
+    script_id: StrictInt = Field(description="The script's ID of this pipeline step")
+    pipeline_id: StrictInt = Field(description="The pipeline's ID")
+    trigger_order: StrictInt = Field(
+        description="The relative order of the step execution in case of multiple steps attached to pipeline"
+    )
+    is_auto_generated: StrictBool = Field(
+        description="True if this step is auto-generated or false if this was created by the user"
+    )
+    is_default_step: StrictBool = Field(
+        description="True if this step is a default step of the pipeline and cannot be updated/deleted"
+    )
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class StepPlain(TypedDict, total=False):
     """
-    Plain version of Step.
+    Plain version of Step
+
+    Attributes:
+        id (int): The unique ID of the given pipeline step
+        name (str, optional): The pipeline step&#39;s name
+        description (str, optional): The pipeline step&#39;s description
+        type (str): The pipeline step&#39;s type
+        run_as_user (str): The name of the Unix user on behalf of which the script will be executed
+        command (str): A command line or multiline bash pipeline step
+        runner (PipelineStepRunnerName):
+        script_id (int): The script&#39;s ID of this pipeline step
+        pipeline_id (int): The pipeline&#39;s ID
+        trigger_order (int): The relative order of the step execution in case of multiple steps attached to pipeline
+        is_auto_generated (bool): True if this step is auto-generated or false if this was created by the user
+        is_default_step (bool): True if this step is a default step of the pipeline and cannot be updated/deleted
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

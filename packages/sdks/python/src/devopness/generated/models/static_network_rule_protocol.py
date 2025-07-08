@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .network_rule_protocol import NetworkRuleProtocol, NetworkRuleProtocolPlain
 from .static_network_rule_protocol_defaults import (
@@ -31,13 +33,20 @@ class StaticNetworkRuleProtocol(DevopnessBaseModel):
     """
 
     value: NetworkRuleProtocol
-    human_readable: str
+    human_readable: StrictStr = Field(
+        description="The formatted name to be displayed in user interfaces"
+    )
     defaults: StaticNetworkRuleProtocolDefaults
 
 
 class StaticNetworkRuleProtocolPlain(TypedDict, total=False):
     """
-    Plain version of StaticNetworkRuleProtocol.
+    Plain version of StaticNetworkRuleProtocol
+
+    Attributes:
+        value (NetworkRuleProtocol):
+        human_readable (str): The formatted name to be displayed in user interfaces
+        defaults (StaticNetworkRuleProtocolDefaults):
     """
 
     value: Required[

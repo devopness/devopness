@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,17 @@ class UserUrl(DevopnessBaseModel):
         billing_management_url (str): The URL leading to a billing management page
     """
 
-    billing_management_url: str
+    billing_management_url: StrictStr = Field(
+        description="The URL leading to a billing management page"
+    )
 
 
 class UserUrlPlain(TypedDict, total=False):
     """
-    Plain version of UserUrl.
+    Plain version of UserUrl
+
+    Attributes:
+        billing_management_url (str): The URL leading to a billing management page
     """
 
     billing_management_url: Required[str]

@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -24,14 +27,22 @@ class PipelineSettingsStage(DevopnessBaseModel):
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: str
-    human_readable: str
-    hint: str
+    value: Optional[StrictStr] = None
+    human_readable: Optional[StrictStr] = None
+    hint: Optional[StrictStr] = Field(
+        default=None,
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+    )
 
 
 class PipelineSettingsStagePlain(TypedDict, total=False):
     """
-    Plain version of PipelineSettingsStage.
+    Plain version of PipelineSettingsStage
+
+    Attributes:
+        value (str):
+        human_readable (str):
+        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
     value: Required[str]

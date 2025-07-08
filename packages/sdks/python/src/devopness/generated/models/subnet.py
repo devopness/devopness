@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
 from .credential_relation import CredentialRelation, CredentialRelationPlain
@@ -44,10 +46,12 @@ class Subnet(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    name: str
+    id: StrictInt = Field(description="The unique id of the given record")
+    name: StrictStr = Field(description="The subnet's name")
     type: SubnetType
-    is_auto_generated: bool
+    is_auto_generated: StrictBool = Field(
+        description="True if this subnet is auto-generated or false if this was created by the user"
+    )
     provision_input: SubnetProvisionInput
     created_by_user: UserRelation
     project: Optional[ProjectRelation]
@@ -55,13 +59,32 @@ class Subnet(DevopnessBaseModel):
     network: Optional[NetworkRelation]
     credential: Optional[CredentialRelation]
     last_action: Optional[ActionRelation]
-    created_at: str
-    updated_at: str
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class SubnetPlain(TypedDict, total=False):
     """
-    Plain version of Subnet.
+    Plain version of Subnet
+
+    Attributes:
+        id (int): The unique id of the given record
+        name (str): The subnet&#39;s name
+        type (SubnetType):
+        is_auto_generated (bool): True if this subnet is auto-generated or false if this was created by the user
+        provision_input (SubnetProvisionInput):
+        created_by_user (UserRelation):
+        project (ProjectRelation, optional):
+        environment (EnvironmentRelation, optional):
+        network (NetworkRelation, optional):
+        credential (CredentialRelation, optional):
+        last_action (ActionRelation, optional):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

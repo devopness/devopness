@@ -13,6 +13,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -27,15 +29,25 @@ class ActionTargetLogStep(DevopnessBaseModel):
         output (str, optional): The full text output log
     """
 
-    order: int
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
-    output: Optional[str]
+    order: StrictInt = Field(description="The execution order of the given step")
+    started_at: Optional[datetime] = Field(
+        description="The date and time when the step started execution (i.e., left the `pending/queued` status)"
+    )
+    completed_at: Optional[datetime] = Field(
+        description="The date and time when the step has finished execution"
+    )
+    output: Optional[StrictStr] = Field(description="The full text output log")
 
 
 class ActionTargetLogStepPlain(TypedDict, total=False):
     """
-    Plain version of ActionTargetLogStep.
+    Plain version of ActionTargetLogStep
+
+    Attributes:
+        order (int): The execution order of the given step
+        started_at (datetime, optional): The date and time when the step started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (datetime, optional): The date and time when the step has finished execution
+        output (str, optional): The full text output log
     """
 
     order: Required[int]

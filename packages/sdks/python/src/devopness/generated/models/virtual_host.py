@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
 from .application_relation import ApplicationRelation, ApplicationRelationPlain
@@ -43,23 +45,47 @@ class VirtualHost(DevopnessBaseModel):
         updated_at (str): The date and time when the record was updated
     """
 
-    id: int
+    id: StrictInt = Field(description="Unique ID of the Virtual Host")
     type: VirtualHostType
-    type_human_readable: str
-    name: str
+    type_human_readable: StrictStr = Field(
+        description="The human readable version of the type"
+    )
+    name: StrictStr = Field(description="The name of the Virtual Host")
     application: Optional[ApplicationRelation]
-    root_directory: Optional[str]
-    application_listen_address: Optional[str]
+    root_directory: Optional[StrictStr] = Field(
+        description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host"
+    )
+    application_listen_address: Optional[StrictStr] = Field(
+        description="The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)"
+    )
     ssl_certificate: Optional[SslCertificateRelation]
     last_action: Optional[ActionRelation]
     created_by_user: UserRelation
-    created_at: str
-    updated_at: str
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was updated"
+    )
 
 
 class VirtualHostPlain(TypedDict, total=False):
     """
-    Plain version of VirtualHost.
+    Plain version of VirtualHost
+
+    Attributes:
+        id (int): Unique ID of the Virtual Host
+        type (VirtualHostType):
+        type_human_readable (str): The human readable version of the type
+        name (str): The name of the Virtual Host
+        application (ApplicationRelation, optional):
+        root_directory (str, optional): The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host
+        application_listen_address (str, optional): The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has &#x60;http&#x60; or &#x60;https&#x60; protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using &#x60;unix:&#x60; protocol. Examples: &#x60;http://127.0.0.1:8080&#x60; (for applications exposing port &#x60;8080&#x60;, for example running in a Docker container), &#x60;http://127.0.0.1:3000&#x60; (for applications kept alive by a daemon/background process that listens on port &#x60;3000&#x60;), &#x60;unix:/var/run/example.sock&#x60; (for applications listening on a custom socket)
+        ssl_certificate (SslCertificateRelation, optional):
+        last_action (ActionRelation, optional):
+        created_by_user (UserRelation):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was updated
     """
 
     id: Required[int]

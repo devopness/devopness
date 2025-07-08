@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,17 @@ class TeamEnvironmentLink(DevopnessBaseModel):
         role_id (int): The role&#39;s ID to use for this team on environment.
     """
 
-    role_id: int
+    role_id: StrictInt = Field(
+        description="The role's ID to use for this team on environment."
+    )
 
 
 class TeamEnvironmentLinkPlain(TypedDict, total=False):
     """
-    Plain version of TeamEnvironmentLink.
+    Plain version of TeamEnvironmentLink
+
+    Attributes:
+        role_id (int): The role&#39;s ID to use for this team on environment.
     """
 
     role_id: Required[int]

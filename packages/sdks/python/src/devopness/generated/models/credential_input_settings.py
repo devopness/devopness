@@ -32,7 +32,10 @@ class CredentialInputSettings(DevopnessBaseModel):
 
 class CredentialInputSettingsPlain(TypedDict, total=False):
     """
-    Plain version of CredentialInputSettings.
+    Plain version of CredentialInputSettings
+
+    Attributes:
+        credential (CredentialInputSettingsCredential):
     """
 
     credential: Required[

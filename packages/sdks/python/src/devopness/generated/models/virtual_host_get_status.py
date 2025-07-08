@@ -8,9 +8,12 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -23,12 +26,17 @@ class VirtualHostGetStatus(DevopnessBaseModel):
         servers (List[int]): List of valid resource IDs
     """
 
-    servers: List[int]
+    servers: Optional[List[StrictInt]] = Field(
+        default=None, description="List of valid resource IDs"
+    )
 
 
 class VirtualHostGetStatusPlain(TypedDict, total=False):
     """
-    Plain version of VirtualHostGetStatus.
+    Plain version of VirtualHostGetStatus
+
+    Attributes:
+        servers (List[int]): List of valid resource IDs
     """
 
     servers: Required[List[int]]

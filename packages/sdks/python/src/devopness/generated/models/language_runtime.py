@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .language_runtime_engine_versions_inner import (
     LanguageRuntimeEngineVersionsInner,
@@ -35,15 +37,29 @@ class LanguageRuntime(DevopnessBaseModel):
         frameworks (List[LanguageRuntimeFramework]): The list of supported frameworks built on top of the runtime engine
     """
 
-    name: str
-    name_human_readable: str
-    engine_versions: List[LanguageRuntimeEngineVersionsInner]
-    frameworks: List[LanguageRuntimeFramework]
+    name: StrictStr = Field(
+        description="The internal name/code of the language runtime"
+    )
+    name_human_readable: StrictStr = Field(
+        description="The formatted name to be displayed in user interfaces"
+    )
+    engine_versions: List[LanguageRuntimeEngineVersionsInner] = Field(
+        description="The list of the supported versions of the runtime engine"
+    )
+    frameworks: List[LanguageRuntimeFramework] = Field(
+        description="The list of supported frameworks built on top of the runtime engine"
+    )
 
 
 class LanguageRuntimePlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntime.
+    Plain version of LanguageRuntime
+
+    Attributes:
+        name (str): The internal name/code of the language runtime
+        name_human_readable (str): The formatted name to be displayed in user interfaces
+        engine_versions (List[LanguageRuntimeEngineVersionsInner]): The list of the supported versions of the runtime engine
+        frameworks (List[LanguageRuntimeFramework]): The list of supported frameworks built on top of the runtime engine
     """
 
     name: Required[str]

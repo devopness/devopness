@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .pipeline_trigger_when import PipelineTriggerWhen, PipelineTriggerWhenPlain
 from .user_relation import UserRelation, UserRelationPlain
@@ -39,25 +41,57 @@ class PipelineRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    name: str
-    environment_id: int
-    project_id: int
-    resource_type: str
-    resource_type_human_readable: str
-    resource_id: int
-    operation: str
-    operation_human_readable: str
-    max_parallel_actions: int
+    id: StrictInt = Field(description="The unique ID of the given pipeline")
+    name: StrictStr = Field(description="The pipeline's name")
+    environment_id: StrictInt = Field(
+        description="ID of the environment this pipeline belongs to"
+    )
+    project_id: StrictInt = Field(
+        description="ID of the project this pipeline belongs to"
+    )
+    resource_type: StrictStr = Field(description="The pipeline's resource type")
+    resource_type_human_readable: StrictStr = Field(
+        description="Human readable version of the resource type"
+    )
+    resource_id: StrictInt = Field(description="The pipeline's resource ID")
+    operation: StrictStr = Field(
+        description="The resource operation associated to the pipeline."
+    )
+    operation_human_readable: StrictStr = Field(
+        description="Human readable version of the operation"
+    )
+    max_parallel_actions: StrictInt = Field(
+        description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline."
+    )
     trigger_when: Optional[PipelineTriggerWhen]
     created_by_user: UserRelation
-    created_at: str
-    updated_at: str
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class PipelineRelationPlain(TypedDict, total=False):
     """
-    Plain version of PipelineRelation.
+    Plain version of PipelineRelation
+
+    Attributes:
+        id (int): The unique ID of the given pipeline
+        name (str): The pipeline&#39;s name
+        environment_id (int): ID of the environment this pipeline belongs to
+        project_id (int): ID of the project this pipeline belongs to
+        resource_type (str): The pipeline&#39;s resource type
+        resource_type_human_readable (str): Human readable version of the resource type
+        resource_id (int): The pipeline&#39;s resource ID
+        operation (str): The resource operation associated to the pipeline.
+        operation_human_readable (str): Human readable version of the operation
+        max_parallel_actions (int): Maximum number of actions that can run in parallel for this pipeline. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run this pipeline.
+        trigger_when (PipelineTriggerWhen, optional):
+        created_by_user (UserRelation):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_relation_shallow import ActionRelationShallow, ActionRelationShallowPlain
 from .credential import Credential, CredentialPlain
@@ -39,24 +41,53 @@ class NetworkRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    project_id: int
-    environment_id: int
-    created_by: int
-    is_auto_generated: bool
-    provider_name: str
-    provider_name_human_readable: str
-    credential: Credential
-    name: str
+    id: StrictInt = Field(description="The unique id of the given record")
+    project_id: StrictInt = Field(
+        description="Numeric ID of the project to which the network belongs to"
+    )
+    environment_id: StrictInt = Field(
+        description="Numeric ID of the environment to which the network belongs to"
+    )
+    created_by: StrictInt = Field(
+        description="The id of the user who created the network"
+    )
+    is_auto_generated: StrictBool = Field(
+        description="If true, the network is auto-generated"
+    )
+    provider_name: StrictStr = Field(description="The name of the cloud provider")
+    provider_name_human_readable: StrictStr = Field(
+        description="The human readable version of the provider's name"
+    )
+    credential: Optional[Credential] = None
+    name: StrictStr = Field(description="The networks's name")
     provision_input: NetworkProvisionInput
     last_action: Optional[ActionRelationShallow] = None
-    created_at: str
-    updated_at: str
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
 
 
 class NetworkRelationPlain(TypedDict, total=False):
     """
-    Plain version of NetworkRelation.
+    Plain version of NetworkRelation
+
+    Attributes:
+        id (int): The unique id of the given record
+        project_id (int): Numeric ID of the project to which the network belongs to
+        environment_id (int): Numeric ID of the environment to which the network belongs to
+        created_by (int): The id of the user who created the network
+        is_auto_generated (bool): If true, the network is auto-generated
+        provider_name (str): The name of the cloud provider
+        provider_name_human_readable (str): The human readable version of the provider&#39;s name
+        credential (Credential):
+        name (str): The networks&#39;s name
+        provision_input (NetworkProvisionInput):
+        last_action (ActionRelationShallow, optional):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

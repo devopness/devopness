@@ -7,9 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
+    Union,
 )
+
+from pydantic import Field, StrictFloat, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -27,17 +31,42 @@ class TriggeredActionSummary(DevopnessBaseModel):
         failed (float): Total of actions that were triggered by the user with status failed
     """
 
-    count: float
-    queued: float
-    pending: float
-    in_progress: float
-    completed: float
-    failed: float
+    count: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Total of actions that were triggered by the user"
+    )
+    queued: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status queued",
+    )
+    pending: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status pending",
+    )
+    in_progress: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status in_progress",
+    )
+    completed: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status completed",
+    )
+    failed: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total of actions that were triggered by the user with status failed",
+    )
 
 
 class TriggeredActionSummaryPlain(TypedDict, total=False):
     """
-    Plain version of TriggeredActionSummary.
+    Plain version of TriggeredActionSummary
+
+    Attributes:
+        count (float): Total of actions that were triggered by the user
+        queued (float): Total of actions that were triggered by the user with status queued
+        pending (float): Total of actions that were triggered by the user with status pending
+        in_progress (float): Total of actions that were triggered by the user with status in_progress
+        completed (float): Total of actions that were triggered by the user with status completed
+        failed (float): Total of actions that were triggered by the user with status failed
     """
 
     count: Required[float]

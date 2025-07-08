@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .network_rule_direction import NetworkRuleDirection, NetworkRuleDirectionPlain
@@ -32,17 +35,33 @@ class NetworkRuleEnvironmentCreate(DevopnessBaseModel):
         port (int): Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535.
     """
 
-    linked_resources: List[ResourceToBeLinked]
-    name: str
+    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+        default=None, description="The resources to be linked with this resource"
+    )
+    name: StrictStr = Field(
+        description="The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters."
+    )
     direction: NetworkRuleDirection
     protocol: NetworkRuleProtocol
-    cidr_block: str
-    port: int
+    cidr_block: StrictStr = Field(
+        description="IP address range this rule applies for, defined using CIDR notation."
+    )
+    port: StrictInt = Field(
+        description="Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535."
+    )
 
 
 class NetworkRuleEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of NetworkRuleEnvironmentCreate.
+    Plain version of NetworkRuleEnvironmentCreate
+
+    Attributes:
+        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
+        name (str): The rule&#39;s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
+        direction (NetworkRuleDirection):
+        protocol (NetworkRuleProtocol):
+        cidr_block (str): IP address range this rule applies for, defined using CIDR notation.
+        port (int): Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535.
     """
 
     linked_resources: Required[

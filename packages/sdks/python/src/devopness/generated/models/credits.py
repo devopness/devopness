@@ -7,9 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
+    Union,
 )
+
+from pydantic import Field, StrictFloat, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -24,14 +28,26 @@ class Credits(DevopnessBaseModel):
         remaining (float): Total credits available to use to perform actions
     """
 
-    limit: float
-    used: float
-    remaining: float
+    limit: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total credits that can be used to perform actions in the subscription period",
+    )
+    used: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Total credits that were used to perform actions"
+    )
+    remaining: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Total credits available to use to perform actions"
+    )
 
 
 class CreditsPlain(TypedDict, total=False):
     """
-    Plain version of Credits.
+    Plain version of Credits
+
+    Attributes:
+        limit (float): Total credits that can be used to perform actions in the subscription period
+        used (float): Total credits that were used to perform actions
+        remaining (float): Total credits available to use to perform actions
     """
 
     limit: Required[float]

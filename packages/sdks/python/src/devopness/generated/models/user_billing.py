@@ -29,7 +29,10 @@ class UserBilling(DevopnessBaseModel):
 
 class UserBillingPlain(TypedDict, total=False):
     """
-    Plain version of UserBilling.
+    Plain version of UserBilling
+
+    Attributes:
+        active_subscription (Subscription, optional):
     """
 
     active_subscription: Optional[

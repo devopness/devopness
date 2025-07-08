@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .language_runtime_framework_commands import (
     LanguageRuntimeFrameworkCommands,
@@ -35,19 +37,50 @@ class LanguageRuntimeFrameworkDefaults(DevopnessBaseModel):
         build_command (str, optional): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
     """
 
-    default_branch: str
-    engine_version: str
-    framework: str
-    root_directory: str
-    deployments_keep: int
-    commands: LanguageRuntimeFrameworkCommands
-    install_dependencies_command: Optional[str] = None
-    build_command: Optional[str] = None
+    default_branch: Optional[StrictStr] = Field(
+        default=None,
+        description="The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
+    )
+    engine_version: Optional[StrictStr] = Field(
+        default=None,
+        description="The language runtime engine version to be used to execute this application code on the deployed servers",
+    )
+    framework: Optional[StrictStr] = Field(
+        default=None,
+        description="The base framework on top of which the application has been implemented - if any",
+    )
+    root_directory: Optional[StrictStr] = Field(
+        default=None,
+        description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+    )
+    deployments_keep: Optional[StrictInt] = Field(
+        default=None,
+        description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
+    )
+    commands: Optional[LanguageRuntimeFrameworkCommands] = None
+    install_dependencies_command: Optional[StrictStr] = Field(
+        default=None,
+        description="Indicates command that Devopness must execute to install application dependencies",
+    )
+    build_command: Optional[StrictStr] = Field(
+        default=None,
+        description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+    )
 
 
 class LanguageRuntimeFrameworkDefaultsPlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntimeFrameworkDefaults.
+    Plain version of LanguageRuntimeFrameworkDefaults
+
+    Attributes:
+        default_branch (str): The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.
+        engine_version (str): The language runtime engine version to be used to execute this application code on the deployed servers
+        framework (str): The base framework on top of which the application has been implemented - if any
+        root_directory (str): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
+        deployments_keep (int): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers
+        commands (LanguageRuntimeFrameworkCommands):
+        install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies
+        build_command (str, optional): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
     """
 
     default_branch: Required[str]

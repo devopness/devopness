@@ -13,6 +13,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -32,20 +34,47 @@ class HookRequestRelation(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
-    id: str
-    hook_id: str
-    action_id: Optional[int]
-    retry_of: Optional[str]
-    ip_address: str
-    url: str
-    response_status_code: int
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
+    id: StrictStr = Field(description="The unique UUID of the hook request")
+    hook_id: StrictStr = Field(
+        description="The UUID of the hook that the request belongs to"
+    )
+    action_id: Optional[StrictInt] = Field(
+        description="The id of the action that the request belongs to"
+    )
+    retry_of: Optional[StrictStr] = Field(
+        description="The UUID of the request that this request is a retry of"
+    )
+    ip_address: StrictStr = Field(
+        description="The IP address of the source that triggered the hook"
+    )
+    url: Optional[StrictStr] = Field(
+        default=None, description="Original URL used on the request"
+    )
+    response_status_code: Optional[StrictInt] = Field(
+        default=None, description="The response status code"
+    )
+    created_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
 
 
 class HookRequestRelationPlain(TypedDict, total=False):
     """
-    Plain version of HookRequestRelation.
+    Plain version of HookRequestRelation
+
+    Attributes:
+        id (str): The unique UUID of the hook request
+        hook_id (str): The UUID of the hook that the request belongs to
+        action_id (int, optional): The id of the action that the request belongs to
+        retry_of (str, optional): The UUID of the request that this request is a retry of
+        ip_address (str): The IP address of the source that triggered the hook
+        url (str): Original URL used on the request
+        response_status_code (int): The response status code
+        created_at (datetime, optional): The date and time when the record was created
+        updated_at (datetime, optional): The date and time when the record was last updated
     """
 
     id: Required[str]

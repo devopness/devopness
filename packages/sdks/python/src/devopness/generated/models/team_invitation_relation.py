@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .team_invitation_status import TeamInvitationStatus, TeamInvitationStatusPlain
@@ -40,24 +42,53 @@ class TeamInvitationRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: str
-    email: str
+    id: StrictStr = Field(description="The unique UUID of the given invitation")
+    email: StrictStr = Field(
+        description="The email of the user that has been invited to team"
+    )
     status: TeamInvitationStatus
-    status_human_readable: str
-    accepted_from_ip: Optional[str]
+    status_human_readable: StrictStr = Field(
+        description="Human readable version of the invitation status"
+    )
+    accepted_from_ip: Optional[StrictStr] = Field(
+        description="The IP of the user who accepted the invitation"
+    )
     created_by_user: UserRelation
     user: UserRelation
     team: Optional[TeamRelation]
     project: Optional[ProjectRelation]
-    accepted_at: Optional[str]
-    expires_at: str
-    created_at: str
-    updated_at: str
+    accepted_at: Optional[StrictStr] = Field(
+        description="The date and time when the invitation was accepted"
+    )
+    expires_at: StrictStr = Field(
+        description="The date and time when the invitation will expire"
+    )
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class TeamInvitationRelationPlain(TypedDict, total=False):
     """
-    Plain version of TeamInvitationRelation.
+    Plain version of TeamInvitationRelation
+
+    Attributes:
+        id (str): The unique UUID of the given invitation
+        email (str): The email of the user that has been invited to team
+        status (TeamInvitationStatus):
+        status_human_readable (str): Human readable version of the invitation status
+        accepted_from_ip (str, optional): The IP of the user who accepted the invitation
+        created_by_user (UserRelation):
+        user (UserRelation):
+        team (TeamRelation, optional):
+        project (ProjectRelation, optional):
+        accepted_at (str, optional): The date and time when the invitation was accepted
+        expires_at (str): The date and time when the invitation will expire
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[str]

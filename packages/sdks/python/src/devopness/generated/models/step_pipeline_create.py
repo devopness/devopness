@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .pipeline_step_runner_name import (
@@ -32,17 +35,39 @@ class StepPipelineCreate(DevopnessBaseModel):
         run_as_user (str): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
     """
 
-    name: str
-    description: str
-    type: str
-    command: str
+    name: Optional[StrictStr] = Field(
+        default=None,
+        description="Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
+    )
+    description: Optional[StrictStr] = Field(
+        default=None,
+        description="A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
+    )
+    type: Optional[StrictStr] = Field(
+        default=None,
+        description="The pipeline step's type. Must not be greater than 20 characters.",
+    )
+    command: StrictStr = Field(
+        description="A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters."
+    )
     runner: PipelineStepRunnerName
-    run_as_user: str
+    run_as_user: Optional[StrictStr] = Field(
+        default=None,
+        description="The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
+    )
 
 
 class StepPipelineCreatePlain(TypedDict, total=False):
     """
-    Plain version of StepPipelineCreate.
+    Plain version of StepPipelineCreate
+
+    Attributes:
+        name (str): Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
+        description (str): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
+        type (str): The pipeline step&#39;s type. Must not be greater than 20 characters.
+        command (str): A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
+        runner (PipelineStepRunnerName):
+        run_as_user (str): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
     """
 
     name: Required[str]

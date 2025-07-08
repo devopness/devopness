@@ -15,6 +15,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_deployment_data import ActionDeploymentData, ActionDeploymentDataPlain
 from .action_status import ActionStatus, ActionStatusPlain
@@ -51,27 +53,55 @@ class ActionRelationShallow(DevopnessBaseModel):
         updated_at (datetime): When the action was last updated
     """
 
-    id: int
+    id: StrictInt = Field(description="The Id of the action")
     status: ActionStatus
-    status_human_readable: str
+    status_human_readable: StrictStr = Field(
+        description="Human readable version of the action status"
+    )
     status_reason_code: ActionStatusReasonCode
-    status_reason_human_readable: str
+    status_reason_human_readable: StrictStr = Field(
+        description="Human readable version of the status reason code"
+    )
     type: ActionType
-    type_human_readable: str
-    url_web_permalink: str
+    type_human_readable: StrictStr = Field(
+        description="Human readable version of the action type"
+    )
+    url_web_permalink: StrictStr = Field(
+        description="Permalink to view the action on Devopness web"
+    )
     action_data: Optional[ActionDeploymentData] = None
-    triggered_from: ActionTriggeredFrom
-    summary: ActionSummary
-    targets: List[ActionTarget]
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
-    created_at: datetime
-    updated_at: datetime
+    triggered_from: Optional[ActionTriggeredFrom] = None
+    summary: Optional[ActionSummary] = None
+    targets: Optional[List[ActionTarget]] = Field(
+        default=None, description="List of actions dispatched to cloud resource targets"
+    )
+    started_at: Optional[datetime] = Field(description="When the action started")
+    completed_at: Optional[datetime] = Field(description="When the action completed")
+    created_at: datetime = Field(description="When the action was created")
+    updated_at: datetime = Field(description="When the action was last updated")
 
 
 class ActionRelationShallowPlain(TypedDict, total=False):
     """
-    Plain version of ActionRelationShallow.
+    Plain version of ActionRelationShallow
+
+    Attributes:
+        id (int): The Id of the action
+        status (ActionStatus):
+        status_human_readable (str): Human readable version of the action status
+        status_reason_code (ActionStatusReasonCode):
+        status_reason_human_readable (str): Human readable version of the status reason code
+        type (ActionType):
+        type_human_readable (str): Human readable version of the action type
+        url_web_permalink (str): Permalink to view the action on Devopness web
+        action_data (ActionDeploymentData, optional):
+        triggered_from (ActionTriggeredFrom):
+        summary (ActionSummary):
+        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
+        started_at (datetime, optional): When the action started
+        completed_at (datetime, optional): When the action completed
+        created_at (datetime): When the action was created
+        updated_at (datetime): When the action was last updated
     """
 
     id: Required[int]

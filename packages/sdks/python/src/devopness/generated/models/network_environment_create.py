@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .network_provision_input import NetworkProvisionInput, NetworkProvisionInputPlain
 
@@ -26,14 +28,21 @@ class NetworkEnvironmentCreate(DevopnessBaseModel):
         credential_id (int): The ID of the cloud credential.
     """
 
-    name: str
+    name: StrictStr = Field(
+        description="The network's name. Must not be one of <code>default</code> Must be between 1 and 63 characters."
+    )
     provision_input: NetworkProvisionInput
-    credential_id: int
+    credential_id: StrictInt = Field(description="The ID of the cloud credential.")
 
 
 class NetworkEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of NetworkEnvironmentCreate.
+    Plain version of NetworkEnvironmentCreate
+
+    Attributes:
+        name (str): The network&#39;s name. Must not be one of &lt;code&gt;default&lt;/code&gt; Must be between 1 and 63 characters.
+        provision_input (NetworkProvisionInput):
+        credential_id (int): The ID of the cloud credential.
     """
 
     name: Required[str]

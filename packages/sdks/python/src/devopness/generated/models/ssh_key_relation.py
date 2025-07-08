@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_relation_shallow import ActionRelationShallow, ActionRelationShallowPlain
 
@@ -33,20 +35,46 @@ class SshKeyRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    created_by: int
-    project_id: int
-    environment_id: int
-    name: str
-    fingerprint: str
+    id: StrictInt = Field(description="The Id of the given SSH public key")
+    created_by: Optional[StrictInt] = Field(
+        default=None, description="The Id of the user to which the SSH key belongs to"
+    )
+    project_id: Optional[StrictInt] = Field(
+        default=None,
+        description="The project id to which the SSH public key belongs to",
+    )
+    environment_id: StrictInt = Field(
+        description="The environment id to which the SSH public key belongs to"
+    )
+    name: StrictStr = Field(
+        description="The name entered by the user to uniquely identify the public SSH key"
+    )
+    fingerprint: StrictStr = Field(
+        description="The hashed fingerprint of the public key"
+    )
     last_action: Optional[ActionRelationShallow] = None
-    created_at: str
-    updated_at: str
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
 
 
 class SshKeyRelationPlain(TypedDict, total=False):
     """
-    Plain version of SshKeyRelation.
+    Plain version of SshKeyRelation
+
+    Attributes:
+        id (int): The Id of the given SSH public key
+        created_by (int): The Id of the user to which the SSH key belongs to
+        project_id (int): The project id to which the SSH public key belongs to
+        environment_id (int): The environment id to which the SSH public key belongs to
+        name (str): The name entered by the user to uniquely identify the public SSH key
+        fingerprint (str): The hashed fingerprint of the public key
+        last_action (ActionRelationShallow, optional):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_target_data import ActionTargetData, ActionTargetDataPlain
 from .action_target_log_step import ActionTargetLogStep, ActionTargetLogStepPlain
@@ -29,12 +31,19 @@ class Log(DevopnessBaseModel):
 
     target: Optional[ActionTargetData]
     step: Optional[ActionTargetLogStep]
-    updated_at: Optional[str]
+    updated_at: Optional[StrictStr] = Field(
+        description="The date and time when the requested log record was last updated"
+    )
 
 
 class LogPlain(TypedDict, total=False):
     """
-    Plain version of Log.
+    Plain version of Log
+
+    Attributes:
+        target (ActionTargetData, optional):
+        step (ActionTargetLogStep, optional):
+        updated_at (str, optional): The date and time when the requested log record was last updated
     """
 
     target: Optional[

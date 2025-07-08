@@ -7,10 +7,14 @@ Note:
 """
 
 from typing import (
+    Any,
+    Dict,
     Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -24,13 +28,21 @@ class HookTriggerResponse(DevopnessBaseModel):
         errors (object, optional): Optional error object containing details of the server error
     """
 
-    message: str
-    errors: Optional[object]
+    message: StrictStr = Field(
+        description="Message containing information about the hook being triggered"
+    )
+    errors: Optional[Dict[str, Any]] = Field(
+        description="Optional error object containing details of the server error"
+    )
 
 
 class HookTriggerResponsePlain(TypedDict, total=False):
     """
-    Plain version of HookTriggerResponse.
+    Plain version of HookTriggerResponse
+
+    Attributes:
+        message (str): Message containing information about the hook being triggered
+        errors (object, optional): Optional error object containing details of the server error
     """
 
     message: Required[str]

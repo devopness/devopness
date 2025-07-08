@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .cloud_provider_code import CloudProviderCode, CloudProviderCodePlain
 from .provider_type import ProviderType, ProviderTypePlain
@@ -30,17 +32,29 @@ class ActionTargetCredentialData(DevopnessBaseModel):
         provider_name_human_readable (str): The human readable version of the provider name
     """
 
-    id: int
-    name: str
+    id: StrictInt = Field(description="The unique id of the credential")
+    name: StrictStr = Field(description="The name of the credential")
     provider_type: ProviderType
     provider_code: CloudProviderCode
-    provider_name: str
-    provider_name_human_readable: str
+    provider_name: StrictStr = Field(
+        description="The name of the cloud provider of the credential"
+    )
+    provider_name_human_readable: StrictStr = Field(
+        description="The human readable version of the provider name"
+    )
 
 
 class ActionTargetCredentialDataPlain(TypedDict, total=False):
     """
-    Plain version of ActionTargetCredentialData.
+    Plain version of ActionTargetCredentialData
+
+    Attributes:
+        id (int): The unique id of the credential
+        name (str): The name of the credential
+        provider_type (ProviderType):
+        provider_code (CloudProviderCode):
+        provider_name (str): The name of the cloud provider of the credential
+        provider_name_human_readable (str): The human readable version of the provider name
     """
 
     id: Required[int]

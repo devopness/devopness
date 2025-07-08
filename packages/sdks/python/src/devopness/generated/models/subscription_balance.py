@@ -8,10 +8,13 @@ Note:
 
 from datetime import datetime
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .credits import Credits, CreditsPlain
@@ -30,17 +33,35 @@ class SubscriptionBalance(DevopnessBaseModel):
         updated_at (datetime): The date and time when the record was last updated
     """
 
-    credits: Credits
-    unit: str
-    billing_period_started_at: datetime
-    billing_period_ends_at: datetime
-    created_at: datetime
-    updated_at: datetime
+    credits: Optional[Credits] = None
+    unit: Optional[StrictStr] = Field(
+        default=None, description="The unit of measurement to count credits"
+    )
+    billing_period_started_at: Optional[datetime] = Field(
+        default=None, description="The date and time the subscription plan starts"
+    )
+    billing_period_ends_at: Optional[datetime] = Field(
+        default=None, description="The date and time the subscription plan ends"
+    )
+    created_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
 
 
 class SubscriptionBalancePlain(TypedDict, total=False):
     """
-    Plain version of SubscriptionBalance.
+    Plain version of SubscriptionBalance
+
+    Attributes:
+        credits (Credits):
+        unit (str): The unit of measurement to count credits
+        billing_period_started_at (datetime): The date and time the subscription plan starts
+        billing_period_ends_at (datetime): The date and time the subscription plan ends
+        created_at (datetime): The date and time when the record was created
+        updated_at (datetime): The date and time when the record was last updated
     """
 
     credits: Required[

@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt
+
 from .. import DevopnessBaseModel
 from .credential_provider_type import (
     CredentialProviderType,
@@ -31,13 +33,20 @@ class CredentialSetting(DevopnessBaseModel):
     """
 
     provider: CredentialProviderType
-    environment_id: int
+    environment_id: StrictInt = Field(
+        description="Numeric ID of the environment to which the network belongs to"
+    )
     settings: ProviderSettings
 
 
 class CredentialSettingPlain(TypedDict, total=False):
     """
-    Plain version of CredentialSetting.
+    Plain version of CredentialSetting
+
+    Attributes:
+        provider (CredentialProviderType):
+        environment_id (int): Numeric ID of the environment to which the network belongs to
+        settings (ProviderSettings):
     """
 
     provider: Required[

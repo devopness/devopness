@@ -11,6 +11,9 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field
+from typing_extensions import Annotated
+
 from .. import DevopnessBaseModel
 
 
@@ -23,13 +26,21 @@ class HookOutgoingRequestHeader(DevopnessBaseModel):
         value (str): Value of the HTTP header.
     """
 
-    name: str
-    value: str
+    name: Annotated[str, Field(strict=True, max_length=256)] = Field(
+        description="Name of the HTTP header."
+    )
+    value: Annotated[str, Field(strict=True, max_length=4096)] = Field(
+        description="Value of the HTTP header."
+    )
 
 
 class HookOutgoingRequestHeaderPlain(TypedDict, total=False):
     """
-    Plain version of HookOutgoingRequestHeader.
+    Plain version of HookOutgoingRequestHeader
+
+    Attributes:
+        name (str): Name of the HTTP header.
+        value (str): Value of the HTTP header.
     """
 
     name: Required[str]

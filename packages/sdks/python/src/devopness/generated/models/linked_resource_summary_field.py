@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -24,14 +26,21 @@ class LinkedResourceSummaryField(DevopnessBaseModel):
         value (str): The field value
     """
 
-    field_name: str
-    field_name_human_readable: str
-    value: str
+    field_name: StrictStr = Field(description="The field name")
+    field_name_human_readable: StrictStr = Field(
+        description="Human readable version of the field name"
+    )
+    value: StrictStr = Field(description="The field value")
 
 
 class LinkedResourceSummaryFieldPlain(TypedDict, total=False):
     """
-    Plain version of LinkedResourceSummaryField.
+    Plain version of LinkedResourceSummaryField
+
+    Attributes:
+        field_name (str): The field name
+        field_name_human_readable (str): Human readable version of the field name
+        value (str): The field value
     """
 
     field_name: Required[str]

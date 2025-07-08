@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .language_runtime_framework_defaults import (
     LanguageRuntimeFrameworkDefaults,
@@ -29,14 +31,23 @@ class LanguageRuntimeFramework(DevopnessBaseModel):
         defaults (LanguageRuntimeFrameworkDefaults):
     """
 
-    name: str
-    name_human_readable: str
+    name: StrictStr = Field(
+        description="The internal name/code of the language runtime"
+    )
+    name_human_readable: StrictStr = Field(
+        description="The formatted name to be displayed in user interfaces"
+    )
     defaults: LanguageRuntimeFrameworkDefaults
 
 
 class LanguageRuntimeFrameworkPlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntimeFramework.
+    Plain version of LanguageRuntimeFramework
+
+    Attributes:
+        name (str): The internal name/code of the language runtime
+        name_human_readable (str): The formatted name to be displayed in user interfaces
+        defaults (LanguageRuntimeFrameworkDefaults):
     """
 
     name: Required[str]

@@ -14,6 +14,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .user_relation import UserRelation, UserRelationPlain
@@ -33,18 +35,31 @@ class Team(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    name: str
-    photo_url: Optional[str]
+    id: StrictInt = Field(description="The unique ID of the given team")
+    name: StrictStr = Field(description="The name of the given team")
+    photo_url: Optional[StrictStr] = Field(description="The URL to team's image")
     project: Optional[ProjectRelation]
-    users: List[UserRelation]
-    created_at: str
-    updated_at: str
+    users: List[UserRelation] = Field(description="The list of users")
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class TeamPlain(TypedDict, total=False):
     """
-    Plain version of Team.
+    Plain version of Team
+
+    Attributes:
+        id (int): The unique ID of the given team
+        name (str): The name of the given team
+        photo_url (str, optional): The URL to team&#39;s image
+        project (ProjectRelation, optional):
+        users (List[UserRelation]): The list of users
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictStr
+
 from .. import DevopnessBaseModel
 from .credential_input_settings import (
     CredentialInputSettings,
@@ -33,16 +35,25 @@ class CredentialEnvironmentCreate(DevopnessBaseModel):
         settings (CredentialInputSettings):
     """
 
-    name: str
+    name: StrictStr = Field(
+        description="The name of the credential. Must not be greater than 60 characters."
+    )
     provider_code: ProviderCode
     provider_type: ProviderType
-    active: bool
+    active: StrictBool = Field(description="If this credential is active or not.")
     settings: CredentialInputSettings
 
 
 class CredentialEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of CredentialEnvironmentCreate.
+    Plain version of CredentialEnvironmentCreate
+
+    Attributes:
+        name (str): The name of the credential. Must not be greater than 60 characters.
+        provider_code (ProviderCode):
+        provider_type (ProviderType):
+        active (bool): If this credential is active or not.
+        settings (CredentialInputSettings):
     """
 
     name: Required[str]

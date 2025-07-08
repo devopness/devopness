@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
@@ -32,18 +35,33 @@ class Organization(DevopnessBaseModel):
         updated_at (str): The date and time when the organization was last updated
     """
 
-    id: int
-    name: str
-    url_slug: str
-    resource_summary: List[ResourceSummaryItem]
+    id: StrictInt = Field(description="The unique identifier for the organization")
+    name: StrictStr = Field(description="The name of the organization")
+    url_slug: StrictStr = Field(description="The URL Slug of the organization")
+    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+        default=None, description="Summary of the resource"
+    )
     owner: UserRelation
-    created_at: str
-    updated_at: str
+    created_at: StrictStr = Field(
+        description="The date and time when the organization was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the organization was last updated"
+    )
 
 
 class OrganizationPlain(TypedDict, total=False):
     """
-    Plain version of Organization.
+    Plain version of Organization
+
+    Attributes:
+        id (int): The unique identifier for the organization
+        name (str): The name of the organization
+        url_slug (str): The URL Slug of the organization
+        resource_summary (List[ResourceSummaryItem]): Summary of the resource
+        owner (UserRelation):
+        created_at (str): The date and time when the organization was created
+        updated_at (str): The date and time when the organization was last updated
     """
 
     id: Required[int]

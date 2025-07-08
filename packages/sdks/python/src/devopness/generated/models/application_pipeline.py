@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -23,13 +25,17 @@ class ApplicationPipeline(DevopnessBaseModel):
         name (str): The pipeline&#39;s name
     """
 
-    id: int
-    name: str
+    id: StrictInt = Field(description="The unique id of the given record")
+    name: StrictStr = Field(description="The pipeline's name")
 
 
 class ApplicationPipelinePlain(TypedDict, total=False):
     """
-    Plain version of ApplicationPipeline.
+    Plain version of ApplicationPipeline
+
+    Attributes:
+        id (int): The unique id of the given record
+        name (str): The pipeline&#39;s name
     """
 
     id: Required[int]

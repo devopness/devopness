@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field
+
 from .. import DevopnessBaseModel
 from .static_virtual_host_type import StaticVirtualHostType, StaticVirtualHostTypePlain
 from .variable_targets import VariableTargets, VariableTargetsPlain
@@ -27,13 +29,19 @@ class VirtualHostOptions(DevopnessBaseModel):
         virtual_host_types (List[StaticVirtualHostType]):
     """
 
-    variable_targets: List[VariableTargets]
+    variable_targets: List[VariableTargets] = Field(
+        description="The list of VariableTarget"
+    )
     virtual_host_types: List[StaticVirtualHostType]
 
 
 class VirtualHostOptionsPlain(TypedDict, total=False):
     """
-    Plain version of VirtualHostOptions.
+    Plain version of VirtualHostOptions
+
+    Attributes:
+        variable_targets (List[VariableTargets]): The list of VariableTarget
+        virtual_host_types (List[StaticVirtualHostType]):
     """
 
     variable_targets: Required[

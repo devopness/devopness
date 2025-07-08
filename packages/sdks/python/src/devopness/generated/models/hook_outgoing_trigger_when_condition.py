@@ -12,6 +12,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -24,13 +26,21 @@ class HookOutgoingTriggerWhenCondition(DevopnessBaseModel):
         accepted_values (List[str]): List of accepted values for this condition.
     """
 
-    path: str
-    accepted_values: List[str]
+    path: StrictStr = Field(
+        description="A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition."
+    )
+    accepted_values: List[StrictStr] = Field(
+        description="List of accepted values for this condition."
+    )
 
 
 class HookOutgoingTriggerWhenConditionPlain(TypedDict, total=False):
     """
-    Plain version of HookOutgoingTriggerWhenCondition.
+    Plain version of HookOutgoingTriggerWhenCondition
+
+    Attributes:
+        path (str): A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition.
+        accepted_values (List[str]): List of accepted values for this condition.
     """
 
     path: Required[str]

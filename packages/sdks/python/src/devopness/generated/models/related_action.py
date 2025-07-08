@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .action_status import ActionStatus, ActionStatusPlain
@@ -34,20 +37,41 @@ class RelatedAction(DevopnessBaseModel):
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
     """
 
-    id: int
+    id: StrictInt = Field(description="The Id of the given action")
     status: ActionStatus
-    status_human_readable: str
+    status_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the action status"
+    )
     type: ActionType
-    type_human_readable: str
-    resource_name: str
+    type_human_readable: StrictStr = Field(
+        description="Human readable version of the action type"
+    )
+    resource_name: Optional[StrictStr] = Field(
+        default=None, description="The name of the resource"
+    )
     resource_type: ResourceType
-    resource_type_human_readable: str
-    url_web_permalink: str
+    resource_type_human_readable: StrictStr = Field(
+        description="Human readable version of the resource type"
+    )
+    url_web_permalink: StrictStr = Field(
+        description="The permalink URL to the action details on Devopness web app"
+    )
 
 
 class RelatedActionPlain(TypedDict, total=False):
     """
-    Plain version of RelatedAction.
+    Plain version of RelatedAction
+
+    Attributes:
+        id (int): The Id of the given action
+        status (ActionStatus):
+        status_human_readable (str): Human readable version of the action status
+        type (ActionType):
+        type_human_readable (str): Human readable version of the action type
+        resource_name (str): The name of the resource
+        resource_type (ResourceType):
+        resource_type_human_readable (str): Human readable version of the resource type
+        url_web_permalink (str): The permalink URL to the action details on Devopness web app
     """
 
     id: Required[int]

@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .service_type import ServiceType, ServiceTypePlain
 from .static_service_type_supported_versions_inner import (
@@ -33,14 +35,26 @@ class StaticServiceType(DevopnessBaseModel):
     """
 
     value: ServiceType
-    human_readable: str
-    hint: str
-    supported_versions: List[StaticServiceTypeSupportedVersionsInner]
+    human_readable: StrictStr = Field(
+        description="Displayable version of the service name"
+    )
+    hint: StrictStr = Field(
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+    )
+    supported_versions: List[StaticServiceTypeSupportedVersionsInner] = Field(
+        description="List of service versions supported by Devopness"
+    )
 
 
 class StaticServiceTypePlain(TypedDict, total=False):
     """
-    Plain version of StaticServiceType.
+    Plain version of StaticServiceType
+
+    Attributes:
+        value (ServiceType):
+        human_readable (str): Displayable version of the service name
+        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+        supported_versions (List[StaticServiceTypeSupportedVersionsInner]): List of service versions supported by Devopness
     """
 
     value: Required[

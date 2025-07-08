@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .trigger_when_condition_accepted_values_inner import (
@@ -35,15 +38,25 @@ class TriggerWhenCondition(DevopnessBaseModel):
         accepted_values (List[TriggerWhenConditionAcceptedValuesInner]): List of accepted values for this condition.
     """
 
-    name: str
+    name: Optional[StrictStr] = Field(default=None, description="Name of the condition")
     type: TriggerWhenConditionType
-    path: str
-    accepted_values: List[TriggerWhenConditionAcceptedValuesInner]
+    path: StrictStr = Field(
+        description="A dot-notation path of the request body attribute to be used as the value to evaluate this condition."
+    )
+    accepted_values: List[TriggerWhenConditionAcceptedValuesInner] = Field(
+        description="List of accepted values for this condition."
+    )
 
 
 class TriggerWhenConditionPlain(TypedDict, total=False):
     """
-    Plain version of TriggerWhenCondition.
+    Plain version of TriggerWhenCondition
+
+    Attributes:
+        name (str): Name of the condition
+        type (TriggerWhenConditionType):
+        path (str): A dot-notation path of the request body attribute to be used as the value to evaluate this condition.
+        accepted_values (List[TriggerWhenConditionAcceptedValuesInner]): List of accepted values for this condition.
     """
 
     name: Required[str]

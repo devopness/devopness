@@ -14,6 +14,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictInt
+
 from .. import DevopnessBaseModel
 from .pipeline_settings_stage import PipelineSettingsStage, PipelineSettingsStagePlain
 from .pipeline_settings_variable import (
@@ -33,15 +35,28 @@ class PipelineSettings(DevopnessBaseModel):
         variables (List[PipelineSettingsVariable], optional): The list of pipeline setting variable
     """
 
-    max_pipelines_per_resource: int
-    is_user_managed: bool
-    stages: Optional[List[PipelineSettingsStage]] = None
-    variables: Optional[List[PipelineSettingsVariable]] = None
+    max_pipelines_per_resource: Optional[StrictInt] = None
+    is_user_managed: Optional[StrictBool] = Field(
+        default=None,
+        description="Indicates whether the user has permission to manage the pipeline for the resource operation",
+    )
+    stages: Optional[List[PipelineSettingsStage]] = Field(
+        default=None, description="The list of pipeline setting stage"
+    )
+    variables: Optional[List[PipelineSettingsVariable]] = Field(
+        default=None, description="The list of pipeline setting variable"
+    )
 
 
 class PipelineSettingsPlain(TypedDict, total=False):
     """
-    Plain version of PipelineSettings.
+    Plain version of PipelineSettings
+
+    Attributes:
+        max_pipelines_per_resource (int):
+        is_user_managed (bool): Indicates whether the user has permission to manage the pipeline for the resource operation
+        stages (List[PipelineSettingsStage], optional): The list of pipeline setting stage
+        variables (List[PipelineSettingsVariable], optional): The list of pipeline setting variable
     """
 
     max_pipelines_per_resource: Required[int]

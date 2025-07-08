@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -24,14 +27,28 @@ class OperationCustomSettings(DevopnessBaseModel):
         triggers_action (bool): Whether the &#x60;server:remove&#x60; operation will trigger an action or not
     """
 
-    operation: str
-    operation_human_readable: str
-    triggers_action: bool
+    operation: Optional[StrictStr] = Field(
+        default=None,
+        description="The resource's custom operation that are CSP specific",
+    )
+    operation_human_readable: Optional[StrictStr] = Field(
+        default=None,
+        description="Human redable version of the resource's custom operation",
+    )
+    triggers_action: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether the `server:remove` operation will trigger an action or not",
+    )
 
 
 class OperationCustomSettingsPlain(TypedDict, total=False):
     """
-    Plain version of OperationCustomSettings.
+    Plain version of OperationCustomSettings
+
+    Attributes:
+        operation (str): The resource&#39;s custom operation that are CSP specific
+        operation_human_readable (str): Human redable version of the resource&#39;s custom operation
+        triggers_action (bool): Whether the &#x60;server:remove&#x60; operation will trigger an action or not
     """
 
     operation: Required[str]

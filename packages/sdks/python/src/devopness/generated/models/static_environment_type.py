@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -24,14 +26,23 @@ class StaticEnvironmentType(DevopnessBaseModel):
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: str
-    human_readable: str
-    hint: str
+    value: StrictStr = Field(description="The internal name of the environment")
+    human_readable: StrictStr = Field(
+        description="The formatted name to be displayed in user interfaces"
+    )
+    hint: StrictStr = Field(
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+    )
 
 
 class StaticEnvironmentTypePlain(TypedDict, total=False):
     """
-    Plain version of StaticEnvironmentType.
+    Plain version of StaticEnvironmentType
+
+    Attributes:
+        value (str): The internal name of the environment
+        human_readable (str): The formatted name to be displayed in user interfaces
+        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
     value: Required[str]

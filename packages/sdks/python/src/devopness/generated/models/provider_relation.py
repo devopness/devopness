@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 from .provider_code import ProviderCode, ProviderCodePlain
@@ -29,16 +32,27 @@ class ProviderRelation(DevopnessBaseModel):
         type_human_readable (str): Human readable version of provider type
     """
 
-    active: bool
+    active: StrictBool = Field(description="Tells if the provider is active or not")
     code: ProviderCode
-    code_human_readable: str
+    code_human_readable: StrictStr = Field(
+        description="Human readable version of provider code"
+    )
     type: ProviderType
-    type_human_readable: str
+    type_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of provider type"
+    )
 
 
 class ProviderRelationPlain(TypedDict, total=False):
     """
-    Plain version of ProviderRelation.
+    Plain version of ProviderRelation
+
+    Attributes:
+        active (bool): Tells if the provider is active or not
+        code (ProviderCode):
+        code_human_readable (str): Human readable version of provider code
+        type (ProviderType):
+        type_human_readable (str): Human readable version of provider type
     """
 
     active: Required[bool]

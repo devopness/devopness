@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .api_error_errors import ApiErrorErrors, ApiErrorErrorsPlain
@@ -25,13 +28,17 @@ class ApiError(DevopnessBaseModel):
         errors (ApiErrorErrors):
     """
 
-    message: str
-    errors: ApiErrorErrors
+    message: StrictStr = Field(description="The main exception raised by the server")
+    errors: Optional[ApiErrorErrors] = None
 
 
 class ApiErrorPlain(TypedDict, total=False):
     """
-    Plain version of ApiError.
+    Plain version of ApiError
+
+    Attributes:
+        message (str): The main exception raised by the server
+        errors (ApiErrorErrors):
     """
 
     message: Required[str]

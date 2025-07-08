@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -25,15 +27,23 @@ class CloudProviderRelation(DevopnessBaseModel):
         logo_url (str): The provider&#39;s logo URL.
     """
 
-    code: str
-    name: str
-    hint: str
-    logo_url: str
+    code: StrictStr = Field(description="Cloud provider code")
+    name: StrictStr = Field(description="Cloud provider name")
+    hint: StrictStr = Field(
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+    )
+    logo_url: StrictStr = Field(description="The provider's logo URL.")
 
 
 class CloudProviderRelationPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderRelation.
+    Plain version of CloudProviderRelation
+
+    Attributes:
+        code (str): Cloud provider code
+        name (str): Cloud provider name
+        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+        logo_url (str): The provider&#39;s logo URL.
     """
 
     code: Required[str]

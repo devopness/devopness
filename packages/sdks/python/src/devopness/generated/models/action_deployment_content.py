@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .deployment_type import DeploymentType, DeploymentTypePlain
 from .source_type import SourceType, SourceTypePlain
@@ -32,15 +34,27 @@ class ActionDeploymentContent(DevopnessBaseModel):
 
     type: DeploymentType
     source_type: SourceType
-    source_ref: str
-    repository: str
-    provider_name: str
-    pipeline_id: int
+    source_ref: StrictStr = Field(
+        description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash."
+    )
+    repository: StrictStr = Field(
+        description="The repository of the deployed application"
+    )
+    provider_name: StrictStr = Field(description="The source provider's name")
+    pipeline_id: StrictInt = Field(description="The ID of the pipeline")
 
 
 class ActionDeploymentContentPlain(TypedDict, total=False):
     """
-    Plain version of ActionDeploymentContent.
+    Plain version of ActionDeploymentContent
+
+    Attributes:
+        type (DeploymentType):
+        source_type (SourceType):
+        source_ref (str): A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.
+        repository (str): The repository of the deployed application
+        provider_name (str): The source provider&#39;s name
+        pipeline_id (int): The ID of the pipeline
     """
 
     type: Required[

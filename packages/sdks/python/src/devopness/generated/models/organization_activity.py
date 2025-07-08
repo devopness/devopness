@@ -38,7 +38,13 @@ class OrganizationActivity(DevopnessBaseModel):
 
 class OrganizationActivityPlain(TypedDict, total=False):
     """
-    Plain version of OrganizationActivity.
+    Plain version of OrganizationActivity
+
+    Attributes:
+        projects (UserProjectStats):
+        environments (UserEnvironmentStats):
+        teams (UserTeamStats):
+        triggered_actions (TriggeredActions):
     """
 
     projects: Required[

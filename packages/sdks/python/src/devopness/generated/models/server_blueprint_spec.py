@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field
 
 from .. import DevopnessBaseModel
 from .blueprint_service import BlueprintService, BlueprintServicePlain
@@ -25,12 +28,18 @@ class ServerBlueprintSpec(DevopnessBaseModel):
         services (List[BlueprintService]): The service names and their respective versions for a blueprint.
     """
 
-    services: List[BlueprintService]
+    services: Optional[List[BlueprintService]] = Field(
+        default=None,
+        description="The service names and their respective versions for a blueprint.",
+    )
 
 
 class ServerBlueprintSpecPlain(TypedDict, total=False):
     """
-    Plain version of ServerBlueprintSpec.
+    Plain version of ServerBlueprintSpec
+
+    Attributes:
+        services (List[BlueprintService]): The service names and their respective versions for a blueprint.
     """
 
     services: Required[

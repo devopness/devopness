@@ -29,7 +29,10 @@ class ActionSummary(DevopnessBaseModel):
 
 class ActionSummaryPlain(TypedDict, total=False):
     """
-    Plain version of ActionSummary.
+    Plain version of ActionSummary
+
+    Attributes:
+        targets (ActionSummaryTarget):
     """
 
     targets: Required[

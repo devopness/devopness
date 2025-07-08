@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field
 
 from .. import DevopnessBaseModel
 from .hook_outgoing_request_header import (
@@ -33,13 +36,19 @@ class HookOutgoingSettings(DevopnessBaseModel):
         request_body (HookOutgoingSettingsRequestBody):
     """
 
-    request_headers: List[HookOutgoingRequestHeader]
-    request_body: HookOutgoingSettingsRequestBody
+    request_headers: Optional[List[HookOutgoingRequestHeader]] = Field(
+        default=None, description="List of outgoing hook request headers"
+    )
+    request_body: Optional[HookOutgoingSettingsRequestBody] = None
 
 
 class HookOutgoingSettingsPlain(TypedDict, total=False):
     """
-    Plain version of HookOutgoingSettings.
+    Plain version of HookOutgoingSettings
+
+    Attributes:
+        request_headers (List[HookOutgoingRequestHeader]): List of outgoing hook request headers
+        request_body (HookOutgoingSettingsRequestBody):
     """
 
     request_headers: Required[

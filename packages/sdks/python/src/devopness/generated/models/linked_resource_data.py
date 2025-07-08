@@ -9,10 +9,13 @@ Note:
 from datetime import datetime
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .linked_resource_summary_field import (
@@ -33,16 +36,29 @@ class LinkedResourceData(DevopnessBaseModel):
         updated_at (datetime): The date and time when the record was last updated
     """
 
-    id: int
-    name: str
-    summary_fields: List[LinkedResourceSummaryField]
-    created_at: datetime
-    updated_at: datetime
+    id: StrictInt = Field(description="The unique ID of the resource")
+    name: StrictStr = Field(description="Resource name")
+    summary_fields: Optional[List[LinkedResourceSummaryField]] = Field(
+        default=None, description="The summary of linked resource fields"
+    )
+    created_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
 
 
 class LinkedResourceDataPlain(TypedDict, total=False):
     """
-    Plain version of LinkedResourceData.
+    Plain version of LinkedResourceData
+
+    Attributes:
+        id (int): The unique ID of the resource
+        name (str): Resource name
+        summary_fields (List[LinkedResourceSummaryField]): The summary of linked resource fields
+        created_at (datetime): The date and time when the record was created
+        updated_at (datetime): The date and time when the record was last updated
     """
 
     id: Required[int]

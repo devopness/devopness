@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
 from .ssl_certificate_issuer import SslCertificateIssuer, SslCertificateIssuerPlain
@@ -43,23 +45,47 @@ class SslCertificate(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    name: str
+    id: StrictInt = Field(description="The unique ID of the given SSL certificate")
+    name: StrictStr = Field(description="The name given to SSL certificate")
     type: SslCertificateType
     issuer: SslCertificateIssuer
     validation_level: SslCertificateValidationLevel
-    active: bool
+    active: StrictBool = Field(
+        description="Tells if the certificate is active for all linked servers and applications"
+    )
     created_by_user: UserRelation
     last_action: Optional[ActionRelation]
-    expires_at: Optional[str]
-    last_renewed_at: Optional[str]
-    created_at: str
-    updated_at: str
+    expires_at: Optional[StrictStr] = Field(
+        description="The date and time when this certificate will no longer be valid, down to minute precision"
+    )
+    last_renewed_at: Optional[StrictStr] = Field(
+        description="The date and time when this certificate was renewed for the last time"
+    )
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class SslCertificatePlain(TypedDict, total=False):
     """
-    Plain version of SslCertificate.
+    Plain version of SslCertificate
+
+    Attributes:
+        id (int): The unique ID of the given SSL certificate
+        name (str): The name given to SSL certificate
+        type (SslCertificateType):
+        issuer (SslCertificateIssuer):
+        validation_level (SslCertificateValidationLevel):
+        active (bool): Tells if the certificate is active for all linked servers and applications
+        created_by_user (UserRelation):
+        last_action (ActionRelation, optional):
+        expires_at (str, optional): The date and time when this certificate will no longer be valid, down to minute precision
+        last_renewed_at (str, optional): The date and time when this certificate was renewed for the last time
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

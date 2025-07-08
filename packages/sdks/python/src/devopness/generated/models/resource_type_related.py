@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 from .resource_type import ResourceType, ResourceTypePlain
@@ -27,15 +30,29 @@ class ResourceTypeRelated(DevopnessBaseModel):
         can_be_linked (bool): If true, the relation with this resource type can be changed manually by the user
     """
 
-    resource_type: ResourceType
-    resource_type_human_readable: str
-    resource_type_human_readable_plural: str
-    can_be_linked: bool
+    resource_type: Optional[ResourceType] = None
+    resource_type_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the resource type name"
+    )
+    resource_type_human_readable_plural: Optional[StrictStr] = Field(
+        default=None,
+        description="Plural human readable version of the resource type name",
+    )
+    can_be_linked: Optional[StrictBool] = Field(
+        default=None,
+        description="If true, the relation with this resource type can be changed manually by the user",
+    )
 
 
 class ResourceTypeRelatedPlain(TypedDict, total=False):
     """
-    Plain version of ResourceTypeRelated.
+    Plain version of ResourceTypeRelated
+
+    Attributes:
+        resource_type (ResourceType):
+        resource_type_human_readable (str): Human readable version of the resource type name
+        resource_type_human_readable_plural (str): Plural human readable version of the resource type name
+        can_be_linked (bool): If true, the relation with this resource type can be changed manually by the user
     """
 
     resource_type: Required[

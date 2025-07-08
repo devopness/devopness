@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
 
@@ -28,15 +30,27 @@ class CloudServiceSettingsGcpGce(DevopnessBaseModel):
         os_version_code (CloudOsVersionCode, optional):
     """
 
-    instance_type: str
-    region: str
-    region_human_readable: str
+    instance_type: StrictStr = Field(
+        description="The instance type to be launched on the cloud provider"
+    )
+    region: StrictStr = Field(
+        description="Datacenter region where the cloud instance will be launched"
+    )
+    region_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the server region"
+    )
     os_version_code: Optional[CloudOsVersionCode]
 
 
 class CloudServiceSettingsGcpGcePlain(TypedDict, total=False):
     """
-    Plain version of CloudServiceSettingsGcpGce.
+    Plain version of CloudServiceSettingsGcpGce
+
+    Attributes:
+        instance_type (str): The instance type to be launched on the cloud provider
+        region (str): Datacenter region where the cloud instance will be launched
+        region_human_readable (str): Human readable version of the server region
+        os_version_code (CloudOsVersionCode, optional):
     """
 
     instance_type: Required[str]

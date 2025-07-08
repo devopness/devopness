@@ -8,9 +8,12 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -26,15 +29,28 @@ class RoleUpdate(DevopnessBaseModel):
         permissions (List[str]): The list of permissions granted for this role
     """
 
-    id: int
-    name: str
-    description: str
-    permissions: List[str]
+    id: StrictInt = Field(description="The unique ID of the given Role.")
+    name: StrictStr = Field(
+        description="The role's name. Must be at least 2 characters. Must not be greater than 60 characters."
+    )
+    description: Optional[StrictStr] = Field(
+        default=None,
+        description="Description of this role. Must not be greater than 255 characters.",
+    )
+    permissions: List[StrictStr] = Field(
+        description="The list of permissions granted for this role"
+    )
 
 
 class RoleUpdatePlain(TypedDict, total=False):
     """
-    Plain version of RoleUpdate.
+    Plain version of RoleUpdate
+
+    Attributes:
+        id (int): The unique ID of the given Role.
+        name (str): The role&#39;s name. Must be at least 2 characters. Must not be greater than 60 characters.
+        description (str): Description of this role. Must not be greater than 255 characters.
+        permissions (List[str]): The list of permissions granted for this role
     """
 
     id: Required[int]

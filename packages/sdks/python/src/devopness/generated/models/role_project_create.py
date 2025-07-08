@@ -8,9 +8,12 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -25,14 +28,26 @@ class RoleProjectCreate(DevopnessBaseModel):
         permissions (List[str]): The list of permissions granted for this role
     """
 
-    name: str
-    description: str
-    permissions: List[str]
+    name: StrictStr = Field(
+        description="The role's name. Must be at least 2 characters. Must not be greater than 60 characters."
+    )
+    description: Optional[StrictStr] = Field(
+        default=None,
+        description="Description of this role. Must not be greater than 255 characters.",
+    )
+    permissions: List[StrictStr] = Field(
+        description="The list of permissions granted for this role"
+    )
 
 
 class RoleProjectCreatePlain(TypedDict, total=False):
     """
-    Plain version of RoleProjectCreate.
+    Plain version of RoleProjectCreate
+
+    Attributes:
+        name (str): The role&#39;s name. Must be at least 2 characters. Must not be greater than 60 characters.
+        description (str): Description of this role. Must not be greater than 255 characters.
+        permissions (List[str]): The list of permissions granted for this role
     """
 
     name: Required[str]

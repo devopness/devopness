@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .resource_summary_item_summary import (
     ResourceSummaryItemSummary,
@@ -31,16 +33,29 @@ class ResourceSummaryItem(DevopnessBaseModel):
         summary (ResourceSummaryItemSummary):
     """
 
-    resource_type: str
-    resource_type_plural: str
-    resource_type_human_readable: str
-    resource_type_human_readable_plural: str
+    resource_type: StrictStr = Field(description="The type of the resource")
+    resource_type_plural: StrictStr = Field(
+        description="The plural name of the resource type"
+    )
+    resource_type_human_readable: StrictStr = Field(
+        description="The human readable name of the resource type"
+    )
+    resource_type_human_readable_plural: StrictStr = Field(
+        description="The human readable plural name of the resource type"
+    )
     summary: ResourceSummaryItemSummary
 
 
 class ResourceSummaryItemPlain(TypedDict, total=False):
     """
-    Plain version of ResourceSummaryItem.
+    Plain version of ResourceSummaryItem
+
+    Attributes:
+        resource_type (str): The type of the resource
+        resource_type_plural (str): The plural name of the resource type
+        resource_type_human_readable (str): The human readable name of the resource type
+        resource_type_human_readable_plural (str): The human readable plural name of the resource type
+        summary (ResourceSummaryItemSummary):
     """
 
     resource_type: Required[str]

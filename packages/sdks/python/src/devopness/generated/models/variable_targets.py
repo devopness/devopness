@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .variable_target import VariableTarget, VariableTargetPlain
@@ -26,14 +29,24 @@ class VariableTargets(DevopnessBaseModel):
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    name: VariableTarget
-    name_human_readable: str
-    hint: str
+    name: Optional[VariableTarget] = None
+    name_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the variable target name"
+    )
+    hint: Optional[StrictStr] = Field(
+        default=None,
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+    )
 
 
 class VariableTargetsPlain(TypedDict, total=False):
     """
-    Plain version of VariableTargets.
+    Plain version of VariableTargets
+
+    Attributes:
+        name (VariableTarget):
+        name_human_readable (str): Human readable version of the variable target name
+        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
     name: Required[

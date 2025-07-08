@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .network_rule_direction import NetworkRuleDirection, NetworkRuleDirectionPlain
 
@@ -27,13 +29,22 @@ class StaticNetworkRuleDirection(DevopnessBaseModel):
     """
 
     value: NetworkRuleDirection
-    human_readable: str
-    hint: str
+    human_readable: StrictStr = Field(
+        description="The formatted name to be displayed in user interfaces"
+    )
+    hint: StrictStr = Field(
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+    )
 
 
 class StaticNetworkRuleDirectionPlain(TypedDict, total=False):
     """
-    Plain version of StaticNetworkRuleDirection.
+    Plain version of StaticNetworkRuleDirection
+
+    Attributes:
+        value (NetworkRuleDirection):
+        human_readable (str): The formatted name to be displayed in user interfaces
+        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
     value: Required[

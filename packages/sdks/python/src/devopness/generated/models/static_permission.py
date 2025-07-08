@@ -8,9 +8,12 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -26,15 +29,26 @@ class StaticPermission(DevopnessBaseModel):
         required_permissions (List[str]): List of permissions the role must have before receiving this one
     """
 
-    name: str
-    human_readable: str
-    hint: str
-    required_permissions: List[str]
+    name: StrictStr = Field(description="Name of permission")
+    human_readable: StrictStr = Field(description="Human readable permission name")
+    hint: StrictStr = Field(
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+    )
+    required_permissions: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="List of permissions the role must have before receiving this one",
+    )
 
 
 class StaticPermissionPlain(TypedDict, total=False):
     """
-    Plain version of StaticPermission.
+    Plain version of StaticPermission
+
+    Attributes:
+        name (str): Name of permission
+        human_readable (str): Human readable permission name
+        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+        required_permissions (List[str]): List of permissions the role must have before receiving this one
     """
 
     name: Required[str]

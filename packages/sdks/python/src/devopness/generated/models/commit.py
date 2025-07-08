@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .source_provider_name import SourceProviderName, SourceProviderNamePlain
 
@@ -31,19 +33,37 @@ class Commit(DevopnessBaseModel):
         author_name (str): The name of the commit&#39;s author
     """
 
-    hash: str
-    message: str
-    committed_at: str
+    hash: StrictStr = Field(
+        description="The commit comment's full hash that uniquely identify it"
+    )
+    message: StrictStr = Field(description="The commit's comment message")
+    committed_at: StrictStr = Field(
+        description="The date and time when the commit has been submitted"
+    )
     provider: SourceProviderName
-    repository: str
-    url: str
-    author_email: str
-    author_name: str
+    repository: StrictStr = Field(
+        description="The full name of the repository (`owner/repository`) to which the commit belongs to"
+    )
+    url: StrictStr = Field(
+        description="The direct URL for accessing commit details on the provider's web application"
+    )
+    author_email: StrictStr = Field(description="The e-mail of the commit's author")
+    author_name: StrictStr = Field(description="The name of the commit's author")
 
 
 class CommitPlain(TypedDict, total=False):
     """
-    Plain version of Commit.
+    Plain version of Commit
+
+    Attributes:
+        hash (str): The commit comment&#39;s full hash that uniquely identify it
+        message (str): The commit&#39;s comment message
+        committed_at (str): The date and time when the commit has been submitted
+        provider (SourceProviderName):
+        repository (str): The full name of the repository (&#x60;owner/repository&#x60;) to which the commit belongs to
+        url (str): The direct URL for accessing commit details on the provider&#39;s web application
+        author_email (str): The e-mail of the commit&#39;s author
+        author_name (str): The name of the commit&#39;s author
     """
 
     hash: Required[str]

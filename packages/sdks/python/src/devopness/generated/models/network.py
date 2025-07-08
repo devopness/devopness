@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
 from .credential_relation import CredentialRelation, CredentialRelationPlain
@@ -41,23 +43,43 @@ class Network(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    provider_name: str
-    provider_name_human_readable: str
-    name: str
+    id: StrictInt = Field(description="The unique id of the given record")
+    provider_name: StrictStr = Field(description="The name of the cloud provider")
+    provider_name_human_readable: StrictStr = Field(
+        description="The human readable version of the provider's name"
+    )
+    name: StrictStr = Field(description="The networks's name")
     provision_input: NetworkProvisionInput
     created_by_user: UserRelation
     project: Optional[ProjectRelation]
     environment: Optional[EnvironmentRelation]
     credential: Optional[CredentialRelation]
     last_action: Optional[ActionRelation]
-    created_at: str
-    updated_at: str
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class NetworkPlain(TypedDict, total=False):
     """
-    Plain version of Network.
+    Plain version of Network
+
+    Attributes:
+        id (int): The unique id of the given record
+        provider_name (str): The name of the cloud provider
+        provider_name_human_readable (str): The human readable version of the provider&#39;s name
+        name (str): The networks&#39;s name
+        provision_input (NetworkProvisionInput):
+        created_by_user (UserRelation):
+        project (ProjectRelation, optional):
+        environment (EnvironmentRelation, optional):
+        credential (CredentialRelation, optional):
+        last_action (ActionRelation, optional):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

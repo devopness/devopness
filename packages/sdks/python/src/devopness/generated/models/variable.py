@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .user_relation import UserRelation, UserRelationPlain
 from .variable_target import VariableTarget, VariableTargetPlain
@@ -39,24 +41,57 @@ class Variable(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    key: str
+    id: StrictInt = Field(description="The ID of the given variable")
+    key: StrictStr = Field(
+        description="The unique key used to identify the variable on the target"
+    )
     type: VariableType
-    description: Optional[str]
-    value: Optional[str]
+    description: Optional[StrictStr] = Field(
+        description="A text describing the variable, provided by the end user"
+    )
+    value: Optional[StrictStr] = Field(
+        description="The value to be assigned to this variable when deployed to its target"
+    )
     target: VariableTarget
-    target_human_readable: str
-    resource_id: Optional[int]
-    resource_type: str
-    hidden: bool
-    created_by_user: UserRelation
-    created_at: str
-    updated_at: str
+    target_human_readable: StrictStr = Field(
+        description="Human readable version of target"
+    )
+    resource_id: Optional[StrictInt] = Field(
+        description="The ID of the resource this variable is linked to"
+    )
+    resource_type: StrictStr = Field(
+        description="The name of the resource this variable is linked to"
+    )
+    hidden: StrictBool = Field(
+        description="Indicates if the variable value should be visible or not in the deployment logs"
+    )
+    created_by_user: Optional[UserRelation] = None
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class VariablePlain(TypedDict, total=False):
     """
-    Plain version of Variable.
+    Plain version of Variable
+
+    Attributes:
+        id (int): The ID of the given variable
+        key (str): The unique key used to identify the variable on the target
+        type (VariableType):
+        description (str, optional): A text describing the variable, provided by the end user
+        value (str, optional): The value to be assigned to this variable when deployed to its target
+        target (VariableTarget):
+        target_human_readable (str): Human readable version of target
+        resource_id (int, optional): The ID of the resource this variable is linked to
+        resource_type (str): The name of the resource this variable is linked to
+        hidden (bool): Indicates if the variable value should be visible or not in the deployment logs
+        created_by_user (UserRelation):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

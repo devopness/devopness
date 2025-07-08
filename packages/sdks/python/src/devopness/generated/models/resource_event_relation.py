@@ -12,6 +12,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -30,19 +32,33 @@ class ResourceEventRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    event_type: str
-    resource_type: str
-    resource_id: int
-    message: Optional[str]
-    triggered_by: Optional[int]
-    created_at: str
-    updated_at: str
+    id: StrictInt = Field(description="The ID of the given resource event")
+    event_type: StrictStr = Field(description="The type of resource event")
+    resource_type: StrictStr = Field(description="The event's resource type")
+    resource_id: StrictInt = Field(description="The event's resource ID")
+    message: Optional[StrictStr]
+    triggered_by: Optional[StrictInt]
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class ResourceEventRelationPlain(TypedDict, total=False):
     """
-    Plain version of ResourceEventRelation.
+    Plain version of ResourceEventRelation
+
+    Attributes:
+        id (int): The ID of the given resource event
+        event_type (str): The type of resource event
+        resource_type (str): The event&#39;s resource type
+        resource_id (int): The event&#39;s resource ID
+        message (str, optional):
+        triggered_by (int, optional):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

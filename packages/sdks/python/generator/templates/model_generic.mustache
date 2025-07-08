@@ -9,22 +9,18 @@ class {{classname}}(DevopnessBaseModel):
     """
 
 {{#vars}}
-    {{baseName}}: (
-        {{#isNullable}} Optional[ {{/isNullable}}
-            {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
-            {{^isPrimitiveType}}
-              {{#isEnumRef}}{{dataType}}{{/isEnumRef}}
-              {{#isModel}}{{dataType}}{{/isModel}}
-              {{#isContainer}}{{baseType}}[{{items.dataType}}]{{/isContainer}}
-            {{/isPrimitiveType}}
-        {{#isNullable}} ] {{/isNullable}}
-    ) {{^required}}{{#isNullable}} = None {{/isNullable}}{{/required}}
+    {{name}}: {{{vendorExtensions.x-py-typing}}}
 {{/vars}}
 
 
 class {{classname}}Plain(TypedDict, total=False):
     """
-    Plain version of {{classname}}.
+    Plain version of {{classname}}
+
+    Attributes:
+    {{#allVars}}
+        {{baseName}} ({{dataType}}{{#isNullable}}, optional{{/isNullable}}): {{description}}
+    {{/allVars}}
     """
 
 {{#vars}}

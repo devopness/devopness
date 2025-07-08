@@ -8,9 +8,12 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -27,16 +30,23 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
         allowed_values (List[str]):
     """
 
-    required: bool
-    type: str
-    min: int
-    max: int
-    allowed_values: List[str]
+    required: Optional[StrictBool] = None
+    type: Optional[StrictStr] = None
+    min: Optional[StrictInt] = None
+    max: Optional[StrictInt] = None
+    allowed_values: Optional[List[StrictStr]] = None
 
 
 class ProviderInputSettingsValidationPlain(TypedDict, total=False):
     """
-    Plain version of ProviderInputSettingsValidation.
+    Plain version of ProviderInputSettingsValidation
+
+    Attributes:
+        required (bool):
+        type (str):
+        min (int):
+        max (int):
+        allowed_values (List[str]):
     """
 
     required: Required[bool]

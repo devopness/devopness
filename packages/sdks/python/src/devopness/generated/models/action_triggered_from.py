@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_trigger_type import ActionTriggerType, ActionTriggerTypePlain
 
@@ -32,19 +34,41 @@ class ActionTriggeredFrom(DevopnessBaseModel):
         hook_request_id (str, optional): The hook request&#39;s ID if the action have been triggered by a hook.
     """
 
-    origin: Optional[str]
+    origin: Optional[StrictStr] = Field(
+        description="The HTTP origin of the request that have been dispatched the action."
+    )
     trigger_type: ActionTriggerType
-    name: str
-    email: Optional[str]
-    ip_address: str
-    user_id: Optional[int]
-    hook_id: Optional[str]
-    hook_request_id: Optional[str]
+    name: StrictStr = Field(
+        description="The hook or user name that have been triggered the action."
+    )
+    email: Optional[StrictStr] = Field(
+        description="The user's email if the action have been manually triggered."
+    )
+    ip_address: StrictStr = Field(description="The IP address of the request origin.")
+    user_id: Optional[StrictInt] = Field(
+        description="The user's ID if the action have been manually triggered."
+    )
+    hook_id: Optional[StrictStr] = Field(
+        description="The hook's ID if the action have been triggered by a hook."
+    )
+    hook_request_id: Optional[StrictStr] = Field(
+        description="The hook request's ID if the action have been triggered by a hook."
+    )
 
 
 class ActionTriggeredFromPlain(TypedDict, total=False):
     """
-    Plain version of ActionTriggeredFrom.
+    Plain version of ActionTriggeredFrom
+
+    Attributes:
+        origin (str, optional): The HTTP origin of the request that have been dispatched the action.
+        trigger_type (ActionTriggerType):
+        name (str): The hook or user name that have been triggered the action.
+        email (str, optional): The user&#39;s email if the action have been manually triggered.
+        ip_address (str): The IP address of the request origin.
+        user_id (int, optional): The user&#39;s ID if the action have been manually triggered.
+        hook_id (str, optional): The hook&#39;s ID if the action have been triggered by a hook.
+        hook_request_id (str, optional): The hook request&#39;s ID if the action have been triggered by a hook.
     """
 
     origin: Optional[str]

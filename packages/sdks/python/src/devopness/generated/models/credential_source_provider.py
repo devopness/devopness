@@ -11,6 +11,8 @@ from typing import (
     TypedDict,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 
 
@@ -22,12 +24,17 @@ class CredentialSourceProvider(DevopnessBaseModel):
         callback_code (str): The temporary code forwarded by the OAuth provider as a parameter to our callback URL
     """
 
-    callback_code: str
+    callback_code: StrictStr = Field(
+        description="The temporary code forwarded by the OAuth provider as a parameter to our callback URL"
+    )
 
 
 class CredentialSourceProviderPlain(TypedDict, total=False):
     """
-    Plain version of CredentialSourceProvider.
+    Plain version of CredentialSourceProvider
+
+    Attributes:
+        callback_code (str): The temporary code forwarded by the OAuth provider as a parameter to our callback URL
     """
 
     callback_code: Required[str]

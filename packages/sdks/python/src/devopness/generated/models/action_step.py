@@ -14,6 +14,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_status import ActionStatus, ActionStatusPlain
 from .action_status_reason_code import (
@@ -43,25 +45,64 @@ class ActionStep(DevopnessBaseModel):
         updated_at (datetime): The date and time when the record was last updated
     """
 
-    id: int
-    action_id: int
-    action_target_id: int
-    name: Optional[str]
-    description: Optional[str] = None
-    order: int
+    id: StrictInt = Field(description="The unique id of the action step")
+    action_id: StrictInt = Field(
+        description="The unique id of the action linked to this step"
+    )
+    action_target_id: StrictInt = Field(
+        description="The unique id of the action target linked to this step"
+    )
+    name: Optional[StrictStr] = Field(
+        description="Name of the action describing your purpose"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None,
+        description="A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.",
+    )
+    order: StrictInt = Field(description="The execution order of the given step")
     status: ActionStatus
-    status_human_readable: str
-    status_reason_code: ActionStatusReasonCode
-    status_reason_human_readable: str
-    started_at: Optional[datetime] = None
-    completed_at: Optional[datetime] = None
-    created_at: datetime
-    updated_at: datetime
+    status_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the action status"
+    )
+    status_reason_code: Optional[ActionStatusReasonCode] = None
+    status_reason_human_readable: Optional[StrictStr] = Field(
+        default=None, description="Human readable version of the status reason code"
+    )
+    started_at: Optional[datetime] = Field(
+        default=None,
+        description="The date and time when the action started execution (i.e., left the `pending/queued` status)",
+    )
+    completed_at: Optional[datetime] = Field(
+        default=None,
+        description="The date and time when the action has finished execution",
+    )
+    created_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was created"
+    )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="The date and time when the record was last updated"
+    )
 
 
 class ActionStepPlain(TypedDict, total=False):
     """
-    Plain version of ActionStep.
+    Plain version of ActionStep
+
+    Attributes:
+        id (int): The unique id of the action step
+        action_id (int): The unique id of the action linked to this step
+        action_target_id (int): The unique id of the action target linked to this step
+        name (str, optional): Name of the action describing your purpose
+        description (str, optional): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.
+        order (int): The execution order of the given step
+        status (ActionStatus):
+        status_human_readable (str): Human readable version of the action status
+        status_reason_code (ActionStatusReasonCode):
+        status_reason_human_readable (str): Human readable version of the status reason code
+        started_at (datetime, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (datetime, optional): The date and time when the action has finished execution
+        created_at (datetime): The date and time when the record was created
+        updated_at (datetime): The date and time when the record was last updated
     """
 
     id: Required[int]

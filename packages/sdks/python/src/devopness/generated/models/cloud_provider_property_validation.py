@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .cloud_provider_property_type import (
     CloudProviderPropertyType,
@@ -32,16 +34,29 @@ class CloudProviderPropertyValidation(DevopnessBaseModel):
         allowed_values (List[str]): List of allowed values for the property. If empty, any value is allowed
     """
 
-    required: bool
+    required: StrictBool = Field(description="Defines if the property is required")
     type: CloudProviderPropertyType
-    min: int
-    max: int
-    allowed_values: List[str]
+    min: StrictInt = Field(
+        description="The minimum allowed property value. For properties of type `string` the validation checks the length of the property value"
+    )
+    max: StrictInt = Field(
+        description="The maximum allowed property value. For properties of type `string` the validation checks the length of the property value"
+    )
+    allowed_values: List[StrictStr] = Field(
+        description="List of allowed values for the property. If empty, any value is allowed"
+    )
 
 
 class CloudProviderPropertyValidationPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderPropertyValidation.
+    Plain version of CloudProviderPropertyValidation
+
+    Attributes:
+        required (bool): Defines if the property is required
+        type (CloudProviderPropertyType):
+        min (int): The minimum allowed property value. For properties of type &#x60;string&#x60; the validation checks the length of the property value
+        max (int): The maximum allowed property value. For properties of type &#x60;string&#x60; the validation checks the length of the property value
+        allowed_values (List[str]): List of allowed values for the property. If empty, any value is allowed
     """
 
     required: Required[bool]

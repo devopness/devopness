@@ -31,7 +31,11 @@ class ActionHookRequest(DevopnessBaseModel):
 
 class ActionHookRequestPlain(TypedDict, total=False):
     """
-    Plain version of ActionHookRequest.
+    Plain version of ActionHookRequest
+
+    Attributes:
+        incoming (HookRequestRelation, optional):
+        outgoing (HookRequestRelation, optional):
     """
 
     incoming: Optional[

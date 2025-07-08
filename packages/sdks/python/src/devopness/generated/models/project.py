@@ -14,6 +14,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .os_users_inner import OsUsersInner, OsUsersInnerPlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
@@ -36,20 +38,41 @@ class Project(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    user_id: int
-    name: str
-    logo_url: Optional[str]
-    resource_summary: List[ResourceSummaryItem]
-    os_users: List[OsUsersInner]
+    id: StrictInt = Field(description="The Id of the project")
+    user_id: StrictInt = Field(description="The id of the user that own the project")
+    name: StrictStr = Field(description="The project's name")
+    logo_url: Optional[StrictStr] = Field(
+        description="A URL path to the project's logo image"
+    )
+    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+        default=None, description="Summary of the resource"
+    )
+    os_users: List[OsUsersInner] = Field(
+        description="The list of the operating system users found in all the servers linked to a project"
+    )
     created_by_user: UserRelation
-    created_at: str
-    updated_at: str
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class ProjectPlain(TypedDict, total=False):
     """
-    Plain version of Project.
+    Plain version of Project
+
+    Attributes:
+        id (int): The Id of the project
+        user_id (int): The id of the user that own the project
+        name (str): The project&#39;s name
+        logo_url (str, optional): A URL path to the project&#39;s logo image
+        resource_summary (List[ResourceSummaryItem]): Summary of the resource
+        os_users (List[OsUsersInner]): The list of the operating system users found in all the servers linked to a project
+        created_by_user (UserRelation):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]

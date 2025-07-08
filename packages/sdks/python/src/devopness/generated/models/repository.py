@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .repository_branch import RepositoryBranch, RepositoryBranchPlain
 from .repository_tag import RepositoryTag, RepositoryTagPlain
@@ -31,17 +33,31 @@ class Repository(DevopnessBaseModel):
         tags (List[RepositoryTag]): List of repository tags
     """
 
-    name: str
-    user_name: str
-    full_name: str
-    html_url: str
-    branches: List[RepositoryBranch]
-    tags: List[RepositoryTag]
+    name: StrictStr = Field(description="The name of the repository")
+    user_name: StrictStr = Field(
+        description="The name of the user/account on the Version Control System"
+    )
+    full_name: StrictStr = Field(
+        description="The fully qualified repository name. Usually composed of user_name/name"
+    )
+    html_url: StrictStr = Field(
+        description="The URL for viewing repository details on the provider's web application"
+    )
+    branches: List[RepositoryBranch] = Field(description="List of repository branches")
+    tags: List[RepositoryTag] = Field(description="List of repository tags")
 
 
 class RepositoryPlain(TypedDict, total=False):
     """
-    Plain version of Repository.
+    Plain version of Repository
+
+    Attributes:
+        name (str): The name of the repository
+        user_name (str): The name of the user/account on the Version Control System
+        full_name (str): The fully qualified repository name. Usually composed of user_name/name
+        html_url (str): The URL for viewing repository details on the provider&#39;s web application
+        branches (List[RepositoryBranch]): List of repository branches
+        tags (List[RepositoryTag]): List of repository tags
     """
 
     name: Required[str]

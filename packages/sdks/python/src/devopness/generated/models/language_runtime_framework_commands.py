@@ -8,9 +8,12 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -24,13 +27,22 @@ class LanguageRuntimeFrameworkCommands(DevopnessBaseModel):
         dependencies (List[str]): Available dependencies installation command options for the stack
     """
 
-    build: List[str]
-    dependencies: List[str]
+    build: Optional[List[StrictStr]] = Field(
+        default=None, description="Available build command options for the stack"
+    )
+    dependencies: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="Available dependencies installation command options for the stack",
+    )
 
 
 class LanguageRuntimeFrameworkCommandsPlain(TypedDict, total=False):
     """
-    Plain version of LanguageRuntimeFrameworkCommands.
+    Plain version of LanguageRuntimeFrameworkCommands
+
+    Attributes:
+        build (List[str]): Available build command options for the stack
+        dependencies (List[str]): Available dependencies installation command options for the stack
     """
 
     build: Required[List[str]]

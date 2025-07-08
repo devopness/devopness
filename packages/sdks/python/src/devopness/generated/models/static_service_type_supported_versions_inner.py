@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .variable_targets import VariableTargets, VariableTargetsPlain
@@ -26,13 +29,21 @@ class StaticServiceTypeSupportedVersionsInner(DevopnessBaseModel):
         variable_targets (List[VariableTargets]): The list of VariableTarget
     """
 
-    version: str
-    variable_targets: List[VariableTargets]
+    version: Optional[StrictStr] = Field(
+        default=None, description="The service's version that is supported"
+    )
+    variable_targets: Optional[List[VariableTargets]] = Field(
+        default=None, description="The list of VariableTarget"
+    )
 
 
 class StaticServiceTypeSupportedVersionsInnerPlain(TypedDict, total=False):
     """
-    Plain version of StaticServiceTypeSupportedVersionsInner.
+    Plain version of StaticServiceTypeSupportedVersionsInner
+
+    Attributes:
+        version (str): The service&#39;s version that is supported
+        variable_targets (List[VariableTargets]): The list of VariableTarget
     """
 
     version: Required[str]

@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import StrictStr
 
 from .. import DevopnessBaseModel
 from .pipeline_settings import PipelineSettings, PipelineSettingsPlain
@@ -26,14 +29,19 @@ class ResourceOperation(DevopnessBaseModel):
         pipeline_settings (PipelineSettings):
     """
 
-    operation: str
-    operation_human_readable: str
-    pipeline_settings: PipelineSettings
+    operation: Optional[StrictStr] = None
+    operation_human_readable: Optional[StrictStr] = None
+    pipeline_settings: Optional[PipelineSettings] = None
 
 
 class ResourceOperationPlain(TypedDict, total=False):
     """
-    Plain version of ResourceOperation.
+    Plain version of ResourceOperation
+
+    Attributes:
+        operation (str):
+        operation_human_readable (str):
+        pipeline_settings (PipelineSettings):
     """
 
     operation: Required[str]

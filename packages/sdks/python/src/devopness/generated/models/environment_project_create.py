@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .environment_type import EnvironmentType, EnvironmentTypePlain
@@ -27,13 +30,23 @@ class EnvironmentProjectCreate(DevopnessBaseModel):
     """
 
     type: EnvironmentType
-    name: str
-    description: str
+    name: StrictStr = Field(
+        description="The environment's name. Must not be greater than 60 characters."
+    )
+    description: Optional[StrictStr] = Field(
+        default=None,
+        description="The environment's description. Must not be greater than 255 characters.",
+    )
 
 
 class EnvironmentProjectCreatePlain(TypedDict, total=False):
     """
-    Plain version of EnvironmentProjectCreate.
+    Plain version of EnvironmentProjectCreate
+
+    Attributes:
+        type (EnvironmentType):
+        name (str): The environment&#39;s name. Must not be greater than 60 characters.
+        description (str): The environment&#39;s description. Must not be greater than 255 characters.
     """
 
     type: Required[

@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .environment_link import EnvironmentLink, EnvironmentLinkPlain
@@ -38,24 +41,67 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
         environments (List[EnvironmentLink]):
     """
 
-    linked_resources: List[ResourceToBeLinked]
-    name: str
-    build_command: str
-    engine_version: str
-    framework: str
-    programming_language: str
-    repository: str
-    credential_id: int
-    root_directory: str
-    default_branch: str
-    deployments_keep: int
-    install_dependencies_command: str
-    environments: List[EnvironmentLink]
+    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+        default=None, description="The resources to be linked with this resource"
+    )
+    name: StrictStr = Field(
+        description="The application's unique name. Must not be greater than 60 characters."
+    )
+    build_command: Optional[StrictStr] = Field(
+        default=None,
+        description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+    )
+    engine_version: StrictStr = Field(
+        description="The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters."
+    )
+    framework: StrictStr = Field(
+        description="The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters."
+    )
+    programming_language: StrictStr = Field(
+        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters."
+    )
+    repository: StrictStr = Field(
+        description="The full name of a repository (`repository_owner/repository_name`) containing the application source code. Must not be greater than 100 characters."
+    )
+    credential_id: StrictInt = Field(
+        description="Numeric ID of the credential to source provider where the repository is hosted."
+    )
+    root_directory: Optional[StrictStr] = Field(
+        default=None,
+        description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
+    )
+    default_branch: StrictStr = Field(
+        description="The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters."
+    )
+    deployments_keep: Optional[StrictInt] = Field(
+        default=None,
+        description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.",
+    )
+    install_dependencies_command: Optional[StrictStr] = Field(
+        default=None,
+        description="Indicates command that Devopness must execute to install application dependencies.",
+    )
+    environments: Optional[List[EnvironmentLink]] = None
 
 
 class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of ApplicationEnvironmentCreate.
+    Plain version of ApplicationEnvironmentCreate
+
+    Attributes:
+        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
+        name (str): The application&#39;s unique name. Must not be greater than 60 characters.
+        build_command (str): The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
+        engine_version (str): The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters.
+        framework (str): The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.
+        programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be &#x60;html&#x60;. Must not be greater than 30 characters.
+        repository (str): The full name of a repository (&#x60;repository_owner/repository_name&#x60;) containing the application source code. Must not be greater than 100 characters.
+        credential_id (int): Numeric ID of the credential to source provider where the repository is hosted.
+        root_directory (str): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of &lt;code&gt;/&lt;/code&gt;.
+        default_branch (str): The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.
+        deployments_keep (int): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers. OR The number of deployment artifacts to be retained in the user&#39;s servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.
+        install_dependencies_command (str): Indicates command that Devopness must execute to install application dependencies.
+        environments (List[EnvironmentLink]):
     """
 
     linked_resources: Required[

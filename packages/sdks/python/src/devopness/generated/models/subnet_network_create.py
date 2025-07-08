@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .subnet_provision_input import SubnetProvisionInput, SubnetProvisionInputPlain
 from .subnet_type import SubnetType, SubnetTypePlain
@@ -28,15 +30,23 @@ class SubnetNetworkCreate(DevopnessBaseModel):
         credential_id (int): The ID of the cloud credential.
     """
 
-    name: str
+    name: StrictStr = Field(
+        description="The subnet's name. Must be between 1 and 63 characters."
+    )
     type: SubnetType
     provision_input: SubnetProvisionInput
-    credential_id: int
+    credential_id: StrictInt = Field(description="The ID of the cloud credential.")
 
 
 class SubnetNetworkCreatePlain(TypedDict, total=False):
     """
-    Plain version of SubnetNetworkCreate.
+    Plain version of SubnetNetworkCreate
+
+    Attributes:
+        name (str): The subnet&#39;s name. Must be between 1 and 63 characters.
+        type (SubnetType):
+        provision_input (SubnetProvisionInput):
+        credential_id (int): The ID of the cloud credential.
     """
 
     name: Required[str]

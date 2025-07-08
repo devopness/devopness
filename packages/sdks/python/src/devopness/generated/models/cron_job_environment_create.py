@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .resource_to_be_linked import ResourceToBeLinked, ResourceToBeLinkedPlain
@@ -30,17 +33,38 @@ class CronJobEnvironmentCreate(DevopnessBaseModel):
         application_id (int): Numeric ID of the application to which the cron job belongs to.
     """
 
-    linked_resources: List[ResourceToBeLinked]
-    name: str
-    command: str
-    pattern: str
-    run_as_user: str
-    application_id: int
+    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+        default=None, description="The resources to be linked with this resource"
+    )
+    name: StrictStr = Field(
+        description="The name of the cron job. Must not be greater than 60 characters."
+    )
+    command: StrictStr = Field(
+        description="The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters."
+    )
+    pattern: StrictStr = Field(
+        description="A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions."
+    )
+    run_as_user: StrictStr = Field(
+        description="The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters."
+    )
+    application_id: Optional[StrictInt] = Field(
+        default=None,
+        description="Numeric ID of the application to which the cron job belongs to.",
+    )
 
 
 class CronJobEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of CronJobEnvironmentCreate.
+    Plain version of CronJobEnvironmentCreate
+
+    Attributes:
+        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
+        name (str): The name of the cron job. Must not be greater than 60 characters.
+        command (str): The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.
+        pattern (str): A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.
+        run_as_user (str): The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.
+        application_id (int): Numeric ID of the application to which the cron job belongs to.
     """
 
     linked_resources: Required[

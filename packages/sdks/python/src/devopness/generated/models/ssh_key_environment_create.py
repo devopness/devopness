@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .resource_to_be_linked import ResourceToBeLinked, ResourceToBeLinkedPlain
@@ -27,14 +30,23 @@ class SshKeyEnvironmentCreate(DevopnessBaseModel):
         public_key (str): The public key of the ssh key.
     """
 
-    linked_resources: List[ResourceToBeLinked]
-    name: str
-    public_key: str
+    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+        default=None, description="The resources to be linked with this resource"
+    )
+    name: StrictStr = Field(
+        description="The ssh key's name. Must not be greater than 60 characters."
+    )
+    public_key: StrictStr = Field(description="The public key of the ssh key.")
 
 
 class SshKeyEnvironmentCreatePlain(TypedDict, total=False):
     """
-    Plain version of SshKeyEnvironmentCreate.
+    Plain version of SshKeyEnvironmentCreate
+
+    Attributes:
+        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
+        name (str): The ssh key&#39;s name. Must not be greater than 60 characters.
+        public_key (str): The public key of the ssh key.
     """
 
     linked_resources: Required[

@@ -7,9 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
+    Union,
 )
+
+from pydantic import Field, StrictFloat, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -23,13 +27,23 @@ class UserEnvironmentStats(DevopnessBaseModel):
         member_of (float): Total number of environments that user has access to, as team member.
     """
 
-    owner_of: float
-    member_of: float
+    owner_of: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total number of environments that user has access to, as owner.",
+    )
+    member_of: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None,
+        description="Total number of environments that user has access to, as team member.",
+    )
 
 
 class UserEnvironmentStatsPlain(TypedDict, total=False):
     """
-    Plain version of UserEnvironmentStats.
+    Plain version of UserEnvironmentStats
+
+    Attributes:
+        owner_of (float): Total number of environments that user has access to, as owner.
+        member_of (float): Total number of environments that user has access to, as team member.
     """
 
     owner_of: Required[float]

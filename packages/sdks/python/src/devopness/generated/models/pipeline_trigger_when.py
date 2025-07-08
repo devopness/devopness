@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field
 
 from .. import DevopnessBaseModel
 from .trigger_when_condition import TriggerWhenCondition, TriggerWhenConditionPlain
@@ -25,12 +28,17 @@ class PipelineTriggerWhen(DevopnessBaseModel):
         conditions (List[TriggerWhenCondition]): Conditions that must be met to trigger the pipeline
     """
 
-    conditions: List[TriggerWhenCondition]
+    conditions: Optional[List[TriggerWhenCondition]] = Field(
+        default=None, description="Conditions that must be met to trigger the pipeline"
+    )
 
 
 class PipelineTriggerWhenPlain(TypedDict, total=False):
     """
-    Plain version of PipelineTriggerWhen.
+    Plain version of PipelineTriggerWhen
+
+    Attributes:
+        conditions (List[TriggerWhenCondition]): Conditions that must be met to trigger the pipeline
     """
 
     conditions: Required[

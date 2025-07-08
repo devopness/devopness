@@ -7,10 +7,13 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .environment_type import EnvironmentType, EnvironmentTypePlain
@@ -27,15 +30,26 @@ class EnvironmentUpdate(DevopnessBaseModel):
         description (str): The environment&#39;s description. Must not be greater than 255 characters.
     """
 
-    id: int
+    id: StrictInt = Field(description="The unique ID of the given Environment.")
     type: EnvironmentType
-    name: str
-    description: str
+    name: StrictStr = Field(
+        description="The environment's name. Must not be greater than 60 characters."
+    )
+    description: Optional[StrictStr] = Field(
+        default=None,
+        description="The environment's description. Must not be greater than 255 characters.",
+    )
 
 
 class EnvironmentUpdatePlain(TypedDict, total=False):
     """
-    Plain version of EnvironmentUpdate.
+    Plain version of EnvironmentUpdate
+
+    Attributes:
+        id (int): The unique ID of the given Environment.
+        type (EnvironmentType):
+        name (str): The environment&#39;s name. Must not be greater than 60 characters.
+        description (str): The environment&#39;s description. Must not be greater than 255 characters.
     """
 
     id: Required[int]

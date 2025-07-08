@@ -12,6 +12,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_deployment_commit import (
     ActionDeploymentCommit,
@@ -33,14 +35,21 @@ class ActionDeploymentData(DevopnessBaseModel):
         deployment (ActionDeploymentContent):
     """
 
-    release_name: str
+    release_name: StrictStr = Field(
+        description="The name generated to release created by this deployment"
+    )
     commit: ActionDeploymentCommit
     deployment: ActionDeploymentContent
 
 
 class ActionDeploymentDataPlain(TypedDict, total=False):
     """
-    Plain version of ActionDeploymentData.
+    Plain version of ActionDeploymentData
+
+    Attributes:
+        release_name (str): The name generated to release created by this deployment
+        commit (ActionDeploymentCommit):
+        deployment (ActionDeploymentContent):
     """
 
     release_name: Required[str]

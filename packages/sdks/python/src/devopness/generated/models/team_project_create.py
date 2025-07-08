@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -23,13 +26,21 @@ class TeamProjectCreate(DevopnessBaseModel):
         photo_url (str): The URL to team&#39;s image. Must be a valid URL.
     """
 
-    name: str
-    photo_url: str
+    name: StrictStr = Field(
+        description="The name of the team. Must not be greater than 255 characters."
+    )
+    photo_url: Optional[StrictStr] = Field(
+        default=None, description="The URL to team's image. Must be a valid URL."
+    )
 
 
 class TeamProjectCreatePlain(TypedDict, total=False):
     """
-    Plain version of TeamProjectCreate.
+    Plain version of TeamProjectCreate
+
+    Attributes:
+        name (str): The name of the team. Must not be greater than 255 characters.
+        photo_url (str): The URL to team&#39;s image. Must be a valid URL.
     """
 
     name: Required[str]

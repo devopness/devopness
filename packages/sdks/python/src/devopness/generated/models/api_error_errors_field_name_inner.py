@@ -7,9 +7,12 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
+
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -22,12 +25,19 @@ class ApiErrorErrorsFieldNameInner(DevopnessBaseModel):
         field (str): Field name and respective error message
     """
 
-    field: str
+    var_field: Optional[StrictStr] = Field(
+        default=None,
+        description="Field name and respective error message",
+        alias="field",
+    )
 
 
 class ApiErrorErrorsFieldNameInnerPlain(TypedDict, total=False):
     """
-    Plain version of ApiErrorErrorsFieldNameInner.
+    Plain version of ApiErrorErrorsFieldNameInner
+
+    Attributes:
+        field (str): Field name and respective error message
     """
 
     field: Required[str]

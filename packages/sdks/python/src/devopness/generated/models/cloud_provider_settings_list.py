@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field
 
 from .. import DevopnessBaseModel
 from .cloud_provider_input_settings import (
@@ -28,12 +31,17 @@ class CloudProviderSettingsList(DevopnessBaseModel):
         credential (List[CloudProviderInputSettings]): Settings of the cloud provider credential
     """
 
-    credential: List[CloudProviderInputSettings]
+    credential: Optional[List[CloudProviderInputSettings]] = Field(
+        default=None, description="Settings of the cloud provider credential"
+    )
 
 
 class CloudProviderSettingsListPlain(TypedDict, total=False):
     """
-    Plain version of CloudProviderSettingsList.
+    Plain version of CloudProviderSettingsList
+
+    Attributes:
+        credential (List[CloudProviderInputSettings]): Settings of the cloud provider credential
     """
 
     credential: Required[

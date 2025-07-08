@@ -8,10 +8,13 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
 )
+
+from pydantic import Field
 
 from .. import DevopnessBaseModel
 from .hook_variable import HookVariable, HookVariablePlain
@@ -25,12 +28,17 @@ class HookIncomingSettings(DevopnessBaseModel):
         variables (List[HookVariable]): List of variables to incoming hook
     """
 
-    variables: List[HookVariable]
+    variables: Optional[List[HookVariable]] = Field(
+        default=None, description="List of variables to incoming hook"
+    )
 
 
 class HookIncomingSettingsPlain(TypedDict, total=False):
     """
-    Plain version of HookIncomingSettings.
+    Plain version of HookIncomingSettings
+
+    Attributes:
+        variables (List[HookVariable]): List of variables to incoming hook
     """
 
     variables: Required[

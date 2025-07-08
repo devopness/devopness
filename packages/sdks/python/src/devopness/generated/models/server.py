@@ -13,6 +13,8 @@ from typing import (
     Union,
 )
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
 from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
@@ -63,20 +65,30 @@ class Server(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: int
-    created_by: int
-    name: str
-    hostname: str
-    provider_name: str
-    provider_name_human_readable: str
+    id: StrictInt = Field(description="The unique id of the given record")
+    created_by: StrictInt = Field(
+        description="The id of the user who created the server and to whom the server belongs"
+    )
+    name: StrictStr = Field(description="The server's name")
+    hostname: StrictStr = Field(description="The server's hostname")
+    provider_name: StrictStr = Field(description="The name of the server's provider.")
+    provider_name_human_readable: StrictStr = Field(
+        description="The human readable version of the provider's name"
+    )
     cloud_service_code: ServerCloudServiceCode
-    ip_address: str
-    ssh_port: int
+    ip_address: Optional[StrictStr] = Field(
+        default=None, description="Public ipv4 address for server access"
+    )
+    ssh_port: StrictInt = Field(
+        description="The network port to which the SSH daemon is listening to SSH connections on the server"
+    )
     os: OperatingSystemVersion
     os_version_code: Optional[CloudOsVersionCode]
-    active: bool
+    active: StrictBool = Field(description="Tells if the server is active or not")
     status: ServerStatus
-    max_parallel_actions: int
+    max_parallel_actions: StrictInt = Field(
+        description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,"
+    )
     blueprint: ServerBlueprint
     provision_input: ServerProvisionInput
     created_by_user: UserRelation
@@ -84,13 +96,42 @@ class Server(DevopnessBaseModel):
     last_action: Optional[ActionRelation]
     environment: Optional[EnvironmentRelation]
     credential: Optional[CredentialRelation]
-    created_at: str
-    updated_at: str
+    created_at: StrictStr = Field(
+        description="The date and time when the record was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the record was last updated"
+    )
 
 
 class ServerPlain(TypedDict, total=False):
     """
-    Plain version of Server.
+    Plain version of Server
+
+    Attributes:
+        id (int): The unique id of the given record
+        created_by (int): The id of the user who created the server and to whom the server belongs
+        name (str): The server&#39;s name
+        hostname (str): The server&#39;s hostname
+        provider_name (str): The name of the server&#39;s provider.
+        provider_name_human_readable (str): The human readable version of the provider&#39;s name
+        cloud_service_code (ServerCloudServiceCode):
+        ip_address (str): Public ipv4 address for server access
+        ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
+        os (OperatingSystemVersion):
+        os_version_code (CloudOsVersionCode, optional):
+        active (bool): Tells if the server is active or not
+        status (ServerStatus):
+        max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server,
+        blueprint (ServerBlueprint):
+        provision_input (ServerProvisionInput):
+        created_by_user (UserRelation):
+        project (ProjectRelation, optional):
+        last_action (ActionRelation, optional):
+        environment (EnvironmentRelation, optional):
+        credential (CredentialRelation, optional):
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: Required[int]
