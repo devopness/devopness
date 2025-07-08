@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#1958](https://github.com/devopness/devopness/pull/1958) [`bf71ebe`](https://github.com/devopness/devopness/commit/bf71ebe6185b6319a0b8467cec05dda4945b350f) Thanks [@dependabot](https://github.com/apps/dependabot)! - **Changes**
+- [#1958](https://github.com/devopness/devopness/pull/1958) [`bf71ebe`](https://github.com/devopness/devopness/commit/bf71ebe6185b6319a0b8467cec05dda4945b350f) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
 
   Removed redundant `ActionData` union type in favor of direct `ActionDeploymentData` usage. No runtime behavior was changed.
 
