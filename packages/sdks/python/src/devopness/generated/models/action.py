@@ -57,8 +57,8 @@ class Action(DevopnessBaseModel):
         triggered_by_user (UserRelation, optional):
         resource (ActionResource):
         summary (ActionSummary):
-        environment (EnvironmentRelation, optional):
-        project (ProjectRelation, optional):
+        environment (EnvironmentRelation):
+        project (ProjectRelation):
         targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
         hook_requests (ActionHookRequest, optional):
         started_at (str): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
@@ -98,8 +98,8 @@ class Action(DevopnessBaseModel):
     triggered_by_user: Optional[UserRelation] = None
     resource: ActionResource
     summary: ActionSummary
-    environment: Optional[EnvironmentRelation] = None
-    project: Optional[ProjectRelation] = None
+    environment: Optional[EnvironmentRelation]
+    project: Optional[ProjectRelation]
     targets: Optional[List[ActionTarget]] = Field(
         default=None, description="List of actions dispatched to cloud resource targets"
     )
@@ -192,13 +192,13 @@ class ActionPlain(TypedDict, total=False):
             ActionSummaryPlain,
         ]
     ]
-    environment: Optional[
+    environment: Required[
         Union[
             EnvironmentRelation,
             EnvironmentRelationPlain,
         ]
     ]
-    project: Optional[
+    project: Required[
         Union[
             ProjectRelation,
             ProjectRelationPlain,

@@ -139,13 +139,13 @@ export interface Action {
      * @type {EnvironmentRelation}
      * @memberof Action
      */
-    environment?: EnvironmentRelation | null;
+    environment: EnvironmentRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof Action
      */
-    project?: ProjectRelation | null;
+    project: ProjectRelation | null;
     /**
      * List of actions dispatched to cloud resource targets
      * @type {Array<ActionTarget>}
