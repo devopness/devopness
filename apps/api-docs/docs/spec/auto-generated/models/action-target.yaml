@@ -65,3 +65,14 @@ properties:
     format: date-time
     description: 'The date and time when the record was last updated'
     example: '2019-09-25T13:52:04.000000Z'
+required:
+  - id
+  - resource_type
+  - resource_id
+  - status
+  - status_reason_code
+  - total_steps
+  - current_step
+  - resource_data
+  - created_at
+  - updated_at

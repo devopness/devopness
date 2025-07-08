@@ -94,6 +94,8 @@ required:
   - children
   - resource
   - summary
+  - environment
+  - project
   - started_at
   - completed_at
   - created_at
