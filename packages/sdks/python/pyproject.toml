@@ -110,11 +110,6 @@ ignore = [
 "src/devopness/generated/**/__init__.py" = [
   "F401", # Module imported but unused
 ]
-"scripts/**/*" = [
-  "ANN",  # flake8-annotations
-  "S404", # `subprocess` module is possibly insecure
-  "S602", # `subprocess` call with `shell=True` identified, security issue
-]
 "tests/**/*" = [
   "ANN",  # flake8-annotations
   "E501", # Line too long

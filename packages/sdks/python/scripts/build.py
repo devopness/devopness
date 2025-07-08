@@ -5,9 +5,9 @@
 
 import os
 import shutil
-import subprocess
-import sys
 from glob import glob
+
+import openapi_generator_cli
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -37,32 +37,25 @@ def remove_previous_generated_files() -> None:
             os.remove(file)
 
 
-def run_openapi_generator(extra_args: list[str] | None = None) -> None:
+def run_openapi_generator() -> None:
     print("🚀  Running OpenAPI Generator...")
 
-    cmd_parts = [
-        "bash -c '",
-        "openapi-generator-cli generate",
-        '--input-spec="../common/spec.json"',
-        '--generator-name="python"',
-        '--output="./src/devopness/generated"',
-        '--template-dir="./generator/templates"',
-        '--additional-properties="packageName="',
+    args = [
+        "generate",
+        "--input-spec",
+        "../common/spec.json",
+        "--generator-name",
+        "python",
+        "--output",
+        "./src/devopness/generated",
+        "--template-dir",
+        "./generator/templates",
+        "--additional-properties",
+        "packageName",
     ]
 
-    if extra_args is not None:
-        cmd_parts.extend(extra_args)
-
-    # Add the closing quote to the command
-    cmd_parts.append("'")
-
-    cmd = " ".join(cmd_parts)
-    subprocess.run(
-        cmd,
-        shell=True,
-        check=True,
-        env={"JAVA_OPTS": "-Dlog.level=warn"},
-    )
+    os.environ["JAVA_OPTS"] = "-Dlog.level=warn"
+    openapi_generator_cli.run(args)
 
 
 def export_sdk_models() -> None:
@@ -111,27 +104,6 @@ def export_sdk_models() -> None:
         f.write("\n".join(lines))
 
 
-def format_generated_files() -> None:
-    print("🔧  Formatting generated files...")
-
-    cmd = f"bash -c 'ruff format -s {GENERATED_DIR} {SDK_MODELS_FILE}'"
-    subprocess.run(cmd, shell=True, check=False)
-
-
-def fix_code_style_issues() -> None:
-    print("🔧  Fixing code style issues in generated files...")
-
-    cmd = f"bash -c 'ruff check --fix -s {GENERATED_DIR} {SDK_MODELS_FILE}'"
-    subprocess.run(cmd, shell=True, check=False)
-
-
-def fix_import_issues() -> None:
-    print("🔧  Fixing import issues in generated files...")
-
-    cmd = f"bash -c 'ruff check --select I --fix -s {GENERATED_DIR} {SDK_MODELS_FILE}'"
-    subprocess.run(cmd, shell=True, check=False)
-
-
 def remove_openapi_generator_cache() -> None:
     print("🧹  Removing OpenAPI Generator Cache...")
 
@@ -140,19 +112,7 @@ def remove_openapi_generator_cache() -> None:
 
 
 if __name__ == "__main__":
-    try:
-        remove_previous_generated_files()
-        run_openapi_generator()
-
-        print("🔧  Executing post-build tasks...")
-        remove_openapi_generator_cache()
-        export_sdk_models()
-        fix_import_issues()
-        fix_code_style_issues()
-        format_generated_files()
-
-        print("✅  Devopness SDK - Python Build completed successfully!")
-
-    except subprocess.CalledProcessError as e:
-        print(f"Error during execution: {e}")
-        sys.exit(1)
+    remove_previous_generated_files()
+    run_openapi_generator()
+    export_sdk_models()
+    remove_openapi_generator_cache()
