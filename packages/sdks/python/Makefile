@@ -39,11 +39,11 @@ build-sdk-python: build-image ## ⚙️  Build the Devopness SDK for Python
 		-v $(PWD)/../common:/common \
 		--name devopness-sdk-python-build \
 		$(IMAGE):$(TAG) \
-		/bin/bash -c ' \
+		/bin/bash -ce ' \
 			scripts/build.py; \
 			echo "🔧  Formatting generated files..."; \
 			ruff check --select I --fix -s src/devopness; \
-			ruff check --fix -s src/devopness; \
+			ruff check --fix --exit-zero -s src/devopness; \
 			ruff format -s src/devopness; \
 			echo "✅  Devopness SDK - Python Build completed successfully!"; \
 		'
