@@ -9,7 +9,16 @@ class {{classname}}(DevopnessBaseModel):
     """
 
 {{#vars}}
-    {{name}}: {{{vendorExtensions.x-py-typing}}}
+    {{baseName}}: (
+        {{^required}} Optional[ {{/required}}
+            {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
+            {{^isPrimitiveType}}
+              {{#isEnumRef}}{{dataType}}{{/isEnumRef}}
+              {{#isModel}}{{dataType}}{{/isModel}}
+              {{#isContainer}}{{baseType}}[{{items.dataType}}]{{/isContainer}}
+            {{/isPrimitiveType}}
+        {{^required}} ] {{/required}}
+    ) {{^required}} = None {{/required}}
 {{/vars}}
 
 
