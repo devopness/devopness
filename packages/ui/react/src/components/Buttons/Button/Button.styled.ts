@@ -149,7 +149,7 @@ const BaseButton = styled.button<
     display: flex;
     background-color: ${getBackgroundColor($buttonType, $backgroundColor)};
     height: ${getHeight($typeSize)};
-    margin: ${$noMargin ? '0' : '0 15px'};
+    margin: ${$noMargin ? '0' : '0'};
     padding: ${$noPadding ? '0' : '5px 15px'};
     user-select: none;
 
