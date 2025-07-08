@@ -39,7 +39,14 @@ build-sdk-python: build-image ## ⚙️  Build the Devopness SDK for Python
 		-v $(PWD)/../common:/common \
 		--name devopness-sdk-python-build \
 		$(IMAGE):$(TAG) \
-		scripts/build.py
+		/bin/bash -c ' \
+			scripts/build.py; \
+			echo "🔧  Formatting generated files..."; \
+			ruff check --select I --fix -s src/devopness; \
+			ruff check --fix -s src/devopness; \
+			ruff format -s src/devopness; \
+			echo "✅  Devopness SDK - Python Build completed successfully!"; \
+		'
 
 publish: build-image ## 🚀 Publish the SDK to PyPI (requires PYPI_TOKEN)
 	$(info 📦 Publishing SDK to PyPI...)
