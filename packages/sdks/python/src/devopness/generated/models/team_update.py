@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -22,12 +21,12 @@ class TeamUpdate(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given Team.
         name (str): The name of the team. Must not be greater than 255 characters.
-        photo_url (str, optional): The URL to team&#39;s image. Must be a valid URL.
+        photo_url (str): The URL to team&#39;s image. Must be a valid URL.
     """
 
     id: int
     name: str
-    photo_url: Optional[str] = None
+    photo_url: str
 
 
 class TeamUpdatePlain(TypedDict, total=False):
@@ -37,4 +36,4 @@ class TeamUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Optional[str]
+    photo_url: Required[str]

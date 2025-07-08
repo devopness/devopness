@@ -7,7 +7,7 @@ Note:
 """
 
 from typing import (
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -21,16 +21,16 @@ class ResourceTypeRelated(DevopnessBaseModel):
     ResourceTypeRelated
 
     Attributes:
-        resource_type (ResourceType, optional):
-        resource_type_human_readable (str, optional): Human readable version of the resource type name
-        resource_type_human_readable_plural (str, optional): Plural human readable version of the resource type name
-        can_be_linked (bool, optional): If true, the relation with this resource type can be changed manually by the user
+        resource_type (ResourceType):
+        resource_type_human_readable (str): Human readable version of the resource type name
+        resource_type_human_readable_plural (str): Plural human readable version of the resource type name
+        can_be_linked (bool): If true, the relation with this resource type can be changed manually by the user
     """
 
-    resource_type: Optional[ResourceType] = None
-    resource_type_human_readable: Optional[str] = None
-    resource_type_human_readable_plural: Optional[str] = None
-    can_be_linked: Optional[bool] = None
+    resource_type: ResourceType
+    resource_type_human_readable: str
+    resource_type_human_readable_plural: str
+    can_be_linked: bool
 
 
 class ResourceTypeRelatedPlain(TypedDict, total=False):
@@ -38,12 +38,12 @@ class ResourceTypeRelatedPlain(TypedDict, total=False):
     Plain version of ResourceTypeRelated.
     """
 
-    resource_type: Optional[
+    resource_type: Required[
         Union[
             ResourceType,
             ResourceTypePlain,
         ]
     ]
-    resource_type_human_readable: Optional[str]
-    resource_type_human_readable_plural: Optional[str]
-    can_be_linked: Optional[bool]
+    resource_type_human_readable: Required[str]
+    resource_type_human_readable_plural: Required[str]
+    can_be_linked: Required[bool]

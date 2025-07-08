@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -25,12 +25,12 @@ class HookTriggerWhen(DevopnessBaseModel):
     HookTriggerWhen
 
     Attributes:
-        events (List[str], optional): List of events that will trigger an outgoing hook
-        conditions (List[HookTriggerWhenConditionsInner], optional): Conditions that must be met to trigger the hook
+        events (List[str]): List of events that will trigger an outgoing hook
+        conditions (List[HookTriggerWhenConditionsInner]): Conditions that must be met to trigger the hook
     """
 
-    events: Optional[List[str]] = None
-    conditions: Optional[List[HookTriggerWhenConditionsInner]] = None
+    events: List[str]
+    conditions: List[HookTriggerWhenConditionsInner]
 
 
 class HookTriggerWhenPlain(TypedDict, total=False):
@@ -38,8 +38,8 @@ class HookTriggerWhenPlain(TypedDict, total=False):
     Plain version of HookTriggerWhen.
     """
 
-    events: Optional[List[str]]
-    conditions: Optional[
+    events: Required[List[str]]
+    conditions: Required[
         List[
             Union[
                 HookTriggerWhenConditionsInner,

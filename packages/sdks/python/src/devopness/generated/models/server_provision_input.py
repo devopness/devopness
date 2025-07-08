@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -29,14 +28,14 @@ class ServerProvisionInput(DevopnessBaseModel):
     ServerProvisionInput
 
     Attributes:
-        subnet_id (int, optional): The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider
+        subnet_id (int): The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider
         cloud_service_code (ServerCloudServiceCode):
-        settings (ServerProvisionInputSettings, optional):
+        settings (ServerProvisionInputSettings):
     """
 
-    subnet_id: Optional[int] = None
+    subnet_id: int
     cloud_service_code: ServerCloudServiceCode
-    settings: Optional[ServerProvisionInputSettings] = None
+    settings: ServerProvisionInputSettings
 
 
 class ServerProvisionInputPlain(TypedDict, total=False):
@@ -44,14 +43,14 @@ class ServerProvisionInputPlain(TypedDict, total=False):
     Plain version of ServerProvisionInput.
     """
 
-    subnet_id: Optional[int]
+    subnet_id: Required[int]
     cloud_service_code: Required[
         Union[
             ServerCloudServiceCode,
             ServerCloudServiceCodePlain,
         ]
     ]
-    settings: Optional[
+    settings: Required[
         Union[
             ServerProvisionInputSettings,
             ServerProvisionInputSettingsPlain,

@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -22,10 +22,10 @@ class HookIncomingSettings(DevopnessBaseModel):
     HookIncomingSettings
 
     Attributes:
-        variables (List[HookVariable], optional): List of variables to incoming hook
+        variables (List[HookVariable]): List of variables to incoming hook
     """
 
-    variables: Optional[List[HookVariable]] = None
+    variables: List[HookVariable]
 
 
 class HookIncomingSettingsPlain(TypedDict, total=False):
@@ -33,7 +33,7 @@ class HookIncomingSettingsPlain(TypedDict, total=False):
     Plain version of HookIncomingSettings.
     """
 
-    variables: Optional[
+    variables: Required[
         List[
             Union[
                 HookVariable,

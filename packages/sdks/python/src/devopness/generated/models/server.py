@@ -45,20 +45,20 @@ class Server(DevopnessBaseModel):
         provider_name (str): The name of the server&#39;s provider.
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
         cloud_service_code (ServerCloudServiceCode):
-        ip_address (str, optional): Public ipv4 address for server access
+        ip_address (str): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         os (OperatingSystemVersion):
-        os_version_code (CloudOsVersionCode):
+        os_version_code (CloudOsVersionCode, optional):
         active (bool): Tells if the server is active or not
         status (ServerStatus):
         max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server,
         blueprint (ServerBlueprint):
         provision_input (ServerProvisionInput):
         created_by_user (UserRelation):
-        project (ProjectRelation):
-        last_action (ActionRelation):
-        environment (EnvironmentRelation):
-        credential (CredentialRelation):
+        project (ProjectRelation, optional):
+        last_action (ActionRelation, optional):
+        environment (EnvironmentRelation, optional):
+        credential (CredentialRelation, optional):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -70,20 +70,20 @@ class Server(DevopnessBaseModel):
     provider_name: str
     provider_name_human_readable: str
     cloud_service_code: ServerCloudServiceCode
-    ip_address: Optional[str] = None
+    ip_address: str
     ssh_port: int
     os: OperatingSystemVersion
-    os_version_code: CloudOsVersionCode
+    os_version_code: Optional[CloudOsVersionCode]
     active: bool
     status: ServerStatus
     max_parallel_actions: int
     blueprint: ServerBlueprint
     provision_input: ServerProvisionInput
     created_by_user: UserRelation
-    project: ProjectRelation
-    last_action: ActionRelation
-    environment: EnvironmentRelation
-    credential: CredentialRelation
+    project: Optional[ProjectRelation]
+    last_action: Optional[ActionRelation]
+    environment: Optional[EnvironmentRelation]
+    credential: Optional[CredentialRelation]
     created_at: str
     updated_at: str
 
@@ -105,7 +105,7 @@ class ServerPlain(TypedDict, total=False):
             ServerCloudServiceCodePlain,
         ]
     ]
-    ip_address: Optional[str]
+    ip_address: Required[str]
     ssh_port: Required[int]
     os: Required[
         Union[
@@ -113,7 +113,7 @@ class ServerPlain(TypedDict, total=False):
             OperatingSystemVersionPlain,
         ]
     ]
-    os_version_code: Required[
+    os_version_code: Optional[
         Union[
             CloudOsVersionCode,
             CloudOsVersionCodePlain,
@@ -145,25 +145,25 @@ class ServerPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    project: Required[
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelation,
             ActionRelationPlain,
         ]
     ]
-    environment: Required[
+    environment: Optional[
         Union[
             EnvironmentRelation,
             EnvironmentRelationPlain,
         ]
     ]
-    credential: Required[
+    credential: Optional[
         Union[
             CredentialRelation,
             CredentialRelationPlain,

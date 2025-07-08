@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -25,7 +24,7 @@ class CronJobUpdate(DevopnessBaseModel):
         name (str): The name of the cron job. Must not be greater than 60 characters.
         command (str): The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.
         run_as_user (str): The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.
-        application_id (int, optional): Numeric ID of the application to which the cron job belongs to.
+        application_id (int): Numeric ID of the application to which the cron job belongs to.
     """
 
     id: int
@@ -33,7 +32,7 @@ class CronJobUpdate(DevopnessBaseModel):
     name: str
     command: str
     run_as_user: str
-    application_id: Optional[int] = None
+    application_id: int
 
 
 class CronJobUpdatePlain(TypedDict, total=False):
@@ -46,4 +45,4 @@ class CronJobUpdatePlain(TypedDict, total=False):
     name: Required[str]
     command: Required[str]
     run_as_user: Required[str]
-    application_id: Optional[int]
+    application_id: Required[int]

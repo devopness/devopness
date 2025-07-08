@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -32,10 +33,10 @@ class Network(DevopnessBaseModel):
         name (str): The networks&#39;s name
         provision_input (NetworkProvisionInput):
         created_by_user (UserRelation):
-        project (ProjectRelation):
-        environment (EnvironmentRelation):
-        credential (CredentialRelation):
-        last_action (ActionRelation):
+        project (ProjectRelation, optional):
+        environment (EnvironmentRelation, optional):
+        credential (CredentialRelation, optional):
+        last_action (ActionRelation, optional):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -46,10 +47,10 @@ class Network(DevopnessBaseModel):
     name: str
     provision_input: NetworkProvisionInput
     created_by_user: UserRelation
-    project: ProjectRelation
-    environment: EnvironmentRelation
-    credential: CredentialRelation
-    last_action: ActionRelation
+    project: Optional[ProjectRelation]
+    environment: Optional[EnvironmentRelation]
+    credential: Optional[CredentialRelation]
+    last_action: Optional[ActionRelation]
     created_at: str
     updated_at: str
 
@@ -75,25 +76,25 @@ class NetworkPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    project: Required[
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,
         ]
     ]
-    environment: Required[
+    environment: Optional[
         Union[
             EnvironmentRelation,
             EnvironmentRelationPlain,
         ]
     ]
-    credential: Required[
+    credential: Optional[
         Union[
             CredentialRelation,
             CredentialRelationPlain,
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelation,
             ActionRelationPlain,

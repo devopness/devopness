@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
 )
@@ -23,13 +22,13 @@ class RoleUpdate(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given Role.
         name (str): The role&#39;s name. Must be at least 2 characters. Must not be greater than 60 characters.
-        description (str, optional): Description of this role. Must not be greater than 255 characters.
+        description (str): Description of this role. Must not be greater than 255 characters.
         permissions (List[str]): The list of permissions granted for this role
     """
 
     id: int
     name: str
-    description: Optional[str] = None
+    description: str
     permissions: List[str]
 
 
@@ -40,5 +39,5 @@ class RoleUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    description: Optional[str]
+    description: Required[str]
     permissions: Required[List[str]]

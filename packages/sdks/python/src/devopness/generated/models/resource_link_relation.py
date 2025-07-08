@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -30,7 +29,7 @@ class ResourceLinkRelation(DevopnessBaseModel):
         resource_id (int): The linked resource ID
         can_be_unlinked (bool): If false, the link cannot be manually removed
         linked_resource_data (LinkedResourceData):
-        children (List[ResourceLinkChild], optional):
+        children (List[ResourceLinkChild]):
     """
 
     link_type: str
@@ -39,7 +38,7 @@ class ResourceLinkRelation(DevopnessBaseModel):
     resource_id: int
     can_be_unlinked: bool
     linked_resource_data: LinkedResourceData
-    children: Optional[List[ResourceLinkChild]] = None
+    children: List[ResourceLinkChild]
 
 
 class ResourceLinkRelationPlain(TypedDict, total=False):
@@ -58,7 +57,7 @@ class ResourceLinkRelationPlain(TypedDict, total=False):
             LinkedResourceDataPlain,
         ]
     ]
-    children: Optional[
+    children: Required[
         List[
             Union[
                 ResourceLinkChild,

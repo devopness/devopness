@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -26,14 +25,14 @@ class NetworkRuleUpdate(DevopnessBaseModel):
         id (int): The unique ID of the given Network Rule.
         name (str): The rule&#39;s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
         direction (NetworkRuleDirection):
-        protocol (NetworkRuleProtocol, optional):
+        protocol (NetworkRuleProtocol):
         cidr_block (str): IP address range this rule applies for, defined using CIDR notation.
     """
 
     id: int
     name: str
     direction: NetworkRuleDirection
-    protocol: Optional[NetworkRuleProtocol] = None
+    protocol: NetworkRuleProtocol
     cidr_block: str
 
 
@@ -50,7 +49,7 @@ class NetworkRuleUpdatePlain(TypedDict, total=False):
             NetworkRuleDirectionPlain,
         ]
     ]
-    protocol: Optional[
+    protocol: Required[
         Union[
             NetworkRuleProtocol,
             NetworkRuleProtocolPlain,

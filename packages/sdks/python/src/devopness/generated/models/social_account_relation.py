@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -31,7 +32,7 @@ class SocialAccountRelation(DevopnessBaseModel):
         provider_human_readable (SocialAccountDisplayableName):
         provider_user_nickname (str): The nickname of the user on the Source Authentication provider
         is_vcs (bool): Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
-        token_expires_at (str): The date and time indicating when the authentication token will expire at
+        token_expires_at (str, optional): The date and time indicating when the authentication token will expire at
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -42,7 +43,7 @@ class SocialAccountRelation(DevopnessBaseModel):
     provider_human_readable: SocialAccountDisplayableName
     provider_user_nickname: str
     is_vcs: bool
-    token_expires_at: str
+    token_expires_at: Optional[str]
     created_at: str
     updated_at: str
 
@@ -68,6 +69,6 @@ class SocialAccountRelationPlain(TypedDict, total=False):
     ]
     provider_user_nickname: Required[str]
     is_vcs: Required[bool]
-    token_expires_at: Required[str]
+    token_expires_at: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

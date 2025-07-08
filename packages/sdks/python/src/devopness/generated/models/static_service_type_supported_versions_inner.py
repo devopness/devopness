@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -22,12 +22,12 @@ class StaticServiceTypeSupportedVersionsInner(DevopnessBaseModel):
     StaticServiceTypeSupportedVersionsInner
 
     Attributes:
-        version (str, optional): The service&#39;s version that is supported
-        variable_targets (List[VariableTargets], optional): The list of VariableTarget
+        version (str): The service&#39;s version that is supported
+        variable_targets (List[VariableTargets]): The list of VariableTarget
     """
 
-    version: Optional[str] = None
-    variable_targets: Optional[List[VariableTargets]] = None
+    version: str
+    variable_targets: List[VariableTargets]
 
 
 class StaticServiceTypeSupportedVersionsInnerPlain(TypedDict, total=False):
@@ -35,8 +35,8 @@ class StaticServiceTypeSupportedVersionsInnerPlain(TypedDict, total=False):
     Plain version of StaticServiceTypeSupportedVersionsInner.
     """
 
-    version: Optional[str]
-    variable_targets: Optional[
+    version: Required[str]
+    variable_targets: Required[
         List[
             Union[
                 VariableTargets,

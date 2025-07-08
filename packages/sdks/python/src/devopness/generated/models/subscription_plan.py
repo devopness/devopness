@@ -7,7 +7,7 @@ Note:
 """
 
 from typing import (
-    Optional,
+    Required,
     TypedDict,
 )
 
@@ -19,14 +19,14 @@ class SubscriptionPlan(DevopnessBaseModel):
     SubscriptionPlan
 
     Attributes:
-        provider_plan_id (str, optional):
-        human_readable (str, optional):
-        allow_subscriptions (bool, optional):
+        provider_plan_id (str):
+        human_readable (str):
+        allow_subscriptions (bool):
     """
 
-    provider_plan_id: Optional[str] = None
-    human_readable: Optional[str] = None
-    allow_subscriptions: Optional[bool] = None
+    provider_plan_id: str
+    human_readable: str
+    allow_subscriptions: bool
 
 
 class SubscriptionPlanPlain(TypedDict, total=False):
@@ -34,6 +34,6 @@ class SubscriptionPlanPlain(TypedDict, total=False):
     Plain version of SubscriptionPlan.
     """
 
-    provider_plan_id: Optional[str]
-    human_readable: Optional[str]
-    allow_subscriptions: Optional[bool]
+    provider_plan_id: Required[str]
+    human_readable: Required[str]
+    allow_subscriptions: Required[bool]

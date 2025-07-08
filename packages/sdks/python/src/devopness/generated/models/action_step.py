@@ -30,33 +30,33 @@ class ActionStep(DevopnessBaseModel):
         id (int): The unique id of the action step
         action_id (int): The unique id of the action linked to this step
         action_target_id (int): The unique id of the action target linked to this step
-        name (str): Name of the action describing your purpose
+        name (str, optional): Name of the action describing your purpose
         description (str, optional): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.
         order (int): The execution order of the given step
         status (ActionStatus):
-        status_human_readable (str, optional): Human readable version of the action status
-        status_reason_code (ActionStatusReasonCode, optional):
-        status_reason_human_readable (str, optional): Human readable version of the status reason code
+        status_human_readable (str): Human readable version of the action status
+        status_reason_code (ActionStatusReasonCode):
+        status_reason_human_readable (str): Human readable version of the status reason code
         started_at (datetime, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
         completed_at (datetime, optional): The date and time when the action has finished execution
-        created_at (datetime, optional): The date and time when the record was created
-        updated_at (datetime, optional): The date and time when the record was last updated
+        created_at (datetime): The date and time when the record was created
+        updated_at (datetime): The date and time when the record was last updated
     """
 
     id: int
     action_id: int
     action_target_id: int
-    name: str
+    name: Optional[str]
     description: Optional[str] = None
     order: int
     status: ActionStatus
-    status_human_readable: Optional[str] = None
-    status_reason_code: Optional[ActionStatusReasonCode] = None
-    status_reason_human_readable: Optional[str] = None
+    status_human_readable: str
+    status_reason_code: ActionStatusReasonCode
+    status_reason_human_readable: str
     started_at: Optional[datetime] = None
     completed_at: Optional[datetime] = None
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
+    created_at: datetime
+    updated_at: datetime
 
 
 class ActionStepPlain(TypedDict, total=False):
@@ -67,7 +67,7 @@ class ActionStepPlain(TypedDict, total=False):
     id: Required[int]
     action_id: Required[int]
     action_target_id: Required[int]
-    name: Required[str]
+    name: Optional[str]
     description: Optional[str]
     order: Required[int]
     status: Required[
@@ -76,15 +76,15 @@ class ActionStepPlain(TypedDict, total=False):
             ActionStatusPlain,
         ]
     ]
-    status_human_readable: Optional[str]
-    status_reason_code: Optional[
+    status_human_readable: Required[str]
+    status_reason_code: Required[
         Union[
             ActionStatusReasonCode,
             ActionStatusReasonCodePlain,
         ]
     ]
-    status_reason_human_readable: Optional[str]
+    status_reason_human_readable: Required[str]
     started_at: Optional[datetime]
     completed_at: Optional[datetime]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    created_at: Required[datetime]
+    updated_at: Required[datetime]

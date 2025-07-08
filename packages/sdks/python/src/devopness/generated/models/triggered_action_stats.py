@@ -7,7 +7,7 @@ Note:
 """
 
 from typing import (
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -24,18 +24,18 @@ class TriggeredActionStats(DevopnessBaseModel):
     TriggeredActionStats
 
     Attributes:
-        resource_type (str, optional): Type of resource used in the action
-        action_type (str, optional): Type of action
-        resource_type_human_readable (str, optional): Human readable version of the resource type
-        action_type_human_readable (str, optional): Type of action human readable
-        summary (TriggeredActionSummary, optional):
+        resource_type (str): Type of resource used in the action
+        action_type (str): Type of action
+        resource_type_human_readable (str): Human readable version of the resource type
+        action_type_human_readable (str): Type of action human readable
+        summary (TriggeredActionSummary):
     """
 
-    resource_type: Optional[str] = None
-    action_type: Optional[str] = None
-    resource_type_human_readable: Optional[str] = None
-    action_type_human_readable: Optional[str] = None
-    summary: Optional[TriggeredActionSummary] = None
+    resource_type: str
+    action_type: str
+    resource_type_human_readable: str
+    action_type_human_readable: str
+    summary: TriggeredActionSummary
 
 
 class TriggeredActionStatsPlain(TypedDict, total=False):
@@ -43,11 +43,11 @@ class TriggeredActionStatsPlain(TypedDict, total=False):
     Plain version of TriggeredActionStats.
     """
 
-    resource_type: Optional[str]
-    action_type: Optional[str]
-    resource_type_human_readable: Optional[str]
-    action_type_human_readable: Optional[str]
-    summary: Optional[
+    resource_type: Required[str]
+    action_type: Required[str]
+    resource_type_human_readable: Required[str]
+    action_type_human_readable: Required[str]
+    summary: Required[
         Union[
             TriggeredActionSummary,
             TriggeredActionSummaryPlain,

@@ -4,21 +4,21 @@ class {{classname}}(DevopnessBaseModel):
 
     Attributes:
     {{#allVars}}
-        {{baseName}} ({{dataType}}{{^required}}, optional{{/required}}): {{description}}
+        {{baseName}} ({{dataType}}{{#isNullable}}, optional{{/isNullable}}): {{description}}
     {{/allVars}}
     """
 
 {{#vars}}
     {{baseName}}: (
-        {{^required}} Optional[ {{/required}}
+        {{#isNullable}} Optional[ {{/isNullable}}
             {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
             {{^isPrimitiveType}}
               {{#isEnumRef}}{{dataType}}{{/isEnumRef}}
               {{#isModel}}{{dataType}}{{/isModel}}
               {{#isContainer}}{{baseType}}[{{items.dataType}}]{{/isContainer}}
             {{/isPrimitiveType}}
-        {{^required}} ] {{/required}}
-    ) {{^required}} = None {{/required}}
+        {{#isNullable}} ] {{/isNullable}}
+    ) {{^required}}{{#isNullable}} = None {{/isNullable}}{{/required}}
 {{/vars}}
 
 
@@ -29,16 +29,15 @@ class {{classname}}Plain(TypedDict, total=False):
 
 {{#vars}}
     {{baseName}}: (
-        {{^required}} Optional[ {{/required}}
-        {{#required}} Required[ {{/required}}
+        {{#isNullable}} Optional[ {{/isNullable}}
+        {{^isNullable}} Required[ {{/isNullable}}
             {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
             {{^isPrimitiveType}}
               {{#isEnumRef}}Union[{{dataType}}, {{dataType}}Plain,]{{/isEnumRef}}
               {{#isModel}}Union[{{dataType}}, {{dataType}}Plain,]{{/isModel}}
               {{#isContainer}}{{baseType}}[ Union[{{items.dataType}}, {{items.dataType}}Plain,] ]{{/isContainer}}
             {{/isPrimitiveType}}
-        {{#required}} ] {{/required}}
-        {{^required}} ] {{/required}}
+        ]
     )
 {{/vars}}
 

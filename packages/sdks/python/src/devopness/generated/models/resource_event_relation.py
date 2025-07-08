@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
@@ -23,8 +24,8 @@ class ResourceEventRelation(DevopnessBaseModel):
         event_type (str): The type of resource event
         resource_type (str): The event&#39;s resource type
         resource_id (int): The event&#39;s resource ID
-        message (str):
-        triggered_by (int):
+        message (str, optional):
+        triggered_by (int, optional):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -33,8 +34,8 @@ class ResourceEventRelation(DevopnessBaseModel):
     event_type: str
     resource_type: str
     resource_id: int
-    message: str
-    triggered_by: int
+    message: Optional[str]
+    triggered_by: Optional[int]
     created_at: str
     updated_at: str
 
@@ -48,7 +49,7 @@ class ResourceEventRelationPlain(TypedDict, total=False):
     event_type: Required[str]
     resource_type: Required[str]
     resource_id: Required[int]
-    message: Required[str]
-    triggered_by: Required[int]
+    message: Optional[str]
+    triggered_by: Optional[int]
     created_at: Required[str]
     updated_at: Required[str]

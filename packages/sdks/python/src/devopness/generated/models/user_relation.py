@@ -26,21 +26,21 @@ class UserRelation(DevopnessBaseModel):
         id (int): The Id of the given user
         name (str): User&#39;s full name
         email (str): The e-mail that will uniquely identify the user on the system and become its login credential
-        url_slug (str, optional): The URL Slug of the user
+        url_slug (str): The URL Slug of the user
         language (Language, optional):
-        active (bool, optional): Tells if the user is active or not
-        created_at (datetime, optional): The date and time when the record was created
-        updated_at (datetime, optional): The date and time when the record was last updated
+        active (bool): Tells if the user is active or not
+        created_at (datetime): The date and time when the record was created
+        updated_at (datetime): The date and time when the record was last updated
     """
 
     id: int
     name: str
     email: str
-    url_slug: Optional[str] = None
+    url_slug: str
     language: Optional[Language] = None
-    active: Optional[bool] = None
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
+    active: bool
+    created_at: datetime
+    updated_at: datetime
 
 
 class UserRelationPlain(TypedDict, total=False):
@@ -51,13 +51,13 @@ class UserRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     email: Required[str]
-    url_slug: Optional[str]
+    url_slug: Required[str]
     language: Optional[
         Union[
             Language,
             LanguagePlain,
         ]
     ]
-    active: Optional[bool]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    active: Required[bool]
+    created_at: Required[datetime]
+    updated_at: Required[datetime]

@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
 )
@@ -20,11 +21,11 @@ class HookTriggerResponse(DevopnessBaseModel):
 
     Attributes:
         message (str): Message containing information about the hook being triggered
-        errors (object): Optional error object containing details of the server error
+        errors (object, optional): Optional error object containing details of the server error
     """
 
     message: str
-    errors: object
+    errors: Optional[object]
 
 
 class HookTriggerResponsePlain(TypedDict, total=False):
@@ -33,4 +34,4 @@ class HookTriggerResponsePlain(TypedDict, total=False):
     """
 
     message: Required[str]
-    errors: Required[object]
+    errors: Optional[object]

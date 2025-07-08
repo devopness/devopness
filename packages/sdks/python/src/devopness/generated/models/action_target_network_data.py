@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -24,15 +23,15 @@ class ActionTargetNetworkData(DevopnessBaseModel):
     Attributes:
         id (int): The unique id of the network
         name (str): The networks&#39;s name
-        provider_name (str, optional): The name of the network&#39;s cloud provider.
-        provider_name_human_readable (str, optional): The human readable version of the cloud provider&#39;s name
+        provider_name (str): The name of the network&#39;s cloud provider.
+        provider_name_human_readable (str): The human readable version of the cloud provider&#39;s name
         provision_input (NetworkProvisionInput):
     """
 
     id: int
     name: str
-    provider_name: Optional[str] = None
-    provider_name_human_readable: Optional[str] = None
+    provider_name: str
+    provider_name_human_readable: str
     provision_input: NetworkProvisionInput
 
 
@@ -43,8 +42,8 @@ class ActionTargetNetworkDataPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    provider_name: Optional[str]
-    provider_name_human_readable: Optional[str]
+    provider_name: Required[str]
+    provider_name_human_readable: Required[str]
     provision_input: Required[
         Union[
             NetworkProvisionInput,

@@ -23,25 +23,25 @@ class SshKeyRelation(DevopnessBaseModel):
 
     Attributes:
         id (int): The Id of the given SSH public key
-        created_by (int, optional): The Id of the user to which the SSH key belongs to
-        project_id (int, optional): The project id to which the SSH public key belongs to
+        created_by (int): The Id of the user to which the SSH key belongs to
+        project_id (int): The project id to which the SSH public key belongs to
         environment_id (int): The environment id to which the SSH public key belongs to
         name (str): The name entered by the user to uniquely identify the public SSH key
         fingerprint (str): The hashed fingerprint of the public key
         last_action (ActionRelationShallow, optional):
-        created_at (str, optional): The date and time when the record was created
-        updated_at (str, optional): The date and time when the record was last updated
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: int
-    created_by: Optional[int] = None
-    project_id: Optional[int] = None
+    created_by: int
+    project_id: int
     environment_id: int
     name: str
     fingerprint: str
     last_action: Optional[ActionRelationShallow] = None
-    created_at: Optional[str] = None
-    updated_at: Optional[str] = None
+    created_at: str
+    updated_at: str
 
 
 class SshKeyRelationPlain(TypedDict, total=False):
@@ -50,8 +50,8 @@ class SshKeyRelationPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    created_by: Optional[int]
-    project_id: Optional[int]
+    created_by: Required[int]
+    project_id: Required[int]
     environment_id: Required[int]
     name: Required[str]
     fingerprint: Required[str]
@@ -61,5 +61,5 @@ class SshKeyRelationPlain(TypedDict, total=False):
             ActionRelationShallowPlain,
         ]
     ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    created_at: Required[str]
+    updated_at: Required[str]

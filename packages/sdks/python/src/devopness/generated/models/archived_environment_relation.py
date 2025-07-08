@@ -29,26 +29,26 @@ class ArchivedEnvironmentRelation(DevopnessBaseModel):
         type (EnvironmentType):
         type_human_readable (str): The human readable version of the type
         name (str): Environment&#39;s name
-        description (str): Environment&#39;s description
-        used_credits (int, optional): Number of credits used in the current monthly billing cycle by actions of resources in the environment.
-        resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
+        description (str, optional): Environment&#39;s description
+        used_credits (int): Number of credits used in the current monthly billing cycle by actions of resources in the environment.
+        resource_summary (List[ResourceSummaryItem]): Summary of the resource
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
-        archived_at (str): The date and time when the record was archived
-        project (ProjectRelation):
+        archived_at (str, optional): The date and time when the record was archived
+        project (ProjectRelation, optional):
     """
 
     id: int
     type: EnvironmentType
     type_human_readable: str
     name: str
-    description: str
-    used_credits: Optional[int] = None
-    resource_summary: Optional[List[ResourceSummaryItem]] = None
+    description: Optional[str]
+    used_credits: int
+    resource_summary: List[ResourceSummaryItem]
     created_at: str
     updated_at: str
-    archived_at: str
-    project: ProjectRelation
+    archived_at: Optional[str]
+    project: Optional[ProjectRelation]
 
 
 class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
@@ -65,9 +65,9 @@ class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    description: Required[str]
-    used_credits: Optional[int]
-    resource_summary: Optional[
+    description: Optional[str]
+    used_credits: Required[int]
+    resource_summary: Required[
         List[
             Union[
                 ResourceSummaryItem,
@@ -77,8 +77,8 @@ class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     ]
     created_at: Required[str]
     updated_at: Required[str]
-    archived_at: Required[str]
-    project: Required[
+    archived_at: Optional[str]
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,

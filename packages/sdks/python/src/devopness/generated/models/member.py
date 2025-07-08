@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -23,13 +24,13 @@ class Member(DevopnessBaseModel):
 
     Attributes:
         user (UserRelation):
-        team (TeamRelation):
+        team (TeamRelation, optional):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
 
     user: UserRelation
-    team: TeamRelation
+    team: Optional[TeamRelation]
     created_at: str
     updated_at: str
 
@@ -45,7 +46,7 @@ class MemberPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    team: Required[
+    team: Optional[
         Union[
             TeamRelation,
             TeamRelationPlain,

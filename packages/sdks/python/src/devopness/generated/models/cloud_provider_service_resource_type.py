@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -39,18 +38,18 @@ class CloudProviderServiceResourceType(DevopnessBaseModel):
         devopness_resource_type (str): The resource type&#39;s name on Devopness
         scope (CloudProviderServiceResourceTypeScope):
         input_settings (List[CloudProviderInputSettings]): Settings of the cloud provider credential
-        os (List[OperatingSystem], optional):
-        can_keep_disk_after_delete_server (bool, optional): Tells if this cloud service allows keeping server&#39;s persistent disks after a server is deleted. If true, Devopness API will allow users to send a parameter when deleting a server to indicate if the server persistent disks must be retained, keeping data in the disk volumes - possibly incurring extra costs on the user&#39;s cloud provider account. For cloud services that do not support this option, server disks will always be deleted when a server is deleted.
-        operation_custom_settings (OperationCustomSettings, optional):
+        os (List[OperatingSystem]):
+        can_keep_disk_after_delete_server (bool): Tells if this cloud service allows keeping server&#39;s persistent disks after a server is deleted. If true, Devopness API will allow users to send a parameter when deleting a server to indicate if the server persistent disks must be retained, keeping data in the disk volumes - possibly incurring extra costs on the user&#39;s cloud provider account. For cloud services that do not support this option, server disks will always be deleted when a server is deleted.
+        operation_custom_settings (OperationCustomSettings):
     """
 
     provider_resource_type: str
     devopness_resource_type: str
     scope: CloudProviderServiceResourceTypeScope
     input_settings: List[CloudProviderInputSettings]
-    os: Optional[List[OperatingSystem]] = None
-    can_keep_disk_after_delete_server: Optional[bool] = None
-    operation_custom_settings: Optional[OperationCustomSettings] = None
+    os: List[OperatingSystem]
+    can_keep_disk_after_delete_server: bool
+    operation_custom_settings: OperationCustomSettings
 
 
 class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
@@ -74,7 +73,7 @@ class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
             ]
         ]
     ]
-    os: Optional[
+    os: Required[
         List[
             Union[
                 OperatingSystem,
@@ -82,8 +81,8 @@ class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
             ]
         ]
     ]
-    can_keep_disk_after_delete_server: Optional[bool]
-    operation_custom_settings: Optional[
+    can_keep_disk_after_delete_server: Required[bool]
+    operation_custom_settings: Required[
         Union[
             OperationCustomSettings,
             OperationCustomSettingsPlain,

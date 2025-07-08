@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -23,12 +22,12 @@ class SshKeyEnvironmentCreate(DevopnessBaseModel):
     SshKeyEnvironmentCreate
 
     Attributes:
-        linked_resources (List[ResourceToBeLinked], optional): The resources to be linked with this resource
+        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
         name (str): The ssh key&#39;s name. Must not be greater than 60 characters.
         public_key (str): The public key of the ssh key.
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = None
+    linked_resources: List[ResourceToBeLinked]
     name: str
     public_key: str
 
@@ -38,7 +37,7 @@ class SshKeyEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of SshKeyEnvironmentCreate.
     """
 
-    linked_resources: Optional[
+    linked_resources: Required[
         List[
             Union[
                 ResourceToBeLinked,

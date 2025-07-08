@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -22,10 +22,10 @@ class StaticBillingInfo(DevopnessBaseModel):
     StaticBillingInfo
 
     Attributes:
-        subscription_plans (List[SubscriptionPlan], optional): The list of subscription plans
+        subscription_plans (List[SubscriptionPlan]): The list of subscription plans
     """
 
-    subscription_plans: Optional[List[SubscriptionPlan]] = None
+    subscription_plans: List[SubscriptionPlan]
 
 
 class StaticBillingInfoPlain(TypedDict, total=False):
@@ -33,7 +33,7 @@ class StaticBillingInfoPlain(TypedDict, total=False):
     Plain version of StaticBillingInfo.
     """
 
-    subscription_plans: Optional[
+    subscription_plans: Required[
         List[
             Union[
                 SubscriptionPlan,

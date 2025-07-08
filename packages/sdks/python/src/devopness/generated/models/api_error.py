@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -23,11 +22,11 @@ class ApiError(DevopnessBaseModel):
 
     Attributes:
         message (str): The main exception raised by the server
-        errors (ApiErrorErrors, optional):
+        errors (ApiErrorErrors):
     """
 
     message: str
-    errors: Optional[ApiErrorErrors] = None
+    errors: ApiErrorErrors
 
 
 class ApiErrorPlain(TypedDict, total=False):
@@ -36,7 +35,7 @@ class ApiErrorPlain(TypedDict, total=False):
     """
 
     message: Required[str]
-    errors: Optional[
+    errors: Required[
         Union[
             ApiErrorErrors,
             ApiErrorErrorsPlain,

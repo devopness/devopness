@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
 )
@@ -24,13 +23,13 @@ class StaticPermission(DevopnessBaseModel):
         name (str): Name of permission
         human_readable (str): Human readable permission name
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        required_permissions (List[str], optional): List of permissions the role must have before receiving this one
+        required_permissions (List[str]): List of permissions the role must have before receiving this one
     """
 
     name: str
     human_readable: str
     hint: str
-    required_permissions: Optional[List[str]] = None
+    required_permissions: List[str]
 
 
 class StaticPermissionPlain(TypedDict, total=False):
@@ -41,4 +40,4 @@ class StaticPermissionPlain(TypedDict, total=False):
     name: Required[str]
     human_readable: Required[str]
     hint: Required[str]
-    required_permissions: Optional[List[str]]
+    required_permissions: Required[List[str]]

@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -21,17 +20,17 @@ class ServerUpdate(DevopnessBaseModel):
 
     Attributes:
         id (int): The unique ID of the given Server.
-        ip_address (str, optional): Public ipv4 address for server access.
-        ssh_port (int, optional): The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 22 and 65535.
-        max_parallel_actions (int, optional): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server. Must be between 0 and 10.
-        credential_id (str, optional): The ID of the cloud credential.
+        ip_address (str): Public ipv4 address for server access.
+        ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 22 and 65535.
+        max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server. Must be between 0 and 10.
+        credential_id (str): The ID of the cloud credential.
     """
 
     id: int
-    ip_address: Optional[str] = None
-    ssh_port: Optional[int] = None
-    max_parallel_actions: Optional[int] = None
-    credential_id: Optional[str] = None
+    ip_address: str
+    ssh_port: int
+    max_parallel_actions: int
+    credential_id: str
 
 
 class ServerUpdatePlain(TypedDict, total=False):
@@ -40,7 +39,7 @@ class ServerUpdatePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    ip_address: Optional[str]
-    ssh_port: Optional[int]
-    max_parallel_actions: Optional[int]
-    credential_id: Optional[str]
+    ip_address: Required[str]
+    ssh_port: Required[int]
+    max_parallel_actions: Required[int]
+    credential_id: Required[str]

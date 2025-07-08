@@ -31,12 +31,12 @@ class NetworkRelation(DevopnessBaseModel):
         is_auto_generated (bool): If true, the network is auto-generated
         provider_name (str): The name of the cloud provider
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        credential (Credential, optional):
+        credential (Credential):
         name (str): The networks&#39;s name
         provision_input (NetworkProvisionInput):
         last_action (ActionRelationShallow, optional):
-        created_at (str, optional): The date and time when the record was created
-        updated_at (str, optional): The date and time when the record was last updated
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: int
@@ -46,12 +46,12 @@ class NetworkRelation(DevopnessBaseModel):
     is_auto_generated: bool
     provider_name: str
     provider_name_human_readable: str
-    credential: Optional[Credential] = None
+    credential: Credential
     name: str
     provision_input: NetworkProvisionInput
     last_action: Optional[ActionRelationShallow] = None
-    created_at: Optional[str] = None
-    updated_at: Optional[str] = None
+    created_at: str
+    updated_at: str
 
 
 class NetworkRelationPlain(TypedDict, total=False):
@@ -66,7 +66,7 @@ class NetworkRelationPlain(TypedDict, total=False):
     is_auto_generated: Required[bool]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    credential: Optional[
+    credential: Required[
         Union[
             Credential,
             CredentialPlain,
@@ -85,5 +85,5 @@ class NetworkRelationPlain(TypedDict, total=False):
             ActionRelationShallowPlain,
         ]
     ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    created_at: Required[str]
+    updated_at: Required[str]

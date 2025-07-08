@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -26,23 +25,23 @@ class StepPipelineUpdate(DevopnessBaseModel):
 
     Attributes:
         id (int): The unique ID of the given Pipeline Step.
-        name (str, optional): Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
-        description (str, optional): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
-        type (str, optional): The pipeline step&#39;s type. Must not be greater than 20 characters.
+        name (str): Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
+        description (str): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
+        type (str): The pipeline step&#39;s type. Must not be greater than 20 characters.
         command (str): A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
         runner (PipelineStepRunnerName):
-        run_as_user (str, optional): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
-        trigger_after (int, optional): Repositions the pipeline step after the step with the given &#x60;trigger_order&#x60;. Must be at least 0. Must not be greater than 16777214.
+        run_as_user (str): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
+        trigger_after (int): Repositions the pipeline step after the step with the given &#x60;trigger_order&#x60;. Must be at least 0. Must not be greater than 16777214.
     """
 
     id: int
-    name: Optional[str] = None
-    description: Optional[str] = None
-    type: Optional[str] = None
+    name: str
+    description: str
+    type: str
     command: str
     runner: PipelineStepRunnerName
-    run_as_user: Optional[str] = None
-    trigger_after: Optional[int] = None
+    run_as_user: str
+    trigger_after: int
 
 
 class StepPipelineUpdatePlain(TypedDict, total=False):
@@ -51,9 +50,9 @@ class StepPipelineUpdatePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    name: Optional[str]
-    description: Optional[str]
-    type: Optional[str]
+    name: Required[str]
+    description: Required[str]
+    type: Required[str]
     command: Required[str]
     runner: Required[
         Union[
@@ -61,5 +60,5 @@ class StepPipelineUpdatePlain(TypedDict, total=False):
             PipelineStepRunnerNamePlain,
         ]
     ]
-    run_as_user: Optional[str]
-    trigger_after: Optional[int]
+    run_as_user: Required[str]
+    trigger_after: Required[int]

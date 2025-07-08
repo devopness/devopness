@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -25,8 +26,8 @@ class Team(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given team
         name (str): The name of the given team
-        photo_url (str): The URL to team&#39;s image
-        project (ProjectRelation):
+        photo_url (str, optional): The URL to team&#39;s image
+        project (ProjectRelation, optional):
         users (List[UserRelation]): The list of users
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
@@ -34,8 +35,8 @@ class Team(DevopnessBaseModel):
 
     id: int
     name: str
-    photo_url: str
-    project: ProjectRelation
+    photo_url: Optional[str]
+    project: Optional[ProjectRelation]
     users: List[UserRelation]
     created_at: str
     updated_at: str
@@ -48,8 +49,8 @@ class TeamPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Required[str]
-    project: Required[
+    photo_url: Optional[str]
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,

@@ -41,13 +41,13 @@ class ActionRelation(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
-        action_data (ActionDeploymentData):
+        action_data (ActionDeploymentData, optional):
         triggered_from (ActionTriggeredFrom):
         resource (ActionResource):
-        summary (ActionSummary, optional):
-        targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
-        started_at (str): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (str): The date and time when the action has finished execution
+        summary (ActionSummary):
+        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
+        started_at (str, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (str, optional): The date and time when the action has finished execution
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -60,13 +60,13 @@ class ActionRelation(DevopnessBaseModel):
     type: ActionType
     type_human_readable: str
     url_web_permalink: str
-    action_data: ActionDeploymentData
+    action_data: Optional[ActionDeploymentData]
     triggered_from: ActionTriggeredFrom
     resource: ActionResource
-    summary: Optional[ActionSummary] = None
-    targets: Optional[List[ActionTarget]] = None
-    started_at: str
-    completed_at: str
+    summary: ActionSummary
+    targets: List[ActionTarget]
+    started_at: Optional[str]
+    completed_at: Optional[str]
     created_at: str
     updated_at: str
 
@@ -99,7 +99,7 @@ class ActionRelationPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Required[
+    action_data: Optional[
         Union[
             ActionDeploymentData,
             ActionDeploymentDataPlain,
@@ -117,13 +117,13 @@ class ActionRelationPlain(TypedDict, total=False):
             ActionResourcePlain,
         ]
     ]
-    summary: Optional[
+    summary: Required[
         Union[
             ActionSummary,
             ActionSummaryPlain,
         ]
     ]
-    targets: Optional[
+    targets: Required[
         List[
             Union[
                 ActionTarget,
@@ -131,7 +131,7 @@ class ActionRelationPlain(TypedDict, total=False):
             ]
         ]
     ]
-    started_at: Required[str]
-    completed_at: Required[str]
+    started_at: Optional[str]
+    completed_at: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

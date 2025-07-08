@@ -27,14 +27,14 @@ class Variable(DevopnessBaseModel):
         id (int): The ID of the given variable
         key (str): The unique key used to identify the variable on the target
         type (VariableType):
-        description (str): A text describing the variable, provided by the end user
-        value (str): The value to be assigned to this variable when deployed to its target
+        description (str, optional): A text describing the variable, provided by the end user
+        value (str, optional): The value to be assigned to this variable when deployed to its target
         target (VariableTarget):
         target_human_readable (str): Human readable version of target
-        resource_id (int): The ID of the resource this variable is linked to
+        resource_id (int, optional): The ID of the resource this variable is linked to
         resource_type (str): The name of the resource this variable is linked to
         hidden (bool): Indicates if the variable value should be visible or not in the deployment logs
-        created_by_user (UserRelation, optional):
+        created_by_user (UserRelation):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -42,14 +42,14 @@ class Variable(DevopnessBaseModel):
     id: int
     key: str
     type: VariableType
-    description: str
-    value: str
+    description: Optional[str]
+    value: Optional[str]
     target: VariableTarget
     target_human_readable: str
-    resource_id: int
+    resource_id: Optional[int]
     resource_type: str
     hidden: bool
-    created_by_user: Optional[UserRelation] = None
+    created_by_user: UserRelation
     created_at: str
     updated_at: str
 
@@ -67,8 +67,8 @@ class VariablePlain(TypedDict, total=False):
             VariableTypePlain,
         ]
     ]
-    description: Required[str]
-    value: Required[str]
+    description: Optional[str]
+    value: Optional[str]
     target: Required[
         Union[
             VariableTarget,
@@ -76,10 +76,10 @@ class VariablePlain(TypedDict, total=False):
         ]
     ]
     target_human_readable: Required[str]
-    resource_id: Required[int]
+    resource_id: Optional[int]
     resource_type: Required[str]
     hidden: Required[bool]
-    created_by_user: Optional[
+    created_by_user: Required[
         Union[
             UserRelation,
             UserRelationPlain,

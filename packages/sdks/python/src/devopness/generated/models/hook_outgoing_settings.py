@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -29,12 +29,12 @@ class HookOutgoingSettings(DevopnessBaseModel):
     HookOutgoingSettings
 
     Attributes:
-        request_headers (List[HookOutgoingRequestHeader], optional): List of outgoing hook request headers
-        request_body (HookOutgoingSettingsRequestBody, optional):
+        request_headers (List[HookOutgoingRequestHeader]): List of outgoing hook request headers
+        request_body (HookOutgoingSettingsRequestBody):
     """
 
-    request_headers: Optional[List[HookOutgoingRequestHeader]] = None
-    request_body: Optional[HookOutgoingSettingsRequestBody] = None
+    request_headers: List[HookOutgoingRequestHeader]
+    request_body: HookOutgoingSettingsRequestBody
 
 
 class HookOutgoingSettingsPlain(TypedDict, total=False):
@@ -42,7 +42,7 @@ class HookOutgoingSettingsPlain(TypedDict, total=False):
     Plain version of HookOutgoingSettings.
     """
 
-    request_headers: Optional[
+    request_headers: Required[
         List[
             Union[
                 HookOutgoingRequestHeader,
@@ -50,7 +50,7 @@ class HookOutgoingSettingsPlain(TypedDict, total=False):
             ]
         ]
     ]
-    request_body: Optional[
+    request_body: Required[
         Union[
             HookOutgoingSettingsRequestBody,
             HookOutgoingSettingsRequestBodyPlain,

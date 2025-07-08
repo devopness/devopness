@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -20,14 +19,14 @@ class SubnetProvisionInputSettingsAws(DevopnessBaseModel):
     SubnetProvisionInputSettingsAws
 
     Attributes:
-        region (str, optional): The cloud provider region where the subnet will be created
-        region_human_readable (str, optional): Human readable version of the subnet region
+        region (str): The cloud provider region where the subnet will be created
+        region_human_readable (str): Human readable version of the subnet region
         zone (str): The cloud provider availability zone where the subnet will be created
         cidr_block (str): The IP CIDR range of the subnet
     """
 
-    region: Optional[str] = None
-    region_human_readable: Optional[str] = None
+    region: str
+    region_human_readable: str
     zone: str
     cidr_block: str
 
@@ -37,7 +36,7 @@ class SubnetProvisionInputSettingsAwsPlain(TypedDict, total=False):
     Plain version of SubnetProvisionInputSettingsAws.
     """
 
-    region: Optional[str]
-    region_human_readable: Optional[str]
+    region: Required[str]
+    region_human_readable: Required[str]
     zone: Required[str]
     cidr_block: Required[str]

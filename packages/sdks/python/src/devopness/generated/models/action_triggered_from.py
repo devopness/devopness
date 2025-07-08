@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -21,24 +22,24 @@ class ActionTriggeredFrom(DevopnessBaseModel):
     ActionTriggeredFrom
 
     Attributes:
-        origin (str): The HTTP origin of the request that have been dispatched the action.
+        origin (str, optional): The HTTP origin of the request that have been dispatched the action.
         trigger_type (ActionTriggerType):
         name (str): The hook or user name that have been triggered the action.
-        email (str): The user&#39;s email if the action have been manually triggered.
+        email (str, optional): The user&#39;s email if the action have been manually triggered.
         ip_address (str): The IP address of the request origin.
-        user_id (int): The user&#39;s ID if the action have been manually triggered.
-        hook_id (str): The hook&#39;s ID if the action have been triggered by a hook.
-        hook_request_id (str): The hook request&#39;s ID if the action have been triggered by a hook.
+        user_id (int, optional): The user&#39;s ID if the action have been manually triggered.
+        hook_id (str, optional): The hook&#39;s ID if the action have been triggered by a hook.
+        hook_request_id (str, optional): The hook request&#39;s ID if the action have been triggered by a hook.
     """
 
-    origin: str
+    origin: Optional[str]
     trigger_type: ActionTriggerType
     name: str
-    email: str
+    email: Optional[str]
     ip_address: str
-    user_id: int
-    hook_id: str
-    hook_request_id: str
+    user_id: Optional[int]
+    hook_id: Optional[str]
+    hook_request_id: Optional[str]
 
 
 class ActionTriggeredFromPlain(TypedDict, total=False):
@@ -46,7 +47,7 @@ class ActionTriggeredFromPlain(TypedDict, total=False):
     Plain version of ActionTriggeredFrom.
     """
 
-    origin: Required[str]
+    origin: Optional[str]
     trigger_type: Required[
         Union[
             ActionTriggerType,
@@ -54,8 +55,8 @@ class ActionTriggeredFromPlain(TypedDict, total=False):
         ]
     ]
     name: Required[str]
-    email: Required[str]
+    email: Optional[str]
     ip_address: Required[str]
-    user_id: Required[int]
-    hook_id: Required[str]
-    hook_request_id: Required[str]
+    user_id: Optional[int]
+    hook_id: Optional[str]
+    hook_request_id: Optional[str]

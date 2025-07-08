@@ -7,7 +7,7 @@ Note:
 """
 
 from typing import (
-    Optional,
+    Required,
     TypedDict,
 )
 
@@ -19,14 +19,14 @@ class OperationCustomSettings(DevopnessBaseModel):
     OperationCustomSettings
 
     Attributes:
-        operation (str, optional): The resource&#39;s custom operation that are CSP specific
-        operation_human_readable (str, optional): Human redable version of the resource&#39;s custom operation
-        triggers_action (bool, optional): Whether the &#x60;server:remove&#x60; operation will trigger an action or not
+        operation (str): The resource&#39;s custom operation that are CSP specific
+        operation_human_readable (str): Human redable version of the resource&#39;s custom operation
+        triggers_action (bool): Whether the &#x60;server:remove&#x60; operation will trigger an action or not
     """
 
-    operation: Optional[str] = None
-    operation_human_readable: Optional[str] = None
-    triggers_action: Optional[bool] = None
+    operation: str
+    operation_human_readable: str
+    triggers_action: bool
 
 
 class OperationCustomSettingsPlain(TypedDict, total=False):
@@ -34,6 +34,6 @@ class OperationCustomSettingsPlain(TypedDict, total=False):
     Plain version of OperationCustomSettings.
     """
 
-    operation: Optional[str]
-    operation_human_readable: Optional[str]
-    triggers_action: Optional[bool]
+    operation: Required[str]
+    operation_human_readable: Required[str]
+    triggers_action: Required[bool]

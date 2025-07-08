@@ -7,7 +7,7 @@ Note:
 """
 
 from typing import (
-    Required,
+    Optional,
     TypedDict,
 )
 
@@ -19,10 +19,10 @@ class StaticNetworkRuleProtocolDefaults(DevopnessBaseModel):
     StaticNetworkRuleProtocolDefaults
 
     Attributes:
-        port (int): The default port for the protocol
+        port (int, optional): The default port for the protocol
     """
 
-    port: int
+    port: Optional[int]
 
 
 class StaticNetworkRuleProtocolDefaultsPlain(TypedDict, total=False):
@@ -30,4 +30,4 @@ class StaticNetworkRuleProtocolDefaultsPlain(TypedDict, total=False):
     Plain version of StaticNetworkRuleProtocolDefaults.
     """
 
-    port: Required[int]
+    port: Optional[int]

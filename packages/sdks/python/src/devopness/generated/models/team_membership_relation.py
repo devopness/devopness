@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -24,7 +25,7 @@ class TeamMembershipRelation(DevopnessBaseModel):
         id (int): The unique ID of the given team
         name (str): The name of the given team
         photo_url (str): The URL to team&#39;s image
-        role (RoleRelation):
+        role (RoleRelation, optional):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -32,7 +33,7 @@ class TeamMembershipRelation(DevopnessBaseModel):
     id: int
     name: str
     photo_url: str
-    role: RoleRelation
+    role: Optional[RoleRelation]
     created_at: str
     updated_at: str
 
@@ -45,7 +46,7 @@ class TeamMembershipRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     photo_url: Required[str]
-    role: Required[
+    role: Optional[
         Union[
             RoleRelation,
             RoleRelationPlain,

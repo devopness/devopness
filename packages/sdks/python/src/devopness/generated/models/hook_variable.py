@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -25,17 +26,17 @@ class HookVariable(DevopnessBaseModel):
     HookVariable
 
     Attributes:
-        name (str, optional): The name of the variable
-        path (str, optional): A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the &#x60;name&#x60; will be used instead.
-        type (HookVariableType, optional):
-        required (bool, optional): Defines if the variable is required
+        name (str): The name of the variable
+        path (str): A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the &#x60;name&#x60; will be used instead.
+        type (HookVariableType):
+        required (bool): Defines if the variable is required
         default_value (HookVariableDefaultValue, optional):
     """
 
-    name: Optional[str] = None
-    path: Optional[str] = None
-    type: Optional[HookVariableType] = None
-    required: Optional[bool] = None
+    name: str
+    path: str
+    type: HookVariableType
+    required: bool
     default_value: Optional[HookVariableDefaultValue] = None
 
 
@@ -44,15 +45,15 @@ class HookVariablePlain(TypedDict, total=False):
     Plain version of HookVariable.
     """
 
-    name: Optional[str]
-    path: Optional[str]
-    type: Optional[
+    name: Required[str]
+    path: Required[str]
+    type: Required[
         Union[
             HookVariableType,
             HookVariableTypePlain,
         ]
     ]
-    required: Optional[bool]
+    required: Required[bool]
     default_value: Optional[
         Union[
             HookVariableDefaultValue,

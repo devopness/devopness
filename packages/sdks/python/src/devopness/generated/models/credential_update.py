@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -27,12 +26,12 @@ class CredentialUpdate(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given Credential.
         name (str): The name of the credential. Must not be greater than 60 characters.
-        settings (CredentialInputSettings, optional):
+        settings (CredentialInputSettings):
     """
 
     id: int
     name: str
-    settings: Optional[CredentialInputSettings] = None
+    settings: CredentialInputSettings
 
 
 class CredentialUpdatePlain(TypedDict, total=False):
@@ -42,7 +41,7 @@ class CredentialUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    settings: Optional[
+    settings: Required[
         Union[
             CredentialInputSettings,
             CredentialInputSettingsPlain,

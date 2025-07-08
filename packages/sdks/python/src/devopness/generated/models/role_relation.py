@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     List,
+    Optional,
     Required,
     TypedDict,
 )
@@ -23,7 +24,7 @@ class RoleRelation(DevopnessBaseModel):
         id (int): The unique ID of the given role
         name (str): The name of the given role
         description (str): Description of this role
-        project_id (int): The ID of the project this role belongs to
+        project_id (int, optional): The ID of the project this role belongs to
         is_predefined (bool): Defines if the role is predefined or a custom role for specific project
         permissions (List[str]): The list of permissions granted for this role
         created_at (str): The date and time when the record was created
@@ -33,7 +34,7 @@ class RoleRelation(DevopnessBaseModel):
     id: int
     name: str
     description: str
-    project_id: int
+    project_id: Optional[int]
     is_predefined: bool
     permissions: List[str]
     created_at: str
@@ -48,7 +49,7 @@ class RoleRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     description: Required[str]
-    project_id: Required[int]
+    project_id: Optional[int]
     is_predefined: Required[bool]
     permissions: Required[List[str]]
     created_at: Required[str]

@@ -28,11 +28,11 @@ class ProjectRelation(DevopnessBaseModel):
         id (int): The Id of the project
         user_id (int): The id of the user that own the project
         name (str): The project&#39;s name
-        logo_url (str): A URL path to the project&#39;s logo image
-        resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
+        logo_url (str, optional): A URL path to the project&#39;s logo image
+        resource_summary (List[ResourceSummaryItem]): Summary of the resource
         os_users (List[OsUsersInner]): The list of the operating system users found in all the servers linked to a project
         created_by_user (UserRelation):
-        used_credits (int, optional): Number of credits used in the current monthly billing cycle by actions of resources in the project.
+        used_credits (int): Number of credits used in the current monthly billing cycle by actions of resources in the project.
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -40,11 +40,11 @@ class ProjectRelation(DevopnessBaseModel):
     id: int
     user_id: int
     name: str
-    logo_url: str
-    resource_summary: Optional[List[ResourceSummaryItem]] = None
+    logo_url: Optional[str]
+    resource_summary: List[ResourceSummaryItem]
     os_users: List[OsUsersInner]
     created_by_user: UserRelation
-    used_credits: Optional[int] = None
+    used_credits: int
     created_at: str
     updated_at: str
 
@@ -57,8 +57,8 @@ class ProjectRelationPlain(TypedDict, total=False):
     id: Required[int]
     user_id: Required[int]
     name: Required[str]
-    logo_url: Required[str]
-    resource_summary: Optional[
+    logo_url: Optional[str]
+    resource_summary: Required[
         List[
             Union[
                 ResourceSummaryItem,
@@ -80,6 +80,6 @@ class ProjectRelationPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    used_credits: Optional[int]
+    used_credits: Required[int]
     created_at: Required[str]
     updated_at: Required[str]

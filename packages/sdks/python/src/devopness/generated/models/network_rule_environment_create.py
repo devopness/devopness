@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -25,7 +24,7 @@ class NetworkRuleEnvironmentCreate(DevopnessBaseModel):
     NetworkRuleEnvironmentCreate
 
     Attributes:
-        linked_resources (List[ResourceToBeLinked], optional): The resources to be linked with this resource
+        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
         name (str): The rule&#39;s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
         direction (NetworkRuleDirection):
         protocol (NetworkRuleProtocol):
@@ -33,7 +32,7 @@ class NetworkRuleEnvironmentCreate(DevopnessBaseModel):
         port (int): Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535.
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = None
+    linked_resources: List[ResourceToBeLinked]
     name: str
     direction: NetworkRuleDirection
     protocol: NetworkRuleProtocol
@@ -46,7 +45,7 @@ class NetworkRuleEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of NetworkRuleEnvironmentCreate.
     """
 
-    linked_resources: Optional[
+    linked_resources: Required[
         List[
             Union[
                 ResourceToBeLinked,

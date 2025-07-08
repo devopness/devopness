@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
 )
 
@@ -20,10 +20,10 @@ class ServiceRestart(DevopnessBaseModel):
     ServiceRestart
 
     Attributes:
-        servers (List[int], optional): List of valid resource IDs
+        servers (List[int]): List of valid resource IDs
     """
 
-    servers: Optional[List[int]] = None
+    servers: List[int]
 
 
 class ServiceRestartPlain(TypedDict, total=False):
@@ -31,4 +31,4 @@ class ServiceRestartPlain(TypedDict, total=False):
     Plain version of ServiceRestart.
     """
 
-    servers: Optional[List[int]]
+    servers: Required[List[int]]

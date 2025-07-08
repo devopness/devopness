@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -21,11 +20,11 @@ class TeamProjectCreate(DevopnessBaseModel):
 
     Attributes:
         name (str): The name of the team. Must not be greater than 255 characters.
-        photo_url (str, optional): The URL to team&#39;s image. Must be a valid URL.
+        photo_url (str): The URL to team&#39;s image. Must be a valid URL.
     """
 
     name: str
-    photo_url: Optional[str] = None
+    photo_url: str
 
 
 class TeamProjectCreatePlain(TypedDict, total=False):
@@ -34,4 +33,4 @@ class TeamProjectCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    photo_url: Optional[str]
+    photo_url: Required[str]

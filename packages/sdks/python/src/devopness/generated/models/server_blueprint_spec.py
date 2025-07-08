@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -22,10 +22,10 @@ class ServerBlueprintSpec(DevopnessBaseModel):
     ServerBlueprintSpec
 
     Attributes:
-        services (List[BlueprintService], optional): The service names and their respective versions for a blueprint.
+        services (List[BlueprintService]): The service names and their respective versions for a blueprint.
     """
 
-    services: Optional[List[BlueprintService]] = None
+    services: List[BlueprintService]
 
 
 class ServerBlueprintSpecPlain(TypedDict, total=False):
@@ -33,7 +33,7 @@ class ServerBlueprintSpecPlain(TypedDict, total=False):
     Plain version of ServerBlueprintSpec.
     """
 
-    services: Optional[
+    services: Required[
         List[
             Union[
                 BlueprintService,

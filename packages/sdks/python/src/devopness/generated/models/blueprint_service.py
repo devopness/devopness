@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -23,14 +22,14 @@ class BlueprintService(DevopnessBaseModel):
     BlueprintService
 
     Attributes:
-        auto_start (bool, optional): Indicates if the service will start automatically on operating system boot
-        initial_state (ServiceInitialState, optional):
+        auto_start (bool): Indicates if the service will start automatically on operating system boot
+        initial_state (ServiceInitialState):
         type (ServiceType):
         version (str): The service version
     """
 
-    auto_start: Optional[bool] = None
-    initial_state: Optional[ServiceInitialState] = None
+    auto_start: bool
+    initial_state: ServiceInitialState
     type: ServiceType
     version: str
 
@@ -40,8 +39,8 @@ class BlueprintServicePlain(TypedDict, total=False):
     Plain version of BlueprintService.
     """
 
-    auto_start: Optional[bool]
-    initial_state: Optional[
+    auto_start: Required[bool]
+    initial_state: Required[
         Union[
             ServiceInitialState,
             ServiceInitialStatePlain,

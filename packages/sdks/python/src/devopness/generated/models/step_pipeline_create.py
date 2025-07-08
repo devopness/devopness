@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -25,20 +24,20 @@ class StepPipelineCreate(DevopnessBaseModel):
     StepPipelineCreate
 
     Attributes:
-        name (str, optional): Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
-        description (str, optional): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
-        type (str, optional): The pipeline step&#39;s type. Must not be greater than 20 characters.
+        name (str): Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.
+        description (str): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
+        type (str): The pipeline step&#39;s type. Must not be greater than 20 characters.
         command (str): A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
         runner (PipelineStepRunnerName):
-        run_as_user (str, optional): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
+        run_as_user (str): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
     """
 
-    name: Optional[str] = None
-    description: Optional[str] = None
-    type: Optional[str] = None
+    name: str
+    description: str
+    type: str
     command: str
     runner: PipelineStepRunnerName
-    run_as_user: Optional[str] = None
+    run_as_user: str
 
 
 class StepPipelineCreatePlain(TypedDict, total=False):
@@ -46,9 +45,9 @@ class StepPipelineCreatePlain(TypedDict, total=False):
     Plain version of StepPipelineCreate.
     """
 
-    name: Optional[str]
-    description: Optional[str]
-    type: Optional[str]
+    name: Required[str]
+    description: Required[str]
+    type: Required[str]
     command: Required[str]
     runner: Required[
         Union[
@@ -56,4 +55,4 @@ class StepPipelineCreatePlain(TypedDict, total=False):
             PipelineStepRunnerNamePlain,
         ]
     ]
-    run_as_user: Optional[str]
+    run_as_user: Required[str]

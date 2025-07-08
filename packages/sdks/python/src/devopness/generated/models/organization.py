@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -27,7 +26,7 @@ class Organization(DevopnessBaseModel):
         id (int): The unique identifier for the organization
         name (str): The name of the organization
         url_slug (str): The URL Slug of the organization
-        resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
+        resource_summary (List[ResourceSummaryItem]): Summary of the resource
         owner (UserRelation):
         created_at (str): The date and time when the organization was created
         updated_at (str): The date and time when the organization was last updated
@@ -36,7 +35,7 @@ class Organization(DevopnessBaseModel):
     id: int
     name: str
     url_slug: str
-    resource_summary: Optional[List[ResourceSummaryItem]] = None
+    resource_summary: List[ResourceSummaryItem]
     owner: UserRelation
     created_at: str
     updated_at: str
@@ -50,7 +49,7 @@ class OrganizationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     url_slug: Required[str]
-    resource_summary: Optional[
+    resource_summary: Required[
         List[
             Union[
                 ResourceSummaryItem,

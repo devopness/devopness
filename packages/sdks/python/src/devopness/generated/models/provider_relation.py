@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -27,14 +26,14 @@ class ProviderRelation(DevopnessBaseModel):
         code (ProviderCode):
         code_human_readable (str): Human readable version of provider code
         type (ProviderType):
-        type_human_readable (str, optional): Human readable version of provider type
+        type_human_readable (str): Human readable version of provider type
     """
 
     active: bool
     code: ProviderCode
     code_human_readable: str
     type: ProviderType
-    type_human_readable: Optional[str] = None
+    type_human_readable: str
 
 
 class ProviderRelationPlain(TypedDict, total=False):
@@ -56,4 +55,4 @@ class ProviderRelationPlain(TypedDict, total=False):
             ProviderTypePlain,
         ]
     ]
-    type_human_readable: Optional[str]
+    type_human_readable: Required[str]

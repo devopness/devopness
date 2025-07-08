@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -29,18 +28,18 @@ class SslCertificateEnvironmentCreate(DevopnessBaseModel):
     Attributes:
         virtual_host_id (int): The ID of the virtual host to which this SSL certificate will be issued.
         issuer (SslCertificateIssuer):
-        type (SslCertificateType, optional):
-        validation_level (SslCertificateValidationLevel, optional):
-        custom_private_key (str, optional): The private key provided by the Certification Authority, when the certificate has not been automatically issued through &#x60;devopness&#x60;. This field is required when &lt;code&gt;issuer&lt;/code&gt; is &lt;code&gt;custom&lt;/code&gt;. Must be at least 100 characters. Must not be greater than 4096 characters.
-        custom_certificate (str, optional): The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through &#x60;devopness&#x60;. This field is required when &lt;code&gt;issuer&lt;/code&gt; is &lt;code&gt;custom&lt;/code&gt;. Must be at least 100 characters. Must not be greater than 4096 characters.
+        type (SslCertificateType):
+        validation_level (SslCertificateValidationLevel):
+        custom_private_key (str): The private key provided by the Certification Authority, when the certificate has not been automatically issued through &#x60;devopness&#x60;. This field is required when &lt;code&gt;issuer&lt;/code&gt; is &lt;code&gt;custom&lt;/code&gt;. Must be at least 100 characters. Must not be greater than 4096 characters.
+        custom_certificate (str): The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through &#x60;devopness&#x60;. This field is required when &lt;code&gt;issuer&lt;/code&gt; is &lt;code&gt;custom&lt;/code&gt;. Must be at least 100 characters. Must not be greater than 4096 characters.
     """
 
     virtual_host_id: int
     issuer: SslCertificateIssuer
-    type: Optional[SslCertificateType] = None
-    validation_level: Optional[SslCertificateValidationLevel] = None
-    custom_private_key: Optional[str] = None
-    custom_certificate: Optional[str] = None
+    type: SslCertificateType
+    validation_level: SslCertificateValidationLevel
+    custom_private_key: str
+    custom_certificate: str
 
 
 class SslCertificateEnvironmentCreatePlain(TypedDict, total=False):
@@ -55,17 +54,17 @@ class SslCertificateEnvironmentCreatePlain(TypedDict, total=False):
             SslCertificateIssuerPlain,
         ]
     ]
-    type: Optional[
+    type: Required[
         Union[
             SslCertificateType,
             SslCertificateTypePlain,
         ]
     ]
-    validation_level: Optional[
+    validation_level: Required[
         Union[
             SslCertificateValidationLevel,
             SslCertificateValidationLevelPlain,
         ]
     ]
-    custom_private_key: Optional[str]
-    custom_certificate: Optional[str]
+    custom_private_key: Required[str]
+    custom_certificate: Required[str]

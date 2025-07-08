@@ -39,8 +39,8 @@ class Action(DevopnessBaseModel):
 
     Attributes:
         id (int): The Id of the given action
-        pipeline_id (int): The ID of the pipeline executed by this action
-        retry_of (int): The Id of the parent action that this action is a retry of
+        pipeline_id (int, optional): The ID of the pipeline executed by this action
+        retry_of (int, optional): The Id of the parent action that this action is a retry of
         status (ActionStatus):
         status_human_readable (str): Human readable version of action status
         status_reason_code (ActionStatusReasonCode):
@@ -48,26 +48,26 @@ class Action(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
-        action_data (ActionDeploymentData):
+        action_data (ActionDeploymentData, optional):
         triggered_from (ActionTriggeredFrom):
-        parent (RelatedAction):
+        parent (RelatedAction, optional):
         children (List[RelatedAction]): List of related actions
-        triggered_by_user (UserRelation, optional):
+        triggered_by_user (UserRelation):
         resource (ActionResource):
         summary (ActionSummary):
-        environment (EnvironmentRelation):
-        project (ProjectRelation):
-        targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
-        hook_requests (ActionHookRequest, optional):
-        started_at (str): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (str): The date and time when the action has finished execution
+        environment (EnvironmentRelation, optional):
+        project (ProjectRelation, optional):
+        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
+        hook_requests (ActionHookRequest):
+        started_at (str, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (str, optional): The date and time when the action has finished execution
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
 
     id: int
-    pipeline_id: int
-    retry_of: int
+    pipeline_id: Optional[int]
+    retry_of: Optional[int]
     status: ActionStatus
     status_human_readable: str
     status_reason_code: ActionStatusReasonCode
@@ -75,19 +75,19 @@ class Action(DevopnessBaseModel):
     type: ActionType
     type_human_readable: str
     url_web_permalink: str
-    action_data: ActionDeploymentData
+    action_data: Optional[ActionDeploymentData]
     triggered_from: ActionTriggeredFrom
-    parent: RelatedAction
+    parent: Optional[RelatedAction]
     children: List[RelatedAction]
-    triggered_by_user: Optional[UserRelation] = None
+    triggered_by_user: UserRelation
     resource: ActionResource
     summary: ActionSummary
-    environment: EnvironmentRelation
-    project: ProjectRelation
-    targets: Optional[List[ActionTarget]] = None
-    hook_requests: Optional[ActionHookRequest] = None
-    started_at: str
-    completed_at: str
+    environment: Optional[EnvironmentRelation]
+    project: Optional[ProjectRelation]
+    targets: List[ActionTarget]
+    hook_requests: ActionHookRequest
+    started_at: Optional[str]
+    completed_at: Optional[str]
     created_at: str
     updated_at: str
 
@@ -98,8 +98,8 @@ class ActionPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    pipeline_id: Required[int]
-    retry_of: Required[int]
+    pipeline_id: Optional[int]
+    retry_of: Optional[int]
     status: Required[
         Union[
             ActionStatus,
@@ -122,7 +122,7 @@ class ActionPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Required[
+    action_data: Optional[
         Union[
             ActionDeploymentData,
             ActionDeploymentDataPlain,
@@ -134,7 +134,7 @@ class ActionPlain(TypedDict, total=False):
             ActionTriggeredFromPlain,
         ]
     ]
-    parent: Required[
+    parent: Optional[
         Union[
             RelatedAction,
             RelatedActionPlain,
@@ -148,7 +148,7 @@ class ActionPlain(TypedDict, total=False):
             ]
         ]
     ]
-    triggered_by_user: Optional[
+    triggered_by_user: Required[
         Union[
             UserRelation,
             UserRelationPlain,
@@ -166,19 +166,19 @@ class ActionPlain(TypedDict, total=False):
             ActionSummaryPlain,
         ]
     ]
-    environment: Required[
+    environment: Optional[
         Union[
             EnvironmentRelation,
             EnvironmentRelationPlain,
         ]
     ]
-    project: Required[
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,
         ]
     ]
-    targets: Optional[
+    targets: Required[
         List[
             Union[
                 ActionTarget,
@@ -186,13 +186,13 @@ class ActionPlain(TypedDict, total=False):
             ]
         ]
     ]
-    hook_requests: Optional[
+    hook_requests: Required[
         Union[
             ActionHookRequest,
             ActionHookRequestPlain,
         ]
     ]
-    started_at: Required[str]
-    completed_at: Required[str]
+    started_at: Optional[str]
+    completed_at: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

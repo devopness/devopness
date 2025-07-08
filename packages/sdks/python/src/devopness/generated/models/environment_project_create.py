@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -24,12 +23,12 @@ class EnvironmentProjectCreate(DevopnessBaseModel):
     Attributes:
         type (EnvironmentType):
         name (str): The environment&#39;s name. Must not be greater than 60 characters.
-        description (str, optional): The environment&#39;s description. Must not be greater than 255 characters.
+        description (str): The environment&#39;s description. Must not be greater than 255 characters.
     """
 
     type: EnvironmentType
     name: str
-    description: Optional[str] = None
+    description: str
 
 
 class EnvironmentProjectCreatePlain(TypedDict, total=False):
@@ -44,4 +43,4 @@ class EnvironmentProjectCreatePlain(TypedDict, total=False):
         ]
     ]
     name: Required[str]
-    description: Optional[str]
+    description: Required[str]

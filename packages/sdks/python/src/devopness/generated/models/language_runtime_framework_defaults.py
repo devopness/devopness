@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -24,22 +25,22 @@ class LanguageRuntimeFrameworkDefaults(DevopnessBaseModel):
     LanguageRuntimeFrameworkDefaults
 
     Attributes:
-        default_branch (str, optional): The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.
-        engine_version (str, optional): The language runtime engine version to be used to execute this application code on the deployed servers
-        framework (str, optional): The base framework on top of which the application has been implemented - if any
-        root_directory (str, optional): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
-        deployments_keep (int, optional): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers
-        commands (LanguageRuntimeFrameworkCommands, optional):
+        default_branch (str): The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.
+        engine_version (str): The language runtime engine version to be used to execute this application code on the deployed servers
+        framework (str): The base framework on top of which the application has been implemented - if any
+        root_directory (str): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
+        deployments_keep (int): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers
+        commands (LanguageRuntimeFrameworkCommands):
         install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies
         build_command (str, optional): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
     """
 
-    default_branch: Optional[str] = None
-    engine_version: Optional[str] = None
-    framework: Optional[str] = None
-    root_directory: Optional[str] = None
-    deployments_keep: Optional[int] = None
-    commands: Optional[LanguageRuntimeFrameworkCommands] = None
+    default_branch: str
+    engine_version: str
+    framework: str
+    root_directory: str
+    deployments_keep: int
+    commands: LanguageRuntimeFrameworkCommands
     install_dependencies_command: Optional[str] = None
     build_command: Optional[str] = None
 
@@ -49,12 +50,12 @@ class LanguageRuntimeFrameworkDefaultsPlain(TypedDict, total=False):
     Plain version of LanguageRuntimeFrameworkDefaults.
     """
 
-    default_branch: Optional[str]
-    engine_version: Optional[str]
-    framework: Optional[str]
-    root_directory: Optional[str]
-    deployments_keep: Optional[int]
-    commands: Optional[
+    default_branch: Required[str]
+    engine_version: Required[str]
+    framework: Required[str]
+    root_directory: Required[str]
+    deployments_keep: Required[int]
+    commands: Required[
         Union[
             LanguageRuntimeFrameworkCommands,
             LanguageRuntimeFrameworkCommandsPlain,

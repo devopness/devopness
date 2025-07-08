@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
     Union,
@@ -32,11 +33,11 @@ class VirtualHost(DevopnessBaseModel):
         type (VirtualHostType):
         type_human_readable (str): The human readable version of the type
         name (str): The name of the Virtual Host
-        application (ApplicationRelation):
-        root_directory (str): The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host
-        application_listen_address (str): The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has &#x60;http&#x60; or &#x60;https&#x60; protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using &#x60;unix:&#x60; protocol. Examples: &#x60;http://127.0.0.1:8080&#x60; (for applications exposing port &#x60;8080&#x60;, for example running in a Docker container), &#x60;http://127.0.0.1:3000&#x60; (for applications kept alive by a daemon/background process that listens on port &#x60;3000&#x60;), &#x60;unix:/var/run/example.sock&#x60; (for applications listening on a custom socket)
-        ssl_certificate (SslCertificateRelation):
-        last_action (ActionRelation):
+        application (ApplicationRelation, optional):
+        root_directory (str, optional): The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host
+        application_listen_address (str, optional): The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has &#x60;http&#x60; or &#x60;https&#x60; protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using &#x60;unix:&#x60; protocol. Examples: &#x60;http://127.0.0.1:8080&#x60; (for applications exposing port &#x60;8080&#x60;, for example running in a Docker container), &#x60;http://127.0.0.1:3000&#x60; (for applications kept alive by a daemon/background process that listens on port &#x60;3000&#x60;), &#x60;unix:/var/run/example.sock&#x60; (for applications listening on a custom socket)
+        ssl_certificate (SslCertificateRelation, optional):
+        last_action (ActionRelation, optional):
         created_by_user (UserRelation):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was updated
@@ -46,11 +47,11 @@ class VirtualHost(DevopnessBaseModel):
     type: VirtualHostType
     type_human_readable: str
     name: str
-    application: ApplicationRelation
-    root_directory: str
-    application_listen_address: str
-    ssl_certificate: SslCertificateRelation
-    last_action: ActionRelation
+    application: Optional[ApplicationRelation]
+    root_directory: Optional[str]
+    application_listen_address: Optional[str]
+    ssl_certificate: Optional[SslCertificateRelation]
+    last_action: Optional[ActionRelation]
     created_by_user: UserRelation
     created_at: str
     updated_at: str
@@ -70,21 +71,21 @@ class VirtualHostPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    application: Required[
+    application: Optional[
         Union[
             ApplicationRelation,
             ApplicationRelationPlain,
         ]
     ]
-    root_directory: Required[str]
-    application_listen_address: Required[str]
-    ssl_certificate: Required[
+    root_directory: Optional[str]
+    application_listen_address: Optional[str]
+    ssl_certificate: Optional[
         Union[
             SslCertificateRelation,
             SslCertificateRelationPlain,
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelation,
             ActionRelationPlain,

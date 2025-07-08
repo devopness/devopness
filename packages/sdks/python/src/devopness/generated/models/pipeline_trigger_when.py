@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
     Union,
 )
@@ -22,10 +22,10 @@ class PipelineTriggerWhen(DevopnessBaseModel):
     PipelineTriggerWhen
 
     Attributes:
-        conditions (List[TriggerWhenCondition], optional): Conditions that must be met to trigger the pipeline
+        conditions (List[TriggerWhenCondition]): Conditions that must be met to trigger the pipeline
     """
 
-    conditions: Optional[List[TriggerWhenCondition]] = None
+    conditions: List[TriggerWhenCondition]
 
 
 class PipelineTriggerWhenPlain(TypedDict, total=False):
@@ -33,7 +33,7 @@ class PipelineTriggerWhenPlain(TypedDict, total=False):
     Plain version of PipelineTriggerWhen.
     """
 
-    conditions: Optional[
+    conditions: Required[
         List[
             Union[
                 TriggerWhenCondition,

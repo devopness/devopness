@@ -42,11 +42,11 @@ class ActionRelationShallow(DevopnessBaseModel):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): Permalink to view the action on Devopness web
         action_data (ActionDeploymentData, optional):
-        triggered_from (ActionTriggeredFrom, optional):
-        summary (ActionSummary, optional):
-        targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
-        started_at (datetime): When the action started
-        completed_at (datetime): When the action completed
+        triggered_from (ActionTriggeredFrom):
+        summary (ActionSummary):
+        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
+        started_at (datetime, optional): When the action started
+        completed_at (datetime, optional): When the action completed
         created_at (datetime): When the action was created
         updated_at (datetime): When the action was last updated
     """
@@ -60,11 +60,11 @@ class ActionRelationShallow(DevopnessBaseModel):
     type_human_readable: str
     url_web_permalink: str
     action_data: Optional[ActionDeploymentData] = None
-    triggered_from: Optional[ActionTriggeredFrom] = None
-    summary: Optional[ActionSummary] = None
-    targets: Optional[List[ActionTarget]] = None
-    started_at: datetime
-    completed_at: datetime
+    triggered_from: ActionTriggeredFrom
+    summary: ActionSummary
+    targets: List[ActionTarget]
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
     created_at: datetime
     updated_at: datetime
 
@@ -103,19 +103,19 @@ class ActionRelationShallowPlain(TypedDict, total=False):
             ActionDeploymentDataPlain,
         ]
     ]
-    triggered_from: Optional[
+    triggered_from: Required[
         Union[
             ActionTriggeredFrom,
             ActionTriggeredFromPlain,
         ]
     ]
-    summary: Optional[
+    summary: Required[
         Union[
             ActionSummary,
             ActionSummaryPlain,
         ]
     ]
-    targets: Optional[
+    targets: Required[
         List[
             Union[
                 ActionTarget,
@@ -123,7 +123,7 @@ class ActionRelationShallowPlain(TypedDict, total=False):
             ]
         ]
     ]
-    started_at: Required[datetime]
-    completed_at: Required[datetime]
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
     created_at: Required[datetime]
     updated_at: Required[datetime]

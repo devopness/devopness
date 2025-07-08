@@ -7,7 +7,7 @@ Note:
 """
 
 from typing import (
-    Optional,
+    Required,
     TypedDict,
 )
 
@@ -19,12 +19,12 @@ class UserEnvironmentStats(DevopnessBaseModel):
     UserEnvironmentStats
 
     Attributes:
-        owner_of (float, optional): Total number of environments that user has access to, as owner.
-        member_of (float, optional): Total number of environments that user has access to, as team member.
+        owner_of (float): Total number of environments that user has access to, as owner.
+        member_of (float): Total number of environments that user has access to, as team member.
     """
 
-    owner_of: Optional[float] = None
-    member_of: Optional[float] = None
+    owner_of: float
+    member_of: float
 
 
 class UserEnvironmentStatsPlain(TypedDict, total=False):
@@ -32,5 +32,5 @@ class UserEnvironmentStatsPlain(TypedDict, total=False):
     Plain version of UserEnvironmentStats.
     """
 
-    owner_of: Optional[float]
-    member_of: Optional[float]
+    owner_of: Required[float]
+    member_of: Required[float]

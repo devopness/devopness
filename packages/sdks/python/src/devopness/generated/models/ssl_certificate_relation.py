@@ -35,10 +35,10 @@ class SslCertificateRelation(DevopnessBaseModel):
         validation_level (SslCertificateValidationLevel):
         active (bool): Tells if the certificate is active for all linked servers and applications
         last_action (ActionRelationShallow, optional):
-        expires_at (str): The date and time when this certificate will no longer be valid, down to minute precision
-        last_renewed_at (str): The date and time when this certificate was renewed for the last time
-        created_at (str, optional): The date and time when the record was created
-        updated_at (str, optional): The date and time when the record was last updated
+        expires_at (str, optional): The date and time when this certificate will no longer be valid, down to minute precision
+        last_renewed_at (str, optional): The date and time when this certificate was renewed for the last time
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: int
@@ -48,10 +48,10 @@ class SslCertificateRelation(DevopnessBaseModel):
     validation_level: SslCertificateValidationLevel
     active: bool
     last_action: Optional[ActionRelationShallow] = None
-    expires_at: str
-    last_renewed_at: str
-    created_at: Optional[str] = None
-    updated_at: Optional[str] = None
+    expires_at: Optional[str]
+    last_renewed_at: Optional[str]
+    created_at: str
+    updated_at: str
 
 
 class SslCertificateRelationPlain(TypedDict, total=False):
@@ -86,7 +86,7 @@ class SslCertificateRelationPlain(TypedDict, total=False):
             ActionRelationShallowPlain,
         ]
     ]
-    expires_at: Required[str]
-    last_renewed_at: Required[str]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    expires_at: Optional[str]
+    last_renewed_at: Optional[str]
+    created_at: Required[str]
+    updated_at: Required[str]

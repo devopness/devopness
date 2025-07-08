@@ -31,15 +31,15 @@ class ServerRelation(DevopnessBaseModel):
         provider_name (str): The name of the server&#39;s provider.
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
         credential (CredentialRelation, optional):
-        region (str): The region in which the server is located
-        region_human_readable (str): The human readable version of the region
-        ip_address (str, optional): Public ipv4 address for server access
+        region (str, optional): The region in which the server is located
+        region_human_readable (str, optional): The human readable version of the region
+        ip_address (str): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         active (bool): Tells if the server is active or not
         status (ServerStatus):
         last_action (ActionRelationShallow, optional):
-        created_at (str, optional): The date and time when the record was created
-        updated_at (str, optional): The date and time when the record was last updated
+        created_at (str): The date and time when the record was created
+        updated_at (str): The date and time when the record was last updated
     """
 
     id: int
@@ -49,15 +49,15 @@ class ServerRelation(DevopnessBaseModel):
     provider_name: str
     provider_name_human_readable: str
     credential: Optional[CredentialRelation] = None
-    region: str
-    region_human_readable: str
-    ip_address: Optional[str] = None
+    region: Optional[str]
+    region_human_readable: Optional[str]
+    ip_address: str
     ssh_port: int
     active: bool
     status: ServerStatus
     last_action: Optional[ActionRelationShallow] = None
-    created_at: Optional[str] = None
-    updated_at: Optional[str] = None
+    created_at: str
+    updated_at: str
 
 
 class ServerRelationPlain(TypedDict, total=False):
@@ -77,9 +77,9 @@ class ServerRelationPlain(TypedDict, total=False):
             CredentialRelationPlain,
         ]
     ]
-    region: Required[str]
-    region_human_readable: Required[str]
-    ip_address: Optional[str]
+    region: Optional[str]
+    region_human_readable: Optional[str]
+    ip_address: Required[str]
     ssh_port: Required[int]
     active: Required[bool]
     status: Required[
@@ -94,5 +94,5 @@ class ServerRelationPlain(TypedDict, total=False):
             ActionRelationShallowPlain,
         ]
     ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    created_at: Required[str]
+    updated_at: Required[str]

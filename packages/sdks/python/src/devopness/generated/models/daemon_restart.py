@@ -8,7 +8,7 @@ Note:
 
 from typing import (
     List,
-    Optional,
+    Required,
     TypedDict,
 )
 
@@ -20,10 +20,10 @@ class DaemonRestart(DevopnessBaseModel):
     DaemonRestart
 
     Attributes:
-        servers (List[int], optional): List of valid resource IDs
+        servers (List[int]): List of valid resource IDs
     """
 
-    servers: Optional[List[int]] = None
+    servers: List[int]
 
 
 class DaemonRestartPlain(TypedDict, total=False):
@@ -31,4 +31,4 @@ class DaemonRestartPlain(TypedDict, total=False):
     Plain version of DaemonRestart.
     """
 
-    servers: Optional[List[int]]
+    servers: Required[List[int]]
