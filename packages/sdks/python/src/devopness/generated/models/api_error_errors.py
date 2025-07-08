@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .api_error_errors_field_name_inner import (
     ApiErrorErrorsFieldNameInner,
@@ -30,10 +28,7 @@ class ApiErrorErrors(DevopnessBaseModel):
         field_name (List[ApiErrorErrorsFieldNameInner], optional): Error message specific to each field included in the errors object
     """
 
-    field_name: Optional[List[ApiErrorErrorsFieldNameInner]] = Field(
-        default=None,
-        description="Error message specific to each field included in the errors object",
-    )
+    field_name: Optional[List[ApiErrorErrorsFieldNameInner]] = None
 
 
 class ApiErrorErrorsPlain(TypedDict, total=False):

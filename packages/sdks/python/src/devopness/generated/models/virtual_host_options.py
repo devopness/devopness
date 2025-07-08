@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .static_virtual_host_type import StaticVirtualHostType, StaticVirtualHostTypePlain
 from .variable_targets import VariableTargets, VariableTargetsPlain
@@ -29,9 +27,7 @@ class VirtualHostOptions(DevopnessBaseModel):
         virtual_host_types (List[StaticVirtualHostType]):
     """
 
-    variable_targets: List[VariableTargets] = Field(
-        description="The list of VariableTarget"
-    )
+    variable_targets: List[VariableTargets]
     virtual_host_types: List[StaticVirtualHostType]
 
 

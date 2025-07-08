@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -24,9 +22,7 @@ class CredentialDigitalOcean(DevopnessBaseModel):
         api_token (str): The API token used to authenticate to DigitalOcean
     """
 
-    api_token: StrictStr = Field(
-        description="The API token used to authenticate to DigitalOcean"
-    )
+    api_token: str
 
 
 class CredentialDigitalOceanPlain(TypedDict, total=False):

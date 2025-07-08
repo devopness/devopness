@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .blueprint_service import BlueprintService, BlueprintServicePlain
 from .resource_to_be_linked import ResourceToBeLinked, ResourceToBeLinkedPlain
@@ -37,33 +35,14 @@ class ServerEnvironmentCreate(DevopnessBaseModel):
         credential_id (str, optional): The ID of the cloud credential. This field is required unless &lt;code&gt;provision_input.cloud_service_code&lt;/code&gt; is in &lt;code&gt;self-hosted-custom&lt;/code&gt;.
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
-        default=None, description="The resources to be linked with this resource"
-    )
-    hostname: StrictStr = Field(
-        description="The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters."
-    )
-    ip_address: Optional[StrictStr] = Field(
-        default=None,
-        description="Public ipv4 address for server access. This field is required when <code>provision_input.cloud_service_code</code> is <code>self-hosted-custom</code>.",
-    )
-    ssh_port: Optional[StrictInt] = Field(
-        default=None,
-        description="The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_input.cloud_service_code</code> is <code>self-hosted-custom</code>. Must be between 22 and 65535.",
-    )
-    max_parallel_actions: Optional[StrictInt] = Field(
-        default=None,
-        description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.",
-    )
-    blueprint: Optional[List[BlueprintService]] = Field(
-        default=None,
-        description="The service names and their respective versions for a blueprint.",
-    )
+    linked_resources: Optional[List[ResourceToBeLinked]] = None
+    hostname: str
+    ip_address: Optional[str] = None
+    ssh_port: Optional[int] = None
+    max_parallel_actions: Optional[int] = None
+    blueprint: Optional[List[BlueprintService]] = None
     provision_input: ServerProvisionInput
-    credential_id: Optional[StrictStr] = Field(
-        default=None,
-        description="The ID of the cloud credential. This field is required unless <code>provision_input.cloud_service_code</code> is in <code>self-hosted-custom</code>.",
-    )
+    credential_id: Optional[str] = None
 
 
 class ServerEnvironmentCreatePlain(TypedDict, total=False):

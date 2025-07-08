@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .hook_trigger_when_conditions_inner import (
     HookTriggerWhenConditionsInner,
@@ -31,12 +29,8 @@ class HookTriggerWhen(DevopnessBaseModel):
         conditions (List[HookTriggerWhenConditionsInner], optional): Conditions that must be met to trigger the hook
     """
 
-    events: Optional[List[StrictStr]] = Field(
-        default=None, description="List of events that will trigger an outgoing hook"
-    )
-    conditions: Optional[List[HookTriggerWhenConditionsInner]] = Field(
-        default=None, description="Conditions that must be met to trigger the hook"
-    )
+    events: Optional[List[str]] = None
+    conditions: Optional[List[HookTriggerWhenConditionsInner]] = None
 
 
 class HookTriggerWhenPlain(TypedDict, total=False):

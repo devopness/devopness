@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -24,7 +22,7 @@ class OsUsersInner(DevopnessBaseModel):
         name (str): Operating system username
     """
 
-    name: StrictStr = Field(description="Operating system username")
+    name: str
 
 
 class OsUsersInnerPlain(TypedDict, total=False):

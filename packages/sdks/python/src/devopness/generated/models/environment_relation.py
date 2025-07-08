@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .environment_type import EnvironmentType, EnvironmentTypePlain
 from .project_relation import ProjectRelation, ProjectRelationPlain
@@ -40,30 +38,17 @@ class EnvironmentRelation(DevopnessBaseModel):
         project (ProjectRelation):
     """
 
-    id: StrictInt = Field(description="Unique id of the given record")
+    id: int
     type: EnvironmentType
-    type_human_readable: StrictStr = Field(
-        description="The human readable version of the type"
-    )
-    name: StrictStr = Field(description="Environment's name")
-    description: Optional[StrictStr] = Field(description="Environment's description")
-    used_credits: Optional[StrictInt] = Field(
-        default=None,
-        description="Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
-    )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
-        default=None, description="Summary of the resource"
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
-    archived_at: Optional[StrictStr] = Field(
-        description="The date and time when the record was archived"
-    )
-    project: Optional[ProjectRelation]
+    type_human_readable: str
+    name: str
+    description: str
+    used_credits: Optional[int] = None
+    resource_summary: Optional[List[ResourceSummaryItem]] = None
+    created_at: str
+    updated_at: str
+    archived_at: str
+    project: ProjectRelation
 
 
 class EnvironmentRelationPlain(TypedDict, total=False):

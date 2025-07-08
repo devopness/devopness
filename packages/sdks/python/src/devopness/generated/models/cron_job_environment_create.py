@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .resource_to_be_linked import ResourceToBeLinked, ResourceToBeLinkedPlain
 
@@ -33,25 +31,12 @@ class CronJobEnvironmentCreate(DevopnessBaseModel):
         application_id (int, optional): Numeric ID of the application to which the cron job belongs to.
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
-        default=None, description="The resources to be linked with this resource"
-    )
-    name: StrictStr = Field(
-        description="The name of the cron job. Must not be greater than 60 characters."
-    )
-    command: StrictStr = Field(
-        description="The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters."
-    )
-    pattern: StrictStr = Field(
-        description="A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions."
-    )
-    run_as_user: StrictStr = Field(
-        description="The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters."
-    )
-    application_id: Optional[StrictInt] = Field(
-        default=None,
-        description="Numeric ID of the application to which the cron job belongs to.",
-    )
+    linked_resources: Optional[List[ResourceToBeLinked]] = None
+    name: str
+    command: str
+    pattern: str
+    run_as_user: str
+    application_id: Optional[int] = None
 
 
 class CronJobEnvironmentCreatePlain(TypedDict, total=False):

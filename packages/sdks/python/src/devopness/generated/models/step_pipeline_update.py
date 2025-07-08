@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .pipeline_step_runner_name import (
     PipelineStepRunnerName,
@@ -37,31 +35,14 @@ class StepPipelineUpdate(DevopnessBaseModel):
         trigger_after (int, optional): Repositions the pipeline step after the step with the given &#x60;trigger_order&#x60;. Must be at least 0. Must not be greater than 16777214.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Pipeline Step.")
-    name: Optional[StrictStr] = Field(
-        default=None,
-        description="Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
-    )
-    description: Optional[StrictStr] = Field(
-        default=None,
-        description="A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
-    )
-    type: Optional[StrictStr] = Field(
-        default=None,
-        description="The pipeline step's type. Must not be greater than 20 characters.",
-    )
-    command: StrictStr = Field(
-        description="A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters."
-    )
+    id: int
+    name: Optional[str] = None
+    description: Optional[str] = None
+    type: Optional[str] = None
+    command: str
     runner: PipelineStepRunnerName
-    run_as_user: Optional[StrictStr] = Field(
-        default=None,
-        description="The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
-    )
-    trigger_after: Optional[StrictInt] = Field(
-        default=None,
-        description="Repositions the pipeline step after the step with the given `trigger_order`. Must be at least 0. Must not be greater than 16777214.",
-    )
+    run_as_user: Optional[str] = None
+    trigger_after: Optional[int] = None
 
 
 class StepPipelineUpdatePlain(TypedDict, total=False):

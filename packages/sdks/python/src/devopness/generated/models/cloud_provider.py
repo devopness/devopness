@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .cloud_provider_service import CloudProviderService, CloudProviderServicePlain
 from .cloud_provider_settings_list import (
@@ -37,13 +35,10 @@ class CloudProvider(DevopnessBaseModel):
         settings (CloudProviderSettingsList, optional):
     """
 
-    code: StrictStr = Field(description="Cloud provider code")
-    name: StrictStr = Field(description="Cloud provider name")
-    hint: Optional[StrictStr] = Field(
-        default=None,
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
-    )
-    logo_url: StrictStr = Field(description="The provider's logo URL.")
+    code: str
+    name: str
+    hint: Optional[str] = None
+    logo_url: str
     cloud_services: Optional[List[CloudProviderService]] = None
     settings: Optional[CloudProviderSettingsList] = None
 

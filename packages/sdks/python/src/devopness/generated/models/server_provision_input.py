@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt
-
 from .. import DevopnessBaseModel
 from .server_cloud_service_code import (
     ServerCloudServiceCode,
@@ -36,10 +34,7 @@ class ServerProvisionInput(DevopnessBaseModel):
         settings (ServerProvisionInputSettings, optional):
     """
 
-    subnet_id: Optional[StrictInt] = Field(
-        default=None,
-        description="The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider",
-    )
+    subnet_id: Optional[int] = None
     cloud_service_code: ServerCloudServiceCode
     settings: Optional[ServerProvisionInputSettings] = None
 

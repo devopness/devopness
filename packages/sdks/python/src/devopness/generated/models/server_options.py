@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .variable_targets import VariableTargets, VariableTargetsPlain
 
@@ -27,9 +25,7 @@ class ServerOptions(DevopnessBaseModel):
         variable_targets (List[VariableTargets]): The list of VariableTarget
     """
 
-    variable_targets: List[VariableTargets] = Field(
-        description="The list of VariableTarget"
-    )
+    variable_targets: List[VariableTargets]
 
 
 class ServerOptionsPlain(TypedDict, total=False):

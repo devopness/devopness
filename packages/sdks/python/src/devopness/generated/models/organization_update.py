@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -26,13 +24,9 @@ class OrganizationUpdate(DevopnessBaseModel):
         url_slug (str): The URL Slug of the organization. Must not be greater than 255 characters.
     """
 
-    id: StrictStr = Field(description="The unique ID of the given Organization.")
-    name: StrictStr = Field(
-        description="The Name of the organization. Must not be greater than 255 characters."
-    )
-    url_slug: StrictStr = Field(
-        description="The URL Slug of the organization. Must not be greater than 255 characters."
-    )
+    id: str
+    name: str
+    url_slug: str
 
 
 class OrganizationUpdatePlain(TypedDict, total=False):

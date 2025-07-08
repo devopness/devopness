@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -25,7 +24,7 @@ class CloudServiceSettingsSelfHostedCustom(DevopnessBaseModel):
         os_version_code (CloudOsVersionCode):
     """
 
-    os_version_code: Optional[CloudOsVersionCode]
+    os_version_code: CloudOsVersionCode
 
 
 class CloudServiceSettingsSelfHostedCustomPlain(TypedDict, total=False):

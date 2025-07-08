@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import StrictStr
-
 from .. import DevopnessBaseModel
 from .pipeline_settings import PipelineSettings, PipelineSettingsPlain
 
@@ -28,8 +26,8 @@ class ResourceOperation(DevopnessBaseModel):
         pipeline_settings (PipelineSettings, optional):
     """
 
-    operation: Optional[StrictStr] = None
-    operation_human_readable: Optional[StrictStr] = None
+    operation: Optional[str] = None
+    operation_human_readable: Optional[str] = None
     pipeline_settings: Optional[PipelineSettings] = None
 
 

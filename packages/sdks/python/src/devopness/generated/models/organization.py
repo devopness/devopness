@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 from .user_relation import UserRelation, UserRelationPlain
@@ -35,19 +33,13 @@ class Organization(DevopnessBaseModel):
         updated_at (str): The date and time when the organization was last updated
     """
 
-    id: StrictInt = Field(description="The unique identifier for the organization")
-    name: StrictStr = Field(description="The name of the organization")
-    url_slug: StrictStr = Field(description="The URL Slug of the organization")
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
-        default=None, description="Summary of the resource"
-    )
+    id: int
+    name: str
+    url_slug: str
+    resource_summary: Optional[List[ResourceSummaryItem]] = None
     owner: UserRelation
-    created_at: StrictStr = Field(
-        description="The date and time when the organization was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the organization was last updated"
-    )
+    created_at: str
+    updated_at: str
 
 
 class OrganizationPlain(TypedDict, total=False):

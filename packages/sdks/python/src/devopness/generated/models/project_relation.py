@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .os_users_inner import OsUsersInner, OsUsersInnerPlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
@@ -39,29 +37,16 @@ class ProjectRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the project")
-    user_id: StrictInt = Field(description="The id of the user that own the project")
-    name: StrictStr = Field(description="The project's name")
-    logo_url: Optional[StrictStr] = Field(
-        description="A URL path to the project's logo image"
-    )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
-        default=None, description="Summary of the resource"
-    )
-    os_users: List[OsUsersInner] = Field(
-        description="The list of the operating system users found in all the servers linked to a project"
-    )
+    id: int
+    user_id: int
+    name: str
+    logo_url: str
+    resource_summary: Optional[List[ResourceSummaryItem]] = None
+    os_users: List[OsUsersInner]
     created_by_user: UserRelation
-    used_credits: Optional[StrictInt] = Field(
-        default=None,
-        description="Number of credits used in the current monthly billing cycle by actions of resources in the project.",
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    used_credits: Optional[int] = None
+    created_at: str
+    updated_at: str
 
 
 class ProjectRelationPlain(TypedDict, total=False):

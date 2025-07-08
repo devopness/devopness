@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictInt
-
 from .. import DevopnessBaseModel
 
 
@@ -25,8 +23,8 @@ class NetworkUpdate(DevopnessBaseModel):
         credential_id (int): The ID of the cloud credential.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Network.")
-    credential_id: StrictInt = Field(description="The ID of the cloud credential.")
+    id: int
+    credential_id: int
 
 
 class NetworkUpdatePlain(TypedDict, total=False):

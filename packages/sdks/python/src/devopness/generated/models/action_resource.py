@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_resource_data import ActionResourceData, ActionResourceDataPlain
 from .resource_type import ResourceType, ResourceTypePlain
@@ -31,11 +29,9 @@ class ActionResource(DevopnessBaseModel):
         data (ActionResourceData, optional):
     """
 
-    id: StrictInt = Field(description="The unique id of the resource")
+    id: int
     type: ResourceType
-    type_human_readable: StrictStr = Field(
-        description="Human readable version of the resource type"
-    )
+    type_human_readable: str
     data: Optional[ActionResourceData] = None
 
 

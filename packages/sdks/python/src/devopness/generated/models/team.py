@@ -8,13 +8,10 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .project_relation import ProjectRelation, ProjectRelationPlain
@@ -35,17 +32,13 @@ class Team(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given team")
-    name: StrictStr = Field(description="The name of the given team")
-    photo_url: Optional[StrictStr] = Field(description="The URL to team's image")
-    project: Optional[ProjectRelation]
-    users: List[UserRelation] = Field(description="The list of users")
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    id: int
+    name: str
+    photo_url: str
+    project: ProjectRelation
+    users: List[UserRelation]
+    created_at: str
+    updated_at: str
 
 
 class TeamPlain(TypedDict, total=False):

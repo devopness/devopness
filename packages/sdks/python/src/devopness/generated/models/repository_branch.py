@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .commit import Commit, CommitPlain
 
@@ -28,10 +26,8 @@ class RepositoryBranch(DevopnessBaseModel):
         commit (Commit):
     """
 
-    name: StrictStr = Field(description="The name of the branch")
-    repo_full_name: StrictStr = Field(
-        description="The full name of the repository (`owner/repository`)"
-    )
+    name: str
+    repo_full_name: str
     commit: Commit
 
 

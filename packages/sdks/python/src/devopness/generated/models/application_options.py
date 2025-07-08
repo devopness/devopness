@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .language_runtime import LanguageRuntime, LanguageRuntimePlain
 from .script_runner import ScriptRunner, ScriptRunnerPlain
@@ -31,9 +29,7 @@ class ApplicationOptions(DevopnessBaseModel):
         script_runners (List[ScriptRunner]):
     """
 
-    variable_targets: List[VariableTargets] = Field(
-        description="The list of VariableTarget"
-    )
+    variable_targets: List[VariableTargets]
     language_runtimes: List[LanguageRuntime]
     script_runners: List[ScriptRunner]
 

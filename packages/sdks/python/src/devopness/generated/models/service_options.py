@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .static_service_type import StaticServiceType, StaticServiceTypePlain
 
@@ -27,7 +25,7 @@ class ServiceOptions(DevopnessBaseModel):
         types (List[StaticServiceType]): List of service types
     """
 
-    types: List[StaticServiceType] = Field(description="List of service types")
+    types: List[StaticServiceType]
 
 
 class ServiceOptionsPlain(TypedDict, total=False):

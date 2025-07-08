@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
@@ -35,19 +32,13 @@ class ActionTargetServerData(DevopnessBaseModel):
         provision_input (ServerProvisionInput):
     """
 
-    id: StrictInt = Field(description="The unique id of the server")
-    hostname: StrictStr = Field(description="The server's hostname")
-    provider_name: StrictStr = Field(description="The name of the server's provider.")
-    provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider's name"
-    )
-    ip_address: Optional[StrictStr] = Field(
-        description="Public ipv4 address for server access"
-    )
-    ssh_port: StrictInt = Field(
-        description="The network port to which the SSH daemon is listening to SSH connections on the server"
-    )
-    os_version_code: Optional[CloudOsVersionCode]
+    id: int
+    hostname: str
+    provider_name: str
+    provider_name_human_readable: str
+    ip_address: str
+    ssh_port: int
+    os_version_code: CloudOsVersionCode
     provision_input: ServerProvisionInput
 
 

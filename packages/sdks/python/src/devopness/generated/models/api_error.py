@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .api_error_errors import ApiErrorErrors, ApiErrorErrorsPlain
 
@@ -28,7 +26,7 @@ class ApiError(DevopnessBaseModel):
         errors (ApiErrorErrors, optional):
     """
 
-    message: StrictStr = Field(description="The main exception raised by the server")
+    message: str
     errors: Optional[ApiErrorErrors] = None
 
 

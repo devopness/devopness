@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .repository_tag_commit import RepositoryTagCommit, RepositoryTagCommitPlain
 
@@ -27,7 +25,7 @@ class RepositoryTag(DevopnessBaseModel):
         commit (RepositoryTagCommit):
     """
 
-    name: StrictStr = Field(description="The name of the tag")
+    name: str
     commit: RepositoryTagCommit
 
 

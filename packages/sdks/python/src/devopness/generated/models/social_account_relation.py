@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .social_account_displayable_name import (
@@ -39,25 +36,15 @@ class SocialAccountRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The ID of the given social account")
-    user_id: StrictInt = Field(description="The current user's ID")
+    id: int
+    user_id: int
     provider: SocialAccountProvider
     provider_human_readable: SocialAccountDisplayableName
-    provider_user_nickname: StrictStr = Field(
-        description="The nickname of the user on the Source Authentication provider"
-    )
-    is_vcs: StrictBool = Field(
-        description="Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github"
-    )
-    token_expires_at: Optional[StrictStr] = Field(
-        description="The date and time indicating when the authentication token will expire at"
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    provider_user_nickname: str
+    is_vcs: bool
+    token_expires_at: str
+    created_at: str
+    updated_at: str
 
 
 class SocialAccountRelationPlain(TypedDict, total=False):

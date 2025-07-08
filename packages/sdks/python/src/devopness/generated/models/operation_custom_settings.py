@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -26,18 +24,9 @@ class OperationCustomSettings(DevopnessBaseModel):
         triggers_action (bool, optional): Whether the &#x60;server:remove&#x60; operation will trigger an action or not
     """
 
-    operation: Optional[StrictStr] = Field(
-        default=None,
-        description="The resource's custom operation that are CSP specific",
-    )
-    operation_human_readable: Optional[StrictStr] = Field(
-        default=None,
-        description="Human redable version of the resource's custom operation",
-    )
-    triggers_action: Optional[StrictBool] = Field(
-        default=None,
-        description="Whether the `server:remove` operation will trigger an action or not",
-    )
+    operation: Optional[str] = None
+    operation_human_readable: Optional[str] = None
+    triggers_action: Optional[bool] = None
 
 
 class OperationCustomSettingsPlain(TypedDict, total=False):

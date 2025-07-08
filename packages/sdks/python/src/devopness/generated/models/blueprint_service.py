@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 from .service_initial_state import ServiceInitialState, ServiceInitialStatePlain
 from .service_type import ServiceType, ServiceTypePlain
@@ -31,13 +29,10 @@ class BlueprintService(DevopnessBaseModel):
         version (str): The service version
     """
 
-    auto_start: Optional[StrictBool] = Field(
-        default=None,
-        description="Indicates if the service will start automatically on operating system boot",
-    )
-    initial_state: Optional[ServiceInitialState] = ServiceInitialState.STARTED
+    auto_start: Optional[bool] = None
+    initial_state: Optional[ServiceInitialState] = None
     type: ServiceType
-    version: StrictStr = Field(description="The service version")
+    version: str
 
 
 class BlueprintServicePlain(TypedDict, total=False):

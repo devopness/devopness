@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .credits import Credits, CreditsPlain
 
@@ -33,21 +31,11 @@ class SubscriptionBalance(DevopnessBaseModel):
     """
 
     credits: Optional[Credits] = None
-    unit: Optional[StrictStr] = Field(
-        default=None, description="The unit of measurement to count credits"
-    )
-    billing_period_started_at: Optional[datetime] = Field(
-        default=None, description="The date and time the subscription plan starts"
-    )
-    billing_period_ends_at: Optional[datetime] = Field(
-        default=None, description="The date and time the subscription plan ends"
-    )
-    created_at: Optional[datetime] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[datetime] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    unit: Optional[str] = None
+    billing_period_started_at: Optional[datetime] = None
+    billing_period_ends_at: Optional[datetime] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
 
 
 class SubscriptionBalancePlain(TypedDict, total=False):

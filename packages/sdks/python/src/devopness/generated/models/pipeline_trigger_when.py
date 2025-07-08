@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .trigger_when_condition import TriggerWhenCondition, TriggerWhenConditionPlain
 
@@ -27,9 +25,7 @@ class PipelineTriggerWhen(DevopnessBaseModel):
         conditions (List[TriggerWhenCondition], optional): Conditions that must be met to trigger the pipeline
     """
 
-    conditions: Optional[List[TriggerWhenCondition]] = Field(
-        default=None, description="Conditions that must be met to trigger the pipeline"
-    )
+    conditions: Optional[List[TriggerWhenCondition]] = None
 
 
 class PipelineTriggerWhenPlain(TypedDict, total=False):

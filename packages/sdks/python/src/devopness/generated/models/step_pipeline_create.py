@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .pipeline_step_runner_name import (
     PipelineStepRunnerName,
@@ -35,26 +33,12 @@ class StepPipelineCreate(DevopnessBaseModel):
         run_as_user (str, optional): The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
     """
 
-    name: Optional[StrictStr] = Field(
-        default=None,
-        description="Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
-    )
-    description: Optional[StrictStr] = Field(
-        default=None,
-        description="A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
-    )
-    type: Optional[StrictStr] = Field(
-        default=None,
-        description="The pipeline step's type. Must not be greater than 20 characters.",
-    )
-    command: StrictStr = Field(
-        description="A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters."
-    )
+    name: Optional[str] = None
+    description: Optional[str] = None
+    type: Optional[str] = None
+    command: str
     runner: PipelineStepRunnerName
-    run_as_user: Optional[StrictStr] = Field(
-        default=None,
-        description="The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
-    )
+    run_as_user: Optional[str] = None
 
 
 class StepPipelineCreatePlain(TypedDict, total=False):

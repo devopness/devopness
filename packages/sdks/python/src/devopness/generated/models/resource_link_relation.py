@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .linked_resource_data import LinkedResourceData, LinkedResourceDataPlain
 from .resource_link_child import ResourceLinkChild, ResourceLinkChildPlain
@@ -35,17 +33,11 @@ class ResourceLinkRelation(DevopnessBaseModel):
         children (List[ResourceLinkChild], optional):
     """
 
-    link_type: StrictStr = Field(
-        description="The link type to related resource (`child` or `parent`)"
-    )
-    resource_type_human_readable: StrictStr = Field(
-        description="The human readable resource type"
-    )
-    resource_type: StrictStr = Field(description="The linked resource type")
-    resource_id: StrictInt = Field(description="The linked resource ID")
-    can_be_unlinked: StrictBool = Field(
-        description="If false, the link cannot be manually removed"
-    )
+    link_type: str
+    resource_type_human_readable: str
+    resource_type: str
+    resource_id: int
+    can_be_unlinked: bool
     linked_resource_data: LinkedResourceData
     children: Optional[List[ResourceLinkChild]] = None
 

@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .source_type import SourceType, SourceTypePlain
 
@@ -29,14 +27,9 @@ class ActionPipelineCreate(DevopnessBaseModel):
         source_ref (str, optional): A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.
     """
 
-    servers: Optional[List[StrictInt]] = Field(
-        default=None, description="List of valid resource IDs"
-    )
+    servers: Optional[List[int]] = None
     source_type: Optional[SourceType] = None
-    source_ref: Optional[StrictStr] = Field(
-        default=None,
-        description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.",
-    )
+    source_ref: Optional[str] = None
 
 
 class ActionPipelineCreatePlain(TypedDict, total=False):

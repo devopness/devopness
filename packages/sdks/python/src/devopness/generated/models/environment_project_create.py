@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .environment_type import EnvironmentType, EnvironmentTypePlain
 
@@ -30,13 +28,8 @@ class EnvironmentProjectCreate(DevopnessBaseModel):
     """
 
     type: EnvironmentType
-    name: StrictStr = Field(
-        description="The environment's name. Must not be greater than 60 characters."
-    )
-    description: Optional[StrictStr] = Field(
-        default=None,
-        description="The environment's description. Must not be greater than 255 characters.",
-    )
+    name: str
+    description: Optional[str] = None
 
 
 class EnvironmentProjectCreatePlain(TypedDict, total=False):

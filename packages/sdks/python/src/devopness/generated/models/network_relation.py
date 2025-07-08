@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_relation_shallow import ActionRelationShallow, ActionRelationShallowPlain
 from .credential import Credential, CredentialPlain
@@ -41,33 +39,19 @@ class NetworkRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
-    project_id: StrictInt = Field(
-        description="Numeric ID of the project to which the network belongs to"
-    )
-    environment_id: StrictInt = Field(
-        description="Numeric ID of the environment to which the network belongs to"
-    )
-    created_by: StrictInt = Field(
-        description="The id of the user who created the network"
-    )
-    is_auto_generated: StrictBool = Field(
-        description="If true, the network is auto-generated"
-    )
-    provider_name: StrictStr = Field(description="The name of the cloud provider")
-    provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider's name"
-    )
+    id: int
+    project_id: int
+    environment_id: int
+    created_by: int
+    is_auto_generated: bool
+    provider_name: str
+    provider_name_human_readable: str
     credential: Optional[Credential] = None
-    name: StrictStr = Field(description="The networks's name")
+    name: str
     provision_input: NetworkProvisionInput
     last_action: Optional[ActionRelationShallow] = None
-    created_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
 
 
 class NetworkRelationPlain(TypedDict, total=False):

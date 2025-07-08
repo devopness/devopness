@@ -8,12 +8,9 @@ Note:
 
 from typing import (
     List,
-    Optional,
     Required,
     TypedDict,
 )
-
-from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -33,24 +30,14 @@ class RoleRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given role")
-    name: StrictStr = Field(description="The name of the given role")
-    description: StrictStr = Field(description="Description of this role")
-    project_id: Optional[StrictInt] = Field(
-        description="The ID of the project this role belongs to"
-    )
-    is_predefined: StrictBool = Field(
-        description="Defines if the role is predefined or a custom role for specific project"
-    )
-    permissions: List[StrictStr] = Field(
-        description="The list of permissions granted for this role"
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    id: int
+    name: str
+    description: str
+    project_id: int
+    is_predefined: bool
+    permissions: List[str]
+    created_at: str
+    updated_at: str
 
 
 class RoleRelationPlain(TypedDict, total=False):

@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -24,11 +22,7 @@ class ApiErrorErrorsFieldNameInner(DevopnessBaseModel):
         field (str, optional): Field name and respective error message
     """
 
-    var_field: Optional[StrictStr] = Field(
-        default=None,
-        description="Field name and respective error message",
-        alias="field",
-    )
+    field: Optional[str] = None
 
 
 class ApiErrorErrorsFieldNameInnerPlain(TypedDict, total=False):

@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -24,9 +22,7 @@ class ServerCommand(DevopnessBaseModel):
         connect_command (str): The Shell Script command to be executed in an existing Linux server in order to connect it to the &#x60;devopness&#x60;
     """
 
-    connect_command: StrictStr = Field(
-        description="The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`"
-    )
+    connect_command: str
 
 
 class ServerCommandPlain(TypedDict, total=False):

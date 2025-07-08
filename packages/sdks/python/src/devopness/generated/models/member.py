@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .team_relation import TeamRelation, TeamRelationPlain
@@ -32,13 +29,9 @@ class Member(DevopnessBaseModel):
     """
 
     user: UserRelation
-    team: Optional[TeamRelation]
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    team: TeamRelation
+    created_at: str
+    updated_at: str
 
 
 class MemberPlain(TypedDict, total=False):

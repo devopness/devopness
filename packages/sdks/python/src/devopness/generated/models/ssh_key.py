@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
 from .environment_relation import EnvironmentRelation, EnvironmentRelationPlain
@@ -42,33 +40,18 @@ class SshKey(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the given SSH public key")
-    created_by: Optional[StrictInt] = Field(
-        default=None, description="The id of the user to which the SSH key belongs to"
-    )
-    project_id: Optional[StrictInt] = Field(
-        default=None,
-        description="The project id to which the SSH public key belongs to",
-    )
-    environment_id: StrictInt = Field(
-        description="The environment id to which the SSH public key belongs to"
-    )
-    name: StrictStr = Field(
-        description="The name entered by the user to uniquely identify the public SSH key"
-    )
-    fingerprint: StrictStr = Field(
-        description="The hashed fingerprint of the public key"
-    )
+    id: int
+    created_by: Optional[int] = None
+    project_id: Optional[int] = None
+    environment_id: int
+    name: str
+    fingerprint: str
     created_by_user: UserRelation
-    environment: Optional[EnvironmentRelation]
-    servers: List[Optional[ServerRelation]]
-    last_action: Optional[ActionRelation]
-    created_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    environment: EnvironmentRelation
+    servers: List[ServerRelation]
+    last_action: ActionRelation
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
 
 
 class SshKeyPlain(TypedDict, total=False):

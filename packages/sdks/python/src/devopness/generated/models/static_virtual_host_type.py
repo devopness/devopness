@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .virtual_host_type import VirtualHostType, VirtualHostTypePlain
 
@@ -29,12 +27,8 @@ class StaticVirtualHostType(DevopnessBaseModel):
     """
 
     name: VirtualHostType
-    name_human_readable: StrictStr = Field(
-        description="Human readable version of the virtual host type"
-    )
-    hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
-    )
+    name_human_readable: str
+    hint: str
 
 
 class StaticVirtualHostTypePlain(TypedDict, total=False):

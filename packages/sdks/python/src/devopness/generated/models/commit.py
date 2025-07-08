@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .source_provider_name import SourceProviderName, SourceProviderNamePlain
 
@@ -33,22 +31,14 @@ class Commit(DevopnessBaseModel):
         author_name (str): The name of the commit&#39;s author
     """
 
-    hash: StrictStr = Field(
-        description="The commit comment's full hash that uniquely identify it"
-    )
-    message: StrictStr = Field(description="The commit's comment message")
-    committed_at: StrictStr = Field(
-        description="The date and time when the commit has been submitted"
-    )
+    hash: str
+    message: str
+    committed_at: str
     provider: SourceProviderName
-    repository: StrictStr = Field(
-        description="The full name of the repository (`owner/repository`) to which the commit belongs to"
-    )
-    url: StrictStr = Field(
-        description="The direct URL for accessing commit details on the provider's web application"
-    )
-    author_email: StrictStr = Field(description="The e-mail of the commit's author")
-    author_name: StrictStr = Field(description="The name of the commit's author")
+    repository: str
+    url: str
+    author_email: str
+    author_name: str
 
 
 class CommitPlain(TypedDict, total=False):

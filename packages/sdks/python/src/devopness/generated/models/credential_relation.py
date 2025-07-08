@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .provider_relation import ProviderRelation, ProviderRelationPlain
 from .provider_type import ProviderType, ProviderTypePlain
@@ -37,21 +35,15 @@ class CredentialRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the credential")
-    name: StrictStr = Field(description="The name of the credential")
+    id: int
+    name: str
     provider: ProviderRelation
     provider_type: ProviderType
-    provider_type_human_readable: StrictStr = Field(
-        description="The human readable version of the type of the credential"
-    )
-    active: StrictBool = Field(description="If this credential is active or not")
+    provider_type_human_readable: str
+    active: bool
     created_by_user: UserRelation
-    created_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
 
 
 class CredentialRelationPlain(TypedDict, total=False):

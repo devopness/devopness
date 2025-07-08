@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .environment_type import EnvironmentType, EnvironmentTypePlain
 
@@ -30,15 +28,10 @@ class EnvironmentUpdate(DevopnessBaseModel):
         description (str, optional): The environment&#39;s description. Must not be greater than 255 characters.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Environment.")
+    id: int
     type: EnvironmentType
-    name: StrictStr = Field(
-        description="The environment's name. Must not be greater than 60 characters."
-    )
-    description: Optional[StrictStr] = Field(
-        default=None,
-        description="The environment's description. Must not be greater than 255 characters.",
-    )
+    name: str
+    description: Optional[str] = None
 
 
 class EnvironmentUpdatePlain(TypedDict, total=False):

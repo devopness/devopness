@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -25,10 +23,8 @@ class SshKeyUpdate(DevopnessBaseModel):
         name (str): The ssh key&#39;s name. Must not be greater than 60 characters.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given SSH Key.")
-    name: StrictStr = Field(
-        description="The ssh key's name. Must not be greater than 60 characters."
-    )
+    id: int
+    name: str
 
 
 class SshKeyUpdatePlain(TypedDict, total=False):

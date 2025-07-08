@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .triggered_action_summary import (
     TriggeredActionSummary,
@@ -33,16 +31,10 @@ class TriggeredActionStats(DevopnessBaseModel):
         summary (TriggeredActionSummary, optional):
     """
 
-    resource_type: Optional[StrictStr] = Field(
-        default=None, description="Type of resource used in the action"
-    )
-    action_type: Optional[StrictStr] = Field(default=None, description="Type of action")
-    resource_type_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the resource type"
-    )
-    action_type_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Type of action human readable"
-    )
+    resource_type: Optional[str] = None
+    action_type: Optional[str] = None
+    resource_type_human_readable: Optional[str] = None
+    action_type_human_readable: Optional[str] = None
     summary: Optional[TriggeredActionSummary] = None
 
 

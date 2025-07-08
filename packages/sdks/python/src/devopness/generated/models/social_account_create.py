@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .source_provider_name import SourceProviderName, SourceProviderNamePlain
 
@@ -28,9 +26,7 @@ class SocialAccountCreate(DevopnessBaseModel):
     """
 
     provider: SourceProviderName
-    callback_code: StrictStr = Field(
-        description="The temporary code forwarded by the OAuth provider as a parameter to our callback URL. Must be at least 8 characters."
-    )
+    callback_code: str
 
 
 class SocialAccountCreatePlain(TypedDict, total=False):

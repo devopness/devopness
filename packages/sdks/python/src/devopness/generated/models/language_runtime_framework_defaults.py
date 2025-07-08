@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .language_runtime_framework_commands import (
     LanguageRuntimeFrameworkCommands,
@@ -36,35 +34,14 @@ class LanguageRuntimeFrameworkDefaults(DevopnessBaseModel):
         build_command (str, optional): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
     """
 
-    default_branch: Optional[StrictStr] = Field(
-        default=None,
-        description="The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
-    )
-    engine_version: Optional[StrictStr] = Field(
-        default=None,
-        description="The language runtime engine version to be used to execute this application code on the deployed servers",
-    )
-    framework: Optional[StrictStr] = Field(
-        default=None,
-        description="The base framework on top of which the application has been implemented - if any",
-    )
-    root_directory: Optional[StrictStr] = Field(
-        default=None,
-        description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
-    )
-    deployments_keep: Optional[StrictInt] = Field(
-        default=None,
-        description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
-    )
+    default_branch: Optional[str] = None
+    engine_version: Optional[str] = None
+    framework: Optional[str] = None
+    root_directory: Optional[str] = None
+    deployments_keep: Optional[int] = None
     commands: Optional[LanguageRuntimeFrameworkCommands] = None
-    install_dependencies_command: Optional[StrictStr] = Field(
-        default=None,
-        description="Indicates command that Devopness must execute to install application dependencies",
-    )
-    build_command: Optional[StrictStr] = Field(
-        default=None,
-        description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
-    )
+    install_dependencies_command: Optional[str] = None
+    build_command: Optional[str] = None
 
 
 class LanguageRuntimeFrameworkDefaultsPlain(TypedDict, total=False):

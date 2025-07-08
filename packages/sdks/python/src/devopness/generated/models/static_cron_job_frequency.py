@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .cron_job_pattern import CronJobPattern, CronJobPatternPlain
 
@@ -28,11 +26,9 @@ class StaticCronJobFrequency(DevopnessBaseModel):
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: StrictStr = Field(description="Frequency pattern to trigger the cronjob")
+    value: str
     human_readable: CronJobPattern
-    hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
-    )
+    hint: str
 
 
 class StaticCronJobFrequencyPlain(TypedDict, total=False):

@@ -14,9 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-from typing_extensions import Annotated
-
 from .. import DevopnessBaseModel
 from .language import Language, LanguagePlain
 
@@ -36,26 +33,14 @@ class UserRelation(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the given user")
-    name: Annotated[str, Field(min_length=3, strict=True, max_length=255)] = Field(
-        description="User's full name"
-    )
-    email: StrictStr = Field(
-        description="The e-mail that will uniquely identify the user on the system and become its login credential"
-    )
-    url_slug: Optional[StrictStr] = Field(
-        default=None, description="The URL Slug of the user"
-    )
+    id: int
+    name: str
+    email: str
+    url_slug: Optional[str] = None
     language: Optional[Language] = None
-    active: Optional[StrictBool] = Field(
-        default=None, description="Tells if the user is active or not"
-    )
-    created_at: Optional[datetime] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[datetime] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    active: Optional[bool] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
 
 
 class UserRelationPlain(TypedDict, total=False):

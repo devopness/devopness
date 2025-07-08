@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -27,16 +25,10 @@ class RepositoryRelation(DevopnessBaseModel):
         html_url (str): The URL for viewing repository details on the provider&#39;s web application
     """
 
-    name: StrictStr = Field(description="The name of the repository")
-    user_name: StrictStr = Field(
-        description="The name of the user/account on the Version Control System"
-    )
-    full_name: StrictStr = Field(
-        description="The fully qualified repository name. Usually composed of user_name/name"
-    )
-    html_url: StrictStr = Field(
-        description="The URL for viewing repository details on the provider's web application"
-    )
+    name: str
+    user_name: str
+    full_name: str
+    html_url: str
 
 
 class RepositoryRelationPlain(TypedDict, total=False):

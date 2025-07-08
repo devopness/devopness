@@ -7,13 +7,9 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
-
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -35,24 +31,16 @@ class CloudInstanceRelation(DevopnessBaseModel):
         memory (int): The RAM memory size (in MB) of the instance
     """
 
-    name: StrictStr = Field(description="The name of the cloud instance")
-    type: StrictStr = Field(description="The type of the cloud instance")
-    family: StrictStr = Field(description="The family to which the instance belongs")
-    architecture: Optional[StrictStr] = Field(
-        description="The type of CPU used in the cloud server (x86_64 or arm64)"
-    )
-    default_disk_size: StrictInt = Field(
-        description="The default disk size (in GB) used to instance"
-    )
-    price_hourly: Union[StrictFloat, StrictInt] = Field(
-        description="The price per hour of the instance"
-    )
-    price_monthly: Union[StrictFloat, StrictInt] = Field(
-        description="The price per month of the instance"
-    )
-    price_currency: StrictStr = Field(description="The currency of the prices")
-    vcpus: StrictInt = Field(description="The number of virtual CPU of the instance")
-    memory: StrictInt = Field(description="The RAM memory size (in MB) of the instance")
+    name: str
+    type: str
+    family: str
+    architecture: str
+    default_disk_size: int
+    price_hourly: float
+    price_monthly: float
+    price_currency: str
+    vcpus: int
+    memory: int
 
 
 class CloudInstanceRelationPlain(TypedDict, total=False):

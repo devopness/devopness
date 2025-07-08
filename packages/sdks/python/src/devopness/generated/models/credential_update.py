@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .credential_input_settings import (
     CredentialInputSettings,
@@ -32,10 +30,8 @@ class CredentialUpdate(DevopnessBaseModel):
         settings (CredentialInputSettings, optional):
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Credential.")
-    name: StrictStr = Field(
-        description="The name of the credential. Must not be greater than 60 characters."
-    )
+    id: int
+    name: str
     settings: Optional[CredentialInputSettings] = None
 
 

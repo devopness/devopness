@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
 
@@ -34,23 +32,14 @@ class OperatingSystemVersion(DevopnessBaseModel):
         end_of_life_at (str): The date when this release will no longer receive any patches or security updates. For details and terms of service, please refer to the documentation on the OS website.
     """
 
-    name: StrictStr = Field(description="Version name")
-    code_name: StrictStr = Field(
-        description="The name given to the OS version while it is under development. For some OS it can be seen as a version nickname that is used to refer to that version even after official release."
-    )
-    version: StrictStr = Field(description="Version number")
-    os_version_code: Optional[CloudOsVersionCode]
-    os_version_code_human_readable: Optional[StrictStr] = Field(
-        default=None,
-        description="Human readable version of the operating system version",
-    )
-    released_at: StrictStr = Field(description="Release date")
-    end_standard_support_at: StrictStr = Field(
-        description="The date when this release will no longer receive updates under their LTS (Long Term Support) conditions. For details and terms of service, please refer to the documentation on the OS website."
-    )
-    end_of_life_at: StrictStr = Field(
-        description="The date when this release will no longer receive any patches or security updates. For details and terms of service, please refer to the documentation on the OS website."
-    )
+    name: str
+    code_name: str
+    version: str
+    os_version_code: CloudOsVersionCode
+    os_version_code_human_readable: Optional[str] = None
+    released_at: str
+    end_standard_support_at: str
+    end_of_life_at: str
 
 
 class OperatingSystemVersionPlain(TypedDict, total=False):

@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictInt
-
 from .. import DevopnessBaseModel
 
 
@@ -25,9 +23,7 @@ class ServiceStart(DevopnessBaseModel):
         servers (List[int], optional): List of valid resource IDs
     """
 
-    servers: Optional[List[StrictInt]] = Field(
-        default=None, description="List of valid resource IDs"
-    )
+    servers: Optional[List[int]] = None
 
 
 class ServiceStartPlain(TypedDict, total=False):

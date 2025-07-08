@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_relation_shallow import ActionRelationShallow, ActionRelationShallowPlain
 from .ssl_certificate_issuer import SslCertificateIssuer, SslCertificateIssuerPlain
@@ -43,27 +41,17 @@ class SslCertificateRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given SSL certificate")
-    name: StrictStr = Field(description="The name given to SSL certificate")
+    id: int
+    name: str
     type: SslCertificateType
     issuer: SslCertificateIssuer
     validation_level: SslCertificateValidationLevel
-    active: StrictBool = Field(
-        description="Tells if the certificate is active for all linked servers and applications"
-    )
+    active: bool
     last_action: Optional[ActionRelationShallow] = None
-    expires_at: Optional[StrictStr] = Field(
-        description="The date and time when this certificate will no longer be valid, down to minute precision"
-    )
-    last_renewed_at: Optional[StrictStr] = Field(
-        description="The date and time when this certificate was renewed for the last time"
-    )
-    created_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    expires_at: str
+    last_renewed_at: str
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
 
 
 class SslCertificateRelationPlain(TypedDict, total=False):

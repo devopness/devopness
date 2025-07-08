@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .pipeline_trigger_when import PipelineTriggerWhen, PipelineTriggerWhenPlain
 
@@ -30,14 +28,9 @@ class PipelineUpdate(DevopnessBaseModel):
         trigger_when (PipelineTriggerWhen, optional):
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Pipeline.")
-    name: StrictStr = Field(
-        description="The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters."
-    )
-    max_parallel_actions: Optional[StrictInt] = Field(
-        default=None,
-        description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.",
-    )
+    id: int
+    name: str
+    max_parallel_actions: Optional[int] = None
     trigger_when: Optional[PipelineTriggerWhen] = None
 
 

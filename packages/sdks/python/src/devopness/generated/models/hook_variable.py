@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 from .hook_variable_default_value import (
     HookVariableDefaultValue,
@@ -34,17 +32,10 @@ class HookVariable(DevopnessBaseModel):
         default_value (HookVariableDefaultValue, optional):
     """
 
-    name: Optional[StrictStr] = Field(
-        default=None, description="The name of the variable"
-    )
-    path: Optional[StrictStr] = Field(
-        default=None,
-        description="A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the `name` will be used instead.",
-    )
+    name: Optional[str] = None
+    path: Optional[str] = None
     type: Optional[HookVariableType] = None
-    required: Optional[StrictBool] = Field(
-        default=None, description="Defines if the variable is required"
-    )
+    required: Optional[bool] = None
     default_value: Optional[HookVariableDefaultValue] = None
 
 

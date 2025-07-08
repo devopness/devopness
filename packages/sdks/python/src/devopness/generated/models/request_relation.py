@@ -7,12 +7,9 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -31,25 +28,13 @@ class RequestRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictStr = Field(description="The unique UUID of the hook request")
-    hook_id: StrictStr = Field(
-        description="The UUID of the hook that the request belongs to"
-    )
-    action_id: Optional[StrictInt] = Field(
-        description="The ID of the action that the request belongs to"
-    )
-    retry_of: Optional[StrictStr] = Field(
-        description="The UUID of the request that this request is a retry of"
-    )
-    ip_address: StrictStr = Field(
-        description="The IP address of the source that triggered the hook"
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    id: str
+    hook_id: str
+    action_id: int
+    retry_of: str
+    ip_address: str
+    created_at: str
+    updated_at: str
 
 
 class RequestRelationPlain(TypedDict, total=False):

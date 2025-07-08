@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -25,12 +23,8 @@ class CredentialAws(DevopnessBaseModel):
         secret_access_key (str): The secret used to authenticate on AWS cloud provider
     """
 
-    access_key_id: StrictStr = Field(
-        description="The key used to authenticate on AWS cloud provider"
-    )
-    secret_access_key: StrictStr = Field(
-        description="The secret used to authenticate on AWS cloud provider"
-    )
+    access_key_id: str
+    secret_access_key: str
 
 
 class CredentialAwsPlain(TypedDict, total=False):

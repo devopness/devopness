@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 from .cloud_provider_input_settings_default_value import (
@@ -38,14 +35,10 @@ class CloudProviderInputSettings(DevopnessBaseModel):
         validation (CloudProviderPropertyValidation):
     """
 
-    name: StrictStr = Field(description="Name of the property")
-    name_human_readable: StrictStr = Field(
-        description="Human readable version of the property's name"
-    )
-    default_value: Optional[CloudProviderInputSettingsDefaultValue]
-    sensitive: StrictBool = Field(
-        description="Defines if the property data is a sensitive content"
-    )
+    name: str
+    name_human_readable: str
+    default_value: CloudProviderInputSettingsDefaultValue
+    sensitive: bool
     validation: CloudProviderPropertyValidation
 
 

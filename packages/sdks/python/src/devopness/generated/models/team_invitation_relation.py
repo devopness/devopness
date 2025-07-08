@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .project_relation import ProjectRelation, ProjectRelationPlain
@@ -42,33 +39,19 @@ class TeamInvitationRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictStr = Field(description="The unique UUID of the given invitation")
-    email: StrictStr = Field(
-        description="The email of the user that has been invited to team"
-    )
+    id: str
+    email: str
     status: TeamInvitationStatus
-    status_human_readable: StrictStr = Field(
-        description="Human readable version of the invitation status"
-    )
-    accepted_from_ip: Optional[StrictStr] = Field(
-        description="The IP of the user who accepted the invitation"
-    )
+    status_human_readable: str
+    accepted_from_ip: str
     created_by_user: UserRelation
     user: UserRelation
-    team: Optional[TeamRelation]
-    project: Optional[ProjectRelation]
-    accepted_at: Optional[StrictStr] = Field(
-        description="The date and time when the invitation was accepted"
-    )
-    expires_at: StrictStr = Field(
-        description="The date and time when the invitation will expire"
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    team: TeamRelation
+    project: ProjectRelation
+    accepted_at: str
+    expires_at: str
+    created_at: str
+    updated_at: str
 
 
 class TeamInvitationRelationPlain(TypedDict, total=False):

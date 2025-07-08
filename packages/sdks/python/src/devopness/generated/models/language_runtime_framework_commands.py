@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -26,13 +24,8 @@ class LanguageRuntimeFrameworkCommands(DevopnessBaseModel):
         dependencies (List[str], optional): Available dependencies installation command options for the stack
     """
 
-    build: Optional[List[StrictStr]] = Field(
-        default=None, description="Available build command options for the stack"
-    )
-    dependencies: Optional[List[StrictStr]] = Field(
-        default=None,
-        description="Available dependencies installation command options for the stack",
-    )
+    build: Optional[List[str]] = None
+    dependencies: Optional[List[str]] = None
 
 
 class LanguageRuntimeFrameworkCommandsPlain(TypedDict, total=False):

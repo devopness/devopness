@@ -7,15 +7,10 @@ Note:
 """
 
 from typing import (
-    Any,
-    Dict,
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .hook_relation import HookRelation, HookRelationPlain
@@ -42,32 +37,20 @@ class HookRequest(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictStr = Field(description="The unique UUID of the hook request")
-    hook_id: StrictStr = Field(
-        description="The UUID of the hook that the request belongs to"
-    )
-    action_id: Optional[StrictInt] = Field(
-        description="The ID of the action that the request belongs to"
-    )
-    retry_of: Optional[StrictStr] = Field(
-        description="The UUID of the request that this request is a retry of"
-    )
-    ip_address: StrictStr = Field(
-        description="The IP address of the source that triggered the hook"
-    )
-    url: StrictStr = Field(description="Original URL used on the request")
-    request_headers: Dict[str, Any] = Field(description="The headers of the request")
-    request_body: Dict[str, Any] = Field(description="The body of the request")
-    response_status_code: StrictInt = Field(description="The response status code")
-    response_headers: Dict[str, Any] = Field(description="The headers of the response")
-    response_body: Dict[str, Any] = Field(description="The body of the response")
-    hook: Optional[HookRelation]
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    id: str
+    hook_id: str
+    action_id: int
+    retry_of: str
+    ip_address: str
+    url: str
+    request_headers: object
+    request_body: object
+    response_status_code: int
+    response_headers: object
+    response_body: object
+    hook: HookRelation
+    created_at: str
+    updated_at: str
 
 
 class HookRequestPlain(TypedDict, total=False):

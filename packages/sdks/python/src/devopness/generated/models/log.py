@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .action_target_data import ActionTargetData, ActionTargetDataPlain
@@ -30,11 +27,9 @@ class Log(DevopnessBaseModel):
         updated_at (str): The date and time when the requested log record was last updated
     """
 
-    target: Optional[ActionTargetData]
-    step: Optional[ActionTargetLogStep]
-    updated_at: Optional[StrictStr] = Field(
-        description="The date and time when the requested log record was last updated"
-    )
+    target: ActionTargetData
+    step: ActionTargetLogStep
+    updated_at: str
 
 
 class LogPlain(TypedDict, total=False):

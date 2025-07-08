@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .action_trigger_type import ActionTriggerType, ActionTriggerTypePlain
@@ -34,26 +31,14 @@ class ActionTriggeredFrom(DevopnessBaseModel):
         hook_request_id (str): The hook request&#39;s ID if the action have been triggered by a hook.
     """
 
-    origin: Optional[StrictStr] = Field(
-        description="The HTTP origin of the request that have been dispatched the action."
-    )
+    origin: str
     trigger_type: ActionTriggerType
-    name: StrictStr = Field(
-        description="The hook or user name that have been triggered the action."
-    )
-    email: Optional[StrictStr] = Field(
-        description="The user's email if the action have been manually triggered."
-    )
-    ip_address: StrictStr = Field(description="The IP address of the request origin.")
-    user_id: Optional[StrictInt] = Field(
-        description="The user's ID if the action have been manually triggered."
-    )
-    hook_id: Optional[StrictStr] = Field(
-        description="The hook's ID if the action have been triggered by a hook."
-    )
-    hook_request_id: Optional[StrictStr] = Field(
-        description="The hook request's ID if the action have been triggered by a hook."
-    )
+    name: str
+    email: str
+    ip_address: str
+    user_id: int
+    hook_id: str
+    hook_request_id: str
 
 
 class ActionTriggeredFromPlain(TypedDict, total=False):

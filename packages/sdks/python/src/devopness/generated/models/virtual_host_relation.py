@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_relation_shallow import ActionRelationShallow, ActionRelationShallowPlain
 from .application_relation import ApplicationRelation, ApplicationRelationPlain
@@ -45,28 +43,18 @@ class VirtualHostRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was updated
     """
 
-    id: StrictInt = Field(description="Unique ID of the Virtual Host")
+    id: int
     type: VirtualHostType
-    type_human_readable: Optional[StrictStr] = Field(
-        default=None, description="The human readable version of the type"
-    )
-    name: StrictStr = Field(description="The name of the Virtual Host")
-    application: Optional[ApplicationRelation]
-    root_directory: Optional[StrictStr] = Field(
-        description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host"
-    )
-    application_listen_address: Optional[StrictStr] = Field(
-        description="The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)"
-    )
-    ssl_certificate: Optional[SslCertificateRelation]
+    type_human_readable: Optional[str] = None
+    name: str
+    application: ApplicationRelation
+    root_directory: str
+    application_listen_address: str
+    ssl_certificate: SslCertificateRelation
     last_action: Optional[ActionRelationShallow] = None
     created_by_user: Optional[UserRelation] = None
-    created_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was updated"
-    )
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
 
 
 class VirtualHostRelationPlain(TypedDict, total=False):

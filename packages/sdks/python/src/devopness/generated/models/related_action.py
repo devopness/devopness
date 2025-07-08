@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_status import ActionStatus, ActionStatusPlain
 from .action_type import ActionType, ActionTypePlain
@@ -37,25 +35,15 @@ class RelatedAction(DevopnessBaseModel):
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
     """
 
-    id: StrictInt = Field(description="The Id of the given action")
+    id: int
     status: ActionStatus
-    status_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the action status"
-    )
+    status_human_readable: Optional[str] = None
     type: ActionType
-    type_human_readable: StrictStr = Field(
-        description="Human readable version of the action type"
-    )
-    resource_name: Optional[StrictStr] = Field(
-        default=None, description="The name of the resource"
-    )
+    type_human_readable: str
+    resource_name: Optional[str] = None
     resource_type: ResourceType
-    resource_type_human_readable: StrictStr = Field(
-        description="Human readable version of the resource type"
-    )
-    url_web_permalink: StrictStr = Field(
-        description="The permalink URL to the action details on Devopness web app"
-    )
+    resource_type_human_readable: str
+    url_web_permalink: str
 
 
 class RelatedActionPlain(TypedDict, total=False):

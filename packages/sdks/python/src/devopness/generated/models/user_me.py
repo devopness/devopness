@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .language import Language, LanguagePlain
 from .social_account_relation import SocialAccountRelation, SocialAccountRelationPlain
@@ -37,23 +35,15 @@ class UserMe(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given user")
-    name: StrictStr = Field(description="User's full name")
-    email: StrictStr = Field(
-        description="The e-mail that will uniquely identify the user on the system and become its login credential"
-    )
-    url_slug: Optional[StrictStr] = Field(
-        default=None, description="The URL Slug of the user"
-    )
-    language: Optional[Language]
-    active: StrictBool = Field(description="Tells if the user is active or not")
-    social_accounts: List[Optional[SocialAccountRelation]]
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    id: int
+    name: str
+    email: str
+    url_slug: Optional[str] = None
+    language: Language
+    active: bool
+    social_accounts: List[SocialAccountRelation]
+    created_at: str
+    updated_at: str
 
 
 class UserMePlain(TypedDict, total=False):

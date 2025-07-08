@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .application_last_deployments import (
     ApplicationLastDeployments,
@@ -52,64 +50,28 @@ class ApplicationRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="Unique ID of the application")
-    project_id: StrictInt = Field(
-        description="Numeric ID of the project to which the application belongs to"
-    )
-    environment_id: StrictInt = Field(
-        description="Numeric ID of the environment to which the application belongs to"
-    )
-    created_by: StrictInt = Field(
-        description="The id of the user who created the application and to whom the application belongs"
-    )
-    name: StrictStr = Field(description="The application's unique name")
-    repository: StrictStr = Field(
-        description="The full name of a repository (`repository_owner/repository_name`) containing the application source code."
-    )
-    repository_name: StrictStr = Field(
-        description="The name part of a repository full name (`repository_owner/repository_name`)"
-    )
-    repository_owner: StrictStr = Field(
-        description="The owner part of a repository full name (`repository_owner/repository_name`)"
-    )
-    default_branch: StrictStr = Field(
-        description="The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed."
-    )
-    programming_language: StrictStr = Field(
-        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`."
-    )
-    programming_language_human_readable: StrictStr = Field(
-        description="The human readable version of the programming language of the application."
-    )
-    engine_version: StrictStr = Field(
-        description="The language runtime engine version to be used to execute this application on the deployed servers"
-    )
-    framework: StrictStr = Field(
-        description="The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment"
-    )
-    framework_human_readable: StrictStr = Field(
-        description="The human readable version of the framework of the application."
-    )
-    root_directory: Optional[StrictStr] = Field(
-        description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository."
-    )
-    deployments_keep: StrictInt = Field(
-        description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions"
-    )
-    install_dependencies_command: Optional[StrictStr] = Field(
-        description="Indicates command that Devopness must execute to install application dependencies"
-    )
-    build_command: Optional[StrictStr] = Field(
-        description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state"
-    )
+    id: int
+    project_id: int
+    environment_id: int
+    created_by: int
+    name: str
+    repository: str
+    repository_name: str
+    repository_owner: str
+    default_branch: str
+    programming_language: str
+    programming_language_human_readable: str
+    engine_version: str
+    framework: str
+    framework_human_readable: str
+    root_directory: str
+    deployments_keep: int
+    install_dependencies_command: str
+    build_command: str
     last_deployments: Optional[ApplicationLastDeployments] = None
     credential: Optional[Credential] = None
-    created_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[StrictStr] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
 
 
 class ApplicationRelationPlain(TypedDict, total=False):

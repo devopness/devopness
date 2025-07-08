@@ -13,8 +13,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -29,15 +27,10 @@ class StaticPermission(DevopnessBaseModel):
         required_permissions (List[str], optional): List of permissions the role must have before receiving this one
     """
 
-    name: StrictStr = Field(description="Name of permission")
-    human_readable: StrictStr = Field(description="Human readable permission name")
-    hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
-    )
-    required_permissions: Optional[List[StrictStr]] = Field(
-        default=None,
-        description="List of permissions the role must have before receiving this one",
-    )
+    name: str
+    human_readable: str
+    hint: str
+    required_permissions: Optional[List[str]] = None
 
 
 class StaticPermissionPlain(TypedDict, total=False):

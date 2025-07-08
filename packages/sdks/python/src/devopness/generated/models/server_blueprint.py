@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .server_blueprint_spec import ServerBlueprintSpec, ServerBlueprintSpecPlain
 
@@ -32,18 +30,12 @@ class ServerBlueprint(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
-    id: Optional[StrictInt] = Field(
-        default=None, description="The unique id of the blueprint"
-    )
-    name: Optional[StrictStr] = Field(default=None, description="Name of the blueprint")
-    type: Optional[StrictStr] = Field(default=None, description="The blueprint type")
+    id: Optional[int] = None
+    name: Optional[str] = None
+    type: Optional[str] = None
     spec: Optional[ServerBlueprintSpec] = None
-    created_at: Optional[datetime] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[datetime] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
 
 
 class ServerBlueprintPlain(TypedDict, total=False):

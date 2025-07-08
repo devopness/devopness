@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -33,23 +31,15 @@ class ActionDeploymentCommit(DevopnessBaseModel):
         download_url (str): The URL to download the commit source code
     """
 
-    repository: StrictStr = Field(
-        description="The repository of the deployed application"
-    )
-    author_name: StrictStr = Field(description="The author of the commit")
-    author_email: StrictStr = Field(description="The commit author's email")
-    committed_at: datetime = Field(
-        description="The date and time when the commit was created"
-    )
-    hash: StrictStr = Field(description="The commit hash used on deployment")
-    message: StrictStr = Field(description="The commit message")
-    url: StrictStr = Field(description="The commit URL on the source provider")
-    clone_url: StrictStr = Field(
-        description="The URL to clone the repository on the specific commit"
-    )
-    download_url: StrictStr = Field(
-        description="The URL to download the commit source code"
-    )
+    repository: str
+    author_name: str
+    author_email: str
+    committed_at: datetime
+    hash: str
+    message: str
+    url: str
+    clone_url: str
+    download_url: str
 
 
 class ActionDeploymentCommitPlain(TypedDict, total=False):

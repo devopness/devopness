@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .ssl_certificate_issuer import SslCertificateIssuer, SslCertificateIssuerPlain
 from .ssl_certificate_type import SslCertificateType, SslCertificateTypePlain
@@ -37,20 +35,12 @@ class SslCertificateEnvironmentCreate(DevopnessBaseModel):
         custom_certificate (str, optional): The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through &#x60;devopness&#x60;. This field is required when &lt;code&gt;issuer&lt;/code&gt; is &lt;code&gt;custom&lt;/code&gt;. Must be at least 100 characters. Must not be greater than 4096 characters.
     """
 
-    virtual_host_id: StrictInt = Field(
-        description="The ID of the virtual host to which this SSL certificate will be issued."
-    )
+    virtual_host_id: int
     issuer: SslCertificateIssuer
     type: Optional[SslCertificateType] = None
     validation_level: Optional[SslCertificateValidationLevel] = None
-    custom_private_key: Optional[StrictStr] = Field(
-        default=None,
-        description="The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
-    )
-    custom_certificate: Optional[StrictStr] = Field(
-        default=None,
-        description="The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
-    )
+    custom_private_key: Optional[str] = None
+    custom_certificate: Optional[str] = None
 
 
 class SslCertificateEnvironmentCreatePlain(TypedDict, total=False):

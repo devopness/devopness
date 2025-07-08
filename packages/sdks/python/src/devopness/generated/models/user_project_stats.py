@@ -9,10 +9,7 @@ Note:
 from typing import (
     Optional,
     TypedDict,
-    Union,
 )
-
-from pydantic import Field, StrictFloat, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -26,14 +23,8 @@ class UserProjectStats(DevopnessBaseModel):
         member_of (float, optional): Total number of projects that user has access to, as team member.
     """
 
-    owner_of: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total number of projects that user has access to, as owner.",
-    )
-    member_of: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total number of projects that user has access to, as team member.",
-    )
+    owner_of: Optional[float] = None
+    member_of: Optional[float] = None
 
 
 class UserProjectStatsPlain(TypedDict, total=False):

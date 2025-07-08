@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -29,11 +27,11 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
         allowed_values (List[str], optional):
     """
 
-    required: Optional[StrictBool] = None
-    type: Optional[StrictStr] = None
-    min: Optional[StrictInt] = None
-    max: Optional[StrictInt] = None
-    allowed_values: Optional[List[StrictStr]] = None
+    required: Optional[bool] = None
+    type: Optional[str] = None
+    min: Optional[int] = None
+    max: Optional[int] = None
+    allowed_values: Optional[List[str]] = None
 
 
 class ProviderInputSettingsValidationPlain(TypedDict, total=False):

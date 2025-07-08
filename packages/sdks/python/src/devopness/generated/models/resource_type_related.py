@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 from .resource_type import ResourceType, ResourceTypePlain
 
@@ -30,17 +28,9 @@ class ResourceTypeRelated(DevopnessBaseModel):
     """
 
     resource_type: Optional[ResourceType] = None
-    resource_type_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the resource type name"
-    )
-    resource_type_human_readable_plural: Optional[StrictStr] = Field(
-        default=None,
-        description="Plural human readable version of the resource type name",
-    )
-    can_be_linked: Optional[StrictBool] = Field(
-        default=None,
-        description="If true, the relation with this resource type can be changed manually by the user",
-    )
+    resource_type_human_readable: Optional[str] = None
+    resource_type_human_readable_plural: Optional[str] = None
+    can_be_linked: Optional[bool] = None
 
 
 class ResourceTypeRelatedPlain(TypedDict, total=False):

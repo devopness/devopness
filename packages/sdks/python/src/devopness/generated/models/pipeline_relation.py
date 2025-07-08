@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .pipeline_trigger_when import PipelineTriggerWhen, PipelineTriggerWhenPlain
@@ -41,36 +38,20 @@ class PipelineRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given pipeline")
-    name: StrictStr = Field(description="The pipeline's name")
-    environment_id: StrictInt = Field(
-        description="ID of the environment this pipeline belongs to"
-    )
-    project_id: StrictInt = Field(
-        description="ID of the project this pipeline belongs to"
-    )
-    resource_type: StrictStr = Field(description="The pipeline's resource type")
-    resource_type_human_readable: StrictStr = Field(
-        description="Human readable version of the resource type"
-    )
-    resource_id: StrictInt = Field(description="The pipeline's resource ID")
-    operation: StrictStr = Field(
-        description="The resource operation associated to the pipeline."
-    )
-    operation_human_readable: StrictStr = Field(
-        description="Human readable version of the operation"
-    )
-    max_parallel_actions: StrictInt = Field(
-        description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline."
-    )
-    trigger_when: Optional[PipelineTriggerWhen]
+    id: int
+    name: str
+    environment_id: int
+    project_id: int
+    resource_type: str
+    resource_type_human_readable: str
+    resource_id: int
+    operation: str
+    operation_human_readable: str
+    max_parallel_actions: int
+    trigger_when: PipelineTriggerWhen
     created_by_user: UserRelation
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    created_at: str
+    updated_at: str
 
 
 class PipelineRelationPlain(TypedDict, total=False):

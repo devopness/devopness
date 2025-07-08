@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -25,7 +24,7 @@ class UserBilling(DevopnessBaseModel):
         active_subscription (Subscription):
     """
 
-    active_subscription: Optional[Subscription]
+    active_subscription: Subscription
 
 
 class UserBillingPlain(TypedDict, total=False):

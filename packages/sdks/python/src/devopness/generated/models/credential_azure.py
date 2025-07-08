@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -27,18 +25,10 @@ class CredentialAzure(DevopnessBaseModel):
         client_secret (str): Secret password used by the application to authenticate to Azure
     """
 
-    tenant_id: StrictStr = Field(
-        description="ID that identifies your company space (directory) inside Azure"
-    )
-    subscription_id: StrictStr = Field(
-        description="ID that identifies your billing account where Azure resources are stored"
-    )
-    client_id: StrictStr = Field(
-        description="ID that identifies the application when connecting to Azure"
-    )
-    client_secret: StrictStr = Field(
-        description="Secret password used by the application to authenticate to Azure"
-    )
+    tenant_id: str
+    subscription_id: str
+    client_id: str
+    client_secret: str
 
 
 class CredentialAzurePlain(TypedDict, total=False):

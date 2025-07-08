@@ -13,8 +13,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -28,16 +26,9 @@ class RoleProjectCreate(DevopnessBaseModel):
         permissions (List[str]): The list of permissions granted for this role
     """
 
-    name: StrictStr = Field(
-        description="The role's name. Must be at least 2 characters. Must not be greater than 60 characters."
-    )
-    description: Optional[StrictStr] = Field(
-        default=None,
-        description="Description of this role. Must not be greater than 255 characters.",
-    )
-    permissions: List[StrictStr] = Field(
-        description="The list of permissions granted for this role"
-    )
+    name: str
+    description: Optional[str] = None
+    permissions: List[str]
 
 
 class RoleProjectCreatePlain(TypedDict, total=False):

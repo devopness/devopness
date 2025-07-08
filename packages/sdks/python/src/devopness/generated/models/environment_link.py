@@ -13,8 +13,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -28,11 +26,9 @@ class EnvironmentLink(DevopnessBaseModel):
         servers (List[int]): A list of server IDs to which the item link/unlink operations must be performed
     """
 
-    id: StrictInt = Field(description="Environment's unique id")
-    name: Optional[StrictStr] = Field(default=None, description="Environment's name")
-    servers: List[StrictInt] = Field(
-        description="A list of server IDs to which the item link/unlink operations must be performed"
-    )
+    id: int
+    name: Optional[str] = None
+    servers: List[int]
 
 
 class EnvironmentLinkPlain(TypedDict, total=False):

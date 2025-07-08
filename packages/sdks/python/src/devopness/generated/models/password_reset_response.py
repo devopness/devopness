@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -24,9 +22,7 @@ class PasswordResetResponse(DevopnessBaseModel):
         message (str): Message with information about the response
     """
 
-    message: StrictStr = Field(
-        description="Message with information about the response"
-    )
+    message: str
 
 
 class PasswordResetResponsePlain(TypedDict, total=False):

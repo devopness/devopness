@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
 
@@ -31,19 +29,11 @@ class CloudServiceSettingsAzureRm(DevopnessBaseModel):
         os_version_code (CloudOsVersionCode):
     """
 
-    instance_type: StrictStr = Field(
-        description="The instance type to be launched on the cloud provider"
-    )
-    region: StrictStr = Field(
-        description="Datacenter region where the cloud instance will be launched"
-    )
-    region_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the server region"
-    )
-    storage_size: StrictInt = Field(
-        description="The storage's size of the cloud instance"
-    )
-    os_version_code: Optional[CloudOsVersionCode]
+    instance_type: str
+    region: str
+    region_human_readable: Optional[str] = None
+    storage_size: int
+    os_version_code: CloudOsVersionCode
 
 
 class CloudServiceSettingsAzureRmPlain(TypedDict, total=False):

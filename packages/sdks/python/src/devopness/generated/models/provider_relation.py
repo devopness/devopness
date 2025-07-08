@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 from .provider_code import ProviderCode, ProviderCodePlain
 from .provider_type import ProviderType, ProviderTypePlain
@@ -32,15 +30,11 @@ class ProviderRelation(DevopnessBaseModel):
         type_human_readable (str, optional): Human readable version of provider type
     """
 
-    active: StrictBool = Field(description="Tells if the provider is active or not")
+    active: bool
     code: ProviderCode
-    code_human_readable: StrictStr = Field(
-        description="Human readable version of provider code"
-    )
+    code_human_readable: str
     type: ProviderType
-    type_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of provider type"
-    )
+    type_human_readable: Optional[str] = None
 
 
 class ProviderRelationPlain(TypedDict, total=False):

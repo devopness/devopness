@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .user_relation import UserRelation, UserRelationPlain
 
@@ -29,12 +27,8 @@ class MemberRelation(DevopnessBaseModel):
     """
 
     user: UserRelation
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    created_at: str
+    updated_at: str
 
 
 class MemberRelationPlain(TypedDict, total=False):

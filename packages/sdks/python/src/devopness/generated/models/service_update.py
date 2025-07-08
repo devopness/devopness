@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictInt
-
 from .. import DevopnessBaseModel
 
 
@@ -24,7 +22,7 @@ class ServiceUpdate(DevopnessBaseModel):
         id (int): The unique ID of the given Service.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Service.")
+    id: int
 
 
 class ServiceUpdatePlain(TypedDict, total=False):

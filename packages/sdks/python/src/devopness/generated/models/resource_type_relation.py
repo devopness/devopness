@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .resource_operation import ResourceOperation, ResourceOperationPlain
 from .resource_type import ResourceType, ResourceTypePlain
@@ -35,21 +33,11 @@ class ResourceTypeRelation(DevopnessBaseModel):
     """
 
     resource_type: ResourceType
-    resource_type_human_readable: StrictStr = Field(
-        description="Human readable version of the resource type"
-    )
-    resource_type_human_readable_plural: StrictStr = Field(
-        description="Human readable version of the resource type, in plural form"
-    )
-    supported_operations: List[ResourceOperation] = Field(
-        description="A list of resource operations"
-    )
-    can_be_child_of: List[ResourceTypeRelated] = Field(
-        description="A list of related resources"
-    )
-    can_be_parent_of: List[ResourceTypeRelated] = Field(
-        description="A list of related resources"
-    )
+    resource_type_human_readable: str
+    resource_type_human_readable_plural: str
+    supported_operations: List[ResourceOperation]
+    can_be_child_of: List[ResourceTypeRelated]
+    can_be_parent_of: List[ResourceTypeRelated]
 
 
 class ResourceTypeRelationPlain(TypedDict, total=False):

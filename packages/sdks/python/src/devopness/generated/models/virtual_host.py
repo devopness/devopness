@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
@@ -45,28 +42,18 @@ class VirtualHost(DevopnessBaseModel):
         updated_at (str): The date and time when the record was updated
     """
 
-    id: StrictInt = Field(description="Unique ID of the Virtual Host")
+    id: int
     type: VirtualHostType
-    type_human_readable: StrictStr = Field(
-        description="The human readable version of the type"
-    )
-    name: StrictStr = Field(description="The name of the Virtual Host")
-    application: Optional[ApplicationRelation]
-    root_directory: Optional[StrictStr] = Field(
-        description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host"
-    )
-    application_listen_address: Optional[StrictStr] = Field(
-        description="The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)"
-    )
-    ssl_certificate: Optional[SslCertificateRelation]
-    last_action: Optional[ActionRelation]
+    type_human_readable: str
+    name: str
+    application: ApplicationRelation
+    root_directory: str
+    application_listen_address: str
+    ssl_certificate: SslCertificateRelation
+    last_action: ActionRelation
     created_by_user: UserRelation
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was updated"
-    )
+    created_at: str
+    updated_at: str
 
 
 class VirtualHostPlain(TypedDict, total=False):

@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .variable_target import VariableTarget, VariableTargetPlain
 
@@ -29,13 +27,8 @@ class VariableTargets(DevopnessBaseModel):
     """
 
     name: Optional[VariableTarget] = None
-    name_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the variable target name"
-    )
-    hint: Optional[StrictStr] = Field(
-        default=None,
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
-    )
+    name_human_readable: Optional[str] = None
+    hint: Optional[str] = None
 
 
 class VariableTargetsPlain(TypedDict, total=False):

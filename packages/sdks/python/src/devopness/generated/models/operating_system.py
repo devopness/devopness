@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .operating_system_version import (
     OperatingSystemVersion,
@@ -33,11 +31,9 @@ class OperatingSystem(DevopnessBaseModel):
         supported_versions (List[OperatingSystemVersion]):
     """
 
-    code: StrictStr = Field(description="The name of the operating system")
-    name: StrictStr = Field(description="The formatted name of the operating system")
-    hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
-    )
+    code: str
+    name: str
+    hint: str
     supported_versions: List[OperatingSystemVersion]
 
 

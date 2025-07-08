@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .action_relation import ActionRelation, ActionRelationPlain
@@ -43,24 +40,18 @@ class Network(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
-    provider_name: StrictStr = Field(description="The name of the cloud provider")
-    provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider's name"
-    )
-    name: StrictStr = Field(description="The networks's name")
+    id: int
+    provider_name: str
+    provider_name_human_readable: str
+    name: str
     provision_input: NetworkProvisionInput
     created_by_user: UserRelation
-    project: Optional[ProjectRelation]
-    environment: Optional[EnvironmentRelation]
-    credential: Optional[CredentialRelation]
-    last_action: Optional[ActionRelation]
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    project: ProjectRelation
+    environment: EnvironmentRelation
+    credential: CredentialRelation
+    last_action: ActionRelation
+    created_at: str
+    updated_at: str
 
 
 class NetworkPlain(TypedDict, total=False):

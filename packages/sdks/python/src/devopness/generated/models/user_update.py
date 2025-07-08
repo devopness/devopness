@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .language import Language, LanguagePlain
 
@@ -31,16 +29,10 @@ class UserUpdate(DevopnessBaseModel):
         language (Language, optional):
     """
 
-    id: StrictStr = Field(description="The unique ID of the given User.")
-    name: StrictStr = Field(
-        description="User's full name. Must be at least 3 characters. Must not be greater than 255 characters."
-    )
-    email: StrictStr = Field(
-        description="The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address."
-    )
-    url_slug: StrictStr = Field(
-        description="The URL Slug of the user. Must not be greater than 255 characters."
-    )
+    id: str
+    name: str
+    email: str
+    url_slug: str
     language: Optional[Language] = None
 
 

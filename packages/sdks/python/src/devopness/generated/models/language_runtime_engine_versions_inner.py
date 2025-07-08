@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -24,7 +22,7 @@ class LanguageRuntimeEngineVersionsInner(DevopnessBaseModel):
         version (str, optional):
     """
 
-    version: Optional[StrictStr] = None
+    version: Optional[str] = None
 
 
 class LanguageRuntimeEngineVersionsInnerPlain(TypedDict, total=False):

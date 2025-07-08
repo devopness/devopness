@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -28,14 +26,10 @@ class CloudProviderServiceRegion(DevopnessBaseModel):
         zones (List[str]): List of availability zones of the cloud provider region
     """
 
-    code: StrictStr = Field(description="The code name of the region")
-    name: StrictStr = Field(description="The formatted name of the region")
-    hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
-    )
-    zones: List[StrictStr] = Field(
-        description="List of availability zones of the cloud provider region"
-    )
+    code: str
+    name: str
+    hint: str
+    zones: List[str]
 
 
 class CloudProviderServiceRegionPlain(TypedDict, total=False):

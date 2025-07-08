@@ -15,8 +15,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_deployment_data import ActionDeploymentData, ActionDeploymentDataPlain
 from .action_status import ActionStatus, ActionStatusPlain
@@ -53,32 +51,22 @@ class ActionRelationShallow(DevopnessBaseModel):
         updated_at (datetime): When the action was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the action")
+    id: int
     status: ActionStatus
-    status_human_readable: StrictStr = Field(
-        description="Human readable version of the action status"
-    )
+    status_human_readable: str
     status_reason_code: ActionStatusReasonCode
-    status_reason_human_readable: StrictStr = Field(
-        description="Human readable version of the status reason code"
-    )
+    status_reason_human_readable: str
     type: ActionType
-    type_human_readable: StrictStr = Field(
-        description="Human readable version of the action type"
-    )
-    url_web_permalink: StrictStr = Field(
-        description="Permalink to view the action on Devopness web"
-    )
+    type_human_readable: str
+    url_web_permalink: str
     action_data: Optional[ActionDeploymentData] = None
     triggered_from: Optional[ActionTriggeredFrom] = None
     summary: Optional[ActionSummary] = None
-    targets: Optional[List[ActionTarget]] = Field(
-        default=None, description="List of actions dispatched to cloud resource targets"
-    )
-    started_at: Optional[datetime] = Field(description="When the action started")
-    completed_at: Optional[datetime] = Field(description="When the action completed")
-    created_at: datetime = Field(description="When the action was created")
-    updated_at: datetime = Field(description="When the action was last updated")
+    targets: Optional[List[ActionTarget]] = None
+    started_at: datetime
+    completed_at: datetime
+    created_at: datetime
+    updated_at: datetime
 
 
 class ActionRelationShallowPlain(TypedDict, total=False):

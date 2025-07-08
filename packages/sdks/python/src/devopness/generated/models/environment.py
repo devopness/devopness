@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .environment_type import EnvironmentType, EnvironmentTypePlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
@@ -42,30 +40,18 @@ class Environment(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="Unique id of the given record")
+    id: int
     type: EnvironmentType
-    type_human_readable: StrictStr = Field(
-        description="The human readable version of the type"
-    )
-    name: StrictStr = Field(description="Environment's name")
-    description: Optional[StrictStr] = Field(description="Environment's description")
-    is_archived: StrictBool = Field(
-        description="Indicates whether the record was archived"
-    )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
-        default=None, description="Summary of the resource"
-    )
-    teams: List[Optional[TeamRelation]]
+    type_human_readable: str
+    name: str
+    description: str
+    is_archived: bool
+    resource_summary: Optional[List[ResourceSummaryItem]] = None
+    teams: List[TeamRelation]
     created_by_user: UserRelation
-    current_user_permissions: List[StrictStr] = Field(
-        description="The list of permissions granted for this role"
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    current_user_permissions: List[str]
+    created_at: str
+    updated_at: str
 
 
 class EnvironmentPlain(TypedDict, total=False):

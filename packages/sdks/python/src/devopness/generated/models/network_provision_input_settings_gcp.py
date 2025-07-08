@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -26,12 +24,8 @@ class NetworkProvisionInputSettingsGcp(DevopnessBaseModel):
         region_human_readable (str, optional): Human readable version of the network region
     """
 
-    region: StrictStr = Field(
-        description="The cloud provider region where the network will be created"
-    )
-    region_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the network region"
-    )
+    region: str
+    region_human_readable: Optional[str] = None
 
 
 class NetworkProvisionInputSettingsGcpPlain(TypedDict, total=False):

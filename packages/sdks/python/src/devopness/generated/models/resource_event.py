@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .subscription import Subscription, SubscriptionPlain
@@ -29,11 +26,9 @@ class ResourceEvent(DevopnessBaseModel):
         resource_data (Subscription):
     """
 
-    resource_type: StrictStr = Field(
-        description="The resource type to create events for."
-    )
-    resource_id: StrictInt = Field(description="The resource ID.")
-    resource_data: Optional[Subscription]
+    resource_type: str
+    resource_id: int
+    resource_data: Subscription
 
 
 class ResourceEventPlain(TypedDict, total=False):

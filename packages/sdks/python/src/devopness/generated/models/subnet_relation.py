@@ -12,8 +12,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .subnet_provision_input import SubnetProvisionInput, SubnetProvisionInputPlain
 from .subnet_type import SubnetType, SubnetTypePlain
@@ -37,31 +35,17 @@ class SubnetRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
-    project_id: StrictInt = Field(
-        description="Numeric ID of the project to which the subnet belongs to"
-    )
-    environment_id: StrictInt = Field(
-        description="Numeric ID of the environment to which the subnet belongs to"
-    )
-    created_by: StrictInt = Field(
-        description="The id of the user who created the subnet"
-    )
-    network_id: StrictInt = Field(
-        description="Numeric ID of the network to which the subnet belongs to"
-    )
-    name: StrictStr = Field(description="The subnet's name")
+    id: int
+    project_id: int
+    environment_id: int
+    created_by: int
+    network_id: int
+    name: str
     type: SubnetType
-    is_auto_generated: StrictBool = Field(
-        description="True if this subnet is auto-generated or false if this was created by the user"
-    )
+    is_auto_generated: bool
     provision_input: SubnetProvisionInput
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    created_at: str
+    updated_at: str
 
 
 class SubnetRelationPlain(TypedDict, total=False):

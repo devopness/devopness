@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -25,10 +23,8 @@ class UserLogin(DevopnessBaseModel):
         password (str): The user password.
     """
 
-    email: StrictStr = Field(
-        description="The user's registered e-mail address. Must be a valid email address."
-    )
-    password: StrictStr = Field(description="The user password.")
+    email: str
+    password: str
 
 
 class UserLoginPlain(TypedDict, total=False):

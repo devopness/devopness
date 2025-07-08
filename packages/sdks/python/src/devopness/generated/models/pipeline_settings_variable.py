@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -28,14 +26,11 @@ class PipelineSettingsVariable(DevopnessBaseModel):
         required (bool, optional):
     """
 
-    name: Optional[StrictStr] = None
-    human_readable: Optional[StrictStr] = None
-    hint: Optional[StrictStr] = Field(
-        default=None,
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
-    )
-    type: Optional[StrictStr] = None
-    required: Optional[StrictBool] = None
+    name: Optional[str] = None
+    human_readable: Optional[str] = None
+    hint: Optional[str] = None
+    type: Optional[str] = None
+    required: Optional[bool] = None
 
 
 class PipelineSettingsVariablePlain(TypedDict, total=False):

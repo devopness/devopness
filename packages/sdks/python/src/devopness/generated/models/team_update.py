@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -27,13 +25,9 @@ class TeamUpdate(DevopnessBaseModel):
         photo_url (str, optional): The URL to team&#39;s image. Must be a valid URL.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Team.")
-    name: StrictStr = Field(
-        description="The name of the team. Must not be greater than 255 characters."
-    )
-    photo_url: Optional[StrictStr] = Field(
-        default=None, description="The URL to team's image. Must be a valid URL."
-    )
+    id: int
+    name: str
+    photo_url: Optional[str] = None
 
 
 class TeamUpdatePlain(TypedDict, total=False):

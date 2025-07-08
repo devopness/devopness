@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -26,12 +24,9 @@ class PipelineSettingsStage(DevopnessBaseModel):
         hint (str, optional): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: Optional[StrictStr] = None
-    human_readable: Optional[StrictStr] = None
-    hint: Optional[StrictStr] = Field(
-        default=None,
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
-    )
+    value: Optional[str] = None
+    human_readable: Optional[str] = None
+    hint: Optional[str] = None
 
 
 class PipelineSettingsStagePlain(TypedDict, total=False):

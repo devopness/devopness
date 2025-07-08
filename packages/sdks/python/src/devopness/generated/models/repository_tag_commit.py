@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -25,12 +23,8 @@ class RepositoryTagCommit(DevopnessBaseModel):
         url (str): The direct URL for accessing commit details on the provider&#39;s web application
     """
 
-    hash: StrictStr = Field(
-        description="The commit comment's full hash that uniquely identify it"
-    )
-    url: StrictStr = Field(
-        description="The direct URL for accessing commit details on the provider's web application"
-    )
+    hash: str
+    url: str
 
 
 class RepositoryTagCommitPlain(TypedDict, total=False):

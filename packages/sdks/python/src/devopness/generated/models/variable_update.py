@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .variable_target import VariableTarget, VariableTargetPlain
 from .variable_type import VariableType, VariableTypePlain
@@ -34,22 +32,13 @@ class VariableUpdate(DevopnessBaseModel):
         hidden (bool): Indicates if the variable value should be visible or not in the deployment logs.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Variable.")
-    key: StrictStr = Field(
-        description="The unique key used to identify the variable on the target.                     When variable is of type `file`, this is the relative path                     to the file within the application directory. Must not be greater than 100 characters."
-    )
-    value: StrictStr = Field(
-        description="The value to be assigned to this variable when deployed to its target.                     When variable is of type `file`, this is the file content. Must not be greater than 21504 characters."
-    )
-    description: Optional[StrictStr] = Field(
-        default=None,
-        description="A text describing the variable, provided by the end user. Must not be greater than 255 characters.",
-    )
+    id: int
+    key: str
+    value: str
+    description: Optional[str] = None
     target: VariableTarget
     type: VariableType
-    hidden: StrictBool = Field(
-        description="Indicates if the variable value should be visible or not in the deployment logs."
-    )
+    hidden: bool
 
 
 class VariableUpdatePlain(TypedDict, total=False):

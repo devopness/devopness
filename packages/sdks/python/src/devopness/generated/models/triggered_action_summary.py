@@ -9,10 +9,7 @@ Note:
 from typing import (
     Optional,
     TypedDict,
-    Union,
 )
-
-from pydantic import Field, StrictFloat, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -30,29 +27,12 @@ class TriggeredActionSummary(DevopnessBaseModel):
         failed (float, optional): Total of actions that were triggered by the user with status failed
     """
 
-    count: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Total of actions that were triggered by the user"
-    )
-    queued: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total of actions that were triggered by the user with status queued",
-    )
-    pending: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total of actions that were triggered by the user with status pending",
-    )
-    in_progress: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total of actions that were triggered by the user with status in_progress",
-    )
-    completed: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total of actions that were triggered by the user with status completed",
-    )
-    failed: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total of actions that were triggered by the user with status failed",
-    )
+    count: Optional[float] = None
+    queued: Optional[float] = None
+    pending: Optional[float] = None
+    in_progress: Optional[float] = None
+    completed: Optional[float] = None
+    failed: Optional[float] = None
 
 
 class TriggeredActionSummaryPlain(TypedDict, total=False):

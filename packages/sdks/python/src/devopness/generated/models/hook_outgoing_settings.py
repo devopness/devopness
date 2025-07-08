@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .hook_outgoing_request_header import (
     HookOutgoingRequestHeader,
@@ -35,9 +33,7 @@ class HookOutgoingSettings(DevopnessBaseModel):
         request_body (HookOutgoingSettingsRequestBody, optional):
     """
 
-    request_headers: Optional[List[HookOutgoingRequestHeader]] = Field(
-        default=None, description="List of outgoing hook request headers"
-    )
+    request_headers: Optional[List[HookOutgoingRequestHeader]] = None
     request_body: Optional[HookOutgoingSettingsRequestBody] = None
 
 

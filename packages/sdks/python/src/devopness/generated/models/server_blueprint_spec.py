@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .blueprint_service import BlueprintService, BlueprintServicePlain
 
@@ -27,10 +25,7 @@ class ServerBlueprintSpec(DevopnessBaseModel):
         services (List[BlueprintService], optional): The service names and their respective versions for a blueprint.
     """
 
-    services: Optional[List[BlueprintService]] = Field(
-        default=None,
-        description="The service names and their respective versions for a blueprint.",
-    )
+    services: Optional[List[BlueprintService]] = None
 
 
 class ServerBlueprintSpecPlain(TypedDict, total=False):

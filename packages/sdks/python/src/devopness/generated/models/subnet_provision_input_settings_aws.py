@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -28,17 +26,10 @@ class SubnetProvisionInputSettingsAws(DevopnessBaseModel):
         cidr_block (str): The IP CIDR range of the subnet
     """
 
-    region: Optional[StrictStr] = Field(
-        default=None,
-        description="The cloud provider region where the subnet will be created",
-    )
-    region_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the subnet region"
-    )
-    zone: StrictStr = Field(
-        description="The cloud provider availability zone where the subnet will be created"
-    )
-    cidr_block: StrictStr = Field(description="The IP CIDR range of the subnet")
+    region: Optional[str] = None
+    region_human_readable: Optional[str] = None
+    zone: str
+    cidr_block: str
 
 
 class SubnetProvisionInputSettingsAwsPlain(TypedDict, total=False):

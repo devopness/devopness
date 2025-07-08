@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .subscription_balance import SubscriptionBalance, SubscriptionBalancePlain
 
@@ -41,49 +39,20 @@ class Subscription(DevopnessBaseModel):
         balances (List[SubscriptionBalance], optional): The list of subscription balances
     """
 
-    id: Optional[StrictInt] = Field(
-        default=None, description="The ID of the subscription"
-    )
-    user_id: Optional[StrictInt] = Field(
-        default=None, description="The ID of the user this subscription belongs to"
-    )
-    plan_name: Optional[StrictStr] = Field(
-        default=None, description="The plan name of this subscription"
-    )
-    status: Optional[StrictStr] = Field(
-        default=None, description="Status of this subscription"
-    )
-    quantity: Optional[StrictInt] = Field(
-        default=None, description="Amount of plans purchased in this subscription"
-    )
-    price_unit: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Unitary price of the subscribed plan"
-    )
-    price_total: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total price of this subscription (quantity x price_unit)",
-    )
-    price_currency: Optional[StrictStr] = Field(
-        default=None, description="Currency of the prices"
-    )
-    cancelled_at: Optional[datetime] = Field(
-        default=None,
-        description="If not null, indicates the date when this subscription was cancelled",
-    )
-    ends_at: Optional[datetime] = Field(
-        default=None,
-        description="Indicates the date and time when this subscription ends",
-    )
-    created_at: Optional[datetime] = Field(
-        default=None, description="The date and time when the record was created"
-    )
-    updated_at: Optional[datetime] = Field(
-        default=None, description="The date and time when the record was last updated"
-    )
+    id: Optional[int] = None
+    user_id: Optional[int] = None
+    plan_name: Optional[str] = None
+    status: Optional[str] = None
+    quantity: Optional[int] = None
+    price_unit: Optional[float] = None
+    price_total: Optional[float] = None
+    price_currency: Optional[str] = None
+    cancelled_at: Optional[datetime] = None
+    ends_at: Optional[datetime] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
     current_balance: Optional[SubscriptionBalance] = None
-    balances: Optional[List[Optional[SubscriptionBalance]]] = Field(
-        default=None, description="The list of subscription balances"
-    )
+    balances: Optional[List[SubscriptionBalance]] = None
 
 
 class SubscriptionPlain(TypedDict, total=False):

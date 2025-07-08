@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -26,11 +24,9 @@ class ScriptRunner(DevopnessBaseModel):
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: StrictStr = Field(description="How to call the runner in CLI")
-    human_readable: StrictStr = Field(description="The formatted name of the runner")
-    hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
-    )
+    value: str
+    human_readable: str
+    hint: str
 
 
 class ScriptRunnerPlain(TypedDict, total=False):

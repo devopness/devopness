@@ -9,10 +9,7 @@ Note:
 from typing import (
     Optional,
     TypedDict,
-    Union,
 )
-
-from pydantic import Field, StrictFloat, StrictInt
 
 from .. import DevopnessBaseModel
 
@@ -27,16 +24,9 @@ class Credits(DevopnessBaseModel):
         remaining (float, optional): Total credits available to use to perform actions
     """
 
-    limit: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None,
-        description="Total credits that can be used to perform actions in the subscription period",
-    )
-    used: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Total credits that were used to perform actions"
-    )
-    remaining: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="Total credits available to use to perform actions"
-    )
+    limit: Optional[float] = None
+    used: Optional[float] = None
+    remaining: Optional[float] = None
 
 
 class CreditsPlain(TypedDict, total=False):

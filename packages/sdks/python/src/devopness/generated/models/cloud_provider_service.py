@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .cloud_provider_service_code import (
     CloudProviderServiceCode,
@@ -45,7 +43,7 @@ class CloudProviderService(DevopnessBaseModel):
     """
 
     code: CloudProviderServiceCode
-    name: StrictStr = Field(description="The full name of the cloud service")
+    name: str
     provider: Optional[ProviderRelation] = None
     regions: Optional[List[CloudProviderServiceRegion]] = None
     resource_types: Optional[List[CloudProviderServiceResourceType]] = None

@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -25,8 +23,8 @@ class ProviderTypeListInner(DevopnessBaseModel):
         type_human_readable (str):
     """
 
-    type: StrictStr
-    type_human_readable: StrictStr
+    type: str
+    type_human_readable: str
 
 
 class ProviderTypeListInnerPlain(TypedDict, total=False):

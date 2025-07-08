@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .static_environment_type import StaticEnvironmentType, StaticEnvironmentTypePlain
 
@@ -27,9 +25,7 @@ class EnvironmentOptions(DevopnessBaseModel):
         types (List[StaticEnvironmentType]): The supported environments types
     """
 
-    types: List[StaticEnvironmentType] = Field(
-        description="The supported environments types"
-    )
+    types: List[StaticEnvironmentType]
 
 
 class EnvironmentOptionsPlain(TypedDict, total=False):

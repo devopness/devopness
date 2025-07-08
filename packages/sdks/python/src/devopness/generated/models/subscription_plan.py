@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -26,9 +24,9 @@ class SubscriptionPlan(DevopnessBaseModel):
         allow_subscriptions (bool, optional):
     """
 
-    provider_plan_id: Optional[StrictStr] = None
-    human_readable: Optional[StrictStr] = None
-    allow_subscriptions: Optional[StrictBool] = None
+    provider_plan_id: Optional[str] = None
+    human_readable: Optional[str] = None
+    allow_subscriptions: Optional[bool] = None
 
 
 class SubscriptionPlanPlain(TypedDict, total=False):

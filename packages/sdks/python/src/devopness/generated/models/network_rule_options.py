@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field
-
 from .. import DevopnessBaseModel
 from .static_network_rule_direction import (
     StaticNetworkRuleDirection,
@@ -35,12 +33,8 @@ class NetworkRuleOptions(DevopnessBaseModel):
         protocols (List[StaticNetworkRuleProtocol]): The supported network rule&#39;s protocols
     """
 
-    directions: List[StaticNetworkRuleDirection] = Field(
-        description="The supported network rule's traffic directions"
-    )
-    protocols: List[StaticNetworkRuleProtocol] = Field(
-        description="The supported network rule's protocols"
-    )
+    directions: List[StaticNetworkRuleDirection]
+    protocols: List[StaticNetworkRuleProtocol]
 
 
 class NetworkRuleOptionsPlain(TypedDict, total=False):

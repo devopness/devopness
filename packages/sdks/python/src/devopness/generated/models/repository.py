@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 from .repository_branch import RepositoryBranch, RepositoryBranchPlain
 from .repository_tag import RepositoryTag, RepositoryTagPlain
@@ -33,18 +31,12 @@ class Repository(DevopnessBaseModel):
         tags (List[RepositoryTag]): List of repository tags
     """
 
-    name: StrictStr = Field(description="The name of the repository")
-    user_name: StrictStr = Field(
-        description="The name of the user/account on the Version Control System"
-    )
-    full_name: StrictStr = Field(
-        description="The fully qualified repository name. Usually composed of user_name/name"
-    )
-    html_url: StrictStr = Field(
-        description="The URL for viewing repository details on the provider's web application"
-    )
-    branches: List[RepositoryBranch] = Field(description="List of repository branches")
-    tags: List[RepositoryTag] = Field(description="List of repository tags")
+    name: str
+    user_name: str
+    full_name: str
+    html_url: str
+    branches: List[RepositoryBranch]
+    tags: List[RepositoryTag]
 
 
 class RepositoryPlain(TypedDict, total=False):

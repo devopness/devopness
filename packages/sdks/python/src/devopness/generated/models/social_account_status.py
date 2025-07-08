@@ -11,8 +11,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -26,9 +24,9 @@ class SocialAccountStatus(DevopnessBaseModel):
         connect_url (str): URL of the connection
     """
 
-    provider: StrictStr = Field(description="Name of the provider")
-    connected: StrictBool = Field(description="If the account is currently connected")
-    connect_url: StrictStr = Field(description="URL of the connection")
+    provider: str
+    connected: bool
+    connect_url: str
 
 
 class SocialAccountStatusPlain(TypedDict, total=False):

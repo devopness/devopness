@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .deployment_type import DeploymentType, DeploymentTypePlain
 
@@ -33,24 +31,12 @@ class DeploymentApplicationCreate(DevopnessBaseModel):
         servers (List[int], optional): List of valid resource IDs
     """
 
-    environment: Optional[StrictStr] = Field(
-        default=None, description="The environment type of the deployment."
-    )
+    environment: Optional[str] = None
     type: DeploymentType
-    source_type: Optional[StrictStr] = Field(
-        default=None,
-        description="The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. This field is required when <code>source_ref</code> is present.",
-    )
-    source_ref: Optional[StrictStr] = Field(
-        default=None,
-        description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. This field is required when <code>source_type</code> is present. Must not be greater than 200 characters.",
-    )
-    pipeline_id: Optional[StrictInt] = Field(
-        default=None, description="The pipeline's ID to use for deployment."
-    )
-    servers: Optional[List[StrictInt]] = Field(
-        default=None, description="List of valid resource IDs"
-    )
+    source_type: Optional[str] = None
+    source_ref: Optional[str] = None
+    pipeline_id: Optional[int] = None
+    servers: Optional[List[int]] = None
 
 
 class DeploymentApplicationCreatePlain(TypedDict, total=False):

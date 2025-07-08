@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .network_rule_direction import NetworkRuleDirection, NetworkRuleDirectionPlain
 from .network_rule_protocol import NetworkRuleProtocol, NetworkRuleProtocolPlain
@@ -32,15 +30,11 @@ class NetworkRuleUpdate(DevopnessBaseModel):
         cidr_block (str): IP address range this rule applies for, defined using CIDR notation.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Network Rule.")
-    name: StrictStr = Field(
-        description="The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters."
-    )
+    id: int
+    name: str
     direction: NetworkRuleDirection
     protocol: Optional[NetworkRuleProtocol] = None
-    cidr_block: StrictStr = Field(
-        description="IP address range this rule applies for, defined using CIDR notation."
-    )
+    cidr_block: str
 
 
 class NetworkRuleUpdatePlain(TypedDict, total=False):

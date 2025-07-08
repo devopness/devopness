@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_deployment_data import ActionDeploymentData, ActionDeploymentDataPlain
 from .action_resource import ActionResource, ActionResourcePlain
@@ -54,41 +52,23 @@ class ActionRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the given action")
+    id: int
     status: ActionStatus
-    status_human_readable: StrictStr = Field(
-        description="Human readable version of action status"
-    )
+    status_human_readable: str
     status_reason_code: ActionStatusReasonCode
-    status_reason_human_readable: StrictStr = Field(
-        description="Human readable version of the status reason code"
-    )
+    status_reason_human_readable: str
     type: ActionType
-    type_human_readable: StrictStr = Field(
-        description="Human readable version of the action type"
-    )
-    url_web_permalink: StrictStr = Field(
-        description="The permalink URL to the action details on Devopness web app"
-    )
-    action_data: Optional[ActionDeploymentData]
+    type_human_readable: str
+    url_web_permalink: str
+    action_data: ActionDeploymentData
     triggered_from: ActionTriggeredFrom
     resource: ActionResource
     summary: Optional[ActionSummary] = None
-    targets: Optional[List[ActionTarget]] = Field(
-        default=None, description="List of actions dispatched to cloud resource targets"
-    )
-    started_at: Optional[StrictStr] = Field(
-        description="The date and time when the action started execution (i.e., left the `pending/queued` status)"
-    )
-    completed_at: Optional[StrictStr] = Field(
-        description="The date and time when the action has finished execution"
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    targets: Optional[List[ActionTarget]] = None
+    started_at: str
+    completed_at: str
+    created_at: str
+    updated_at: str
 
 
 class ActionRelationPlain(TypedDict, total=False):

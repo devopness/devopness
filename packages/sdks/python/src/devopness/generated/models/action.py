@@ -14,8 +14,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-
 from .. import DevopnessBaseModel
 from .action_deployment_data import ActionDeploymentData, ActionDeploymentDataPlain
 from .action_hook_request import ActionHookRequest, ActionHookRequestPlain
@@ -67,55 +65,31 @@ class Action(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the given action")
-    pipeline_id: Optional[StrictInt] = Field(
-        description="The ID of the pipeline executed by this action"
-    )
-    retry_of: Optional[StrictInt] = Field(
-        description="The Id of the parent action that this action is a retry of"
-    )
+    id: int
+    pipeline_id: int
+    retry_of: int
     status: ActionStatus
-    status_human_readable: StrictStr = Field(
-        description="Human readable version of action status"
-    )
+    status_human_readable: str
     status_reason_code: ActionStatusReasonCode
-    status_reason_human_readable: StrictStr = Field(
-        description="Human readable version of the status reason code"
-    )
+    status_reason_human_readable: str
     type: ActionType
-    type_human_readable: StrictStr = Field(
-        description="Human readable version of the action type"
-    )
-    url_web_permalink: StrictStr = Field(
-        description="The permalink URL to the action details on Devopness web app"
-    )
-    action_data: Optional[ActionDeploymentData]
+    type_human_readable: str
+    url_web_permalink: str
+    action_data: ActionDeploymentData
     triggered_from: ActionTriggeredFrom
-    parent: Optional[RelatedAction]
-    children: List[Optional[RelatedAction]] = Field(
-        description="List of related actions"
-    )
+    parent: RelatedAction
+    children: List[RelatedAction]
     triggered_by_user: Optional[UserRelation] = None
     resource: ActionResource
     summary: ActionSummary
-    environment: Optional[EnvironmentRelation]
-    project: Optional[ProjectRelation]
-    targets: Optional[List[ActionTarget]] = Field(
-        default=None, description="List of actions dispatched to cloud resource targets"
-    )
+    environment: EnvironmentRelation
+    project: ProjectRelation
+    targets: Optional[List[ActionTarget]] = None
     hook_requests: Optional[ActionHookRequest] = None
-    started_at: Optional[StrictStr] = Field(
-        description="The date and time when the action started execution (i.e., left the `pending/queued` status)"
-    )
-    completed_at: Optional[StrictStr] = Field(
-        description="The date and time when the action has finished execution"
-    )
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    started_at: str
+    completed_at: str
+    created_at: str
+    updated_at: str
 
 
 class ActionPlain(TypedDict, total=False):

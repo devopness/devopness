@@ -12,8 +12,6 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictStr
-
 from .. import DevopnessBaseModel
 
 
@@ -29,22 +27,11 @@ class UserVerify(DevopnessBaseModel):
         password (str): The new password to account. Must be at least 8 characters.
     """
 
-    email: StrictStr = Field(
-        description="The email of the user's account. Must be a valid email address. Must not be greater than 255 characters."
-    )
-    token: StrictStr = Field(
-        description="The security token of the account. Must not be greater than 255 characters."
-    )
-    name: StrictStr = Field(
-        description="The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters."
-    )
-    url_slug: Optional[StrictStr] = Field(
-        default=None,
-        description="The URL Slug of the account. Must not be greater than 255 characters.",
-    )
-    password: StrictStr = Field(
-        description="The new password to account. Must be at least 8 characters."
-    )
+    email: str
+    token: str
+    name: str
+    url_slug: Optional[str] = None
+    password: str
 
 
 class UserVerifyPlain(TypedDict, total=False):

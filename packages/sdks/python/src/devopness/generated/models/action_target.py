@@ -15,9 +15,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictInt, StrictStr
-from typing_extensions import Annotated
-
 from .. import DevopnessBaseModel
 from .action_status import ActionStatus, ActionStatusPlain
 from .action_status_reason_code import (
@@ -51,46 +48,22 @@ class ActionTarget(DevopnessBaseModel):
         updated_at (datetime): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The ID of the action target")
-    resource_type: StrictStr = Field(
-        description="The type of the cloud resource on which the action must be performed"
-    )
-    resource_type_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the resource type"
-    )
-    resource_id: StrictInt = Field(
-        description="The Id of the cloud resource on which the action must be performed"
-    )
+    id: int
+    resource_type: str
+    resource_type_human_readable: Optional[str] = None
+    resource_id: int
     status: ActionStatus
-    status_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the action status"
-    )
+    status_human_readable: Optional[str] = None
     status_reason_code: ActionStatusReasonCode
-    status_reason_human_readable: Optional[StrictStr] = Field(
-        default=None, description="Human readable version of the status reason code"
-    )
-    total_steps: Optional[Annotated[int, Field(le=127, strict=True, ge=0)]] = Field(
-        description="The total number of steps to complete the action"
-    )
-    current_step: Optional[ActionStep]
-    steps: Optional[List[Optional[ActionStep]]] = Field(
-        default=None, description="The list of action steps"
-    )
-    resource_data: Optional[ActionTargetData]
-    started_at: Optional[datetime] = Field(
-        default=None,
-        description="The date and time when the action started execution (i.e., left the `pending/queued` status)",
-    )
-    completed_at: Optional[datetime] = Field(
-        default=None,
-        description="The date and time when the action has finished execution",
-    )
-    created_at: datetime = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: datetime = Field(
-        description="The date and time when the record was last updated"
-    )
+    status_reason_human_readable: Optional[str] = None
+    total_steps: int
+    current_step: ActionStep
+    steps: Optional[List[ActionStep]] = None
+    resource_data: ActionTargetData
+    started_at: Optional[datetime] = None
+    completed_at: Optional[datetime] = None
+    created_at: datetime
+    updated_at: datetime
 
 
 class ActionTargetPlain(TypedDict, total=False):

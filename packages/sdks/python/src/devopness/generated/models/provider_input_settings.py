@@ -7,13 +7,10 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
 )
-
-from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 from .provider_input_settings_validation import (
@@ -34,17 +31,11 @@ class ProviderInputSettings(DevopnessBaseModel):
         sensitive (bool): Defines if the input field data is a sensitive content
     """
 
-    name: StrictStr = Field(description="The name of a credential input field")
-    name_human_readable: StrictStr = Field(
-        description="The human readable version of the input field name"
-    )
+    name: str
+    name_human_readable: str
     validation: ProviderInputSettingsValidation
-    default_value: Optional[StrictStr] = Field(
-        description="The default value of the input field"
-    )
-    sensitive: StrictBool = Field(
-        description="Defines if the input field data is a sensitive content"
-    )
+    default_value: str
+    sensitive: bool
 
 
 class ProviderInputSettingsPlain(TypedDict, total=False):

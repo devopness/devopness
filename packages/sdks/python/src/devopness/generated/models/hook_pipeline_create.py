@@ -13,8 +13,6 @@ from typing import (
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictStr
-
 from .. import DevopnessBaseModel
 from .hook_pipeline_create_settings import (
     HookPipelineCreateSettings,
@@ -37,24 +35,11 @@ class HookPipelineCreate(DevopnessBaseModel):
         settings (HookPipelineCreateSettings, optional):
     """
 
-    name: StrictStr = Field(
-        description="The name of the outgoing hook. Must not be greater than 60 characters."
-    )
-    active: Optional[StrictBool] = Field(
-        default=None, description="Determines if the hook is currently active."
-    )
-    requires_secret: Optional[StrictBool] = Field(
-        default=None,
-        description="Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources. This field is required when <code>type</code> is <code>in</code>.",
-    )
-    secret_algorithm: Optional[StrictStr] = Field(
-        default=None,
-        description="The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 20 characters.",
-    )
-    secret_header_name: Optional[StrictStr] = Field(
-        default=None,
-        description="The name of the HTTP request header from which the request digital signature should be extracted. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 64 characters.",
-    )
+    name: str
+    active: Optional[bool] = None
+    requires_secret: Optional[bool] = None
+    secret_algorithm: Optional[str] = None
+    secret_header_name: Optional[str] = None
     trigger_when: Optional[HookTriggerWhen] = None
     settings: Optional[HookPipelineCreateSettings] = None
 
