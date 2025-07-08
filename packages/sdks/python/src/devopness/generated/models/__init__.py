@@ -7,7 +7,6 @@ Note:
 """
 
 from .action import Action, ActionPlain
-from .action_data import ActionData, ActionDataPlain
 from .action_deployment_commit import (
     ActionDeploymentCommit,
     ActionDeploymentCommitPlain,
@@ -607,8 +606,6 @@ from .virtual_host_update import VirtualHostUpdate, VirtualHostUpdatePlain
 
 __all__ = [
     "Action",
-    "ActionData",
-    "ActionDataPlain",
     "ActionDeploymentCommit",
     "ActionDeploymentCommitPlain",
     "ActionDeploymentContent",

@@ -17,7 +17,7 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .action_data import ActionData, ActionDataPlain
+from .action_deployment_data import ActionDeploymentData, ActionDeploymentDataPlain
 from .action_resource import ActionResource, ActionResourcePlain
 from .action_status import ActionStatus, ActionStatusPlain
 from .action_status_reason_code import (
@@ -43,7 +43,7 @@ class ActionRelation(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
-        action_data (ActionData):
+        action_data (ActionDeploymentData):
         triggered_from (ActionTriggeredFrom):
         resource (ActionResource):
         summary (ActionSummary, optional):
@@ -70,7 +70,7 @@ class ActionRelation(DevopnessBaseModel):
     url_web_permalink: StrictStr = Field(
         description="The permalink URL to the action details on Devopness web app"
     )
-    action_data: Optional[ActionData]
+    action_data: Optional[ActionDeploymentData]
     triggered_from: ActionTriggeredFrom
     resource: ActionResource
     summary: Optional[ActionSummary] = None
@@ -121,8 +121,8 @@ class ActionRelationPlain(TypedDict, total=False):
     url_web_permalink: Required[str]
     action_data: Required[
         Union[
-            ActionData,
-            ActionDataPlain,
+            ActionDeploymentData,
+            ActionDeploymentDataPlain,
         ]
     ]
     triggered_from: Required[

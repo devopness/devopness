@@ -18,7 +18,7 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .action_data import ActionData, ActionDataPlain
+from .action_deployment_data import ActionDeploymentData, ActionDeploymentDataPlain
 from .action_status import ActionStatus, ActionStatusPlain
 from .action_status_reason_code import (
     ActionStatusReasonCode,
@@ -43,7 +43,7 @@ class ActionRelationShallow(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): Permalink to view the action on Devopness web
-        action_data (ActionData, optional):
+        action_data (ActionDeploymentData, optional):
         triggered_from (ActionTriggeredFrom, optional):
         summary (ActionSummary, optional):
         targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
@@ -69,7 +69,7 @@ class ActionRelationShallow(DevopnessBaseModel):
     url_web_permalink: StrictStr = Field(
         description="Permalink to view the action on Devopness web"
     )
-    action_data: Optional[ActionData] = None
+    action_data: Optional[ActionDeploymentData] = None
     triggered_from: Optional[ActionTriggeredFrom] = None
     summary: Optional[ActionSummary] = None
     targets: Optional[List[ActionTarget]] = Field(
@@ -111,8 +111,8 @@ class ActionRelationShallowPlain(TypedDict, total=False):
     url_web_permalink: Required[str]
     action_data: Optional[
         Union[
-            ActionData,
-            ActionDataPlain,
+            ActionDeploymentData,
+            ActionDeploymentDataPlain,
         ]
     ]
     triggered_from: Optional[
