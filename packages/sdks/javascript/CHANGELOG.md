@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#1966](https://github.com/devopness/devopness/pull/1966) [`edf00bf`](https://github.com/devopness/devopness/commit/edf00bfc4ad3f3a3c8f5ecefc733262dc57cc90c) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Changes**
+- [#1966](https://github.com/devopness/devopness/pull/1966) [`edf00bf`](https://github.com/devopness/devopness/commit/edf00bfc4ad3f3a3c8f5ecefc733262dc57cc90c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
 
   Fix action and action target field types
 
