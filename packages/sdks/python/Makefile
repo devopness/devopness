@@ -40,7 +40,7 @@ build-sdk-python: build-image ## ⚙️  Build the Devopness SDK for Python
 		--name devopness-sdk-python-build \
 		$(IMAGE):$(TAG) \
 		/bin/bash -ce ' \
-		  GENERATED_FILES=src/devopness/generated; \
+			GENERATED_FILES=src/devopness/generated; \
 			SDK_MODELS_FILE=src/devopness/models.py; \
 			FILES_TO_FORMAT="$$GENERATED_FILES $$SDK_MODELS_FILE"; \
 			\
