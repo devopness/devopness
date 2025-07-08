@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { fn } from 'storybook/test'
+
 import { Button } from '..'
+
 import { Input } from 'src/components/Forms/Input'
 import { Label } from 'src/components/Primitives/Label'
-import { fn } from 'storybook/test'
 
 const meta = {
   title: 'Components/Button/Visual Tests/ButtonWithLayout',
   component: Button,
   args: { onClick: fn() },
 } satisfies Meta<typeof Button>
-
-export default meta
 
 type Story = StoryObj<typeof meta>
 
@@ -35,3 +35,4 @@ export const AlignedLayout: Story = {
     </div>
   ),
 }
+export default meta
