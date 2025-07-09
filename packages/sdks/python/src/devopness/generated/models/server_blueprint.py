@@ -9,7 +9,6 @@ Note:
 from datetime import datetime
 from typing import (
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -25,12 +24,12 @@ class ServerBlueprint(DevopnessBaseModel):
     ServerBlueprint
 
     Attributes:
-        id (int): The unique id of the blueprint
-        name (str): Name of the blueprint
-        type (str): The blueprint type
-        spec (ServerBlueprintSpec):
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
+        id (int, optional): The unique id of the blueprint
+        name (str, optional): Name of the blueprint
+        type (str, optional): The blueprint type
+        spec (ServerBlueprintSpec, optional):
+        created_at (datetime, optional): The date and time when the record was created
+        updated_at (datetime, optional): The date and time when the record was last updated
     """
 
     id: Optional[StrictInt] = Field(
@@ -52,14 +51,14 @@ class ServerBlueprintPlain(TypedDict, total=False):
     Plain version of ServerBlueprint.
     """
 
-    id: Required[int]
-    name: Required[str]
-    type: Required[str]
-    spec: Required[
+    id: Optional[int]
+    name: Optional[str]
+    type: Optional[str]
+    spec: Optional[
         Union[
             ServerBlueprintSpec,
             ServerBlueprintSpecPlain,
         ]
     ]
-    created_at: Required[datetime]
-    updated_at: Required[datetime]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

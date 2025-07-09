@@ -23,7 +23,7 @@ class NetworkProvisionInputSettingsAzure(DevopnessBaseModel):
 
     Attributes:
         region (str): The cloud provider region where the network will be created
-        region_human_readable (str): Human readable version of the network region
+        region_human_readable (str, optional): Human readable version of the network region
         cidr_block (str): The IP CIDR range of the network
     """
 
@@ -42,5 +42,5 @@ class NetworkProvisionInputSettingsAzurePlain(TypedDict, total=False):
     """
 
     region: Required[str]
-    region_human_readable: Required[str]
+    region_human_readable: Optional[str]
     cidr_block: Required[str]

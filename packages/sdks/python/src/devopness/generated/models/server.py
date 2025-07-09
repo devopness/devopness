@@ -47,20 +47,20 @@ class Server(DevopnessBaseModel):
         provider_name (str): The name of the server&#39;s provider.
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
         cloud_service_code (ServerCloudServiceCode):
-        ip_address (str): Public ipv4 address for server access
+        ip_address (str, optional): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         os (OperatingSystemVersion):
-        os_version_code (CloudOsVersionCode, optional):
+        os_version_code (CloudOsVersionCode, optional, nullable):
         active (bool): Tells if the server is active or not
         status (ServerStatus):
         max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server,
         blueprint (ServerBlueprint):
         provision_input (ServerProvisionInput):
         created_by_user (UserRelation):
-        project (ProjectRelation, optional):
-        last_action (ActionRelation, optional):
-        environment (EnvironmentRelation, optional):
-        credential (CredentialRelation, optional):
+        project (ProjectRelation, optional, nullable):
+        last_action (ActionRelation, optional, nullable):
+        environment (EnvironmentRelation, optional, nullable):
+        credential (CredentialRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -121,7 +121,7 @@ class ServerPlain(TypedDict, total=False):
             ServerCloudServiceCodePlain,
         ]
     ]
-    ip_address: Required[str]
+    ip_address: Optional[str]
     ssh_port: Required[int]
     os: Required[
         Union[
@@ -129,12 +129,15 @@ class ServerPlain(TypedDict, total=False):
             OperatingSystemVersionPlain,
         ]
     ]
-    os_version_code: Optional[
-        Union[
-            CloudOsVersionCode,
-            CloudOsVersionCodePlain,
+    os_version_code: (
+        Optional[
+            Union[
+                CloudOsVersionCode,
+                CloudOsVersionCodePlain,
+            ]
         ]
-    ]
+        | None
+    )
     active: Required[bool]
     status: Required[
         Union[
@@ -161,29 +164,41 @@ class ServerPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
+    project: (
+        Optional[
+            Union[
+                ProjectRelation,
+                ProjectRelationPlain,
+            ]
         ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
+        | None
+    )
+    last_action: (
+        Optional[
+            Union[
+                ActionRelation,
+                ActionRelationPlain,
+            ]
         ]
-    ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
+        | None
+    )
+    environment: (
+        Optional[
+            Union[
+                EnvironmentRelation,
+                EnvironmentRelationPlain,
+            ]
         ]
-    ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
+        | None
+    )
+    credential: (
+        Optional[
+            Union[
+                CredentialRelation,
+                CredentialRelationPlain,
+            ]
         ]
-    ]
+        | None
+    )
     created_at: Required[str]
     updated_at: Required[str]

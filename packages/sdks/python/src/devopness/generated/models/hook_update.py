@@ -30,12 +30,12 @@ class HookUpdate(DevopnessBaseModel):
     Attributes:
         id (str): The unique ID of the given Hook. Must be a valid UUID.
         name (str): The name of the outgoing hook. Must not be greater than 60 characters.
-        active (bool): Determines if the hook is currently active.
-        requires_secret (bool): Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources.
-        secret_algorithm (str): The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when &lt;code&gt;requires_secret&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;. Must not be greater than 20 characters.
-        secret_header_name (str): The name of the HTTP request header from which the request digital signature should be extracted. This field is required when &lt;code&gt;requires_secret&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;. Must not be greater than 64 characters.
-        trigger_when (HookTriggerWhen):
-        settings (HookPipelineCreateSettings):
+        active (bool, optional): Determines if the hook is currently active.
+        requires_secret (bool, optional): Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources.
+        secret_algorithm (str, optional): The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when &lt;code&gt;requires_secret&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;. Must not be greater than 20 characters.
+        secret_header_name (str, optional): The name of the HTTP request header from which the request digital signature should be extracted. This field is required when &lt;code&gt;requires_secret&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;. Must not be greater than 64 characters.
+        trigger_when (HookTriggerWhen, optional):
+        settings (HookPipelineCreateSettings, optional):
     """
 
     id: StrictStr = Field(
@@ -70,17 +70,17 @@ class HookUpdatePlain(TypedDict, total=False):
 
     id: Required[str]
     name: Required[str]
-    active: Required[bool]
-    requires_secret: Required[bool]
-    secret_algorithm: Required[str]
-    secret_header_name: Required[str]
-    trigger_when: Required[
+    active: Optional[bool]
+    requires_secret: Optional[bool]
+    secret_algorithm: Optional[str]
+    secret_header_name: Optional[str]
+    trigger_when: Optional[
         Union[
             HookTriggerWhen,
             HookTriggerWhenPlain,
         ]
     ]
-    settings: Required[
+    settings: Optional[
         Union[
             HookPipelineCreateSettings,
             HookPipelineCreateSettingsPlain,

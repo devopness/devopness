@@ -30,7 +30,7 @@ class ProviderInputSettings(DevopnessBaseModel):
         name (str): The name of a credential input field
         name_human_readable (str): The human readable version of the input field name
         validation (ProviderInputSettingsValidation):
-        default_value (str, optional): The default value of the input field
+        default_value (str, optional, nullable): The default value of the input field
         sensitive (bool): Defines if the input field data is a sensitive content
     """
 
@@ -60,5 +60,5 @@ class ProviderInputSettingsPlain(TypedDict, total=False):
             ProviderInputSettingsValidationPlain,
         ]
     ]
-    default_value: Optional[str]
+    default_value: Optional[str] | None
     sensitive: Required[bool]

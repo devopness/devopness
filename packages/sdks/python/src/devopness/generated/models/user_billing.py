@@ -21,7 +21,7 @@ class UserBilling(DevopnessBaseModel):
     UserBilling
 
     Attributes:
-        active_subscription (Subscription, optional):
+        active_subscription (Subscription, optional, nullable):
     """
 
     active_subscription: Optional[Subscription]
@@ -32,9 +32,12 @@ class UserBillingPlain(TypedDict, total=False):
     Plain version of UserBilling.
     """
 
-    active_subscription: Optional[
-        Union[
-            Subscription,
-            SubscriptionPlain,
+    active_subscription: (
+        Optional[
+            Union[
+                Subscription,
+                SubscriptionPlain,
+            ]
         ]
-    ]
+        | None
+    )

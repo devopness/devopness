@@ -32,16 +32,16 @@ class ServerRelation(DevopnessBaseModel):
         hostname (str): The server&#39;s hostname
         provider_name (str): The name of the server&#39;s provider.
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        credential (CredentialRelation, optional):
-        region (str, optional): The region in which the server is located
-        region_human_readable (str, optional): The human readable version of the region
-        ip_address (str): Public ipv4 address for server access
+        credential (CredentialRelation, optional, nullable):
+        region (str, optional, nullable): The region in which the server is located
+        region_human_readable (str, optional, nullable): The human readable version of the region
+        ip_address (str, optional): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         active (bool): Tells if the server is active or not
         status (ServerStatus):
-        last_action (ActionRelationShallow, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        last_action (ActionRelationShallow, optional, nullable):
+        created_at (str, optional): The date and time when the record was created
+        updated_at (str, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="The unique id of the given record")
@@ -89,15 +89,18 @@ class ServerRelationPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
+    credential: (
+        Optional[
+            Union[
+                CredentialRelation,
+                CredentialRelationPlain,
+            ]
         ]
-    ]
-    region: Optional[str]
-    region_human_readable: Optional[str]
-    ip_address: Required[str]
+        | None
+    )
+    region: Optional[str] | None
+    region_human_readable: Optional[str] | None
+    ip_address: Optional[str]
     ssh_port: Required[int]
     active: Required[bool]
     status: Required[
@@ -106,11 +109,14 @@ class ServerRelationPlain(TypedDict, total=False):
             ServerStatusPlain,
         ]
     ]
-    last_action: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
+    last_action: (
+        Optional[
+            Union[
+                ActionRelationShallow,
+                ActionRelationShallowPlain,
+            ]
         ]
-    ]
-    created_at: Required[str]
-    updated_at: Required[str]
+        | None
+    )
+    created_at: Optional[str]
+    updated_at: Optional[str]

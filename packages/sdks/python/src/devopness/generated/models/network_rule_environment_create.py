@@ -27,7 +27,7 @@ class NetworkRuleEnvironmentCreate(DevopnessBaseModel):
     NetworkRuleEnvironmentCreate
 
     Attributes:
-        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
+        linked_resources (List[ResourceToBeLinked], optional): The resources to be linked with this resource
         name (str): The rule&#39;s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
         direction (NetworkRuleDirection):
         protocol (NetworkRuleProtocol):
@@ -56,7 +56,7 @@ class NetworkRuleEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of NetworkRuleEnvironmentCreate.
     """
 
-    linked_resources: Required[
+    linked_resources: Optional[
         List[
             Union[
                 ResourceToBeLinked,

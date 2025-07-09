@@ -21,8 +21,8 @@ class ApplicationLastDeployments(DevopnessBaseModel):
     ApplicationLastDeployments
 
     Attributes:
-        latest (ActionRelationShallow, optional):
-        live (ActionRelationShallow, optional):
+        latest (ActionRelationShallow, optional, nullable):
+        live (ActionRelationShallow, optional, nullable):
     """
 
     latest: Optional[ActionRelationShallow] = None
@@ -34,15 +34,21 @@ class ApplicationLastDeploymentsPlain(TypedDict, total=False):
     Plain version of ApplicationLastDeployments.
     """
 
-    latest: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
+    latest: (
+        Optional[
+            Union[
+                ActionRelationShallow,
+                ActionRelationShallowPlain,
+            ]
         ]
-    ]
-    live: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
+        | None
+    )
+    live: (
+        Optional[
+            Union[
+                ActionRelationShallow,
+                ActionRelationShallowPlain,
+            ]
         ]
-    ]
+        | None
+    )

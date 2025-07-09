@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -23,9 +22,9 @@ class Credits(DevopnessBaseModel):
     Credits
 
     Attributes:
-        limit (float): Total credits that can be used to perform actions in the subscription period
-        used (float): Total credits that were used to perform actions
-        remaining (float): Total credits available to use to perform actions
+        limit (float, optional): Total credits that can be used to perform actions in the subscription period
+        used (float, optional): Total credits that were used to perform actions
+        remaining (float, optional): Total credits available to use to perform actions
     """
 
     limit: Optional[Union[StrictFloat, StrictInt]] = Field(
@@ -45,6 +44,6 @@ class CreditsPlain(TypedDict, total=False):
     Plain version of Credits.
     """
 
-    limit: Required[float]
-    used: Required[float]
-    remaining: Required[float]
+    limit: Optional[float]
+    used: Optional[float]
+    remaining: Optional[float]

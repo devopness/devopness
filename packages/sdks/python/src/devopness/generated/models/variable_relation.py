@@ -29,14 +29,14 @@ class VariableRelation(DevopnessBaseModel):
         id (int): The ID of the given variable
         key (str): The unique key used to identify the variable on the target
         type (VariableType):
-        description (str, optional): A text describing the variable, provided by the end user
-        value (str, optional): The value to be assigned to this variable when deployed to its target
+        description (str, optional, nullable): A text describing the variable, provided by the end user
+        value (str, optional, nullable): The value to be assigned to this variable when deployed to its target
         target (VariableTarget):
         target_human_readable (str): Human readable version of target
-        resource_id (int, optional): The ID of the resource this variable is linked to
+        resource_id (int, optional, nullable): The ID of the resource this variable is linked to
         resource_type (str): The name of the resource this variable is linked to
         hidden (bool): Indicates if the variable value should be visible or not in the deployment logs
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -87,8 +87,8 @@ class VariableRelationPlain(TypedDict, total=False):
             VariableTypePlain,
         ]
     ]
-    description: Optional[str]
-    value: Optional[str]
+    description: Optional[str] | None
+    value: Optional[str] | None
     target: Required[
         Union[
             VariableTarget,
@@ -96,10 +96,10 @@ class VariableRelationPlain(TypedDict, total=False):
         ]
     ]
     target_human_readable: Required[str]
-    resource_id: Optional[int]
+    resource_id: Optional[int] | None
     resource_type: Required[str]
     hidden: Required[bool]
-    created_by_user: Required[
+    created_by_user: Optional[
         Union[
             UserRelation,
             UserRelationPlain,

@@ -39,9 +39,9 @@ class CloudProviderService(DevopnessBaseModel):
     Attributes:
         code (CloudProviderServiceCode):
         name (str): The full name of the cloud service
-        provider (ProviderRelation):
-        regions (List[CloudProviderServiceRegion]):
-        resource_types (List[CloudProviderServiceResourceType]):
+        provider (ProviderRelation, optional):
+        regions (List[CloudProviderServiceRegion], optional):
+        resource_types (List[CloudProviderServiceResourceType], optional):
     """
 
     code: CloudProviderServiceCode
@@ -63,13 +63,13 @@ class CloudProviderServicePlain(TypedDict, total=False):
         ]
     ]
     name: Required[str]
-    provider: Required[
+    provider: Optional[
         Union[
             ProviderRelation,
             ProviderRelationPlain,
         ]
     ]
-    regions: Required[
+    regions: Optional[
         List[
             Union[
                 CloudProviderServiceRegion,
@@ -77,7 +77,7 @@ class CloudProviderServicePlain(TypedDict, total=False):
             ]
         ]
     ]
-    resource_types: Required[
+    resource_types: Optional[
         List[
             Union[
                 CloudProviderServiceResourceType,

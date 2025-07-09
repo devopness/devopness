@@ -27,7 +27,7 @@ class VariableApplicationCreate(DevopnessBaseModel):
     Attributes:
         key (str): The unique key used to identify the variable on the target.                 When variable is of type &#x60;file&#x60;, this is the relative path                 to the file within the application directory. Must not be greater than 100 characters.
         value (str): The value to be assigned to this variable when deployed to its target.                 When variable is of type &#x60;file&#x60;, this is the file content. Must not be greater than 21504 characters.
-        description (str): A text describing the variable, provided by the end user.
+        description (str, optional): A text describing the variable, provided by the end user.
         target (VariableTarget):
         type (VariableType):
         hidden (bool): Indicates if the variable value should be visible or not in the deployment logs.
@@ -57,7 +57,7 @@ class VariableApplicationCreatePlain(TypedDict, total=False):
 
     key: Required[str]
     value: Required[str]
-    description: Required[str]
+    description: Optional[str]
     target: Required[
         Union[
             VariableTarget,

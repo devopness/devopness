@@ -9,7 +9,6 @@ Note:
 from typing import (
     List,
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -32,8 +31,8 @@ class HookOutgoingSettings(DevopnessBaseModel):
     HookOutgoingSettings
 
     Attributes:
-        request_headers (List[HookOutgoingRequestHeader]): List of outgoing hook request headers
-        request_body (HookOutgoingSettingsRequestBody):
+        request_headers (List[HookOutgoingRequestHeader], optional): List of outgoing hook request headers
+        request_body (HookOutgoingSettingsRequestBody, optional):
     """
 
     request_headers: Optional[List[HookOutgoingRequestHeader]] = Field(
@@ -47,7 +46,7 @@ class HookOutgoingSettingsPlain(TypedDict, total=False):
     Plain version of HookOutgoingSettings.
     """
 
-    request_headers: Required[
+    request_headers: Optional[
         List[
             Union[
                 HookOutgoingRequestHeader,
@@ -55,7 +54,7 @@ class HookOutgoingSettingsPlain(TypedDict, total=False):
             ]
         ]
     ]
-    request_body: Required[
+    request_body: Optional[
         Union[
             HookOutgoingSettingsRequestBody,
             HookOutgoingSettingsRequestBodyPlain,

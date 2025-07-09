@@ -9,7 +9,6 @@ Note:
 from typing import (
     List,
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -27,8 +26,8 @@ class TriggeredActions(DevopnessBaseModel):
     TriggeredActions
 
     Attributes:
-        summary (TriggeredActionSummary):
-        operations (List[TriggeredActionStats]):
+        summary (TriggeredActionSummary, optional):
+        operations (List[TriggeredActionStats], optional):
     """
 
     summary: Optional[TriggeredActionSummary] = None
@@ -40,13 +39,13 @@ class TriggeredActionsPlain(TypedDict, total=False):
     Plain version of TriggeredActions.
     """
 
-    summary: Required[
+    summary: Optional[
         Union[
             TriggeredActionSummary,
             TriggeredActionSummaryPlain,
         ]
     ]
-    operations: Required[
+    operations: Optional[
         List[
             Union[
                 TriggeredActionStats,

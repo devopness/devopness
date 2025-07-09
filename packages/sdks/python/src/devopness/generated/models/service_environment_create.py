@@ -27,9 +27,9 @@ class ServiceEnvironmentCreate(DevopnessBaseModel):
     ServiceEnvironmentCreate
 
     Attributes:
-        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
-        auto_start (bool): Tells if the service should start automatically on operating system boot.
-        initial_state (ServiceInitialState):
+        linked_resources (List[ResourceToBeLinked], optional): The resources to be linked with this resource
+        auto_start (bool, optional): Tells if the service should start automatically on operating system boot.
+        initial_state (ServiceInitialState, optional):
         type (ServiceType):
         version (str): The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.
     """
@@ -53,7 +53,7 @@ class ServiceEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of ServiceEnvironmentCreate.
     """
 
-    linked_resources: Required[
+    linked_resources: Optional[
         List[
             Union[
                 ResourceToBeLinked,
@@ -61,8 +61,8 @@ class ServiceEnvironmentCreatePlain(TypedDict, total=False):
             ]
         ]
     ]
-    auto_start: Required[bool]
-    initial_state: Required[
+    auto_start: Optional[bool]
+    initial_state: Optional[
         Union[
             ServiceInitialState,
             ServiceInitialStatePlain,

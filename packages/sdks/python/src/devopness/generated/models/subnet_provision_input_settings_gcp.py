@@ -23,7 +23,7 @@ class SubnetProvisionInputSettingsGcp(DevopnessBaseModel):
 
     Attributes:
         region (str): The cloud provider region where the subnet will be created
-        region_human_readable (str): Human readable version of the subnet region
+        region_human_readable (str, optional): Human readable version of the subnet region
         cidr_block (str): The IP CIDR range of the subnet
     """
 
@@ -42,5 +42,5 @@ class SubnetProvisionInputSettingsGcpPlain(TypedDict, total=False):
     """
 
     region: Required[str]
-    region_human_readable: Required[str]
+    region_human_readable: Optional[str]
     cidr_block: Required[str]

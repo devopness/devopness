@@ -24,9 +24,9 @@ class ActionTargetLogStep(DevopnessBaseModel):
 
     Attributes:
         order (int): The execution order of the given step
-        started_at (datetime, optional): The date and time when the step started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (datetime, optional): The date and time when the step has finished execution
-        output (str, optional): The full text output log
+        started_at (datetime, optional, nullable): The date and time when the step started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (datetime, optional, nullable): The date and time when the step has finished execution
+        output (str, optional, nullable): The full text output log
     """
 
     order: StrictInt = Field(description="The execution order of the given step")
@@ -45,6 +45,6 @@ class ActionTargetLogStepPlain(TypedDict, total=False):
     """
 
     order: Required[int]
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
-    output: Optional[str]
+    started_at: Optional[datetime] | None
+    completed_at: Optional[datetime] | None
+    output: Optional[str] | None

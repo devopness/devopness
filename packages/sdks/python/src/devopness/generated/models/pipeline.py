@@ -38,7 +38,7 @@ class Pipeline(DevopnessBaseModel):
         operation (str): The resource operation associated to the pipeline.
         operation_human_readable (str): Human readable version of the operation
         max_parallel_actions (int): Maximum number of actions that can run in parallel for this pipeline. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run this pipeline.
-        trigger_when (PipelineTriggerWhen, optional):
+        trigger_when (PipelineTriggerWhen, optional, nullable):
         steps (List[Step]):
         created_by_user (UserRelation):
         created_at (str): The date and time when the record was created
@@ -98,12 +98,15 @@ class PipelinePlain(TypedDict, total=False):
     operation: Required[str]
     operation_human_readable: Required[str]
     max_parallel_actions: Required[int]
-    trigger_when: Optional[
-        Union[
-            PipelineTriggerWhen,
-            PipelineTriggerWhenPlain,
+    trigger_when: (
+        Optional[
+            Union[
+                PipelineTriggerWhen,
+                PipelineTriggerWhenPlain,
+            ]
         ]
-    ]
+        | None
+    )
     steps: Required[
         List[
             Union[

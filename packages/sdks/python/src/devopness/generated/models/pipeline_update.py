@@ -26,8 +26,8 @@ class PipelineUpdate(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given Pipeline.
         name (str): The pipeline&#39;s name. Must be at least 3 characters. Must not be greater than 80 characters.
-        max_parallel_actions (int): Maximum number of actions that can run in parallel for this pipeline. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.
-        trigger_when (PipelineTriggerWhen, optional):
+        max_parallel_actions (int, optional): Maximum number of actions that can run in parallel for this pipeline. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.
+        trigger_when (PipelineTriggerWhen, optional, nullable):
     """
 
     id: StrictInt = Field(description="The unique ID of the given Pipeline.")
@@ -48,10 +48,13 @@ class PipelineUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    max_parallel_actions: Required[int]
-    trigger_when: Optional[
-        Union[
-            PipelineTriggerWhen,
-            PipelineTriggerWhenPlain,
+    max_parallel_actions: Optional[int]
+    trigger_when: (
+        Optional[
+            Union[
+                PipelineTriggerWhen,
+                PipelineTriggerWhenPlain,
+            ]
         ]
-    ]
+        | None
+    )

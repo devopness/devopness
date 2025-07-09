@@ -43,13 +43,13 @@ class ActionRelation(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
-        action_data (ActionDeploymentData, optional):
+        action_data (ActionDeploymentData, optional, nullable):
         triggered_from (ActionTriggeredFrom):
         resource (ActionResource):
-        summary (ActionSummary):
-        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
-        started_at (str, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (str, optional): The date and time when the action has finished execution
+        summary (ActionSummary, optional):
+        targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
+        started_at (str, optional, nullable): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (str, optional, nullable): The date and time when the action has finished execution
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -119,12 +119,15 @@ class ActionRelationPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Optional[
-        Union[
-            ActionDeploymentData,
-            ActionDeploymentDataPlain,
+    action_data: (
+        Optional[
+            Union[
+                ActionDeploymentData,
+                ActionDeploymentDataPlain,
+            ]
         ]
-    ]
+        | None
+    )
     triggered_from: Required[
         Union[
             ActionTriggeredFrom,
@@ -137,13 +140,13 @@ class ActionRelationPlain(TypedDict, total=False):
             ActionResourcePlain,
         ]
     ]
-    summary: Required[
+    summary: Optional[
         Union[
             ActionSummary,
             ActionSummaryPlain,
         ]
     ]
-    targets: Required[
+    targets: Optional[
         List[
             Union[
                 ActionTarget,
@@ -151,7 +154,7 @@ class ActionRelationPlain(TypedDict, total=False):
             ]
         ]
     ]
-    started_at: Optional[str]
-    completed_at: Optional[str]
+    started_at: Optional[str] | None
+    completed_at: Optional[str] | None
     created_at: Required[str]
     updated_at: Required[str]

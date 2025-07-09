@@ -9,7 +9,6 @@ Note:
 from typing import (
     List,
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -29,10 +28,10 @@ class PipelineSettings(DevopnessBaseModel):
     PipelineSettings
 
     Attributes:
-        max_pipelines_per_resource (int):
-        is_user_managed (bool): Indicates whether the user has permission to manage the pipeline for the resource operation
-        stages (List[PipelineSettingsStage], optional): The list of pipeline setting stage
-        variables (List[PipelineSettingsVariable], optional): The list of pipeline setting variable
+        max_pipelines_per_resource (int, optional):
+        is_user_managed (bool, optional): Indicates whether the user has permission to manage the pipeline for the resource operation
+        stages (List[PipelineSettingsStage], optional, nullable): The list of pipeline setting stage
+        variables (List[PipelineSettingsVariable], optional, nullable): The list of pipeline setting variable
     """
 
     max_pipelines_per_resource: Optional[StrictInt] = None
@@ -53,21 +52,27 @@ class PipelineSettingsPlain(TypedDict, total=False):
     Plain version of PipelineSettings.
     """
 
-    max_pipelines_per_resource: Required[int]
-    is_user_managed: Required[bool]
-    stages: Optional[
-        List[
-            Union[
-                PipelineSettingsStage,
-                PipelineSettingsStagePlain,
+    max_pipelines_per_resource: Optional[int]
+    is_user_managed: Optional[bool]
+    stages: (
+        Optional[
+            List[
+                Union[
+                    PipelineSettingsStage,
+                    PipelineSettingsStagePlain,
+                ]
             ]
         ]
-    ]
-    variables: Optional[
-        List[
-            Union[
-                PipelineSettingsVariable,
-                PipelineSettingsVariablePlain,
+        | None
+    )
+    variables: (
+        Optional[
+            List[
+                Union[
+                    PipelineSettingsVariable,
+                    PipelineSettingsVariablePlain,
+                ]
             ]
         ]
-    ]
+        | None
+    )

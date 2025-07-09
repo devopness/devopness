@@ -28,8 +28,8 @@ class Team(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given team
         name (str): The name of the given team
-        photo_url (str, optional): The URL to team&#39;s image
-        project (ProjectRelation, optional):
+        photo_url (str, optional, nullable): The URL to team&#39;s image
+        project (ProjectRelation, optional, nullable):
         users (List[UserRelation]): The list of users
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
@@ -55,13 +55,16 @@ class TeamPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Optional[str]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
+    photo_url: Optional[str] | None
+    project: (
+        Optional[
+            Union[
+                ProjectRelation,
+                ProjectRelationPlain,
+            ]
         ]
-    ]
+        | None
+    )
     users: Required[
         List[
             Union[

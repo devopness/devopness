@@ -25,7 +25,7 @@ class ApiError(DevopnessBaseModel):
 
     Attributes:
         message (str): The main exception raised by the server
-        errors (ApiErrorErrors):
+        errors (ApiErrorErrors, optional):
     """
 
     message: StrictStr = Field(description="The main exception raised by the server")
@@ -38,7 +38,7 @@ class ApiErrorPlain(TypedDict, total=False):
     """
 
     message: Required[str]
-    errors: Required[
+    errors: Optional[
         Union[
             ApiErrorErrors,
             ApiErrorErrorsPlain,

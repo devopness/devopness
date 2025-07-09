@@ -28,10 +28,10 @@ class RelatedAction(DevopnessBaseModel):
     Attributes:
         id (int): The Id of the given action
         status (ActionStatus):
-        status_human_readable (str): Human readable version of the action status
+        status_human_readable (str, optional): Human readable version of the action status
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
-        resource_name (str): The name of the resource
+        resource_name (str, optional): The name of the resource
         resource_type (ResourceType):
         resource_type_human_readable (str): Human readable version of the resource type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
@@ -70,7 +70,7 @@ class RelatedActionPlain(TypedDict, total=False):
             ActionStatusPlain,
         ]
     ]
-    status_human_readable: Required[str]
+    status_human_readable: Optional[str]
     type: Required[
         Union[
             ActionType,
@@ -78,7 +78,7 @@ class RelatedActionPlain(TypedDict, total=False):
         ]
     ]
     type_human_readable: Required[str]
-    resource_name: Required[str]
+    resource_name: Optional[str]
     resource_type: Required[
         Union[
             ResourceType,

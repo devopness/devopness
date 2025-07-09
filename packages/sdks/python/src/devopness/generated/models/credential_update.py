@@ -29,7 +29,7 @@ class CredentialUpdate(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given Credential.
         name (str): The name of the credential. Must not be greater than 60 characters.
-        settings (CredentialInputSettings):
+        settings (CredentialInputSettings, optional):
     """
 
     id: StrictInt = Field(description="The unique ID of the given Credential.")
@@ -46,7 +46,7 @@ class CredentialUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    settings: Required[
+    settings: Optional[
         Union[
             CredentialInputSettings,
             CredentialInputSettingsPlain,

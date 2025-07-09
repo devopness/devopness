@@ -24,7 +24,7 @@ class TeamUpdate(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given Team.
         name (str): The name of the team. Must not be greater than 255 characters.
-        photo_url (str): The URL to team&#39;s image. Must be a valid URL.
+        photo_url (str, optional): The URL to team&#39;s image. Must be a valid URL.
     """
 
     id: StrictInt = Field(description="The unique ID of the given Team.")
@@ -43,4 +43,4 @@ class TeamUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Required[str]
+    photo_url: Optional[str]

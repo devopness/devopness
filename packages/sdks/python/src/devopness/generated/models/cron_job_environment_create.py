@@ -25,12 +25,12 @@ class CronJobEnvironmentCreate(DevopnessBaseModel):
     CronJobEnvironmentCreate
 
     Attributes:
-        linked_resources (List[ResourceToBeLinked]): The resources to be linked with this resource
+        linked_resources (List[ResourceToBeLinked], optional): The resources to be linked with this resource
         name (str): The name of the cron job. Must not be greater than 60 characters.
         command (str): The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.
         pattern (str): A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.
         run_as_user (str): The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.
-        application_id (int): Numeric ID of the application to which the cron job belongs to.
+        application_id (int, optional): Numeric ID of the application to which the cron job belongs to.
     """
 
     linked_resources: Optional[List[ResourceToBeLinked]] = Field(
@@ -59,7 +59,7 @@ class CronJobEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of CronJobEnvironmentCreate.
     """
 
-    linked_resources: Required[
+    linked_resources: Optional[
         List[
             Union[
                 ResourceToBeLinked,
@@ -71,4 +71,4 @@ class CronJobEnvironmentCreatePlain(TypedDict, total=False):
     command: Required[str]
     pattern: Required[str]
     run_as_user: Required[str]
-    application_id: Required[int]
+    application_id: Optional[int]

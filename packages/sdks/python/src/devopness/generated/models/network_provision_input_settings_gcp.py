@@ -23,7 +23,7 @@ class NetworkProvisionInputSettingsGcp(DevopnessBaseModel):
 
     Attributes:
         region (str): The cloud provider region where the network will be created
-        region_human_readable (str): Human readable version of the network region
+        region_human_readable (str, optional): Human readable version of the network region
     """
 
     region: StrictStr = Field(
@@ -40,4 +40,4 @@ class NetworkProvisionInputSettingsGcpPlain(TypedDict, total=False):
     """
 
     region: Required[str]
-    region_human_readable: Required[str]
+    region_human_readable: Optional[str]

@@ -31,10 +31,10 @@ class CloudProvider(DevopnessBaseModel):
     Attributes:
         code (str): Cloud provider code
         name (str): Cloud provider name
-        hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+        hint (str, optional): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
         logo_url (str): The provider&#39;s logo URL.
-        cloud_services (List[CloudProviderService]):
-        settings (CloudProviderSettingsList):
+        cloud_services (List[CloudProviderService], optional):
+        settings (CloudProviderSettingsList, optional):
     """
 
     code: StrictStr = Field(description="Cloud provider code")
@@ -55,9 +55,9 @@ class CloudProviderPlain(TypedDict, total=False):
 
     code: Required[str]
     name: Required[str]
-    hint: Required[str]
+    hint: Optional[str]
     logo_url: Required[str]
-    cloud_services: Required[
+    cloud_services: Optional[
         List[
             Union[
                 CloudProviderService,
@@ -65,7 +65,7 @@ class CloudProviderPlain(TypedDict, total=False):
             ]
         ]
     ]
-    settings: Required[
+    settings: Optional[
         Union[
             CloudProviderSettingsList,
             CloudProviderSettingsListPlain,

@@ -24,9 +24,9 @@ class Log(DevopnessBaseModel):
     Log
 
     Attributes:
-        target (ActionTargetData, optional):
-        step (ActionTargetLogStep, optional):
-        updated_at (str, optional): The date and time when the requested log record was last updated
+        target (ActionTargetData, optional, nullable):
+        step (ActionTargetLogStep, optional, nullable):
+        updated_at (str, optional, nullable): The date and time when the requested log record was last updated
     """
 
     target: Optional[ActionTargetData]
@@ -41,16 +41,22 @@ class LogPlain(TypedDict, total=False):
     Plain version of Log.
     """
 
-    target: Optional[
-        Union[
-            ActionTargetData,
-            ActionTargetDataPlain,
+    target: (
+        Optional[
+            Union[
+                ActionTargetData,
+                ActionTargetDataPlain,
+            ]
         ]
-    ]
-    step: Optional[
-        Union[
-            ActionTargetLogStep,
-            ActionTargetLogStepPlain,
+        | None
+    )
+    step: (
+        Optional[
+            Union[
+                ActionTargetLogStep,
+                ActionTargetLogStepPlain,
+            ]
         ]
-    ]
-    updated_at: Optional[str]
+        | None
+    )
+    updated_at: Optional[str] | None

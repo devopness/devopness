@@ -9,7 +9,6 @@ Note:
 from typing import (
     List,
     Optional,
-    Required,
     TypedDict,
 )
 
@@ -23,7 +22,7 @@ class ServiceReload(DevopnessBaseModel):
     ServiceReload
 
     Attributes:
-        servers (List[int]): List of valid resource IDs
+        servers (List[int], optional): List of valid resource IDs
     """
 
     servers: Optional[List[StrictInt]] = Field(
@@ -36,4 +35,4 @@ class ServiceReloadPlain(TypedDict, total=False):
     Plain version of ServiceReload.
     """
 
-    servers: Required[List[int]]
+    servers: Optional[List[int]]

@@ -29,7 +29,7 @@ class ProviderRelation(DevopnessBaseModel):
         code (ProviderCode):
         code_human_readable (str): Human readable version of provider code
         type (ProviderType):
-        type_human_readable (str): Human readable version of provider type
+        type_human_readable (str, optional): Human readable version of provider type
     """
 
     active: StrictBool = Field(description="Tells if the provider is active or not")
@@ -62,4 +62,4 @@ class ProviderRelationPlain(TypedDict, total=False):
             ProviderTypePlain,
         ]
     ]
-    type_human_readable: Required[str]
+    type_human_readable: Optional[str]

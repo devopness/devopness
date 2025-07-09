@@ -25,12 +25,12 @@ class DeploymentApplicationCreate(DevopnessBaseModel):
     DeploymentApplicationCreate
 
     Attributes:
-        environment (str): The environment type of the deployment.
+        environment (str, optional): The environment type of the deployment.
         type (DeploymentType):
-        source_type (str): The &#39;source type&#39; from which the application source code will be retrieved and deployed. It can be one of &#x60;branch&#x60;, &#x60;tag&#x60; or &#x60;commit&#x60;. If not provided, the application&#39;s default branch will be used. This field is required when &lt;code&gt;source_ref&lt;/code&gt; is present.
-        source_ref (str): A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. This field is required when &lt;code&gt;source_type&lt;/code&gt; is present. Must not be greater than 200 characters.
-        pipeline_id (int): The pipeline&#39;s ID to use for deployment.
-        servers (List[int]): List of valid resource IDs
+        source_type (str, optional): The &#39;source type&#39; from which the application source code will be retrieved and deployed. It can be one of &#x60;branch&#x60;, &#x60;tag&#x60; or &#x60;commit&#x60;. If not provided, the application&#39;s default branch will be used. This field is required when &lt;code&gt;source_ref&lt;/code&gt; is present.
+        source_ref (str, optional): A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. This field is required when &lt;code&gt;source_type&lt;/code&gt; is present. Must not be greater than 200 characters.
+        pipeline_id (int, optional): The pipeline&#39;s ID to use for deployment.
+        servers (List[int], optional): List of valid resource IDs
     """
 
     environment: Optional[StrictStr] = Field(
@@ -58,14 +58,14 @@ class DeploymentApplicationCreatePlain(TypedDict, total=False):
     Plain version of DeploymentApplicationCreate.
     """
 
-    environment: Required[str]
+    environment: Optional[str]
     type: Required[
         Union[
             DeploymentType,
             DeploymentTypePlain,
         ]
     ]
-    source_type: Required[str]
-    source_ref: Required[str]
-    pipeline_id: Required[int]
-    servers: Required[List[int]]
+    source_type: Optional[str]
+    source_ref: Optional[str]
+    pipeline_id: Optional[int]
+    servers: Optional[List[int]]

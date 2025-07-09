@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -23,12 +22,12 @@ class TriggeredActionSummary(DevopnessBaseModel):
     TriggeredActionSummary
 
     Attributes:
-        count (float): Total of actions that were triggered by the user
-        queued (float): Total of actions that were triggered by the user with status queued
-        pending (float): Total of actions that were triggered by the user with status pending
-        in_progress (float): Total of actions that were triggered by the user with status in_progress
-        completed (float): Total of actions that were triggered by the user with status completed
-        failed (float): Total of actions that were triggered by the user with status failed
+        count (float, optional): Total of actions that were triggered by the user
+        queued (float, optional): Total of actions that were triggered by the user with status queued
+        pending (float, optional): Total of actions that were triggered by the user with status pending
+        in_progress (float, optional): Total of actions that were triggered by the user with status in_progress
+        completed (float, optional): Total of actions that were triggered by the user with status completed
+        failed (float, optional): Total of actions that were triggered by the user with status failed
     """
 
     count: Optional[Union[StrictFloat, StrictInt]] = Field(
@@ -61,9 +60,9 @@ class TriggeredActionSummaryPlain(TypedDict, total=False):
     Plain version of TriggeredActionSummary.
     """
 
-    count: Required[float]
-    queued: Required[float]
-    pending: Required[float]
-    in_progress: Required[float]
-    completed: Required[float]
-    failed: Required[float]
+    count: Optional[float]
+    queued: Optional[float]
+    pending: Optional[float]
+    in_progress: Optional[float]
+    completed: Optional[float]
+    failed: Optional[float]

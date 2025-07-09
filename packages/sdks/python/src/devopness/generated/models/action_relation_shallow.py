@@ -43,12 +43,12 @@ class ActionRelationShallow(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): Permalink to view the action on Devopness web
-        action_data (ActionDeploymentData, optional):
-        triggered_from (ActionTriggeredFrom):
-        summary (ActionSummary):
-        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
-        started_at (datetime, optional): When the action started
-        completed_at (datetime, optional): When the action completed
+        action_data (ActionDeploymentData, optional, nullable):
+        triggered_from (ActionTriggeredFrom, optional):
+        summary (ActionSummary, optional):
+        targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
+        started_at (datetime, optional, nullable): When the action started
+        completed_at (datetime, optional, nullable): When the action completed
         created_at (datetime): When the action was created
         updated_at (datetime): When the action was last updated
     """
@@ -109,25 +109,28 @@ class ActionRelationShallowPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Optional[
-        Union[
-            ActionDeploymentData,
-            ActionDeploymentDataPlain,
+    action_data: (
+        Optional[
+            Union[
+                ActionDeploymentData,
+                ActionDeploymentDataPlain,
+            ]
         ]
-    ]
-    triggered_from: Required[
+        | None
+    )
+    triggered_from: Optional[
         Union[
             ActionTriggeredFrom,
             ActionTriggeredFromPlain,
         ]
     ]
-    summary: Required[
+    summary: Optional[
         Union[
             ActionSummary,
             ActionSummaryPlain,
         ]
     ]
-    targets: Required[
+    targets: Optional[
         List[
             Union[
                 ActionTarget,
@@ -135,7 +138,7 @@ class ActionRelationShallowPlain(TypedDict, total=False):
             ]
         ]
     ]
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
+    started_at: Optional[datetime] | None
+    completed_at: Optional[datetime] | None
     created_at: Required[datetime]
     updated_at: Required[datetime]

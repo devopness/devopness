@@ -26,7 +26,7 @@ class StaticPermission(DevopnessBaseModel):
         name (str): Name of permission
         human_readable (str): Human readable permission name
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-        required_permissions (List[str]): List of permissions the role must have before receiving this one
+        required_permissions (List[str], optional): List of permissions the role must have before receiving this one
     """
 
     name: StrictStr = Field(description="Name of permission")
@@ -48,4 +48,4 @@ class StaticPermissionPlain(TypedDict, total=False):
     name: Required[str]
     human_readable: Required[str]
     hint: Required[str]
-    required_permissions: Required[List[str]]
+    required_permissions: Optional[List[str]]

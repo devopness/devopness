@@ -23,9 +23,9 @@ class ProjectCreate(DevopnessBaseModel):
 
     Attributes:
         name (str): The name of the project. Must not be greater than 60 characters.
-        organization_id (int): The ID of the organization that owns the project.
-        logo_image (str): A base64 string representation of the logo image.
-        logo_url (str): A URL path to the project&#39;s logo image. Must be a valid URL.
+        organization_id (int, optional): The ID of the organization that owns the project.
+        logo_image (str, optional): A base64 string representation of the logo image.
+        logo_url (str, optional): A URL path to the project&#39;s logo image. Must be a valid URL.
     """
 
     name: StrictStr = Field(
@@ -49,6 +49,6 @@ class ProjectCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    organization_id: Required[int]
-    logo_image: Required[str]
-    logo_url: Required[str]
+    organization_id: Optional[int]
+    logo_image: Optional[str]
+    logo_url: Optional[str]

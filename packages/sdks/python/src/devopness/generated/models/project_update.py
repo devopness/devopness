@@ -24,8 +24,8 @@ class ProjectUpdate(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given Project.
         name (str): The name of the project. Must not be greater than 60 characters.
-        logo_image (str): A base64 string representation of the logo image.
-        logo_url (str): A URL path to the project&#39;s logo image. Must be a valid URL.
+        logo_image (str, optional): A base64 string representation of the logo image.
+        logo_url (str, optional): A URL path to the project&#39;s logo image. Must be a valid URL.
     """
 
     id: StrictInt = Field(description="The unique ID of the given Project.")
@@ -48,5 +48,5 @@ class ProjectUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    logo_image: Required[str]
-    logo_url: Required[str]
+    logo_image: Optional[str]
+    logo_url: Optional[str]

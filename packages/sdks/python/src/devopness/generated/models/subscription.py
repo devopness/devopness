@@ -10,7 +10,6 @@ from datetime import datetime
 from typing import (
     List,
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -26,20 +25,20 @@ class Subscription(DevopnessBaseModel):
     Subscription
 
     Attributes:
-        id (int): The ID of the subscription
-        user_id (int): The ID of the user this subscription belongs to
-        plan_name (str): The plan name of this subscription
-        status (str): Status of this subscription
-        quantity (int): Amount of plans purchased in this subscription
-        price_unit (float): Unitary price of the subscribed plan
-        price_total (float): Total price of this subscription (quantity x price_unit)
-        price_currency (str): Currency of the prices
-        cancelled_at (datetime, optional): If not null, indicates the date when this subscription was cancelled
-        ends_at (datetime): Indicates the date and time when this subscription ends
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
-        current_balance (SubscriptionBalance, optional):
-        balances (List[SubscriptionBalance]): The list of subscription balances
+        id (int, optional): The ID of the subscription
+        user_id (int, optional): The ID of the user this subscription belongs to
+        plan_name (str, optional): The plan name of this subscription
+        status (str, optional): Status of this subscription
+        quantity (int, optional): Amount of plans purchased in this subscription
+        price_unit (float, optional): Unitary price of the subscribed plan
+        price_total (float, optional): Total price of this subscription (quantity x price_unit)
+        price_currency (str, optional): Currency of the prices
+        cancelled_at (datetime, optional, nullable): If not null, indicates the date when this subscription was cancelled
+        ends_at (datetime, optional): Indicates the date and time when this subscription ends
+        created_at (datetime, optional): The date and time when the record was created
+        updated_at (datetime, optional): The date and time when the record was last updated
+        current_balance (SubscriptionBalance, optional, nullable):
+        balances (List[SubscriptionBalance], optional): The list of subscription balances
     """
 
     id: Optional[StrictInt] = Field(
@@ -92,25 +91,28 @@ class SubscriptionPlain(TypedDict, total=False):
     Plain version of Subscription.
     """
 
-    id: Required[int]
-    user_id: Required[int]
-    plan_name: Required[str]
-    status: Required[str]
-    quantity: Required[int]
-    price_unit: Required[float]
-    price_total: Required[float]
-    price_currency: Required[str]
-    cancelled_at: Optional[datetime]
-    ends_at: Required[datetime]
-    created_at: Required[datetime]
-    updated_at: Required[datetime]
-    current_balance: Optional[
-        Union[
-            SubscriptionBalance,
-            SubscriptionBalancePlain,
+    id: Optional[int]
+    user_id: Optional[int]
+    plan_name: Optional[str]
+    status: Optional[str]
+    quantity: Optional[int]
+    price_unit: Optional[float]
+    price_total: Optional[float]
+    price_currency: Optional[str]
+    cancelled_at: Optional[datetime] | None
+    ends_at: Optional[datetime]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]
+    current_balance: (
+        Optional[
+            Union[
+                SubscriptionBalance,
+                SubscriptionBalancePlain,
+            ]
         ]
-    ]
-    balances: Required[
+        | None
+    )
+    balances: Optional[
         List[
             Union[
                 SubscriptionBalance,

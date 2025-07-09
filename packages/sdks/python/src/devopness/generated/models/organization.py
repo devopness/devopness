@@ -29,7 +29,7 @@ class Organization(DevopnessBaseModel):
         id (int): The unique identifier for the organization
         name (str): The name of the organization
         url_slug (str): The URL Slug of the organization
-        resource_summary (List[ResourceSummaryItem]): Summary of the resource
+        resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         owner (UserRelation):
         created_at (str): The date and time when the organization was created
         updated_at (str): The date and time when the organization was last updated
@@ -58,7 +58,7 @@ class OrganizationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     url_slug: Required[str]
-    resource_summary: Required[
+    resource_summary: Optional[
         List[
             Union[
                 ResourceSummaryItem,

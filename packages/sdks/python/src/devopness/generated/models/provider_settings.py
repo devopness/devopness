@@ -26,9 +26,9 @@ class ProviderSettings(DevopnessBaseModel):
     ProviderSettings
 
     Attributes:
-        connect_url (str): The URL used to connect Devopness to a credential provider of type &#x60;source_provider&#x60;
+        connect_url (str, optional): The URL used to connect Devopness to a credential provider of type &#x60;source_provider&#x60;
         input_settings (List[ProviderInputSettings]): The list of input settings for credentials of specific provider
-        cloud_services (List[CloudProviderService]):
+        cloud_services (List[CloudProviderService], optional):
     """
 
     connect_url: Optional[StrictStr] = Field(
@@ -46,7 +46,7 @@ class ProviderSettingsPlain(TypedDict, total=False):
     Plain version of ProviderSettings.
     """
 
-    connect_url: Required[str]
+    connect_url: Optional[str]
     input_settings: Required[
         List[
             Union[
@@ -55,7 +55,7 @@ class ProviderSettingsPlain(TypedDict, total=False):
             ]
         ]
     ]
-    cloud_services: Required[
+    cloud_services: Optional[
         List[
             Union[
                 CloudProviderService,

@@ -28,7 +28,7 @@ class NetworkRuleUpdate(DevopnessBaseModel):
         id (int): The unique ID of the given Network Rule.
         name (str): The rule&#39;s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
         direction (NetworkRuleDirection):
-        protocol (NetworkRuleProtocol):
+        protocol (NetworkRuleProtocol, optional):
         cidr_block (str): IP address range this rule applies for, defined using CIDR notation.
     """
 
@@ -56,7 +56,7 @@ class NetworkRuleUpdatePlain(TypedDict, total=False):
             NetworkRuleDirectionPlain,
         ]
     ]
-    protocol: Required[
+    protocol: Optional[
         Union[
             NetworkRuleProtocol,
             NetworkRuleProtocolPlain,

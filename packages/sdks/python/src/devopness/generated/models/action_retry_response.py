@@ -41,8 +41,8 @@ class ActionRetryResponse(DevopnessBaseModel):
 
     Attributes:
         id (int): The Id of the given action
-        pipeline_id (int, optional): The ID of the pipeline executed by this action
-        retry_of (int, optional): The Id of the parent action that this action is a retry of
+        pipeline_id (int, optional, nullable): The ID of the pipeline executed by this action
+        retry_of (int, optional, nullable): The Id of the parent action that this action is a retry of
         status (ActionStatus):
         status_human_readable (str): Human readable version of action status
         status_reason_code (ActionStatusReasonCode):
@@ -50,19 +50,19 @@ class ActionRetryResponse(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
-        action_data (ActionDeploymentData, optional):
+        action_data (ActionDeploymentData, optional, nullable):
         triggered_from (ActionTriggeredFrom):
-        parent (RelatedAction, optional):
+        parent (RelatedAction, optional, nullable):
         children (List[RelatedAction]): List of related actions
-        triggered_by_user (UserRelation):
+        triggered_by_user (UserRelation, optional):
         resource (ActionResource):
         summary (ActionSummary):
-        environment (EnvironmentRelation, optional):
-        project (ProjectRelation, optional):
-        targets (List[ActionTarget]): List of actions dispatched to cloud resource targets
-        hook_requests (ActionHookRequest):
-        started_at (str, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (str, optional): The date and time when the action has finished execution
+        environment (EnvironmentRelation, optional, nullable):
+        project (ProjectRelation, optional, nullable):
+        targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
+        hook_requests (ActionHookRequest, optional):
+        started_at (str, optional, nullable): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (str, optional, nullable): The date and time when the action has finished execution
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -124,8 +124,8 @@ class ActionRetryResponsePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    pipeline_id: Optional[int]
-    retry_of: Optional[int]
+    pipeline_id: Optional[int] | None
+    retry_of: Optional[int] | None
     status: Required[
         Union[
             ActionStatus,
@@ -148,24 +148,30 @@ class ActionRetryResponsePlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Optional[
-        Union[
-            ActionDeploymentData,
-            ActionDeploymentDataPlain,
+    action_data: (
+        Optional[
+            Union[
+                ActionDeploymentData,
+                ActionDeploymentDataPlain,
+            ]
         ]
-    ]
+        | None
+    )
     triggered_from: Required[
         Union[
             ActionTriggeredFrom,
             ActionTriggeredFromPlain,
         ]
     ]
-    parent: Optional[
-        Union[
-            RelatedAction,
-            RelatedActionPlain,
+    parent: (
+        Optional[
+            Union[
+                RelatedAction,
+                RelatedActionPlain,
+            ]
         ]
-    ]
+        | None
+    )
     children: Required[
         List[
             Union[
@@ -174,7 +180,7 @@ class ActionRetryResponsePlain(TypedDict, total=False):
             ]
         ]
     ]
-    triggered_by_user: Required[
+    triggered_by_user: Optional[
         Union[
             UserRelation,
             UserRelationPlain,
@@ -192,19 +198,25 @@ class ActionRetryResponsePlain(TypedDict, total=False):
             ActionSummaryPlain,
         ]
     ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
+    environment: (
+        Optional[
+            Union[
+                EnvironmentRelation,
+                EnvironmentRelationPlain,
+            ]
         ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
+        | None
+    )
+    project: (
+        Optional[
+            Union[
+                ProjectRelation,
+                ProjectRelationPlain,
+            ]
         ]
-    ]
-    targets: Required[
+        | None
+    )
+    targets: Optional[
         List[
             Union[
                 ActionTarget,
@@ -212,13 +224,13 @@ class ActionRetryResponsePlain(TypedDict, total=False):
             ]
         ]
     ]
-    hook_requests: Required[
+    hook_requests: Optional[
         Union[
             ActionHookRequest,
             ActionHookRequestPlain,
         ]
     ]
-    started_at: Optional[str]
-    completed_at: Optional[str]
+    started_at: Optional[str] | None
+    completed_at: Optional[str] | None
     created_at: Required[str]
     updated_at: Required[str]

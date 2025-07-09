@@ -25,7 +25,7 @@ class HookTriggerResponse(DevopnessBaseModel):
 
     Attributes:
         message (str): Message containing information about the hook being triggered
-        errors (object, optional): Optional error object containing details of the server error
+        errors (object, optional, nullable): Optional error object containing details of the server error
     """
 
     message: StrictStr = Field(
@@ -42,4 +42,4 @@ class HookTriggerResponsePlain(TypedDict, total=False):
     """
 
     message: Required[str]
-    errors: Optional[object]
+    errors: Optional[object] | None

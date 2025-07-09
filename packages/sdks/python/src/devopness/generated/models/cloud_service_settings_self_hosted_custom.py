@@ -21,7 +21,7 @@ class CloudServiceSettingsSelfHostedCustom(DevopnessBaseModel):
     CloudServiceSettingsSelfHostedCustom
 
     Attributes:
-        os_version_code (CloudOsVersionCode, optional):
+        os_version_code (CloudOsVersionCode, optional, nullable):
     """
 
     os_version_code: Optional[CloudOsVersionCode]
@@ -32,9 +32,12 @@ class CloudServiceSettingsSelfHostedCustomPlain(TypedDict, total=False):
     Plain version of CloudServiceSettingsSelfHostedCustom.
     """
 
-    os_version_code: Optional[
-        Union[
-            CloudOsVersionCode,
-            CloudOsVersionCodePlain,
+    os_version_code: (
+        Optional[
+            Union[
+                CloudOsVersionCode,
+                CloudOsVersionCodePlain,
+            ]
         ]
-    ]
+        | None
+    )

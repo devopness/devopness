@@ -9,7 +9,6 @@ Note:
 from datetime import datetime
 from typing import (
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -25,12 +24,12 @@ class SubscriptionBalance(DevopnessBaseModel):
     SubscriptionBalance
 
     Attributes:
-        credits (Credits):
-        unit (str): The unit of measurement to count credits
-        billing_period_started_at (datetime): The date and time the subscription plan starts
-        billing_period_ends_at (datetime): The date and time the subscription plan ends
-        created_at (datetime): The date and time when the record was created
-        updated_at (datetime): The date and time when the record was last updated
+        credits (Credits, optional):
+        unit (str, optional): The unit of measurement to count credits
+        billing_period_started_at (datetime, optional): The date and time the subscription plan starts
+        billing_period_ends_at (datetime, optional): The date and time the subscription plan ends
+        created_at (datetime, optional): The date and time when the record was created
+        updated_at (datetime, optional): The date and time when the record was last updated
     """
 
     credits: Optional[Credits] = None
@@ -56,14 +55,14 @@ class SubscriptionBalancePlain(TypedDict, total=False):
     Plain version of SubscriptionBalance.
     """
 
-    credits: Required[
+    credits: Optional[
         Union[
             Credits,
             CreditsPlain,
         ]
     ]
-    unit: Required[str]
-    billing_period_started_at: Required[datetime]
-    billing_period_ends_at: Required[datetime]
-    created_at: Required[datetime]
-    updated_at: Required[datetime]
+    unit: Optional[str]
+    billing_period_started_at: Optional[datetime]
+    billing_period_ends_at: Optional[datetime]
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]

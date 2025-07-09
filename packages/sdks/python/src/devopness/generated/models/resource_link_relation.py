@@ -32,7 +32,7 @@ class ResourceLinkRelation(DevopnessBaseModel):
         resource_id (int): The linked resource ID
         can_be_unlinked (bool): If false, the link cannot be manually removed
         linked_resource_data (LinkedResourceData):
-        children (List[ResourceLinkChild]):
+        children (List[ResourceLinkChild], optional):
     """
 
     link_type: StrictStr = Field(
@@ -66,7 +66,7 @@ class ResourceLinkRelationPlain(TypedDict, total=False):
             LinkedResourceDataPlain,
         ]
     ]
-    children: Required[
+    children: Optional[
         List[
             Union[
                 ResourceLinkChild,

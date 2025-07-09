@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -24,10 +23,10 @@ class ResourceTypeRelated(DevopnessBaseModel):
     ResourceTypeRelated
 
     Attributes:
-        resource_type (ResourceType):
-        resource_type_human_readable (str): Human readable version of the resource type name
-        resource_type_human_readable_plural (str): Plural human readable version of the resource type name
-        can_be_linked (bool): If true, the relation with this resource type can be changed manually by the user
+        resource_type (ResourceType, optional):
+        resource_type_human_readable (str, optional): Human readable version of the resource type name
+        resource_type_human_readable_plural (str, optional): Plural human readable version of the resource type name
+        can_be_linked (bool, optional): If true, the relation with this resource type can be changed manually by the user
     """
 
     resource_type: Optional[ResourceType] = None
@@ -49,12 +48,12 @@ class ResourceTypeRelatedPlain(TypedDict, total=False):
     Plain version of ResourceTypeRelated.
     """
 
-    resource_type: Required[
+    resource_type: Optional[
         Union[
             ResourceType,
             ResourceTypePlain,
         ]
     ]
-    resource_type_human_readable: Required[str]
-    resource_type_human_readable_plural: Required[str]
-    can_be_linked: Required[bool]
+    resource_type_human_readable: Optional[str]
+    resource_type_human_readable_plural: Optional[str]
+    can_be_linked: Optional[bool]

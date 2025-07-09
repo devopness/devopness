@@ -21,8 +21,8 @@ class ActionHookRequest(DevopnessBaseModel):
     ActionHookRequest
 
     Attributes:
-        incoming (HookRequestRelation, optional):
-        outgoing (HookRequestRelation, optional):
+        incoming (HookRequestRelation, optional, nullable):
+        outgoing (HookRequestRelation, optional, nullable):
     """
 
     incoming: Optional[HookRequestRelation] = None
@@ -34,15 +34,21 @@ class ActionHookRequestPlain(TypedDict, total=False):
     Plain version of ActionHookRequest.
     """
 
-    incoming: Optional[
-        Union[
-            HookRequestRelation,
-            HookRequestRelationPlain,
+    incoming: (
+        Optional[
+            Union[
+                HookRequestRelation,
+                HookRequestRelationPlain,
+            ]
         ]
-    ]
-    outgoing: Optional[
-        Union[
-            HookRequestRelation,
-            HookRequestRelationPlain,
+        | None
+    )
+    outgoing: (
+        Optional[
+            Union[
+                HookRequestRelation,
+                HookRequestRelationPlain,
+            ]
         ]
-    ]
+        | None
+    )

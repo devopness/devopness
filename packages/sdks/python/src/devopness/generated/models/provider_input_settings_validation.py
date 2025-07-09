@@ -9,7 +9,6 @@ Note:
 from typing import (
     List,
     Optional,
-    Required,
     TypedDict,
 )
 
@@ -23,11 +22,11 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
     ProviderInputSettingsValidation
 
     Attributes:
-        required (bool):
-        type (str):
-        min (int):
-        max (int):
-        allowed_values (List[str]):
+        required (bool, optional):
+        type (str, optional):
+        min (int, optional):
+        max (int, optional):
+        allowed_values (List[str], optional):
     """
 
     required: Optional[StrictBool] = None
@@ -42,8 +41,8 @@ class ProviderInputSettingsValidationPlain(TypedDict, total=False):
     Plain version of ProviderInputSettingsValidation.
     """
 
-    required: Required[bool]
-    type: Required[str]
-    min: Required[int]
-    max: Required[int]
-    allowed_values: Required[List[str]]
+    required: Optional[bool]
+    type: Optional[str]
+    min: Optional[int]
+    max: Optional[int]
+    allowed_values: Optional[List[str]]

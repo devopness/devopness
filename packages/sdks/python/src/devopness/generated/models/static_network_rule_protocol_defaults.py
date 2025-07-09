@@ -21,7 +21,7 @@ class StaticNetworkRuleProtocolDefaults(DevopnessBaseModel):
     StaticNetworkRuleProtocolDefaults
 
     Attributes:
-        port (int, optional): The default port for the protocol
+        port (int, optional, nullable): The default port for the protocol
     """
 
     port: Optional[StrictInt] = Field(description="The default port for the protocol")
@@ -32,4 +32,4 @@ class StaticNetworkRuleProtocolDefaultsPlain(TypedDict, total=False):
     Plain version of StaticNetworkRuleProtocolDefaults.
     """
 
-    port: Optional[int]
+    port: Optional[int] | None

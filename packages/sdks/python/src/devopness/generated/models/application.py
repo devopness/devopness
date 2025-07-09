@@ -50,13 +50,13 @@ class Application(DevopnessBaseModel):
         framework_human_readable (str): The human readable version of the framework of the application.
         root_directory (str): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
         deployments_keep (int): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers. OR The number of deployment artifacts to be retained in the user&#39;s servers, making it easier and faster to rollback to previous versions
-        install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies
-        build_command (str, optional): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
+        install_dependencies_command (str, optional, nullable): Indicates command that Devopness must execute to install application dependencies
+        build_command (str, optional, nullable): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
         created_by_user (UserRelation):
         last_deployments (ApplicationLastDeployments):
-        environment (EnvironmentRelation, optional):
+        environment (EnvironmentRelation, optional, nullable):
         servers (List[ServerRelation]):
-        credential (CredentialRelation, optional):
+        credential (CredentialRelation, optional, nullable):
         virtual_hosts (List[VirtualHostRelation]):
         daemons (List[DaemonRelation]):
         created_at (str): The date and time when the record was created
@@ -149,8 +149,8 @@ class ApplicationPlain(TypedDict, total=False):
     framework_human_readable: Required[str]
     root_directory: Required[str]
     deployments_keep: Required[int]
-    install_dependencies_command: Optional[str]
-    build_command: Optional[str]
+    install_dependencies_command: Optional[str] | None
+    build_command: Optional[str] | None
     created_by_user: Required[
         Union[
             UserRelation,
@@ -163,12 +163,15 @@ class ApplicationPlain(TypedDict, total=False):
             ApplicationLastDeploymentsPlain,
         ]
     ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
+    environment: (
+        Optional[
+            Union[
+                EnvironmentRelation,
+                EnvironmentRelationPlain,
+            ]
         ]
-    ]
+        | None
+    )
     servers: Required[
         List[
             Union[
@@ -177,12 +180,15 @@ class ApplicationPlain(TypedDict, total=False):
             ]
         ]
     ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
+    credential: (
+        Optional[
+            Union[
+                CredentialRelation,
+                CredentialRelationPlain,
+            ]
         ]
-    ]
+        | None
+    )
     virtual_hosts: Required[
         List[
             Union[

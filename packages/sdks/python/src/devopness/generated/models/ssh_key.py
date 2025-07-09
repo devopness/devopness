@@ -29,17 +29,17 @@ class SshKey(DevopnessBaseModel):
 
     Attributes:
         id (int): The Id of the given SSH public key
-        created_by (int): The id of the user to which the SSH key belongs to
-        project_id (int): The project id to which the SSH public key belongs to
+        created_by (int, optional): The id of the user to which the SSH key belongs to
+        project_id (int, optional): The project id to which the SSH public key belongs to
         environment_id (int): The environment id to which the SSH public key belongs to
         name (str): The name entered by the user to uniquely identify the public SSH key
         fingerprint (str): The hashed fingerprint of the public key
         created_by_user (UserRelation):
-        environment (EnvironmentRelation, optional):
+        environment (EnvironmentRelation, optional, nullable):
         servers (List[ServerRelation]):
-        last_action (ActionRelation, optional):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        last_action (ActionRelation, optional, nullable):
+        created_at (str, optional): The date and time when the record was created
+        updated_at (str, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="The Id of the given SSH public key")
@@ -77,8 +77,8 @@ class SshKeyPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    created_by: Required[int]
-    project_id: Required[int]
+    created_by: Optional[int]
+    project_id: Optional[int]
     environment_id: Required[int]
     name: Required[str]
     fingerprint: Required[str]
@@ -88,12 +88,15 @@ class SshKeyPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
+    environment: (
+        Optional[
+            Union[
+                EnvironmentRelation,
+                EnvironmentRelationPlain,
+            ]
         ]
-    ]
+        | None
+    )
     servers: Required[
         List[
             Union[
@@ -102,11 +105,14 @@ class SshKeyPlain(TypedDict, total=False):
             ]
         ]
     ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
+    last_action: (
+        Optional[
+            Union[
+                ActionRelation,
+                ActionRelationPlain,
+            ]
         ]
-    ]
-    created_at: Required[str]
-    updated_at: Required[str]
+        | None
+    )
+    created_at: Optional[str]
+    updated_at: Optional[str]

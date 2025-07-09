@@ -28,8 +28,8 @@ class HookRequest(DevopnessBaseModel):
     Attributes:
         id (str): The unique UUID of the hook request
         hook_id (str): The UUID of the hook that the request belongs to
-        action_id (int, optional): The ID of the action that the request belongs to
-        retry_of (str, optional): The UUID of the request that this request is a retry of
+        action_id (int, optional, nullable): The ID of the action that the request belongs to
+        retry_of (str, optional, nullable): The UUID of the request that this request is a retry of
         ip_address (str): The IP address of the source that triggered the hook
         url (str): Original URL used on the request
         request_headers (object): The headers of the request
@@ -37,7 +37,7 @@ class HookRequest(DevopnessBaseModel):
         response_status_code (int): The response status code
         response_headers (object): The headers of the response
         response_body (object): The body of the response
-        hook (HookRelation, optional):
+        hook (HookRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -77,8 +77,8 @@ class HookRequestPlain(TypedDict, total=False):
 
     id: Required[str]
     hook_id: Required[str]
-    action_id: Optional[int]
-    retry_of: Optional[str]
+    action_id: Optional[int] | None
+    retry_of: Optional[str] | None
     ip_address: Required[str]
     url: Required[str]
     request_headers: Required[object]
@@ -86,11 +86,14 @@ class HookRequestPlain(TypedDict, total=False):
     response_status_code: Required[int]
     response_headers: Required[object]
     response_body: Required[object]
-    hook: Optional[
-        Union[
-            HookRelation,
-            HookRelationPlain,
+    hook: (
+        Optional[
+            Union[
+                HookRelation,
+                HookRelationPlain,
+            ]
         ]
-    ]
+        | None
+    )
     created_at: Required[str]
     updated_at: Required[str]

@@ -36,11 +36,11 @@ class SslCertificateRelation(DevopnessBaseModel):
         issuer (SslCertificateIssuer):
         validation_level (SslCertificateValidationLevel):
         active (bool): Tells if the certificate is active for all linked servers and applications
-        last_action (ActionRelationShallow, optional):
-        expires_at (str, optional): The date and time when this certificate will no longer be valid, down to minute precision
-        last_renewed_at (str, optional): The date and time when this certificate was renewed for the last time
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        last_action (ActionRelationShallow, optional, nullable):
+        expires_at (str, optional, nullable): The date and time when this certificate will no longer be valid, down to minute precision
+        last_renewed_at (str, optional, nullable): The date and time when this certificate was renewed for the last time
+        created_at (str, optional): The date and time when the record was created
+        updated_at (str, optional): The date and time when the record was last updated
     """
 
     id: StrictInt = Field(description="The unique ID of the given SSL certificate")
@@ -92,13 +92,16 @@ class SslCertificateRelationPlain(TypedDict, total=False):
         ]
     ]
     active: Required[bool]
-    last_action: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
+    last_action: (
+        Optional[
+            Union[
+                ActionRelationShallow,
+                ActionRelationShallowPlain,
+            ]
         ]
-    ]
-    expires_at: Optional[str]
-    last_renewed_at: Optional[str]
-    created_at: Required[str]
-    updated_at: Required[str]
+        | None
+    )
+    expires_at: Optional[str] | None
+    last_renewed_at: Optional[str] | None
+    created_at: Optional[str]
+    updated_at: Optional[str]

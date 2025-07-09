@@ -27,7 +27,7 @@ class TeamMembershipRelation(DevopnessBaseModel):
         id (int): The unique ID of the given team
         name (str): The name of the given team
         photo_url (str): The URL to team&#39;s image
-        role (RoleRelation, optional):
+        role (RoleRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -52,11 +52,14 @@ class TeamMembershipRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     photo_url: Required[str]
-    role: Optional[
-        Union[
-            RoleRelation,
-            RoleRelationPlain,
+    role: (
+        Optional[
+            Union[
+                RoleRelation,
+                RoleRelationPlain,
+            ]
         ]
-    ]
+        | None
+    )
     created_at: Required[str]
     updated_at: Required[str]
