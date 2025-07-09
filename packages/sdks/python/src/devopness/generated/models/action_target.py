@@ -116,16 +116,13 @@ class ActionTargetPlain(TypedDict, total=False):
         ]
     ]
     status_reason_human_readable: Optional[str]
-    total_steps: Optional[int] | None
-    current_step: (
-        Optional[
-            Union[
-                ActionStep,
-                ActionStepPlain,
-            ]
+    total_steps: Optional[int]
+    current_step: Optional[
+        Union[
+            ActionStep,
+            ActionStepPlain,
         ]
-        | None
-    )
+    ]
     steps: Optional[
         List[
             Union[
@@ -134,16 +131,13 @@ class ActionTargetPlain(TypedDict, total=False):
             ]
         ]
     ]
-    resource_data: (
-        Optional[
-            Union[
-                ActionTargetData,
-                ActionTargetDataPlain,
-            ]
+    resource_data: Optional[
+        Union[
+            ActionTargetData,
+            ActionTargetDataPlain,
         ]
-        | None
-    )
-    started_at: Optional[datetime] | None
-    completed_at: Optional[datetime] | None
+    ]
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
     created_at: Required[datetime]
     updated_at: Required[datetime]

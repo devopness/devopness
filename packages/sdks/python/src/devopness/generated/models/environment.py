@@ -82,7 +82,7 @@ class EnvironmentPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    description: Optional[str] | None
+    description: Optional[str]
     is_archived: Required[bool]
     resource_summary: Optional[
         List[

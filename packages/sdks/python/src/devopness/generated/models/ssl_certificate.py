@@ -101,16 +101,13 @@ class SslCertificatePlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelation,
-                ActionRelationPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelation,
+            ActionRelationPlain,
         ]
-        | None
-    )
-    expires_at: Optional[str] | None
-    last_renewed_at: Optional[str] | None
+    ]
+    expires_at: Optional[str]
+    last_renewed_at: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

@@ -50,12 +50,9 @@ class CloudServiceSettingsDigitalOceanDropletPlain(TypedDict, total=False):
     instance_type: Required[str]
     region: Required[str]
     region_human_readable: Optional[str]
-    os_version_code: (
-        Optional[
-            Union[
-                CloudOsVersionCode,
-                CloudOsVersionCodePlain,
-            ]
+    os_version_code: Optional[
+        Union[
+            CloudOsVersionCode,
+            CloudOsVersionCodePlain,
         ]
-        | None
-    )
+    ]

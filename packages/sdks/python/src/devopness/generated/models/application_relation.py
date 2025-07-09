@@ -131,10 +131,10 @@ class ApplicationRelationPlain(TypedDict, total=False):
     engine_version: Required[str]
     framework: Required[str]
     framework_human_readable: Required[str]
-    root_directory: Optional[str] | None
+    root_directory: Optional[str]
     deployments_keep: Required[int]
-    install_dependencies_command: Optional[str] | None
-    build_command: Optional[str] | None
+    install_dependencies_command: Optional[str]
+    build_command: Optional[str]
     last_deployments: Optional[
         Union[
             ApplicationLastDeployments,

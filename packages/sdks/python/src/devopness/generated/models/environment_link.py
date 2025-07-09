@@ -41,5 +41,5 @@ class EnvironmentLinkPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    name: Optional[str] | None
+    name: Optional[str]
     servers: Required[List[int]]

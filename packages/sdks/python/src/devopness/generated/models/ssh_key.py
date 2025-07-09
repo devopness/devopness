@@ -88,15 +88,12 @@ class SshKeyPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    environment: (
-        Optional[
-            Union[
-                EnvironmentRelation,
-                EnvironmentRelationPlain,
-            ]
+    environment: Optional[
+        Union[
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
-        | None
-    )
+    ]
     servers: Required[
         List[
             Union[
@@ -105,14 +102,11 @@ class SshKeyPlain(TypedDict, total=False):
             ]
         ]
     ]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelation,
-                ActionRelationPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelation,
+            ActionRelationPlain,
         ]
-        | None
-    )
+    ]
     created_at: Optional[str]
     updated_at: Optional[str]

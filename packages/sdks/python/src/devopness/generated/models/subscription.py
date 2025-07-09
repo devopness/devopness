@@ -99,19 +99,16 @@ class SubscriptionPlain(TypedDict, total=False):
     price_unit: Optional[float]
     price_total: Optional[float]
     price_currency: Optional[str]
-    cancelled_at: Optional[datetime] | None
+    cancelled_at: Optional[datetime]
     ends_at: Optional[datetime]
     created_at: Optional[datetime]
     updated_at: Optional[datetime]
-    current_balance: (
-        Optional[
-            Union[
-                SubscriptionBalance,
-                SubscriptionBalancePlain,
-            ]
+    current_balance: Optional[
+        Union[
+            SubscriptionBalance,
+            SubscriptionBalancePlain,
         ]
-        | None
-    )
+    ]
     balances: Optional[
         List[
             Union[

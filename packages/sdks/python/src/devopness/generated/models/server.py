@@ -129,15 +129,12 @@ class ServerPlain(TypedDict, total=False):
             OperatingSystemVersionPlain,
         ]
     ]
-    os_version_code: (
-        Optional[
-            Union[
-                CloudOsVersionCode,
-                CloudOsVersionCodePlain,
-            ]
+    os_version_code: Optional[
+        Union[
+            CloudOsVersionCode,
+            CloudOsVersionCodePlain,
         ]
-        | None
-    )
+    ]
     active: Required[bool]
     status: Required[
         Union[
@@ -164,41 +161,29 @@ class ServerPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    project: (
-        Optional[
-            Union[
-                ProjectRelation,
-                ProjectRelationPlain,
-            ]
+    project: Optional[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
         ]
-        | None
-    )
-    last_action: (
-        Optional[
-            Union[
-                ActionRelation,
-                ActionRelationPlain,
-            ]
+    ]
+    last_action: Optional[
+        Union[
+            ActionRelation,
+            ActionRelationPlain,
         ]
-        | None
-    )
-    environment: (
-        Optional[
-            Union[
-                EnvironmentRelation,
-                EnvironmentRelationPlain,
-            ]
+    ]
+    environment: Optional[
+        Union[
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
-        | None
-    )
-    credential: (
-        Optional[
-            Union[
-                CredentialRelation,
-                CredentialRelationPlain,
-            ]
+    ]
+    credential: Optional[
+        Union[
+            CredentialRelation,
+            CredentialRelationPlain,
         ]
-        | None
-    )
+    ]
     created_at: Required[str]
     updated_at: Required[str]

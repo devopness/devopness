@@ -55,7 +55,7 @@ class ResourceEventRelationPlain(TypedDict, total=False):
     event_type: Required[str]
     resource_type: Required[str]
     resource_id: Required[int]
-    message: Optional[str] | None
-    triggered_by: Optional[int] | None
+    message: Optional[str]
+    triggered_by: Optional[int]
     created_at: Required[str]
     updated_at: Required[str]

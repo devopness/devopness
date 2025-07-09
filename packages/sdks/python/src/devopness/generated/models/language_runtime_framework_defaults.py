@@ -83,5 +83,5 @@ class LanguageRuntimeFrameworkDefaultsPlain(TypedDict, total=False):
             LanguageRuntimeFrameworkCommandsPlain,
         ]
     ]
-    install_dependencies_command: Optional[str] | None
-    build_command: Optional[str] | None
+    install_dependencies_command: Optional[str]
+    build_command: Optional[str]

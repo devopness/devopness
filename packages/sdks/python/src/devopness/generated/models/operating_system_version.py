@@ -61,15 +61,12 @@ class OperatingSystemVersionPlain(TypedDict, total=False):
     name: Required[str]
     code_name: Required[str]
     version: Required[str]
-    os_version_code: (
-        Optional[
-            Union[
-                CloudOsVersionCode,
-                CloudOsVersionCodePlain,
-            ]
+    os_version_code: Optional[
+        Union[
+            CloudOsVersionCode,
+            CloudOsVersionCodePlain,
         ]
-        | None
-    )
+    ]
     os_version_code_human_readable: Optional[str]
     released_at: Required[str]
     end_standard_support_at: Required[str]

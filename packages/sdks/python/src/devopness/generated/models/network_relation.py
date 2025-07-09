@@ -95,14 +95,11 @@ class NetworkRelationPlain(TypedDict, total=False):
             NetworkProvisionInputPlain,
         ]
     ]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelationShallow,
-                ActionRelationShallowPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
         ]
-        | None
-    )
+    ]
     created_at: Optional[str]
     updated_at: Optional[str]

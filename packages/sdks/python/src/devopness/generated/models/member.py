@@ -52,14 +52,11 @@ class MemberPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    team: (
-        Optional[
-            Union[
-                TeamRelation,
-                TeamRelationPlain,
-            ]
+    team: Optional[
+        Union[
+            TeamRelation,
+            TeamRelationPlain,
         ]
-        | None
-    )
+    ]
     created_at: Required[str]
     updated_at: Required[str]

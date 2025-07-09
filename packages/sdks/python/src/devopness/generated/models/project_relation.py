@@ -72,7 +72,7 @@ class ProjectRelationPlain(TypedDict, total=False):
     id: Required[int]
     user_id: Required[int]
     name: Required[str]
-    logo_url: Optional[str] | None
+    logo_url: Optional[str]
     resource_summary: Optional[
         List[
             Union[

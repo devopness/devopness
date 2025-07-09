@@ -89,7 +89,7 @@ class ServicePlain(TypedDict, total=False):
     name: Required[str]
     type: Required[str]
     type_human_readable: Required[str]
-    version: Optional[str] | None
+    version: Optional[str]
     is_auto_generated: Required[bool]
     auto_start: Required[bool]
     initial_state: Required[
@@ -98,31 +98,25 @@ class ServicePlain(TypedDict, total=False):
             ServiceInitialStatePlain,
         ]
     ]
-    description: Optional[str] | None
-    environment: (
-        Optional[
-            Union[
-                EnvironmentRelation,
-                EnvironmentRelationPlain,
-            ]
+    description: Optional[str]
+    environment: Optional[
+        Union[
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
-        | None
-    )
+    ]
     created_by_user: Required[
         Union[
             UserRelation,
             UserRelationPlain,
         ]
     ]
-    project: (
-        Optional[
-            Union[
-                ProjectRelation,
-                ProjectRelationPlain,
-            ]
+    project: Optional[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
         ]
-        | None
-    )
+    ]
     servers: Required[
         List[
             Union[
@@ -131,14 +125,11 @@ class ServicePlain(TypedDict, total=False):
             ]
         ]
     ]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelation,
-                ActionRelationPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelation,
+            ActionRelationPlain,
         ]
-        | None
-    )
+    ]
     created_at: Required[str]
     updated_at: Required[str]

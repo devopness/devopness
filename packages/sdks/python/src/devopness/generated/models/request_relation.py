@@ -59,8 +59,8 @@ class RequestRelationPlain(TypedDict, total=False):
 
     id: Required[str]
     hook_id: Required[str]
-    action_id: Optional[int] | None
-    retry_of: Optional[str] | None
+    action_id: Optional[int]
+    retry_of: Optional[str]
     ip_address: Required[str]
     created_at: Required[str]
     updated_at: Required[str]

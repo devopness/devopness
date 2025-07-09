@@ -149,8 +149,8 @@ class ApplicationPlain(TypedDict, total=False):
     framework_human_readable: Required[str]
     root_directory: Required[str]
     deployments_keep: Required[int]
-    install_dependencies_command: Optional[str] | None
-    build_command: Optional[str] | None
+    install_dependencies_command: Optional[str]
+    build_command: Optional[str]
     created_by_user: Required[
         Union[
             UserRelation,
@@ -163,15 +163,12 @@ class ApplicationPlain(TypedDict, total=False):
             ApplicationLastDeploymentsPlain,
         ]
     ]
-    environment: (
-        Optional[
-            Union[
-                EnvironmentRelation,
-                EnvironmentRelationPlain,
-            ]
+    environment: Optional[
+        Union[
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
-        | None
-    )
+    ]
     servers: Required[
         List[
             Union[
@@ -180,15 +177,12 @@ class ApplicationPlain(TypedDict, total=False):
             ]
         ]
     ]
-    credential: (
-        Optional[
-            Union[
-                CredentialRelation,
-                CredentialRelationPlain,
-            ]
+    credential: Optional[
+        Union[
+            CredentialRelation,
+            CredentialRelationPlain,
         ]
-        | None
-    )
+    ]
     virtual_hosts: Required[
         List[
             Union[

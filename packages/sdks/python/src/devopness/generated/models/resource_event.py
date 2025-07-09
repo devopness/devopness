@@ -43,12 +43,9 @@ class ResourceEventPlain(TypedDict, total=False):
 
     resource_type: Required[str]
     resource_id: Required[int]
-    resource_data: (
-        Optional[
-            Union[
-                Subscription,
-                SubscriptionPlain,
-            ]
+    resource_data: Optional[
+        Union[
+            Subscription,
+            SubscriptionPlain,
         ]
-        | None
-    )
+    ]

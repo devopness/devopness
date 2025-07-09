@@ -63,7 +63,7 @@ class CloudInstanceRelationPlain(TypedDict, total=False):
     name: Required[str]
     type: Required[str]
     family: Required[str]
-    architecture: Optional[str] | None
+    architecture: Optional[str]
     default_disk_size: Required[int]
     price_hourly: Required[float]
     price_monthly: Required[float]

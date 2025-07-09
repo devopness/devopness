@@ -60,17 +60,14 @@ class ActionTargetServerDataPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    ip_address: Optional[str] | None
+    ip_address: Optional[str]
     ssh_port: Required[int]
-    os_version_code: (
-        Optional[
-            Union[
-                CloudOsVersionCode,
-                CloudOsVersionCodePlain,
-            ]
+    os_version_code: Optional[
+        Union[
+            CloudOsVersionCode,
+            CloudOsVersionCodePlain,
         ]
-        | None
-    )
+    ]
     provision_input: Required[
         Union[
             ServerProvisionInput,

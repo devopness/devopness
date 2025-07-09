@@ -65,17 +65,14 @@ class RolePlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     description: Required[str]
-    project_id: Optional[int] | None
+    project_id: Optional[int]
     is_predefined: Required[bool]
     permissions: Required[List[str]]
-    parent: (
-        Optional[
-            Union[
-                RoleRelation,
-                RoleRelationPlain,
-            ]
+    parent: Optional[
+        Union[
+            RoleRelation,
+            RoleRelationPlain,
         ]
-        | None
-    )
+    ]
     created_at: Required[str]
     updated_at: Required[str]

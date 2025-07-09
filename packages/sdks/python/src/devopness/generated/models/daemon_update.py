@@ -61,7 +61,7 @@ class DaemonUpdatePlain(TypedDict, total=False):
     id: Required[int]
     command: Required[str]
     process_count: Required[int]
-    working_directory: Optional[str] | None
+    working_directory: Optional[str]
     run_as_user: Required[str]
     name: Required[str]
-    application_id: Optional[int] | None
+    application_id: Optional[int]

@@ -53,12 +53,9 @@ class UserUpdatePlain(TypedDict, total=False):
     name: Required[str]
     email: Required[str]
     url_slug: Required[str]
-    language: (
-        Optional[
-            Union[
-                Language,
-                LanguagePlain,
-            ]
+    language: Optional[
+        Union[
+            Language,
+            LanguagePlain,
         ]
-        | None
-    )
+    ]

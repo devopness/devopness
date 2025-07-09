@@ -72,14 +72,11 @@ class SshKeyRelationPlain(TypedDict, total=False):
     environment_id: Required[int]
     name: Required[str]
     fingerprint: Required[str]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelationShallow,
-                ActionRelationShallowPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
         ]
-        | None
-    )
+    ]
     created_at: Optional[str]
     updated_at: Optional[str]

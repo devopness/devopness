@@ -76,7 +76,7 @@ class ServiceRelationPlain(TypedDict, total=False):
     name: Required[str]
     type: Required[str]
     type_human_readable: Required[str]
-    version: Optional[str] | None
+    version: Optional[str]
     is_auto_generated: Required[bool]
     auto_start: Required[bool]
     initial_state: Required[
@@ -85,15 +85,12 @@ class ServiceRelationPlain(TypedDict, total=False):
             ServiceInitialStatePlain,
         ]
     ]
-    description: Optional[str] | None
-    last_action: (
-        Optional[
-            Union[
-                ActionRelationShallow,
-                ActionRelationShallowPlain,
-            ]
+    description: Optional[str]
+    last_action: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
         ]
-        | None
-    )
+    ]
     created_at: Optional[str]
     updated_at: Optional[str]

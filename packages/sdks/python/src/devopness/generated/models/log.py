@@ -41,22 +41,16 @@ class LogPlain(TypedDict, total=False):
     Plain version of Log.
     """
 
-    target: (
-        Optional[
-            Union[
-                ActionTargetData,
-                ActionTargetDataPlain,
-            ]
+    target: Optional[
+        Union[
+            ActionTargetData,
+            ActionTargetDataPlain,
         ]
-        | None
-    )
-    step: (
-        Optional[
-            Union[
-                ActionTargetLogStep,
-                ActionTargetLogStepPlain,
-            ]
+    ]
+    step: Optional[
+        Union[
+            ActionTargetLogStep,
+            ActionTargetLogStepPlain,
         ]
-        | None
-    )
-    updated_at: Optional[str] | None
+    ]
+    updated_at: Optional[str]

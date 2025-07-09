@@ -77,8 +77,8 @@ class HookRequestPlain(TypedDict, total=False):
 
     id: Required[str]
     hook_id: Required[str]
-    action_id: Optional[int] | None
-    retry_of: Optional[str] | None
+    action_id: Optional[int]
+    retry_of: Optional[str]
     ip_address: Required[str]
     url: Required[str]
     request_headers: Required[object]
@@ -86,14 +86,11 @@ class HookRequestPlain(TypedDict, total=False):
     response_status_code: Required[int]
     response_headers: Required[object]
     response_body: Required[object]
-    hook: (
-        Optional[
-            Union[
-                HookRelation,
-                HookRelationPlain,
-            ]
+    hook: Optional[
+        Union[
+            HookRelation,
+            HookRelationPlain,
         ]
-        | None
-    )
+    ]
     created_at: Required[str]
     updated_at: Required[str]

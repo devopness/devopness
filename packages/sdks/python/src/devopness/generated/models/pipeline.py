@@ -98,15 +98,12 @@ class PipelinePlain(TypedDict, total=False):
     operation: Required[str]
     operation_human_readable: Required[str]
     max_parallel_actions: Required[int]
-    trigger_when: (
-        Optional[
-            Union[
-                PipelineTriggerWhen,
-                PipelineTriggerWhenPlain,
-            ]
+    trigger_when: Optional[
+        Union[
+            PipelineTriggerWhen,
+            PipelineTriggerWhenPlain,
         ]
-        | None
-    )
+    ]
     steps: Required[
         List[
             Union[

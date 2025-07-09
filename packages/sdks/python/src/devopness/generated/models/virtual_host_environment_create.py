@@ -70,5 +70,5 @@ class VirtualHostEnvironmentCreatePlain(TypedDict, total=False):
     type: Required[str]
     name: Required[str]
     root_directory: Optional[str]
-    application_listen_address: Optional[str] | None
-    application_id: Optional[int] | None
+    application_listen_address: Optional[str]
+    application_id: Optional[int]

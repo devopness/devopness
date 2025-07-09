@@ -84,29 +84,23 @@ class CronJobRelationPlain(TypedDict, total=False):
         ]
     ]
     is_auto_generated: Required[bool]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelationShallow,
-                ActionRelationShallowPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
         ]
-        | None
-    )
+    ]
     created_by_user: Optional[
         Union[
             UserRelation,
             UserRelationPlain,
         ]
     ]
-    application: (
-        Optional[
-            Union[
-                ApplicationRelation,
-                ApplicationRelationPlain,
-            ]
+    application: Optional[
+        Union[
+            ApplicationRelation,
+            ApplicationRelationPlain,
         ]
-        | None
-    )
+    ]
     created_at: Optional[str]
     updated_at: Optional[str]

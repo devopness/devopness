@@ -62,12 +62,9 @@ class HookVariablePlain(TypedDict, total=False):
         ]
     ]
     required: Optional[bool]
-    default_value: (
-        Optional[
-            Union[
-                HookVariableDefaultValue,
-                HookVariableDefaultValuePlain,
-            ]
+    default_value: Optional[
+        Union[
+            HookVariableDefaultValue,
+            HookVariableDefaultValuePlain,
         ]
-        | None
-    )
+    ]

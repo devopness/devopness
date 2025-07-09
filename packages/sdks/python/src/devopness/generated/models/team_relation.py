@@ -47,6 +47,6 @@ class TeamRelationPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Optional[str] | None
+    photo_url: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

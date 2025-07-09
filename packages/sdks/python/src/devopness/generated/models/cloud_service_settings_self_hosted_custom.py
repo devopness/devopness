@@ -32,12 +32,9 @@ class CloudServiceSettingsSelfHostedCustomPlain(TypedDict, total=False):
     Plain version of CloudServiceSettingsSelfHostedCustom.
     """
 
-    os_version_code: (
-        Optional[
-            Union[
-                CloudOsVersionCode,
-                CloudOsVersionCodePlain,
-            ]
+    os_version_code: Optional[
+        Union[
+            CloudOsVersionCode,
+            CloudOsVersionCodePlain,
         ]
-        | None
-    )
+    ]

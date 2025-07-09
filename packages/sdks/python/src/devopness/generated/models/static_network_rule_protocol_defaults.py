@@ -32,4 +32,4 @@ class StaticNetworkRuleProtocolDefaultsPlain(TypedDict, total=False):
     Plain version of StaticNetworkRuleProtocolDefaults.
     """
 
-    port: Optional[int] | None
+    port: Optional[int]

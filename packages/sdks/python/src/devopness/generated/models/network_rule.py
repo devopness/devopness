@@ -90,30 +90,24 @@ class NetworkRulePlain(TypedDict, total=False):
     port: Required[int]
     cidr_block: Required[str]
     is_auto_generated: Required[bool]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelation,
-                ActionRelationPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelation,
+            ActionRelationPlain,
         ]
-        | None
-    )
+    ]
     created_by_user: Required[
         Union[
             UserRelation,
             UserRelationPlain,
         ]
     ]
-    environment: (
-        Optional[
-            Union[
-                EnvironmentRelation,
-                EnvironmentRelationPlain,
-            ]
+    environment: Optional[
+        Union[
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
-        | None
-    )
+    ]
     servers: Required[
         List[
             Union[

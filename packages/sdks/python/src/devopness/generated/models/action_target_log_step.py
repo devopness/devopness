@@ -45,6 +45,6 @@ class ActionTargetLogStepPlain(TypedDict, total=False):
     """
 
     order: Required[int]
-    started_at: Optional[datetime] | None
-    completed_at: Optional[datetime] | None
-    output: Optional[str] | None
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
+    output: Optional[str]

@@ -56,15 +56,12 @@ class CloudProviderInputSettingsPlain(TypedDict, total=False):
 
     name: Required[str]
     name_human_readable: Required[str]
-    default_value: (
-        Optional[
-            Union[
-                CloudProviderInputSettingsDefaultValue,
-                CloudProviderInputSettingsDefaultValuePlain,
-            ]
+    default_value: Optional[
+        Union[
+            CloudProviderInputSettingsDefaultValue,
+            CloudProviderInputSettingsDefaultValuePlain,
         ]
-        | None
-    )
+    ]
     sensitive: Required[bool]
     validation: Required[
         Union[

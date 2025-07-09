@@ -92,16 +92,13 @@ class SslCertificateRelationPlain(TypedDict, total=False):
         ]
     ]
     active: Required[bool]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelationShallow,
-                ActionRelationShallowPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
         ]
-        | None
-    )
-    expires_at: Optional[str] | None
-    last_renewed_at: Optional[str] | None
+    ]
+    expires_at: Optional[str]
+    last_renewed_at: Optional[str]
     created_at: Optional[str]
     updated_at: Optional[str]

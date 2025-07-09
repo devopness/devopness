@@ -81,6 +81,6 @@ class SocialAccountPlain(TypedDict, total=False):
     ]
     provider_user_nickname: Required[str]
     is_vcs: Required[bool]
-    token_expires_at: Optional[str] | None
+    token_expires_at: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

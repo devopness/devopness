@@ -94,48 +94,36 @@ class CronJobPlain(TypedDict, total=False):
         ]
     ]
     is_auto_generated: Required[bool]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelation,
-                ActionRelationPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelation,
+            ActionRelationPlain,
         ]
-        | None
-    )
+    ]
     created_by_user: Required[
         Union[
             UserRelation,
             UserRelationPlain,
         ]
     ]
-    application: (
-        Optional[
-            Union[
-                ApplicationRelation,
-                ApplicationRelationPlain,
-            ]
+    application: Optional[
+        Union[
+            ApplicationRelation,
+            ApplicationRelationPlain,
         ]
-        | None
-    )
-    project: (
-        Optional[
-            Union[
-                ProjectRelation,
-                ProjectRelationPlain,
-            ]
+    ]
+    project: Optional[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
         ]
-        | None
-    )
-    environment: (
-        Optional[
-            Union[
-                EnvironmentRelation,
-                EnvironmentRelationPlain,
-            ]
+    ]
+    environment: Optional[
+        Union[
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
-        | None
-    )
+    ]
     servers: Required[
         List[
             Union[

@@ -61,7 +61,7 @@ class ActionTriggeredFromPlain(TypedDict, total=False):
     Plain version of ActionTriggeredFrom.
     """
 
-    origin: Optional[str] | None
+    origin: Optional[str]
     trigger_type: Required[
         Union[
             ActionTriggerType,
@@ -69,8 +69,8 @@ class ActionTriggeredFromPlain(TypedDict, total=False):
         ]
     ]
     name: Required[str]
-    email: Optional[str] | None
+    email: Optional[str]
     ip_address: Required[str]
-    user_id: Optional[int] | None
-    hook_id: Optional[str] | None
-    hook_request_id: Optional[str] | None
+    user_id: Optional[int]
+    hook_id: Optional[str]
+    hook_request_id: Optional[str]

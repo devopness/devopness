@@ -52,14 +52,11 @@ class TeamMembershipRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     photo_url: Required[str]
-    role: (
-        Optional[
-            Union[
-                RoleRelation,
-                RoleRelationPlain,
-            ]
+    role: Optional[
+        Union[
+            RoleRelation,
+            RoleRelationPlain,
         ]
-        | None
-    )
+    ]
     created_at: Required[str]
     updated_at: Required[str]

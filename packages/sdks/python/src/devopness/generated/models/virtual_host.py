@@ -83,35 +83,26 @@ class VirtualHostPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    application: (
-        Optional[
-            Union[
-                ApplicationRelation,
-                ApplicationRelationPlain,
-            ]
+    application: Optional[
+        Union[
+            ApplicationRelation,
+            ApplicationRelationPlain,
         ]
-        | None
-    )
-    root_directory: Optional[str] | None
-    application_listen_address: Optional[str] | None
-    ssl_certificate: (
-        Optional[
-            Union[
-                SslCertificateRelation,
-                SslCertificateRelationPlain,
-            ]
+    ]
+    root_directory: Optional[str]
+    application_listen_address: Optional[str]
+    ssl_certificate: Optional[
+        Union[
+            SslCertificateRelation,
+            SslCertificateRelationPlain,
         ]
-        | None
-    )
-    last_action: (
-        Optional[
-            Union[
-                ActionRelation,
-                ActionRelationPlain,
-            ]
+    ]
+    last_action: Optional[
+        Union[
+            ActionRelation,
+            ActionRelationPlain,
         ]
-        | None
-    )
+    ]
     created_by_user: Required[
         Union[
             UserRelation,

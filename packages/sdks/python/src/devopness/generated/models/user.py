@@ -65,15 +65,12 @@ class UserPlain(TypedDict, total=False):
     name: Required[str]
     email: Required[str]
     url_slug: Optional[str]
-    language: (
-        Optional[
-            Union[
-                Language,
-                LanguagePlain,
-            ]
+    language: Optional[
+        Union[
+            Language,
+            LanguagePlain,
         ]
-        | None
-    )
+    ]
     active: Required[bool]
     social_accounts: Required[
         List[

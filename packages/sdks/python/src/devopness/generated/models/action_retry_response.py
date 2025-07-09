@@ -124,8 +124,8 @@ class ActionRetryResponsePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    pipeline_id: Optional[int] | None
-    retry_of: Optional[int] | None
+    pipeline_id: Optional[int]
+    retry_of: Optional[int]
     status: Required[
         Union[
             ActionStatus,
@@ -148,30 +148,24 @@ class ActionRetryResponsePlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: (
-        Optional[
-            Union[
-                ActionDeploymentData,
-                ActionDeploymentDataPlain,
-            ]
+    action_data: Optional[
+        Union[
+            ActionDeploymentData,
+            ActionDeploymentDataPlain,
         ]
-        | None
-    )
+    ]
     triggered_from: Required[
         Union[
             ActionTriggeredFrom,
             ActionTriggeredFromPlain,
         ]
     ]
-    parent: (
-        Optional[
-            Union[
-                RelatedAction,
-                RelatedActionPlain,
-            ]
+    parent: Optional[
+        Union[
+            RelatedAction,
+            RelatedActionPlain,
         ]
-        | None
-    )
+    ]
     children: Required[
         List[
             Union[
@@ -198,24 +192,18 @@ class ActionRetryResponsePlain(TypedDict, total=False):
             ActionSummaryPlain,
         ]
     ]
-    environment: (
-        Optional[
-            Union[
-                EnvironmentRelation,
-                EnvironmentRelationPlain,
-            ]
+    environment: Optional[
+        Union[
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
-        | None
-    )
-    project: (
-        Optional[
-            Union[
-                ProjectRelation,
-                ProjectRelationPlain,
-            ]
+    ]
+    project: Optional[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
         ]
-        | None
-    )
+    ]
     targets: Optional[
         List[
             Union[
@@ -230,7 +218,7 @@ class ActionRetryResponsePlain(TypedDict, total=False):
             ActionHookRequestPlain,
         ]
     ]
-    started_at: Optional[str] | None
-    completed_at: Optional[str] | None
+    started_at: Optional[str]
+    completed_at: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

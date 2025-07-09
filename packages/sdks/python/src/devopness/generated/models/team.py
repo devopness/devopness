@@ -55,16 +55,13 @@ class TeamPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Optional[str] | None
-    project: (
-        Optional[
-            Union[
-                ProjectRelation,
-                ProjectRelationPlain,
-            ]
+    photo_url: Optional[str]
+    project: Optional[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
         ]
-        | None
-    )
+    ]
     users: Required[
         List[
             Union[

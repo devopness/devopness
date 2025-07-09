@@ -119,15 +119,12 @@ class ActionRelationPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: (
-        Optional[
-            Union[
-                ActionDeploymentData,
-                ActionDeploymentDataPlain,
-            ]
+    action_data: Optional[
+        Union[
+            ActionDeploymentData,
+            ActionDeploymentDataPlain,
         ]
-        | None
-    )
+    ]
     triggered_from: Required[
         Union[
             ActionTriggeredFrom,
@@ -154,7 +151,7 @@ class ActionRelationPlain(TypedDict, total=False):
             ]
         ]
     ]
-    started_at: Optional[str] | None
-    completed_at: Optional[str] | None
+    started_at: Optional[str]
+    completed_at: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

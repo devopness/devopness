@@ -55,12 +55,9 @@ class CloudServiceSettingsAzureRmPlain(TypedDict, total=False):
     region: Required[str]
     region_human_readable: Optional[str]
     storage_size: Required[int]
-    os_version_code: (
-        Optional[
-            Union[
-                CloudOsVersionCode,
-                CloudOsVersionCodePlain,
-            ]
+    os_version_code: Optional[
+        Union[
+            CloudOsVersionCode,
+            CloudOsVersionCodePlain,
         ]
-        | None
-    )
+    ]

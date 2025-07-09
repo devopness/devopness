@@ -42,4 +42,4 @@ class HookTriggerResponsePlain(TypedDict, total=False):
     """
 
     message: Required[str]
-    errors: Optional[object] | None
+    errors: Optional[object]

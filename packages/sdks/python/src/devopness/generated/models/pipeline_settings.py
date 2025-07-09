@@ -54,25 +54,19 @@ class PipelineSettingsPlain(TypedDict, total=False):
 
     max_pipelines_per_resource: Optional[int]
     is_user_managed: Optional[bool]
-    stages: (
-        Optional[
-            List[
-                Union[
-                    PipelineSettingsStage,
-                    PipelineSettingsStagePlain,
-                ]
+    stages: Optional[
+        List[
+            Union[
+                PipelineSettingsStage,
+                PipelineSettingsStagePlain,
             ]
         ]
-        | None
-    )
-    variables: (
-        Optional[
-            List[
-                Union[
-                    PipelineSettingsVariable,
-                    PipelineSettingsVariablePlain,
-                ]
+    ]
+    variables: Optional[
+        List[
+            Union[
+                PipelineSettingsVariable,
+                PipelineSettingsVariablePlain,
             ]
         ]
-        | None
-    )
+    ]

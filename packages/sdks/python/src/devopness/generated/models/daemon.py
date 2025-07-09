@@ -89,45 +89,33 @@ class DaemonPlain(TypedDict, total=False):
     name: Required[str]
     command: Required[str]
     run_as_user: Required[str]
-    working_directory: Optional[str] | None
+    working_directory: Optional[str]
     process_count: Required[int]
     is_auto_generated: Required[bool]
-    project: (
-        Optional[
-            Union[
-                ProjectRelation,
-                ProjectRelationPlain,
-            ]
+    project: Optional[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
         ]
-        | None
-    )
-    last_action: (
-        Optional[
-            Union[
-                ActionRelation,
-                ActionRelationPlain,
-            ]
+    ]
+    last_action: Optional[
+        Union[
+            ActionRelation,
+            ActionRelationPlain,
         ]
-        | None
-    )
-    application: (
-        Optional[
-            Union[
-                ApplicationRelation,
-                ApplicationRelationPlain,
-            ]
+    ]
+    application: Optional[
+        Union[
+            ApplicationRelation,
+            ApplicationRelationPlain,
         ]
-        | None
-    )
-    environment: (
-        Optional[
-            Union[
-                EnvironmentRelation,
-                EnvironmentRelationPlain,
-            ]
+    ]
+    environment: Optional[
+        Union[
+            EnvironmentRelation,
+            EnvironmentRelationPlain,
         ]
-        | None
-    )
+    ]
     servers: Required[
         List[
             Union[

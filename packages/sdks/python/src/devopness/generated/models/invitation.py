@@ -82,7 +82,7 @@ class InvitationPlain(TypedDict, total=False):
         ]
     ]
     status_human_readable: Required[str]
-    accepted_from_ip: Optional[str] | None
+    accepted_from_ip: Optional[str]
     created_by_user: Required[
         Union[
             UserRelation,
@@ -95,16 +95,13 @@ class InvitationPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    team: (
-        Optional[
-            Union[
-                TeamRelation,
-                TeamRelationPlain,
-            ]
+    team: Optional[
+        Union[
+            TeamRelation,
+            TeamRelationPlain,
         ]
-        | None
-    )
-    accepted_at: Optional[str] | None
+    ]
+    accepted_at: Optional[str]
     expires_at: Required[str]
     created_at: Required[str]
     updated_at: Required[str]

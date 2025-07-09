@@ -67,15 +67,12 @@ class UserRelationPlain(TypedDict, total=False):
     name: Required[str]
     email: Required[str]
     url_slug: Optional[str]
-    language: (
-        Optional[
-            Union[
-                Language,
-                LanguagePlain,
-            ]
+    language: Optional[
+        Union[
+            Language,
+            LanguagePlain,
         ]
-        | None
-    )
+    ]
     active: Optional[bool]
     created_at: Optional[datetime]
     updated_at: Optional[datetime]

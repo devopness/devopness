@@ -32,12 +32,9 @@ class UserBillingPlain(TypedDict, total=False):
     Plain version of UserBilling.
     """
 
-    active_subscription: (
-        Optional[
-            Union[
-                Subscription,
-                SubscriptionPlain,
-            ]
+    active_subscription: Optional[
+        Union[
+            Subscription,
+            SubscriptionPlain,
         ]
-        | None
-    )
+    ]

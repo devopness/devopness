@@ -49,12 +49,9 @@ class PipelineUpdatePlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     max_parallel_actions: Optional[int]
-    trigger_when: (
-        Optional[
-            Union[
-                PipelineTriggerWhen,
-                PipelineTriggerWhenPlain,
-            ]
+    trigger_when: Optional[
+        Union[
+            PipelineTriggerWhen,
+            PipelineTriggerWhenPlain,
         ]
-        | None
-    )
+    ]

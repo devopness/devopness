@@ -60,5 +60,5 @@ class ProviderInputSettingsPlain(TypedDict, total=False):
             ProviderInputSettingsValidationPlain,
         ]
     ]
-    default_value: Optional[str] | None
+    default_value: Optional[str]
     sensitive: Required[bool]

@@ -105,15 +105,15 @@ class HookRelationPlain(TypedDict, total=False):
             ActionTypePlain,
         ]
     ]
-    url: Optional[str] | None
-    target_url: Optional[str] | None
+    url: Optional[str]
+    target_url: Optional[str]
     is_auto_generated: Required[bool]
     requires_secret: Required[bool]
     verify_ssl: Required[bool]
     active: Required[bool]
     project_id: Required[int]
     environment_id: Required[int]
-    pipeline_id: Optional[int] | None
+    pipeline_id: Optional[int]
     resource_type: Required[
         Union[
             ResourceType,
@@ -121,15 +121,12 @@ class HookRelationPlain(TypedDict, total=False):
         ]
     ]
     resource_id: Required[int]
-    settings: (
-        Optional[
-            Union[
-                HookSettings,
-                HookSettingsPlain,
-            ]
+    settings: Optional[
+        Union[
+            HookSettings,
+            HookSettingsPlain,
         ]
-        | None
-    )
+    ]
     trigger_when: Required[
         Union[
             HookTriggerWhen,

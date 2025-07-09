@@ -79,27 +79,21 @@ class DaemonRelationPlain(TypedDict, total=False):
     name: Required[str]
     command: Required[str]
     run_as_user: Required[str]
-    working_directory: Optional[str] | None
+    working_directory: Optional[str]
     process_count: Required[int]
     is_auto_generated: Required[bool]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelationShallow,
-                ActionRelationShallowPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
         ]
-        | None
-    )
-    application: (
-        Optional[
-            Union[
-                ApplicationRelation,
-                ApplicationRelationPlain,
-            ]
+    ]
+    application: Optional[
+        Union[
+            ApplicationRelation,
+            ApplicationRelationPlain,
         ]
-        | None
-    )
+    ]
     created_by_user: Optional[
         Union[
             UserRelation,

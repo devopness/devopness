@@ -89,17 +89,14 @@ class ServerRelationPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    credential: (
-        Optional[
-            Union[
-                CredentialRelation,
-                CredentialRelationPlain,
-            ]
+    credential: Optional[
+        Union[
+            CredentialRelation,
+            CredentialRelationPlain,
         ]
-        | None
-    )
-    region: Optional[str] | None
-    region_human_readable: Optional[str] | None
+    ]
+    region: Optional[str]
+    region_human_readable: Optional[str]
     ip_address: Optional[str]
     ssh_port: Required[int]
     active: Required[bool]
@@ -109,14 +106,11 @@ class ServerRelationPlain(TypedDict, total=False):
             ServerStatusPlain,
         ]
     ]
-    last_action: (
-        Optional[
-            Union[
-                ActionRelationShallow,
-                ActionRelationShallowPlain,
-            ]
+    last_action: Optional[
+        Union[
+            ActionRelationShallow,
+            ActionRelationShallowPlain,
         ]
-        | None
-    )
+    ]
     created_at: Optional[str]
     updated_at: Optional[str]

@@ -30,7 +30,6 @@ class {{classname}}Plain(TypedDict, total=False):
               {{#isContainer}}{{baseType}}[ Union[{{items.dataType}}, {{items.dataType}}Plain,] ]{{/isContainer}}
             {{/isPrimitiveType}}
         ]
-        {{#isNullable}} | None {{/isNullable}}
     )
 {{/vars}}
 

@@ -80,7 +80,7 @@ class EnvironmentRelationPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    description: Optional[str] | None
+    description: Optional[str]
     used_credits: Optional[int]
     resource_summary: Optional[
         List[
@@ -92,13 +92,10 @@ class EnvironmentRelationPlain(TypedDict, total=False):
     ]
     created_at: Required[str]
     updated_at: Required[str]
-    archived_at: Optional[str] | None
-    project: (
-        Optional[
-            Union[
-                ProjectRelation,
-                ProjectRelationPlain,
-            ]
+    archived_at: Optional[str]
+    project: Optional[
+        Union[
+            ProjectRelation,
+            ProjectRelationPlain,
         ]
-        | None
-    )
+    ]
