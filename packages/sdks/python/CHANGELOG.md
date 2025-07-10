@@ -1,5 +1,13 @@
 # @devopness/sdk-python
 
+## 1.3.2
+
+### Patch Changes
+
+- [#1968](https://github.com/devopness/devopness/pull/1968) [`4ba5822`](https://github.com/devopness/devopness/commit/4ba582241185786eae2525fe3571240a72911deb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+
+  Fix incorrect use of `optional` on required fields in generated SDK models, ensuring alignment with OpenAPI spec
+
 ## 1.3.1
 
 ### Patch Changes
