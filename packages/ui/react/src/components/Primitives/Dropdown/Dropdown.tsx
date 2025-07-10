@@ -264,17 +264,9 @@ const Dropdown = ({
   const handleDropdownOptionClick = async (
     option: DropdownOption,
     onSelect: DropdownProps['onSelect'],
-    popupState: PopupStateProps,
-    event: React.MouseEvent
+    popupState: PopupStateProps
   ) => {
     if (option.isDisabled) return
-
-    const isExternalUrl = option.url?.startsWith('http')
-
-    if (!isExternalUrl) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
 
     try {
       /**
@@ -361,12 +353,13 @@ const Dropdown = ({
                             }
                             $brokenSequence={option.brokenSequence}
                             onClick={(event) => {
-                              if (!option.url?.startsWith('http')) {
+                              if (option.onClick || onSelect) {
+                                event.preventDefault()
+                                event.stopPropagation()
                                 void handleDropdownOptionClick(
                                   option,
                                   onSelect,
-                                  popupState,
-                                  event
+                                  popupState
                                 )
                               }
                             }}
@@ -406,12 +399,11 @@ const Dropdown = ({
                           $isActive={option.isActive}
                           $activeBackgroundColor={option.activeBackgroundColor}
                           $brokenSequence={option.brokenSequence}
-                          onClick={(event) =>
+                          onClick={() =>
                             void handleDropdownOptionClick(
                               option,
                               onSelect,
-                              popupState,
-                              event
+                              popupState
                             )
                           }
                         >
