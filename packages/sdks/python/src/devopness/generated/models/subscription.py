@@ -33,11 +33,11 @@ class Subscription(DevopnessBaseModel):
         price_unit (float, optional): Unitary price of the subscribed plan
         price_total (float, optional): Total price of this subscription (quantity x price_unit)
         price_currency (str, optional): Currency of the prices
-        cancelled_at (datetime, optional): If not null, indicates the date when this subscription was cancelled
+        cancelled_at (datetime, optional, nullable): If not null, indicates the date when this subscription was cancelled
         ends_at (datetime, optional): Indicates the date and time when this subscription ends
         created_at (datetime, optional): The date and time when the record was created
         updated_at (datetime, optional): The date and time when the record was last updated
-        current_balance (SubscriptionBalance, optional):
+        current_balance (SubscriptionBalance, optional, nullable):
         balances (List[SubscriptionBalance], optional): The list of subscription balances
     """
 

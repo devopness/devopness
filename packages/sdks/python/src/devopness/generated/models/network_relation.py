@@ -36,7 +36,7 @@ class NetworkRelation(DevopnessBaseModel):
         credential (Credential, optional):
         name (str): The networks&#39;s name
         provision_input (NetworkProvisionInput):
-        last_action (ActionRelationShallow, optional):
+        last_action (ActionRelationShallow, optional, nullable):
         created_at (str, optional): The date and time when the record was created
         updated_at (str, optional): The date and time when the record was last updated
     """

@@ -29,9 +29,9 @@ class ActionTargetServerData(DevopnessBaseModel):
         hostname (str): The server&#39;s hostname
         provider_name (str): The name of the server&#39;s provider.
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        ip_address (str): Public ipv4 address for server access
+        ip_address (str, optional, nullable): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
-        os_version_code (CloudOsVersionCode):
+        os_version_code (CloudOsVersionCode, optional, nullable):
         provision_input (ServerProvisionInput):
     """
 
@@ -60,9 +60,9 @@ class ActionTargetServerDataPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    ip_address: Required[str]
+    ip_address: Optional[str]
     ssh_port: Required[int]
-    os_version_code: Required[
+    os_version_code: Optional[
         Union[
             CloudOsVersionCode,
             CloudOsVersionCodePlain,

@@ -35,9 +35,9 @@ class SshKey(DevopnessBaseModel):
         name (str): The name entered by the user to uniquely identify the public SSH key
         fingerprint (str): The hashed fingerprint of the public key
         created_by_user (UserRelation):
-        environment (EnvironmentRelation):
+        environment (EnvironmentRelation, optional, nullable):
         servers (List[ServerRelation]):
-        last_action (ActionRelation):
+        last_action (ActionRelation, optional, nullable):
         created_at (str, optional): The date and time when the record was created
         updated_at (str, optional): The date and time when the record was last updated
     """
@@ -88,7 +88,7 @@ class SshKeyPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    environment: Required[
+    environment: Optional[
         Union[
             EnvironmentRelation,
             EnvironmentRelationPlain,
@@ -102,7 +102,7 @@ class SshKeyPlain(TypedDict, total=False):
             ]
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelation,
             ActionRelationPlain,

@@ -27,7 +27,7 @@ class CloudServiceSettingsGcpGce(DevopnessBaseModel):
         instance_type (str): The instance type to be launched on the cloud provider
         region (str): Datacenter region where the cloud instance will be launched
         region_human_readable (str, optional): Human readable version of the server region
-        os_version_code (CloudOsVersionCode):
+        os_version_code (CloudOsVersionCode, optional, nullable):
     """
 
     instance_type: StrictStr = Field(
@@ -50,7 +50,7 @@ class CloudServiceSettingsGcpGcePlain(TypedDict, total=False):
     instance_type: Required[str]
     region: Required[str]
     region_human_readable: Optional[str]
-    os_version_code: Required[
+    os_version_code: Optional[
         Union[
             CloudOsVersionCode,
             CloudOsVersionCodePlain,

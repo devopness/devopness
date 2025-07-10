@@ -31,13 +31,13 @@ class EnvironmentRelation(DevopnessBaseModel):
         type (EnvironmentType):
         type_human_readable (str): The human readable version of the type
         name (str): Environment&#39;s name
-        description (str): Environment&#39;s description
+        description (str, optional, nullable): Environment&#39;s description
         used_credits (int, optional): Number of credits used in the current monthly billing cycle by actions of resources in the environment.
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
-        archived_at (str): The date and time when the record was archived
-        project (ProjectRelation):
+        archived_at (str, optional, nullable): The date and time when the record was archived
+        project (ProjectRelation, optional, nullable):
     """
 
     id: StrictInt = Field(description="Unique id of the given record")
@@ -80,7 +80,7 @@ class EnvironmentRelationPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    description: Required[str]
+    description: Optional[str]
     used_credits: Optional[int]
     resource_summary: Optional[
         List[
@@ -92,8 +92,8 @@ class EnvironmentRelationPlain(TypedDict, total=False):
     ]
     created_at: Required[str]
     updated_at: Required[str]
-    archived_at: Required[str]
-    project: Required[
+    archived_at: Optional[str]
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,

@@ -43,12 +43,12 @@ class ActionRelationShallow(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): Permalink to view the action on Devopness web
-        action_data (ActionDeploymentData, optional):
+        action_data (ActionDeploymentData, optional, nullable):
         triggered_from (ActionTriggeredFrom, optional):
         summary (ActionSummary, optional):
         targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
-        started_at (datetime): When the action started
-        completed_at (datetime): When the action completed
+        started_at (datetime, optional, nullable): When the action started
+        completed_at (datetime, optional, nullable): When the action completed
         created_at (datetime): When the action was created
         updated_at (datetime): When the action was last updated
     """
@@ -135,7 +135,7 @@ class ActionRelationShallowPlain(TypedDict, total=False):
             ]
         ]
     ]
-    started_at: Required[datetime]
-    completed_at: Required[datetime]
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
     created_at: Required[datetime]
     updated_at: Required[datetime]

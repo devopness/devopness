@@ -26,7 +26,7 @@ class Member(DevopnessBaseModel):
 
     Attributes:
         user (UserRelation):
-        team (TeamRelation):
+        team (TeamRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -52,7 +52,7 @@ class MemberPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    team: Required[
+    team: Optional[
         Union[
             TeamRelation,
             TeamRelationPlain,

@@ -32,8 +32,8 @@ class LanguageRuntimeFrameworkDefaults(DevopnessBaseModel):
         root_directory (str, optional): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
         deployments_keep (int, optional): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers
         commands (LanguageRuntimeFrameworkCommands, optional):
-        install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies
-        build_command (str, optional): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
+        install_dependencies_command (str, optional, nullable): Indicates command that Devopness must execute to install application dependencies
+        build_command (str, optional, nullable): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
     """
 
     default_branch: Optional[StrictStr] = Field(

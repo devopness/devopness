@@ -8,7 +8,6 @@ Note:
 
 from typing import (
     Optional,
-    Required,
     TypedDict,
     Union,
 )
@@ -25,9 +24,9 @@ class Log(DevopnessBaseModel):
     Log
 
     Attributes:
-        target (ActionTargetData):
-        step (ActionTargetLogStep):
-        updated_at (str): The date and time when the requested log record was last updated
+        target (ActionTargetData, optional, nullable):
+        step (ActionTargetLogStep, optional, nullable):
+        updated_at (str, optional, nullable): The date and time when the requested log record was last updated
     """
 
     target: Optional[ActionTargetData]
@@ -42,16 +41,16 @@ class LogPlain(TypedDict, total=False):
     Plain version of Log.
     """
 
-    target: Required[
+    target: Optional[
         Union[
             ActionTargetData,
             ActionTargetDataPlain,
         ]
     ]
-    step: Required[
+    step: Optional[
         Union[
             ActionTargetLogStep,
             ActionTargetLogStepPlain,
         ]
     ]
-    updated_at: Required[str]
+    updated_at: Optional[str]

@@ -33,7 +33,7 @@ class CloudProviderInputSettings(DevopnessBaseModel):
     Attributes:
         name (str): Name of the property
         name_human_readable (str): Human readable version of the property&#39;s name
-        default_value (CloudProviderInputSettingsDefaultValue):
+        default_value (CloudProviderInputSettingsDefaultValue, optional, nullable):
         sensitive (bool): Defines if the property data is a sensitive content
         validation (CloudProviderPropertyValidation):
     """
@@ -56,7 +56,7 @@ class CloudProviderInputSettingsPlain(TypedDict, total=False):
 
     name: Required[str]
     name_human_readable: Required[str]
-    default_value: Required[
+    default_value: Optional[
         Union[
             CloudProviderInputSettingsDefaultValue,
             CloudProviderInputSettingsDefaultValuePlain,

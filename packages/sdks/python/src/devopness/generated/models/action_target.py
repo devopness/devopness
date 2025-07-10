@@ -41,12 +41,12 @@ class ActionTarget(DevopnessBaseModel):
         status_human_readable (str, optional): Human readable version of the action status
         status_reason_code (ActionStatusReasonCode):
         status_reason_human_readable (str, optional): Human readable version of the status reason code
-        total_steps (int): The total number of steps to complete the action
-        current_step (ActionStep):
+        total_steps (int, optional, nullable): The total number of steps to complete the action
+        current_step (ActionStep, optional, nullable):
         steps (List[ActionStep], optional): The list of action steps
-        resource_data (ActionTargetData):
-        started_at (datetime, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (datetime, optional): The date and time when the action has finished execution
+        resource_data (ActionTargetData, optional, nullable):
+        started_at (datetime, optional, nullable): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (datetime, optional, nullable): The date and time when the action has finished execution
         created_at (datetime): The date and time when the record was created
         updated_at (datetime): The date and time when the record was last updated
     """
@@ -116,8 +116,8 @@ class ActionTargetPlain(TypedDict, total=False):
         ]
     ]
     status_reason_human_readable: Optional[str]
-    total_steps: Required[int]
-    current_step: Required[
+    total_steps: Optional[int]
+    current_step: Optional[
         Union[
             ActionStep,
             ActionStepPlain,
@@ -131,7 +131,7 @@ class ActionTargetPlain(TypedDict, total=False):
             ]
         ]
     ]
-    resource_data: Required[
+    resource_data: Optional[
         Union[
             ActionTargetData,
             ActionTargetDataPlain,

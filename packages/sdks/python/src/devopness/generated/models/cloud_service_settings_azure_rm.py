@@ -28,7 +28,7 @@ class CloudServiceSettingsAzureRm(DevopnessBaseModel):
         region (str): Datacenter region where the cloud instance will be launched
         region_human_readable (str, optional): Human readable version of the server region
         storage_size (int): The storage&#39;s size of the cloud instance
-        os_version_code (CloudOsVersionCode):
+        os_version_code (CloudOsVersionCode, optional, nullable):
     """
 
     instance_type: StrictStr = Field(
@@ -55,7 +55,7 @@ class CloudServiceSettingsAzureRmPlain(TypedDict, total=False):
     region: Required[str]
     region_human_readable: Optional[str]
     storage_size: Required[int]
-    os_version_code: Required[
+    os_version_code: Optional[
         Union[
             CloudOsVersionCode,
             CloudOsVersionCodePlain,

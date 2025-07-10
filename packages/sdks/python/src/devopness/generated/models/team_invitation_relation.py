@@ -31,12 +31,12 @@ class TeamInvitationRelation(DevopnessBaseModel):
         email (str): The email of the user that has been invited to team
         status (TeamInvitationStatus):
         status_human_readable (str): Human readable version of the invitation status
-        accepted_from_ip (str): The IP of the user who accepted the invitation
+        accepted_from_ip (str, optional, nullable): The IP of the user who accepted the invitation
         created_by_user (UserRelation):
         user (UserRelation):
-        team (TeamRelation):
-        project (ProjectRelation):
-        accepted_at (str): The date and time when the invitation was accepted
+        team (TeamRelation, optional, nullable):
+        project (ProjectRelation, optional, nullable):
+        accepted_at (str, optional, nullable): The date and time when the invitation was accepted
         expires_at (str): The date and time when the invitation will expire
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
@@ -85,7 +85,7 @@ class TeamInvitationRelationPlain(TypedDict, total=False):
         ]
     ]
     status_human_readable: Required[str]
-    accepted_from_ip: Required[str]
+    accepted_from_ip: Optional[str]
     created_by_user: Required[
         Union[
             UserRelation,
@@ -98,19 +98,19 @@ class TeamInvitationRelationPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    team: Required[
+    team: Optional[
         Union[
             TeamRelation,
             TeamRelationPlain,
         ]
     ]
-    project: Required[
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,
         ]
     ]
-    accepted_at: Required[str]
+    accepted_at: Optional[str]
     expires_at: Required[str]
     created_at: Required[str]
     updated_at: Required[str]

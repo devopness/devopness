@@ -24,7 +24,7 @@ class TeamRelation(DevopnessBaseModel):
     Attributes:
         id (int): The unique ID of the given team
         name (str): The name of the given team
-        photo_url (str): The URL to team&#39;s image
+        photo_url (str, optional, nullable): The URL to team&#39;s image
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -47,6 +47,6 @@ class TeamRelationPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Required[str]
+    photo_url: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

@@ -21,8 +21,8 @@ class ApplicationLastDeployments(DevopnessBaseModel):
     ApplicationLastDeployments
 
     Attributes:
-        latest (ActionRelationShallow, optional):
-        live (ActionRelationShallow, optional):
+        latest (ActionRelationShallow, optional, nullable):
+        live (ActionRelationShallow, optional, nullable):
     """
 
     latest: Optional[ActionRelationShallow] = None
