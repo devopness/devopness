@@ -1,5 +1,38 @@
 # @devopness/ui-react
 
+## 2.164.1
+
+### Patch Changes
+
+- [#1971](https://github.com/devopness/devopness/pull/1971) [`8efb04b`](https://github.com/devopness/devopness/commit/8efb04bf546f6ad4e09d07ab985bf40cc71a178d) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Fix Dropdown link handling
+
+  ### What Changed
+  - Improved behavior of dropdown options with `url`, enabling the correct usage of a link `<a>` without preventing default behavior
+  - Prevent link default behavior only when an `onClick` or `onSelect` handler is defined
+
+  ### Example Usage
+
+  ```tsx
+  <Dropdown
+    options={[
+      {
+        label: "Go to Dashboard",
+        url: "/dashboard",
+        linkProps: { target: "_self" },
+      },
+      {
+        label: "Log out",
+        onClick: async () => {
+          await api.logout();
+        },
+      },
+    ]}
+  />
+
+
+  This update improves usability and accessibility of link-based dropdown options, maintains expected browser behavior.
+  ```
+
 ## 2.164.0
 
 ### Minor Changes
