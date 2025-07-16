@@ -77,7 +77,7 @@ lint: build-image ## 🔍 Run linting tools (ruff, mypy)
 		/bin/bash -cex ' \
 			poetry run ruff check . && \
 			poetry run ruff format . --check && \
-			poetry run mypy . \
+			poetry run mypy --enable-error-code exhaustive-match . \
 		'
 
 format: build-image ## 🧼 Auto-format code with ruff
