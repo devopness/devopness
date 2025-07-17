@@ -64,6 +64,7 @@ import {
   MdSettings,
   MdSnooze,
   MdWarning,
+  MdOutlineEmail,
 } from 'react-icons/md'
 import { PiCloudWarningBold, PiTagDuotone, PiTreeView } from 'react-icons/pi'
 import {
@@ -194,6 +195,7 @@ const iconList = [
   { type: 'icon', name: 'user', component: MdPersonOutline },
   { type: 'icon', name: 'warning', component: MdWarning },
   { type: 'icon', name: 'discord', component: RiDiscordFill },
+  { type: 'icon', name: 'email', component: MdOutlineEmail },
 
   // Technology/Brand icons
   { type: 'image', name: 'aws', component: awsSVG },
