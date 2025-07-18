@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/devopness-devopness-badge.png)](https://mseep.ai/app/devopness-devopness)
+
 # Devopness - `DevOps + Happiness` :-) for AI Agents & humans
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/devopness/devopness/blob/main/LICENSE)
