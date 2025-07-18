@@ -4,7 +4,7 @@ intro: Add a pipeline step to perform a specific task in a defined order during 
 links:
   overview:
   quickstart:
-  previous: applications/add-application
+  previous: applications/view-application
   next: files/add-file
   guides:
   related:
