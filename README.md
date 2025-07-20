@@ -1,4 +1,4 @@
-# Devopness - `DevOps + Happiness` :-) for AI Agents & humans
+# Devopness: DevOps Happiness :-) for AI Agents & humans
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/devopness/devopness/blob/main/LICENSE)
 
@@ -12,6 +12,9 @@ Install the **Devopness MCP Server** in your favorite IDE:
 )](https://insiders.vscode.dev/redirect/mcp/install?name=devopness&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.devopness.com%2Fmcp%2F%22%7D)
 
 > ⚠️ When the MCP Server is started in your IDE, it will require you to **log in with your Devopness Account** in order to authenticate and operate properly.
+
+## Community
+[![Discord Badge](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/5KphsWxHeJ)
 
 ## About Devopness
 
