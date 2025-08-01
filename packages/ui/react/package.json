@@ -82,7 +82,7 @@
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.11.0",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-import-helpers": "^2.0.1",
     "eslint-plugin-prefer-arrow": "^1.2.3",
