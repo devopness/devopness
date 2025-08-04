@@ -1,5 +1,27 @@
 # @devopness/ui-react
 
+## 2.167.0
+
+### Minor Changes
+
+- [#1998](https://github.com/devopness/devopness/pull/1998) [`bd3b2db`](https://github.com/devopness/devopness/commit/bd3b2db91e8ff76d8746a33a2fe2e20ae10311fc) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Skeleton` component for loading placeholders
+
+  ### What Changed
+  - Introduced a new `Skeleton` component to represent loading states with optional width, height, percentage sizing, and border radius
+  - Animated shimmer effect using themed background colors (e.g. `purple.300`, `indigo.100`...)
+  - Accepts pixel or percentage-based dimensions via `width`, `height`, `widthPercent`, and `heightPercent` props
+  - `borderRadius` prop for rounded visual
+
+  ### Example Usage
+
+  ```tsx
+  <Skeleton width={120} height={20} />
+
+  <Skeleton widthPercent={100} height={12} borderRadius={8} />
+  ```
+
+  This component improves visual feedback for content loading, allowing consistent placeholder elements throughout the app.
+
 ## 2.166.0
 
 ### Minor Changes
