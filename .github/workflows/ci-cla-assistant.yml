@@ -31,7 +31,7 @@ jobs:
         with:
           path-to-signatures: 'signatures/v1.0.0/cla.json'
           path-to-document: 'https://github.com/devopness/.github/blob/main/CLA.md'
-          allowlist: dependabot[bot],devopness-automations
+          allowlist: dependabot[bot],devopness-automations,cursor,cursoragent
           # branch should not be protected
           branch: 'main'
           remote-organization-name: 'devopness'
