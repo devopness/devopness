@@ -64,7 +64,7 @@
     "husky": "9.1.7",
     "jest": "^30.0.5",
     "ts-jest": "^29.4.1",
-    "typedoc": "^0.28.9",
+    "typedoc": "^0.28.10",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.38.0"
   },
