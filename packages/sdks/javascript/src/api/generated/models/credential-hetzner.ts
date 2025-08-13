@@ -14,19 +14,16 @@
 
 
 /**
- * The code of the service provider
+ * 
  * @export
- * @enum {string}
+ * @interface CredentialHetzner
  */
-export enum ProviderCode {
-    Aws = 'aws',
-    Azure = 'azure',
-    Bitbucket = 'bitbucket',
-    Digitalocean = 'digitalocean',
-    Gcp = 'gcp',
-    Github = 'github',
-    Gitlab = 'gitlab',
-    Hetzner = 'hetzner'
+export interface CredentialHetzner {
+    /**
+     * The API token used to authenticate to Hetzner
+     * @type {string}
+     * @memberof CredentialHetzner
+     */
+    api_token: string;
 }
-
 

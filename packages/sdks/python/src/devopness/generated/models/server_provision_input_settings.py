@@ -24,6 +24,10 @@ from .cloud_service_settings_gcp_gce import (
     CloudServiceSettingsGcpGce,
     CloudServiceSettingsGcpGcePlain,
 )
+from .cloud_service_settings_hetzner_hcloud import (
+    CloudServiceSettingsHetznerHcloud,
+    CloudServiceSettingsHetznerHcloudPlain,
+)
 from .cloud_service_settings_self_hosted_custom import (
     CloudServiceSettingsSelfHostedCustom,
     CloudServiceSettingsSelfHostedCustomPlain,
@@ -36,6 +40,7 @@ ServerProvisionInputSettings = Union[
     CloudServiceSettingsAzureRm,
     CloudServiceSettingsDigitalOceanDroplet,
     CloudServiceSettingsGcpGce,
+    CloudServiceSettingsHetznerHcloud,
     CloudServiceSettingsSelfHostedCustom,
 ]
 
@@ -45,5 +50,6 @@ ServerProvisionInputSettingsPlain = Union[
     CloudServiceSettingsAzureRmPlain,
     CloudServiceSettingsDigitalOceanDropletPlain,
     CloudServiceSettingsGcpGcePlain,
+    CloudServiceSettingsHetznerHcloudPlain,
     CloudServiceSettingsSelfHostedCustomPlain,
 ]
