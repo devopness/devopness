@@ -1,5 +1,24 @@
 # @devopness/ui-react
 
+## 2.169.0
+
+### Minor Changes
+
+- [#2061](https://github.com/devopness/devopness/pull/2061) [`b52899d`](https://github.com/devopness/devopness/commit/b52899db8fb3b85c95ac77525121e12b0ef62ba3) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `hetzner` and `fastmcp` icons to the icon set
+
+  ### What Changed
+  - Added a new `hetzner` icon to the set of supported `Icon` options
+  - Added a new `fastmcp` icon to the set of supported `Icon` options
+
+  ### Example Usage
+
+  ```tsx
+  <Icon name="hetzner" size={14} color="blue.950" />
+  <Icon name="python-fastmcp" size={14} color="blue.950" />
+  ```
+
+  These additions expand the available icon set for consistent and recognizable UI design.
+
 ## 2.168.0
 
 ### Minor Changes
