@@ -12590,7 +12590,6 @@
           "type",
           "type_human_readable",
           "url_web_permalink",
-          "action_data",
           "triggered_from",
           "resource",
           "started_at",
@@ -14200,7 +14199,8 @@
           "aws",
           "azure",
           "digitalocean",
-          "gcp"
+          "gcp",
+          "hetzner"
         ],
         "example": "aws"
       },
@@ -14366,6 +14366,7 @@
           "azure-rm",
           "digitalocean-droplet",
           "gcp-gce",
+          "hetzner-hcloud",
           "self-hosted-custom"
         ],
         "description": "The code that uniquely identify this cloud service",
@@ -14626,6 +14627,40 @@
           "os_version_code"
         ]
       },
+      "CloudServiceSettingsHetznerHcloud": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "cpx11"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "ash"
+          },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "(USA) Ashburn, VA ash"
+          },
+          "storage_size": {
+            "type": "integer",
+            "description": "The storage's size of the cloud instance",
+            "example": 30
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "region",
+          "instance_type",
+          "storage_size",
+          "os_version_code"
+        ]
+      },
       "CloudServiceSettingsSelfHostedCustom": {
         "type": "object",
         "properties": {
@@ -14855,6 +14890,19 @@
           "service_account_key"
         ]
       },
+      "CredentialHetzner": {
+        "type": "object",
+        "properties": {
+          "api_token": {
+            "type": "string",
+            "description": "The API token used to authenticate to Hetzner",
+            "example": "1d0493baf88ce53a0dea2866ee05f032edb8c12easdasd12"
+          }
+        },
+        "required": [
+          "api_token"
+        ]
+      },
       "CredentialInputSettings": {
         "type": "object",
         "properties": {
@@ -14872,6 +14920,9 @@
               },
               {
                 "$ref": "#/components/schemas/CredentialGoogleCloud"
+              },
+              {
+                "$ref": "#/components/schemas/CredentialHetzner"
               },
               {
                 "$ref": "#/components/schemas/CredentialSourceProvider"
@@ -18744,7 +18795,8 @@
           "digitalocean",
           "gcp",
           "github",
-          "gitlab"
+          "gitlab",
+          "hetzner"
         ],
         "example": "aws"
       },
@@ -19942,6 +19994,7 @@
           "azure-rm",
           "digitalocean-droplet",
           "gcp-gce",
+          "hetzner-hcloud",
           "self-hosted-custom"
         ]
       },
@@ -20044,6 +20097,9 @@
               },
               {
                 "$ref": "#/components/schemas/CloudServiceSettingsGcpGce"
+              },
+              {
+                "$ref": "#/components/schemas/CloudServiceSettingsHetznerHcloud"
               },
               {
                 "$ref": "#/components/schemas/CloudServiceSettingsSelfHostedCustom"
@@ -20570,6 +20626,7 @@
         "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
         "enum": [
           "Bitbucket",
+          "Clerk",
           "Facebook",
           "GitHub",
           "GitLab",
@@ -20588,6 +20645,7 @@
         "description": "The name of the Social Authentication provider",
         "enum": [
           "bitbucket",
+          "clerk",
           "facebook",
           "github",
           "gitlab",
@@ -21108,8 +21166,10 @@
         "type": "string",
         "enum": [
           "aws",
+          "azure",
           "digitalocean",
           "gcp",
+          "hetzner",
           "self-hosted"
         ],
         "example": "aws"
