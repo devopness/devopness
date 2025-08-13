@@ -20,6 +20,7 @@ class CloudProviderCode(str, Enum):
     AZURE = "azure"
     DIGITALOCEAN = "digitalocean"
     GCP = "gcp"
+    HETZNER = "hetzner"
 
     def __str__(self) -> str:
         """Return the string representation of the CloudProviderCode"""
@@ -37,4 +38,5 @@ CloudProviderCodePlain = Literal[
     "azure",
     "digitalocean",
     "gcp",
+    "hetzner",
 ]

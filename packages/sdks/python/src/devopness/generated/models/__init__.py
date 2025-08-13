@@ -132,6 +132,10 @@ from .cloud_service_settings_gcp_gce import (
     CloudServiceSettingsGcpGce,
     CloudServiceSettingsGcpGcePlain,
 )
+from .cloud_service_settings_hetzner_hcloud import (
+    CloudServiceSettingsHetznerHcloud,
+    CloudServiceSettingsHetznerHcloudPlain,
+)
 from .cloud_service_settings_self_hosted_custom import (
     CloudServiceSettingsSelfHostedCustom,
     CloudServiceSettingsSelfHostedCustomPlain,
@@ -149,6 +153,7 @@ from .credential_environment_create import (
     CredentialEnvironmentCreatePlain,
 )
 from .credential_google_cloud import CredentialGoogleCloud, CredentialGoogleCloudPlain
+from .credential_hetzner import CredentialHetzner, CredentialHetznerPlain
 from .credential_input_settings import (
     CredentialInputSettings,
     CredentialInputSettingsPlain,
@@ -719,6 +724,8 @@ __all__ = [
     "CloudServiceSettingsDigitalOceanDropletPlain",
     "CloudServiceSettingsGcpGce",
     "CloudServiceSettingsGcpGcePlain",
+    "CloudServiceSettingsHetznerHcloud",
+    "CloudServiceSettingsHetznerHcloudPlain",
     "CloudServiceSettingsSelfHostedCustom",
     "CloudServiceSettingsSelfHostedCustomPlain",
     "Commit",
@@ -734,6 +741,8 @@ __all__ = [
     "CredentialEnvironmentCreatePlain",
     "CredentialGoogleCloud",
     "CredentialGoogleCloudPlain",
+    "CredentialHetzner",
+    "CredentialHetznerPlain",
     "CredentialInputSettings",
     "CredentialInputSettingsCredential",
     "CredentialInputSettingsCredentialPlain",

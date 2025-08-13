@@ -17,6 +17,7 @@ class SocialAccountProvider(str, Enum):
     """
 
     BITBUCKET = "bitbucket"
+    CLERK = "clerk"
     FACEBOOK = "facebook"
     GITHUB = "github"
     GITLAB = "gitlab"
@@ -35,6 +36,7 @@ class SocialAccountProvider(str, Enum):
 # The plain version of SocialAccountProvider
 SocialAccountProviderPlain = Literal[
     "bitbucket",
+    "clerk",
     "facebook",
     "github",
     "gitlab",

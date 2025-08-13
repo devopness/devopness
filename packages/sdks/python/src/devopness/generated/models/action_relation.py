@@ -70,7 +70,7 @@ class ActionRelation(DevopnessBaseModel):
     url_web_permalink: StrictStr = Field(
         description="The permalink URL to the action details on Devopness web app"
     )
-    action_data: Optional[ActionDeploymentData]
+    action_data: Optional[ActionDeploymentData] = None
     triggered_from: ActionTriggeredFrom
     resource: ActionResource
     summary: Optional[ActionSummary] = None

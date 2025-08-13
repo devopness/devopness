@@ -15,6 +15,7 @@ from .credential_digital_ocean import (
     CredentialDigitalOceanPlain,
 )
 from .credential_google_cloud import CredentialGoogleCloud, CredentialGoogleCloudPlain
+from .credential_hetzner import CredentialHetzner, CredentialHetznerPlain
 from .credential_source_provider import (
     CredentialSourceProvider,
     CredentialSourceProviderPlain,
@@ -27,6 +28,7 @@ CredentialInputSettingsCredential = Union[
     CredentialAzure,
     CredentialDigitalOcean,
     CredentialGoogleCloud,
+    CredentialHetzner,
     CredentialSourceProvider,
 ]
 
@@ -36,5 +38,6 @@ CredentialInputSettingsCredentialPlain = Union[
     CredentialAzurePlain,
     CredentialDigitalOceanPlain,
     CredentialGoogleCloudPlain,
+    CredentialHetznerPlain,
     CredentialSourceProviderPlain,
 ]
