@@ -16,6 +16,7 @@ import { CloudServiceSettingsAwsEc2 } from './cloud-service-settings-aws-ec2';
 import { CloudServiceSettingsAzureRm } from './cloud-service-settings-azure-rm';
 import { CloudServiceSettingsDigitalOceanDroplet } from './cloud-service-settings-digital-ocean-droplet';
 import { CloudServiceSettingsGcpGce } from './cloud-service-settings-gcp-gce';
+import { CloudServiceSettingsHetznerHcloud } from './cloud-service-settings-hetzner-hcloud';
 import { CloudServiceSettingsSelfHostedCustom } from './cloud-service-settings-self-hosted-custom';
 import { ServerCloudServiceCode } from './server-cloud-service-code';
 
@@ -39,9 +40,9 @@ export interface ServerProvisionInput {
     cloud_service_code: ServerCloudServiceCode;
     /**
      * The configurations used to cloud service
-     * @type {CloudServiceSettingsAwsEc2 | CloudServiceSettingsAzureRm | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsSelfHostedCustom}
+     * @type {CloudServiceSettingsAwsEc2 | CloudServiceSettingsAzureRm | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsHetznerHcloud | CloudServiceSettingsSelfHostedCustom}
      * @memberof ServerProvisionInput
      */
-    settings?: CloudServiceSettingsAwsEc2 | CloudServiceSettingsAzureRm | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsSelfHostedCustom;
+    settings?: CloudServiceSettingsAwsEc2 | CloudServiceSettingsAzureRm | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsHetznerHcloud | CloudServiceSettingsSelfHostedCustom;
 }
 
