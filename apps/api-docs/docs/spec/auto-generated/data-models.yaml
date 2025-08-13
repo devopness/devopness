@@ -133,6 +133,8 @@ CloudServiceSettingsDigitalOceanDroplet:
   $ref: ./auto-generated/models/cloud-service-settings-digital-ocean-droplet.yaml
 CloudServiceSettingsGcpGce:
   $ref: ./auto-generated/models/cloud-service-settings-gcp-gce.yaml
+CloudServiceSettingsHetznerHcloud:
+  $ref: ./auto-generated/models/cloud-service-settings-hetzner-hcloud.yaml
 CloudServiceSettingsSelfHostedCustom:
   $ref: ./auto-generated/models/cloud-service-settings-self-hosted-custom.yaml
 Commit:
@@ -149,6 +151,8 @@ CredentialEnvironmentCreate:
   $ref: ./auto-generated/models/credential-environment-create.yaml
 CredentialGoogleCloud:
   $ref: ./auto-generated/models/credential-google-cloud.yaml
+CredentialHetzner:
+  $ref: ./auto-generated/models/credential-hetzner.yaml
 CredentialInputSettings:
   $ref: ./auto-generated/models/credential-input-settings.yaml
 CredentialList:

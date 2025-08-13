@@ -3,7 +3,9 @@ description: 'The code of the cloud service provider'
 type: string
 enum:
   - aws
+  - azure
   - digitalocean
   - gcp
+  - hetzner
   - self-hosted
 example: aws

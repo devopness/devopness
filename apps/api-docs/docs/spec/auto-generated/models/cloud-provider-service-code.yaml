@@ -5,6 +5,7 @@ enum:
   - azure-rm
   - digitalocean-droplet
   - gcp-gce
+  - hetzner-hcloud
   - self-hosted-custom
 description: 'The code that uniquely identify this cloud service'
 example: aws-ec2

@@ -3,6 +3,7 @@ type: string
 description: 'The name of the Social Authentication provider'
 enum:
   - bitbucket
+  - clerk
   - facebook
   - github
   - gitlab

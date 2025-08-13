@@ -7,4 +7,5 @@ enum:
   - azure-rm
   - digitalocean-droplet
   - gcp-gce
+  - hetzner-hcloud
   - self-hosted-custom

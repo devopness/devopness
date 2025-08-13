@@ -6,4 +6,5 @@ enum:
   - azure
   - digitalocean
   - gcp
+  - hetzner
 example: aws
