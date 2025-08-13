@@ -82,6 +82,7 @@ import type { Icon } from './types'
 
 const awsSVG = getImageAssetUrl('icons_svgs/aws.svg')
 const azureSVG = getImageAssetUrl('icons_svgs/azure.svg')
+const hetznerSVG = getImageAssetUrl('icons_svgs/hetzner.svg')
 const bitbucketSVG = getImageAssetUrl('icons_svgs/bitbucket.svg')
 const centosSVG = getImageAssetUrl('icons_svgs/centos.svg')
 const cSharpSVG = getImageAssetUrl('icons_svgs/c-sharp.svg')
@@ -105,6 +106,7 @@ const phpLaravelSVG = getImageAssetUrl('icons_svgs/php-laravel.svg')
 const phpSVG = getImageAssetUrl('icons_svgs/php.svg')
 const pythonDjangoSVG = getImageAssetUrl('icons_svgs/python-django.svg')
 const pythonFastAPISVG = getImageAssetUrl('icons_svgs/python-fastapi.svg')
+const pythonFastMCPSVG = getImageAssetUrl('icons_svgs/fastmcp.svg')
 const pythonFlaskSVG = getImageAssetUrl('icons_svgs/python-flask.svg')
 const pythonSVG = getImageAssetUrl('icons_svgs/python.svg')
 const rubySVG = getImageAssetUrl('icons_svgs/ruby.svg')
@@ -199,6 +201,7 @@ const iconList = [
 
   // Technology/Brand icons
   { type: 'image', name: 'aws', component: awsSVG },
+  { type: 'image', name: 'hetzner', component: hetznerSVG },
   { type: 'image', name: 'azure', component: azureSVG },
   { type: 'image', name: 'bitbucket', component: bitbucketSVG },
   { type: 'image', name: 'c-sharp', component: cSharpSVG },
@@ -223,6 +226,7 @@ const iconList = [
   { type: 'image', name: 'python', component: pythonSVG },
   { type: 'image', name: 'python-django', component: pythonDjangoSVG },
   { type: 'image', name: 'python-fastapi', component: pythonFastAPISVG },
+  { type: 'image', name: 'python-fastmcp', component: pythonFastMCPSVG },
   { type: 'image', name: 'python-flask', component: pythonFlaskSVG },
   { type: 'image', name: 'ruby', component: rubySVG },
   { type: 'icon', name: 'self-hosted', component: FaServer },
