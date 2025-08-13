@@ -1,5 +1,12 @@
 # @devopness/sdk-python
 
+## 1.3.3
+
+### Patch Changes
+
+- [#2059](https://github.com/devopness/devopness/pull/2059) [`51bb85e`](https://github.com/devopness/devopness/commit/51bb85e4cf370a3c0000709d9628e6854d4877d3) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **New**
+  - Added support for Hetzner as a Cloud Provider
+
 ## 1.3.2
 
 ### Patch Changes
