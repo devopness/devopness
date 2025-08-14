@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next:
+    next: credentials/add-credential
     guides:
     related:
     featured:
