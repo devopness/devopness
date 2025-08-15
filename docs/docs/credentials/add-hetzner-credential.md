@@ -19,9 +19,9 @@ links:
 1. Click `Generate API Token`
 1. In the `Generate API Token` form:
     - Enter a **description** for the token (e.g., `Devopness`) to help track its usage
-    - Choose a **permission**:
-        - **Read** – token can only perform GET requests
-        - **Read & Write** – token can perform GET, POST, PUT, DELETE requests (required for creating servers)
+    - Choose the **Read & Write** permission (required for Devopness)
+        - This permission allows Devopness to fully manage your cloud resources, such as creating, updating, and deleting servers.
+        - **Do not select "Read"**, as it only allows viewing resources and will not work with Devopness.
 1. Click `Generate API Token`
 1. **Copy the API token** shown
     - It will be a long string of characters
