@@ -18,13 +18,10 @@ links:
 1. At the top menu, select the `API Tokens` tab
 1. Click `Generate API Token`
 1. In the `Generate API Token` form:
-    - Enter a **description** for the token (e.g., `Devopness`) to help track its usage
-    - Choose a **permission**:
-        - **Read** – token can only perform GET requests
-        - **Read & Write** – token can perform GET, POST, PUT, DELETE requests (required for creating servers)
+    - Enter a **description** for the token (e.g., `Devopness`)
+    - Set permissions as `Read & Write`
 1. Click `Generate API Token`
 1. **Copy the API token** shown
-    - It will be a long string of characters
     - **Important:** The token will not be shown again, so make sure to save it securely
 1. To add the token to Devopness, follow the guide: [/docs/credentials/add-credential]
 
