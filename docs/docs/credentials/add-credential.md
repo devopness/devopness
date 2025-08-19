@@ -4,7 +4,7 @@ intro: Devopness allows you to manage multiple provider accounts from a single p
 links:
     overview:
     quickstart:
-    previous:
+    previous: index
     next:
     guides:
     related:
