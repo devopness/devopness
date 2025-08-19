@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next:
+    next: index
     guides:
     related:
         - credentials/add-aws-credential
