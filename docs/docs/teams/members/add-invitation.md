@@ -1,12 +1,11 @@
 ---
 title: Invite Team Member
 intro: Invite members to a team so people can collaborate to all project environments on which the team has permissions.
-draft: true
 links:
     overview: Project owners can add members to multiple teams and invite non-members to join a project team.
     quickstart:
-    previous: teams/add-team
-    next: environments/team-memberships/add-team-membership
+    previous:
+    next:
     guides:
     related:
     featured:

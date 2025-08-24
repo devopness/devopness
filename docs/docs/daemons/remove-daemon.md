@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: daemons/edit-daemon
-    next:
+    next:
     guides:
     related:
     featured:

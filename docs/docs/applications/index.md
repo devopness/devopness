@@ -4,8 +4,8 @@ intro: Devopness manages applications in your infrastructure environments so the
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: api/index
+    next: applications/add-application
     guides:
     related:
     featured:

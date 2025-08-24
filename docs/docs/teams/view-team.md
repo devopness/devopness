@@ -1,11 +1,12 @@
 ---
+sidebar_position: 4
 title: View a Team
 intro: In this section, you will learn how to manage your team.
 links:
   overview:
   quickstart:
   previous: teams/list-teams
-  next: teams/invitations/add-invitation
+  next: roles/index
   guides:
   related:
     - teams/add-team

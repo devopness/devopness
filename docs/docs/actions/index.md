@@ -4,8 +4,8 @@ intro: Devopness creates an “action” every time you need to run a pipeline t
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: roles/view-role
+    next: actions/view-action
     guides:
     related:
     featured:

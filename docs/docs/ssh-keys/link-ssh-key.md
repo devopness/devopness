@@ -1,11 +1,12 @@
 ---
+sidebar_position: 5
 title: Link an SSH Key to a Server
 intro: Link an SSH Key to a server to select which SSH keys a server can have deployed.
 links:
     overview:
     quickstart:
-    previous: ssh-keys/add-ssh-key
-    next: ssh-keys/deploy-ssh-key
+    previous:
+    next:
     guides:
     related:
     featured:

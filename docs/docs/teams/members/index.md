@@ -1,11 +1,12 @@
 ---
-title: Members
+sidebar_position: 3
+title: Build a Team
 intro:
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

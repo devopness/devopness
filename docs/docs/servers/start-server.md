@@ -1,4 +1,5 @@
 ---
+sidebar_position: 3
 title: Start a Server
 intro: A stopped server can be started to enable creating and running server resources such as applications and cron jobs. Start a stopped server to enable your users to connect to its linked resources.
 links:

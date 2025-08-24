@@ -1,11 +1,12 @@
 ---
+sidebar_position: 3
 title: List SSH Keys
 intro: At times, you or your team members may need to connect to your servers to execute commands directly from the terminal. To ensure secure access, you can add SSH keys to your environment servers, allowing connections only from authorized keys.
 links:
   overview:
   quickstart:
-  previous: ssh-keys/link-ssh-key
-  next: ssh-keys/remove-ssh-key
+  previous: ssh-keys/add-ssh-key
+  next: ssh-keys/view-ssh-key
   guides:
   related:
     - ssh-keys/create-ssh-key-pair

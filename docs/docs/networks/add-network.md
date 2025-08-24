@@ -4,8 +4,8 @@ intro: Add a network to your environment when you need to define custom network 
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

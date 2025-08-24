@@ -4,8 +4,8 @@ intro: In this section you will learn how to create webhooks to receive events f
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

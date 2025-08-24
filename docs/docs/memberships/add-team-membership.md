@@ -5,8 +5,8 @@ draft: true
 links:
     overview: Project owners can establish team memberships, granting access to team members based on the assigned role.
     quickstart:
-    previous: teams/invitations/add-invitation
-    next:
+    previous: memberships/index
+    next: memberships/list-team-memberships
     guides:
     related:
     featured:

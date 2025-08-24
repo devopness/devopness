@@ -4,7 +4,7 @@ intro: Devopness allows you to provision servers on multiple cloud providers or 
 links:
     overview:
     quickstart:
-    previous:
+    previous:
     next: servers/add-server
     guides:
         - servers/check-server-provision-logs

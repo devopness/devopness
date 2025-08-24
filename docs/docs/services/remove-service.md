@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: services/add-service
-    next:
+    next:
     guides:
     related:
     featured:

@@ -4,8 +4,8 @@ intro: Editing a pipeline is crucial as it provides a clear and concise way to i
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

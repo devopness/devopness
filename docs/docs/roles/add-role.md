@@ -4,8 +4,8 @@ intro: Add roles to organize permissions that can be re-used on environments tea
 links:
     overview: Project owners can create roles to be used when managing environments team permissions.
     quickstart:
-    previous:
-    next: teams/add-team
+    previous: roles/index
+    next: roles/view-role
     guides:
     related:
     featured:

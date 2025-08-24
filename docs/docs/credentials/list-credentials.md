@@ -5,8 +5,8 @@ intro: View the list of credentials linked to a project environment.
 links:
   overview:
   quickstart:
-  previous:
-  next: credentials/view-credential
+  previous: credentials/get-credential-status
+  next: credentials/remove-credential
   guides:
   related:
   featured:

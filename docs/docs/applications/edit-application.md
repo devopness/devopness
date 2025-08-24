@@ -1,11 +1,12 @@
 ---
+sidebar_position: 2
 title: Edit an Application
 intro: Learn how to edit an application to keep its configuration up to date, specially the settings that define how the application is deployed, such as source provider, repository, dependencies to be installed, directories and the application entrypoint.
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: applications/add-application
+    next: applications/deploy-application
     guides:
     related:
     featured:

@@ -1,11 +1,12 @@
 ---
+sidebar_position: 5
 title: Add a Server to Amazon Web Services (AWS)
 intro: Devopness allows you to provision a server on AWS using Elastic Compute Cloud (EC2) and manage it through Devopness.
 links:
     overview:
     quickstart:
-    previous: servers/add-server
-    next: servers/check-server-provision-logs
+    previous:
+    next:
     guides:
     related:
     featured:

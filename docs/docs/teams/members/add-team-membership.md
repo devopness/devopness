@@ -1,12 +1,11 @@
 ---
 title: Add team membership
 intro: Set team memberships to give team members permissions to access and manage an environment and its resources based on the assigned role.
-draft: true
 links:
     overview: Project owners can establish team memberships, granting access to team members based on the assigned role.
     quickstart:
-    previous: teams/invitations/add-invitation
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

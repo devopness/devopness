@@ -1,11 +1,12 @@
 ---
+sidebar_position: 1
 title: Add an Application
 intro: Add applications to your infrastructure environments so they can be managed and deployed directly by web interface or through automated workflows
 links:
     overview:
     quickstart:
-    previous: servers/ssh-into-server
-    next: pipelines/steps/add-step
+    previous: applications/index
+    next: applications/edit-application
     guides:
     related:
     featured:

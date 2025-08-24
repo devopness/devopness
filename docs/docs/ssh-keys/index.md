@@ -4,8 +4,8 @@ intro: In this section you will learn how to create an SSH key pair, add SSH key
 links:
     overview:
     quickstart:
-    previous:
-    next: ssh-keys/create-ssh-key-pair
+    previous:
+    next:
     guides:
     related:
     featured:

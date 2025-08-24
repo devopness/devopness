@@ -4,8 +4,8 @@ intro:
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: actions/view-action
+    next: applications/index
     guides:
     related:
     featured:

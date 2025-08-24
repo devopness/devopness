@@ -4,8 +4,8 @@ intro: Learn how to remove a configuration file when it's no longer needed
 links:
     overview:
     quickstart:
-    previous: applications/add-application
-    next: files/add-file
+    previous:
+    next:
     guides:
     related:
     featured:

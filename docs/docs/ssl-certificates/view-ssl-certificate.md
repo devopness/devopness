@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: ssl-certificates/list-ssl-certificates
-    next: ssl-certificates/add-ssl-certificate
+    next:
     guides:
     related:
         - ssl-certificates/list-ssl-certificates

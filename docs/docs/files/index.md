@@ -3,8 +3,8 @@ title: Files
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

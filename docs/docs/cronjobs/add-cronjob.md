@@ -4,7 +4,7 @@ intro: Add a Cron Job to automate your server and application management routine
 links:
     overview:
     quickstart:
-    previous:
+    previous: cronjobs/index
     next: cronjobs/edit-cronjob
     guides:
     related:

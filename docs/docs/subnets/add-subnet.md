@@ -4,8 +4,8 @@ intro: Add a subnet to your network when you need to define custom network topol
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

@@ -4,8 +4,8 @@ intro: Curious about how much have Devopness impacted your infraestructure manag
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

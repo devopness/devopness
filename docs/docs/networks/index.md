@@ -4,8 +4,8 @@ intro: Learn how to provision and manage cloud networks, also known as Virtual P
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

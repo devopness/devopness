@@ -4,8 +4,8 @@ intro: In order to allow Devopness to manage GCP resources on your behalf, Servi
 links:
   overview:
   quickstart:
-  previous:
-  next: credentials/add-credential
+  previous: credentials/add-digitalocean-credential
+  next: credentials/add-hetzner-credential
   guides:
   related:
   featured:

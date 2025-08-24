@@ -4,8 +4,8 @@ intro: Outgoing Webhooks are a simple way integrate your Devopness environment w
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:
@@ -46,7 +46,7 @@ The examples below use `cURL`, which is a command line utility to be used from a
    - [Github](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment)
    - [Gitlab](https://docs.gitlab.com/ee/api/notes.html#create-new-issue-note)
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook to comment on the Pull Request using the source provider where the application' source code is hosted. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
-    
+
     ```bash
     curl --request POST \
       --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
@@ -77,7 +77,7 @@ The examples below use `cURL`, which is a command line utility to be used from a
         }
       }'
     ```
-    
+
 1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
     ```bash
     curl --request GET \

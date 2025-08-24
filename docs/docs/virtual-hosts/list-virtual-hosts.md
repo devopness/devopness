@@ -4,7 +4,7 @@ intro: View and manage all virtual hosts associated with your project.
 links:
     overview:
     quickstart:
-    previous: virtual-hosts/add-virtual-host
+    previous: virtual-hosts/edit-virtual-host
     next: virtual-hosts/view-virtual-host
     guides:
     related:

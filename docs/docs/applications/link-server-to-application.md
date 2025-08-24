@@ -4,8 +4,8 @@ intro: Link a server to an application to select which servers an application ca
 links:
     overview:
     quickstart:
-    previous: files/add-file
-    next: applications/deploy-application
+    previous: applications/integrate-application-deployments-to-ci-workflows
+    next: credentials/index
     guides:
     related:
     featured:

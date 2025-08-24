@@ -1,11 +1,12 @@
 ---
+sidebar_position: 7
 title: Add a Server to DigitalOcean
 intro: Devopness allows you to provision a server on DigitalOcean using Droplets and manage it through Devopness.
 links:
     overview:
     quickstart:
-    previous: servers/add-server
-    next: servers/check-server-provision-logs
+    previous:
+    next:
     guides:
     related:
     featured:

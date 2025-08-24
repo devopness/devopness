@@ -4,8 +4,8 @@ intro: Learn how to remove a network when it's no longer needed
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

@@ -1,9 +1,16 @@
 ---
 title: Remove a Variable
-pagination_prev: applications/add-application
-pagination_next: variables/add-variable
+intro:
 required_permissions:
     - application:update
+links:
+    overview:
+    quickstart:
+    previous:
+    next:
+    guides:
+    related:
+    featured:
 ---
 
 Learn how to remove a variable when it's no longer needed.

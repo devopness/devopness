@@ -4,8 +4,8 @@ intro: Sometimes you may need to update a credential name or rotate keys and sec
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: credentials/add-hetzner-credential
+    next: credentials/get-credential-status
     guides:
     related:
     featured:

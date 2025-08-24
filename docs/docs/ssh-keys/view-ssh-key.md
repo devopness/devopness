@@ -1,10 +1,12 @@
 ---
+sidebar_position: 4
 title: View SSH Key
 intro: After adding SSH keys to your environment, you may want to review the details of a specific key, such as its label, fingerprint, or creation date. This helps in managing and auditing server access effectively.
 links:
   overview:
   quickstart:
-  previous: ssh-keys/remove-ssh-key
+  previous: ssh-keys/list-ssh-keys
+  next: ssh-keys/link-ssh-key
   guides:
   related:
     - ssh-keys/create-ssh-key-pair
