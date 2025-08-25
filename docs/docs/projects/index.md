@@ -7,7 +7,7 @@ links:
     overview:
     quickstart:
     previous:
-    next:
+    next:
     guides:
     related:
     featured:
