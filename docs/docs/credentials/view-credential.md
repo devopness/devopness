@@ -5,8 +5,8 @@ intro: View details of a credential linked to a project environment.
 links:
   overview:
   quickstart:
-  previous: credentials/list-credentials
-  next: credentials/add-credential
+  previous: credentials/remove-credential
+  next: cronjobs/index
   guides:
   related:
   featured:

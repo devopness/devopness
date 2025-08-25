@@ -1,11 +1,12 @@
 ---
+sidebar_position: 2
 title: List Teams
 intro: View your list of teams
 links:
   overview:
   quickstart:
   previous: teams/add-team
-  next: teams/view-team
+  next: teams/members/index
   guides:
   related:
     - teams/add-team

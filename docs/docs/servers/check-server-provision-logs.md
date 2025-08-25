@@ -1,11 +1,12 @@
 ---
+sidebar_position: 11
 title: Check Server Provision Logs
 intro: Sometimes you may encounter problems while provisioning your servers. Check your server' actions logs to evaluate what happened.
 links:
     overview:
     quickstart:
-    previous: servers/add-server
-    next: servers/ssh-into-server
+    previous:
+    next:
     guides:
     related:
     featured:

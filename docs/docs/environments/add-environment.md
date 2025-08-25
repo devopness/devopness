@@ -1,11 +1,12 @@
 ---
+sidebar_position: 1
 title: Add an Environment
 intro: Add environments to manage the different stages of your application lifecycle or control infrastructure resources and software versions for individual customers.
 links:
     overview:
     quickstart:
-    previous: projects/add-project
-    next: servers/add-server
+    previous:
+    next:
     guides:
     related:
     featured:

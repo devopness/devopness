@@ -4,7 +4,7 @@ intro: Devopness allows you to manage SSL certificates to secure your applicatio
 links:
   overview:
   quickstart:
-  previous:
+  previous: ssh-keys/remove-ssh-key
   next: ssl-certificates/add-ssl-certificate
   guides:
   related:

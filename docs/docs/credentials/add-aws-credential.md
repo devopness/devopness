@@ -4,8 +4,8 @@ intro: In order to allow Devopness to manage AWS resources on your behalf, IAM u
 links:
     overview:
     quickstart:
-    previous:
-    next: credentials/add-credential
+    previous: credentials/add-credential
+    next: credentials/add-azure-credential
     guides:
     related:
     featured:
@@ -26,6 +26,6 @@ links:
 1. In this page, scroll down to the `Access keys` section and click `Create access key`
 1. Choose `Other` and click `Next`
 1. Give the key a description (Optional) and click 'Next'
-1. Click `Create access key`  
+1. Click `Create access key`
 1. Copy the values of `Access key ID` and `Secret access key`
 1. To add the copied credentials to Devopness see [/docs/credentials/add-credential]

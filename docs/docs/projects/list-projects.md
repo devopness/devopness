@@ -4,8 +4,8 @@ intro: View your list of projects
 links:
     overview:
     quickstart:
-    previous: index
-    next: projects/add-project
+    previous: projects/add-project
+    next: projects/view-project
     guides:
     related:
         - projects/add-project

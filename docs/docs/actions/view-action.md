@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: actions/index
-    next:
+    next: api/index
     guides:
     related:
         - actions/index

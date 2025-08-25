@@ -1,4 +1,5 @@
 ---
+sidebar_position: 14
 title: Stop a Server
 intro: Sometimes you may want to interrupt a server to stop a long running task. Stop a server to force any running tasks to end.
 links:

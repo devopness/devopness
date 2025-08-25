@@ -4,13 +4,13 @@ intro: Learn how to manage your subscription plan on Devopness.
 links:
     overview:
     quickstart:
-    previous:
-    next:
     guides:
     related:
         - users/subscriptions/upgrade-subscription
         - users/subscriptions/cancel-subscription
     featured:
+    previous:
+    next:
 ---
 
 ## About billing for Devopness plans and actions

@@ -1,11 +1,11 @@
 ---
 title: Add a Network Rule
-intro: Add network rules to control incoming and outgoing network traffic that is allowed to and from your servers, based on network port and source/destination IP address range. 
+intro: Add network rules to control incoming and outgoing network traffic that is allowed to and from your servers, based on network port and source/destination IP address range.
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

@@ -1,11 +1,12 @@
 ---
+sidebar_position: 10
 title: Connect to your servers using SSH
 intro: Sometimes you and your team members need to connect to your servers to run commands from the terminal. Connect via SSH to ensure your servers only executes commands by authorized SSH keys.
 links:
     overview:
     quickstart:
-    previous: servers/check-server-provision-logs
-    next: applications/add-application
+    previous:
+    next:
     guides:
     related:
         - ssh-keys/add-ssh-key

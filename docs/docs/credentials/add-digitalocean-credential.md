@@ -4,8 +4,8 @@ intro: In order to allow Devopness to manage DigitalOcean resources on your beha
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: credentials/add-azure-credential
+    next: credentials/add-gcp-credential
     guides:
     related:
     featured:

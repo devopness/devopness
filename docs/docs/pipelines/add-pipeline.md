@@ -4,7 +4,7 @@ intro: By adding a pipeline to your environment's resources, you can automate th
 links:
     overview:
     quickstart:
-    previous:
+    previous:
     next: pipelines/steps/add-step
     guides:
     related:

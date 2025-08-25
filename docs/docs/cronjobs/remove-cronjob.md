@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: cronjobs/edit-cronjob
-    next:
+    next: daemons/index
     guides:
     related:
     featured:

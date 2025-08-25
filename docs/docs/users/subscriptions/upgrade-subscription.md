@@ -4,8 +4,8 @@ intro: Your projects can benefit from advanced features or need extra credits to
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

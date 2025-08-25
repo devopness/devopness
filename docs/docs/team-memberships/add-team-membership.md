@@ -1,12 +1,12 @@
 ---
 title: Add Team Membership
 intro: Grant a team access to an environment, with permissions defined by the assigned a role.
-
+draft: true
 links:
   overview:
   quickstart:
-  previous: team-memberships/list-team-memberships
-  next:
+  previous: team-memberships/index
+  next: team-memberships/list-team-memberships
   guides:
   related:
   featured:

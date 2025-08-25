@@ -1,11 +1,13 @@
 ---
-title: Pipeline Steps
+slug: /memberships
+title: Memberships
+draft: true
 intro:
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

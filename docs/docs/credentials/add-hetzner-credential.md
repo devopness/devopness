@@ -4,8 +4,8 @@ intro: To allow Devopness to manage Hetzner Cloud resources on your behalf, an A
 links:
     overview:
     quickstart:
-    previous:
-    next: credentials/add-credential
+    previous: credentials/add-gcp-credential
+    next: credentials/edit-credential
     guides:
     related:
     featured:

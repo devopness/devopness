@@ -4,7 +4,7 @@ intro: Add a Daemon to keep a program alive, always running with the number of c
 links:
     overview:
     quickstart:
-    previous:
+    previous:
     next: daemons/edit-daemon
     guides:
     related:

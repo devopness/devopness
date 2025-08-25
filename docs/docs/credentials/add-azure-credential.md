@@ -4,8 +4,8 @@ intro: In order to allow Devopness to manage Azure resources on your behalf, Ser
 links:
     overview:
     quickstart:
-    previous:
-    next: credentials/add-credential
+    previous: credentials/add-aws-credential
+    next: credentials/add-digitalocean-credential
     guides:
     related:
     featured:

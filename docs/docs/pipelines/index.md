@@ -4,8 +4,8 @@ intro: Use pipelines to automate the deployment of resources in your environment
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:
