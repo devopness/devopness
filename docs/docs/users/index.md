@@ -6,8 +6,6 @@ links:
     quickstart:
     related:
         - users/find-your-activity-summary
-    previous:
-    next:
     guides:
     featured:
 ---

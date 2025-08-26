@@ -4,6 +4,8 @@ intro: Edit a Virtual Host to change how an application is accessible on the int
 links:
     overview:
     quickstart:
+    previous: virtual-hosts/add-virtual-host
+    next: virtual-hosts/list-virtual-hosts
     guides:
     related:
         - virtual-hosts/list-virtual-hosts
@@ -11,8 +13,6 @@ links:
     featured:
 required_permissions:
     - virtual-host:update
-    previous:
-    next:
 ---
 
 1. On Devopness, navigate to a project then select an environment

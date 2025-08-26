@@ -1,12 +1,12 @@
 ---
+sidebar_position: 2
 title: Invitations
-intro:
-draft: true
+intro: Build team by inviting members.
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

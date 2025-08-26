@@ -1,13 +1,12 @@
 ---
 slug: /memberships
 title: Memberships
-draft: true
-intro:
+intro: Add roles and permissions to the team members.
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

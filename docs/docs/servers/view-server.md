@@ -5,8 +5,6 @@ intro: In this section you will learn how to run server actions.
 links:
     overview:
     quickstart:
-    previous:
-    next:
     guides:
     related:
         - servers/get-server-status

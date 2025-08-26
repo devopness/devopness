@@ -1,4 +1,5 @@
 ---
+sidebar_position: 7
 title: Edit a Credential
 intro: Sometimes you may need to update a credential name or rotate keys and secrets. Edit a credential to update its name and settings.
 links:

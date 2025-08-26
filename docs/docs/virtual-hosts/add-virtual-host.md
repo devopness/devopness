@@ -4,6 +4,8 @@ intro: Add a Virtual Host to make an application accessible on the internet, by 
 links:
     overview:
     quickstart:
+    previous: virtual-hosts/index
+    next: virtual-hosts/list-virtual-hosts
     guides:
     related:
         - virtual-hosts/list-virtual-hosts
@@ -11,8 +13,6 @@ links:
     featured:
 required_permissions:
     - virtual-host:create
-    previous:
-    next:
 ---
 
 1. On Devopness, navigate to a project then select an environment

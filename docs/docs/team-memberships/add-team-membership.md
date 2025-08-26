@@ -5,8 +5,6 @@ draft: true
 links:
   overview:
   quickstart:
-  previous: team-memberships/index
-  next: team-memberships/list-team-memberships
   guides:
   related:
   featured:

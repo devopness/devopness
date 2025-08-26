@@ -1,4 +1,5 @@
 ---
+sidebar_position: 8
 title: Get a Credential’s Status
 intro: Get a Credential's Status to validate if a credential is still active and remains accepted by its provider.
 links:

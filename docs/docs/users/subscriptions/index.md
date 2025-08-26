@@ -9,8 +9,6 @@ links:
         - users/subscriptions/upgrade-subscription
         - users/subscriptions/cancel-subscription
     featured:
-    previous:
-    next:
 ---
 
 ## About billing for Devopness plans and actions

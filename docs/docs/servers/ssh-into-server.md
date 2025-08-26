@@ -5,8 +5,6 @@ intro: Sometimes you and your team members need to connect to your servers to ru
 links:
     overview:
     quickstart:
-    previous:
-    next:
     guides:
     related:
         - ssh-keys/add-ssh-key

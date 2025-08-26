@@ -1,12 +1,13 @@
 ---
+sidebar_position: 10
 title: View Credentials
 intro: View details of a credential linked to a project environment.
 
 links:
   overview:
   quickstart:
-  previous: credentials/remove-credential
-  next: cronjobs/index
+  previous: credentials/list-credentials
+  next: credentials/remove-credential
   guides:
   related:
   featured:

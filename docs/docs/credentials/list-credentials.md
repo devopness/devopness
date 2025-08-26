@@ -1,4 +1,5 @@
 ---
+sidebar_position: 9
 title: List Credentials
 intro: View the list of credentials linked to a project environment.
 
@@ -6,7 +7,7 @@ links:
   overview:
   quickstart:
   previous: credentials/get-credential-status
-  next: credentials/remove-credential
+  next: credentials/view-credential
   guides:
   related:
   featured:

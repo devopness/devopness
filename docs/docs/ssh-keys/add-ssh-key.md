@@ -1,12 +1,10 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 title: Add an SSH key
 intro: Sometimes you and your team members need to connect to your servers to run commands from the terminal. Add SSH keys to environment servers to ensure secure server access by only the authorized SSH keys.
 links:
     overview:
     quickstart:
-    previous:
-    next:
     guides:
     related:
         - ssh-keys/create-ssh-key-pair

@@ -16,5 +16,6 @@ links:
 1. Provide a name to the `Project` being added. For example, "My Product"
 1. Click `CONFIRM`
   - You will be redirected to the `Project resources` page, with details of your newly created project
-  - You can now manage [/docs/environments/index], [/docs/teams/index] and [/docs/roles/index] in your new project
+  - You can now manage [Environments](/docs/environments), [Teams](/docs/teams) and [Roles](/docs/roles) in your new project
+  <!-- You can now manage [/docs/environments/index], [/docs/teams/index] and [/docs/roles/index] in your new project -->
   <!-- - You can now manage `Environments`, `Teams` and `Roles` in your new project -->

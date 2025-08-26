@@ -4,8 +4,6 @@ intro: Learn how to remove an SSH Key when it's no longer needed
 links:
     overview:
     quickstart:
-    previous:
-    next:
     guides:
     related:
         - ssh-keys/add-ssh-key

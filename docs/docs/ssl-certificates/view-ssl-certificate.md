@@ -4,8 +4,6 @@ intro: View detailed information about a specific SSL certificate and manage its
 links:
     overview:
     quickstart:
-    previous: ssl-certificates/list-ssl-certificates
-    next:
     guides:
     related:
         - ssl-certificates/list-ssl-certificates

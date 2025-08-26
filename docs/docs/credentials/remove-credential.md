@@ -1,11 +1,12 @@
 ---
+sidebar_position: 11
 title: Remove a Credential
 intro: Learn how to remove a credential when it's no longer needed
 links:
     overview:
     quickstart:
-    previous: credentials/list-credentials
-    next: credentials/view-credential
+    previous: credentials/view-credential
+    next: cronjobs/index
     guides:
     related:
         - credentials/add-credential

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Create an SSH key pair
 intro: Sometimes you may need to connect to your servers using an SSH client to run terminal commands on your remote server. An SSH public key is used for secure authentication when you use an SSH client to connect to a server managed by Devopness. When you connect, you must provide the private key that matches the public key added to the remote server. Create an SSH private/public key pair to securely authenticate your server access on the new device. Several tools exist to generate SSH public/private key pairs. The following steps show how to generate an SSH key pair on UNIX and UNIX-like platforms.
 links:

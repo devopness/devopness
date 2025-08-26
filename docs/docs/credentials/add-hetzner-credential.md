@@ -1,4 +1,5 @@
 ---
+sidebar_position: 6
 title: Add Hetzner Credential
 intro: To allow Devopness to manage Hetzner Cloud resources on your behalf, an API token must be provided.
 links:

@@ -5,7 +5,7 @@ links:
   overview:
   quickstart:
   previous: memberships/add-team-membership
-  next:
+  next: network-rules/index
   guides:
   related:
   featured:

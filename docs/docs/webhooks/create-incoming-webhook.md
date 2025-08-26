@@ -4,14 +4,14 @@ intro: Incoming Webhooks are a simple way to integrate external services with yo
 links:
     overview:
     quickstart:
+    previous: webhooks/index
+    next: webhooks/create-outgoing-webhook
     guides:
     related:
     featured:
 required_permissions:
     - application:read
     - hook:create
-    previous:
-    next:
 ---
 
 At Devopness we treat our `API-as-a-Product`, meaning that every feature in our product is first designed with the API usage in mind, resulting in an API that is easy to use, well documented and actively maintained and supported.

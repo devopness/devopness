@@ -1,4 +1,5 @@
 ---
+sidebar_position: 4
 title: Add DigitalOcean Credential
 intro: In order to allow Devopness to manage DigitalOcean resources on your behalf, API token has to be provided.
 links:

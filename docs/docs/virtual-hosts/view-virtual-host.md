@@ -4,13 +4,13 @@ intro: View detailed information about a specific virtual host and manage its co
 links:
     overview:
     quickstart:
+    previous: virtual-hosts/list-virtual-hosts
+    next: webhooks/index
     guides:
     related:
         - virtual-hosts/list-virtual-hosts
         - virtual-hosts/edit-virtual-host
     featured:
-    previous:
-    next:
 ---
 
 1. On Devopness, navigate to a project then select an environment

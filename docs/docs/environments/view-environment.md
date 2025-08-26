@@ -12,8 +12,6 @@ links:
         - environments/archive-environment
         - environments/find-archived-environment
     featured:
-    previous:
-    next:
 ---
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
