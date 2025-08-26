@@ -50,7 +50,6 @@ class PipelinesHooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, hook_pipeline_create)
 
         return DevopnessResponse(response, Hook)
@@ -82,7 +81,6 @@ class PipelinesHooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[HookRelation])
@@ -118,7 +116,6 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, hook_pipeline_create)
 
         return DevopnessResponse(response, Hook)
@@ -150,7 +147,6 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[HookRelation])

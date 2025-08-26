@@ -45,7 +45,6 @@ class ProjectsArchivedEnvironmentsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ArchivedEnvironmentRelation])
@@ -83,7 +82,6 @@ class ProjectsArchivedEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ArchivedEnvironmentRelation])

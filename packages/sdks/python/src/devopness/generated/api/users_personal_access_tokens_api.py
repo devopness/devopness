@@ -46,7 +46,6 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, personal_access_token_user_create)
 
         return DevopnessResponse(response, PersonalAccessToken)
@@ -68,7 +67,6 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, PersonalAccessToken)
@@ -99,7 +97,6 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[PersonalAccessTokenRelation])
@@ -121,7 +118,6 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -147,7 +143,6 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, personal_access_token_user_rotate)
 
         return DevopnessResponse(response, PersonalAccessTokenRotateResponse)
@@ -178,7 +173,6 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, personal_access_token_user_create)
 
         return DevopnessResponse(response, PersonalAccessToken)
@@ -200,7 +194,6 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, PersonalAccessToken)
@@ -231,7 +224,6 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[PersonalAccessTokenRelation])
@@ -253,7 +245,6 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -279,7 +270,6 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, personal_access_token_user_rotate)
 
         return DevopnessResponse(response, PersonalAccessTokenRotateResponse)

@@ -45,7 +45,6 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, project_create)
 
         return DevopnessResponse(response, Project)
@@ -67,7 +66,6 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Project)
@@ -98,7 +96,6 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])
@@ -124,7 +121,6 @@ class ProjectsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._put(endpoint, project_update)
 
         return DevopnessResponse(response, None)
@@ -155,7 +151,6 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, project_create)
 
         return DevopnessResponse(response, Project)
@@ -177,7 +172,6 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Project)
@@ -208,7 +202,6 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ProjectRelation])
@@ -234,7 +227,6 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._put(endpoint, project_update)
 
         return DevopnessResponse(response, None)
