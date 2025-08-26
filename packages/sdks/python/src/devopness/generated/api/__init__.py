@@ -118,6 +118,10 @@ from .projects_api import (
     ProjectsApiService,
     ProjectsApiServiceAsync,
 )
+from .projects_api_tokens_api import (
+    ProjectsApiTokensApiService,
+    ProjectsApiTokensApiServiceAsync,
+)
 from .projects_archived_environments_api import (
     ProjectsArchivedEnvironmentsApiService,
     ProjectsArchivedEnvironmentsApiServiceAsync,
@@ -206,6 +210,10 @@ from .users_passwords_api import (
     UsersPasswordsApiService,
     UsersPasswordsApiServiceAsync,
 )
+from .users_personal_access_tokens_api import (
+    UsersPersonalAccessTokensApiService,
+    UsersPersonalAccessTokensApiServiceAsync,
+)
 from .users_projects_api import (
     UsersProjectsApiService,
     UsersProjectsApiServiceAsync,
@@ -280,6 +288,8 @@ __all__ = [
     "ProjectsActionsApiServiceAsync",
     "ProjectsApiService",
     "ProjectsApiServiceAsync",
+    "ProjectsApiTokensApiService",
+    "ProjectsApiTokensApiServiceAsync",
     "ProjectsArchivedEnvironmentsApiService",
     "ProjectsArchivedEnvironmentsApiServiceAsync",
     "ProjectsEnvironmentsApiService",
@@ -324,6 +334,8 @@ __all__ = [
     "UsersEnvironmentsApiServiceAsync",
     "UsersPasswordsApiService",
     "UsersPasswordsApiServiceAsync",
+    "UsersPersonalAccessTokensApiService",
+    "UsersPersonalAccessTokensApiServiceAsync",
     "UsersProjectsApiService",
     "UsersProjectsApiServiceAsync",
     "UsersTeamInvitationsApiService",
