@@ -57,6 +57,26 @@ ActionType:
   $ref: ./auto-generated/models/action-type.yaml
 ApiError:
   $ref: ./auto-generated/models/api-error.yaml
+ApiToken:
+  $ref: ./auto-generated/models/api-token.yaml
+ApiTokenAllowedExpiration:
+  $ref: ./auto-generated/models/api-token-allowed-expiration.yaml
+ApiTokenList:
+  $ref: ./auto-generated/models/api-token-list.yaml
+ApiTokenProjectCreate:
+  $ref: ./auto-generated/models/api-token-project-create.yaml
+ApiTokenProjectRotate:
+  $ref: ./auto-generated/models/api-token-project-rotate.yaml
+ApiTokenRelation:
+  $ref: ./auto-generated/models/api-token-relation.yaml
+ApiTokenRotateResponse:
+  $ref: ./auto-generated/models/api-token-rotate-response.yaml
+ApiTokenStatus:
+  $ref: ./auto-generated/models/api-token-status.yaml
+ApiTokenType:
+  $ref: ./auto-generated/models/api-token-type.yaml
+ApiTokenTypePrefix:
+  $ref: ./auto-generated/models/api-token-type-prefix.yaml
 Application:
   $ref: ./auto-generated/models/application.yaml
 ApplicationEnvironmentCreate:
@@ -389,6 +409,18 @@ PermissionList:
   $ref: ./auto-generated/models/permission-list.yaml
 PermissionRelation:
   $ref: ./auto-generated/models/permission-relation.yaml
+PersonalAccessToken:
+  $ref: ./auto-generated/models/personal-access-token.yaml
+PersonalAccessTokenList:
+  $ref: ./auto-generated/models/personal-access-token-list.yaml
+PersonalAccessTokenRelation:
+  $ref: ./auto-generated/models/personal-access-token-relation.yaml
+PersonalAccessTokenRotateResponse:
+  $ref: ./auto-generated/models/personal-access-token-rotate-response.yaml
+PersonalAccessTokenUserCreate:
+  $ref: ./auto-generated/models/personal-access-token-user-create.yaml
+PersonalAccessTokenUserRotate:
+  $ref: ./auto-generated/models/personal-access-token-user-rotate.yaml
 Pipeline:
   $ref: ./auto-generated/models/pipeline.yaml
 PipelineCreate:

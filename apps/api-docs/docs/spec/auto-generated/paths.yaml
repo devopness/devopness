@@ -289,6 +289,20 @@
     $ref: ./auto-generated/endpoints/list-project-teams.yaml
   post:
     $ref: ./auto-generated/endpoints/add-project-team.yaml
+'/projects/{project_id}/tokens':
+  get:
+    $ref: ./auto-generated/endpoints/list-project-api-tokens.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-project-api-token.yaml
+'/projects/{project_id}/tokens/{token_id}':
+  get:
+    $ref: ./auto-generated/endpoints/get-project-api-token.yaml
+'/projects/{project_id}/tokens/{token_id}/revoke':
+  delete:
+    $ref: ./auto-generated/endpoints/revoke-project-api-token.yaml
+'/projects/{project_id}/tokens/{token_id}/rotate':
+  post:
+    $ref: ./auto-generated/endpoints/rotate-project-api-token.yaml
 '/resource-links/{resource_type}/{resource_id}':
   get:
     $ref: ./auto-generated/endpoints/list-resource-links-by-resource-type.yaml
@@ -489,6 +503,20 @@
 /users/password/send-reset-link:
   post:
     $ref: ./auto-generated/endpoints/send-reset-link-user-password.yaml
+/users/personal-access-tokens:
+  get:
+    $ref: ./auto-generated/endpoints/list-user-personal-access-tokens.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-user-personal-access-token.yaml
+'/users/personal-access-tokens/{personal_access_token_id}':
+  get:
+    $ref: ./auto-generated/endpoints/get-user-personal-access-token.yaml
+'/users/personal-access-tokens/{personal_access_token_id}/revoke':
+  delete:
+    $ref: ./auto-generated/endpoints/revoke-user-personal-access-token.yaml
+'/users/personal-access-tokens/{personal_access_token_id}/rotate':
+  post:
+    $ref: ./auto-generated/endpoints/rotate-user-personal-access-token.yaml
 /users/refresh-token:
   post:
     $ref: ./auto-generated/endpoints/refresh-token-user.yaml

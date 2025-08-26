@@ -107,6 +107,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             'credential_source_provider': ['addEnvironmentApplication201'],
 
             'organization': ['addOrganization201'],
+            'personal_access_token': ['addUserPersonalAccessToken201'],
 
             // `user`, `user_credentials` and `user_login` are available after successful
             // `addUser202` transaction, which hardcodes values for those two
@@ -136,6 +137,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     // initial transaction graph definitions
     const initialAdjacencyList = new Set<TransactionGraphEdge>([
+        ['addUserPersonalAccessToken201', 'listUserPersonalAccessTokens200'],
+        ['addUserPersonalAccessToken201', 'getUserPersonalAccessToken200'],
         // variable tests should run before deleteApplication
         ['deleteHook204', 'deletePipeline204'],
         ['deleteHook204', 'deleteApplication204'],

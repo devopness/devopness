@@ -208,6 +208,7 @@ tags:
   - name: Projects - Actions
     description: |
       A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
+  - name: Projects - Api Tokens
   - name: Projects - Archived Environments
   - name: Projects - Environments
   - name: Projects - Roles
@@ -233,6 +234,7 @@ tags:
   - name: Users
   - name: Users - Environments
   - name: Users - Passwords
+  - name: Users - Personal Access Tokens
   - name: Users - Projects
   - name: Users - Team Invitations
   - name: Variables
@@ -242,6 +244,10 @@ x-tagGroups:
   - name: API
     tags:
       - API Reference
+  - name: API Tokens
+    tags:
+      - Projects - Api Tokens
+      - Users - Personal Access Tokens
   - name: Static Data
     tags:
       - Static Data

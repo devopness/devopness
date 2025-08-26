@@ -66,6 +66,10 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'action_pipeline_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
+    'api_token': [],
+    'token': [
+        { path: 'id', fixture: 'api_token', field: 'id' },
+    ],
     'application_environment_variable': [],
     'application_environment': [],
     'application': [],
@@ -259,6 +263,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'email', fixture: 'user_credentials', field: 'email' },
     ],
     'user_verify': [],
+    'personal_access_token': [],
     'variable': [],
     'variable_create': [
         { path: 'resource_id', fixture: 'server', field: 'id' },
