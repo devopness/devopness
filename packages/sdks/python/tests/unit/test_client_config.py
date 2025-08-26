@@ -51,3 +51,18 @@ class TestDevopnessClientConfig(unittest.TestCase):
             "\n"
             "\nHint: Make sure the 'base_url' includes the correct protocol, e.g., 'https://api.devopness.com'.",
         )
+
+    def test_use_of_api_token_should_disable_auto_refresh_token(self) -> None:
+        with self.assertWarns(UserWarning) as cm:
+            config = DevopnessClientConfig(
+                api_token="devopness_api_token",  # noqa: S106
+                auto_refresh_token=True,
+            )
+
+        self.assertFalse(config.auto_refresh_token)
+        self.assertIn(
+            "Incompatible configuration detected: 'api_token' and 'auto_refresh_token' cannot be used together. "
+            "The 'auto_refresh_token' option has been disabled automatically. "
+            "To avoid this warning, explicitly set 'auto_refresh_token=False' in your configuration.",
+            str(cm.warning),
+        )

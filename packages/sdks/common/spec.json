@@ -6975,6 +6975,327 @@
         }
       }
     },
+    "/projects/{project_id}/tokens": {
+      "get": {
+        "summary": "List the api tokens of specific project.",
+        "operationId": "listProjectApiTokens",
+        "tags": [
+          "Projects - Api Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTokenList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new api token for specific project.",
+        "operationId": "addProjectApiToken",
+        "tags": [
+          "Projects - Api Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiToken"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiTokenProjectCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/tokens/{token_id}": {
+      "get": {
+        "summary": "Get details of a specific project api token.",
+        "operationId": "getProjectApiToken",
+        "tags": [
+          "Projects - Api Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "token_id",
+            "description": "The ID of the token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/tokens/{token_id}/revoke": {
+      "delete": {
+        "summary": "Revoke a specific project api token.",
+        "operationId": "revokeProjectApiToken",
+        "tags": [
+          "Projects - Api Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "token_id",
+            "description": "The ID of the token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/tokens/{token_id}/rotate": {
+      "post": {
+        "summary": "Rotate a specific project api token.",
+        "operationId": "rotateProjectApiToken",
+        "tags": [
+          "Projects - Api Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "token_id",
+            "description": "The ID of the token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTokenRotateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiTokenProjectRotate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/resource-links/{resource_type}/{resource_id}": {
       "get": {
         "summary": "List linked resources of the given resource",
@@ -10747,6 +11068,272 @@
         }
       }
     },
+    "/users/personal-access-tokens": {
+      "get": {
+        "summary": "List the personal access tokens of authenticated user.",
+        "operationId": "listUserPersonalAccessTokens",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessTokenList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new personal access token for the authenticated user.",
+        "operationId": "addUserPersonalAccessToken",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonalAccessTokenUserCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/personal-access-tokens/{personal_access_token_id}": {
+      "get": {
+        "summary": "Get details of a specific personal access token.",
+        "operationId": "getUserPersonalAccessToken",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "personal_access_token_id",
+            "description": "The ID of the personal access token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/users/personal-access-tokens/{personal_access_token_id}/revoke": {
+      "delete": {
+        "summary": "Revoke a specific personal access token.",
+        "operationId": "revokeUserPersonalAccessToken",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "personal_access_token_id",
+            "description": "The ID of the personal access token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/users/personal-access-tokens/{personal_access_token_id}/rotate": {
+      "post": {
+        "summary": "Rotate a specific personal access token.",
+        "operationId": "rotateUserPersonalAccessToken",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "personal_access_token_id",
+            "description": "The ID of the personal access token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessTokenRotateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonalAccessTokenUserRotate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/refresh-token": {
       "post": {
         "summary": "Refresh an existing user access token",
@@ -11877,6 +12464,9 @@
       "description": "A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.\n"
     },
     {
+      "name": "Projects - Api Tokens"
+    },
+    {
       "name": "Projects - Archived Environments"
     },
     {
@@ -11942,6 +12532,9 @@
       "name": "Users - Passwords"
     },
     {
+      "name": "Users - Personal Access Tokens"
+    },
+    {
       "name": "Users - Projects"
     },
     {
@@ -11959,6 +12552,13 @@
       "name": "API",
       "tags": [
         "API Reference"
+      ]
+    },
+    {
+      "name": "API Tokens",
+      "tags": [
+        "Projects - Api Tokens",
+        "Users - Personal Access Tokens"
       ]
     },
     {
@@ -13462,6 +14062,304 @@
         "required": [
           "message"
         ]
+      },
+      "ApiToken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "token": {
+            "description": "The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "token",
+          "status",
+          "role",
+          "project",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "ApiTokenAllowedExpiration": {
+        "type": "string",
+        "description": "The allowed expiration times for API Tokens.",
+        "enum": [
+          "7 days",
+          "14 days",
+          "30 days",
+          "60 days",
+          "90 days"
+        ],
+        "example": "7 days"
+      },
+      "ApiTokenList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ApiTokenRelation"
+        }
+      },
+      "ApiTokenProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.",
+            "example": "MyApp Deploy Automation",
+            "type": "string"
+          },
+          "role_id": {
+            "description": "The ID of the role that the token is associated with.",
+            "example": 1,
+            "type": "integer"
+          },
+          "expires_in": {
+            "$ref": "#/components/schemas/ApiTokenAllowedExpiration"
+          }
+        },
+        "required": [
+          "name",
+          "role_id",
+          "expires_in"
+        ]
+      },
+      "ApiTokenProjectRotate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier of the token.",
+            "example": "c28f88fe-322e-477c-bfe9-982072805a01",
+            "type": "string"
+          },
+          "expires_in": {
+            "$ref": "#/components/schemas/ApiTokenAllowedExpiration"
+          }
+        },
+        "required": [
+          "id",
+          "expires_in"
+        ]
+      },
+      "ApiTokenRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "status",
+          "role",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ],
+        "nullable": true
+      },
+      "ApiTokenRotateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "token": {
+            "description": "The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "token",
+          "status",
+          "role",
+          "project",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "ApiTokenStatus": {
+        "type": "string",
+        "description": "The possible status of API tokens.",
+        "enum": [
+          "active",
+          "expired",
+          "revoked"
+        ],
+        "example": "active"
+      },
+      "ApiTokenType": {
+        "type": "string",
+        "description": "The types of API Tokens.",
+        "enum": [
+          "personal-access-token",
+          "project-api-token"
+        ],
+        "example": "personal-access-token"
+      },
+      "ApiTokenTypePrefix": {
+        "type": "string",
+        "description": "The prefixes of API Tokens.",
+        "enum": [
+          "devopness_pat",
+          "devopness_proj"
+        ],
+        "example": "devopness_pat"
       },
       "Application": {
         "type": "object",
@@ -18264,6 +19162,250 @@
           "permissions"
         ],
         "nullable": true
+      },
+      "PersonalAccessToken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "token": {
+            "description": "The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "token",
+          "status",
+          "user",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "PersonalAccessTokenList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PersonalAccessTokenRelation"
+        }
+      },
+      "PersonalAccessTokenRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "status",
+          "user",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ],
+        "nullable": true
+      },
+      "PersonalAccessTokenRotateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "token": {
+            "description": "The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "token",
+          "status",
+          "user",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "PersonalAccessTokenUserCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.",
+            "example": "MyApp Deploy Automation",
+            "type": "string"
+          },
+          "expires_in": {
+            "$ref": "#/components/schemas/ApiTokenAllowedExpiration"
+          }
+        },
+        "required": [
+          "name",
+          "expires_in"
+        ]
+      },
+      "PersonalAccessTokenUserRotate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier of the token.",
+            "example": "c28f88fe-322e-477c-bfe9-982072805a01",
+            "type": "string"
+          },
+          "expires_in": {
+            "$ref": "#/components/schemas/ApiTokenAllowedExpiration"
+          }
+        },
+        "required": [
+          "id",
+          "expires_in"
+        ]
       },
       "Pipeline": {
         "type": "object",

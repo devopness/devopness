@@ -55,6 +55,21 @@ from .api_error_errors_field_name_inner import (
     ApiErrorErrorsFieldNameInner,
     ApiErrorErrorsFieldNameInnerPlain,
 )
+from .api_token import ApiToken, ApiTokenPlain
+from .api_token_allowed_expiration import (
+    ApiTokenAllowedExpiration,
+    ApiTokenAllowedExpirationPlain,
+)
+from .api_token_project_create import ApiTokenProjectCreate, ApiTokenProjectCreatePlain
+from .api_token_project_rotate import ApiTokenProjectRotate, ApiTokenProjectRotatePlain
+from .api_token_relation import ApiTokenRelation, ApiTokenRelationPlain
+from .api_token_rotate_response import (
+    ApiTokenRotateResponse,
+    ApiTokenRotateResponsePlain,
+)
+from .api_token_status import ApiTokenStatus, ApiTokenStatusPlain
+from .api_token_type import ApiTokenType, ApiTokenTypePlain
+from .api_token_type_prefix import ApiTokenTypePrefix, ApiTokenTypePrefixPlain
 from .application import Application, ApplicationPlain
 from .application_environment_create import (
     ApplicationEnvironmentCreate,
@@ -344,6 +359,23 @@ from .password_user_send_reset_link import (
     PasswordUserSendResetLinkPlain,
 )
 from .permission_relation import PermissionRelation, PermissionRelationPlain
+from .personal_access_token import PersonalAccessToken, PersonalAccessTokenPlain
+from .personal_access_token_relation import (
+    PersonalAccessTokenRelation,
+    PersonalAccessTokenRelationPlain,
+)
+from .personal_access_token_rotate_response import (
+    PersonalAccessTokenRotateResponse,
+    PersonalAccessTokenRotateResponsePlain,
+)
+from .personal_access_token_user_create import (
+    PersonalAccessTokenUserCreate,
+    PersonalAccessTokenUserCreatePlain,
+)
+from .personal_access_token_user_rotate import (
+    PersonalAccessTokenUserRotate,
+    PersonalAccessTokenUserRotatePlain,
+)
 from .pipeline import Pipeline, PipelinePlain
 from .pipeline_create import PipelineCreate, PipelineCreatePlain
 from .pipeline_relation import PipelineRelation, PipelineRelationPlain
@@ -666,6 +698,24 @@ __all__ = [
     "ApiErrorErrorsFieldNameInnerPlain",
     "ApiErrorErrorsPlain",
     "ApiErrorPlain",
+    "ApiToken",
+    "ApiTokenAllowedExpiration",
+    "ApiTokenAllowedExpirationPlain",
+    "ApiTokenPlain",
+    "ApiTokenProjectCreate",
+    "ApiTokenProjectCreatePlain",
+    "ApiTokenProjectRotate",
+    "ApiTokenProjectRotatePlain",
+    "ApiTokenRelation",
+    "ApiTokenRelationPlain",
+    "ApiTokenRotateResponse",
+    "ApiTokenRotateResponsePlain",
+    "ApiTokenStatus",
+    "ApiTokenStatusPlain",
+    "ApiTokenType",
+    "ApiTokenTypePlain",
+    "ApiTokenTypePrefix",
+    "ApiTokenTypePrefixPlain",
     "Application",
     "ApplicationEnvironmentCreate",
     "ApplicationEnvironmentCreatePlain",
@@ -944,6 +994,16 @@ __all__ = [
     "PasswordUserSendResetLinkPlain",
     "PermissionRelation",
     "PermissionRelationPlain",
+    "PersonalAccessToken",
+    "PersonalAccessTokenPlain",
+    "PersonalAccessTokenRelation",
+    "PersonalAccessTokenRelationPlain",
+    "PersonalAccessTokenRotateResponse",
+    "PersonalAccessTokenRotateResponsePlain",
+    "PersonalAccessTokenUserCreate",
+    "PersonalAccessTokenUserCreatePlain",
+    "PersonalAccessTokenUserRotate",
+    "PersonalAccessTokenUserRotatePlain",
     "Pipeline",
     "PipelineCreate",
     "PipelineCreatePlain",

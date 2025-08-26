@@ -17,6 +17,7 @@ test("base URL is configurable on initialization", () => {
   expect(apiClient.projects.baseURL()).toBe(apiServerUrl)
 
   expect(apiClient).toHaveProperty('actions')
+  expect(apiClient).toHaveProperty('apiTokens')
   expect(apiClient).toHaveProperty('applications')
   expect(apiClient).toHaveProperty('credentials')
   expect(apiClient).toHaveProperty('cronjobs')
