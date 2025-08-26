@@ -10,6 +10,10 @@ from .services.action_service import (
     ActionService,
     ActionServiceAsync,
 )
+from .services.api_token_service import (
+    APITokenService,
+    APITokenServiceAsync,
+)
 from .services.application_service import (
     ApplicationService,
     ApplicationServiceAsync,
@@ -120,6 +124,7 @@ class DevopnessClient:
     """
 
     actions: ActionService
+    api_tokens: APITokenService
     applications: ApplicationService
     credentials: CredentialService
     cron_jobs: CronJobService
@@ -160,6 +165,7 @@ class DevopnessClient:
         DevopnessBaseService._config = config
 
         self.actions = ActionService()
+        self.api_tokens = APITokenService()
         self.applications = ApplicationService()
         self.credentials = CredentialService()
         self.cron_jobs = CronJobService()
@@ -203,6 +209,7 @@ class DevopnessClientAsync:
     """
 
     actions: ActionServiceAsync
+    api_tokens: APITokenServiceAsync
     applications: ApplicationServiceAsync
     credentials: CredentialServiceAsync
     cron_jobs: CronJobServiceAsync
@@ -243,6 +250,7 @@ class DevopnessClientAsync:
         DevopnessBaseServiceAsync._config = config
 
         self.actions = ActionServiceAsync()
+        self.api_tokens = APITokenServiceAsync()
         self.applications = ApplicationServiceAsync()
         self.credentials = CredentialServiceAsync()
         self.cron_jobs = CronJobServiceAsync()
