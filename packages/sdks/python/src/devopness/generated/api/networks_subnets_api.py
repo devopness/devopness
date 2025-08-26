@@ -44,7 +44,6 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, subnet_network_create)
 
         return DevopnessResponse(response, Subnet)
@@ -80,7 +79,6 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SubnetRelation])
@@ -112,7 +110,6 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, subnet_network_create)
 
         return DevopnessResponse(response, Subnet)
@@ -148,7 +145,6 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[SubnetRelation])

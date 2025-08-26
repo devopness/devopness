@@ -46,7 +46,6 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, organization_create)
 
         return DevopnessResponse(response, Organization)
@@ -68,7 +67,6 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Organization)
@@ -90,7 +88,6 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, OrganizationActivity)
@@ -121,7 +118,6 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[OrganizationRelation])
@@ -147,7 +143,6 @@ class OrganizationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._put(endpoint, organization_update)
 
         return DevopnessResponse(response, None)
@@ -178,7 +173,6 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, organization_create)
 
         return DevopnessResponse(response, Organization)
@@ -200,7 +194,6 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Organization)
@@ -222,7 +215,6 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, OrganizationActivity)
@@ -253,7 +245,6 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[OrganizationRelation])
@@ -279,7 +270,6 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._put(endpoint, organization_update)
 
         return DevopnessResponse(response, None)

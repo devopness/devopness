@@ -47,7 +47,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, variable_create)
 
         return DevopnessResponse(response, Variable)
@@ -69,7 +68,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -91,7 +89,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Variable)
@@ -128,7 +125,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])
@@ -154,7 +150,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._put(endpoint, variable_update)
 
         return DevopnessResponse(response, None)
@@ -187,7 +182,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, variable_create)
 
         return DevopnessResponse(response, Variable)
@@ -209,7 +203,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -231,7 +224,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Variable)
@@ -268,7 +260,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])
@@ -294,7 +285,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._put(endpoint, variable_update)
 
         return DevopnessResponse(response, None)

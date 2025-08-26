@@ -47,7 +47,6 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, credential_environment_create)
 
         return DevopnessResponse(response, Credential)
@@ -69,7 +68,6 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -91,7 +89,6 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Credential)
@@ -114,7 +111,6 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, CredentialSetting)
@@ -136,7 +132,6 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -172,7 +167,6 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[CredentialRelation])
@@ -198,7 +192,6 @@ class CredentialsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._put(endpoint, credential_update)
 
         return DevopnessResponse(response, None)
@@ -230,7 +223,6 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, credential_environment_create)
 
         return DevopnessResponse(response, Credential)
@@ -252,7 +244,6 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -274,7 +265,6 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Credential)
@@ -297,7 +287,6 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, CredentialSetting)
@@ -319,7 +308,6 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -355,7 +343,6 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[CredentialRelation])
@@ -381,7 +368,6 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._put(endpoint, credential_update)
 
         return DevopnessResponse(response, None)

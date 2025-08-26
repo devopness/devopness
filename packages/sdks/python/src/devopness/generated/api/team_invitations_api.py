@@ -31,7 +31,6 @@ class TeamInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -53,7 +52,6 @@ class TeamInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -75,7 +73,6 @@ class TeamInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -103,7 +100,6 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -125,7 +121,6 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -147,7 +142,6 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)

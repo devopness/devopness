@@ -44,7 +44,6 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, variable_application_create)
 
         return DevopnessResponse(response, Variable)
@@ -76,7 +75,6 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])
@@ -108,7 +106,6 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, variable_application_create)
 
         return DevopnessResponse(response, Variable)
@@ -140,7 +137,6 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])

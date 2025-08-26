@@ -48,7 +48,6 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, deployment_application_create)
 
         return DevopnessResponse(response, None)
@@ -74,7 +73,6 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, application_environment_create)
 
         return DevopnessResponse(response, Application)
@@ -96,7 +94,6 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -118,7 +115,6 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Application)
@@ -150,7 +146,6 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ApplicationRelation])
@@ -176,7 +171,6 @@ class ApplicationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._put(endpoint, application_update)
 
         return DevopnessResponse(response, None)
@@ -208,7 +202,6 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, deployment_application_create)
 
         return DevopnessResponse(response, None)
@@ -234,7 +227,6 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, application_environment_create)
 
         return DevopnessResponse(response, Application)
@@ -256,7 +248,6 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -278,7 +269,6 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Application)
@@ -310,7 +300,6 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ApplicationRelation])
@@ -336,7 +325,6 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._put(endpoint, application_update)
 
         return DevopnessResponse(response, None)

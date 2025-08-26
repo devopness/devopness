@@ -36,7 +36,6 @@ class ResourceEventsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, ResourceEvent)
@@ -69,7 +68,6 @@ class ResourceEventsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceEventRelation])
@@ -98,7 +96,6 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, ResourceEvent)
@@ -131,7 +128,6 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ResourceEventRelation])
