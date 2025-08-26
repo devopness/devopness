@@ -6,9 +6,7 @@ properties:
     example: c28f88fe-322e-477c-bfe9-982072805a01
     type: string
   expires_in:
-    description: 'The duration for which the token is valid.'
-    example: '7 days'
-    type: string
+    $ref: '#/components/schemas/ApiTokenAllowedExpiration'
 required:
   - id
   - expires_in

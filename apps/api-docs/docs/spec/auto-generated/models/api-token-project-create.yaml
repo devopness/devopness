@@ -10,9 +10,7 @@ properties:
     example: 1
     type: integer
   expires_in:
-    description: 'The duration for which the token is valid.'
-    example: '7 days'
-    type: string
+    $ref: '#/components/schemas/ApiTokenAllowedExpiration'
 required:
   - name
   - role_id

@@ -6,9 +6,7 @@ properties:
     example: 'MyApp Deploy Automation'
     type: string
   expires_in:
-    description: 'The duration for which the token is valid.'
-    example: '7 days'
-    type: string
+    $ref: '#/components/schemas/ApiTokenAllowedExpiration'
 required:
   - name
   - expires_in
