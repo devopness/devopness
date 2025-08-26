@@ -12,6 +12,7 @@
  */
 
 
+import { ApiTokenAllowedExpiration } from './api-token-allowed-expiration';
 
 /**
  * 
@@ -32,10 +33,10 @@ export interface ApiTokenProjectCreate {
      */
     role_id: number;
     /**
-     * The duration for which the token is valid.
-     * @type {string}
+     * 
+     * @type {ApiTokenAllowedExpiration}
      * @memberof ApiTokenProjectCreate
      */
-    expires_in: string;
+    expires_in: ApiTokenAllowedExpiration;
 }
 

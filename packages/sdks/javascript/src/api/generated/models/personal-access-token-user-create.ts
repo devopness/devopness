@@ -12,6 +12,7 @@
  */
 
 
+import { ApiTokenAllowedExpiration } from './api-token-allowed-expiration';
 
 /**
  * 
@@ -26,10 +27,10 @@ export interface PersonalAccessTokenUserCreate {
      */
     name: string;
     /**
-     * The duration for which the token is valid.
-     * @type {string}
+     * 
+     * @type {ApiTokenAllowedExpiration}
      * @memberof PersonalAccessTokenUserCreate
      */
-    expires_in: string;
+    expires_in: ApiTokenAllowedExpiration;
 }
 
