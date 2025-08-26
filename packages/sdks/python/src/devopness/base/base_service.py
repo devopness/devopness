@@ -157,9 +157,13 @@ class DevopnessBaseService:
         ):
             self._refresh_access_token()
 
+        api_token = DevopnessBaseService._config.api_token
         access_token = DevopnessBaseService._access_token
 
-        if access_token:
+        if api_token:
+            request.headers["Authorization"] = f"Bearer {api_token}"
+
+        elif access_token:
             request.headers["Authorization"] = f"Bearer {access_token}"
 
         elif "Authorization" in request.headers:
@@ -327,9 +331,13 @@ class DevopnessBaseServiceAsync:
         ):
             await self._refresh_access_token()
 
+        api_token = DevopnessBaseServiceAsync._config.api_token
         access_token = DevopnessBaseServiceAsync._access_token
 
-        if access_token:
+        if api_token:
+            request.headers["Authorization"] = f"Bearer {api_token}"
+
+        elif access_token:
             request.headers["Authorization"] = f"Bearer {access_token}"
 
         elif "Authorization" in request.headers:
