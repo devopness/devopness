@@ -4,8 +4,6 @@ intro: Set team memberships to give team members permissions to access and manag
 links:
     overview: Project owners can establish team memberships, granting access to team members based on the assigned role.
     quickstart:
-    previous: memberships/index
-    next: memberships/list-team-memberships
     guides:
     related:
     featured:

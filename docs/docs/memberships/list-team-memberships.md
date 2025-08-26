@@ -4,8 +4,6 @@ intro: View the list of team memberships linked to a project environment and che
 links:
   overview:
   quickstart:
-  previous: memberships/add-team-membership
-  next: network-rules/index
   guides:
   related:
   featured:
