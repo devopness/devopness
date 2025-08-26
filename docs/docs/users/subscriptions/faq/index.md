@@ -138,6 +138,6 @@ For example, if you buy a monthly subscription on January 10 and decide to cance
 A few things will happen:
 1. Your subscription will be downgraded to the FREE plan;
 2. You can still access action details and action steps output logs, but limited to actions created in the last 24 hours;
-3. In environments using custom [/docs/roles/index] in their [/docs/environments/team-memberships/index], the membership will be updated to use the role “Read”, converting all users to read-only users.
+3. In environments using custom [/docs/roles/index] in their [/docs/memberships/index], the membership will be updated to use the role “Read”, converting all users to read-only users.
 
 But don’t worry: your data will not be lost and your configurations, including team membership roles, will be restored once you update your payment methods and upgrade again to a paid plan.
