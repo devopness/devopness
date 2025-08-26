@@ -1,6 +1,6 @@
 import { ActionService } from './services/ActionService';
 import { ApiBaseService, Configuration, ConfigurationOptions } from './services/ApiBaseService';
-import { ApiTokenService } from './services/ApiService';
+import { ApiTokenService } from './services/ApiTokenService';
 import { ApplicationService } from './services/ApplicationService';
 import { CredentialService } from './services/CredentialService';
 import { CronJobService } from './services/CronJobService';
