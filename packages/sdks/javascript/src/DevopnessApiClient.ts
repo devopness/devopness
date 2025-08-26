@@ -1,5 +1,6 @@
 import { ActionService } from './services/ActionService';
 import { ApiBaseService, Configuration, ConfigurationOptions } from './services/ApiBaseService';
+import { ApiTokenService } from './services/ApiTokenService';
 import { ApplicationService } from './services/ApplicationService';
 import { CredentialService } from './services/CredentialService';
 import { CronJobService } from './services/CronJobService';
@@ -31,6 +32,7 @@ import { VirtualHostService } from './services/VirtualHostService';
 
 export class DevopnessApiClient {
   actions: ActionService;
+  apiTokens: ApiTokenService;
   applications: ApplicationService;
   credentials: CredentialService;
   cronjobs: CronJobService;
@@ -67,6 +69,7 @@ export class DevopnessApiClient {
     // cause some (or all) of them depend on `ApiBaseService.configuration` property be set. Furthermore, we ensure all assertions
     // for non provided required parameters are quickly returned to the end user before spending time loading extra resources
     this.actions = new ActionService();
+    this.apiTokens = new ApiTokenService();
     this.applications = new ApplicationService();
     this.credentials = new CredentialService();
     this.cronjobs = new CronJobService();
@@ -98,6 +101,14 @@ export class DevopnessApiClient {
     this.onTokenExpired = () => {
       // do nothing.
     };
+  }
+
+  public get apiToken(): string | undefined {
+    return ApiBaseService.apiToken;
+  }
+
+  public set apiToken(value: string | undefined) {
+      ApiBaseService.apiToken = value;
   }
 
   public get accessToken(): string {

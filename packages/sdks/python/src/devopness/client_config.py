@@ -3,11 +3,12 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import re
+import warnings
 from importlib.metadata import version
 from platform import python_version, system
-from typing import TypedDict
+from typing import Any, Optional, TypedDict
 
-from pydantic import field_validator
+from pydantic import ValidationInfo, field_validator, model_validator
 
 from .base import DevopnessBaseModel
 from .core.sdk_error import DevopnessSdkError
@@ -35,6 +36,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
     Configuration model for Devopness API client.
 
     Attributes:
+        api_token (str): API Token for authentication.
         auto_refresh_token (bool): Controls whether the access token is
                                    automatically refreshed.
         base_url (str): Base URL for API requests.
@@ -44,6 +46,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
         timeout (int): Request timeout in seconds.
     """
 
+    api_token: Optional[str] = None
     auto_refresh_token: bool = True
     base_url: str = "https://api.devopness.com"
     debug: bool = False
@@ -69,12 +72,32 @@ class DevopnessClientConfig(DevopnessBaseModel):
 
         return value
 
+    @model_validator(mode="after")
+    def validate_api_token_auto_refresh(self, values: ValidationInfo) -> Any:  # noqa: ANN401
+        if self.api_token and self.auto_refresh_token:
+            warnings.warn(
+                (
+                    "Incompatible configuration detected: 'api_token' and "
+                    "'auto_refresh_token' cannot be used together. "
+                    "The 'auto_refresh_token' option has been disabled automatically. "
+                    "To avoid this warning, explicitly set 'auto_refresh_token=False' "
+                    "in your configuration."
+                ),
+                UserWarning,
+                stacklevel=2,
+            )
+
+            self.auto_refresh_token = False
+
+        return self
+
 
 class DevopnessClientConfigDict(TypedDict, total=False):
     """
     TypedDict for DevopnessClientConfig.
     """
 
+    api_token: str
     auto_refresh_token: bool
     base_url: str
     debug: bool
