@@ -39,7 +39,6 @@ class EnvironmentsTeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, team_environment_link)
 
         return DevopnessResponse(response, None)
@@ -62,7 +61,6 @@ class EnvironmentsTeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -95,7 +93,6 @@ class EnvironmentsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, team_environment_link)
 
         return DevopnessResponse(response, None)
@@ -118,7 +115,6 @@ class EnvironmentsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)

@@ -47,7 +47,6 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, api_token_project_create)
 
         return DevopnessResponse(response, ApiToken)
@@ -70,7 +69,6 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, ApiToken)
@@ -102,7 +100,6 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ApiTokenRelation])
@@ -125,7 +122,6 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -152,7 +148,6 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, api_token_project_rotate)
 
         return DevopnessResponse(response, ApiTokenRotateResponse)
@@ -184,7 +179,6 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, api_token_project_create)
 
         return DevopnessResponse(response, ApiToken)
@@ -207,7 +201,6 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, ApiToken)
@@ -239,7 +232,6 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ApiTokenRelation])
@@ -262,7 +254,6 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -289,7 +280,6 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, api_token_project_rotate)
 
         return DevopnessResponse(response, ApiTokenRotateResponse)

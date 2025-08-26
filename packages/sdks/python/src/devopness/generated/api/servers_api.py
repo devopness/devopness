@@ -47,7 +47,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, server_environment_create)
 
         return DevopnessResponse(response, Server)
@@ -70,7 +69,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, str)
@@ -100,7 +98,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -122,7 +119,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Server)
@@ -144,7 +140,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, ServerCommand)
@@ -166,7 +161,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -198,7 +192,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[ServerRelation])
@@ -220,7 +213,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -242,7 +234,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -264,7 +255,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -286,7 +276,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -312,7 +301,6 @@ class ServersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._put(endpoint, server_update)
 
         return DevopnessResponse(response, None)
@@ -344,7 +332,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, server_environment_create)
 
         return DevopnessResponse(response, Server)
@@ -367,7 +354,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, str)
@@ -397,7 +383,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -419,7 +404,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Server)
@@ -441,7 +425,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, ServerCommand)
@@ -463,7 +446,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -495,7 +477,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[ServerRelation])
@@ -517,7 +498,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -539,7 +519,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -561,7 +540,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -583,7 +561,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
@@ -609,7 +586,6 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._put(endpoint, server_update)
 
         return DevopnessResponse(response, None)

@@ -44,7 +44,6 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, ssl_certificate_environment_create)
 
         return DevopnessResponse(response, SslCertificate)
@@ -66,7 +65,6 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -88,7 +86,6 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, SslCertificate)
@@ -120,7 +117,6 @@ class SSLCertificatesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[SslCertificateRelation])
@@ -152,7 +148,6 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, ssl_certificate_environment_create)
 
         return DevopnessResponse(response, SslCertificate)
@@ -174,7 +169,6 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -196,7 +190,6 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, SslCertificate)
@@ -228,7 +221,6 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[SslCertificateRelation])

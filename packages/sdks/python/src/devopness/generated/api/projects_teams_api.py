@@ -39,7 +39,6 @@ class ProjectsTeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, team_project_create)
 
         return DevopnessResponse(response, Team)
@@ -71,7 +70,6 @@ class ProjectsTeamsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[TeamRelation])
@@ -103,7 +101,6 @@ class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, team_project_create)
 
         return DevopnessResponse(response, Team)
@@ -135,7 +132,6 @@ class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[TeamRelation])

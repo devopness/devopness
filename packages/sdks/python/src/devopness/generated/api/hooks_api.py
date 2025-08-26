@@ -45,7 +45,6 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint, hook_type)
 
         return DevopnessResponse(response, None)
@@ -71,7 +70,6 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint, hook_type)
 
         return DevopnessResponse(response, Hook)
@@ -93,7 +91,6 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint)
 
         return DevopnessResponse(response, HookTriggerResponse)
@@ -123,7 +120,6 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._put(endpoint, hook_update)
 
         return DevopnessResponse(response, None)
@@ -155,7 +151,6 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint, hook_type)
 
         return DevopnessResponse(response, None)
@@ -181,7 +176,6 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint, hook_type)
 
         return DevopnessResponse(response, Hook)
@@ -203,7 +197,6 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint)
 
         return DevopnessResponse(response, HookTriggerResponse)
@@ -233,7 +226,6 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._put(endpoint, hook_update)
 
         return DevopnessResponse(response, None)

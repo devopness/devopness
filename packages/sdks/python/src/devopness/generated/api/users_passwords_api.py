@@ -43,7 +43,6 @@ class UsersPasswordsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, password_user_reset)
 
         return DevopnessResponse(response, PasswordResetResponse)
@@ -68,7 +67,6 @@ class UsersPasswordsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, password_user_send_reset_link)
 
         return DevopnessResponse(response, None)
@@ -99,7 +97,6 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, password_user_reset)
 
         return DevopnessResponse(response, PasswordResetResponse)
@@ -124,7 +121,6 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, password_user_send_reset_link)
 
         return DevopnessResponse(response, None)
