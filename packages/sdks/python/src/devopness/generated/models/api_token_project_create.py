@@ -9,11 +9,16 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
+from .api_token_allowed_expiration import (
+    ApiTokenAllowedExpiration,
+    ApiTokenAllowedExpirationPlain,
+)
 
 
 class ApiTokenProjectCreate(DevopnessBaseModel):
@@ -23,7 +28,7 @@ class ApiTokenProjectCreate(DevopnessBaseModel):
     Attributes:
         name (str): Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.
         role_id (int): The ID of the role that the token is associated with.
-        expires_in (str): The duration for which the token is valid.
+        expires_in (ApiTokenAllowedExpiration):
     """
 
     name: StrictStr = Field(
@@ -32,9 +37,7 @@ class ApiTokenProjectCreate(DevopnessBaseModel):
     role_id: StrictInt = Field(
         description="The ID of the role that the token is associated with."
     )
-    expires_in: StrictStr = Field(
-        description="The duration for which the token is valid."
-    )
+    expires_in: ApiTokenAllowedExpiration
 
 
 class ApiTokenProjectCreatePlain(TypedDict, total=False):
@@ -44,4 +47,9 @@ class ApiTokenProjectCreatePlain(TypedDict, total=False):
 
     name: Required[str]
     role_id: Required[int]
-    expires_in: Required[str]
+    expires_in: Required[
+        Union[
+            ApiTokenAllowedExpiration,
+            ApiTokenAllowedExpirationPlain,
+        ]
+    ]

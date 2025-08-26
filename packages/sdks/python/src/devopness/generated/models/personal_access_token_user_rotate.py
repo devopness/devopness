@@ -9,11 +9,16 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
+from .api_token_allowed_expiration import (
+    ApiTokenAllowedExpiration,
+    ApiTokenAllowedExpirationPlain,
+)
 
 
 class PersonalAccessTokenUserRotate(DevopnessBaseModel):
@@ -22,13 +27,11 @@ class PersonalAccessTokenUserRotate(DevopnessBaseModel):
 
     Attributes:
         id (str): The unique identifier of the token.
-        expires_in (str): The duration for which the token is valid.
+        expires_in (ApiTokenAllowedExpiration):
     """
 
     id: StrictStr = Field(description="The unique identifier of the token.")
-    expires_in: StrictStr = Field(
-        description="The duration for which the token is valid."
-    )
+    expires_in: ApiTokenAllowedExpiration
 
 
 class PersonalAccessTokenUserRotatePlain(TypedDict, total=False):
@@ -37,4 +40,9 @@ class PersonalAccessTokenUserRotatePlain(TypedDict, total=False):
     """
 
     id: Required[str]
-    expires_in: Required[str]
+    expires_in: Required[
+        Union[
+            ApiTokenAllowedExpiration,
+            ApiTokenAllowedExpirationPlain,
+        ]
+    ]
