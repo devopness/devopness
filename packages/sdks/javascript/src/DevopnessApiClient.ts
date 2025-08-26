@@ -103,6 +103,14 @@ export class DevopnessApiClient {
     };
   }
 
+  public get apiToken(): string | undefined {
+    return ApiBaseService.apiToken;
+  }
+
+  public set apiToken(value: string | undefined) {
+      ApiBaseService.apiToken = value;
+  }
+
   public get accessToken(): string {
     return ApiBaseService.accessToken;
   }

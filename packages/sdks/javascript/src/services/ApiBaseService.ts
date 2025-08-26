@@ -123,6 +123,15 @@ export class ApiBaseService {
         );
     }
 
+
+    public static get apiToken(): string | undefined {
+        return ApiBaseService._apiToken;
+    }
+
+    public static set apiToken(value: string | undefined) {
+        ApiBaseService._apiToken = value;
+    }
+
     public static get accessToken(): string {
         return ApiBaseService._accessToken;
     }
