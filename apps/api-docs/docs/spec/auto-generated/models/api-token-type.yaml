@@ -2,6 +2,6 @@
 type: string
 description: 'The types of API Tokens.'
 enum:
-  - personal-access-token
-  - project-api-token
-example: personal-access-token
+  - personal_access_token
+  - project_api_token
+example: personal_access_token

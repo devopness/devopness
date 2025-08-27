@@ -177,6 +177,7 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'daemon_stop': [
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
+    'personal_access_token': [],
     'pipeline': [],
     'pipeline_create': [
         { path: 'resource_id', fixture: 'application', field: 'id' },
@@ -263,7 +264,6 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'email', fixture: 'user_credentials', field: 'email' },
     ],
     'user_verify': [],
-    'personal_access_token': [],
     'variable': [],
     'variable_create': [
         { path: 'resource_id', fixture: 'server', field: 'id' },

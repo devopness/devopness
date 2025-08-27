@@ -341,6 +341,15 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         body['credential_id'] = credential?.id ?? body.credential_id
     }))
 
+    const addValidExpiresAt = (body: any) => {
+        body['expires_at'] = new Date(Date.now() + 60 * 60 * 1000).toISOString();
+    }
+
+    before('addProjectApiToken201', utils.rewriteTransactionRequestBody(addValidExpiresAt))
+    before('addUserPersonalAccessToken201', utils.rewriteTransactionRequestBody(addValidExpiresAt))
+    before('rotateProjectApiToken200', utils.rewriteTransactionRequestBody(addValidExpiresAt))
+    before('rotateUserPersonalAccessToken200', utils.rewriteTransactionRequestBody(addValidExpiresAt))
+
     //// source providers
     // use a static source_provider fixture, associated manually to the static user account
     // @todo: mock source provider

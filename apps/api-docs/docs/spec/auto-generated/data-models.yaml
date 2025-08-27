@@ -59,8 +59,6 @@ ApiError:
   $ref: ./auto-generated/models/api-error.yaml
 ApiToken:
   $ref: ./auto-generated/models/api-token.yaml
-ApiTokenAllowedExpiration:
-  $ref: ./auto-generated/models/api-token-allowed-expiration.yaml
 ApiTokenList:
   $ref: ./auto-generated/models/api-token-list.yaml
 ApiTokenProjectCreate:

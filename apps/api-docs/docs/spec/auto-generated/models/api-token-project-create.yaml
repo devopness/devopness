@@ -9,9 +9,11 @@ properties:
     description: 'The ID of the role that the token is associated with.'
     example: 1
     type: integer
-  expires_in:
-    $ref: '#/components/schemas/ApiTokenAllowedExpiration'
+  expires_at:
+    description: 'The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.'
+    example: '2023-01-01T00:00:00Z'
+    type: string
 required:
   - name
   - role_id
-  - expires_in
+  - expires_at
