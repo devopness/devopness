@@ -1,5 +1,13 @@
 # @devopness/sdk-python
 
+## 1.3.5
+
+### Patch Changes
+
+- [#2098](https://github.com/devopness/devopness/pull/2098) [`42d50a5`](https://github.com/devopness/devopness/commit/42d50a5feb2e534a14c21deecdbdbf2044f23082) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Refactored `add` and `rotate` methods to accept `expires_at: datetime` instead of `expires_in`.
+
+  This change allows creating tokens with custom expiration dates, limited to **up to one year in the future**.
+
 ## 1.3.4
 
 ### Patch Changes

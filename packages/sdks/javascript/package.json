@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/sdk-js",
-  "version": "2.164.7",
+  "version": "2.164.8",
   "publishConfig": {
     "access": "public"
   },
