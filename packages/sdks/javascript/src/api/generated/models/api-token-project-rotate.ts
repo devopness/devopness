@@ -12,7 +12,6 @@
  */
 
 
-import { ApiTokenAllowedExpiration } from './api-token-allowed-expiration';
 
 /**
  * 
@@ -27,10 +26,10 @@ export interface ApiTokenProjectRotate {
      */
     id: string;
     /**
-     * 
-     * @type {ApiTokenAllowedExpiration}
+     * The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.
+     * @type {string}
      * @memberof ApiTokenProjectRotate
      */
-    expires_in: ApiTokenAllowedExpiration;
+    expires_at: string;
 }
 
