@@ -9,16 +9,11 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .api_token_allowed_expiration import (
-    ApiTokenAllowedExpiration,
-    ApiTokenAllowedExpirationPlain,
-)
 
 
 class ApiTokenProjectCreate(DevopnessBaseModel):
@@ -28,7 +23,7 @@ class ApiTokenProjectCreate(DevopnessBaseModel):
     Attributes:
         name (str): Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.
         role_id (int): The ID of the role that the token is associated with.
-        expires_in (ApiTokenAllowedExpiration):
+        expires_at (str): The date and time when the token expires. Must be a valid date. Must be a date after &lt;code&gt;now&lt;/code&gt;. Must be a date before &lt;code&gt;now +1 year&lt;/code&gt;.
     """
 
     name: StrictStr = Field(
@@ -37,7 +32,9 @@ class ApiTokenProjectCreate(DevopnessBaseModel):
     role_id: StrictInt = Field(
         description="The ID of the role that the token is associated with."
     )
-    expires_in: ApiTokenAllowedExpiration
+    expires_at: StrictStr = Field(
+        description="The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>."
+    )
 
 
 class ApiTokenProjectCreatePlain(TypedDict, total=False):
@@ -47,9 +44,4 @@ class ApiTokenProjectCreatePlain(TypedDict, total=False):
 
     name: Required[str]
     role_id: Required[int]
-    expires_in: Required[
-        Union[
-            ApiTokenAllowedExpiration,
-            ApiTokenAllowedExpirationPlain,
-        ]
-    ]
+    expires_at: Required[str]

@@ -9,16 +9,11 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .api_token_allowed_expiration import (
-    ApiTokenAllowedExpiration,
-    ApiTokenAllowedExpirationPlain,
-)
 
 
 class PersonalAccessTokenUserCreate(DevopnessBaseModel):
@@ -27,13 +22,15 @@ class PersonalAccessTokenUserCreate(DevopnessBaseModel):
 
     Attributes:
         name (str): Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.
-        expires_in (ApiTokenAllowedExpiration):
+        expires_at (str): The date and time when the token expires. Must be a valid date. Must be a date after &lt;code&gt;now&lt;/code&gt;. Must be a date before &lt;code&gt;now +1 year&lt;/code&gt;.
     """
 
     name: StrictStr = Field(
         description="Name of the token. Must be at least 3 characters. Must not be greater than 255 characters."
     )
-    expires_in: ApiTokenAllowedExpiration
+    expires_at: StrictStr = Field(
+        description="The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>."
+    )
 
 
 class PersonalAccessTokenUserCreatePlain(TypedDict, total=False):
@@ -42,9 +39,4 @@ class PersonalAccessTokenUserCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    expires_in: Required[
-        Union[
-            ApiTokenAllowedExpiration,
-            ApiTokenAllowedExpirationPlain,
-        ]
-    ]
+    expires_at: Required[str]

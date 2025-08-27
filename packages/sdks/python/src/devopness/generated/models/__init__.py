@@ -56,10 +56,6 @@ from .api_error_errors_field_name_inner import (
     ApiErrorErrorsFieldNameInnerPlain,
 )
 from .api_token import ApiToken, ApiTokenPlain
-from .api_token_allowed_expiration import (
-    ApiTokenAllowedExpiration,
-    ApiTokenAllowedExpirationPlain,
-)
 from .api_token_project_create import ApiTokenProjectCreate, ApiTokenProjectCreatePlain
 from .api_token_project_rotate import ApiTokenProjectRotate, ApiTokenProjectRotatePlain
 from .api_token_relation import ApiTokenRelation, ApiTokenRelationPlain
@@ -699,8 +695,6 @@ __all__ = [
     "ApiErrorErrorsPlain",
     "ApiErrorPlain",
     "ApiToken",
-    "ApiTokenAllowedExpiration",
-    "ApiTokenAllowedExpirationPlain",
     "ApiTokenPlain",
     "ApiTokenProjectCreate",
     "ApiTokenProjectCreatePlain",
