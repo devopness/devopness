@@ -16,8 +16,8 @@ class ApiTokenType(str, Enum):
     The types of API Tokens.
     """
 
-    PERSONAL_MINUS_ACCESS_MINUS_TOKEN = "personal-access-token"
-    PROJECT_MINUS_API_MINUS_TOKEN = "project-api-token"
+    PERSONAL_ACCESS_TOKEN = "personal_access_token"
+    PROJECT_API_TOKEN = "project_api_token"
 
     def __str__(self) -> str:
         """Return the string representation of the ApiTokenType"""
@@ -31,6 +31,6 @@ class ApiTokenType(str, Enum):
 
 # The plain version of ApiTokenType
 ApiTokenTypePlain = Literal[
-    "personal-access-token",
-    "project-api-token",
+    "personal_access_token",
+    "project_api_token",
 ]

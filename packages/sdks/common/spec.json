@@ -14137,18 +14137,6 @@
           "created_at"
         ]
       },
-      "ApiTokenAllowedExpiration": {
-        "type": "string",
-        "description": "The allowed expiration times for API Tokens.",
-        "enum": [
-          "7 days",
-          "14 days",
-          "30 days",
-          "60 days",
-          "90 days"
-        ],
-        "example": "7 days"
-      },
       "ApiTokenList": {
         "type": "array",
         "items": {
@@ -14168,14 +14156,16 @@
             "example": 1,
             "type": "integer"
           },
-          "expires_in": {
-            "$ref": "#/components/schemas/ApiTokenAllowedExpiration"
+          "expires_at": {
+            "description": "The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
           }
         },
         "required": [
           "name",
           "role_id",
-          "expires_in"
+          "expires_at"
         ]
       },
       "ApiTokenProjectRotate": {
@@ -14186,13 +14176,15 @@
             "example": "c28f88fe-322e-477c-bfe9-982072805a01",
             "type": "string"
           },
-          "expires_in": {
-            "$ref": "#/components/schemas/ApiTokenAllowedExpiration"
+          "expires_at": {
+            "description": "The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
           }
         },
         "required": [
           "id",
-          "expires_in"
+          "expires_at"
         ]
       },
       "ApiTokenRelation": {
@@ -14347,10 +14339,10 @@
         "type": "string",
         "description": "The types of API Tokens.",
         "enum": [
-          "personal-access-token",
-          "project-api-token"
+          "personal_access_token",
+          "project_api_token"
         ],
-        "example": "personal-access-token"
+        "example": "personal_access_token"
       },
       "ApiTokenTypePrefix": {
         "type": "string",
@@ -19381,13 +19373,15 @@
             "example": "MyApp Deploy Automation",
             "type": "string"
           },
-          "expires_in": {
-            "$ref": "#/components/schemas/ApiTokenAllowedExpiration"
+          "expires_at": {
+            "description": "The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
           }
         },
         "required": [
           "name",
-          "expires_in"
+          "expires_at"
         ]
       },
       "PersonalAccessTokenUserRotate": {
@@ -19398,13 +19392,15 @@
             "example": "c28f88fe-322e-477c-bfe9-982072805a01",
             "type": "string"
           },
-          "expires_in": {
-            "$ref": "#/components/schemas/ApiTokenAllowedExpiration"
+          "expires_at": {
+            "description": "The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
           }
         },
         "required": [
           "id",
-          "expires_in"
+          "expires_at"
         ]
       },
       "Pipeline": {

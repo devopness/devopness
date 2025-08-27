@@ -27,7 +27,6 @@ export * from './api-error';
 export * from './api-error-errors';
 export * from './api-error-errors-field-name';
 export * from './api-token';
-export * from './api-token-allowed-expiration';
 export * from './api-token-project-create';
 export * from './api-token-project-rotate';
 export * from './api-token-relation';

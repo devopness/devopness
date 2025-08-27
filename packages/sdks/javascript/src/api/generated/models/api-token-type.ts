@@ -19,8 +19,8 @@
  * @enum {string}
  */
 export enum ApiTokenType {
-    PersonalAccessToken = 'personal-access-token',
-    ProjectApiToken = 'project-api-token'
+    PersonalAccessToken = 'personal_access_token',
+    ProjectApiToken = 'project_api_token'
 }
 
 
