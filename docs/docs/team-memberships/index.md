@@ -1,8 +1,7 @@
 ---
 slug: /team-memberships
-title: team-memberships
-intro:
-draft: true
+title: Team Memberships
+intro: Add roles and permissions to the team members.
 links:
     overview:
     quickstart:

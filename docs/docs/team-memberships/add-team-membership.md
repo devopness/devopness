@@ -1,22 +1,26 @@
 ---
 title: Add Team Membership
-intro: Grant a team access to an environment, with permissions defined by the assigned a role.
-draft: true
+intro: Set team memberships to give team members permissions to access and manage an environment and its resources based on the assigned role.
 links:
-  overview:
+  overview: Project owners can establish team memberships, granting access to team members based on the assigned role.
   quickstart:
   guides:
   related:
   featured:
 ---
 
-1. Select a `Project` from the Devopness dashboard
-1. Select an `Environment` linked to the chosen project
-1. Click the **TEAM MEMBERSHIPS** button located at the top-right corner of the screen
-1. On the upper-right corner of the list, click `ADD TEAM MEMBERSHIP`
-1. In the form, use the `Team` **select** to choose one existing team or create a new one
-1. In the form, use the `Role` **select** to choose a role (e.g., `admin`, `read`) or define a new one
-1. After filling in the fields, click the `CONFIRM` button to add the new team membership
-  - The new team membership will appear in the list, showing the selected team and role
+1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
+1. Select a `Project`
+1. Find the `Environments` card
+1. Click `View` in the `Environments` card to see a list of existing `Environments`
+1. Find the `Environment` you want to add a team and click `View`
+1. On the upper-right corner of the `Environment` resources list, click `TEAM MEMBERSHIPS`
+1. On the upper-right corner of the `Team memberships` list, click `ADD TEAM MEMBERSHIP`
+1. Select a `Team`
+1. Assign a `Role` to the team to grant team members permissions on the environment
+    - To check a role's details, please follow the guide [/docs/roles/view-role]
+    - If no role listed satisfies the permissions needed for the team, please follow the guide [/docs/roles/add-role]
+1. Click `CONFIRM`
+    - In the `Team membership` list, the recently created `Team membership` can be seen
 
 
