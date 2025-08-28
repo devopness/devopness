@@ -76,6 +76,19 @@ const Primary: Story = {
       vertical: 'bottom',
       horizontal: 'left',
     },
+    popoverProps: {
+      slotProps: {
+        paper: {
+          style: {
+            marginTop: '10px',
+            backgroundColor: '#FFF',
+            width: '200px',
+            borderRadius: '8px',
+            boxShadow: '0 0 30px 0px rgba(0,0,0,0.15)',
+          },
+        },
+      },
+    },
   },
 }
 

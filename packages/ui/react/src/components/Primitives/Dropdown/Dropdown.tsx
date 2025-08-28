@@ -1,6 +1,6 @@
 import React from 'react'
 
-import type { PopoverOrigin } from '@mui/material/Popover'
+import type { PopoverOrigin, PopoverProps } from '@mui/material/Popover'
 import Popover from '@mui/material/Popover'
 import type { InjectedProps as PopupStateProps } from 'material-ui-popup-state'
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
@@ -146,6 +146,11 @@ type DropdownSharedProps = {
    * @see {@link https://mui.com/material-ui/react-popover/#anchor-playground}
    */
   transformOrigin?: PopoverOrigin
+
+  /**
+   * Allow passing custom props to the Popover, including slotProps, style, etc.
+   */
+  popoverProps?: Partial<PopoverProps>
 }
 
 type DropdownVariationButtonProps = DropdownSharedProps & {
@@ -323,7 +328,7 @@ const Dropdown = ({
                 },
               }}
               {...bindPopover(popupState)}
-              {...props}
+              {...props.popoverProps}
             >
               {props.options && (
                 <MenuContainer id={props.id}>
