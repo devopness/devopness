@@ -1,6 +1,6 @@
 ---
-title: List Personal Access Tokens
-intro: Find and view all Personal Access Tokens you have created for your account.
+title: List Personal Access Tokens (PATs)
+intro: Find and view all Personal Access Tokens (PATs) you have created for your account.
 links:
     overview:
     quickstart:

@@ -1,5 +1,5 @@
 ---
-title: Add a Personal Access Token
+title: Add a Personal Access Token (PAT)
 intro: Learn how to create a Personal Access Token (PAT) to authenticate with the Devopness API using your account's permissions.
 links:
     overview:
