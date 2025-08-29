@@ -26,6 +26,7 @@ Follow these steps to revoke a Project API Token:
 2. Select a `Project`
 3. Find the `API Tokens` card
 4. Click `VIEW ALL` in the `API Tokens` card to see a list of existing `API Tokens`
-5. Find the token you want to revoke and click on `REVOKE`
-6. Follow the prompts then click `REVOKE TOKEN`
-7. The revoked token will appear in the list of `API Tokens` with the status **Revoked**
+5. Find the `API Token` you want to revoke and click on `Name` of the token
+6. On the upper-right corner click `REVOKE`
+7. Follow the prompts then click `REVOKE TOKEN`
+8. The revoked token will appear in the list of `API Tokens` with the status **Revoked**

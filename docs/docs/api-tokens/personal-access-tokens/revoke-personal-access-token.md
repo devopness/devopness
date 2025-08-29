@@ -22,6 +22,7 @@ Follow these steps to revoke a Personal Access Token:
 
 1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Personal Access Tokens`
 2. The `Personal Access Tokens` list will be displayed
-3. Find the token you want to revoke and click on `REVOKE`
-4. Follow the prompts then click `REVOKE TOKEN`
-5. The revoked token will appear in the list of `Personal Access Tokens` with the status **Revoked**
+3. Find the `Personal Access Token` you want to revoke and click on `Name` of the token
+4. On the upper-right corner click `REVOKE`
+5. Follow the prompts then click `REVOKE TOKEN`
+6. The revoked token will appear in the list of `Personal Access Tokens` with the status **Revoked**
