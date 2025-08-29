@@ -335,7 +335,7 @@ const iconLoader = (
           aria-label={label}
           width={`${Math.max(size, ICON_MIN_SIZE).toString()}px`}
           height={`${Math.max(size, ICON_MIN_SIZE).toString()}px`}
-          src={getImageAssetUrl(`icons_svgs/${String(name)}.svg`)}
+          src={getImageAssetUrl(`icons_svgs/${name}.svg`)}
         />
       )
   }
