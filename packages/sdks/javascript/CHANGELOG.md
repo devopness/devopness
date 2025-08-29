@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#2104](https://github.com/devopness/devopness/pull/2104) [`b898cc5`](https://github.com/devopness/devopness/commit/b898cc54fb41026f0d7ee1265399b9b5f1c6cb3e) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Fixed** typo's in Project API Token documentation.
+- [#2104](https://github.com/devopness/devopness/pull/2104) [`b898cc5`](https://github.com/devopness/devopness/commit/b898cc54fb41026f0d7ee1265399b9b5f1c6cb3e) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Fixed** typo's in Project API Token documentation.
 
 ## 2.164.8
 
