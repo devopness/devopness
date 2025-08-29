@@ -29,8 +29,7 @@ tags:
       devopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.
 
       ## Getting started
-      All you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.
-
+      To start using the `devopness` API you will need an **API Token**. Go to the [API Tokens](#tag/API-Tokens) section to learn about the different types of tokens and how to generate them.
 
       The `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.
 
@@ -61,7 +60,7 @@ tags:
 
       ## Requests
       ### Routes and Endpoints
-      A route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.
+      A route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as possible, well standardized endpoints with resources and segments leading the path to access the desired resource data.
 
       Each resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.
 
@@ -75,14 +74,14 @@ tags:
 
       **Examples:**
 
-      | HTTP Method   | Example                            | Purpose       |
-      | -------------:|------------------------------------|---------------|
-      | POST          | /projects                          | Create new item
-      | GET           | /social-accounts                   | List all items
-      | GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item
-      | GET           | /cron-jobs/{id}                    | Get a single item by id
-      | PUT           | /applications/{id}                 | Modify an item
-      | DELETE        | /daemons/{id}                      | Remove an item permanently
+      | HTTP Method   | Example                            | Purpose                                              |
+      | -------------:|------------------------------------|------------------------------------------------------|
+      | POST          | /projects                          | Create new item                                      |
+      | GET           | /social-accounts                   | List all items                                       |
+      | GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item |
+      | GET           | /cron-jobs/{id}                    | Get a single item by id                              |
+      | PUT           | /applications/{id}                 | Modify an item                                       |
+      | DELETE        | /daemons/{id}                      | Remove an item permanently                           |
 
       2) Nested resources endpoints:
 
@@ -95,12 +94,12 @@ tags:
 
       **Examples:**
 
-      | HTTP Method   | Example                        | Purpose       |
-      | -------------:|--------------------------------|---------------|
-      | GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource
-      | POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object
-      | POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.
-      | DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item
+      | HTTP Method   | Example                        | Purpose                                                                                                    |
+      | -------------:|--------------------------------|------------------------------------------------------------------------------------------------------------|
+      | GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource                                                     |
+      | POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object                                             |
+      | POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked. |
+      | DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item                      |
 
       ## Responses
       When a request is successful, a response body will typically be sent back in the form of a JSON object.
@@ -112,23 +111,23 @@ tags:
       If the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or inability to process data.
       See below for a list of HTTP Status codes used by `devopness` API:
 
-      | Status Code   | Description   |
-      | -------------:|---------------|
-      | 200           | Ok - The request was successful
-      | 201           | Created - The request was successful and a new resource has been created as a result
-      | 202           | Accepted - The request has been received but not yet completely processed
-      | 204           | No content - The request was successful. There is no content to return, but the headers may be useful
-      | 400           | Bad Request - The server could not understand the request due to invalid syntax
-      | 401           | Unauthenticated - It is usally caused by using wrong or expired credentials
-      | 402           | Payment Required - Usage limit has been reached on the project's subscription. Ask project owner to upgrade subscription plan
-      | 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource
-      | 404           | Not Found - The server cannot find the requested resource
-      | 405           | Method not allowed - The request method has been disabled and cannot be used
-      | 409           | Conflict - The current request conflicts with the current state of the server
-      | 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format
-      | 422           | Unprocessable Entity - The request was unable to be processed due to validation errors
-      | 429           | Too many requests - Requests rate limit reached by the client application in a period of time
-      | 500           | Internal Server Error. Please contact the `devopness` team
+      | Status Code   | Description                                                                                                                   |
+      | -------------:|-------------------------------------------------------------------------------------------------------------------------------|
+      | 200           | Ok - The request was successful                                                                                               |
+      | 201           | Created - The request was successful and a new resource has been created as a result                                          |
+      | 202           | Accepted - The request has been received but not yet completely processed                                                     |
+      | 204           | No content - The request was successful. There is no content to return, but the headers may be useful                         |
+      | 400           | Bad Request - The server could not understand the request due to invalid syntax                                               |
+      | 401           | Unauthenticated - It is usally caused by using wrong or expired credentials                                                   |
+      | 402           | Payment Required - Usage limit has been reached on the project's subscription. Ask project owner to upgrade subscription plan |
+      | 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource                                             |
+      | 404           | Not Found - The server cannot find the requested resource                                                                     |
+      | 405           | Method not allowed - The request method has been disabled and cannot be used                                                  |
+      | 409           | Conflict - The current request conflicts with the current state of the server                                                 |
+      | 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format                       |
+      | 422           | Unprocessable Entity - The request was unable to be processed due to validation errors                                        |
+      | 429           | Too many requests - Requests rate limit reached by the client application in a period of time                                 |
+      | 500           | Internal Server Error. Please contact the `devopness` team                                                                    |
 
       ### Pagination
       Requests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.
@@ -165,6 +164,48 @@ tags:
 
       ## Expanding objects
       `TO DO:` define the rules for object expansion and document it here
+
+  - name: API Tokens
+    description: |
+      API Tokens are the authentication method used by the `devopness` API.
+
+      Every request must include a valid token in the `Authorization` header:
+      ```
+      Authorization: Bearer <your_api_token>
+      ```
+
+      There are two types of tokens available:
+
+      - **API Token (project scoped):** restricted to resources of a specific project, with permissions defined by the role assigned to the token.
+        See [Projects - API Tokens](#tag/Projects-API-Tokens)
+
+      - **Personal Access Token (PAT):** inherits the permissions of the user who created it.
+        See [Users - Personal Access Tokens](#tag/Users-Personal-Access-Tokens)
+
+      More information about API Tokens can be found in the [API Tokens - Devopness Docs](https://devopness.com/docs/#todo-link-to-product-docs-api-tokens)
+  - name: Projects - API Tokens
+    description: |
+      API Tokens (project scoped) provide **restricted access to resources within a specific project**.
+      Permissions are defined by the role assigned to the token, making them ideal for automation's, scripts, or integrations that should not access resources outside the project.
+
+      Include the token in all project-related requests using the `Authorization` header:
+      ```
+      Authorization: Bearer <your_api_token>
+      ```
+
+      For instructions on creating and managing project tokens, refer to the [API Token (project) - Devopness Docs](https://devopness.com/docs/#todo-link-to-product-docs-project-token)
+  - name: Users - Personal Access Tokens
+    description: |
+      Personal Access Tokens (PATs) **inherit all permissions of the user who created them**.
+      They allow performing any action that the user is authorized to do across all projects accessible by the account.
+
+      Include the PAT in all API requests using the `Authorization` header:
+      ```
+      Authorization: Bearer <your_api_token>
+      ```
+
+      For instructions on creating and managing PATs, refer to the [Personal Access Tokens - Devopness Docs](https://devopness.com/docs/#todo-link-to-product-docs-personal-token)
+
   - name: Static Data
     description: |
       Client API applications might need to retrieve possible accepted values to fulfill their forms and allow end users to pick values from a list of valid data.
@@ -208,7 +249,6 @@ tags:
   - name: Projects - Actions
     description: |
       A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
-  - name: Projects - Api Tokens
   - name: Projects - Archived Environments
   - name: Projects - Environments
   - name: Projects - Roles
@@ -234,7 +274,6 @@ tags:
   - name: Users
   - name: Users - Environments
   - name: Users - Passwords
-  - name: Users - Personal Access Tokens
   - name: Users - Projects
   - name: Users - Team Invitations
   - name: Variables
@@ -246,7 +285,8 @@ x-tagGroups:
       - API Reference
   - name: API Tokens
     tags:
-      - Projects - Api Tokens
+      - API Tokens
+      - Projects - API Tokens
       - Users - Personal Access Tokens
   - name: Static Data
     tags:
@@ -363,11 +403,8 @@ components:
       bearerFormat: JWT
       description: |
         Some few endpoints do not require authentication, but pretty much anything else will require you to be authenticated.
-        To become authenticated you will need to request an API access token through the `/users/login` endpoint.
 
-        ## Using an access token
-        Once you have an access token for a given user you can pass it along in the HTTP request header.
-        Alternatively, if consuming the API through a web application, the token can be sent in the `AuthToken` HTTPOnly cookie as part of the HTTP request.
+        To become authenticated you will need an API Token. For more information go to the [API Tokens](#tag/API-Tokens) section.
   parameters:
     $ref: ./parameters.yaml
   schemas:

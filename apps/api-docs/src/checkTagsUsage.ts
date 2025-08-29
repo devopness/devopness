@@ -123,7 +123,7 @@ const findUnusedTags = (
   declaredTags: Set<string>,
   endpointTags: Set<string>
 ): Set<string> => {
-  const allowedTags = new Set(["API Reference"]);
+  const allowedTags = new Set(["API Reference", "API Tokens"]);
   const unusedTags = new Set<string>();
 
   // Check each declared tag
