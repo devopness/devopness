@@ -21,9 +21,9 @@ from ..models import (
 from ..utils import parse_query_string
 
 
-class ProjectsApiTokensApiService(DevopnessBaseService):
+class ProjectsAPITokensApiService(DevopnessBaseService):
     """
-    ProjectsApiTokensApiService - Auto Generated
+    ProjectsAPITokensApiService - Auto Generated
     """
 
     def add_project_api_token(
@@ -35,7 +35,7 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         ],
     ) -> DevopnessResponse[ApiToken]:
         """
-        Create a new api token for specific project.
+        Create a new API token for specific project.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -57,7 +57,7 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         token_id: str,
     ) -> DevopnessResponse[ApiToken]:
         """
-        Get details of a specific project api token.
+        Get details of a specific project API token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -80,7 +80,7 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         per_page: Optional[int] = None,
     ) -> DevopnessResponse[List[ApiTokenRelation]]:
         """
-        List the api tokens of specific project.
+        List the API tokens of specific project.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -110,7 +110,7 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         token_id: str,
     ) -> DevopnessResponse[None]:
         """
-        Revoke a specific project api token.
+        Revoke a specific project API token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -136,7 +136,7 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         ],
     ) -> DevopnessResponse[ApiTokenRotateResponse]:
         """
-        Rotate a specific project api token.
+        Rotate a specific project API token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -153,9 +153,9 @@ class ProjectsApiTokensApiService(DevopnessBaseService):
         return DevopnessResponse(response, ApiTokenRotateResponse)
 
 
-class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
+class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
     """
-    ProjectsApiTokensApiServiceAsync - Auto Generated
+    ProjectsAPITokensApiServiceAsync - Auto Generated
     """
 
     async def add_project_api_token(
@@ -167,7 +167,7 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ],
     ) -> DevopnessResponse[ApiToken]:
         """
-        Create a new api token for specific project.
+        Create a new API token for specific project.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -189,7 +189,7 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         token_id: str,
     ) -> DevopnessResponse[ApiToken]:
         """
-        Get details of a specific project api token.
+        Get details of a specific project API token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -212,7 +212,7 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         per_page: Optional[int] = None,
     ) -> DevopnessResponse[List[ApiTokenRelation]]:
         """
-        List the api tokens of specific project.
+        List the API tokens of specific project.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -242,7 +242,7 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         token_id: str,
     ) -> DevopnessResponse[None]:
         """
-        Revoke a specific project api token.
+        Revoke a specific project API token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -268,7 +268,7 @@ class ProjectsApiTokensApiServiceAsync(DevopnessBaseServiceAsync):
         ],
     ) -> DevopnessResponse[ApiTokenRotateResponse]:
         """
-        Rotate a specific project api token.
+        Rotate a specific project API token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.

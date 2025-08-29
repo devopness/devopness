@@ -119,8 +119,8 @@ from .projects_api import (
     ProjectsApiServiceAsync,
 )
 from .projects_api_tokens_api import (
-    ProjectsApiTokensApiService,
-    ProjectsApiTokensApiServiceAsync,
+    ProjectsAPITokensApiService,
+    ProjectsAPITokensApiServiceAsync,
 )
 from .projects_archived_environments_api import (
     ProjectsArchivedEnvironmentsApiService,
@@ -284,12 +284,12 @@ __all__ = [
     "PipelinesHooksApiServiceAsync",
     "PipelinesStepsApiService",
     "PipelinesStepsApiServiceAsync",
+    "ProjectsAPITokensApiService",
+    "ProjectsAPITokensApiServiceAsync",
     "ProjectsActionsApiService",
     "ProjectsActionsApiServiceAsync",
     "ProjectsApiService",
     "ProjectsApiServiceAsync",
-    "ProjectsApiTokensApiService",
-    "ProjectsApiTokensApiServiceAsync",
     "ProjectsArchivedEnvironmentsApiService",
     "ProjectsArchivedEnvironmentsApiServiceAsync",
     "ProjectsEnvironmentsApiService",

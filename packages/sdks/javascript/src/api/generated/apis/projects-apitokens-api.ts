@@ -22,12 +22,12 @@ import { ApiTokenRelation } from '../../generated/models';
 import { ApiTokenRotateResponse } from '../../generated/models';
 
 /**
- * ProjectsApiTokensApiService - Auto-generated
+ * ProjectsAPITokensApiService - Auto-generated
  */
-export class ProjectsApiTokensApiService extends ApiBaseService {
+export class ProjectsAPITokensApiService extends ApiBaseService {
     /**
      * 
-     * @summary Create a new api token for specific project.
+     * @summary Create a new API token for specific project.
      * @param {number} projectId The ID of the project.
      * @param {ApiTokenProjectCreate} apiTokenProjectCreate A JSON object containing the resource data
      */
@@ -49,7 +49,7 @@ export class ProjectsApiTokensApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get details of a specific project api token.
+     * @summary Get details of a specific project API token.
      * @param {number} projectId The ID of the project.
      * @param {string} tokenId The ID of the token.
      */
@@ -71,7 +71,7 @@ export class ProjectsApiTokensApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary List the api tokens of specific project.
+     * @summary List the API tokens of specific project.
      * @param {number} projectId The ID of the project.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
@@ -99,7 +99,7 @@ export class ProjectsApiTokensApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Revoke a specific project api token.
+     * @summary Revoke a specific project API token.
      * @param {number} projectId The ID of the project.
      * @param {string} tokenId The ID of the token.
      */
@@ -121,7 +121,7 @@ export class ProjectsApiTokensApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Rotate a specific project api token.
+     * @summary Rotate a specific project API token.
      * @param {number} projectId The ID of the project.
      * @param {string} tokenId The ID of the token.
      * @param {ApiTokenProjectRotate} apiTokenProjectRotate A JSON object containing the resource data
