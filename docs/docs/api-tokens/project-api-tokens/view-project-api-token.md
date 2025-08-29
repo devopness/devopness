@@ -13,6 +13,8 @@ links:
     featured:
 ---
 
+Follow these steps to view a Project API Token:
+
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
 2. Select a `Project`
 3. Find the `API Tokens` card
