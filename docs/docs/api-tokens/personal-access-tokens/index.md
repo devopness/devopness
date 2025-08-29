@@ -17,6 +17,8 @@ Personal Access Tokens (PATs) **inherit all permissions of the user who created 
 
 They allow performing any action that the user is authorized to do across all projects accessible by the account.
 
+## Usage
+
 :::info
 
 Include the PAT in all API requests using the `Authorization` header:

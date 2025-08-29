@@ -15,6 +15,8 @@ links:
 
 Permissions are defined by the role assigned to the token, making them ideal for automation's, scripts, or integrations that should not access resources outside the project.
 
+## Usage
+
 :::info
 
 Include the token in all project-related requests using the `Authorization` header:

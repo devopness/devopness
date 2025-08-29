@@ -1,6 +1,6 @@
 ---
 title: API Tokens
-intro:
+intro: API Tokens are the primary way to authenticate when interacting with the Devopness API.
 links:
     overview:
     quickstart:
@@ -13,7 +13,14 @@ links:
     featured:
 ---
 
-API Tokens are the authentication method used by the **Devopness API**.
+They replace traditional username/password authentication with a token-based approach.
+
+There are two types of API Tokens in Devopness:
+
+- **Personal Access Tokens** - provide access across all projects the user can access.
+- **Project API Tokens** - scoped to a single project, restricting access only to that project's resources.
+
+## Usage
 
 :::info
 
