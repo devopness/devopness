@@ -1,6 +1,6 @@
 ---
 title: Project API Tokens
-intro: Project API Tokens provide role-based access to resources within a single project.
+intro: Project API Tokens provide RBAC (Role-based Access Control) to resources within a single project.
 links:
     overview:
     quickstart:
