@@ -1,17 +1,19 @@
 ---
 title: Add a Personal Access Token
-intro:
+intro: Learn how to create a Personal Access Token (PAT) to authenticate with the Devopness API using your account's permissions.
 links:
     overview:
     quickstart:
-    previous:
+    previous: api-tokens/personal-access-tokens/index
     next:
     guides:
     related:
-     - api-tokens/personal-access-tokens/index
-     - projects/add-project
+     - api-tokens/personal-access-tokens/list-personal-access-tokens
+     - api-tokens/personal-access-tokens/view-personal-access-token
     featured:
 ---
+
+Follow these steps to generate a new Personal Access Token:
 
 1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Personal Access Tokens`
 2. On the upper-right corner of the list click `ADD PERSONAL ACCESS TOKEN`

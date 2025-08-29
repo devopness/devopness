@@ -1,21 +1,19 @@
 ---
-title: Personal Access Tokens
-intro:
+title: Personal Access Tokens (PATs)
+intro: Personal Access Tokens (PATs) provide full access to the Devopness API with the same permissions as the user who created them.
 links:
     overview:
     quickstart:
-    previous:
+    previous: api-tokens/index
     next:
     guides:
     related:
-      - api-tokens/index
+      - api-tokens/personal-access-tokens/list-personal-access-tokens
       - api-tokens/personal-access-tokens/add-personal-access-token
     featured:
 ---
 
-Personal Access Tokens (PATs) **inherit all permissions of the user who created them**.
-
-They allow performing any action that the user is authorized to do across all projects accessible by the account.
+They allow performing any action the user is authorized to do across all projects accessible to their account.
 
 ## Usage
 
