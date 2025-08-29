@@ -1,9 +1,16 @@
 ---
 title: API Tokens
+intro:
 links:
+    overview:
+    quickstart:
+    previous:
+    next:
+    guides:
     related:
       - api-tokens/personal-access-tokens/index
       - api-tokens/project-api-tokens/index
+    featured:
 ---
 
 API Tokens are the authentication method used by the **Devopness API**.

@@ -1,10 +1,10 @@
 ---
 title: Revoke a Project API Token
-intro: Revoke a Project API Token to prevent it from being used for future requests.
+intro: Revoke a Project API Token to immediately prevent it from being used for future requests.
 links:
     overview:
     quickstart:
-    previous:
+    previous: api-tokens/project-api-tokens/index
     next:
     guides:
     related:
@@ -15,9 +15,12 @@ links:
 
 :::warning
 
-A Project API Token can not be unrevoked once it has been revoked. And a revoked token can not be used for future requests.
+Once revoked, a Project API Token **cannot be restored**.
 
+A revoked token will no longer work for authentication in any future requests.
 :::
+
+Follow these steps to revoke a Project API Token:
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
 2. Select a `Project`
@@ -26,4 +29,4 @@ A Project API Token can not be unrevoked once it has been revoked. And a revoked
 5. Find the `API Token` you want to view and click `View`
 6. On the upper-right corner click `REVOKE`
 7. Follow the prompts then click `REMOVE TOKEN`
-8. In the list of `API Tokens`, the recently revoked `API Token` will be show `Revoked` as its status
+8. The revoked token will appear in the list of `API Tokens` with the status **Revoked**

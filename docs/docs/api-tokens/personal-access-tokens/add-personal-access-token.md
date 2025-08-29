@@ -1,8 +1,16 @@
 ---
 title: Add a Personal Access Token
+intro:
 links:
-    previous: api-tokens/personal-access-tokens/index
-    next: projects/add-project
+    overview:
+    quickstart:
+    previous:
+    next:
+    guides:
+    related:
+     - api-tokens/personal-access-tokens/index
+     - projects/add-project
+    featured:
 ---
 
 1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Personal Access Tokens`

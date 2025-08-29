@@ -1,9 +1,16 @@
 ---
 title: Personal Access Tokens
+intro:
 links:
+    overview:
+    quickstart:
+    previous:
+    next:
+    guides:
     related:
       - api-tokens/index
       - api-tokens/personal-access-tokens/add-personal-access-token
+    featured:
 ---
 
 Personal Access Tokens (PATs) **inherit all permissions of the user who created them**.
