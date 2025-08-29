@@ -21,7 +21,7 @@ Follow these steps to create a new Project API Token:
 4. Click `VIEW ALL` in the `API Tokens` card to see a list of existing `API Tokens`
 5. On the upper-right corner click `ADD API TOKEN`
 6. Follow the prompts and click `CONFIRM`
-7. In the `API Tokens` details view, the recently created `API Token` details can be seen
+7. In the `API Tokens` details, the recently created `API Token` can be seen
 
 :::warning
 

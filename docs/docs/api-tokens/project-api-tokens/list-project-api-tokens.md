@@ -1,6 +1,6 @@
 ---
 title: List Project API Tokens
-intro: Find and view details of all Project API Tokens you have access to within a specific project.
+intro: Find and view all Project API Tokens you have access to within a specific project.
 links:
     overview:
     quickstart:

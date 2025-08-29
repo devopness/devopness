@@ -17,7 +17,8 @@ links:
 2. Select a `Project`
 3. Find the `API Tokens` card
 4. Click `VIEW ALL` in the `API Tokens` card to see a list of existing `API Tokens`
-5. Find the `API Token` you want to view and click `View`
+3. Find the `API Token` you want to view and click on the `Name` of the token
+    > If there are no tokens yet, create one by clicking the Add api token button.
 6. The `API Token` page will be displayed, showing information such as:
    - **Name**
    - **Status**
