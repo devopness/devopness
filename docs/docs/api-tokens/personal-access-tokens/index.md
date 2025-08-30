@@ -5,11 +5,9 @@ links:
     overview:
     quickstart:
     previous: api-tokens/index
-    next:
+    next: api-tokens/personal-access-tokens/list-personal-access-tokens
     guides:
     related:
-      - api-tokens/personal-access-tokens/list-personal-access-tokens
-      - api-tokens/personal-access-tokens/add-personal-access-token
     featured:
 ---
 

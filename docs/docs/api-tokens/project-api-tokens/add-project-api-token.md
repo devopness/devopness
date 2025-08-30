@@ -4,12 +4,10 @@ intro: Learn how to generate a new Project API Token to enable secure, project-s
 links:
     overview:
     quickstart:
-    previous: api-tokens/project-api-tokens/index
-    next:
+    previous: api-tokens/project-api-tokens/list-project-api-tokens
+    next: api-tokens/project-api-tokens/view-project-api-token
     guides:
     related:
-      - api-tokens/project-api-tokens/list-project-api-tokens
-      - api-tokens/project-api-tokens/view-project-api-token
     featured:
 ---
 

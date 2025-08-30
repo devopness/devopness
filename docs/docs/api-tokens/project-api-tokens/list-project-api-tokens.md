@@ -5,11 +5,9 @@ links:
     overview:
     quickstart:
     previous: api-tokens/project-api-tokens/index
-    next:
+    next: api-tokens/project-api-tokens/add-project-api-token
     guides:
     related:
-      - api-tokens/project-api-tokens/add-project-api-token
-      - api-tokens/project-api-tokens/view-project-api-token
     featured:
 ---
 

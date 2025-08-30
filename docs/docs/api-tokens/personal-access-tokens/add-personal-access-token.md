@@ -4,12 +4,10 @@ intro: Learn how to create a Personal Access Token to authenticate with the Devo
 links:
     overview:
     quickstart:
-    previous: api-tokens/personal-access-tokens/index
-    next:
+    previous: api-tokens/personal-access-tokens/list-personal-access-tokens
+    next: api-tokens/personal-access-tokens/view-personal-access-token
     guides:
     related:
-     - api-tokens/personal-access-tokens/list-personal-access-tokens
-     - api-tokens/personal-access-tokens/view-personal-access-token
     featured:
 ---
 
