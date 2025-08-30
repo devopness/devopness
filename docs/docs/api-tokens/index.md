@@ -33,4 +33,4 @@ Project API Tokens have several security advantages over personal access tokens,
 
 1. Scope limited to access resources in the project where the token was created
 1. Fine-grained permission management using RBAC (Role-based Access Control)
-1. Do not allow access to user specific settings
+1. Do not allow access to `/users` specific endpoints, such as user details, activity and invitations
