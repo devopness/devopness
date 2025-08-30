@@ -13,6 +13,8 @@ links:
     featured:
 ---
 
+You should revoke a personal access token if it is no longer needed or was exposed to unauthorised access.
+
 :::warning
 Once revoked, a Personal Access Token **cannot be restored**.
 A revoked token will no longer work for authentication in any future requests.
