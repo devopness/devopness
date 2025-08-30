@@ -21,8 +21,8 @@ class ActionHookRequest(DevopnessBaseModel):
     ActionHookRequest
 
     Attributes:
-        incoming (HookRequestRelation, optional):
-        outgoing (HookRequestRelation, optional):
+        incoming (HookRequestRelation, optional, nullable):
+        outgoing (HookRequestRelation, optional, nullable):
     """
 
     incoming: Optional[HookRequestRelation] = None

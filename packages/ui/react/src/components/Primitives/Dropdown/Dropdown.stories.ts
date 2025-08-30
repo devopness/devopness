@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { fn } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { fn } from 'storybook/test'
 
 import { Dropdown, DropdownOption } from '.'
 
@@ -75,6 +75,19 @@ const Primary: Story = {
     anchorOrigin: {
       vertical: 'bottom',
       horizontal: 'left',
+    },
+    popoverProps: {
+      slotProps: {
+        paper: {
+          style: {
+            marginTop: '10px',
+            backgroundColor: '#FFF',
+            width: '200px',
+            borderRadius: '8px',
+            boxShadow: '0 0 30px 0px rgba(0,0,0,0.15)',
+          },
+        },
+      },
     },
   },
 }

@@ -25,13 +25,13 @@ class HookRequestRelation(DevopnessBaseModel):
     Attributes:
         id (str): The unique UUID of the hook request
         hook_id (str): The UUID of the hook that the request belongs to
-        action_id (int): The id of the action that the request belongs to
-        retry_of (str): The UUID of the request that this request is a retry of
+        action_id (int, optional, nullable): The id of the action that the request belongs to
+        retry_of (str, optional, nullable): The UUID of the request that this request is a retry of
         ip_address (str): The IP address of the source that triggered the hook
         url (str, optional): Original URL used on the request
         response_status_code (int, optional): The response status code
-        created_at (datetime, optional): The date and time when the record was created
-        updated_at (datetime, optional): The date and time when the record was last updated
+        created_at (datetime, optional, nullable): The date and time when the record was created
+        updated_at (datetime, optional, nullable): The date and time when the record was last updated
     """
 
     id: StrictStr = Field(description="The unique UUID of the hook request")
@@ -68,8 +68,8 @@ class HookRequestRelationPlain(TypedDict, total=False):
 
     id: Required[str]
     hook_id: Required[str]
-    action_id: Required[int]
-    retry_of: Required[str]
+    action_id: Optional[int]
+    retry_of: Optional[str]
     ip_address: Required[str]
     url: Optional[str]
     response_status_code: Optional[int]

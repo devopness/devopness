@@ -32,14 +32,14 @@ class ServerRelation(DevopnessBaseModel):
         hostname (str): The server&#39;s hostname
         provider_name (str): The name of the server&#39;s provider.
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
-        credential (CredentialRelation, optional):
-        region (str): The region in which the server is located
-        region_human_readable (str): The human readable version of the region
+        credential (CredentialRelation, optional, nullable):
+        region (str, optional, nullable): The region in which the server is located
+        region_human_readable (str, optional, nullable): The human readable version of the region
         ip_address (str, optional): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         active (bool): Tells if the server is active or not
         status (ServerStatus):
-        last_action (ActionRelationShallow, optional):
+        last_action (ActionRelationShallow, optional, nullable):
         created_at (str, optional): The date and time when the record was created
         updated_at (str, optional): The date and time when the record was last updated
     """
@@ -95,8 +95,8 @@ class ServerRelationPlain(TypedDict, total=False):
             CredentialRelationPlain,
         ]
     ]
-    region: Required[str]
-    region_human_readable: Required[str]
+    region: Optional[str]
+    region_human_readable: Optional[str]
     ip_address: Optional[str]
     ssh_port: Required[int]
     active: Required[bool]

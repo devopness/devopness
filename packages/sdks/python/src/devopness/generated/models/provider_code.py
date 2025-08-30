@@ -23,6 +23,7 @@ class ProviderCode(str, Enum):
     GCP = "gcp"
     GITHUB = "github"
     GITLAB = "gitlab"
+    HETZNER = "hetzner"
 
     def __str__(self) -> str:
         """Return the string representation of the ProviderCode"""
@@ -43,4 +44,5 @@ ProviderCodePlain = Literal[
     "gcp",
     "github",
     "gitlab",
+    "hetzner",
 ]

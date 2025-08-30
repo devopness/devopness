@@ -26,7 +26,7 @@ class ResourceEvent(DevopnessBaseModel):
     Attributes:
         resource_type (str): The resource type to create events for.
         resource_id (int): The resource ID.
-        resource_data (Subscription):
+        resource_data (Subscription, optional, nullable):
     """
 
     resource_type: StrictStr = Field(
@@ -43,7 +43,7 @@ class ResourceEventPlain(TypedDict, total=False):
 
     resource_type: Required[str]
     resource_id: Required[int]
-    resource_data: Required[
+    resource_data: Optional[
         Union[
             Subscription,
             SubscriptionPlain,

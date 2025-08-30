@@ -28,7 +28,7 @@ class UserUpdate(DevopnessBaseModel):
         name (str): User&#39;s full name. Must be at least 3 characters. Must not be greater than 255 characters.
         email (str): The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address.
         url_slug (str): The URL Slug of the user. Must not be greater than 255 characters.
-        language (Language, optional):
+        language (Language, optional, nullable):
     """
 
     id: StrictStr = Field(description="The unique ID of the given User.")

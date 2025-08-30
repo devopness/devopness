@@ -39,7 +39,20 @@ build-sdk-python: build-image ## ⚙️  Build the Devopness SDK for Python
 		-v $(PWD)/../common:/common \
 		--name devopness-sdk-python-build \
 		$(IMAGE):$(TAG) \
-		scripts/build.py
+		/bin/bash -ce ' \
+			GENERATED_FILES=src/devopness/generated; \
+			SDK_MODELS_FILE=src/devopness/models.py; \
+			FILES_TO_FORMAT="$$GENERATED_FILES $$SDK_MODELS_FILE"; \
+			\
+			scripts/build.py; \
+			\
+			echo "🔧  Formatting generated files..."; \
+			ruff check --fix --select I  -s $$FILES_TO_FORMAT; \
+			ruff check --fix --exit-zero -s $$FILES_TO_FORMAT; \
+			ruff format                  -s $$FILES_TO_FORMAT; \
+			\
+			echo "✅  Devopness SDK - Python Build Completed"; \
+		'
 
 publish: build-image ## 🚀 Publish the SDK to PyPI (requires PYPI_TOKEN)
 	$(info 📦 Publishing SDK to PyPI...)
@@ -64,7 +77,7 @@ lint: build-image ## 🔍 Run linting tools (ruff, mypy)
 		/bin/bash -cex ' \
 			poetry run ruff check . && \
 			poetry run ruff format . --check && \
-			poetry run mypy . \
+			poetry run mypy --enable-error-code exhaustive-match . \
 		'
 
 format: build-image ## 🧼 Auto-format code with ruff

@@ -4,7 +4,7 @@ class {{classname}}(DevopnessBaseModel):
 
     Attributes:
     {{#allVars}}
-        {{baseName}} ({{dataType}}{{^required}}, optional{{/required}}): {{description}}
+        {{baseName}} ({{dataType}}{{^required}}, optional{{/required}}{{#required}}{{#isNullable}}, optional{{/isNullable}}{{/required}}{{#isNullable}}, nullable{{/isNullable}}): {{description}}
     {{/allVars}}
     """
 
@@ -21,15 +21,15 @@ class {{classname}}Plain(TypedDict, total=False):
 {{#vars}}
     {{baseName}}: (
         {{^required}} Optional[ {{/required}}
-        {{#required}} Required[ {{/required}}
+        {{#required}}{{#isNullable}} Optional[ {{/isNullable}}{{/required}}
+        {{#required}}{{^isNullable}} Required[ {{/isNullable}}{{/required}}
             {{#isPrimitiveType}}{{dataType}}{{/isPrimitiveType}}
             {{^isPrimitiveType}}
               {{#isEnumRef}}Union[{{dataType}}, {{dataType}}Plain,]{{/isEnumRef}}
               {{#isModel}}Union[{{dataType}}, {{dataType}}Plain,]{{/isModel}}
               {{#isContainer}}{{baseType}}[ Union[{{items.dataType}}, {{items.dataType}}Plain,] ]{{/isContainer}}
             {{/isPrimitiveType}}
-        {{#required}} ] {{/required}}
-        {{^required}} ] {{/required}}
+        ]
     )
 {{/vars}}
 

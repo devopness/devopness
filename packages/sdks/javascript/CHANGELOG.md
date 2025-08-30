@@ -1,5 +1,82 @@
 # @devopness/sdk-js
 
+## 2.164.9
+
+### Patch Changes
+
+- [#2104](https://github.com/devopness/devopness/pull/2104) [`b898cc5`](https://github.com/devopness/devopness/commit/b898cc54fb41026f0d7ee1265399b9b5f1c6cb3e) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Fixed** typo's in Project API Token documentation.
+
+## 2.164.8
+
+### Patch Changes
+
+- [#2098](https://github.com/devopness/devopness/pull/2098) [`42d50a5`](https://github.com/devopness/devopness/commit/42d50a5feb2e534a14c21deecdbdbf2044f23082) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Refactored `add` and `rotate` methods to accept `expires_at: datetime` instead of `expires_in`.
+
+  This change allows creating tokens with custom expiration dates, limited to **up to one year in the future**.
+
+## 2.164.7
+
+### Patch Changes
+
+- [#2092](https://github.com/devopness/devopness/pull/2092) [`288caf9`](https://github.com/devopness/devopness/commit/288caf90776c2aef3a7eb67ee627956deab5a99d) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Introduced support for authentication via **API Tokens** in `DevopnessApiClient` configuration.
+
+  Now you can provide an `apiToken` when creating the client, and also get/set it dynamically at runtime, enabling flexible token management (e.g., switching between a **Personal Access Token** and a **Project API Token**).
+
+  **Example:**
+
+  ```javascript
+  import { DevopnessApiClient, SdkModels } from "@devopness/sdk-js";
+
+  const devopness = new DevopnessApiClient({
+    apiToken: "devopness_pat_<rest_of_the_token>",
+  });
+
+  // Example: use Personal Access Token to list projects
+  const project = await devopness.projects
+    .listProjects()
+    .then((res) => res.data[0]);
+  const role = await devopness.projects.roles
+    .listProjectRoles(project.id)
+    .then((res) => res.data[0]);
+
+  // Create a new Project API Token
+  const projectToken = await devopness.apiTokens.addProjectApiToken(
+    project.id,
+    {
+      name: "My Project Token",
+      expires_in: SdkModels.ApiTokenAllowedExpiration._7Days,
+      role_id: role.id,
+    },
+  );
+
+  // Switch to the new token at runtime
+  devopness.apiToken = projectToken.data.token;
+  ```
+
+## 2.164.6
+
+### Patch Changes
+
+- [#2059](https://github.com/devopness/devopness/pull/2059) [`51bb85e`](https://github.com/devopness/devopness/commit/51bb85e4cf370a3c0000709d9628e6854d4877d3) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **New**
+  - Added support for Hetzner as a Cloud Provider
+
+## 2.164.5
+
+### Patch Changes
+
+- [#1966](https://github.com/devopness/devopness/pull/1966) [`edf00bf`](https://github.com/devopness/devopness/commit/edf00bfc4ad3f3a3c8f5ecefc733262dc57cc90c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+
+  Fix action and action target field types
+
+## 2.164.4
+
+### Patch Changes
+
+- [#1942](https://github.com/devopness/devopness/pull/1942) [`4a57b88`](https://github.com/devopness/devopness/commit/4a57b88cd497c02f8f202bc130a834257d04f789) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+  - Added support for a target query parameter to filter variables by target in the listing endpoint
+  - Added a query parameter to allow exclusion of Devopness-generated virtual variables from the listing
+  - Fixed the documentation for the variable.created_by_user field to indicate it is nullable, which applies to virtual variables
+
 ## 2.164.3
 
 ### Patch Changes

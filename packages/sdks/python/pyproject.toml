@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "devopness"
-version = "1.2.1"
+version = "1.3.6"
 description = "Devopness API Python SDK - Painless essential DevOps to everyone"
 license = "MIT"
 readme = "README.md"
@@ -67,9 +67,9 @@ packages = [
 exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
 [tool.poetry.group.dev.dependencies]
-openapi-generator-cli = { version = "7.12.0", markers = "python_version < '4.0'" }
-ruff = "^0.11.6"
-mypy = "1.15.0"
+openapi-generator-cli = { version = "7.15.0", markers = "python_version < '4.0'" }
+ruff = "^0.12.11"
+mypy = "1.17.1"
 
 [tool.ruff]
 line-length = 88
@@ -110,10 +110,8 @@ ignore = [
 "src/devopness/generated/**/__init__.py" = [
   "F401", # Module imported but unused
 ]
-"scripts/**/*" = [
-  "ANN",  # flake8-annotations
-  "S404", # `subprocess` module is possibly insecure
-  "S602", # `subprocess` call with `shell=True` identified, security issue
+"src/devopness/generated/models/api_token_type.py" = [
+  "S105", # False positive 'Possible hardcoded password assigned'
 ]
 "tests/**/*" = [
   "ANN",  # flake8-annotations

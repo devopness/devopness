@@ -4,11 +4,21 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from typing import Optional, Union
 
-from .base import DevopnessBaseService, DevopnessBaseServiceAsync
-from .client_config import DevopnessClientConfig, DevopnessClientConfigDict
+from .base import (
+    DevopnessBaseService,
+    DevopnessBaseServiceAsync,
+)
+from .client_config import (
+    DevopnessClientConfig,
+    DevopnessClientConfigDict,
+)
 from .services.action_service import (
     ActionService,
     ActionServiceAsync,
+)
+from .services.api_token_service import (
+    APITokenService,
+    APITokenServiceAsync,
 )
 from .services.application_service import (
     ApplicationService,
@@ -120,6 +130,7 @@ class DevopnessClient:
     """
 
     actions: ActionService
+    api_tokens: APITokenService
     applications: ApplicationService
     credentials: CredentialService
     cron_jobs: CronJobService
@@ -160,6 +171,7 @@ class DevopnessClient:
         DevopnessBaseService._config = config
 
         self.actions = ActionService()
+        self.api_tokens = APITokenService()
         self.applications = ApplicationService()
         self.credentials = CredentialService()
         self.cron_jobs = CronJobService()
@@ -186,6 +198,14 @@ class DevopnessClient:
         self.variables = VariableService()
         self.virtual_hosts = VirtualHostService()
 
+    def __set_api_token(self, api_token: str) -> None:
+        # pylint: disable=protected-access
+        DevopnessBaseService._config.api_token = api_token
+
+    def __get_api_token(self) -> Optional[str]:
+        # pylint: disable=protected-access
+        return DevopnessBaseService._config.api_token
+
     def __set_access_token(self, access_token: str) -> None:
         # pylint: disable=protected-access
         DevopnessBaseService._access_token = access_token
@@ -194,6 +214,7 @@ class DevopnessClient:
         # pylint: disable=protected-access
         return DevopnessBaseService._access_token
 
+    api_token = property(fset=__set_api_token, fget=__get_api_token)
     access_token = property(fset=__set_access_token, fget=__get_access_token)
 
 
@@ -203,6 +224,7 @@ class DevopnessClientAsync:
     """
 
     actions: ActionServiceAsync
+    api_tokens: APITokenServiceAsync
     applications: ApplicationServiceAsync
     credentials: CredentialServiceAsync
     cron_jobs: CronJobServiceAsync
@@ -243,6 +265,7 @@ class DevopnessClientAsync:
         DevopnessBaseServiceAsync._config = config
 
         self.actions = ActionServiceAsync()
+        self.api_tokens = APITokenServiceAsync()
         self.applications = ApplicationServiceAsync()
         self.credentials = CredentialServiceAsync()
         self.cron_jobs = CronJobServiceAsync()
@@ -269,12 +292,21 @@ class DevopnessClientAsync:
         self.variables = VariableServiceAsync()
         self.virtual_hosts = VirtualHostServiceAsync()
 
+    def __set_api_token(self, api_token: str) -> None:
+        # pylint: disable=protected-access
+        DevopnessBaseServiceAsync._config.api_token = api_token
+
+    def __get_api_token(self) -> Optional[str]:
+        # pylint: disable=protected-access
+        return DevopnessBaseServiceAsync._config.api_token
+
     def __set_access_token(self, access_token: str) -> None:
         # pylint: disable=protected-access
-        DevopnessBaseService._access_token = access_token
+        DevopnessBaseServiceAsync._access_token = access_token
 
     def __get_access_token(self) -> Optional[str]:
         # pylint: disable=protected-access
-        return DevopnessBaseService._access_token
+        return DevopnessBaseServiceAsync._access_token
 
+    api_token = property(fset=__set_api_token, fget=__get_api_token)
     access_token = property(fset=__set_access_token, fget=__get_access_token)

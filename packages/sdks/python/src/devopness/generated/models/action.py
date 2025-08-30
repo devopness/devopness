@@ -17,7 +17,7 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .action_data import ActionData, ActionDataPlain
+from .action_deployment_data import ActionDeploymentData, ActionDeploymentDataPlain
 from .action_hook_request import ActionHookRequest, ActionHookRequestPlain
 from .action_resource import ActionResource, ActionResourcePlain
 from .action_status import ActionStatus, ActionStatusPlain
@@ -41,8 +41,8 @@ class Action(DevopnessBaseModel):
 
     Attributes:
         id (int): The Id of the given action
-        pipeline_id (int): The ID of the pipeline executed by this action
-        retry_of (int): The Id of the parent action that this action is a retry of
+        pipeline_id (int, optional, nullable): The ID of the pipeline executed by this action
+        retry_of (int, optional, nullable): The Id of the parent action that this action is a retry of
         status (ActionStatus):
         status_human_readable (str): Human readable version of action status
         status_reason_code (ActionStatusReasonCode):
@@ -50,19 +50,19 @@ class Action(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
-        action_data (ActionData):
+        action_data (ActionDeploymentData, optional, nullable):
         triggered_from (ActionTriggeredFrom):
-        parent (RelatedAction):
+        parent (RelatedAction, optional, nullable):
         children (List[RelatedAction]): List of related actions
         triggered_by_user (UserRelation, optional):
         resource (ActionResource):
         summary (ActionSummary):
-        environment (EnvironmentRelation, optional):
-        project (ProjectRelation, optional):
+        environment (EnvironmentRelation, optional, nullable):
+        project (ProjectRelation, optional, nullable):
         targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
         hook_requests (ActionHookRequest, optional):
-        started_at (str): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (str): The date and time when the action has finished execution
+        started_at (str, optional, nullable): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (str, optional, nullable): The date and time when the action has finished execution
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -89,7 +89,7 @@ class Action(DevopnessBaseModel):
     url_web_permalink: StrictStr = Field(
         description="The permalink URL to the action details on Devopness web app"
     )
-    action_data: Optional[ActionData]
+    action_data: Optional[ActionDeploymentData]
     triggered_from: ActionTriggeredFrom
     parent: Optional[RelatedAction]
     children: List[Optional[RelatedAction]] = Field(
@@ -98,8 +98,8 @@ class Action(DevopnessBaseModel):
     triggered_by_user: Optional[UserRelation] = None
     resource: ActionResource
     summary: ActionSummary
-    environment: Optional[EnvironmentRelation] = None
-    project: Optional[ProjectRelation] = None
+    environment: Optional[EnvironmentRelation]
+    project: Optional[ProjectRelation]
     targets: Optional[List[ActionTarget]] = Field(
         default=None, description="List of actions dispatched to cloud resource targets"
     )
@@ -124,8 +124,8 @@ class ActionPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    pipeline_id: Required[int]
-    retry_of: Required[int]
+    pipeline_id: Optional[int]
+    retry_of: Optional[int]
     status: Required[
         Union[
             ActionStatus,
@@ -148,10 +148,10 @@ class ActionPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Required[
+    action_data: Optional[
         Union[
-            ActionData,
-            ActionDataPlain,
+            ActionDeploymentData,
+            ActionDeploymentDataPlain,
         ]
     ]
     triggered_from: Required[
@@ -160,7 +160,7 @@ class ActionPlain(TypedDict, total=False):
             ActionTriggeredFromPlain,
         ]
     ]
-    parent: Required[
+    parent: Optional[
         Union[
             RelatedAction,
             RelatedActionPlain,
@@ -218,7 +218,7 @@ class ActionPlain(TypedDict, total=False):
             ActionHookRequestPlain,
         ]
     ]
-    started_at: Required[str]
-    completed_at: Required[str]
+    started_at: Optional[str]
+    completed_at: Optional[str]
     created_at: Required[str]
     updated_at: Required[str]

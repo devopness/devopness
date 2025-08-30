@@ -30,8 +30,8 @@ class PipelineSettings(DevopnessBaseModel):
     Attributes:
         max_pipelines_per_resource (int, optional):
         is_user_managed (bool, optional): Indicates whether the user has permission to manage the pipeline for the resource operation
-        stages (List[PipelineSettingsStage], optional): The list of pipeline setting stage
-        variables (List[PipelineSettingsVariable], optional): The list of pipeline setting variable
+        stages (List[PipelineSettingsStage], optional, nullable): The list of pipeline setting stage
+        variables (List[PipelineSettingsVariable], optional, nullable): The list of pipeline setting variable
     """
 
     max_pipelines_per_resource: Optional[StrictInt] = None

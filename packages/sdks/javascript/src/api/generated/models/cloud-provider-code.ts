@@ -22,7 +22,8 @@ export enum CloudProviderCode {
     Aws = 'aws',
     Azure = 'azure',
     Digitalocean = 'digitalocean',
-    Gcp = 'gcp'
+    Gcp = 'gcp',
+    Hetzner = 'hetzner'
 }
 
 

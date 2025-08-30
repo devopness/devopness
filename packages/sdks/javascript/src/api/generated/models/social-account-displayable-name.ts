@@ -20,6 +20,7 @@
  */
 export enum SocialAccountDisplayableName {
     Bitbucket = 'Bitbucket',
+    Clerk = 'Clerk',
     Facebook = 'Facebook',
     GitHub = 'GitHub',
     GitLab = 'GitLab',

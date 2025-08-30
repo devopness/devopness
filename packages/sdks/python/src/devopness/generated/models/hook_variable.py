@@ -31,7 +31,7 @@ class HookVariable(DevopnessBaseModel):
         path (str, optional): A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the &#x60;name&#x60; will be used instead.
         type (HookVariableType, optional):
         required (bool, optional): Defines if the variable is required
-        default_value (HookVariableDefaultValue, optional):
+        default_value (HookVariableDefaultValue, optional, nullable):
     """
 
     name: Optional[StrictStr] = Field(

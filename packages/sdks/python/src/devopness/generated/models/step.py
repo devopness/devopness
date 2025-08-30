@@ -28,8 +28,8 @@ class Step(DevopnessBaseModel):
 
     Attributes:
         id (int): The unique ID of the given pipeline step
-        name (str, optional): The pipeline step&#39;s name
-        description (str, optional): The pipeline step&#39;s description
+        name (str, optional, nullable): The pipeline step&#39;s name
+        description (str, optional, nullable): The pipeline step&#39;s description
         type (str): The pipeline step&#39;s type
         run_as_user (str): The name of the Unix user on behalf of which the script will be executed
         command (str): A command line or multiline bash pipeline step

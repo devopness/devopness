@@ -139,13 +139,13 @@ export interface ActionRetryResponse {
      * @type {EnvironmentRelation}
      * @memberof ActionRetryResponse
      */
-    environment?: EnvironmentRelation | null;
+    environment: EnvironmentRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof ActionRetryResponse
      */
-    project?: ProjectRelation | null;
+    project: ProjectRelation | null;
     /**
      * List of actions dispatched to cloud resource targets
      * @type {Array<ActionTarget>}

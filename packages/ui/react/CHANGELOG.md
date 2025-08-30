@@ -1,5 +1,262 @@
 # @devopness/ui-react
 
+## 2.171.0
+
+### Minor Changes
+
+- [#2101](https://github.com/devopness/devopness/pull/2101) [`8fd037f`](https://github.com/devopness/devopness/commit/8fd037f877248e1192afdb82bbb2f1a687b42a22) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Refactor `Dropdown` component to add `popoverProps` for more flexible Popover styling
+
+  ### What Changed
+  - Refactored the `Dropdown` component to accept a new `popoverProps` property.
+  - This prop allows consumers to fully customize the Popover, including `slotProps` and `paper` styles.
+  - If `popoverProps` is not provided, the Popover falls back to a default style, ensuring backward compatibility.
+
+  ### Example Usage
+
+  ```tsx
+  <Dropdown
+    id="example-dropdown"
+    options={[
+      { label: 'Option 1' },
+      { label: 'Option 2' },
+    ]}
+    anchorType="button"
+    label="Open Menu"
+    popoverProps={{
+      slotProps: {
+        paper: {
+          marginTop: '5px',
+          minWidth: '250px',
+          borderRadius: '12px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+        },
+      },
+    }}
+  />
+  ```
+
+  This change allows full flexibility to style the Popover while keeping a default consistent look when `popoverProps` is not provided.
+
+## 2.170.0
+
+### Minor Changes
+
+- [#2078](https://github.com/devopness/devopness/pull/2078) [`c92f8ed`](https://github.com/devopness/devopness/commit/c92f8edad77fc932ad2f5ba34674037a999a8bae) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `CardLoading` skeleton component for card placeholders
+
+  ### What Changed
+  - Introduced the `CardLoading` skeleton component to indicate content is being loaded inside a card
+  - Displays placeholder elements for avatar, text bar, link, and icon to simulate the final layout
+  - Ensures consistent loading experience across different parts of the application
+
+  ### Example Usage
+
+  ```tsx
+  <CardLoading />
+  ```
+
+  This component provides a consistent visual skeleton for cards during data loading, helping improve perceived performance and maintain layout stability while content is fetched.
+
+## 2.169.0
+
+### Minor Changes
+
+- [#2061](https://github.com/devopness/devopness/pull/2061) [`b52899d`](https://github.com/devopness/devopness/commit/b52899db8fb3b85c95ac77525121e12b0ef62ba3) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `hetzner` and `fastmcp` icons to the icon set
+
+  ### What Changed
+  - Added a new `hetzner` icon to the set of supported `Icon` options
+  - Added a new `fastmcp` icon to the set of supported `Icon` options
+
+  ### Example Usage
+
+  ```tsx
+  <Icon name="hetzner" size={14} color="blue.950" />
+  <Icon name="python-fastmcp" size={14} color="blue.950" />
+  ```
+
+  These additions expand the available icon set for consistent and recognizable UI design.
+
+## 2.168.0
+
+### Minor Changes
+
+- [#2036](https://github.com/devopness/devopness/pull/2036) [`4a32b3f`](https://github.com/devopness/devopness/commit/4a32b3f5349ded574ed7d4469c68b5c81e9419ec) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `EmptyData` component for empty states display
+
+  ### What Changed
+  - Introduced the `EmptyData` component to visually represent empty states in pages or sections with no data
+  - Supports optional `image` and `message` props to customize the content
+  - Accepts an `isSmallContainer` flag to adjust image size for smaller layouts
+
+  ### Example Usage
+
+  ```tsx
+  <EmptyData />
+
+  <EmptyData
+    isSmallContainer
+    image="/assets/images/empty-projects.png"
+    message="No projects have been created yet. Use the Add button to get started."
+  />
+  ```
+
+  This component helps improve user experience by clearly communicating when there's no content to show, offering optional visual and text customization.
+
+## 2.167.0
+
+### Minor Changes
+
+- [#1998](https://github.com/devopness/devopness/pull/1998) [`bd3b2db`](https://github.com/devopness/devopness/commit/bd3b2db91e8ff76d8746a33a2fe2e20ae10311fc) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Skeleton` component for loading placeholders
+
+  ### What Changed
+  - Introduced a new `Skeleton` component to represent loading states with optional width, height, percentage sizing, and border radius
+  - Animated shimmer effect using themed background colors (e.g. `purple.300`, `indigo.100`...)
+  - Accepts pixel or percentage-based dimensions via `width`, `height`, `widthPercent`, and `heightPercent` props
+  - `borderRadius` prop for rounded visual
+
+  ### Example Usage
+
+  ```tsx
+  <Skeleton width={120} height={20} />
+
+  <Skeleton widthPercent={100} height={12} borderRadius={8} />
+  ```
+
+  This component improves visual feedback for content loading, allowing consistent placeholder elements throughout the app.
+
+## 2.166.0
+
+### Minor Changes
+
+- [#1992](https://github.com/devopness/devopness/pull/1992) [`8274f9f`](https://github.com/devopness/devopness/commit/8274f9ffd0e7df9a86d2b866f0ef833ea5a03ad4) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Enhance `Input` component with password visibility toggle and add new `email` icon
+
+  ### What Changed
+  - Updated the `Input` component to support a password visibility toggle icon (`eyeOpen` / `eyeClosed`) **alongside** a custom icon (e.g. lock icon)
+  - Ensures the visibility toggle is shown only when `type="password"` and `iconPosition !== 'right'`
+  - Allows both icons (custom + visibility toggle) to appear without layout conflicts
+  - Added a new `email` icon to the set of supported `Icon` options
+
+  ### Example Usage
+
+  ```tsx
+  <Input
+    type="password"
+    placeholder="Enter your password"
+    icon={iconLoader('lock')}
+    iconPosition="left"
+  />
+  ```
+
+  ```tsx
+  <Icon
+    name="email"
+    size={14}
+    color="blue.950"
+  />
+  ```
+
+  These improvements enhance the flexibility and accessibility of the `Input` component and expand the available icon set for consistent UI design.
+
+## 2.165.0
+
+### Minor Changes
+
+- [#1988](https://github.com/devopness/devopness/pull/1988) [`6152309`](https://github.com/devopness/devopness/commit/615230998d109c1c8b48c0dafce003a65eb6ec1d) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add `Loader` and `Text` components to the design system
+
+  ### What Changed
+  - Introduced the `Text` component based on MUI's `Typography`
+  - Added the `Loader` component with support for multiple variants: `bar`, `circle`, `ring`, and `page`
+  - Added the [react-spinners](https://www.npmjs.com/package/react-spinners) library to provide a variety of customizable loading spinners
+  - Loader components are built using `react-spinners` with props for `color`, `size`, `speedMultiplier`, `text`, `isAlignLeft`, and `paddingTop`
+
+  ### Example Usage
+
+  ```tsx
+  <Text
+    variant="h4"
+    isSmall
+  >
+    Loading data...
+  </Text>
+  ```
+
+  ```tsx
+  <Loader
+    variant="circle"
+    color={getColor('purple.800')}
+    text="Please wait..."
+  />
+  ```
+
+  These new components enhance UI consistency and developer experience by providing ready-to-use typography and loading visuals.
+
+## 2.164.1
+
+### Patch Changes
+
+- [#1971](https://github.com/devopness/devopness/pull/1971) [`8efb04b`](https://github.com/devopness/devopness/commit/8efb04bf546f6ad4e09d07ab985bf40cc71a178d) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Fix Dropdown link handling
+
+  ### What Changed
+  - Improved behavior of dropdown options with `url`, enabling the correct usage of a link `<a>` without preventing default behavior
+  - Prevent link default behavior only when an `onClick` or `onSelect` handler is defined
+
+  ### Example Usage
+
+  ```tsx
+  <Dropdown
+    options={[
+      {
+        label: "Go to Dashboard",
+        url: "/dashboard",
+        linkProps: { target: "_self" },
+      },
+      {
+        label: "Log out",
+        onClick: async () => {
+          await api.logout();
+        },
+      },
+    ]}
+  />
+
+
+  This update improves usability and accessibility of link-based dropdown options, maintains expected browser behavior.
+  ```
+
+## 2.164.0
+
+### Minor Changes
+
+- [#1948](https://github.com/devopness/devopness/pull/1948) [`ff73888`](https://github.com/devopness/devopness/commit/ff7388887ef8063c949be362db9f21020d67500e) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Improve Dropdown to support both sync and async handlers and add new Icon option
+
+  ### What Changed
+  - Refactored `onClick` and `onSelect` props to support both synchronous and asynchronous functions using `Promise.resolve()`
+  - Introduced `handleDropdownOptionClick()` to centralize and simplify the click/select logic in the `Dropdown` component
+  - Added support for the new `discord` icon in `iconLoader.tsx`
+
+  ### Example Usage
+
+  ```tsx
+  <Dropdown
+    options={[
+      {
+        label: 'Log out',
+        onClick: async () => {
+          await api.logout()
+        },
+      },
+    ]}
+  />
+  ```
+
+  ```tsx
+  <Icon
+    name={discord}
+    size={14}
+    color={'blue.950'}
+  />
+  ```
+
+  This improves reusability and flexibility while ensuring the component gracefully handles both sync and async handlers and also adds support for a new icon.
+
 ## 2.163.0
 
 ### Minor Changes
@@ -116,6 +373,7 @@
   // After
   <Icon name="eyeClosed" />
   ```
+
   2. Use the `deprecatedToNewIconMap` helper
 
   ```tsx

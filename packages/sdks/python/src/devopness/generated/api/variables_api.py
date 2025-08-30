@@ -47,7 +47,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, variable_create)
 
         return DevopnessResponse(response, Variable)
@@ -69,7 +68,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -91,7 +89,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Variable)
@@ -102,6 +99,8 @@ class VariablesApiService(DevopnessBaseService):
         resource_type: str,
         page: Optional[int] = None,
         per_page: Optional[int] = None,
+        include_virtual_variables: Optional[bool] = None,
+        variable_target: Optional[str] = None,
     ) -> DevopnessResponse[List[VariableRelation]]:
         """
         Return a list of variables belonging to a resource
@@ -115,6 +114,8 @@ class VariablesApiService(DevopnessBaseService):
             {
                 "page": page,
                 "per_page": per_page,
+                "include_virtual_variables": include_virtual_variables,
+                "variable_target": variable_target,
             }
         )
 
@@ -124,7 +125,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])
@@ -150,7 +150,6 @@ class VariablesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._put(endpoint, variable_update)
 
         return DevopnessResponse(response, None)
@@ -183,7 +182,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, variable_create)
 
         return DevopnessResponse(response, Variable)
@@ -205,7 +203,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._delete(endpoint)
 
         return DevopnessResponse(response, None)
@@ -227,7 +224,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, Variable)
@@ -238,6 +234,8 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         resource_type: str,
         page: Optional[int] = None,
         per_page: Optional[int] = None,
+        include_virtual_variables: Optional[bool] = None,
+        variable_target: Optional[str] = None,
     ) -> DevopnessResponse[List[VariableRelation]]:
         """
         Return a list of variables belonging to a resource
@@ -251,6 +249,8 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
             {
                 "page": page,
                 "per_page": per_page,
+                "include_virtual_variables": include_virtual_variables,
+                "variable_target": variable_target,
             }
         )
 
@@ -260,7 +260,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[VariableRelation])
@@ -286,7 +285,6 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._put(endpoint, variable_update)
 
         return DevopnessResponse(response, None)

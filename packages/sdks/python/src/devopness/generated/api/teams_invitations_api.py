@@ -44,7 +44,6 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, invitation_team_create)
 
         return DevopnessResponse(response, Invitation)
@@ -76,7 +75,6 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[InvitationRelation])
@@ -108,7 +106,6 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, invitation_team_create)
 
         return DevopnessResponse(response, Invitation)
@@ -140,7 +137,6 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[InvitationRelation])

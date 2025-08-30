@@ -23,6 +23,7 @@ export enum CloudProviderServiceCode {
     AzureRm = 'azure-rm',
     DigitaloceanDroplet = 'digitalocean-droplet',
     GcpGce = 'gcp-gce',
+    HetznerHcloud = 'hetzner-hcloud',
     SelfHostedCustom = 'self-hosted-custom'
 }
 

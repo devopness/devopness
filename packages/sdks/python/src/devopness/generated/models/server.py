@@ -50,17 +50,17 @@ class Server(DevopnessBaseModel):
         ip_address (str, optional): Public ipv4 address for server access
         ssh_port (int): The network port to which the SSH daemon is listening to SSH connections on the server
         os (OperatingSystemVersion):
-        os_version_code (CloudOsVersionCode):
+        os_version_code (CloudOsVersionCode, optional, nullable):
         active (bool): Tells if the server is active or not
         status (ServerStatus):
         max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server,
         blueprint (ServerBlueprint):
         provision_input (ServerProvisionInput):
         created_by_user (UserRelation):
-        project (ProjectRelation):
-        last_action (ActionRelation):
-        environment (EnvironmentRelation):
-        credential (CredentialRelation):
+        project (ProjectRelation, optional, nullable):
+        last_action (ActionRelation, optional, nullable):
+        environment (EnvironmentRelation, optional, nullable):
+        credential (CredentialRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -129,7 +129,7 @@ class ServerPlain(TypedDict, total=False):
             OperatingSystemVersionPlain,
         ]
     ]
-    os_version_code: Required[
+    os_version_code: Optional[
         Union[
             CloudOsVersionCode,
             CloudOsVersionCodePlain,
@@ -161,25 +161,25 @@ class ServerPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    project: Required[
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelation,
             ActionRelationPlain,
         ]
     ]
-    environment: Required[
+    environment: Optional[
         Union[
             EnvironmentRelation,
             EnvironmentRelationPlain,
         ]
     ]
-    credential: Required[
+    credential: Optional[
         Union[
             CredentialRelation,
             CredentialRelationPlain,

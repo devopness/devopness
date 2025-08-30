@@ -25,7 +25,8 @@ export enum ProviderCode {
     Digitalocean = 'digitalocean',
     Gcp = 'gcp',
     Github = 'github',
-    Gitlab = 'gitlab'
+    Gitlab = 'gitlab',
+    Hetzner = 'hetzner'
 }
 
 

@@ -1,5 +1,90 @@
 # @devopness/sdk-python
 
+## 1.3.6
+
+### Patch Changes
+
+- [#2104](https://github.com/devopness/devopness/pull/2104) [`b898cc5`](https://github.com/devopness/devopness/commit/b898cc54fb41026f0d7ee1265399b9b5f1c6cb3e) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Fixed** typo's in Project API Token documentation.
+
+## 1.3.5
+
+### Patch Changes
+
+- [#2098](https://github.com/devopness/devopness/pull/2098) [`42d50a5`](https://github.com/devopness/devopness/commit/42d50a5feb2e534a14c21deecdbdbf2044f23082) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Refactored `add` and `rotate` methods to accept `expires_at: datetime` instead of `expires_in`.
+
+  This change allows creating tokens with custom expiration dates, limited to **up to one year in the future**.
+
+## 1.3.4
+
+### Patch Changes
+
+- [#2092](https://github.com/devopness/devopness/pull/2092) [`288caf9`](https://github.com/devopness/devopness/commit/288caf90776c2aef3a7eb67ee627956deab5a99d) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Introduced support for authentication via **API Tokens** in `DevopnessClient` configuration.
+
+  Now you can provide an `api_token` when creating the client, and also get/set it dynamically at runtime, enabling flexible token management (e.g., switching between a **Personal Access Token** and a **Project API Token**).
+
+  **Example:**
+
+  ```python
+  from devopness import DevopnessClient
+
+  devopness = DevopnessClient(
+      {
+          "api_token": "devopness_proj_<rest_of_the_token>",
+          "auto_refresh_token": False,
+      }
+  )
+
+  # Example: use Project API Token to list environments
+  project_id = 123
+  list_environments = devopness.environments.list_project_environments(project_id)
+
+  # Switch to a Personal Access Token at runtime
+  devopness.api_token = "devopness_pat_<rest_of_personal_access_token>"
+
+  # Perform an action as the user
+  me = devopness.users.get_user_me()
+  ```
+
+## 1.3.3
+
+### Patch Changes
+
+- [#2059](https://github.com/devopness/devopness/pull/2059) [`51bb85e`](https://github.com/devopness/devopness/commit/51bb85e4cf370a3c0000709d9628e6854d4877d3) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **New**
+  - Added support for Hetzner as a Cloud Provider
+
+## 1.3.2
+
+### Patch Changes
+
+- [#1968](https://github.com/devopness/devopness/pull/1968) [`4ba5822`](https://github.com/devopness/devopness/commit/4ba582241185786eae2525fe3571240a72911deb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+
+  Fix incorrect use of `optional` on required fields in generated SDK models, ensuring alignment with OpenAPI spec
+
+## 1.3.1
+
+### Patch Changes
+
+- [#1966](https://github.com/devopness/devopness/pull/1966) [`edf00bf`](https://github.com/devopness/devopness/commit/edf00bfc4ad3f3a3c8f5ecefc733262dc57cc90c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+
+  Fix action and action target field types
+
+## 1.3.0
+
+### Minor Changes
+
+- [#1958](https://github.com/devopness/devopness/pull/1958) [`bf71ebe`](https://github.com/devopness/devopness/commit/bf71ebe6185b6319a0b8467cec05dda4945b350f) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+
+  Removed redundant `ActionData` union type in favor of direct `ActionDeploymentData` usage. No runtime behavior was changed.
+
+## 1.2.2
+
+### Patch Changes
+
+- [#1942](https://github.com/devopness/devopness/pull/1942) [`4a57b88`](https://github.com/devopness/devopness/commit/4a57b88cd497c02f8f202bc130a834257d04f789) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Changes**
+  - Added support for a target query parameter to filter variables by target in the listing endpoint
+  - Added a query parameter to allow exclusion of Devopness-generated virtual variables from the listing
+  - Fixed the documentation for the variable.created_by_user field to indicate it is nullable, which applies to virtual variables
+
 ## 1.2.1
 
 ### Patch Changes

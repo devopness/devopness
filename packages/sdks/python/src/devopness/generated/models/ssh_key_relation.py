@@ -30,7 +30,7 @@ class SshKeyRelation(DevopnessBaseModel):
         environment_id (int): The environment id to which the SSH public key belongs to
         name (str): The name entered by the user to uniquely identify the public SSH key
         fingerprint (str): The hashed fingerprint of the public key
-        last_action (ActionRelationShallow, optional):
+        last_action (ActionRelationShallow, optional, nullable):
         created_at (str, optional): The date and time when the record was created
         updated_at (str, optional): The date and time when the record was last updated
     """

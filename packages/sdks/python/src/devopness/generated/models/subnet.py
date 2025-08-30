@@ -37,11 +37,11 @@ class Subnet(DevopnessBaseModel):
         is_auto_generated (bool): True if this subnet is auto-generated or false if this was created by the user
         provision_input (SubnetProvisionInput):
         created_by_user (UserRelation):
-        project (ProjectRelation):
-        environment (EnvironmentRelation):
-        network (NetworkRelation):
-        credential (CredentialRelation):
-        last_action (ActionRelation):
+        project (ProjectRelation, optional, nullable):
+        environment (EnvironmentRelation, optional, nullable):
+        network (NetworkRelation, optional, nullable):
+        credential (CredentialRelation, optional, nullable):
+        last_action (ActionRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -93,31 +93,31 @@ class SubnetPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    project: Required[
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,
         ]
     ]
-    environment: Required[
+    environment: Optional[
         Union[
             EnvironmentRelation,
             EnvironmentRelationPlain,
         ]
     ]
-    network: Required[
+    network: Optional[
         Union[
             NetworkRelation,
             NetworkRelationPlain,
         ]
     ]
-    credential: Required[
+    credential: Optional[
         Union[
             CredentialRelation,
             CredentialRelationPlain,
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelation,
             ActionRelationPlain,

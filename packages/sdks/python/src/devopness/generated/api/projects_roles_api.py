@@ -39,7 +39,6 @@ class ProjectsRolesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._post(endpoint, role_project_create)
 
         return DevopnessResponse(response, Role)
@@ -71,7 +70,6 @@ class ProjectsRolesApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = self._get(endpoint)
 
         return DevopnessResponse(response, List[RoleRelation])
@@ -103,7 +101,6 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._post(endpoint, role_project_create)
 
         return DevopnessResponse(response, Role)
@@ -135,7 +132,6 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, List[RoleRelation])

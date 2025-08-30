@@ -4,18 +4,16 @@ import { ApiError, ArgumentNullException, NetworkError } from "../common/Excepti
 declare const window: unknown;
 
 export interface ConfigurationOptions {
-    apiKey?: string;
+    apiToken?: string;
     baseURL?: string;
 }
 
 export class Configuration implements ConfigurationOptions {
-    // API_KEY may or may not be needed in the future.
-    // so far only supporting authentication with user credentials
-    public apiKey?: string;
+    public apiToken?: string;
     public baseURL = "https://api.devopness.com";
 
     constructor(options: ConfigurationOptions) {
-        this.apiKey = options.apiKey;
+        this.apiToken = options.apiToken;
         this.baseURL = options.baseURL || this.baseURL;
     }
 }
@@ -23,6 +21,7 @@ export class Configuration implements ConfigurationOptions {
 export class ApiBaseService {
     private api: AxiosInstance;
     private static _accessToken: string;
+    private static _apiToken: string|undefined;
     private static _onTokenExpired: (accessToken: string) => void;
 
     public static configuration: Configuration;
@@ -46,6 +45,8 @@ export class ApiBaseService {
 
         const settings = this.defaultAxiosSettings;
         settings.baseURL = ApiBaseService.configuration.baseURL;
+
+        ApiBaseService._apiToken = ApiBaseService.configuration.apiToken;
 
         this.api = axios.create(settings);
         this.setupAxios();
@@ -79,7 +80,11 @@ export class ApiBaseService {
                 if (!config.headers) {
                     config.headers = <AxiosRequestHeaders>{};
                 }
-                if (ApiBaseService._accessToken) {
+
+                if (ApiBaseService._apiToken) {
+                    config.headers.Authorization = `Bearer ${ApiBaseService._apiToken}`;
+                }
+                else if (ApiBaseService._accessToken) {
                     config.headers.Authorization = `Bearer ${ApiBaseService._accessToken}`;
                 } else {
                     delete config.headers.Authorization;
@@ -116,6 +121,15 @@ export class ApiBaseService {
                 }
             }
         );
+    }
+
+
+    public static get apiToken(): string | undefined {
+        return ApiBaseService._apiToken;
+    }
+
+    public static set apiToken(value: string | undefined) {
+        ApiBaseService._apiToken = value;
     }
 
     public static get accessToken(): string {

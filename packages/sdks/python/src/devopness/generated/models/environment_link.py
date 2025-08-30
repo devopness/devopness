@@ -24,7 +24,7 @@ class EnvironmentLink(DevopnessBaseModel):
 
     Attributes:
         id (int): Environment&#39;s unique id
-        name (str, optional): Environment&#39;s name
+        name (str, optional, nullable): Environment&#39;s name
         servers (List[int]): A list of server IDs to which the item link/unlink operations must be performed
     """
 

@@ -17,6 +17,7 @@ class SocialAccountDisplayableName(str, Enum):
     """
 
     BITBUCKET = "Bitbucket"
+    CLERK = "Clerk"
     FACEBOOK = "Facebook"
     GITHUB = "GitHub"
     GITLAB = "GitLab"
@@ -35,6 +36,7 @@ class SocialAccountDisplayableName(str, Enum):
 # The plain version of SocialAccountDisplayableName
 SocialAccountDisplayableNamePlain = Literal[
     "Bitbucket",
+    "Clerk",
     "Facebook",
     "GitHub",
     "GitLab",

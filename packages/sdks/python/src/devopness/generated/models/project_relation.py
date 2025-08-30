@@ -30,7 +30,7 @@ class ProjectRelation(DevopnessBaseModel):
         id (int): The Id of the project
         user_id (int): The id of the user that own the project
         name (str): The project&#39;s name
-        logo_url (str): A URL path to the project&#39;s logo image
+        logo_url (str, optional, nullable): A URL path to the project&#39;s logo image
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         os_users (List[OsUsersInner]): The list of the operating system users found in all the servers linked to a project
         created_by_user (UserRelation):
@@ -72,7 +72,7 @@ class ProjectRelationPlain(TypedDict, total=False):
     id: Required[int]
     user_id: Required[int]
     name: Required[str]
-    logo_url: Required[str]
+    logo_url: Optional[str]
     resource_summary: Optional[
         List[
             Union[

@@ -42,10 +42,10 @@ class ApplicationRelation(DevopnessBaseModel):
         engine_version (str): The language runtime engine version to be used to execute this application on the deployed servers
         framework (str): The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment
         framework_human_readable (str): The human readable version of the framework of the application.
-        root_directory (str): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
+        root_directory (str, optional, nullable): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
         deployments_keep (int): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers. OR The number of deployment artifacts to be retained in the user&#39;s servers, making it easier and faster to rollback to previous versions
-        install_dependencies_command (str): Indicates command that Devopness must execute to install application dependencies
-        build_command (str): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
+        install_dependencies_command (str, optional, nullable): Indicates command that Devopness must execute to install application dependencies
+        build_command (str, optional, nullable): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
         last_deployments (ApplicationLastDeployments, optional):
         credential (Credential, optional):
         created_at (str, optional): The date and time when the record was created
@@ -131,10 +131,10 @@ class ApplicationRelationPlain(TypedDict, total=False):
     engine_version: Required[str]
     framework: Required[str]
     framework_human_readable: Required[str]
-    root_directory: Required[str]
+    root_directory: Optional[str]
     deployments_keep: Required[int]
-    install_dependencies_command: Required[str]
-    build_command: Required[str]
+    install_dependencies_command: Optional[str]
+    build_command: Optional[str]
     last_deployments: Optional[
         Union[
             ApplicationLastDeployments,

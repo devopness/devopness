@@ -17,8 +17,10 @@ class StaticCloudProviderCode(str, Enum):
     """
 
     AWS = "aws"
+    AZURE = "azure"
     DIGITALOCEAN = "digitalocean"
     GCP = "gcp"
+    HETZNER = "hetzner"
     SELF_MINUS_HOSTED = "self-hosted"
 
     def __str__(self) -> str:
@@ -34,7 +36,9 @@ class StaticCloudProviderCode(str, Enum):
 # The plain version of StaticCloudProviderCode
 StaticCloudProviderCodePlain = Literal[
     "aws",
+    "azure",
     "digitalocean",
     "gcp",
+    "hetzner",
     "self-hosted",
 ]

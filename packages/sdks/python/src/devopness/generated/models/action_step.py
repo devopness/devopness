@@ -32,15 +32,15 @@ class ActionStep(DevopnessBaseModel):
         id (int): The unique id of the action step
         action_id (int): The unique id of the action linked to this step
         action_target_id (int): The unique id of the action target linked to this step
-        name (str): Name of the action describing your purpose
-        description (str, optional): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.
+        name (str, optional, nullable): Name of the action describing your purpose
+        description (str, optional, nullable): A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.
         order (int): The execution order of the given step
         status (ActionStatus):
         status_human_readable (str, optional): Human readable version of the action status
         status_reason_code (ActionStatusReasonCode, optional):
         status_reason_human_readable (str, optional): Human readable version of the status reason code
-        started_at (datetime, optional): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
-        completed_at (datetime, optional): The date and time when the action has finished execution
+        started_at (datetime, optional, nullable): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
+        completed_at (datetime, optional, nullable): The date and time when the action has finished execution
         created_at (datetime, optional): The date and time when the record was created
         updated_at (datetime, optional): The date and time when the record was last updated
     """
@@ -92,7 +92,7 @@ class ActionStepPlain(TypedDict, total=False):
     id: Required[int]
     action_id: Required[int]
     action_target_id: Required[int]
-    name: Required[str]
+    name: Optional[str]
     description: Optional[str]
     order: Required[int]
     status: Required[

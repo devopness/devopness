@@ -1,4 +1,6 @@
 import '@testing-library/jest-dom'
+import { MdOutlineEmail } from 'react-icons/md'
+
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -239,5 +241,67 @@ describe('Input', () => {
       expect(firstInput).not.toHaveFocus()
       expect(secondInput).toHaveFocus()
     })
+  })
+
+  it('renders an icon when passed as a prop', () => {
+    render(
+      <Input
+        type="text"
+        icon={<MdOutlineEmail data-testid="input-icon" />}
+        placeholder="With icon"
+      />
+    )
+    const icon = screen.getByTestId('input-icon')
+    expect(icon).toBeInTheDocument()
+  })
+
+  it('renders icon on the left by default', () => {
+    render(
+      <Input
+        type="text"
+        icon={<MdOutlineEmail data-testid="input-icon-left" />}
+        placeholder="Left icon"
+      />
+    )
+    const icon = screen.getByTestId('input-icon-left')
+    expect(icon.parentElement).toHaveStyle('order: 0')
+  })
+
+  it('renders icon on the right when iconPosition is "right"', () => {
+    render(
+      <Input
+        type="text"
+        icon={<MdOutlineEmail data-testid="input-icon-right" />}
+        iconPosition="right"
+        placeholder="Right icon"
+      />
+    )
+    const icon = screen.getByTestId('input-icon-right')
+    expect(icon.parentElement).toHaveStyle('order: 1')
+  })
+
+  it('applies extra padding to the correct side when icon is present', () => {
+    const { rerender } = render(
+      <Input
+        type="text"
+        icon={<MdOutlineEmail />}
+        iconPosition="left"
+        data-testid="input-with-left-icon"
+      />
+    )
+
+    const leftIconInput = screen.getByTestId('input-with-left-icon')
+    expect(leftIconInput).toHaveStyle('padding-left: 8px')
+
+    rerender(
+      <Input
+        type="text"
+        icon={<MdOutlineEmail />}
+        iconPosition="right"
+        data-testid="input-with-right-icon"
+      />
+    )
+    const rightIconInput = screen.getByTestId('input-with-right-icon')
+    expect(rightIconInput).toHaveStyle('padding-right: 8px')
   })
 })

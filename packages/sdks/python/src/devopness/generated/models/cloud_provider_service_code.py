@@ -20,6 +20,7 @@ class CloudProviderServiceCode(str, Enum):
     AZURE_MINUS_RM = "azure-rm"
     DIGITALOCEAN_MINUS_DROPLET = "digitalocean-droplet"
     GCP_MINUS_GCE = "gcp-gce"
+    HETZNER_MINUS_HCLOUD = "hetzner-hcloud"
     SELF_MINUS_HOSTED_MINUS_CUSTOM = "self-hosted-custom"
 
     def __str__(self) -> str:
@@ -38,5 +39,6 @@ CloudProviderServiceCodePlain = Literal[
     "azure-rm",
     "digitalocean-droplet",
     "gcp-gce",
+    "hetzner-hcloud",
     "self-hosted-custom",
 ]

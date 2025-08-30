@@ -27,7 +27,7 @@ class OperatingSystemVersion(DevopnessBaseModel):
         name (str): Version name
         code_name (str): The name given to the OS version while it is under development. For some OS it can be seen as a version nickname that is used to refer to that version even after official release.
         version (str): Version number
-        os_version_code (CloudOsVersionCode):
+        os_version_code (CloudOsVersionCode, optional, nullable):
         os_version_code_human_readable (str, optional): Human readable version of the operating system version
         released_at (str): Release date
         end_standard_support_at (str): The date when this release will no longer receive updates under their LTS (Long Term Support) conditions. For details and terms of service, please refer to the documentation on the OS website.
@@ -61,7 +61,7 @@ class OperatingSystemVersionPlain(TypedDict, total=False):
     name: Required[str]
     code_name: Required[str]
     version: Required[str]
-    os_version_code: Required[
+    os_version_code: Optional[
         Union[
             CloudOsVersionCode,
             CloudOsVersionCodePlain,

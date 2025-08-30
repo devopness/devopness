@@ -30,7 +30,7 @@ class UserMe(DevopnessBaseModel):
         name (str): User&#39;s full name
         email (str): The e-mail that will uniquely identify the user on the system and become its login credential
         url_slug (str, optional): The URL Slug of the user
-        language (Language):
+        language (Language, optional, nullable):
         active (bool): Tells if the user is active or not
         social_accounts (List[SocialAccountRelation]):
         created_at (str): The date and time when the record was created
@@ -65,7 +65,7 @@ class UserMePlain(TypedDict, total=False):
     name: Required[str]
     email: Required[str]
     url_slug: Optional[str]
-    language: Required[
+    language: Optional[
         Union[
             Language,
             LanguagePlain,

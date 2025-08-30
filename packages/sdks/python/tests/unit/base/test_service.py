@@ -98,6 +98,25 @@ class TestDevopnessBaseService(unittest.TestCase):
         self.assertIn("Authorization", request.headers)
         self.assertEqual(request.headers["Authorization"], "Bearer dp-token123")
 
+    @patch("httpx.Client._send_single_request")
+    def test_use_api_token_to_authenticate_request_includes_auth_header(
+        self,
+        mock: Mock,
+    ) -> None:
+        DevopnessBaseService._config.api_token = "devopness_api_token"  # noqa: S105
+
+        mock.return_value = self.dummy_response
+        self.service._get("/resource/123")
+
+        request: httpx.Request = mock.call_args[0][0]
+        self.assertIsInstance(request, httpx.Request)
+
+        self.assertEqual(request.method, "GET")
+        self.assertEqual(request.url, "https://test.local/resource/123")
+
+        self.assertIn("Authorization", request.headers)
+        self.assertEqual(request.headers["Authorization"], "Bearer devopness_api_token")
+
     @patch("httpx.Client.send")
     def test_post_dict_removes_null_keys(
         self,
@@ -312,6 +331,25 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
 
         self.assertIn("Authorization", request.headers)
         self.assertEqual(request.headers["Authorization"], "Bearer dp-token123")
+
+    @patch("httpx.AsyncClient._send_single_request")
+    async def test_use_api_token_to_authenticate_request_includes_auth_header(
+        self,
+        mock: Mock,
+    ) -> None:
+        DevopnessBaseServiceAsync._config.api_token = "devopness_api_token"  # noqa: S105
+
+        mock.return_value = self.dummy_response
+        await self.service._delete("/resource/123")
+
+        request: httpx.Request = mock.call_args[0][0]
+        self.assertIsInstance(request, httpx.Request)
+
+        self.assertEqual(request.method, "DELETE")
+        self.assertEqual(request.url, "https://test.local/resource/123")
+
+        self.assertIn("Authorization", request.headers)
+        self.assertEqual(request.headers["Authorization"], "Bearer devopness_api_token")
 
     @patch("httpx.AsyncClient.send")
     async def test_post_dict_removes_null_keys(

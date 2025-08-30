@@ -6975,6 +6975,327 @@
         }
       }
     },
+    "/projects/{project_id}/tokens": {
+      "get": {
+        "summary": "List the API tokens of specific project.",
+        "operationId": "listProjectApiTokens",
+        "tags": [
+          "Projects - API Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTokenList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new API token for specific project.",
+        "operationId": "addProjectApiToken",
+        "tags": [
+          "Projects - API Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiToken"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiTokenProjectCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/tokens/{token_id}": {
+      "get": {
+        "summary": "Get details of a specific project API token.",
+        "operationId": "getProjectApiToken",
+        "tags": [
+          "Projects - API Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "token_id",
+            "description": "The ID of the token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/tokens/{token_id}/revoke": {
+      "delete": {
+        "summary": "Revoke a specific project API token.",
+        "operationId": "revokeProjectApiToken",
+        "tags": [
+          "Projects - API Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "token_id",
+            "description": "The ID of the token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/tokens/{token_id}/rotate": {
+      "post": {
+        "summary": "Rotate a specific project API token.",
+        "operationId": "rotateProjectApiToken",
+        "tags": [
+          "Projects - API Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "token_id",
+            "description": "The ID of the token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiTokenRotateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiTokenProjectRotate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/resource-links/{resource_type}/{resource_id}": {
       "get": {
         "summary": "List linked resources of the given resource",
@@ -10747,6 +11068,272 @@
         }
       }
     },
+    "/users/personal-access-tokens": {
+      "get": {
+        "summary": "List the personal access tokens of authenticated user.",
+        "operationId": "listUserPersonalAccessTokens",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessTokenList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new personal access token for the authenticated user.",
+        "operationId": "addUserPersonalAccessToken",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonalAccessTokenUserCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/personal-access-tokens/{personal_access_token_id}": {
+      "get": {
+        "summary": "Get details of a specific personal access token.",
+        "operationId": "getUserPersonalAccessToken",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "personal_access_token_id",
+            "description": "The ID of the personal access token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/users/personal-access-tokens/{personal_access_token_id}/revoke": {
+      "delete": {
+        "summary": "Revoke a specific personal access token.",
+        "operationId": "revokeUserPersonalAccessToken",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "personal_access_token_id",
+            "description": "The ID of the personal access token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
+    "/users/personal-access-tokens/{personal_access_token_id}/rotate": {
+      "post": {
+        "summary": "Rotate a specific personal access token.",
+        "operationId": "rotateUserPersonalAccessToken",
+        "tags": [
+          "Users - Personal Access Tokens"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "personal_access_token_id",
+            "description": "The ID of the personal access token.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessTokenRotateResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonalAccessTokenUserRotate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/refresh-token": {
       "post": {
         "summary": "Refresh an existing user access token",
@@ -11213,6 +11800,16 @@
             "$ref": "#/components/parameters/pageSize"
           },
           {
+            "in": "query",
+            "name": "include_virtual_variables",
+            "description": "If true, include all `virtual variables` in the list. Defaults to true.",
+            "example": false,
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "resource_id",
             "description": "The resource ID.",
@@ -11229,6 +11826,16 @@
             "description": "The resource type to get variables from.",
             "example": "server",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "variable_target",
+            "description": "Filter by variable's target.",
+            "example": "resource-config-file",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -11761,7 +12368,19 @@
   "tags": [
     {
       "name": "API Reference",
-      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n> reach out to the `devopness` API team on [our GitHub open source repository](https://github.com/devopness/devopness/issues/new/choose).\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nAll you need to obtain a token and start consuming this API is a valid email/password registered with devopness.com.\n\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Requests\n### Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as posible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose       |\n| -------------:|------------------------------------|---------------|\n| POST          | /projects                          | Create new item\n| GET           | /social-accounts                   | List all items\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item\n| GET           | /cron-jobs/{id}                    | Get a single item by id\n| PUT           | /applications/{id}                 | Modify an item\n| DELETE        | /daemons/{id}                      | Remove an item permanently\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience, to make it easy and predictable to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose       |\n| -------------:|--------------------------------|---------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked.\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or inability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description   |\n| -------------:|---------------|\n| 200           | Ok - The request was successful\n| 201           | Created - The request was successful and a new resource has been created as a result\n| 202           | Accepted - The request has been received but not yet completely processed\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful\n| 400           | Bad Request - The server could not understand the request due to invalid syntax\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials\n| 402           | Payment Required - Usage limit has been reached on the project's subscription. Ask project owner to upgrade subscription plan\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource\n| 404           | Not Found - The server cannot find the requested resource\n| 405           | Method not allowed - The request method has been disabled and cannot be used\n| 409           | Conflict - The current request conflicts with the current state of the server\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors\n| 429           | Too many requests - Requests rate limit reached by the client application in a period of time\n| 500           | Internal Server Error. Please contact the `devopness` team\n\n### Pagination\nRequests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.\nWhen `page` parameter is not present, the first page will be returned.\nBy default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.\n\nNote: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.\n\n**Example:**\n\n| HTTP Method | Path                                      |\n|------------:|-------------------------------------------|\n| GET         | /projects/{id}/servers?page=5&per_page=15 |\n\nIn the example above, we retrieve items of page `5` setting the size of `15` items per page.\n\n### Browsing paged results\nThe [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)\nin paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.\n\nLinks to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.\nThe page links that may be present in the `Link` response header are listed below:\n\n| Optional? | Example content                                             | Description   |\n|-----------|:------------------------------------------------------------|---------------|\n| **No**    | `<https://api.devopness.com/projects?page=1>; rel=\"first\"`  | First page    |\n| **No**    | `<https://api.devopness.com/projects?page=6>; rel=\"last\"`   | Last page     |\n| **Yes**   | `<https://api.devopness.com/projects?page=3>; rel=\"prev\"`   | Previous page |\n| **Yes**   | `<https://api.devopness.com/projects?page=5>; rel=\"next\"`   | Next page     |\n\nOptional links are not present if the currently requested page has no relative links to point to:\n  - Lack of a `previous` link in the response indicates the beginning of the collection\n  - Lack of a `next` link in the response indicates the end of the collection\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
+      "description": "This page contains the documentation on how to use `devopness` through API calls.\n> Note: This documentation is not complete, so for missing parts or inaccurate API description please\n> reach out to the `devopness` API team on [our GitHub open source repository](https://github.com/devopness/devopness/issues/new/choose).\n\n## Introduction\ndevopness's API exposes all `devopness` features via a standardized programmatic interface. Through devopness API a registered Devopness user can perform every operation you can do on https://www.devopness.com web interfaces and mobile apps.\n\n## Getting started\nTo start using the `devopness` API you will need an **API Token**. Go to the [API Tokens](#tag/API-Tokens) section to learn about the different types of tokens and how to generate them.\n\nThe `devopness` API is based on HTTPS requests and JSON responses, organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts requests with [JSON-encoded](http://www.json.org/) bodies with arguments, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n## Date format\nAll dates in the API use UTC and are strings in the [ISO 8601 \"combined date and time representation\" format](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations):\n```\n2015-05-12T15:50:38.000000Z\n```\n\n## Errors\nThe devopness API uses standard HTTP status codes to indicate the success or failure of an API call. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error on the API servers and are very rare.\n\nThe body of the error response is a JSON in the following format:\n\n```\n{\n  \"message\": \"The given request data was invalid\"\n  \"errors\": { // Optional errors object, returned only when there are detailed error message to be shared\n      \"field_1\": [\n          \"Optional error message related to field_1\"\n      ],\n      \"field_2\": [\n          \"Optional error message related to field_2\"\n      ],\n  }\n}\n```\n\n## Requests\n### Routes and Endpoints\nA route is a URI which can be mapped to different HTTP methods. The mapping of an individual HTTP method to a route is known as an endpoint. `devopness` API exposes, as much as possible, well standardized endpoints with resources and segments leading the path to access the desired resource data.\n\nEach resource mentioned in an endpoint segment has its name written in the plural form, as we are always referencing a collection of objects, that might or might not be filtered by a single ID or extra query string parameters.\n\n### Resources and nested resources endpoints\nBasically there are two types of endpoints used in `devopness` API:\n1) Resource endpoints:\n\n**Pattern:**\n\n`/collection/{resource_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                            | Purpose                                              |\n| -------------:|------------------------------------|------------------------------------------------------|\n| POST          | /projects                          | Create new item                                      |\n| GET           | /social-accounts                   | List all items                                       |\n| GET           | /social-accounts/{account}/status  | Perform a custom action (`status`) for a single item |\n| GET           | /cron-jobs/{id}                    | Get a single item by id                              |\n| PUT           | /applications/{id}                 | Modify an item                                       |\n| DELETE        | /daemons/{id}                      | Remove an item permanently                           |\n\n2) Nested resources endpoints:\n\nNested resources are used when there is a clear hierarchy between the parent resource and the subresource, or for convenience, to make it easy and predictable to filter subresources belonging to a parent resource.\nIn `devopness` API design we strive to avoid nesting resources more than 1 level deep + one action related to the child resource or to the relationship between parent and child.\n\n**Pattern:**\n\n`/parent-collection/{parent_id}/{child-collection}/{child_id}/[{action}]`\n\n**Examples:**\n\n| HTTP Method   | Example                        | Purpose                                                                                                    |\n| -------------:|--------------------------------|------------------------------------------------------------------------------------------------------------|\n| GET           | /projects/{id}/servers         | List all items belonging/linked to the parent resource                                                     |\n| POST          | /projects/{id}/servers         | Create a new subresource item and link it to the parent object                                             |\n| POST          | /parent/{id}/child/{id}/link   | Create a relationship between parent and child object when both items already existed but were not linked. |\n| DELETE        | /parent/{id}/child/{id}/unlink | Remove the relationship between parent and child resources, without deleting any item                      |\n\n## Responses\nWhen a request is successful, a response body will typically be sent back in the form of a JSON object.\nException to this rule is when a DELETE request is processed, which will result in a successful HTTP 204 status and an empty response body.\n\n### Response codes\nResponse codes indicate success or failure of request processing.\nStatus codes from the `2xx` range indicate that request has been accepted.\nIf the returned code is from the `4xx` or `5xx` range then it reveals either problem with the request or inability to process data.\nSee below for a list of HTTP Status codes used by `devopness` API:\n\n| Status Code   | Description                                                                                                                   |\n| -------------:|-------------------------------------------------------------------------------------------------------------------------------|\n| 200           | Ok - The request was successful                                                                                               |\n| 201           | Created - The request was successful and a new resource has been created as a result                                          |\n| 202           | Accepted - The request has been received but not yet completely processed                                                     |\n| 204           | No content - The request was successful. There is no content to return, but the headers may be useful                         |\n| 400           | Bad Request - The server could not understand the request due to invalid syntax                                               |\n| 401           | Unauthenticated - It is usally caused by using wrong or expired credentials                                                   |\n| 402           | Payment Required - Usage limit has been reached on the project's subscription. Ask project owner to upgrade subscription plan |\n| 403           | Forbidden/Unauthorized - The used credentials do not allow access to the resource                                             |\n| 404           | Not Found - The server cannot find the requested resource                                                                     |\n| 405           | Method not allowed - The request method has been disabled and cannot be used                                                  |\n| 409           | Conflict - The current request conflicts with the current state of the server                                                 |\n| 415           | Unsupported Media Type - The request's `Content-Type` or `Accept` headers are not set to a valid format                       |\n| 422           | Unprocessable Entity - The request was unable to be processed due to validation errors                                        |\n| 429           | Too many requests - Requests rate limit reached by the client application in a period of time                                 |\n| 500           | Internal Server Error. Please contact the `devopness` team                                                                    |\n\n### Pagination\nRequests that return multiple items are paginated by default. Specific pages can be requested setting the `page` parameter.\nWhen `page` parameter is not present, the first page will be returned.\nBy default 20 items are returned per page. A custom page size up to 100 can be set with the `per_page` parameter.\n\nNote: some endpoints ignore the `per_page` parameter, returning all results at once. e.g.: `/static/*` endpoints.\n\n**Example:**\n\n| HTTP Method | Path                                      |\n|------------:|-------------------------------------------|\n| GET         | /projects/{id}/servers?page=5&per_page=15 |\n\nIn the example above, we retrieve items of page `5` setting the size of `15` items per page.\n\n### Browsing paged results\nThe [Link header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link)\nin paged responses carry links to pages for navigation purpose. Devopness API adopts the [RFC 8288](https://tools.ietf.org/html/rfc8288) as the reference for our implementation of `Link` header contents.\n\nLinks to the `first`, `next`, `previous` and `last` pages are included such that API clients don't have to hardcode or construct any links.\nThe page links that may be present in the `Link` response header are listed below:\n\n| Optional? | Example content                                             | Description   |\n|-----------|:------------------------------------------------------------|---------------|\n| **No**    | `<https://api.devopness.com/projects?page=1>; rel=\"first\"`  | First page    |\n| **No**    | `<https://api.devopness.com/projects?page=6>; rel=\"last\"`   | Last page     |\n| **Yes**   | `<https://api.devopness.com/projects?page=3>; rel=\"prev\"`   | Previous page |\n| **Yes**   | `<https://api.devopness.com/projects?page=5>; rel=\"next\"`   | Next page     |\n\nOptional links are not present if the currently requested page has no relative links to point to:\n  - Lack of a `previous` link in the response indicates the beginning of the collection\n  - Lack of a `next` link in the response indicates the end of the collection\n\n## Expanding objects\n`TO DO:` define the rules for object expansion and document it here\n"
+    },
+    {
+      "name": "API Tokens",
+      "description": "API Tokens are the authentication method used by the `devopness` API.\n\nEvery request must include a valid token in the `Authorization` header:\n```\nAuthorization: Bearer <your_api_token>\n```\n\nThere are two types of tokens available:\n\n- **API Token (project scoped):** restricted to resources of a specific project, with permissions defined by the role assigned to the token.\n  See [Projects - API Tokens](#tag/Projects-API-Tokens)\n\n- **Personal Access Token (PAT):** inherits the permissions of the user who created it.\n  See [Users - Personal Access Tokens](#tag/Users-Personal-Access-Tokens)\n\nMore information about API Tokens can be found in the [API Tokens - Devopness Docs](https://devopness.com/docs/#todo-link-to-product-docs-api-tokens)\n"
+    },
+    {
+      "name": "Projects - API Tokens",
+      "description": "API Tokens (project scoped) provide **restricted access to resources within a specific project**.\nPermissions are defined by the role assigned to the token, making them ideal for automation's, scripts, or integrations that should not access resources outside the project.\n\nInclude the token in all project-related requests using the `Authorization` header:\n```\nAuthorization: Bearer <your_api_token>\n```\n\nFor instructions on creating and managing project tokens, refer to the [API Token (project) - Devopness Docs](https://devopness.com/docs/#todo-link-to-product-docs-project-token)\n"
+    },
+    {
+      "name": "Users - Personal Access Tokens",
+      "description": "Personal Access Tokens (PATs) **inherit all permissions of the user who created them**.\nThey allow performing any action that the user is authorized to do across all projects accessible by the account.\n\nInclude the PAT in all API requests using the `Authorization` header:\n```\nAuthorization: Bearer <your_api_token>\n```\n\nFor instructions on creating and managing PATs, refer to the [Personal Access Tokens - Devopness Docs](https://devopness.com/docs/#todo-link-to-product-docs-personal-token)\n"
     },
     {
       "name": "Static Data",
@@ -11939,6 +12558,14 @@
       "name": "API",
       "tags": [
         "API Reference"
+      ]
+    },
+    {
+      "name": "API Tokens",
+      "tags": [
+        "API Tokens",
+        "Projects - API Tokens",
+        "Users - Personal Access Tokens"
       ]
     },
     {
@@ -12132,7 +12759,7 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT",
-        "description": "Some few endpoints do not require authentication, but pretty much anything else will require you to be authenticated.\nTo become authenticated you will need to request an API access token through the `/users/login` endpoint.\n\n## Using an access token\nOnce you have an access token for a given user you can pass it along in the HTTP request header.\nAlternatively, if consuming the API through a web application, the token can be sent in the `AuthToken` HTTPOnly cookie as part of the HTTP request.\n"
+        "description": "Some few endpoints do not require authentication, but pretty much anything else will require you to be authenticated.\n\nTo become authenticated you will need an API Token. For more information go to the [API Tokens](#tag/API-Tokens) section.\n"
       }
     },
     "parameters": {
@@ -12310,6 +12937,8 @@
           "children",
           "resource",
           "summary",
+          "environment",
+          "project",
           "started_at",
           "completed_at",
           "created_at",
@@ -12568,7 +13197,6 @@
           "type",
           "type_human_readable",
           "url_web_permalink",
-          "action_data",
           "triggered_from",
           "resource",
           "started_at",
@@ -12856,6 +13484,8 @@
           "children",
           "resource",
           "summary",
+          "environment",
+          "project",
           "started_at",
           "completed_at",
           "created_at",
@@ -13119,7 +13749,19 @@
             "description": "The date and time when the record was last updated",
             "example": "2019-09-25T13:52:04.000000Z"
           }
-        }
+        },
+        "required": [
+          "id",
+          "resource_type",
+          "resource_id",
+          "status",
+          "status_reason_code",
+          "total_steps",
+          "current_step",
+          "resource_data",
+          "created_at",
+          "updated_at"
+        ]
       },
       "ActionTargetCredentialData": {
         "type": "object",
@@ -13427,6 +14069,296 @@
         "required": [
           "message"
         ]
+      },
+      "ApiToken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "token": {
+            "description": "The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "token",
+          "status",
+          "role",
+          "project",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "ApiTokenList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ApiTokenRelation"
+        }
+      },
+      "ApiTokenProjectCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.",
+            "example": "MyApp Deploy Automation",
+            "type": "string"
+          },
+          "role_id": {
+            "description": "The ID of the role that the token is associated with.",
+            "example": 1,
+            "type": "integer"
+          },
+          "expires_at": {
+            "description": "The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "role_id",
+          "expires_at"
+        ]
+      },
+      "ApiTokenProjectRotate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier of the token.",
+            "example": "c28f88fe-322e-477c-bfe9-982072805a01",
+            "type": "string"
+          },
+          "expires_at": {
+            "description": "The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expires_at"
+        ]
+      },
+      "ApiTokenRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "status",
+          "role",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ],
+        "nullable": true
+      },
+      "ApiTokenRotateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "token": {
+            "description": "The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "token",
+          "status",
+          "role",
+          "project",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "ApiTokenStatus": {
+        "type": "string",
+        "description": "The possible status of API tokens.",
+        "enum": [
+          "active",
+          "expired",
+          "revoked"
+        ],
+        "example": "active"
+      },
+      "ApiTokenType": {
+        "type": "string",
+        "description": "The types of API Tokens.",
+        "enum": [
+          "personal_access_token",
+          "project_api_token"
+        ],
+        "example": "personal_access_token"
+      },
+      "ApiTokenTypePrefix": {
+        "type": "string",
+        "description": "The prefixes of API Tokens.",
+        "enum": [
+          "devopness_pat",
+          "devopness_proj"
+        ],
+        "example": "devopness_pat"
       },
       "Application": {
         "type": "object",
@@ -14164,7 +15096,8 @@
           "aws",
           "azure",
           "digitalocean",
-          "gcp"
+          "gcp",
+          "hetzner"
         ],
         "example": "aws"
       },
@@ -14330,6 +15263,7 @@
           "azure-rm",
           "digitalocean-droplet",
           "gcp-gce",
+          "hetzner-hcloud",
           "self-hosted-custom"
         ],
         "description": "The code that uniquely identify this cloud service",
@@ -14590,6 +15524,40 @@
           "os_version_code"
         ]
       },
+      "CloudServiceSettingsHetznerHcloud": {
+        "type": "object",
+        "properties": {
+          "instance_type": {
+            "type": "string",
+            "description": "The instance type to be launched on the cloud provider",
+            "example": "cpx11"
+          },
+          "region": {
+            "type": "string",
+            "description": "Datacenter region where the cloud instance will be launched",
+            "example": "ash"
+          },
+          "region_human_readable": {
+            "type": "string",
+            "description": "Human readable version of the server region",
+            "example": "(USA) Ashburn, VA ash"
+          },
+          "storage_size": {
+            "type": "integer",
+            "description": "The storage's size of the cloud instance",
+            "example": 30
+          },
+          "os_version_code": {
+            "$ref": "#/components/schemas/CloudOsVersionCode"
+          }
+        },
+        "required": [
+          "region",
+          "instance_type",
+          "storage_size",
+          "os_version_code"
+        ]
+      },
       "CloudServiceSettingsSelfHostedCustom": {
         "type": "object",
         "properties": {
@@ -14819,6 +15787,19 @@
           "service_account_key"
         ]
       },
+      "CredentialHetzner": {
+        "type": "object",
+        "properties": {
+          "api_token": {
+            "type": "string",
+            "description": "The API token used to authenticate to Hetzner",
+            "example": "1d0493baf88ce53a0dea2866ee05f032edb8c12easdasd12"
+          }
+        },
+        "required": [
+          "api_token"
+        ]
+      },
       "CredentialInputSettings": {
         "type": "object",
         "properties": {
@@ -14836,6 +15817,9 @@
               },
               {
                 "$ref": "#/components/schemas/CredentialGoogleCloud"
+              },
+              {
+                "$ref": "#/components/schemas/CredentialHetzner"
               },
               {
                 "$ref": "#/components/schemas/CredentialSourceProvider"
@@ -18178,6 +19162,254 @@
         ],
         "nullable": true
       },
+      "PersonalAccessToken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "token": {
+            "description": "The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "token",
+          "status",
+          "user",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "PersonalAccessTokenList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PersonalAccessTokenRelation"
+        }
+      },
+      "PersonalAccessTokenRelation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "status",
+          "user",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ],
+        "nullable": true
+      },
+      "PersonalAccessTokenRotateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier of the Token",
+            "example": "e70e75cb-7922-47d2-a071-54b7d7ede4be",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the Token",
+            "example": "My Token",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ApiTokenType"
+          },
+          "token": {
+            "description": "The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiTokenStatus"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "last_used_at": {
+            "description": "Last time the Token was used",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string",
+            "nullable": true
+          },
+          "expires_at": {
+            "description": "Expiration date of the Token",
+            "example": "2023-12-31T23:59:59Z",
+            "type": "string"
+          },
+          "revoked_at": {
+            "description": "Revocation date of the Token",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "description": "Last time the Token was updated",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "Creation date of the Token",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type",
+          "token",
+          "status",
+          "user",
+          "last_used_at",
+          "expires_at",
+          "revoked_at",
+          "updated_at",
+          "created_at"
+        ]
+      },
+      "PersonalAccessTokenUserCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.",
+            "example": "MyApp Deploy Automation",
+            "type": "string"
+          },
+          "expires_at": {
+            "description": "The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "expires_at"
+        ]
+      },
+      "PersonalAccessTokenUserRotate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier of the token.",
+            "example": "c28f88fe-322e-477c-bfe9-982072805a01",
+            "type": "string"
+          },
+          "expires_at": {
+            "description": "The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expires_at"
+        ]
+      },
       "Pipeline": {
         "type": "object",
         "properties": {
@@ -18708,7 +19940,8 @@
           "digitalocean",
           "gcp",
           "github",
-          "gitlab"
+          "gitlab",
+          "hetzner"
         ],
         "example": "aws"
       },
@@ -19906,6 +21139,7 @@
           "azure-rm",
           "digitalocean-droplet",
           "gcp-gce",
+          "hetzner-hcloud",
           "self-hosted-custom"
         ]
       },
@@ -20008,6 +21242,9 @@
               },
               {
                 "$ref": "#/components/schemas/CloudServiceSettingsGcpGce"
+              },
+              {
+                "$ref": "#/components/schemas/CloudServiceSettingsHetznerHcloud"
               },
               {
                 "$ref": "#/components/schemas/CloudServiceSettingsSelfHostedCustom"
@@ -20534,6 +21771,7 @@
         "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
         "enum": [
           "Bitbucket",
+          "Clerk",
           "Facebook",
           "GitHub",
           "GitLab",
@@ -20552,6 +21790,7 @@
         "description": "The name of the Social Authentication provider",
         "enum": [
           "bitbucket",
+          "clerk",
           "facebook",
           "github",
           "gitlab",
@@ -21072,8 +22311,10 @@
         "type": "string",
         "enum": [
           "aws",
+          "azure",
           "digitalocean",
           "gcp",
+          "hetzner",
           "self-hosted"
         ],
         "example": "aws"
@@ -22965,7 +24206,6 @@
           "resource_id",
           "resource_type",
           "hidden",
-          "created_by_user",
           "created_at",
           "updated_at"
         ]
@@ -23129,7 +24369,6 @@
           "resource_id",
           "resource_type",
           "hidden",
-          "created_by_user",
           "created_at",
           "updated_at"
         ],

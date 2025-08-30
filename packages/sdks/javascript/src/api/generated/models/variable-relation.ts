@@ -87,7 +87,7 @@ export interface VariableRelation {
      * @type {UserRelation}
      * @memberof VariableRelation
      */
-    created_by_user: UserRelation;
+    created_by_user?: UserRelation;
     /**
      * The date and time when the record was created
      * @type {string}

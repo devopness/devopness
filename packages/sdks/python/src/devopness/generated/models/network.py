@@ -35,10 +35,10 @@ class Network(DevopnessBaseModel):
         name (str): The networks&#39;s name
         provision_input (NetworkProvisionInput):
         created_by_user (UserRelation):
-        project (ProjectRelation):
-        environment (EnvironmentRelation):
-        credential (CredentialRelation):
-        last_action (ActionRelation):
+        project (ProjectRelation, optional, nullable):
+        environment (EnvironmentRelation, optional, nullable):
+        credential (CredentialRelation, optional, nullable):
+        last_action (ActionRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -84,25 +84,25 @@ class NetworkPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    project: Required[
+    project: Optional[
         Union[
             ProjectRelation,
             ProjectRelationPlain,
         ]
     ]
-    environment: Required[
+    environment: Optional[
         Union[
             EnvironmentRelation,
             EnvironmentRelationPlain,
         ]
     ]
-    credential: Required[
+    credential: Optional[
         Union[
             CredentialRelation,
             CredentialRelationPlain,
         ]
     ]
-    last_action: Required[
+    last_action: Optional[
         Union[
             ActionRelation,
             ActionRelationPlain,

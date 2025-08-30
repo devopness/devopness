@@ -28,7 +28,7 @@ class ActionResource(DevopnessBaseModel):
         id (int): The unique id of the resource
         type (ResourceType):
         type_human_readable (str): Human readable version of the resource type
-        data (ActionResourceData, optional):
+        data (ActionResourceData, optional, nullable):
     """
 
     id: StrictInt = Field(description="The unique id of the resource")

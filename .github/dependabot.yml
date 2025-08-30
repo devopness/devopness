@@ -31,3 +31,10 @@ updates:
   - dependency-name: typescript
     versions:
     - 4.1.4
+
+- package-ecosystem: pip
+  directories:
+    - "/packages/sdks/python"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10

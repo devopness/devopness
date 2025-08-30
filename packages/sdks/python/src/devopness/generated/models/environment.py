@@ -32,7 +32,7 @@ class Environment(DevopnessBaseModel):
         type (EnvironmentType):
         type_human_readable (str): The human readable version of the type
         name (str): Environment&#39;s name
-        description (str): Environment&#39;s description
+        description (str, optional, nullable): Environment&#39;s description
         is_archived (bool): Indicates whether the record was archived
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         teams (List[TeamRelation]):
@@ -82,7 +82,7 @@ class EnvironmentPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    description: Required[str]
+    description: Optional[str]
     is_archived: Required[bool]
     resource_summary: Optional[
         List[
