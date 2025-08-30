@@ -1,6 +1,6 @@
 ---
-title: Revoke a Personal Access Token (PAT)
-intro: Revoke a Personal Access Token (PAT) to immediately prevent it from being used for future requests.
+title: Revoke a Personal Access Token
+intro: Revoke a Personal Access Token to immediately prevent it from being used for future requests.
 links:
     overview:
     quickstart:

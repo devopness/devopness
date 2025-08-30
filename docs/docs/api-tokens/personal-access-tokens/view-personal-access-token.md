@@ -1,6 +1,6 @@
 ---
-title: View Personal Access Token (PAT)
-intro: Learn how to access and review the details of a Personal Access Token (PAT) you have created.
+title: View Personal Access Token
+intro: Learn how to access and review the details of a Personal Access Token you have created.
 links:
     overview:
     quickstart:
