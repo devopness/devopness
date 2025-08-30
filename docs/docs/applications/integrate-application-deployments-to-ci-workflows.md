@@ -33,7 +33,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <access_token>' \
+     --header 'Authorization: Bearer <your_api_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
@@ -73,7 +73,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <access_token>' \
+     --header 'Authorization: Bearer <your_api_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
@@ -115,7 +115,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <access_token>' \
+     --header 'Authorization: Bearer <your_api_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
@@ -154,7 +154,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
    curl --request GET \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks \
      --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <access_token>' \
+     --header 'Authorization: Bearer <your_api_token>' \
      --header 'Content-Type: application/json'
    ```
 

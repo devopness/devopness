@@ -15,18 +15,7 @@ links:
 
 Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create an outgoing webhook.
 
-:::
-
-:::note
-
-The examples below use `cURL`, which is a command line utility to be used from a terminal window. If you're not familiar with running commands on a terminal or you simply don't want to use a terminal you could, alternatively, copy the examples and import the `cURL` command line into your favorite API client platform. Here are links with instructions on how to achieve that on some of the most popular API client platforms:
-
-- [Postman](https://learning.postman.comgetting-started/importing-and-exporting-data/#importing-with-curl-commands)
-- [Insomnia](https://docs.insomnia.rest/insomnia/import-export-data#import-data)
-
-:::
-
-
+1. Make sure you have API access by following the instructions in [/docs/api/index]
 1. Take note of the ID (`<pipeline_id>`) of a pipeline that runs the `deploy` operation for the application which you want to watch the action statuses
     - Follow the [/docs/applications/deploy-application-using-incoming-hook] guide for detailed instructions
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
@@ -46,12 +35,12 @@ The examples below use `cURL`, which is a command line utility to be used from a
    - [Github](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment)
    - [Gitlab](https://docs.gitlab.com/ee/api/notes.html#create-new-issue-note)
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook to comment on the Pull Request using the source provider where the application' source code is hosted. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
-    
+
     ```bash
     curl --request POST \
       --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
       --header 'Accept: application/json' \
-      --header 'Authorization: Bearer <access_token>' \
+      --header 'Authorization: Bearer <your_api_token>' \
       --header 'Content-Type: application/json' \
       --data '{
         "name": "CD(deploy)",
@@ -77,14 +66,13 @@ The examples below use `cURL`, which is a command line utility to be used from a
         }
       }'
     ```
-    
+
 1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
     ```bash
     curl --request GET \
       --url https://api.devopness.com/pipelines/<pipeline_id>/hooks \
       --header 'Accept: application/json' \
-      --header 'Authorization: Bearer <access_token>' \
+      --header 'Authorization: Bearer <your_api_token>' \
       --header 'Content-Type: application/json'
     ```
 1. In the previous command response, the recently created hook will be included in the list
-
