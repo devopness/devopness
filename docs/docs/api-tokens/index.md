@@ -13,21 +13,24 @@ links:
     featured:
 ---
 
-They replace traditional username/password authentication with a token-based approach.
+## Types of API Tokens
 
-There are two types of API Tokens in Devopness:
+Two types of API Tokens are currently supported: `Project API Tokens` and `Personal Access Tokens`.
 
-- **Personal Access Tokens** - provide access across all projects the user can access.
-- **Project API Tokens** - scoped to a single project, restricting access only to that project's resources.
+Whenever possible, Devopness recommends the usage of `Project API Tokens` for fine-grained permission management.
 
-## Usage
+### Personal Access Tokens
 
-:::info
+A token has the same capabilities to access resources and perform actions on those resources that the owner of the token has, allowing a user to perform any operation using Devopness API, including:
+1. Create and manage Projects
+2. Create and manage Environments in a project
+3. Accept user Team Invitations
+4. Create and manage Personal Access Tokens
 
-Every request must include a valid token in the **Authorization** header:
+### Project API Tokens
 
-```bash
-Authorization: Bearer <your_api_token>
-```
+Project API Tokens have several security advantages over personal access tokens, such as:
 
-:::
+1. Scope limited to access resources in the project where the token was created
+1. Fine-grained permission management using RBAC (Role-based Access Control)
+1. Do not allow access to user specific settings
