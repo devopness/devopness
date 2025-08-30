@@ -4,12 +4,10 @@ intro: Learn how to access and review the details of a Project API Token within 
 links:
     overview:
     quickstart:
-    previous: api-tokens/project-api-tokens/index
-    next:
+    previous: api-tokens/project-api-tokens/list-project-api-tokens
+    next: api-tokens/project-api-tokens/revoke-project-api-token
     guides:
     related:
-      - api-tokens/project-api-tokens/list-project-api-tokens
-      - api-tokens/project-api-tokens/revoke-project-api-token
     featured:
 ---
 

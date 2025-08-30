@@ -15,18 +15,7 @@ links:
 
 Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create an outgoing webhook.
 
-:::
-
-:::note
-
-The examples below use `cURL`, which is a command line utility to be used from a terminal window. If you're not familiar with running commands on a terminal or you simply don't want to use a terminal you could, alternatively, copy the examples and import the `cURL` command line into your favorite API client platform. Here are links with instructions on how to achieve that on some of the most popular API client platforms:
-
-- [Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-with-curl-commands)
-- [Insomnia](https://docs.insomnia.rest/insomnia/import-export-data#import-data)
-
-:::
-
-
+1. Make sure you have API access by following the instructions in [/docs/api/index]
 1. Take note of the ID (`<pipeline_id>`) of a pipeline that runs the `deploy` operation for the application which you want to watch the action statuses
    - Follow the [/docs/applications/deploy-application-using-incoming-hook] guide for detailed instructions
 
@@ -39,12 +28,12 @@ The examples below use `cURL`, which is a command line utility to be used from a
 
    - For further instructions, follow the guide [/docs/webhooks/create-outgoing-webhook]
 
-   
+
    ```bash
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <access_token>' \
+     --header 'Authorization: Bearer <your_api_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
@@ -75,16 +64,16 @@ The examples below use `cURL`, which is a command line utility to be used from a
        }
      }'
    ```
-   
+
 
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.failed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
-   
+
    ```bash
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <access_token>' \
+     --header 'Authorization: Bearer <your_api_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
@@ -115,18 +104,18 @@ The examples below use `cURL`, which is a command line utility to be used from a
        }
      }'
    ```
-   
+
 
    - NOTE: the field `request_body.context` needs to be the same for all the action status; this way the same commit status will be updated, instead of creating a new entry for every state.
 
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.completed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
 
-   
+
    ```bash
    curl --request POST \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
      --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <access_token>' \
+     --header 'Authorization: Bearer <your_api_token>' \
      --header 'Content-Type: application/json' \
      --data '{
        "name": "CI(build)",
@@ -157,7 +146,7 @@ The examples below use `cURL`, which is a command line utility to be used from a
        }
      }'
    ```
-   
+
 
 1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
 
@@ -165,7 +154,7 @@ The examples below use `cURL`, which is a command line utility to be used from a
    curl --request GET \
      --url https://api.devopness.com/pipelines/<pipeline_id>/hooks \
      --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <access_token>' \
+     --header 'Authorization: Bearer <your_api_token>' \
      --header 'Content-Type: application/json'
    ```
 

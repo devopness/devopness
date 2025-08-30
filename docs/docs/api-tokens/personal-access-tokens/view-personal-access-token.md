@@ -1,15 +1,12 @@
 ---
-title: View Personal Access Token (PAT)
-intro: Learn how to access and review the details of a Personal Access Token (PAT) you have created.
+title: View Personal Access Token
+intro: Learn how to access and review the details of a Personal Access Token you have created.
 links:
     overview:
     quickstart:
-    previous: api-tokens/personal-access-tokens/index
-    next:
+    previous: api-tokens/personal-access-tokens/list-personal-access-tokens
+    next: api-tokens/personal-access-tokens/revoke-personal-access-token
     guides:
-    related:
-      - api-tokens/personal-access-tokens/list-personal-access-tokens
-      - api-tokens/personal-access-tokens/revoke-personal-access-token
     featured:
 ---
 

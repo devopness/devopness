@@ -1,15 +1,13 @@
 ---
-title: List Personal Access Tokens (PATs)
-intro: Find and view all Personal Access Tokens (PATs) you have created for your account.
+title: List Personal Access Tokens
+intro: Find and view all Personal Access Tokens you have created for your account.
 links:
     overview:
     quickstart:
     previous: api-tokens/personal-access-tokens/index
-    next:
+    next: api-tokens/personal-access-tokens/add-personal-access-token
     guides:
     related:
-      - api-tokens/personal-access-tokens/add-personal-access-token
-      - api-tokens/personal-access-tokens/view-personal-access-token
     featured:
 ---
 
