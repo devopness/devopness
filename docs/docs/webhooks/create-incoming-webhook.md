@@ -24,6 +24,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
 
 ## Step 1: Get the data needed for creating a webhook
 
+1. Make sure you have API access by following the instructions in [/docs/api/index]
 1. Take note of the ID (`<pipeline_id>`) of the pipeline which you want to run programatically
     > Follow the [/docs/applications/deploy-application-using-incoming-hook] guide for detailed instructions
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /users/login` using your Devopness account email and password
