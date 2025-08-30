@@ -4,8 +4,8 @@ intro: Learn how to configure Virtual Hosts to have one or more applications acc
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: variables/remove-variable
+    next: virtual-hosts/add-virtual-host
     guides:
     related:
         - virtual-hosts/add-virtual-host

@@ -4,8 +4,8 @@ intro: Add a pipeline step to perform a specific task in a defined order during 
 links:
   overview:
   quickstart:
-  previous: applications/add-application
-  next: files/add-file
+  previous: pipelines/steps/index
+  next: pipelines/steps/remove-step
   guides:
   related:
   featured:

@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: projects/list-projects
-    next: projects/add-project
+    next: environments/index
     guides:
     related:
         - projects/list-projects

@@ -1,11 +1,12 @@
 ---
+sidebar_position: 3
 title: Add Microsoft Azure Credential
 intro: In order to allow Devopness to manage Azure resources on your behalf, Service Principal credentials have to be provided.
 links:
     overview:
     quickstart:
-    previous:
-    next: credentials/add-credential
+    previous: credentials/add-aws-credential
+    next: credentials/add-digitalocean-credential
     guides:
     related:
     featured:

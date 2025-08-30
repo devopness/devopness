@@ -4,8 +4,8 @@ intro: Incoming Webhooks are a simple way to integrate external services with yo
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: webhooks/index
+    next: webhooks/create-outgoing-webhook
     guides:
     related:
     featured:

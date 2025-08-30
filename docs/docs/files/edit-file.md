@@ -4,8 +4,8 @@ intro: Editing configuration files is crucial for ensuring accurate and up-to-da
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

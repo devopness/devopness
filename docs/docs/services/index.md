@@ -4,8 +4,8 @@ intro: Many applications depend on background services, like web servers and dat
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

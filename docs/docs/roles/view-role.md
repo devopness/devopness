@@ -4,8 +4,8 @@ intro: Check a role's permissions to understand the role's access level on the a
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: roles/add-role
+    next: actions/index
     guides:
     related:
     featured:

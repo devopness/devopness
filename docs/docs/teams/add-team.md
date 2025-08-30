@@ -1,11 +1,12 @@
 ---
+sidebar_position: 1
 title: Add a Team
 intro: Add teams to organize groups of people in any way that makes it more convenient to grant and revoke project permissions.
 links:
     overview: Project owners can create teams as a initial step to manage permissions and collaboration on environment resources.
     quickstart:
-    previous: ssl-certificates/add-ssl-certificate
-    next: teams/invitations/add-invitation
+    previous:
+    next:
     guides:
     related:
     featured:

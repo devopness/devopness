@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous: virtual-hosts/list-virtual-hosts
-    next: virtual-hosts/edit-virtual-host
+    next: webhooks/index
     guides:
     related:
         - virtual-hosts/list-virtual-hosts

@@ -1,4 +1,5 @@
 ---
+sidebar_position: 4
 title: Get a Server’s Status
 intro: Sometimes you might want to check if a server is currently running. Get the server status to check if a server is currently running, stopped or deleted.
 links:

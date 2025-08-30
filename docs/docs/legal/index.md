@@ -4,8 +4,8 @@ intro: This section contains all legal agreements for our services, including te
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

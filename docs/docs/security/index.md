@@ -4,8 +4,8 @@ intro: This section contains all documentation related to the product's security
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

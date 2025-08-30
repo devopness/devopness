@@ -4,8 +4,8 @@ intro: Many applications rely on scheduled tasks to perform recurring actions, s
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: credentials/view-credential
+    next: cronjobs/add-cronjob
     guides:
     related:
     featured:

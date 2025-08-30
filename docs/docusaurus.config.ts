@@ -56,7 +56,7 @@ const config: Config = {
             mentionPostPlugin, // Must be last to process after other plugins modify content
           ],
           // Source Provider URL to documentation repo
-          editUrl: `${process.env.DEVOPNESS_URL_DOCS_REPO}/edit/main/`,
+          editUrl: `${process.env.DEVOPNESS_URL_DOCS_REPO}/edit/main/docs`,
         },
         blog: {
           showReadingTime: true,

@@ -4,8 +4,6 @@ intro: Learn how to manage your subscription plan on Devopness.
 links:
     overview:
     quickstart:
-    previous:
-    next:
     guides:
     related:
         - users/subscriptions/upgrade-subscription

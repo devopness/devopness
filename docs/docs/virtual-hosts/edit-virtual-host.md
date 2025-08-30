@@ -4,8 +4,8 @@ intro: Edit a Virtual Host to change how an application is accessible on the int
 links:
     overview:
     quickstart:
-    previous: virtual-hosts/view-virtual-host
-    next:
+    previous: virtual-hosts/add-virtual-host
+    next: virtual-hosts/list-virtual-hosts
     guides:
     related:
         - virtual-hosts/list-virtual-hosts

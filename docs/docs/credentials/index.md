@@ -4,7 +4,7 @@ intro: In this section you will learn how to add cloud provider and source provi
 links:
     overview:
     quickstart:
-    previous:
+    previous: applications/link-server-to-application
     next: credentials/add-credential
     guides:
         - credentials/add-credential

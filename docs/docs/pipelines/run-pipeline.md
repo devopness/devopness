@@ -4,8 +4,8 @@ intro: Run a deploy pipeline to apply a network rule to a server.
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

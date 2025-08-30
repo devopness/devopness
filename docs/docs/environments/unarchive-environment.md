@@ -1,11 +1,12 @@
 ---
+sidebar_position: 6
 title: Unarchive an Environment
 intro: Some environments may need to be unarchived to manage a service included in the environment. Unarchive an Environment to view its linked resources.
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

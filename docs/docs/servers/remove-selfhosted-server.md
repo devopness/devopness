@@ -1,4 +1,5 @@
 ---
+sidebar_position: 17
 title: Remove a Self Hosted Server
 intro: Learn how to remove a self hosted server
 links:

@@ -1,11 +1,12 @@
 ---
+sidebar_position: 3
 title: Deploy Application
 intro: Deploy your code changes in smaller chunks to make it easier to validate the code through build and testing pipelines, reducing the feedback loop on error detection. Learn how to use Devopness to deploy application changes confidently, with zero downtime, using your own custom build pipelines and make sure your users can benefit from your application as soon as possible. The more often you deploy your application, the better it tends to improve.
 links:
     overview:
     quickstart:
-    previous: applications/link-server-to-application
-    next: virtual-hosts/add-virtual-host
+    previous: applications/edit-application
+    next: applications/deploy-application-using-incoming-hook
     guides:
     related:
     featured:

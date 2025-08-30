@@ -1,4 +1,5 @@
 ---
+sidebar_position: 15
 title: Restart a Server
 intro: Sometimes running many concurrent pipelines may slow down your servers. Restart your server to force all running tasks to end and start the server again in the same action.
 links:

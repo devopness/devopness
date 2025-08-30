@@ -4,8 +4,8 @@ intro: Sometimes the project needs may change and the current active plan does n
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous:
+    next:
     guides:
     related:
     featured:

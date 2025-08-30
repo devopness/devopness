@@ -1,4 +1,5 @@
 ---
+sidebar_position: 3
 title: List Teams
 intro: View your list of teams
 links:
