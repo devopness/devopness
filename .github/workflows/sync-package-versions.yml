@@ -21,7 +21,7 @@ permissions:
   contents: write
   pull-requests: write
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency: ${{ github.workflow }}-${{ github.head_ref }}
 
 jobs:
   detect-changes:
