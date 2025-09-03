@@ -1,5 +1,33 @@
 # @devopness/ui-react
 
+## 2.172.0
+
+### Minor Changes
+
+- [#2109](https://github.com/devopness/devopness/pull/2109) [`5ba799d`](https://github.com/devopness/devopness/commit/5ba799d3749f6c35d4fa7d529fb1572f1073727a) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `FlexContainer` and `CopyToClipboard` components
+
+  ### What Changed
+  - Introduced the `FlexContainer` component for building flexible layouts easily with consistent styling.
+  - Added the `CopyToClipboard` component that allows users to copy content to the clipboard with visual feedback via tooltip.
+  - Both components follow the Devopness UI guidelines for reusability, type safety, and documentation.
+
+  ### Example Usage
+
+  ```tsx
+  // FlexContainer
+  <FlexContainer justify="center" align="center">
+    <div>Item 1</div>
+    <div>Item 2</div>
+  </FlexContainer>
+
+  // CopyToClipboard
+  <CopyToClipboard id="example">
+    Copy me
+  </CopyToClipboard>
+  ```
+
+  These components improve UI consistency and developer productivity by providing reusable building blocks for layouts and clipboard interactions.
+
 ## 2.171.0
 
 ### Minor Changes
