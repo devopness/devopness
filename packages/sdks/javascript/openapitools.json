@@ -3,6 +3,7 @@
   "spaces": 2,
   "generator-cli": {
     "version": "4.3.1",
+    "useDocker": true,
     "generators": {
       "build-api-models": {
         "generatorName": "typescript-axios",

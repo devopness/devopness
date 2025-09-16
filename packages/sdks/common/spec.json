@@ -10975,6 +10975,52 @@
         }
       }
     },
+    "/users/me/password": {
+      "post": {
+        "summary": "Set or update the current user's password",
+        "operationId": "updateUserMePassword",
+        "tags": [
+          "Users - Passwords"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the password data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPasswordUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/password/reset": {
       "post": {
         "summary": "Reset the user password",
@@ -19130,6 +19176,25 @@
         },
         "required": [
           "email"
+        ]
+      },
+      "UserPasswordUpdate": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "description": "The new password to set for the user account.",
+            "example": "my-new-password",
+            "type": "string"
+          },
+          "password_confirmation": {
+            "description": "The new password confirmation.",
+            "example": "my-new-password",
+            "type": "string"
+          }
+        },
+        "required": [
+          "password",
+          "password_confirmation"
         ]
       },
       "PermissionList": {
