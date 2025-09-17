@@ -91,7 +91,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-storybook": "^9.1.6",
     "globals": "^16.4.0",
-    "jsdom": "^26.1.0",
+    "jsdom": "^27.0.0",
     "prettier": "^3.6.1",
     "prettier-plugin-multiline-arrays": "^4.0.3",
     "react": "^18.3.1",
