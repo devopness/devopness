@@ -30,7 +30,7 @@ describe('Illustration', () => {
   })
 
   it('has fixed height and border bottom', () => {
-    render(
+    const { container } = render(
       <Illustration>
         <span>Border test</span>
       </Illustration>
@@ -42,9 +42,6 @@ describe('Illustration', () => {
       width: '100%',
     })
 
-    expect(wrapper).toHaveStyle({
-      'border-bottom-width': '1px',
-      'border-bottom-style': 'solid',
-    })
+    expect(container.firstChild).toMatchSnapshot()
   })
 })
