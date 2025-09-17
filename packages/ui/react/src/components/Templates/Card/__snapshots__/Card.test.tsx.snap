@@ -1,0 +1,159 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card > renders correctly > with both header background and border colors 1`] = `
+<div
+  class="sc-bRKDuR eAuLul"
+>
+  <a
+    class="sc-eqYatC jOuVVh"
+    color="#786efd"
+    rel="noopener noreferrer"
+    style="display: block; margin-right: auto; width: 100%;"
+    target="_blank"
+  >
+    <div
+      class="sc-jwTyAe dWVCDu"
+      data-testid="card-header"
+    >
+      <div
+        class="sc-hvigdm hAPlbG"
+      >
+        <span
+          class="sc-hwkwBN gwkCiw"
+        >
+          T
+        </span>
+      </div>
+      <div>
+        <span
+          aria-label="Test Card"
+          class="sc-kcLKEh jzBbsG translate"
+          data-mui-internal-clone-element="true"
+          data-testid="tooltip"
+        >
+          <span
+            class="sc-fhHczv jwuUAs"
+          >
+            Test Card
+          </span>
+        </span>
+      </div>
+    </div>
+  </a>
+  <div
+    class="sc-hjsuWn fbvJFN only-child"
+    data-testid="card-footer"
+  >
+    <span
+      aria-label=""
+      class="sc-kcLKEh jzBbsG translate"
+      data-mui-internal-clone-element="true"
+      data-testid="tooltip"
+    >
+      <a
+        class="sc-eqYatC bUqRXR"
+        color="#786efd"
+        href="/settings"
+        rel="noopener noreferrer"
+        style="align-items: center; display: flex; gap: 0.5rem; margin-right: auto;"
+        target="_blank"
+      >
+        <button
+          class="sc-lgpSej dlOtfd"
+          data-testid="button"
+        >
+          <span
+            class="sc-dYwGCk translate"
+            data-testid="button-label"
+          >
+            <span
+              class="sc-jJLAfE gkHyEA"
+            >
+              Settings
+            </span>
+          </span>
+        </button>
+      </a>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Card > renders correctly > with custom header border bottom color 1`] = `
+<div
+  class="sc-bRKDuR eAuLul"
+>
+  <a
+    class="sc-eqYatC jOuVVh"
+    color="#786efd"
+    rel="noopener noreferrer"
+    style="display: block; margin-right: auto; width: 100%;"
+    target="_blank"
+  >
+    <div
+      class="sc-jwTyAe bAkNFh"
+      data-testid="card-header"
+    >
+      <div
+        class="sc-hvigdm hAPlbG"
+      >
+        <span
+          class="sc-hwkwBN gwkCiw"
+        >
+          T
+        </span>
+      </div>
+      <div>
+        <span
+          aria-label="Test Card"
+          class="sc-kcLKEh jzBbsG translate"
+          data-mui-internal-clone-element="true"
+          data-testid="tooltip"
+        >
+          <span
+            class="sc-fhHczv jwuUAs"
+          >
+            Test Card
+          </span>
+        </span>
+      </div>
+    </div>
+  </a>
+  <div
+    class="sc-hjsuWn fbvJFN only-child"
+    data-testid="card-footer"
+  >
+    <span
+      aria-label=""
+      class="sc-kcLKEh jzBbsG translate"
+      data-mui-internal-clone-element="true"
+      data-testid="tooltip"
+    >
+      <a
+        class="sc-eqYatC bUqRXR"
+        color="#786efd"
+        href="/settings"
+        rel="noopener noreferrer"
+        style="align-items: center; display: flex; gap: 0.5rem; margin-right: auto;"
+        target="_blank"
+      >
+        <button
+          class="sc-lgpSej dlOtfd"
+          data-testid="button"
+        >
+          <span
+            class="sc-dYwGCk translate"
+            data-testid="button-label"
+          >
+            <span
+              class="sc-jJLAfE gkHyEA"
+            >
+              Settings
+            </span>
+          </span>
+        </button>
+      </a>
+    </span>
+  </div>
+</div>
+`;
