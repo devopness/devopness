@@ -1,5 +1,29 @@
 # @devopness/ui-react
 
+## 2.175.0
+
+### Minor Changes
+
+- [#2164](https://github.com/devopness/devopness/pull/2164) [`0f90905`](https://github.com/devopness/devopness/commit/0f909050907f9b37b125d3e4bc6139d8e50d88d4) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Container` component
+
+  ### What Changed
+  - Introduced the `Container` component that provides a responsive 12-column grid layout with a styled content wrapper.
+  - Supports optional removal of the default top margin (42px).
+  - Allows customizing background color and height of the inner wrapper.
+
+  ### Example Usage
+
+  ```tsx
+  <Container
+    shouldHaveTopMargin={false}
+    styles={{ backgroundWrapperContent: '#f5f5f5', height: 400 }}
+  >
+    <p>Page content here</p>
+  </Container>
+  ```
+
+  This component improves layout consistency across the application and follows Devopness UI guidelines for reusability, type safety, and documentation.
+
 ## 2.174.0
 
 ### Minor Changes
