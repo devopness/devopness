@@ -1,5 +1,24 @@
 # @devopness/ui-react
 
+## 2.178.0
+
+### Minor Changes
+
+- [#2170](https://github.com/devopness/devopness/pull/2170) [`a97c38e`](https://github.com/devopness/devopness/commit/a97c38e6386cd0d2d926e45c7b1165c55ca6629e) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `FormLoading` component
+
+  ### What Changed
+  - Introduced the `FormLoading` component, a structured loading state for forms.
+  - Uses `Skeleton` placeholders for title, paragraph, separator line, and action buttons.
+  - Accepts optional `ariaLabel` prop for accessibility.
+
+  ### Example Usage
+
+  ```tsx
+  <FormLoading ariaLabel="Loading form content" />
+  ```
+
+  This component provides a consistent loading UI for forms across the application, improving UX and accessibility.
+
 ## 2.177.0
 
 ### Minor Changes
