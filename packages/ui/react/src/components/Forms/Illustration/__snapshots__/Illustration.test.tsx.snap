@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Illustration > has fixed height and border bottom 1`] = `
+<div
+  class="sc-bRKDuR laxXAR"
+>
+  <span>
+    Border test
+  </span>
+</div>
+`;

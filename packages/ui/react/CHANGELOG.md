@@ -1,5 +1,29 @@
 # @devopness/ui-react
 
+## 2.177.0
+
+### Minor Changes
+
+- [#2171](https://github.com/devopness/devopness/pull/2171) [`2a4882e`](https://github.com/devopness/devopness/commit/2a4882ea74a048bcf03b9c686714656ebf8f407e) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Illustration` component
+
+  ### What Changed
+  - Introduced the `Illustration` component that centers its children horizontally and vertically.
+  - Provides a fixed height of `126px` and full width.
+  - Adds a bottom border using the theme color `slate.300`.
+
+  ### Example Usage
+
+  ```tsx
+  <Illustration>
+    <img
+      src="logo.png"
+      alt="Logo"
+    />
+  </Illustration>
+  ```
+
+  This component improves visual consistency across the application and follows Devopness UI guidelines for reusability, type safety, and documentation.
+
 ## 2.176.0
 
 ### Minor Changes
