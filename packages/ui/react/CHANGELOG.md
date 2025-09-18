@@ -1,5 +1,27 @@
 # @devopness/ui-react
 
+## 2.176.0
+
+### Minor Changes
+
+- [#2169](https://github.com/devopness/devopness/pull/2169) [`a9ff2ef`](https://github.com/devopness/devopness/commit/a9ff2ef5ec4aca96a69cd836f35a21e8cd333146) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `FormText` component
+
+  ### What Changed
+  - Introduced the `FormText` component for displaying section titles with an optional subtitle and divider line.
+  - Supports optional custom color for subtitle text.
+
+  ### Example Usage
+
+  ```tsx
+  <FormText
+    title="Form Section"
+    subTitle="Optional description here"
+    subTitleColor="#ef4444"
+  />
+  ```
+
+  This component improves form section readability and consistency across the application.
+
 ## 2.175.0
 
 ### Minor Changes
