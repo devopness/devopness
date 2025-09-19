@@ -74,7 +74,7 @@
     "@storybook/addon-a11y": "^9.1.6",
     "@storybook/addon-docs": "9.1.6",
     "@storybook/csf": "^0.1.13",
-    "@storybook/react-vite": "9.1.6",
+    "@storybook/react-vite": "9.1.7",
     "@testing-library/react": "^16.3.0",
     "@types/lodash": "^4.17.20",
     "@types/node": "^24.5.2",
