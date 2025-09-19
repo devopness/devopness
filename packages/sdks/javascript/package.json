@@ -59,7 +59,7 @@
     "eslint": "^9.35.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.23.0",
+    "eslint-plugin-n": "^17.23.1",
     "eslint-plugin-promise": "^7.2.1",
     "husky": "9.1.7",
     "jest": "^30.1.3",
