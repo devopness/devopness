@@ -1,5 +1,54 @@
 # @devopness/ui-react
 
+## 2.179.0
+
+### Minor Changes
+
+- [#2178](https://github.com/devopness/devopness/pull/2178) [`ad48b03`](https://github.com/devopness/devopness/commit/ad48b03719571dcdd52a2ed089ed683c66ff0df3) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `SourceAndHash` component
+
+  ### What Changed
+  - Introduced the `SourceAndHash` component to display commit hash with optional deployment source reference.
+  - Wraps the commit hash and source reference in a link (`Link`) to the commit URL
+  - Shows a tooltip (`Tooltip`) with the full commit message, which can be customized via `tooltipOptions`.
+
+  ### Example Usage
+
+  ```tsx
+  <SourceAndHash
+    commit={{
+      hash: 'abcd123456',
+      url: 'https://github.com/repo/commit/abcd123456',
+      message: 'Fix bug',
+    }}
+    deployment={{ source_ref: 'feature/new-feature', source_type: 'branch' }}
+    maxDisplayCharacters={8}
+  />
+  ```
+
+  This component improves commit display consistency, enhances reusability across the application, and follows Devopness UI guidelines for accessibility, type safety, and visual clarity.
+
+- [#2179](https://github.com/devopness/devopness/pull/2179) [`0e1df40`](https://github.com/devopness/devopness/commit/0e1df40fc4bef2b3d100d34fe5bd47e974c39861) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `TextArea` component
+
+  ### What Changed
+  - Introduced the `TextArea` component with flexible props for form usage.
+  - Supports labels via `Label` primitive.
+  - Handles error messages (`string`, `FieldError`, or custom object with `message`).
+  - Optional `isResizable` prop to enable/disable textarea resizing.
+  - Forwards refs to the native `<textarea>` element.
+
+  ### Example Usage
+
+  ```tsx
+  <TextArea
+    label={{ children: 'Comments' }}
+    placeholder="Write your message..."
+    error={{ message: 'Required field' }}
+    isResizable={false}
+  />
+  ```
+
+  This component improves form handling consistency, enhances reusability, and follows Devopness UI guidelines for accessibility and type safety.
+
 ## 2.178.0
 
 ### Minor Changes
