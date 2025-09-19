@@ -1,2 +1,7 @@
 export * from './Alert'
 export * from './Input'
+export * from './Container'
+export * from './FormText'
+export * from './Illustration'
+export * from './FormLoading'
+export * from './TextArea'

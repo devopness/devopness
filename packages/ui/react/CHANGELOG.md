@@ -1,5 +1,143 @@
 # @devopness/ui-react
 
+## 2.179.0
+
+### Minor Changes
+
+- [#2178](https://github.com/devopness/devopness/pull/2178) [`ad48b03`](https://github.com/devopness/devopness/commit/ad48b03719571dcdd52a2ed089ed683c66ff0df3) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `SourceAndHash` component
+
+  ### What Changed
+  - Introduced the `SourceAndHash` component to display commit hash with optional deployment source reference.
+  - Wraps the commit hash and source reference in a link (`Link`) to the commit URL
+  - Shows a tooltip (`Tooltip`) with the full commit message, which can be customized via `tooltipOptions`.
+
+  ### Example Usage
+
+  ```tsx
+  <SourceAndHash
+    commit={{
+      hash: 'abcd123456',
+      url: 'https://github.com/repo/commit/abcd123456',
+      message: 'Fix bug',
+    }}
+    deployment={{ source_ref: 'feature/new-feature', source_type: 'branch' }}
+    maxDisplayCharacters={8}
+  />
+  ```
+
+  This component improves commit display consistency, enhances reusability across the application, and follows Devopness UI guidelines for accessibility, type safety, and visual clarity.
+
+- [#2179](https://github.com/devopness/devopness/pull/2179) [`0e1df40`](https://github.com/devopness/devopness/commit/0e1df40fc4bef2b3d100d34fe5bd47e974c39861) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `TextArea` component
+
+  ### What Changed
+  - Introduced the `TextArea` component with flexible props for form usage.
+  - Supports labels via `Label` primitive.
+  - Handles error messages (`string`, `FieldError`, or custom object with `message`).
+  - Optional `isResizable` prop to enable/disable textarea resizing.
+  - Forwards refs to the native `<textarea>` element.
+
+  ### Example Usage
+
+  ```tsx
+  <TextArea
+    label={{ children: 'Comments' }}
+    placeholder="Write your message..."
+    error={{ message: 'Required field' }}
+    isResizable={false}
+  />
+  ```
+
+  This component improves form handling consistency, enhances reusability, and follows Devopness UI guidelines for accessibility and type safety.
+
+## 2.178.0
+
+### Minor Changes
+
+- [#2170](https://github.com/devopness/devopness/pull/2170) [`a97c38e`](https://github.com/devopness/devopness/commit/a97c38e6386cd0d2d926e45c7b1165c55ca6629e) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `FormLoading` component
+
+  ### What Changed
+  - Introduced the `FormLoading` component, a structured loading state for forms.
+  - Uses `Skeleton` placeholders for title, paragraph, separator line, and action buttons.
+  - Accepts optional `ariaLabel` prop for accessibility.
+
+  ### Example Usage
+
+  ```tsx
+  <FormLoading ariaLabel="Loading form content" />
+  ```
+
+  This component provides a consistent loading UI for forms across the application, improving UX and accessibility.
+
+## 2.177.0
+
+### Minor Changes
+
+- [#2171](https://github.com/devopness/devopness/pull/2171) [`2a4882e`](https://github.com/devopness/devopness/commit/2a4882ea74a048bcf03b9c686714656ebf8f407e) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Illustration` component
+
+  ### What Changed
+  - Introduced the `Illustration` component that centers its children horizontally and vertically.
+  - Provides a fixed height of `126px` and full width.
+  - Adds a bottom border using the theme color `slate.300`.
+
+  ### Example Usage
+
+  ```tsx
+  <Illustration>
+    <img
+      src="logo.png"
+      alt="Logo"
+    />
+  </Illustration>
+  ```
+
+  This component improves visual consistency across the application and follows Devopness UI guidelines for reusability, type safety, and documentation.
+
+## 2.176.0
+
+### Minor Changes
+
+- [#2169](https://github.com/devopness/devopness/pull/2169) [`a9ff2ef`](https://github.com/devopness/devopness/commit/a9ff2ef5ec4aca96a69cd836f35a21e8cd333146) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `FormText` component
+
+  ### What Changed
+  - Introduced the `FormText` component for displaying section titles with an optional subtitle and divider line.
+  - Supports optional custom color for subtitle text.
+
+  ### Example Usage
+
+  ```tsx
+  <FormText
+    title="Form Section"
+    subTitle="Optional description here"
+    subTitleColor="#ef4444"
+  />
+  ```
+
+  This component improves form section readability and consistency across the application.
+
+## 2.175.0
+
+### Minor Changes
+
+- [#2164](https://github.com/devopness/devopness/pull/2164) [`0f90905`](https://github.com/devopness/devopness/commit/0f909050907f9b37b125d3e4bc6139d8e50d88d4) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Container` component
+
+  ### What Changed
+  - Introduced the `Container` component that provides a responsive 12-column grid layout with a styled content wrapper.
+  - Supports optional removal of the default top margin (42px).
+  - Allows customizing background color and height of the inner wrapper.
+
+  ### Example Usage
+
+  ```tsx
+  <Container
+    shouldHaveTopMargin={false}
+    styles={{ backgroundWrapperContent: '#f5f5f5', height: 400 }}
+  >
+    <p>Page content here</p>
+  </Container>
+  ```
+
+  This component improves layout consistency across the application and follows Devopness UI guidelines for reusability, type safety, and documentation.
+
 ## 2.174.0
 
 ### Minor Changes
