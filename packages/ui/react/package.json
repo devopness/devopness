@@ -70,7 +70,7 @@
   },
   "devDependencies": {
     "@emotion/styled": "^11.14.1",
-    "@eslint/js": "^9.35.0",
+    "@eslint/js": "^9.36.0",
     "@storybook/addon-a11y": "^9.1.7",
     "@storybook/addon-docs": "9.1.7",
     "@storybook/csf": "^0.1.13",
