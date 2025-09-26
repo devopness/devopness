@@ -88,7 +88,7 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.21",
+    "eslint-plugin-react-refresh": "^0.4.22",
     "eslint-plugin-storybook": "^9.1.8",
     "globals": "^16.4.0",
     "jsdom": "^27.0.0",
