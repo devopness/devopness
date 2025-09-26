@@ -5,7 +5,7 @@ links:
     overview:
     quickstart:
     previous:
-    next:
+    next: projects/add-project
     guides:
     related:
     featured:
