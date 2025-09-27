@@ -18,6 +18,7 @@ import { ApiError } from '../../generated/models';
 import { PasswordResetResponse } from '../../generated/models';
 import { PasswordUserReset } from '../../generated/models';
 import { PasswordUserSendResetLink } from '../../generated/models';
+import { UserPasswordUpdate } from '../../generated/models';
 
 /**
  * UsersPasswordsApiService - Auto-generated
@@ -56,6 +57,24 @@ export class UsersPasswordsApiService extends ApiBaseService {
         const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');
 
         const response = await this.post <void, PasswordUserSendResetLink>(requestUrl, passwordUserSendResetLink);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Set or update the current user\'s password
+     * @param {UserPasswordUpdate} userPasswordUpdate A JSON object containing the password data
+     */
+    public async updateUserMePassword(userPasswordUpdate: UserPasswordUpdate): Promise<ApiResponse<void>> {
+        if (userPasswordUpdate === null || userPasswordUpdate === undefined) {
+            throw new ArgumentNullException('userPasswordUpdate', 'updateUserMePassword');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/users/me/password' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, UserPasswordUpdate>(requestUrl, userPasswordUpdate);
         return new ApiResponse(response);
     }
 }

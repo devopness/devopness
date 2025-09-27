@@ -302,6 +302,7 @@ export * from './user-environment-stats';
 export * from './user-login';
 export * from './user-login-response';
 export * from './user-me';
+export * from './user-password-update';
 export * from './user-profile-options';
 export * from './user-project-stats';
 export * from './user-refresh-token';
