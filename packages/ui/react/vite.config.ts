@@ -19,7 +19,11 @@ export default defineConfig({
         '.storybook/**/*.ts',
       ],
     }),
-    tsconfigPaths(),
+    tsconfigPaths({
+      projects: [
+        resolve(__dirname, 'tsconfig.json'),
+      ],
+    }),
   ],
   resolve: {
     alias: {

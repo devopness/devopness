@@ -4,8 +4,8 @@ intro: In this section you will learn how to manage your project.
 links:
     overview:
     quickstart:
-    previous: projects/list-projects
-    next: projects/add-project
+    previous: projects/add-project
+    next: projects/list-projects
     guides:
     related:
         - projects/list-projects

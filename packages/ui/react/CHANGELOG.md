@@ -1,5 +1,86 @@
 # @devopness/ui-react
 
+## 2.180.0
+
+### Minor Changes
+
+- [#2202](https://github.com/devopness/devopness/pull/2202) [`b2bd89e`](https://github.com/devopness/devopness/commit/b2bd89e77e1ca015432f215b4350a7bd2a9f5f94) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Autocomplete` component
+
+  ### What Changed
+  - Introduced the `Autocomplete` component wrapping MUI Autocomplete with a Devopness Input.
+  - Supports free text input, custom options, and styled popper.
+  - Maintains full typing for inputProps and autocompleteProps.
+
+  ### Example Usage
+
+  ```tsx
+  <Autocomplete
+    inputProps={{ placeholder: 'Type something' }}
+    autocompleteProps={{
+      options: [
+        'Option 1',
+        'Option 2',
+      ],
+      value: '',
+      onChange: (event, value) => console.log(value),
+    }}
+  />
+  ```
+
+  This component improves form handling consistency, enhances reusability, and follows Devopness UI guidelines for accessibility and type safety.
+
+- [#2204](https://github.com/devopness/devopness/pull/2204) [`ff260d8`](https://github.com/devopness/devopness/commit/ff260d8f25a9f4729b497f111d0d5ae209a1114f) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Popover` component
+
+  ### What Changed
+  - Introduced the `Popover` component as a flexible panel anchored to an element.
+  - Supports optional header (`title`) and footer content (`footer`).
+  - Handles close actions via built-in close button.
+  - Uses `ConditionalWrapper` to render footer conditionally.
+  - Follows Devopness UI design and accessibility standards.
+
+  ### Example Usage
+
+  ```tsx
+  <Popover
+    open={isOpen}
+    anchorEl={anchorElement}
+    onClose={() => setIsOpen(false)}
+    title="Popover Title"
+    footer={<div>Footer content</div>}
+  >
+    <div>Main content of the popover</div>
+  </Popover>
+  ```
+
+  This component improves reusability for popover panels and provides a consistent header/footer layout.
+
+- [#2203](https://github.com/devopness/devopness/pull/2203) [`7a3f991`](https://github.com/devopness/devopness/commit/7a3f9916e19592243d36c8b88e28d3c7041958f1) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `RadioSelectCards` component
+
+  ### What Changed
+  - Introduced the `RadioSelectCards` component to render radio options as selectable cards.
+  - Supports icons, labels, and custom styling per card.
+  - Handles loading state via `RingLoader`.
+  - Handles error messages using the `ErrorMessage` primitive.
+  - Forwards refs and accepts shared `inputProps` for each radio input.
+
+  ### Example Usage
+
+  ```tsx
+  <RadioInput
+    name="exampleRadio"
+    data={[
+      { value: 'gitlab', label: 'Gitlab', icon: 'gitlab' },
+      {
+        value: 'github',
+        label: 'Github',
+        icon: { name: 'github', color: 'blue' },
+      },
+    ]}
+  />
+  ```
+
+  This component enhances form handling consistency, improves reusability, and follows Devopness UI guidelines for accessibility and type safety.
+
 ## 2.179.0
 
 ### Minor Changes
