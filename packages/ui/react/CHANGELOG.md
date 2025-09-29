@@ -1,5 +1,64 @@
 # @devopness/ui-react
 
+## 2.181.0
+
+### Minor Changes
+
+- [#2211](https://github.com/devopness/devopness/pull/2211) [`bc7d55c`](https://github.com/devopness/devopness/commit/bc7d55cd6167636fad56dc60c3afb1df592c0fd7) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Review` component
+
+  ### What Changed
+  - Introduced `Review` component for displaying label/value pairs with optional icon and prefix.
+  - Handles icon placement before or after the label using `isIconAfterLabel`.
+  - Supports bold label, prefix margin, and custom background colors.
+  - Provides `ReviewBox` as an optional container to group multiple `Review` components in examples.
+  - Follows Devopness UI design and accessibility standards.
+
+  ### Example Usage
+
+  ```tsx
+  import { Review, ReviewBox } from '@devopness/ui-react'
+
+  <Review content="Status: Approved" icon="check" prefix="Info" />
+
+  <ReviewBox type="default">
+    <Review content="Status: Approved" icon="check" prefix="Info" />
+    <Review content="Score: 85%" icon="star" isIconAfterLabel />
+  </ReviewBox>
+  ```
+
+  This component enhances form handling consistency, improves reusability, and follows Devopness UI guidelines for accessibility and type safety.
+
+- [#2212](https://github.com/devopness/devopness/pull/2212) [`3fa1dda`](https://github.com/devopness/devopness/commit/3fa1dda0f64a30fa96db8ab653c0ff7b3dcb3da9) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `ToggleContent` component
+
+  ### What Changed
+  - Introduced `ToggleContent` to show/hide sensitive content with a toggle button.
+  - Supports optional warning when revealing sensitive content (`showWarning`).
+  - Supports custom hidden content placeholders and disabling them.
+  - Includes `ToggleContentButton` internally to handle toggle actions.
+
+  ### Example Usage
+
+  ```tsx
+  <ToggleContent
+    isSensitiveContent
+    showWarning
+    hiddenContentPlaceholder="*****"
+  >
+    <span>Secret value</span>
+  </ToggleContent>
+  ```
+
+  ```tsx
+  <ToggleContentButton
+    showContent={showFileContent}
+    onClick={() => {
+      yourFunction
+    }}
+  />
+  ```
+
+  This component enhances form handling consistency, improves reusability, and follows Devopness UI guidelines for accessibility and type safety.
+
 ## 2.180.0
 
 ### Minor Changes
