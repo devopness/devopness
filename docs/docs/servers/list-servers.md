@@ -4,11 +4,10 @@ intro: View the list of servers in your environment
 links:
     overview:
     quickstart:
-    previous: 
-    next: projects/view-server
+    previous: servers/add-server
+    next: servers/view-server
     guides:
     related:
-        - projects/add-server
     featured:
 ---
 
