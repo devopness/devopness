@@ -1,5 +1,71 @@
 # @devopness/ui-react
 
+## 2.183.0
+
+### Minor Changes
+
+- [#2219](https://github.com/devopness/devopness/pull/2219) [`19e7f7a`](https://github.com/devopness/devopness/commit/19e7f7a3f1e042ddfeefc0f6db541f21fd8a0c5f) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Status` component
+
+  ### What Changed
+  - Introduced `Status` component to display action statuses with icon, color, and tooltip.
+  - Supports human-readable status and reason.
+  - Uses `ViewDetailsContent` for consistent rendering in Devopness UI style.
+
+  ### Example Usage
+
+  ```tsx
+  <Status
+    status="completed"
+    statusHumanReadable="Completed"
+    statusReasonHumanReadable="All tasks finished successfully"
+  />
+
+  <Status
+    status="failed"
+    statusHumanReadable="Failed"
+    statusReasonHumanReadable="Error occurred"
+  />
+  ```
+
+  This component improves consistency for displaying action statuses in forms, lists, and detail views.
+
+- [#2219](https://github.com/devopness/devopness/pull/2219) [`19e7f7a`](https://github.com/devopness/devopness/commit/19e7f7a3f1e042ddfeefc0f6db541f21fd8a0c5f) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `ViewDetails` component
+
+  ### What Changed
+  - Introduced `ViewDetails` to display multiple sections of detail items with labels and values.
+  - Supports optional icons, navigation links, copy-to-clipboard functionality, hidden/sensitive content with toggle, and tooltips.
+  - Added `ViewDetailsContent` for individual detail rows and `ViewDetailsLoading` for the loading state.
+
+  ### Example Usage
+
+  ```tsx
+  import { ViewDetails, ViewDetailsContent, ViewDetailsLoading } from '@devopness/ui-react'
+  import { DetailsContentProps } from '@devopness/ui-react'
+
+  const sampleData: { label: string; items: DetailsContentProps[] }[] = [
+    {
+      label: 'User Info',
+      items: [
+        { label: 'Name', value: 'John Doe' },
+        { label: 'Email', value: 'john@example.com', isCopyToClipboard: true }
+      ]
+    }
+  ]
+
+  <ViewDetails navigationComponent={NavigationLink} data={sampleData} />
+
+  <ViewDetailsContent
+    label="Website"
+    value="https://example.com"
+    url="https://example.com"
+    navigationComponent={NavigationLink}
+  />
+
+  <ViewDetailsLoading />
+  ```
+
+  This component improves the display of structured information, enables consistent handling of sensitive or interactive content, and follows accessibility and type-safety guidelines in the Devopness UI library.
+
 ## 2.182.0
 
 ### Minor Changes
