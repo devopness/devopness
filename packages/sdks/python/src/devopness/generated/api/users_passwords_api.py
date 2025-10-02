@@ -9,13 +9,7 @@ Note:
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import (
-    PasswordResetResponse,
-    PasswordUserReset,
-    PasswordUserResetPlain,
-    PasswordUserSendResetLink,
-    PasswordUserSendResetLinkPlain,
-)
+from ..models import PasswordResetResponse, PasswordUserReset, PasswordUserResetPlain
 
 
 class UsersPasswordsApiService(DevopnessBaseService):
@@ -49,10 +43,6 @@ class UsersPasswordsApiService(DevopnessBaseService):
 
     def send_reset_link_user_password(
         self,
-        password_user_send_reset_link: Union[
-            PasswordUserSendResetLink,
-            PasswordUserSendResetLinkPlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Send the password reset link to user's email
@@ -67,7 +57,7 @@ class UsersPasswordsApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, password_user_send_reset_link)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -103,10 +93,6 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def send_reset_link_user_password(
         self,
-        password_user_send_reset_link: Union[
-            PasswordUserSendResetLink,
-            PasswordUserSendResetLinkPlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Send the password reset link to user's email
@@ -121,6 +107,6 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, password_user_send_reset_link)
+        response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)

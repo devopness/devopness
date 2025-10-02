@@ -11,6 +11,7 @@ from typing import List, Optional
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     ApplicationOptions,
+    BillingPlansOptionsRelation,
     CloudInstanceRelation,
     CloudProviderService,
     CredentialOptions,
@@ -232,6 +233,36 @@ class StaticDataApiService(DevopnessBaseService):
         response = self._get(endpoint)
 
         return DevopnessResponse(response, VirtualHostOptions)
+
+    def list_static_billing_plans_options(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[BillingPlansOptionsRelation]]:
+        """
+        List `Billing Plans` options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            "/static/billing-plans-options",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, List[BillingPlansOptionsRelation])
 
     def list_static_cloud_instances_by_cloud_provider_service_code_and_region_code(
         self,
@@ -531,6 +562,36 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return DevopnessResponse(response, VirtualHostOptions)
+
+    async def list_static_billing_plans_options(
+        self,
+        page: Optional[int] = None,
+        per_page: Optional[int] = None,
+    ) -> DevopnessResponse[List[BillingPlansOptionsRelation]]:
+        """
+        List `Billing Plans` options
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            "/static/billing-plans-options",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return DevopnessResponse(response, List[BillingPlansOptionsRelation])
 
     async def list_static_cloud_instances_by_cloud_provider_service_code_and_region_code(
         self,

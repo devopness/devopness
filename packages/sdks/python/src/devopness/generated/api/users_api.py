@@ -13,10 +13,6 @@ from ..models import (
     User,
     UserActivity,
     UserBilling,
-    UserCreate,
-    UserCreatePlain,
-    UserLogin,
-    UserLoginPlain,
     UserLoginResponse,
     UserMe,
     UserRefreshToken,
@@ -24,11 +20,7 @@ from ..models import (
     UserRefreshTokenResponse,
     UserResendVerification,
     UserResendVerificationPlain,
-    UserUpdate,
-    UserUpdatePlain,
     UserUrl,
-    UserVerify,
-    UserVerifyPlain,
 )
 
 
@@ -39,10 +31,6 @@ class UsersApiService(DevopnessBaseService):
 
     def add_user(
         self,
-        user_create: Union[
-            UserCreate,
-            UserCreatePlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
@@ -57,7 +45,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, user_create)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -185,10 +173,6 @@ class UsersApiService(DevopnessBaseService):
 
     def login_user(
         self,
-        user_login: Union[
-            UserLogin,
-            UserLoginPlain,
-        ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
@@ -203,7 +187,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, user_login)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, UserLoginResponse)
 
@@ -258,10 +242,6 @@ class UsersApiService(DevopnessBaseService):
     def update_user(
         self,
         user_id: str,
-        user_update: Union[
-            UserUpdate,
-            UserUpdatePlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing user
@@ -276,16 +256,12 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put(endpoint, user_update)
+        response = self._put(endpoint)
 
         return DevopnessResponse(response, None)
 
     def verify_user(
         self,
-        user_verify: Union[
-            UserVerify,
-            UserVerifyPlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Activate the user account
@@ -300,7 +276,7 @@ class UsersApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, user_verify)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -312,10 +288,6 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_user(
         self,
-        user_create: Union[
-            UserCreate,
-            UserCreatePlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
@@ -330,7 +302,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, user_create)
+        response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -458,10 +430,6 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def login_user(
         self,
-        user_login: Union[
-            UserLogin,
-            UserLoginPlain,
-        ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
@@ -476,7 +444,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, user_login)
+        response = await self._post(endpoint)
 
         return DevopnessResponse(response, UserLoginResponse)
 
@@ -531,10 +499,6 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_user(
         self,
         user_id: str,
-        user_update: Union[
-            UserUpdate,
-            UserUpdatePlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing user
@@ -549,16 +513,12 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._put(endpoint, user_update)
+        response = await self._put(endpoint)
 
         return DevopnessResponse(response, None)
 
     async def verify_user(
         self,
-        user_verify: Union[
-            UserVerify,
-            UserVerifyPlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Activate the user account
@@ -573,6 +533,6 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, user_verify)
+        response = await self._post(endpoint)
 
         return DevopnessResponse(response, None)
