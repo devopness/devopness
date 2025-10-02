@@ -2,10 +2,11 @@ import { Transaction, TransactionHook } from 'hooks';
 import { get, set } from 'lodash';
 
 import DevopnessAPI from './DevopnessAPI';
-import { FixtureKey, Fixture, Identifiable, UserTokens } from './fixtureTypes';
+import { FixtureKey, Fixture, Identifiable, PersonalAccessToken } from './fixtureTypes';
 import FixtureStore from './FixtureStore';
 import Logger from './Logger';
 import './augmentTransactionWithMetadata';
+import env from './envLoader';
 
 /**
  * Methods for managing dredd transactions and hook execution
@@ -167,9 +168,9 @@ export default class TransactionUtils {
             if (transaction.skip) return;
             if (transaction.request.headers && transaction.request.headers.hasOwnProperty('Authorization')) {
                 if (transaction.request.headers.Authorization === '') {
-                    const authToken = this.fixtureStore.get<UserTokens>(key);
-                    if (authToken && authToken.access_token) {
-                        transaction.request.headers.Authorization = 'Bearer ' + authToken.access_token;
+                    const authToken = env.DEVOPNESS_PERSONAL_ACCESS_TOKEN;
+                    if (authToken) {
+                        transaction.request.headers.Authorization = 'Bearer ' + authToken;
                     } else {
                         throw new Error(`${transaction.slug} ${transaction.id} [setTransactionRequestAuthHeaderWithFixture] requires 'authToken' fixture. Ensure login response is setting the access_token on '${key}' fixture.`);
                     }
@@ -293,7 +294,7 @@ export default class TransactionUtils {
    */
     removeLinkedResourcesFromRequestBody(transaction: Transaction): void {
       if (!transaction.request.body) return;
-      
+
       let body = JSON.parse(transaction.request.body);
 
       if (!body.linked_resources) return;
@@ -309,9 +310,9 @@ export default class TransactionUtils {
      * @param {string} resourceType - The type of resource to unlink (e.g., 'daemon', 'service').
      */
     removeLinkWithServer(transaction: Transaction, resourceType: string): void {
-      const authToken = this.fixtureStore.get<UserTokens>('user_login_response');
+      const authToken = this.fixtureStore.get<PersonalAccessToken>('user_token');
 
-      if (! authToken?.access_token) {
+      if (! authToken?.token) {
           this.logger.logFn('Authentication token is missing. Cannot proceed with unlinking.');
           transaction.fail = true;
 
@@ -339,7 +340,7 @@ export default class TransactionUtils {
 
       this.logger.logFn(`=> Unlinking ${resourceType} ID ${resource.id} from server ID ${server.id}`);
 
-      const api = new DevopnessAPI(transaction.host, authToken.access_token, this.logger.logFn);
+      const api = new DevopnessAPI(transaction.host, authToken.token, this.logger.logFn);
       const response = api.apiRequest('DELETE', `/resource-links/server/${server.id}/${resourceType}/${resource.id}/unlink`);
 
       if (response.statusCode != 204) {
@@ -350,7 +351,7 @@ export default class TransactionUtils {
 
         return;
       }
-      
+
       this.logger.logFn(`Successfully unlinked ${resourceType} ID ${resource.id} from server ID ${server.id}`);
     }
 }

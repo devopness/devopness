@@ -6,25 +6,17 @@
 export interface Identifiable {
     id: string
 }
+
 /**
- * User login data.
+ * Personal Access Token entity.
  */
-export type UserCredentials = {
-    id: number
-    email: string
-    password: string
-};
-/**
- * JWT authorization tokens.
- */
-export type UserTokens = {
-    access_token: string
-    refresh_token: string
+export type PersonalAccessToken = {
+    token: string
 };
 /**
  * Reqpresents API entities.
  */
-export type Fixture = UserCredentials | UserTokens | Identifiable;
+export type Fixture = PersonalAccessToken | Identifiable;
 
 export function isIdentifiable(obj: object): obj is Identifiable {
     return obj.hasOwnProperty('id');

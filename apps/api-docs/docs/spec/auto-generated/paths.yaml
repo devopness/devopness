@@ -406,6 +406,9 @@
 /static/application-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-application-options.yaml
+/static/billing-plans-options:
+  get:
+    $ref: ./auto-generated/endpoints/list-static-billing-plans-options.yaml
 '/static/cloud-provider-service-options/{cloud_provider_service_code}':
   get:
     $ref: ./auto-generated/endpoints/get-static-cloud-provider-service.yaml

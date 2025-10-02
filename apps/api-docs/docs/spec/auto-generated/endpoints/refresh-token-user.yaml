@@ -36,3 +36,4 @@ requestBody:
     application/json:
       schema:
         $ref: '#/components/schemas/UserRefreshToken'
+deprecated: true

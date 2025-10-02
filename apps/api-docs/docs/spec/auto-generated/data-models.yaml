@@ -95,6 +95,14 @@ ArchivedEnvironmentList:
   $ref: ./auto-generated/models/archived-environment-list.yaml
 ArchivedEnvironmentRelation:
   $ref: ./auto-generated/models/archived-environment-relation.yaml
+BillingPlan:
+  $ref: ./auto-generated/models/billing-plan.yaml
+BillingPlanList:
+  $ref: ./auto-generated/models/billing-plan-list.yaml
+BillingPlansOptionsList:
+  $ref: ./auto-generated/models/billing-plans-options-list.yaml
+BillingPlansOptionsRelation:
+  $ref: ./auto-generated/models/billing-plans-options-relation.yaml
 BlueprintService:
   $ref: ./auto-generated/models/blueprint-service.yaml
 BlueprintServiceList:
@@ -401,8 +409,6 @@ PasswordResetResponse:
   $ref: ./auto-generated/models/password-reset-response.yaml
 PasswordUserReset:
   $ref: ./auto-generated/models/password-user-reset.yaml
-PasswordUserSendResetLink:
-  $ref: ./auto-generated/models/password-user-send-reset-link.yaml
 PermissionList:
   $ref: ./auto-generated/models/permission-list.yaml
 PermissionRelation:
@@ -761,14 +767,10 @@ UserActivity:
   $ref: ./auto-generated/models/user-activity.yaml
 UserBilling:
   $ref: ./auto-generated/models/user-billing.yaml
-UserCreate:
-  $ref: ./auto-generated/models/user-create.yaml
 UserEnvironmentStats:
   $ref: ./auto-generated/models/user-environment-stats.yaml
 UserList:
   $ref: ./auto-generated/models/user-list.yaml
-UserLogin:
-  $ref: ./auto-generated/models/user-login.yaml
 UserLoginResponse:
   $ref: ./auto-generated/models/user-login-response.yaml
 UserMe:
@@ -787,12 +789,8 @@ UserResendVerification:
   $ref: ./auto-generated/models/user-resend-verification.yaml
 UserTeamStats:
   $ref: ./auto-generated/models/user-team-stats.yaml
-UserUpdate:
-  $ref: ./auto-generated/models/user-update.yaml
 UserUrl:
   $ref: ./auto-generated/models/user-url.yaml
-UserVerify:
-  $ref: ./auto-generated/models/user-verify.yaml
 Variable:
   $ref: ./auto-generated/models/variable.yaml
 VariableApplicationCreate:

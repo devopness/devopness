@@ -2,7 +2,7 @@ import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
 import './augmentTransactionWithMetadata';
-import { Identifiable, UserCredentials, UserTokens, isFixtureKey } from './fixtureTypes';
+import { Identifiable, PersonalAccessToken, isFixtureKey } from './fixtureTypes';
 import DevopnessAPI from './DevopnessAPI';
 import env from './envLoader';
 import FixtureStore from './FixtureStore';
@@ -78,6 +78,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'deleteSubnet204',
         'getSubnet200',
         'archiveEnvironment204',
+
+        // All endpoints related to user management are deprecated and will be removed in future releases
+        // So, we skip them for now
+        'loginUser200',
+        'updateUser204',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -115,6 +120,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             'user': ['addUser202'],
             'user_credentials': ['addUser202'],
             'user_login': ['addUser202'],
+            'user_token': ['addUser202'],
 
             // user_login_response is available after successful `loginUser200` transaction
             'user_login_response': ['loginUser200'],
@@ -271,23 +277,14 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     //// users
     before('addUser202', (transaction: Transaction) => {
-        // randomize user, as db state won't be clean
-        const randomCredentials: UserCredentials = { id: -1, email: `${v1()}@api-test.devopness`, password: v4() }
-        transaction.request.body = JSON.stringify(randomCredentials);
+        const user = { id: env.DEVOPNESS_USER_ID } as Identifiable;
 
-        // use a predefined user fixture instead of the user we just created
-        const usePredefinedCredentials = true;
-        let credentials: UserCredentials
-        if (usePredefinedCredentials) {
-            credentials = { id: 8, email: 'test@test.com', password: 'testes' }
-        } else {
-            credentials = randomCredentials
-        }
-        fixtures.put('user_credentials', credentials)
+        fixtures.put('user', user);
+        fixtures.put('user_credentials', user);
+        fixtures.put('user_token', { token: env.DEVOPNESS_PERSONAL_ACCESS_TOKEN });
+
+        transaction.skip = true;
     });
-
-    before('refreshTokenUser200', utils.setTransactionRequestBodyToFixture<UserTokens>('user_login_response'));
-    // after('getUserlogout204', (transaction: Transaction) => { if (transaction.test.valid) { fixtures.delete('user_login_response'); } });
 
     before('addOrganization201', utils.rewriteTransactionRequestBody((body: any) => {
         body['name'] = `API Docs Test Organization ${new Date().getTime()}`;
@@ -433,11 +430,11 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         while (waitTill > new Date()) { }
     }
     after('deleteApplication204', (transaction: Transaction) => {
-        const authToken = fixtures.get<UserTokens>('user_login_response');
+        const authToken = fixtures.get<PersonalAccessToken>('user_token');
         const project = fixtures.get<Identifiable>('project');
-        if (authToken && authToken.access_token && project) {
+        if (authToken && authToken.token && project) {
             const host = transaction.host;
-            const api = new DevopnessAPI(host, authToken.access_token, hooks.log);
+            const api = new DevopnessAPI(host, authToken.token, hooks.log);
             const appIds = api.listEnvironmentApplications(project.id);
             for (const appId of appIds) {
                 const success = api.deleteApplication(appId);

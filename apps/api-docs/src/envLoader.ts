@@ -8,6 +8,10 @@ const env = {
     process.env.CREDENTIAL_AWS_SECRET_ACCESS_KEY ?? "",
   CREDENTIAL_GITHUB_ACCESS_TOKEN:
     process.env.CREDENTIAL_GITHUB_ACCESS_TOKEN ?? "",
+
+  DEVOPNESS_USER_ID: process.env.DEVOPNESS_USER_ID ?? "",
+  DEVOPNESS_PERSONAL_ACCESS_TOKEN:
+    process.env.DEVOPNESS_PERSONAL_ACCESS_TOKEN ?? "",
 };
 
 const missingVariables = [];
