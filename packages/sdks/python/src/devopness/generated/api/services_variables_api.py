@@ -6,6 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
+import warnings
 from typing import List, Optional, Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
@@ -37,7 +38,15 @@ class ServicesVariablesApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_service_variable` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             f"/services/{service_id}/variables",
@@ -60,7 +69,15 @@ class ServicesVariablesApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`list_service_variables` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         query_string = parse_query_string(
             {
@@ -99,7 +116,15 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_service_variable` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             f"/services/{service_id}/variables",
@@ -122,7 +147,15 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`list_service_variables` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         query_string = parse_query_string(
             {

@@ -6,6 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
+import warnings
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
@@ -38,7 +39,15 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users",
@@ -120,7 +129,15 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`get_user_logout` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/logout",
@@ -180,7 +197,15 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`login_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/login",
@@ -204,7 +229,15 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`refresh_token_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/refresh-token",
@@ -249,7 +282,15 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`update_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             f"/users/{user_id}",
@@ -269,7 +310,15 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`verify_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/account/verify",
@@ -295,7 +344,15 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users",
@@ -377,7 +434,15 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`get_user_logout` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/logout",
@@ -437,7 +502,15 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`login_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/login",
@@ -461,7 +534,15 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`refresh_token_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/refresh-token",
@@ -506,7 +587,15 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`update_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             f"/users/{user_id}",
@@ -526,7 +615,15 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`verify_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/account/verify",

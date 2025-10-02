@@ -6,6 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
+import warnings
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
@@ -30,7 +31,15 @@ class UsersPasswordsApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`reset_user_password` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/password/reset",
@@ -50,7 +59,15 @@ class UsersPasswordsApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`send_reset_link_user_password` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/password/send-reset-link",
@@ -80,7 +97,15 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`reset_user_password` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/password/reset",
@@ -100,7 +125,15 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`send_reset_link_user_password` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/password/send-reset-link",
