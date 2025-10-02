@@ -27,7 +27,20 @@ class {{classname}}Service(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+        {{#isDeprecated}}
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
+        {{/isDeprecated}}
         """
+{{#isDeprecated}}
+        warnings.warn(
+            "`{{operationId}}` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+{{/isDeprecated}}
+
 {{>api_method_body_endpoint}}
         response = self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
@@ -54,7 +67,20 @@ class {{classname}}ServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+        {{#isDeprecated}}
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
+        {{/isDeprecated}}
         """
+{{#isDeprecated}}
+        warnings.warn(
+            "`{{operationId}}` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+{{/isDeprecated}}
+
 {{>api_method_body_endpoint}}
         response = await self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
 
