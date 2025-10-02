@@ -89,7 +89,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.23",
-    "eslint-plugin-storybook": "^9.1.9",
+    "eslint-plugin-storybook": "^9.1.10",
     "globals": "^16.4.0",
     "jsdom": "^27.0.0",
     "prettier": "^3.6.1",
