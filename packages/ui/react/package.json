@@ -65,6 +65,7 @@
     "material-ui-popup-state": "^5.3.6",
     "path-browserify": "^1.0.1",
     "react-icons": "^5.5.0",
+    "react-select": "^5.10.2",
     "react-spinners": "^0.17.0",
     "styled-components": "^6.1.19"
   },
