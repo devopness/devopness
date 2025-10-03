@@ -41,7 +41,7 @@ class DevopnessResponse(Generic[T]):
         model_cls: Optional[Union[type[DevopnessBaseModel], type]] = None,
     ) -> None:
         """
-        Initialize an ApiResponse object from an httpx.Response.
+        Initialize an DevopnessResponse object from an httpx.Response.
 
         Args:
             response (httpx.Response): The HTTP response to wrap.
@@ -62,7 +62,7 @@ class DevopnessResponse(Generic[T]):
         model_cls: Optional[Union[type[DevopnessBaseModel], type]] = None,
     ) -> "DevopnessResponse":
         """
-        Asynchronously initialize an ApiResponse object from an httpx.Response.
+        Asynchronously initialize an DevopnessResponse object from an httpx.Response.
 
         Args:
             response (httpx.Response): The HTTP response to wrap.
