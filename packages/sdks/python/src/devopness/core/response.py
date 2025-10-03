@@ -60,7 +60,7 @@ class DevopnessResponse(Generic[T]):
         cls,
         response: httpx.Response,
         model_cls: Optional[Union[type[DevopnessBaseModel], type]] = None,
-    ) -> "DevopnessResponse":
+    ) -> "DevopnessResponse[T]":
         """
         Asynchronously initialize an DevopnessResponse object from an httpx.Response.
 
