@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#2243](https://github.com/devopness/devopness/pull/2243) [`2f12356`](https://github.com/devopness/devopness/commit/2f12356b41ac52cc9478f6f05f5117862bfd5bfd) Thanks [@devopness-automations](https://github.com/devopness-automations)! - ## Added
+- [#2243](https://github.com/devopness/devopness/pull/2243) [`2f12356`](https://github.com/devopness/devopness/commit/2f12356b41ac52cc9478f6f05f5117862bfd5bfd) Thanks [@Diegiwg](https://github.com/Diegiwg)! - ## Added
   - New method in the `static` service to **list available subscription plans** in Devopness.
 
   ## Deprecated
