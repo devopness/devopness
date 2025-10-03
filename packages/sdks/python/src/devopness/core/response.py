@@ -148,52 +148,9 @@ class DevopnessResponse(Generic[T]):
         Returns:
             Parsed data in the requested format or raw string on failure
         """
-        # Early return conditions
         raw_data: bytes = response.read()
-        if raw_data == b"" or model_cls is None:
-            return None
 
-        try:
-            # Handle primitive types
-            if model_cls is str:
-                return raw_data.decode("utf-8")
-
-            if model_cls is int:
-                return int(raw_data.decode("utf-8"))
-
-            if model_cls is float:
-                return float(raw_data.decode("utf-8"))
-
-            # Handle collection types
-            model_origin = get_origin(model_cls)
-
-            # Handle list type
-            if model_origin is list:
-                model_args: tuple[type[DevopnessBaseModel], ...] = get_args(model_cls)
-                if len(model_args) != 1:
-                    raise NotImplementedError(
-                        "Only lists with a single type argument are supported"
-                    )
-
-                list_data = json.loads(raw_data.decode("utf-8"))
-                return [model_args[0].from_dict(item) for item in list_data]
-
-            # Handle DevopnessBaseModel
-            if issubclass(model_cls, DevopnessBaseModel):
-                dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
-                return model_cls.from_dict(dict_data)
-
-        except (json.JSONDecodeError, ValidationError) as e:
-            model_name = model_cls.__name__ if model_cls else "None"
-            msg = (
-                f"Failed to deserialize response body into {model_name}. "
-                "Returning raw response data instead.\n\n"
-                f"Error: {e}"
-            )
-            warn(msg, stacklevel=3)
-
-        # Fallback to raw string data
-        return raw_data.decode("utf-8")
+        return self._deserialize_data(raw_data, model_cls)
 
     async def _async_parse_data(
         self,
@@ -218,8 +175,27 @@ class DevopnessResponse(Generic[T]):
         Returns:
             Parsed data in the requested format or raw string on failure
         """
-        # Early return conditions
         raw_data: bytes = await response.aread()
+
+        return self._deserialize_data(raw_data, model_cls)
+
+    def _deserialize_data(
+        self,
+        raw_data: bytes,
+        model_cls: Optional[Union[type[DevopnessBaseModel], type]],
+    ) -> Union[
+        str,
+        int,
+        float,
+        DevopnessBaseModel,
+        list[DevopnessBaseModel],
+        dict[str, Any],
+        None,
+    ]:
+        """
+        Deserialize raw response data into the specified model class.
+        """
+        # Early return conditions
         if raw_data == b"" or model_cls is None:
             return None
 
