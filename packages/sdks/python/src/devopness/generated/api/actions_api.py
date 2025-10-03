@@ -179,7 +179,7 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Action)
+        return await DevopnessResponse.from_async(response, Action)
 
     async def list_actions(
         self,
@@ -209,7 +209,7 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, List[ActionRelation])
 
     async def list_actions_by_resource_type(
         self,
@@ -241,7 +241,7 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, List[ActionRelation])
 
     async def list_actions_by_target_resource_type(
         self,
@@ -273,7 +273,7 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, List[ActionRelation])
 
     async def retry_action(
         self,
@@ -294,4 +294,4 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, ActionRetryResponse)
+        return await DevopnessResponse.from_async(response, ActionRetryResponse)

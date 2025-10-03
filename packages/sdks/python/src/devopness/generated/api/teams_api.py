@@ -109,7 +109,7 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_team(
         self,
@@ -130,7 +130,7 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Team)
+        return await DevopnessResponse.from_async(response, Team)
 
     async def update_team(
         self,
@@ -155,4 +155,4 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, team_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

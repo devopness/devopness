@@ -150,7 +150,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, ssl_certificate_environment_create)
 
-        return DevopnessResponse(response, SslCertificate)
+        return await DevopnessResponse.from_async(response, SslCertificate)
 
     async def delete_ssl_certificate(
         self,
@@ -171,7 +171,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_ssl_certificate(
         self,
@@ -192,7 +192,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, SslCertificate)
+        return await DevopnessResponse.from_async(response, SslCertificate)
 
     async def list_environment_ssl_certificates(
         self,
@@ -223,4 +223,6 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[SslCertificateRelation])
+        return await DevopnessResponse.from_async(
+            response, List[SslCertificateRelation]
+        )

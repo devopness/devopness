@@ -15,6 +15,7 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApplicationOptions } from '../../generated/models';
+import { BillingPlansOptionsRelation } from '../../generated/models';
 import { CloudInstanceRelation } from '../../generated/models';
 import { CloudProviderService } from '../../generated/models';
 import { CredentialOptions } from '../../generated/models';
@@ -173,6 +174,30 @@ export class StaticDataApiService extends ApiBaseService {
         const requestUrl = '/static/virtual-host-options' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <VirtualHostOptions>(requestUrl);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary List `Billing Plans` options
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listStaticBillingPlansOptions(page?: number, perPage?: number): Promise<ApiResponse<Array<BillingPlansOptionsRelation>>> {
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/static/billing-plans-options' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<BillingPlansOptionsRelation>>(requestUrl);
         return new ApiResponse(response);
     }
 

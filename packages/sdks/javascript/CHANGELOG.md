@@ -1,5 +1,17 @@
 # @devopness/sdk-js
 
+## 2.164.10
+
+### Patch Changes
+
+- [#2243](https://github.com/devopness/devopness/pull/2243) [`2f12356`](https://github.com/devopness/devopness/commit/2f12356b41ac52cc9478f6f05f5117862bfd5bfd) Thanks [@Diegiwg](https://github.com/Diegiwg)! - ## Added
+  - New method in the `static` service to **list available subscription plans** in Devopness.
+
+  ## Deprecated
+  - User management methods (`create`, `update`, `etc`) and authentication methods (`login`, `logout`, `refresh-token`, `etc`) are now **deprecated**.
+    - They always return **403 Forbidden**.
+    - Their signatures have been simplified to **accept no arguments**.
+
 ## 2.164.9
 
 ### Patch Changes

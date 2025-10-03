@@ -177,7 +177,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, ssh_key_environment_create)
 
-        return DevopnessResponse(response, SshKey)
+        return await DevopnessResponse.from_async(response, SshKey)
 
     async def delete_ssh_key(
         self,
@@ -198,7 +198,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_ssh_key(
         self,
@@ -219,7 +219,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, SshKey)
+        return await DevopnessResponse.from_async(response, SshKey)
 
     async def list_environment_ssh_keys(
         self,
@@ -250,7 +250,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[SshKeyRelation])
+        return await DevopnessResponse.from_async(response, List[SshKeyRelation])
 
     async def update_ssh_key(
         self,
@@ -275,4 +275,4 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, ssh_key_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

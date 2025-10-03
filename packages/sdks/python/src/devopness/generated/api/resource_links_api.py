@@ -159,7 +159,7 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def list_resource_links_by_resource_type(
         self,
@@ -191,7 +191,7 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ResourceLinkRelation])
+        return await DevopnessResponse.from_async(response, List[ResourceLinkRelation])
 
     async def list_resource_links_by_resource_type_and_link_type(
         self,
@@ -224,7 +224,7 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ResourceLinkRelation])
+        return await DevopnessResponse.from_async(response, List[ResourceLinkRelation])
 
     async def unlink_resource_link_from_resource_link(
         self,
@@ -248,4 +248,4 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

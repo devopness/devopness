@@ -164,7 +164,7 @@ export class ApiBaseService {
         return this.api.post<T, R>(endpoint, data);
     }
 
-    protected async put<T, B, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
+    protected async put<T, B = undefined, R = AxiosResponse<T>>(endpoint: string, data?: B): Promise<R> {
         return this.api.put<T, R>(endpoint, data);
     }
 

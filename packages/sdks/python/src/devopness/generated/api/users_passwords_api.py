@@ -6,16 +6,11 @@ Note:
     https://openapi-generator.tech
 """
 
+import warnings
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import (
-    PasswordResetResponse,
-    PasswordUserReset,
-    PasswordUserResetPlain,
-    PasswordUserSendResetLink,
-    PasswordUserSendResetLinkPlain,
-)
+from ..models import PasswordResetResponse, PasswordUserReset, PasswordUserResetPlain
 
 
 class UsersPasswordsApiService(DevopnessBaseService):
@@ -36,7 +31,15 @@ class UsersPasswordsApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`reset_user_password` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/password/reset",
@@ -49,10 +52,6 @@ class UsersPasswordsApiService(DevopnessBaseService):
 
     def send_reset_link_user_password(
         self,
-        password_user_send_reset_link: Union[
-            PasswordUserSendResetLink,
-            PasswordUserSendResetLinkPlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Send the password reset link to user's email
@@ -60,14 +59,22 @@ class UsersPasswordsApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`send_reset_link_user_password` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/password/send-reset-link",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, password_user_send_reset_link)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -90,7 +97,15 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`reset_user_password` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/password/reset",
@@ -99,14 +114,10 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, password_user_reset)
 
-        return DevopnessResponse(response, PasswordResetResponse)
+        return await DevopnessResponse.from_async(response, PasswordResetResponse)
 
     async def send_reset_link_user_password(
         self,
-        password_user_send_reset_link: Union[
-            PasswordUserSendResetLink,
-            PasswordUserSendResetLinkPlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Send the password reset link to user's email
@@ -114,13 +125,21 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`send_reset_link_user_password` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/password/send-reset-link",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, password_user_send_reset_link)
+        response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

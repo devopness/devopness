@@ -108,7 +108,7 @@ class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, action_pipeline_create)
 
-        return DevopnessResponse(response, Action)
+        return await DevopnessResponse.from_async(response, Action)
 
     async def list_pipeline_actions(
         self,
@@ -139,4 +139,4 @@ class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, List[ActionRelation])
