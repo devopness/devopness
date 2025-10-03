@@ -55,6 +55,31 @@ class DevopnessResponse(Generic[T]):
         self.page_count = self._extract_last_page_number(response)
         self.action_id = self._parse_action_id(response)
 
+    @classmethod
+    async def from_async(
+        cls,
+        response: httpx.Response,
+        model_cls: Optional[Union[type[DevopnessBaseModel], type]] = None,
+    ) -> "DevopnessResponse":
+        """
+        Asynchronously initialize an ApiResponse object from an httpx.Response.
+
+        Args:
+            response (httpx.Response): The HTTP response to wrap.
+            model_cls (Optional[Union[type[DevopnessBaseModel], type]]):
+                                                      Optional model to
+                                                      deserialize the response
+                                                      body into.
+        """
+        result = cls.__new__(cls)
+
+        result.status = response.status_code
+        result.data = cast(T, await result._async_parse_data(response, model_cls))
+        result.page_count = result._extract_last_page_number(response)
+        result.action_id = result._parse_action_id(response)
+
+        return result
+
     def _extract_last_page_number(self, response: httpx.Response) -> int:
         """
         Extract the last page number from a pagination Link header.
@@ -125,6 +150,76 @@ class DevopnessResponse(Generic[T]):
         """
         # Early return conditions
         raw_data: bytes = response.read()
+        if raw_data == b"" or model_cls is None:
+            return None
+
+        try:
+            # Handle primitive types
+            if model_cls is str:
+                return raw_data.decode("utf-8")
+
+            if model_cls is int:
+                return int(raw_data.decode("utf-8"))
+
+            if model_cls is float:
+                return float(raw_data.decode("utf-8"))
+
+            # Handle collection types
+            model_origin = get_origin(model_cls)
+
+            # Handle list type
+            if model_origin is list:
+                model_args: tuple[type[DevopnessBaseModel], ...] = get_args(model_cls)
+                if len(model_args) != 1:
+                    raise NotImplementedError(
+                        "Only lists with a single type argument are supported"
+                    )
+
+                list_data = json.loads(raw_data.decode("utf-8"))
+                return [model_args[0].from_dict(item) for item in list_data]
+
+            # Handle DevopnessBaseModel
+            if issubclass(model_cls, DevopnessBaseModel):
+                dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
+                return model_cls.from_dict(dict_data)
+
+        except (json.JSONDecodeError, ValidationError) as e:
+            model_name = model_cls.__name__ if model_cls else "None"
+            msg = (
+                f"Failed to deserialize response body into {model_name}. "
+                "Returning raw response data instead.\n\n"
+                f"Error: {e}"
+            )
+            warn(msg, stacklevel=3)
+
+        # Fallback to raw string data
+        return raw_data.decode("utf-8")
+
+    async def _async_parse_data(
+        self,
+        response: httpx.Response,
+        model_cls: Optional[Union[type[DevopnessBaseModel], type]],
+    ) -> Union[
+        str,
+        int,
+        float,
+        DevopnessBaseModel,
+        list[DevopnessBaseModel],
+        dict[str, Any],
+        None,
+    ]:
+        """
+        Parse the response data into the specified model class.
+
+        Parameters:
+            response: The HTTP response to parse
+            model_cls: The target model class to convert the data into
+
+        Returns:
+            Parsed data in the requested format or raw string on failure
+        """
+        # Early return conditions
+        raw_data: bytes = await response.aread()
         if raw_data == b"" or model_cls is None:
             return None
 
