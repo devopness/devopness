@@ -204,7 +204,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, virtual_host_environment_create)
 
-        return DevopnessResponse(response, VirtualHost)
+        return await DevopnessResponse.from_async(response, VirtualHost)
 
     async def delete_virtual_host(
         self,
@@ -225,7 +225,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_status_virtual_host(
         self,
@@ -250,7 +250,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, virtual_host_get_status)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_virtual_host(
         self,
@@ -271,7 +271,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, VirtualHost)
+        return await DevopnessResponse.from_async(response, VirtualHost)
 
     async def list_environment_virtual_hosts(
         self,
@@ -302,7 +302,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[VirtualHostRelation])
+        return await DevopnessResponse.from_async(response, List[VirtualHostRelation])
 
     async def update_virtual_host(
         self,
@@ -327,4 +327,4 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, virtual_host_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

@@ -147,7 +147,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, step_pipeline_create)
 
-        return DevopnessResponse(response, Step)
+        return await DevopnessResponse.from_async(response, Step)
 
     async def link_step_to_pipeline(
         self,
@@ -169,7 +169,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def unlink_step_from_pipeline(
         self,
@@ -191,7 +191,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def update_pipeline_step(
         self,
@@ -217,4 +217,4 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, step_pipeline_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

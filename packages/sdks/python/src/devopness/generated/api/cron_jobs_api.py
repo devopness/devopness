@@ -177,7 +177,7 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, cron_job_environment_create)
 
-        return DevopnessResponse(response, CronJob)
+        return await DevopnessResponse.from_async(response, CronJob)
 
     async def delete_cron_job(
         self,
@@ -198,7 +198,7 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_cron_job(
         self,
@@ -219,7 +219,7 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, CronJob)
+        return await DevopnessResponse.from_async(response, CronJob)
 
     async def list_environment_cron_jobs(
         self,
@@ -250,7 +250,7 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[CronJobRelation])
+        return await DevopnessResponse.from_async(response, List[CronJobRelation])
 
     async def update_cron_job(
         self,
@@ -275,4 +275,4 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, cron_job_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

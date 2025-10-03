@@ -9537,6 +9537,44 @@
         }
       }
     },
+    "/static/billing-plans-options": {
+      "get": {
+        "summary": "List `Billing Plans` options",
+        "operationId": "listStaticBillingPlansOptions",
+        "tags": [
+          "Static Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPlansOptionsList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/static/cloud-provider-service-options/{cloud_provider_service_code}": {
       "get": {
         "summary": "Get details of a single `Cloud Provider Service`",
@@ -10694,17 +10732,7 @@
             }
           }
         },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserCreate"
-              }
-            }
-          }
-        }
+        "deprecated": true
       }
     },
     "/users/account/resend-verification": {
@@ -10793,17 +10821,7 @@
             }
           }
         },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserVerify"
-              }
-            }
-          }
-        }
+        "deprecated": true
       }
     },
     "/users/billing": {
@@ -10895,17 +10913,7 @@
             }
           }
         },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserLogin"
-              }
-            }
-          }
-        }
+        "deprecated": true
       }
     },
     "/users/logout": {
@@ -10940,7 +10948,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/users/me": {
@@ -11022,7 +11031,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/users/password/send-reset-link": {
@@ -11055,17 +11065,7 @@
             }
           }
         },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PasswordUserSendResetLink"
-              }
-            }
-          }
-        }
+        "deprecated": true
       }
     },
     "/users/personal-access-tokens": {
@@ -11391,7 +11391,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/users/team-invitations": {
@@ -11575,17 +11576,7 @@
             }
           }
         },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserUpdate"
-              }
-            }
-          }
-        }
+        "deprecated": true
       }
     },
     "/users/{user_id}/activity": {
@@ -14932,6 +14923,75 @@
           "updated_at",
           "archived_at",
           "project"
+        ],
+        "nullable": true
+      },
+      "BillingPlan": {
+        "type": "object",
+        "description": "A plan available for billing",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the billing plan",
+            "example": 1
+          },
+          "provider_plan_id": {
+            "type": "string",
+            "description": "The provider ID of the billing plan",
+            "example": "pro_av12s"
+          },
+          "price": {
+            "type": "number",
+            "description": "The price of the billing plan",
+            "example": 20
+          },
+          "credit_limit": {
+            "type": "number",
+            "description": "The credit limit of the billing plan",
+            "example": 200
+          },
+          "billing_period": {
+            "type": "string",
+            "description": "The billing period of the billing plan",
+            "example": "1 monthly"
+          }
+        }
+      },
+      "BillingPlanList": {
+        "type": "array",
+        "description": "The list of plans available for billing",
+        "items": {
+          "$ref": "#/components/schemas/BillingPlan"
+        }
+      },
+      "BillingPlansOptionsList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BillingPlansOptionsRelation"
+        }
+      },
+      "BillingPlansOptionsRelation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Product name of the plan",
+            "example": "Devopness Pro",
+            "type": "string"
+          },
+          "hint": {
+            "description": "A short text describing the target audience of the product",
+            "example": "For professional developers, startups and small teams",
+            "type": "string",
+            "nullable": true
+          },
+          "plans": {
+            "$ref": "#/components/schemas/BillingPlanList"
+          }
+        },
+        "required": [
+          "name",
+          "hint",
+          "plans"
         ],
         "nullable": true
       },
@@ -19117,19 +19177,6 @@
           "email",
           "password",
           "password_confirmation"
-        ]
-      },
-      "PasswordUserSendResetLink": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "description": "The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.",
-            "example": "user@example.com",
-            "type": "string"
-          }
-        },
-        "required": [
-          "email"
         ]
       },
       "PermissionList": {
@@ -23746,19 +23793,6 @@
           "active_subscription"
         ]
       },
-      "UserCreate": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "description": "The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address. Must not be greater than 255 characters.",
-            "example": "user@example.com",
-            "type": "string"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
       "UserEnvironmentStats": {
         "type": "object",
         "description": "Total number of environments that user has access to, as owner or team member.",
@@ -23781,25 +23815,6 @@
         "items": {
           "$ref": "#/components/schemas/UserRelation"
         }
-      },
-      "UserLogin": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "description": "The user's registered e-mail address. Must be a valid email address.",
-            "example": "user@example.com",
-            "type": "string"
-          },
-          "password": {
-            "description": "The user password.",
-            "example": "pa$$word",
-            "type": "string"
-          }
-        },
-        "required": [
-          "email",
-          "password"
-        ]
       },
       "UserLoginResponse": {
         "type": "object",
@@ -24046,40 +24061,6 @@
           }
         }
       },
-      "UserUpdate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "The unique ID of the given User.",
-            "example": 1,
-            "type": "string"
-          },
-          "name": {
-            "description": "User's full name. Must be at least 3 characters. Must not be greater than 255 characters.",
-            "example": "Com Truise",
-            "type": "string"
-          },
-          "email": {
-            "description": "The e-mail that will uniquely identify the user on the system and become its login credential. Must be a valid email address.",
-            "example": "user@example.com",
-            "type": "string"
-          },
-          "url_slug": {
-            "description": "The URL Slug of the user. Must not be greater than 255 characters.",
-            "example": "ComTruise",
-            "type": "string"
-          },
-          "language": {
-            "$ref": "#/components/schemas/Language"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "email",
-          "url_slug"
-        ]
-      },
       "UserUrl": {
         "type": "object",
         "properties": {
@@ -24091,42 +24072,6 @@
         },
         "required": [
           "billing_management_url"
-        ]
-      },
-      "UserVerify": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "description": "The email of the user's account. Must be a valid email address. Must not be greater than 255 characters.",
-            "example": "my-email@devopness.com",
-            "type": "string"
-          },
-          "token": {
-            "description": "The security token of the account. Must not be greater than 255 characters.",
-            "example": "MTRiMGVmMzM5NDQzODJjZjY1NzE4ZTAzMjlkYTRjYjcwMDVkMmU1OTQxZmRl",
-            "type": "string"
-          },
-          "name": {
-            "description": "The new user name to account. Must be at least 3 characters. Must not be greater than 255 characters.",
-            "example": "My Name",
-            "type": "string"
-          },
-          "url_slug": {
-            "description": "The URL Slug of the account. Must not be greater than 255 characters.",
-            "example": "MyName",
-            "type": "string"
-          },
-          "password": {
-            "description": "The new password to account. Must be at least 8 characters.",
-            "example": "my-password",
-            "type": "string"
-          }
-        },
-        "required": [
-          "email",
-          "token",
-          "name",
-          "password"
         ]
       },
       "Variable": {

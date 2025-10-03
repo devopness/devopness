@@ -169,7 +169,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, social_account_create)
 
-        return DevopnessResponse(response, SocialAccount)
+        return await DevopnessResponse.from_async(response, SocialAccount)
 
     async def delete_social_account(
         self,
@@ -190,7 +190,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_social_account(
         self,
@@ -211,7 +211,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, SocialAccount)
+        return await DevopnessResponse.from_async(response, SocialAccount)
 
     async def get_social_account_status(
         self,
@@ -232,7 +232,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, SocialAccountStatus)
+        return await DevopnessResponse.from_async(response, SocialAccountStatus)
 
     async def list_social_accounts(
         self,
@@ -262,4 +262,4 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[SocialAccountRelation])
+        return await DevopnessResponse.from_async(response, List[SocialAccountRelation])

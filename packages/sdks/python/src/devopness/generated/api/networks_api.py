@@ -204,7 +204,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, network_environment_create)
 
-        return DevopnessResponse(response, Network)
+        return await DevopnessResponse.from_async(response, Network)
 
     async def delete_network(
         self,
@@ -225,7 +225,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_network(
         self,
@@ -246,7 +246,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Network)
+        return await DevopnessResponse.from_async(response, Network)
 
     async def get_status_network(
         self,
@@ -267,7 +267,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def list_environment_networks(
         self,
@@ -304,7 +304,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[NetworkRelation])
+        return await DevopnessResponse.from_async(response, List[NetworkRelation])
 
     async def update_network(
         self,
@@ -329,4 +329,4 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, network_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

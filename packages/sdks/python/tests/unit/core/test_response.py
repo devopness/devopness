@@ -1,7 +1,7 @@
 import json
 import unittest
 from typing import Any, Optional, Self
-from unittest.mock import Mock, patch
+from unittest.mock import AsyncMock, Mock, patch
 
 import httpx
 
@@ -30,6 +30,24 @@ def build_response(
         response.read.return_value = json.dumps(content).encode("utf-8")
     else:
         response.read.return_value = content
+    response.status_code = status_code
+    response.headers = headers or {}
+
+    return response
+
+
+def build_async_response(
+    content: Any = b"",
+    status_code: int = 200,
+    headers: Optional[dict[str, Any]] = None,
+) -> Mock:
+    response = Mock(spec=httpx.Response)
+    response.aread = AsyncMock()
+
+    if type(content) in (dict, list):
+        response.aread.return_value = json.dumps(content).encode("utf-8")
+    else:
+        response.aread.return_value = content
     response.status_code = status_code
     response.headers = headers or {}
 
@@ -135,12 +153,13 @@ class TestDevopnessResponseAsync(unittest.IsolatedAsyncioTestCase):
         mock: Mock,
     ) -> None:
         url = "https://api.example.com/resource"
-        mock.return_value = build_response({"id": 123})
+        mock.return_value = build_async_response({"id": 123})
 
         httpx_client = httpx.AsyncClient()
-        response: DevopnessResponse[DummyModel] = DevopnessResponse(
-            await httpx_client.get(url),
-            DummyModel,
+        httpx_response = await httpx_client.get(url)
+
+        response: DevopnessResponse[DummyModel] = await DevopnessResponse.from_async(
+            httpx_response, DummyModel
         )
 
         assert isinstance(response.data, DummyModel)

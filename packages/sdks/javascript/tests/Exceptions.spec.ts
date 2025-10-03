@@ -9,14 +9,9 @@ const apiClient = new DevopnessApiClient();
 
 test("200 response shouldn't reject", async () => {
   expect.assertions(0);
-  const email = 'test@test.com'
-  const password = 'testpassword'
-  reqMock.onAny().replyOnce(200, {
-    'access_token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk',
-    'refresh_token': 'def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9'
-  });
+  reqMock.onAny().replyOnce(200, {});
   try {
-    await apiClient.users.loginUser({ email, password })
+    await apiClient.users.getUserMe();
   } catch (e) {
     expect(e).toBeInstanceOf(ApiError)
   }
@@ -24,11 +19,9 @@ test("200 response shouldn't reject", async () => {
 
 test("non-200 response should reject with an ApiError", async () => {
   expect.assertions(1);
-  const email = 'notanemail'
-  const password = 'testpassword'
-  reqMock.onPost('/users/login').replyOnce(422, {});
+  reqMock.onAny().replyOnce(422, {});
   try {
-    await (apiClient.users.loginUser({ email, password }))
+    await (apiClient.users.getUserMe());
   } catch (e) {
     expect(e).toBeInstanceOf(ApiError)
   }
@@ -58,11 +51,9 @@ test("NetworkError message must contain a prefix so consumers know it's been rai
 
 test("request timeout should reject with a NetworkError", async () => {
   expect.assertions(1);
-  const email = 'notanemail'
-  const password = 'testpassword'
-  reqMock.onPost('/users/login').timeoutOnce();
+  reqMock.onAny().timeoutOnce();
   try {
-    await (apiClient.users.loginUser({ email, password }))
+    await (apiClient.users.getUserMe());
   } catch (e) {
     expect(e).toBeInstanceOf(NetworkError)
   }
@@ -70,11 +61,9 @@ test("request timeout should reject with a NetworkError", async () => {
 
 test("request network error should reject with a NetworkError", async () => {
   expect.assertions(1);
-  const email = 'notanemail'
-  const password = 'testpassword'
-  reqMock.onPost('/users/login').networkErrorOnce();
+  reqMock.onAny().networkErrorOnce();
   try {
-    await (apiClient.users.loginUser({ email, password }))
+    await (apiClient.users.getUserMe());
   } catch (e) {
     expect(e).toBeInstanceOf(NetworkError)
   }

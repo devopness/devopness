@@ -6,6 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
+import warnings
 from typing import List, Optional, Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
@@ -37,7 +38,15 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_application_variable` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             f"/applications/{application_id}/variables",
@@ -60,7 +69,15 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`list_application_variables` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         query_string = parse_query_string(
             {
@@ -99,7 +116,15 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_application_variable` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             f"/applications/{application_id}/variables",
@@ -108,7 +133,7 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, variable_application_create)
 
-        return DevopnessResponse(response, Variable)
+        return await DevopnessResponse.from_async(response, Variable)
 
     async def list_application_variables(
         self,
@@ -122,7 +147,15 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`list_application_variables` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         query_string = parse_query_string(
             {
@@ -139,4 +172,4 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[VariableRelation])
+        return await DevopnessResponse.from_async(response, List[VariableRelation])

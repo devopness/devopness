@@ -285,7 +285,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, daemon_environment_create)
 
-        return DevopnessResponse(response, Daemon)
+        return await DevopnessResponse.from_async(response, Daemon)
 
     async def delete_daemon(
         self,
@@ -306,7 +306,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_daemon(
         self,
@@ -327,7 +327,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Daemon)
+        return await DevopnessResponse.from_async(response, Daemon)
 
     async def get_status_daemon(
         self,
@@ -352,7 +352,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, daemon_get_status)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def list_environment_daemons(
         self,
@@ -383,7 +383,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[DaemonRelation])
+        return await DevopnessResponse.from_async(response, List[DaemonRelation])
 
     async def restart_daemon(
         self,
@@ -408,7 +408,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, daemon_restart)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def start_daemon(
         self,
@@ -433,7 +433,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, daemon_start)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def stop_daemon(
         self,
@@ -458,7 +458,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, daemon_stop)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def update_daemon(
         self,
@@ -483,4 +483,4 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, daemon_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

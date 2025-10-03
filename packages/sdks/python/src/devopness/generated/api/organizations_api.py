@@ -175,7 +175,7 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, organization_create)
 
-        return DevopnessResponse(response, Organization)
+        return await DevopnessResponse.from_async(response, Organization)
 
     async def get_organization(
         self,
@@ -196,7 +196,7 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Organization)
+        return await DevopnessResponse.from_async(response, Organization)
 
     async def get_organization_activity(
         self,
@@ -217,7 +217,7 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, OrganizationActivity)
+        return await DevopnessResponse.from_async(response, OrganizationActivity)
 
     async def list_organizations(
         self,
@@ -247,7 +247,7 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[OrganizationRelation])
+        return await DevopnessResponse.from_async(response, List[OrganizationRelation])
 
     async def update_organization(
         self,
@@ -272,4 +272,4 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, organization_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

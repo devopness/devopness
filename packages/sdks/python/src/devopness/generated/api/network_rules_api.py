@@ -177,7 +177,7 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, network_rule_environment_create)
 
-        return DevopnessResponse(response, NetworkRule)
+        return await DevopnessResponse.from_async(response, NetworkRule)
 
     async def delete_network_rule(
         self,
@@ -198,7 +198,7 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_network_rule(
         self,
@@ -219,7 +219,7 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, NetworkRule)
+        return await DevopnessResponse.from_async(response, NetworkRule)
 
     async def list_environment_network_rules(
         self,
@@ -250,7 +250,7 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[NetworkRuleRelation])
+        return await DevopnessResponse.from_async(response, List[NetworkRuleRelation])
 
     async def update_network_rule(
         self,
@@ -275,4 +275,4 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, network_rule_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

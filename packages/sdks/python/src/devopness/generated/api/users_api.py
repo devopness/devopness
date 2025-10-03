@@ -6,6 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
+import warnings
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
@@ -13,10 +14,6 @@ from ..models import (
     User,
     UserActivity,
     UserBilling,
-    UserCreate,
-    UserCreatePlain,
-    UserLogin,
-    UserLoginPlain,
     UserLoginResponse,
     UserMe,
     UserRefreshToken,
@@ -24,11 +21,7 @@ from ..models import (
     UserRefreshTokenResponse,
     UserResendVerification,
     UserResendVerificationPlain,
-    UserUpdate,
-    UserUpdatePlain,
     UserUrl,
-    UserVerify,
-    UserVerifyPlain,
 )
 
 
@@ -39,10 +32,6 @@ class UsersApiService(DevopnessBaseService):
 
     def add_user(
         self,
-        user_create: Union[
-            UserCreate,
-            UserCreatePlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
@@ -50,14 +39,22 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, user_create)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -132,7 +129,15 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`get_user_logout` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/logout",
@@ -185,10 +190,6 @@ class UsersApiService(DevopnessBaseService):
 
     def login_user(
         self,
-        user_login: Union[
-            UserLogin,
-            UserLoginPlain,
-        ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
@@ -196,14 +197,22 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`login_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/login",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, user_login)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, UserLoginResponse)
 
@@ -220,7 +229,15 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`refresh_token_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/refresh-token",
@@ -258,10 +275,6 @@ class UsersApiService(DevopnessBaseService):
     def update_user(
         self,
         user_id: str,
-        user_update: Union[
-            UserUpdate,
-            UserUpdatePlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing user
@@ -269,23 +282,27 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`update_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             f"/users/{user_id}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._put(endpoint, user_update)
+        response = self._put(endpoint)
 
         return DevopnessResponse(response, None)
 
     def verify_user(
         self,
-        user_verify: Union[
-            UserVerify,
-            UserVerifyPlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Activate the user account
@@ -293,14 +310,22 @@ class UsersApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`verify_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/account/verify",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, user_verify)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, None)
 
@@ -312,10 +337,6 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_user(
         self,
-        user_create: Union[
-            UserCreate,
-            UserCreatePlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Sign up/register a new user
@@ -323,16 +344,24 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, user_create)
+        response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_user(
         self,
@@ -353,7 +382,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, User)
+        return await DevopnessResponse.from_async(response, User)
 
     async def get_user_activity(
         self,
@@ -374,7 +403,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserActivity)
+        return await DevopnessResponse.from_async(response, UserActivity)
 
     async def get_user_billing(
         self,
@@ -394,7 +423,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserBilling)
+        return await DevopnessResponse.from_async(response, UserBilling)
 
     async def get_user_logout(
         self,
@@ -405,7 +434,15 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`get_user_logout` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/logout",
@@ -414,7 +451,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_user_me(
         self,
@@ -434,7 +471,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserMe)
+        return await DevopnessResponse.from_async(response, UserMe)
 
     async def get_user_urls(
         self,
@@ -454,14 +491,10 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserUrl)
+        return await DevopnessResponse.from_async(response, UserUrl)
 
     async def login_user(
         self,
-        user_login: Union[
-            UserLogin,
-            UserLoginPlain,
-        ],
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
@@ -469,16 +502,24 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`login_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/login",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, user_login)
+        response = await self._post(endpoint)
 
-        return DevopnessResponse(response, UserLoginResponse)
+        return await DevopnessResponse.from_async(response, UserLoginResponse)
 
     async def refresh_token_user(
         self,
@@ -493,7 +534,15 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`refresh_token_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/refresh-token",
@@ -502,7 +551,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_refresh_token)
 
-        return DevopnessResponse(response, UserRefreshTokenResponse)
+        return await DevopnessResponse.from_async(response, UserRefreshTokenResponse)
 
     async def resend_verification_user(
         self,
@@ -526,15 +575,11 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_resend_verification)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def update_user(
         self,
         user_id: str,
-        user_update: Union[
-            UserUpdate,
-            UserUpdatePlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing user
@@ -542,23 +587,27 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`update_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             f"/users/{user_id}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._put(endpoint, user_update)
+        response = await self._put(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def verify_user(
         self,
-        user_verify: Union[
-            UserVerify,
-            UserVerifyPlain,
-        ],
     ) -> DevopnessResponse[None]:
         """
         Activate the user account
@@ -566,13 +615,21 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`verify_user` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/users/account/verify",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, user_verify)
+        response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

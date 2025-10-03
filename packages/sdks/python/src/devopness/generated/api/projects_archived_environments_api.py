@@ -84,4 +84,6 @@ class ProjectsArchivedEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ArchivedEnvironmentRelation])
+        return await DevopnessResponse.from_async(
+            response, List[ArchivedEnvironmentRelation]
+        )

@@ -108,7 +108,7 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, environment_project_create)
 
-        return DevopnessResponse(response, Environment)
+        return await DevopnessResponse.from_async(response, Environment)
 
     async def list_project_environments(
         self,
@@ -139,4 +139,4 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[EnvironmentRelation])
+        return await DevopnessResponse.from_async(response, List[EnvironmentRelation])

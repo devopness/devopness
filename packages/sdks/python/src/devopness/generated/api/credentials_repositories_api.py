@@ -99,7 +99,7 @@ class CredentialsRepositoriesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Repository)
+        return await DevopnessResponse.from_async(response, Repository)
 
     async def list_credential_repositories(
         self,
@@ -130,4 +130,4 @@ class CredentialsRepositoriesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[RepositoryRelation])
+        return await DevopnessResponse.from_async(response, List[RepositoryRelation])

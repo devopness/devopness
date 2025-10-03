@@ -65,4 +65,4 @@ class ActionsLogsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Log)
+        return await DevopnessResponse.from_async(response, Log)
