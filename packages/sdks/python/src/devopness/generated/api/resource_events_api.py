@@ -98,7 +98,7 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, ResourceEvent)
+        return await DevopnessResponse.from_async(response, ResourceEvent)
 
     async def list_resource_events_by_resource_type(
         self,
@@ -130,4 +130,4 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ResourceEventRelation])
+        return await DevopnessResponse.from_async(response, List[ResourceEventRelation])

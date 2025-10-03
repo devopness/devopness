@@ -133,7 +133,7 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, variable_application_create)
 
-        return DevopnessResponse(response, Variable)
+        return await DevopnessResponse.from_async(response, Variable)
 
     async def list_application_variables(
         self,
@@ -172,4 +172,4 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[VariableRelation])
+        return await DevopnessResponse.from_async(response, List[VariableRelation])

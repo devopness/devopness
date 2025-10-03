@@ -84,4 +84,4 @@ class OrganizationsProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ProjectRelation])
+        return await DevopnessResponse.from_async(response, List[ProjectRelation])

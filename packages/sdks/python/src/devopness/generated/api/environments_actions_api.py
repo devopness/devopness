@@ -116,7 +116,7 @@ class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, List[ActionRelation])
 
     async def list_environment_actions_by_resource_type(
         self,
@@ -148,4 +148,4 @@ class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, List[ActionRelation])

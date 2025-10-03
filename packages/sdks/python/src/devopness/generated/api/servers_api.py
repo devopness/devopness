@@ -334,7 +334,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, server_environment_create)
 
-        return DevopnessResponse(response, Server)
+        return await DevopnessResponse.from_async(response, Server)
 
     async def connect_server(
         self,
@@ -356,7 +356,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, str)
+        return await DevopnessResponse.from_async(response, str)
 
     async def delete_server(
         self,
@@ -385,7 +385,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_server(
         self,
@@ -406,7 +406,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Server)
+        return await DevopnessResponse.from_async(response, Server)
 
     async def get_server_commands(
         self,
@@ -427,7 +427,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, ServerCommand)
+        return await DevopnessResponse.from_async(response, ServerCommand)
 
     async def get_status_server(
         self,
@@ -448,7 +448,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def list_environment_servers(
         self,
@@ -479,7 +479,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ServerRelation])
+        return await DevopnessResponse.from_async(response, List[ServerRelation])
 
     async def restart_server(
         self,
@@ -500,7 +500,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def rotate_key_server(
         self,
@@ -521,7 +521,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def start_server(
         self,
@@ -542,7 +542,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def stop_server(
         self,
@@ -563,7 +563,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def update_server(
         self,
@@ -588,4 +588,4 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, server_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

@@ -82,7 +82,7 @@ class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_subnet(
         self,
@@ -103,4 +103,4 @@ class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Subnet)
+        return await DevopnessResponse.from_async(response, Subnet)

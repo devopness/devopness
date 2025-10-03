@@ -361,7 +361,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_user(
         self,
@@ -382,7 +382,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, User)
+        return await DevopnessResponse.from_async(response, User)
 
     async def get_user_activity(
         self,
@@ -403,7 +403,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserActivity)
+        return await DevopnessResponse.from_async(response, UserActivity)
 
     async def get_user_billing(
         self,
@@ -423,7 +423,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserBilling)
+        return await DevopnessResponse.from_async(response, UserBilling)
 
     async def get_user_logout(
         self,
@@ -451,7 +451,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_user_me(
         self,
@@ -471,7 +471,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserMe)
+        return await DevopnessResponse.from_async(response, UserMe)
 
     async def get_user_urls(
         self,
@@ -491,7 +491,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserUrl)
+        return await DevopnessResponse.from_async(response, UserUrl)
 
     async def login_user(
         self,
@@ -519,7 +519,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, UserLoginResponse)
+        return await DevopnessResponse.from_async(response, UserLoginResponse)
 
     async def refresh_token_user(
         self,
@@ -551,7 +551,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_refresh_token)
 
-        return DevopnessResponse(response, UserRefreshTokenResponse)
+        return await DevopnessResponse.from_async(response, UserRefreshTokenResponse)
 
     async def resend_verification_user(
         self,
@@ -575,7 +575,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, user_resend_verification)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def update_user(
         self,
@@ -604,7 +604,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def verify_user(
         self,
@@ -632,4 +632,4 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

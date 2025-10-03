@@ -181,7 +181,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, api_token_project_create)
 
-        return DevopnessResponse(response, ApiToken)
+        return await DevopnessResponse.from_async(response, ApiToken)
 
     async def get_project_api_token(
         self,
@@ -203,7 +203,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, ApiToken)
+        return await DevopnessResponse.from_async(response, ApiToken)
 
     async def list_project_api_tokens(
         self,
@@ -234,7 +234,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ApiTokenRelation])
+        return await DevopnessResponse.from_async(response, List[ApiTokenRelation])
 
     async def revoke_project_api_token(
         self,
@@ -256,7 +256,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def rotate_project_api_token(
         self,
@@ -282,4 +282,4 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, api_token_project_rotate)
 
-        return DevopnessResponse(response, ApiTokenRotateResponse)
+        return await DevopnessResponse.from_async(response, ApiTokenRotateResponse)

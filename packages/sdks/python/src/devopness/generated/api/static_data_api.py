@@ -380,7 +380,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, ApplicationOptions)
+        return await DevopnessResponse.from_async(response, ApplicationOptions)
 
     async def get_static_cloud_provider_service(
         self,
@@ -401,7 +401,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, CloudProviderService)
+        return await DevopnessResponse.from_async(response, CloudProviderService)
 
     async def get_static_credential_options(
         self,
@@ -421,7 +421,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, CredentialOptions)
+        return await DevopnessResponse.from_async(response, CredentialOptions)
 
     async def get_static_cron_job_options(
         self,
@@ -441,7 +441,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, CronJobOptions)
+        return await DevopnessResponse.from_async(response, CronJobOptions)
 
     async def get_static_environment_options(
         self,
@@ -461,7 +461,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, EnvironmentOptions)
+        return await DevopnessResponse.from_async(response, EnvironmentOptions)
 
     async def get_static_network_rule_options(
         self,
@@ -481,7 +481,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, NetworkRuleOptions)
+        return await DevopnessResponse.from_async(response, NetworkRuleOptions)
 
     async def get_static_server_options(
         self,
@@ -501,7 +501,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, ServerOptions)
+        return await DevopnessResponse.from_async(response, ServerOptions)
 
     async def get_static_service_options(
         self,
@@ -521,7 +521,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, ServiceOptions)
+        return await DevopnessResponse.from_async(response, ServiceOptions)
 
     async def get_static_user_profile_options(
         self,
@@ -541,7 +541,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, UserProfileOptions)
+        return await DevopnessResponse.from_async(response, UserProfileOptions)
 
     async def get_static_virtual_host_options(
         self,
@@ -561,7 +561,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, VirtualHostOptions)
+        return await DevopnessResponse.from_async(response, VirtualHostOptions)
 
     async def list_static_billing_plans_options(
         self,
@@ -591,7 +591,9 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[BillingPlansOptionsRelation])
+        return await DevopnessResponse.from_async(
+            response, List[BillingPlansOptionsRelation]
+        )
 
     async def list_static_cloud_instances_by_cloud_provider_service_code_and_region_code(
         self,
@@ -623,7 +625,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[CloudInstanceRelation])
+        return await DevopnessResponse.from_async(response, List[CloudInstanceRelation])
 
     async def list_static_permissions(
         self,
@@ -653,7 +655,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[PermissionRelation])
+        return await DevopnessResponse.from_async(response, List[PermissionRelation])
 
     async def list_static_resource_types(
         self,
@@ -683,4 +685,4 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ResourceTypeRelation])
+        return await DevopnessResponse.from_async(response, List[ResourceTypeRelation])

@@ -130,7 +130,7 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_environment(
         self,
@@ -151,7 +151,7 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Environment)
+        return await DevopnessResponse.from_async(response, Environment)
 
     async def unarchive_environment(
         self,
@@ -172,7 +172,7 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def update_environment(
         self,
@@ -197,4 +197,4 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, environment_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

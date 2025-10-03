@@ -204,7 +204,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, deployment_application_create)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def add_environment_application(
         self,
@@ -229,7 +229,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, application_environment_create)
 
-        return DevopnessResponse(response, Application)
+        return await DevopnessResponse.from_async(response, Application)
 
     async def delete_application(
         self,
@@ -250,7 +250,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_application(
         self,
@@ -271,7 +271,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Application)
+        return await DevopnessResponse.from_async(response, Application)
 
     async def list_environment_applications(
         self,
@@ -302,7 +302,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[ApplicationRelation])
+        return await DevopnessResponse.from_async(response, List[ApplicationRelation])
 
     async def update_application(
         self,
@@ -327,4 +327,4 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, application_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

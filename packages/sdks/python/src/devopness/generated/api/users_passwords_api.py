@@ -114,7 +114,7 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, password_user_reset)
 
-        return DevopnessResponse(response, PasswordResetResponse)
+        return await DevopnessResponse.from_async(response, PasswordResetResponse)
 
     async def send_reset_link_user_password(
         self,
@@ -142,4 +142,4 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
