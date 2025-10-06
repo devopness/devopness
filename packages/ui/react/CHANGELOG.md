@@ -1,5 +1,62 @@
 # @devopness/ui-react
 
+## 2.184.0
+
+### Minor Changes
+
+- [#2248](https://github.com/devopness/devopness/pull/2248) [`6d1d10e`](https://github.com/devopness/devopness/commit/6d1d10e6c8d813d12ff2194aacd5fd880921a096) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `DynamicField` component
+
+  ### What Changed
+  - Introduced a flexible `DynamicField` component capable of rendering different input types based on configuration:
+    - `Input` for string and number fields
+    - `TextArea` for multi-line text
+    - `Select` for boolean (Yes/No) choices
+  - Supports:
+    - Label configuration with help tooltips
+    - Error state handling with built-in `ErrorMessage`
+    - External value and event control (agnostic to form libraries)
+    - Sensitive data masking (`sensitive` prop)
+
+  ### Example Usage
+
+  ```tsx
+  <DynamicField
+    name="age"
+    value={age}
+    onChange={(e) => setAge(e.target.value)}
+    validation={{ type: 'number', min: 0, max: 100 }}
+    labelProps={{ value: 'Age' }}
+  />
+  ```
+
+  This component provides a highly reusable and configurable way to render form fields dynamically.
+  It standardizes input rendering across the application, improves type safety and accessibility, and simplifies integration with different form management libraries in the Devopness UI library.
+
+- [#2242](https://github.com/devopness/devopness/pull/2242) [`e37ab88`](https://github.com/devopness/devopness/commit/e37ab88020a5e9e7724f56ba06960afefc4a8a91) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Select` component
+
+  ### What Changed
+  - Introduced a reusable `Select` component built on top of `react-select`.
+  - Supports:
+    - `isReadOnly` mode (non-interactive but still displays value)
+    - `isCreatable` for dynamic option creation
+    - Custom `noOptionsMessage` handling
+    - Error state with built-in `ErrorMessage`
+  - Includes default styles, custom components, and full Storybook examples.
+
+  ### Example Usage
+
+  ```tsx
+  <Select
+    options={[
+      { label: 'Yes', value: true },
+      { label: 'No', value: false },
+    ]}
+    onChange={setValue}
+  />
+  ```
+
+  This component provides a flexible and reusable dropdown selection experience, supports dynamic option creation and multi-selection, handles error states and read-only modes consistently, and follows accessibility and type-safety guidelines in the Devopness UI library.
+
 ## 2.183.0
 
 ### Minor Changes
