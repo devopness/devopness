@@ -26,6 +26,7 @@ import { UserPasswordUpdate } from '../../generated/models';
 export class UsersPasswordsApiService extends ApiBaseService {
     /**
      * 
+     * @deprecated
      * @summary Reset the user password
      * @param {PasswordUserReset} passwordUserReset A JSON object containing the resource data
      */
@@ -44,19 +45,16 @@ export class UsersPasswordsApiService extends ApiBaseService {
 
     /**
      * 
+     * @deprecated
      * @summary Send the password reset link to user\'s email
-     * @param {PasswordUserSendResetLink} passwordUserSendResetLink A JSON object containing the resource data
      */
-    public async sendResetLinkUserPassword(passwordUserSendResetLink: PasswordUserSendResetLink): Promise<ApiResponse<void>> {
-        if (passwordUserSendResetLink === null || passwordUserSendResetLink === undefined) {
-            throw new ArgumentNullException('passwordUserSendResetLink', 'sendResetLinkUserPassword');
-        }
+    public async sendResetLinkUserPassword(): Promise<ApiResponse<void>> {
 
         let queryString = '';
 
         const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, PasswordUserSendResetLink>(requestUrl, passwordUserSendResetLink);
+        const response = await this.post <void>(requestUrl);
         return new ApiResponse(response);
     }
 

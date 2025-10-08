@@ -61,4 +61,4 @@ class HookRequestsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, HookRequest)
+        return await DevopnessResponse.from_async(response, HookRequest)

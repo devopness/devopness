@@ -108,7 +108,7 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, invitation_team_create)
 
-        return DevopnessResponse(response, Invitation)
+        return await DevopnessResponse.from_async(response, Invitation)
 
     async def list_team_invitations(
         self,
@@ -139,4 +139,4 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[InvitationRelation])
+        return await DevopnessResponse.from_async(response, List[InvitationRelation])

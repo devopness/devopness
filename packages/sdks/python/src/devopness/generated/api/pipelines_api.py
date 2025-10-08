@@ -180,7 +180,7 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, pipeline_create)
 
-        return DevopnessResponse(response, Pipeline)
+        return await DevopnessResponse.from_async(response, Pipeline)
 
     async def delete_pipeline(
         self,
@@ -201,7 +201,7 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_pipeline(
         self,
@@ -222,7 +222,7 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Pipeline)
+        return await DevopnessResponse.from_async(response, Pipeline)
 
     async def list_pipelines_by_resource_type(
         self,
@@ -254,7 +254,7 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[PipelineRelation])
+        return await DevopnessResponse.from_async(response, List[PipelineRelation])
 
     async def update_pipeline(
         self,
@@ -279,4 +279,4 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, pipeline_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)

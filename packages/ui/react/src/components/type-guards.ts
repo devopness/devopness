@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 /**
  * Checks if the given data is defined (i.e. it is not null or undefined).
  *
@@ -13,4 +15,6 @@ function isDefined<T>(data: T | null | undefined): data is T {
   return typeof data !== 'undefined' && data !== null
 }
 
-export { isDefined }
+const typedMemo: <T>(c: T) => T = memo
+
+export { isDefined, typedMemo }

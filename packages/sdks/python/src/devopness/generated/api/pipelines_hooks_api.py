@@ -118,7 +118,7 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, hook_pipeline_create)
 
-        return DevopnessResponse(response, Hook)
+        return await DevopnessResponse.from_async(response, Hook)
 
     async def list_pipeline_hooks(
         self,
@@ -149,4 +149,4 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[HookRelation])
+        return await DevopnessResponse.from_async(response, List[HookRelation])

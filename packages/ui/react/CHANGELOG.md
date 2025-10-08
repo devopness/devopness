@@ -1,5 +1,169 @@
 # @devopness/ui-react
 
+## 2.184.0
+
+### Minor Changes
+
+- [#2248](https://github.com/devopness/devopness/pull/2248) [`6d1d10e`](https://github.com/devopness/devopness/commit/6d1d10e6c8d813d12ff2194aacd5fd880921a096) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `DynamicField` component
+
+  ### What Changed
+  - Introduced a flexible `DynamicField` component capable of rendering different input types based on configuration:
+    - `Input` for string and number fields
+    - `TextArea` for multi-line text
+    - `Select` for boolean (Yes/No) choices
+  - Supports:
+    - Label configuration with help tooltips
+    - Error state handling with built-in `ErrorMessage`
+    - External value and event control (agnostic to form libraries)
+    - Sensitive data masking (`sensitive` prop)
+
+  ### Example Usage
+
+  ```tsx
+  <DynamicField
+    name="age"
+    value={age}
+    onChange={(e) => setAge(e.target.value)}
+    validation={{ type: 'number', min: 0, max: 100 }}
+    labelProps={{ value: 'Age' }}
+  />
+  ```
+
+  This component provides a highly reusable and configurable way to render form fields dynamically.
+  It standardizes input rendering across the application, improves type safety and accessibility, and simplifies integration with different form management libraries in the Devopness UI library.
+
+- [#2242](https://github.com/devopness/devopness/pull/2242) [`e37ab88`](https://github.com/devopness/devopness/commit/e37ab88020a5e9e7724f56ba06960afefc4a8a91) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Select` component
+
+  ### What Changed
+  - Introduced a reusable `Select` component built on top of `react-select`.
+  - Supports:
+    - `isReadOnly` mode (non-interactive but still displays value)
+    - `isCreatable` for dynamic option creation
+    - Custom `noOptionsMessage` handling
+    - Error state with built-in `ErrorMessage`
+  - Includes default styles, custom components, and full Storybook examples.
+
+  ### Example Usage
+
+  ```tsx
+  <Select
+    options={[
+      { label: 'Yes', value: true },
+      { label: 'No', value: false },
+    ]}
+    onChange={setValue}
+  />
+  ```
+
+  This component provides a flexible and reusable dropdown selection experience, supports dynamic option creation and multi-selection, handles error states and read-only modes consistently, and follows accessibility and type-safety guidelines in the Devopness UI library.
+
+## 2.183.0
+
+### Minor Changes
+
+- [#2219](https://github.com/devopness/devopness/pull/2219) [`19e7f7a`](https://github.com/devopness/devopness/commit/19e7f7a3f1e042ddfeefc0f6db541f21fd8a0c5f) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `Status` component
+
+  ### What Changed
+  - Introduced `Status` component to display action statuses with icon, color, and tooltip.
+  - Supports human-readable status and reason.
+  - Uses `ViewDetailsContent` for consistent rendering in Devopness UI style.
+
+  ### Example Usage
+
+  ```tsx
+  <Status
+    status="completed"
+    statusHumanReadable="Completed"
+    statusReasonHumanReadable="All tasks finished successfully"
+  />
+
+  <Status
+    status="failed"
+    statusHumanReadable="Failed"
+    statusReasonHumanReadable="Error occurred"
+  />
+  ```
+
+  This component improves consistency for displaying action statuses in forms, lists, and detail views.
+
+- [#2219](https://github.com/devopness/devopness/pull/2219) [`19e7f7a`](https://github.com/devopness/devopness/commit/19e7f7a3f1e042ddfeefc0f6db541f21fd8a0c5f) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `ViewDetails` component
+
+  ### What Changed
+  - Introduced `ViewDetails` to display multiple sections of detail items with labels and values.
+  - Supports optional icons, navigation links, copy-to-clipboard functionality, hidden/sensitive content with toggle, and tooltips.
+  - Added `ViewDetailsContent` for individual detail rows and `ViewDetailsLoading` for the loading state.
+
+  ### Example Usage
+
+  ```tsx
+  import { ViewDetails, ViewDetailsContent, ViewDetailsLoading } from '@devopness/ui-react'
+  import { DetailsContentProps } from '@devopness/ui-react'
+
+  const sampleData: { label: string; items: DetailsContentProps[] }[] = [
+    {
+      label: 'User Info',
+      items: [
+        { label: 'Name', value: 'John Doe' },
+        { label: 'Email', value: 'john@example.com', isCopyToClipboard: true }
+      ]
+    }
+  ]
+
+  <ViewDetails navigationComponent={NavigationLink} data={sampleData} />
+
+  <ViewDetailsContent
+    label="Website"
+    value="https://example.com"
+    url="https://example.com"
+    navigationComponent={NavigationLink}
+  />
+
+  <ViewDetailsLoading />
+  ```
+
+  This component improves the display of structured information, enables consistent handling of sensitive or interactive content, and follows accessibility and type-safety guidelines in the Devopness UI library.
+
+## 2.182.0
+
+### Minor Changes
+
+- [#2218](https://github.com/devopness/devopness/pull/2218) [`3850938`](https://github.com/devopness/devopness/commit/38509380a34013eaa8d641166f24ee90ed0e6821) Thanks [@WillianSantosC](https://github.com/WillianSantosC)! - Add new `ViewDetails` component
+
+  ### What Changed
+  - Introduced `ViewDetails` to display multiple sections of detail items with labels and values.
+  - Supports optional icons, navigation links, copy-to-clipboard functionality, hidden/sensitive content with toggle, and tooltips.
+  - Added `ViewDetailsContent` for individual detail rows and `ViewDetailsLoading` for the loading state.
+
+  ### Example Usage
+
+  ```tsx
+  import { ViewDetails, ViewDetailsContent, ViewDetailsLoading } from '@devopness/ui-react'
+  import { DetailsContentProps } from '@devopness/ui-react'
+
+  const sampleData: { label: string; items: DetailsContentProps[] }[] = [
+    {
+      label: 'User Info',
+      items: [
+        { label: 'Name', value: 'John Doe' },
+        { label: 'Email', value: 'john@example.com', isCopyToClipboard: true }
+      ]
+    }
+  ]
+
+  <ViewDetails navigationComponent={NavigationLink} data={sampleData} />
+
+  <ViewDetailsContent
+    label="Website"
+    value="https://example.com"
+    url="https://example.com"
+    navigationComponent={NavigationLink}
+  />
+
+  <ViewDetailsLoading />
+  ```
+
+  This component improves the display of structured information, enables consistent handling of sensitive or interactive content, and follows accessibility and type-safety guidelines in the Devopness UI library.
+
 ## 2.181.0
 
 ### Minor Changes

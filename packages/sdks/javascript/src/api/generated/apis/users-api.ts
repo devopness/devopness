@@ -18,16 +18,12 @@ import { ApiError } from '../../generated/models';
 import { User } from '../../generated/models';
 import { UserActivity } from '../../generated/models';
 import { UserBilling } from '../../generated/models';
-import { UserCreate } from '../../generated/models';
-import { UserLogin } from '../../generated/models';
 import { UserLoginResponse } from '../../generated/models';
 import { UserMe } from '../../generated/models';
 import { UserRefreshToken } from '../../generated/models';
 import { UserRefreshTokenResponse } from '../../generated/models';
 import { UserResendVerification } from '../../generated/models';
-import { UserUpdate } from '../../generated/models';
 import { UserUrl } from '../../generated/models';
-import { UserVerify } from '../../generated/models';
 
 /**
  * UsersApiService - Auto-generated
@@ -35,19 +31,16 @@ import { UserVerify } from '../../generated/models';
 export class UsersApiService extends ApiBaseService {
     /**
      * 
+     * @deprecated
      * @summary Sign up/register a new user
-     * @param {UserCreate} userCreate A JSON object containing the resource data
      */
-    public async addUser(userCreate: UserCreate): Promise<ApiResponse<void>> {
-        if (userCreate === null || userCreate === undefined) {
-            throw new ArgumentNullException('userCreate', 'addUser');
-        }
+    public async addUser(): Promise<ApiResponse<void>> {
 
         let queryString = '';
 
         const requestUrl = '/users' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, UserCreate>(requestUrl, userCreate);
+        const response = await this.post <void>(requestUrl);
         return new ApiResponse(response);
     }
 
@@ -103,6 +96,7 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
+     * @deprecated
      * @summary Logout/revoke an existing token
      */
     public async getUserLogout(): Promise<ApiResponse<void>> {
@@ -145,24 +139,22 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
+     * @deprecated
      * @summary Login/create a new token for the given credentials
-     * @param {UserLogin} userLogin A JSON object containing the resource data
      */
-    public async loginUser(userLogin: UserLogin): Promise<ApiResponse<UserLoginResponse>> {
-        if (userLogin === null || userLogin === undefined) {
-            throw new ArgumentNullException('userLogin', 'loginUser');
-        }
+    public async loginUser(): Promise<ApiResponse<UserLoginResponse>> {
 
         let queryString = '';
 
         const requestUrl = '/users/login' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <UserLoginResponse, UserLogin>(requestUrl, userLogin);
+        const response = await this.post <UserLoginResponse>(requestUrl);
         return new ApiResponse(response);
     }
 
     /**
      * 
+     * @deprecated
      * @summary Refresh an existing user access token
      * @param {UserRefreshToken} userRefreshToken A JSON object containing the resource data
      */
@@ -199,41 +191,35 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
+     * @deprecated
      * @summary Update an existing user
      * @param {string} userId The ID of the user.
-     * @param {UserUpdate} userUpdate A JSON object containing the resource data
      */
-    public async updateUser(userId: string, userUpdate: UserUpdate): Promise<ApiResponse<void>> {
+    public async updateUser(userId: string): Promise<ApiResponse<void>> {
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'updateUser');
-        }
-        if (userUpdate === null || userUpdate === undefined) {
-            throw new ArgumentNullException('userUpdate', 'updateUser');
         }
 
         let queryString = '';
 
         const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.put <void, UserUpdate>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))), userUpdate);
+        const response = await this.put <void>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
     }
 
     /**
      * 
+     * @deprecated
      * @summary Activate the user account
-     * @param {UserVerify} userVerify A JSON object containing the resource data
      */
-    public async verifyUser(userVerify: UserVerify): Promise<ApiResponse<void>> {
-        if (userVerify === null || userVerify === undefined) {
-            throw new ArgumentNullException('userVerify', 'verifyUser');
-        }
+    public async verifyUser(): Promise<ApiResponse<void>> {
 
         let queryString = '';
 
         const requestUrl = '/users/account/verify' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <void, UserVerify>(requestUrl, userVerify);
+        const response = await this.post <void>(requestUrl);
         return new ApiResponse(response);
     }
 }

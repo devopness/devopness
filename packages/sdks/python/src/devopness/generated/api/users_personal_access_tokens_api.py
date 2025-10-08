@@ -175,7 +175,7 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, personal_access_token_user_create)
 
-        return DevopnessResponse(response, PersonalAccessToken)
+        return await DevopnessResponse.from_async(response, PersonalAccessToken)
 
     async def get_user_personal_access_token(
         self,
@@ -196,7 +196,7 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, PersonalAccessToken)
+        return await DevopnessResponse.from_async(response, PersonalAccessToken)
 
     async def list_user_personal_access_tokens(
         self,
@@ -226,7 +226,9 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[PersonalAccessTokenRelation])
+        return await DevopnessResponse.from_async(
+            response, List[PersonalAccessTokenRelation]
+        )
 
     async def revoke_user_personal_access_token(
         self,
@@ -247,7 +249,7 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def rotate_user_personal_access_token(
         self,
@@ -272,4 +274,6 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, personal_access_token_user_rotate)
 
-        return DevopnessResponse(response, PersonalAccessTokenRotateResponse)
+        return await DevopnessResponse.from_async(
+            response, PersonalAccessTokenRotateResponse
+        )

@@ -103,7 +103,7 @@ class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, team_project_create)
 
-        return DevopnessResponse(response, Team)
+        return await DevopnessResponse.from_async(response, Team)
 
     async def list_project_teams(
         self,
@@ -134,4 +134,4 @@ class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[TeamRelation])
+        return await DevopnessResponse.from_async(response, List[TeamRelation])

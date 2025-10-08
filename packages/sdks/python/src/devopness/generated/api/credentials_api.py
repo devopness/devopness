@@ -225,7 +225,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint, credential_environment_create)
 
-        return DevopnessResponse(response, Credential)
+        return await DevopnessResponse.from_async(response, Credential)
 
     async def delete_credential(
         self,
@@ -246,7 +246,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_credential(
         self,
@@ -267,7 +267,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, Credential)
+        return await DevopnessResponse.from_async(response, Credential)
 
     async def get_environment_credential_settings(
         self,
@@ -289,7 +289,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, CredentialSetting)
+        return await DevopnessResponse.from_async(response, CredentialSetting)
 
     async def get_status_credential(
         self,
@@ -310,7 +310,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
 
     async def list_environment_credentials(
         self,
@@ -345,7 +345,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return DevopnessResponse(response, List[CredentialRelation])
+        return await DevopnessResponse.from_async(response, List[CredentialRelation])
 
     async def update_credential(
         self,
@@ -370,4 +370,4 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._put(endpoint, credential_update)
 
-        return DevopnessResponse(response, None)
+        return await DevopnessResponse.from_async(response, None)
