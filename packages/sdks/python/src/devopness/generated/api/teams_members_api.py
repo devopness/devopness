@@ -24,7 +24,7 @@ class TeamsMembersApiService(DevopnessBaseService):
         user_id: int,
     ) -> DevopnessResponse[None]:
         """
-        Delete a given team member
+        Remove a member from a team
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -105,7 +105,7 @@ class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
         user_id: int,
     ) -> DevopnessResponse[None]:
         """
-        Delete a given team member
+        Remove a member from a team
 
         Raises:
             DevopnessApiError: If an API request error occurs.
