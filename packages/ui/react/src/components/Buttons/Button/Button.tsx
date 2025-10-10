@@ -74,6 +74,41 @@ const getLoadingColor = (buttonType?: string) => {
   }
 }
 
+type IconProps = Pick<
+  ButtonProps,
+  'loading' | 'icon' | 'iconSize' | 'buttonType' | 'iconColor'
+>
+
+const Icon = ({
+  loading: isLoading,
+  icon,
+  iconSize,
+  buttonType,
+  iconColor,
+}: IconProps) => {
+  const noDefinedIcons = !isLoading && !icon
+  if (noDefinedIcons) return <></>
+
+  return (
+    <ContentIcon
+      data-testid="button-icon"
+      $iconSize={iconSize ?? DEFAULT_ICON_SIZE}
+      /**
+       * Icon is safe to use non-null assertion because this component only renders
+       * when either isLoading or icon prop is defined, as checked by noDefinedIcons
+       */
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      aria-label={isLoading ? 'loading' : `${icon!} icon`}
+    >
+      {iconLoader(
+        isLoading ? 'loading' : icon,
+        iconSize ?? DEFAULT_ICON_SIZE,
+        isLoading ? getLoadingColor(buttonType) : iconColor
+      )}
+    </ContentIcon>
+  )
+}
+
 /** Primary UI component for user interaction */
 const Button = ({
   backgroundColor,
@@ -95,61 +130,41 @@ const Button = ({
   type,
   typeSize = 'default',
   ...props
-}: ButtonProps) => {
-  const Icon = () => {
-    const noDefinedIcons = !isLoading && !icon
-    if (noDefinedIcons) return <></>
-
-    return (
-      <ContentIcon
-        data-testid="button-icon"
-        $iconSize={iconSize ?? DEFAULT_ICON_SIZE}
-        /**
-         * Icon is safe to use non-null assertion because this component only renders
-         * when either isLoading or icon prop is defined, as checked by noDefinedIcons
-         */
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        aria-label={isLoading ? 'loading' : `${icon!} icon`}
+}: ButtonProps) => (
+  <BaseButton
+    data-testid="button"
+    $backgroundColor={backgroundColor}
+    $borderColor={borderColor}
+    $buttonType={buttonType}
+    $color={color}
+    $noIconMargin={noIconMargin}
+    $noMargin={noMargin}
+    $noPadding={noPadding}
+    $noPointerEvents={noPointerEvents}
+    $revertOrientation={revertOrientation}
+    $typeSize={typeSize}
+    disabled={disabled}
+    tabIndex={tabIndex}
+    type={type}
+    {...props}
+  >
+    <Icon
+      loading={isLoading}
+      icon={icon}
+      iconSize={iconSize}
+      buttonType={buttonType}
+      iconColor={iconColor}
+    />
+    {children && (
+      <Label
+        data-testid="button-label"
+        className="translate"
       >
-        {iconLoader(
-          isLoading ? 'loading' : icon,
-          iconSize ?? DEFAULT_ICON_SIZE,
-          isLoading ? getLoadingColor(buttonType) : iconColor
-        )}
-      </ContentIcon>
-    )
-  }
-
-  return (
-    <BaseButton
-      data-testid="button"
-      $backgroundColor={backgroundColor}
-      $borderColor={borderColor}
-      $buttonType={buttonType}
-      $color={color}
-      $noIconMargin={noIconMargin}
-      $noMargin={noMargin}
-      $noPadding={noPadding}
-      $noPointerEvents={noPointerEvents}
-      $revertOrientation={revertOrientation}
-      $typeSize={typeSize}
-      disabled={disabled}
-      tabIndex={tabIndex}
-      type={type}
-      {...props}
-    >
-      <Icon />
-      {children && (
-        <Label
-          data-testid="button-label"
-          className="translate"
-        >
-          {children}
-        </Label>
-      )}
-    </BaseButton>
-  )
-}
+        {children}
+      </Label>
+    )}
+  </BaseButton>
+)
 
 export type { ButtonProps }
 export { Button }
