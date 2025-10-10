@@ -55,6 +55,8 @@ type InputProps =
       removeArrows?: boolean
     })
 
+const generateUniqueId = () =>
+  `input-${Math.random().toString(36).slice(2, 11)}`
 /**
  * Allows users to enter and edit text
  *
@@ -84,6 +86,9 @@ type InputProps =
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const internalRef = useRef<HTMLInputElement>(null)
   const [
+    randomId,
+  ] = useState(generateUniqueId)
+  const [
     showPassword,
     setShowPassword,
   ] = useState(false)
@@ -102,8 +107,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     ...restProps
   } = props
 
-  const inputId =
-    inputProps?.id ?? `input-${Math.random().toString(36).slice(2, 11)}`
+  const inputId = inputProps?.id ?? randomId
 
   useEffect(() => {
     if (autoFocusOnError && error && inputRef.current) {

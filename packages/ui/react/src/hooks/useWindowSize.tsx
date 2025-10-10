@@ -4,10 +4,18 @@ const useWindowSize = () => {
   const [
     size,
     setSize,
-  ] = useState<number[]>([
-    0,
-    0,
-  ])
+  ] = useState<number[]>(() => {
+    if (typeof window !== 'undefined') {
+      return [
+        window.innerWidth,
+        window.innerHeight,
+      ]
+    }
+    return [
+      0,
+      0,
+    ]
+  })
 
   const updateSize = () => {
     setSize([
@@ -19,7 +27,6 @@ const useWindowSize = () => {
   useEffect(() => {
     window.addEventListener('resize', updateSize)
 
-    updateSize()
     return () => {
       window.removeEventListener('resize', updateSize)
     }

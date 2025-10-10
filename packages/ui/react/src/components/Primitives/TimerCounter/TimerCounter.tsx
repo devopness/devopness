@@ -54,10 +54,23 @@ const TimerCounter = ({
   formatDurationTime,
   formatDateTime,
 }: TimerCounterProps) => {
+  const getInitialTimerState = useCallback(() => {
+    if (!shouldStartTimer || shouldResetTimer || timerStartDate == null) {
+      return '00:00'
+    }
+    return formatDurationTime(timerStartDate, timerFinalDate)
+  }, [
+    shouldStartTimer,
+    shouldResetTimer,
+    timerStartDate,
+    timerFinalDate,
+    formatDurationTime,
+  ])
+
   const [
     timerState,
     setTimerState,
-  ] = useState<string>('—')
+  ] = useState<string>(getInitialTimerState)
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -91,35 +104,39 @@ const TimerCounter = ({
   )
 
   useEffect(() => {
-    handleTimerState()
-  }, [
-    timerFinalDate,
-    shouldResetTimer,
-    shouldStopTimer,
-    handleTimerState,
-  ])
-
-  useEffect(() => {
-    if (!shouldStartTimer) setTimerState('00:00')
-
-    if (shouldResetTimer || timerStartDate == null) {
-      setTimerState('00:00')
+    if (!shouldStartTimer || shouldResetTimer || timerStartDate == null) {
       handleStopTimer()
-    } else if (shouldStopTimer) {
-      handleStopTimer()
-      handleTimerState()
-    } else {
-      intervalRef.current = setInterval(handleTimerState, 1000)
+      const timeoutId = setTimeout(() => {
+        setTimerState('00:00')
+      }, 0)
+      return () => {
+        handleStopTimer()
+        clearTimeout(timeoutId)
+      }
     }
+
+    if (shouldStopTimer) {
+      handleStopTimer()
+      const timeoutId = setTimeout(handleTimerState, 0)
+      return () => {
+        handleStopTimer()
+        clearTimeout(timeoutId)
+      }
+    }
+
+    const initialTimeoutId = setTimeout(handleTimerState, 0)
+    intervalRef.current = setInterval(handleTimerState, 1000)
 
     return () => {
       handleStopTimer()
+      clearTimeout(initialTimeoutId)
     }
   }, [
     shouldStartTimer,
     shouldResetTimer,
     shouldStopTimer,
     timerStartDate,
+    timerFinalDate,
     handleTimerState,
     handleStopTimer,
   ])
