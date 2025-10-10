@@ -23,7 +23,7 @@ import { MemberRelation } from '../../generated/models';
 export class TeamsMembersApiService extends ApiBaseService {
     /**
      * 
-     * @summary Delete a given team member
+     * @summary Remove a member from a team
      * @param {number} teamId The ID of the team.
      * @param {number} userId The ID of the user.
      */
