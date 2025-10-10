@@ -821,7 +821,7 @@
             "in": "path",
             "name": "credential_id",
             "description": "The ID of the credential.",
-            "example": 123,
+            "example": 54389,
             "required": true,
             "schema": {
               "type": "integer",
@@ -858,7 +858,7 @@
             "in": "path",
             "name": "credential_id",
             "description": "The ID of the credential.",
-            "example": 123,
+            "example": 54389,
             "required": true,
             "schema": {
               "type": "integer",
@@ -5097,7 +5097,7 @@
             "in": "path",
             "name": "organization_id",
             "description": "The numeric ID or URL Slug of an organization.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
@@ -5147,7 +5147,7 @@
             "in": "path",
             "name": "organization_id",
             "description": "The numeric ID or URL Slug of an organization.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
@@ -5213,7 +5213,7 @@
             "in": "path",
             "name": "organization_id",
             "description": "The numeric ID or URL Slug of an organization.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
@@ -5271,7 +5271,7 @@
             "in": "path",
             "name": "organization_id",
             "description": "The numeric ID or URL Slug of an organization.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
@@ -5329,7 +5329,7 @@
             "in": "path",
             "name": "organization_id",
             "description": "The numeric ID or URL Slug of an organization.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
@@ -10599,7 +10599,7 @@
     },
     "/teams/{team_id}/members/{user_id}": {
       "delete": {
-        "summary": "Delete a given team member",
+        "summary": "Remove a member from a team",
         "operationId": "deleteTeamMember",
         "tags": [
           "Teams - Members"
@@ -11494,7 +11494,7 @@
             "in": "path",
             "name": "user_id",
             "description": "The numeric ID or URL Slug of a user.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
@@ -11600,7 +11600,7 @@
             "in": "path",
             "name": "user_id",
             "description": "The numeric ID or URL Slug of a user.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
@@ -11668,7 +11668,7 @@
             "in": "path",
             "name": "user_id",
             "description": "The numeric ID or URL Slug of a user.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
@@ -11736,7 +11736,7 @@
             "in": "path",
             "name": "user_id",
             "description": "The numeric ID or URL Slug of a user.",
-            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "example": "johndoe",
             "required": true,
             "schema": {
               "type": "string"
