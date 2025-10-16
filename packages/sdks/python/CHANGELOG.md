@@ -1,10 +1,29 @@
 # @devopness/sdk-python
 
+## 2.0.0
+
+### Major Changes
+
+- [#2272](https://github.com/devopness/devopness/pull/2272) [`35bf25d`](https://github.com/devopness/devopness/commit/35bf25df929890ef8fd439b99a95d4a365f73e6f) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## Changes
+  - Added support for **Public Team Invitations**, allowing teams to generate shareable links that let any user with the link join the team.
+
+  ### ⚠️ Breaking change
+  - The structure used to create team invitations has changed to include a new field defining the type of invitation (`"private"` or `"public"`).
+  - The email address is now optional and only required for private invitations.
+  - This change affects any process or integration that creates team invitations and requires adjustments to align with the new format.
+
+  ### Additionally
+  - The process for accepting invitations now supports authorization via a token when handling public invitations.
+
 ## 1.3.7
 
 ### Patch Changes
 
-- [#2243](https://github.com/devopness/devopness/pull/2243) [`2f12356`](https://github.com/devopness/devopness/commit/2f12356b41ac52cc9478f6f05f5117862bfd5bfd) Thanks [@Diegiwg](https://github.com/Diegiwg)! - ## Added
+- [#2243](https://github.com/devopness/devopness/pull/2243) [`2f12356`](https://github.com/devopness/devopness/commit/2f12356b41ac52cc9478f6f05f5117862bfd5bfd) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## Added
   - New method in the `static` service to **list available subscription plans** in Devopness.
 
   ## Deprecated
