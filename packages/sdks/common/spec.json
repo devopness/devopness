@@ -10165,7 +10165,7 @@
     },
     "/team-invitations/{team_invitation_id}/accept": {
       "post": {
-        "summary": "Accept a pending team invitation",
+        "summary": "Accept a team invitation",
         "operationId": "acceptTeamInvitation",
         "tags": [
           "Team Invitations"
@@ -10186,6 +10186,16 @@
             "description": "The ID of the team invitation.",
             "example": "2ab973e1-9528-4d67-aff0-209d74975830",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "token",
+            "description": "The token to authorize the acceptance of public invitations.",
+            "example": "some-random-token",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -10210,7 +10220,7 @@
     },
     "/team-invitations/{team_invitation_id}/reject": {
       "post": {
-        "summary": "Reject a pending team invitation",
+        "summary": "Reject a pending private team invitation",
         "operationId": "rejectTeamInvitation",
         "tags": [
           "Team Invitations"
@@ -10413,7 +10423,7 @@
     },
     "/teams/{team_id}/invitations": {
       "get": {
-        "summary": "Return a list of pending invitations belonging to a team",
+        "summary": "Return a list of invitations belonging to a team",
         "operationId": "listTeamInvitations",
         "tags": [
           "Teams - Invitations"
@@ -10468,7 +10478,7 @@
         }
       },
       "post": {
-        "summary": "Send invitation to user email to participate to a team",
+        "summary": "Create a new invitation for a team",
         "operationId": "addTeamInvitation",
         "tags": [
           "Teams - Invitations"
@@ -17818,10 +17828,20 @@
             "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732",
             "type": "string"
           },
+          "type": {
+            "$ref": "#/components/schemas/TeamInvitationType"
+          },
+          "token": {
+            "description": "The token used to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "status": {
             "$ref": "#/components/schemas/TeamInvitationStatus"
@@ -17838,9 +17858,6 @@
             "nullable": true
           },
           "created_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "team": {
@@ -17870,12 +17887,13 @@
         },
         "required": [
           "id",
+          "type",
+          "token",
           "email",
           "status",
           "status_human_readable",
           "accepted_from_ip",
           "created_by_user",
-          "user",
           "team",
           "accepted_at",
           "expires_at",
@@ -17897,10 +17915,20 @@
             "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732",
             "type": "string"
           },
+          "type": {
+            "$ref": "#/components/schemas/TeamInvitationType"
+          },
+          "token": {
+            "description": "The token used to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "status": {
             "$ref": "#/components/schemas/TeamInvitationStatus"
@@ -17917,9 +17945,6 @@
             "nullable": true
           },
           "created_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "team": {
@@ -17952,12 +17977,13 @@
         },
         "required": [
           "id",
+          "type",
+          "token",
           "email",
           "status",
           "status_human_readable",
           "accepted_from_ip",
           "created_by_user",
-          "user",
           "team",
           "project",
           "accepted_at",
@@ -17970,14 +17996,17 @@
       "InvitationTeamCreate": {
         "type": "object",
         "properties": {
+          "type": {
+            "$ref": "#/components/schemas/TeamInvitationType"
+          },
           "email": {
-            "description": "The user email to send the invitation. Must be a valid email address.",
+            "description": "The user email to send the invitation. Must be a valid email address. This field is required when <code>type</code> is <code>private</code>.",
             "example": "invited.user@email.com",
             "type": "string"
           }
         },
         "required": [
-          "email"
+          "type"
         ]
       },
       "Language": {
@@ -23338,10 +23367,20 @@
             "example": "e57996b5-3cf3-4cae-a925-e2e2ada52732",
             "type": "string"
           },
+          "type": {
+            "$ref": "#/components/schemas/TeamInvitationType"
+          },
+          "token": {
+            "description": "The token used to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
+          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "status": {
             "$ref": "#/components/schemas/TeamInvitationStatus"
@@ -23358,9 +23397,6 @@
             "nullable": true
           },
           "created_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          "user": {
             "$ref": "#/components/schemas/UserRelation"
           },
           "team": {
@@ -23393,12 +23429,13 @@
         },
         "required": [
           "id",
+          "type",
+          "token",
           "email",
           "status",
           "status_human_readable",
           "accepted_from_ip",
           "created_by_user",
-          "user",
           "team",
           "project",
           "accepted_at",
@@ -23410,13 +23447,24 @@
       },
       "TeamInvitationStatus": {
         "type": "string",
-        "description": "The status of the invitation",
-        "example": "accepted",
+        "description": "The possible status of Team Invitation.",
         "enum": [
           "accepted",
           "expired",
-          "pending"
-        ]
+          "pending",
+          "rejected",
+          "active"
+        ],
+        "example": "accepted"
+      },
+      "TeamInvitationType": {
+        "type": "string",
+        "description": "The possible types of Team Invitation.",
+        "enum": [
+          "private",
+          "public"
+        ],
+        "example": "private"
       },
       "TeamList": {
         "type": "array",
