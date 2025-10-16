@@ -735,6 +735,8 @@ TeamInvitationRelation:
   $ref: ./auto-generated/models/team-invitation-relation.yaml
 TeamInvitationStatus:
   $ref: ./auto-generated/models/team-invitation-status.yaml
+TeamInvitationType:
+  $ref: ./auto-generated/models/team-invitation-type.yaml
 TeamList:
   $ref: ./auto-generated/models/team-list.yaml
 TeamMembershipList:

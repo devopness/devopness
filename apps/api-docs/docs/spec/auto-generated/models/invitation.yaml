@@ -5,10 +5,18 @@ properties:
     description: 'The unique UUID of the given invitation'
     example: e57996b5-3cf3-4cae-a925-e2e2ada52732
     type: string
+  type:
+    $ref: '#/components/schemas/TeamInvitationType'
+  token:
+    description: 'The token used to accept the public invitation'
+    example: null
+    type: string
+    nullable: true
   email:
     description: 'The email of the user that has been invited to team'
     example: invited.user@email.com
     type: string
+    nullable: true
   status:
     $ref: '#/components/schemas/TeamInvitationStatus'
   status_human_readable:
@@ -21,8 +29,6 @@ properties:
     type: string
     nullable: true
   created_by_user:
-    $ref: '#/components/schemas/UserRelation'
-  user:
     $ref: '#/components/schemas/UserRelation'
   team:
     $ref: '#/components/schemas/TeamRelation'
@@ -45,12 +51,13 @@ properties:
     type: string
 required:
   - id
+  - type
+  - token
   - email
   - status
   - status_human_readable
   - accepted_from_ip
   - created_by_user
-  - user
   - team
   - accepted_at
   - expires_at
