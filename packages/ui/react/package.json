@@ -93,6 +93,7 @@
     "eslint-plugin-storybook": "9.1.10",
     "globals": "16.4.0",
     "jsdom": "27.0.0",
+    "npm-check-updates": "19.1.1",
     "prettier": "3.6.1",
     "prettier-plugin-multiline-arrays": "4.0.3",
     "react": "18.3.1",
