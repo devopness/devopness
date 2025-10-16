@@ -285,6 +285,7 @@ export * from './team';
 export * from './team-environment-link';
 export * from './team-invitation-relation';
 export * from './team-invitation-status';
+export * from './team-invitation-type';
 export * from './team-membership-relation';
 export * from './team-project-create';
 export * from './team-relation';

@@ -13,6 +13,7 @@
 
 
 import { TeamInvitationStatus } from './team-invitation-status';
+import { TeamInvitationType } from './team-invitation-type';
 import { TeamRelation } from './team-relation';
 import { UserRelation } from './user-relation';
 
@@ -29,11 +30,23 @@ export interface Invitation {
      */
     id: string;
     /**
+     * 
+     * @type {TeamInvitationType}
+     * @memberof Invitation
+     */
+    type: TeamInvitationType;
+    /**
+     * The token used to accept the public invitation
+     * @type {string}
+     * @memberof Invitation
+     */
+    token: string | null;
+    /**
      * The email of the user that has been invited to team
      * @type {string}
      * @memberof Invitation
      */
-    email: string;
+    email: string | null;
     /**
      * 
      * @type {TeamInvitationStatus}
@@ -58,12 +71,6 @@ export interface Invitation {
      * @memberof Invitation
      */
     created_by_user: UserRelation;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof Invitation
-     */
-    user: UserRelation;
     /**
      * 
      * @type {TeamRelation}

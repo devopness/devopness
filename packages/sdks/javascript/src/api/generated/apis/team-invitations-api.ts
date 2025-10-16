@@ -22,15 +22,24 @@ import { ApiError } from '../../generated/models';
 export class TeamInvitationsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Accept a pending team invitation
+     * @summary Accept a team invitation
      * @param {string} teamInvitationId The ID of the team invitation.
+     * @param {string} [token] The token to authorize the acceptance of public invitations.
      */
-    public async acceptTeamInvitation(teamInvitationId: string): Promise<ApiResponse<void>> {
+    public async acceptTeamInvitation(teamInvitationId: string, token?: string): Promise<ApiResponse<void>> {
         if (teamInvitationId === null || teamInvitationId === undefined) {
             throw new ArgumentNullException('teamInvitationId', 'acceptTeamInvitation');
         }
 
         let queryString = '';
+        const queryParams = { token: token, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
 
         const requestUrl = '/team-invitations/{team_invitation_id}/accept' + (queryString? `?${queryString}` : '');
 
@@ -58,7 +67,7 @@ export class TeamInvitationsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Reject a pending team invitation
+     * @summary Reject a pending private team invitation
      * @param {string} teamInvitationId The ID of the team invitation.
      */
     public async rejectTeamInvitation(teamInvitationId: string): Promise<ApiResponse<void>> {
