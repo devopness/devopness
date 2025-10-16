@@ -13,12 +13,14 @@ from typing import Literal, Self
 
 class TeamInvitationStatus(str, Enum):
     """
-    The status of the invitation
+    The possible status of Team Invitation.
     """
 
     ACCEPTED = "accepted"
     EXPIRED = "expired"
     PENDING = "pending"
+    REJECTED = "rejected"
+    ACTIVE = "active"
 
     def __str__(self) -> str:
         """Return the string representation of the TeamInvitationStatus"""
@@ -35,4 +37,6 @@ TeamInvitationStatusPlain = Literal[
     "accepted",
     "expired",
     "pending",
+    "rejected",
+    "active",
 ]

@@ -568,6 +568,7 @@ from .team_invitation_relation import (
     TeamInvitationRelationPlain,
 )
 from .team_invitation_status import TeamInvitationStatus, TeamInvitationStatusPlain
+from .team_invitation_type import TeamInvitationType, TeamInvitationTypePlain
 from .team_membership_relation import (
     TeamMembershipRelation,
     TeamMembershipRelationPlain,
@@ -1230,6 +1231,8 @@ __all__ = [
     "TeamInvitationRelationPlain",
     "TeamInvitationStatus",
     "TeamInvitationStatusPlain",
+    "TeamInvitationType",
+    "TeamInvitationTypePlain",
     "TeamMembershipRelation",
     "TeamMembershipRelationPlain",
     "TeamPlain",
