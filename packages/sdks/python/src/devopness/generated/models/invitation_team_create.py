@@ -7,13 +7,16 @@ Note:
 """
 
 from typing import (
+    Optional,
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
+from .team_invitation_type import TeamInvitationType, TeamInvitationTypePlain
 
 
 class InvitationTeamCreate(DevopnessBaseModel):
@@ -21,11 +24,14 @@ class InvitationTeamCreate(DevopnessBaseModel):
     InvitationTeamCreate
 
     Attributes:
-        email (str): The user email to send the invitation. Must be a valid email address.
+        type (TeamInvitationType):
+        email (str, optional): The user email to send the invitation. Must be a valid email address. This field is required when &lt;code&gt;type&lt;/code&gt; is &lt;code&gt;private&lt;/code&gt;.
     """
 
-    email: StrictStr = Field(
-        description="The user email to send the invitation. Must be a valid email address."
+    type: TeamInvitationType
+    email: Optional[StrictStr] = Field(
+        default=None,
+        description="The user email to send the invitation. Must be a valid email address. This field is required when <code>type</code> is <code>private</code>.",
     )
 
 
@@ -34,4 +40,10 @@ class InvitationTeamCreatePlain(TypedDict, total=False):
     Plain version of InvitationTeamCreate.
     """
 
-    email: Required[str]
+    type: Required[
+        Union[
+            TeamInvitationType,
+            TeamInvitationTypePlain,
+        ]
+    ]
+    email: Optional[str]

@@ -32,7 +32,7 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         ],
     ) -> DevopnessResponse[Invitation]:
         """
-        Send invitation to user email to participate to a team
+        Create a new invitation for a team
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -55,7 +55,7 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         per_page: Optional[int] = None,
     ) -> DevopnessResponse[List[InvitationRelation]]:
         """
-        Return a list of pending invitations belonging to a team
+        Return a list of invitations belonging to a team
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -94,7 +94,7 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         ],
     ) -> DevopnessResponse[Invitation]:
         """
-        Send invitation to user email to participate to a team
+        Create a new invitation for a team
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -117,7 +117,7 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         per_page: Optional[int] = None,
     ) -> DevopnessResponse[List[InvitationRelation]]:
         """
-        Return a list of pending invitations belonging to a team
+        Return a list of invitations belonging to a team
 
         Raises:
             DevopnessApiError: If an API request error occurs.

@@ -18,6 +18,7 @@ from pydantic import Field, StrictStr
 from .. import DevopnessBaseModel
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .team_invitation_status import TeamInvitationStatus, TeamInvitationStatusPlain
+from .team_invitation_type import TeamInvitationType, TeamInvitationTypePlain
 from .team_relation import TeamRelation, TeamRelationPlain
 from .user_relation import UserRelation, UserRelationPlain
 
@@ -28,12 +29,13 @@ class InvitationRelation(DevopnessBaseModel):
 
     Attributes:
         id (str): The unique UUID of the given invitation
-        email (str): The email of the user that has been invited to team
+        type (TeamInvitationType):
+        token (str, optional, nullable): The token used to accept the public invitation
+        email (str, optional, nullable): The email of the user that has been invited to team
         status (TeamInvitationStatus):
         status_human_readable (str): Human readable version of the invitation status
         accepted_from_ip (str, optional, nullable): The IP of the user who accepted the invitation
         created_by_user (UserRelation):
-        user (UserRelation):
         team (TeamRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
         accepted_at (str, optional, nullable): The date and time when the invitation was accepted
@@ -43,7 +45,11 @@ class InvitationRelation(DevopnessBaseModel):
     """
 
     id: StrictStr = Field(description="The unique UUID of the given invitation")
-    email: StrictStr = Field(
+    type: TeamInvitationType
+    token: Optional[StrictStr] = Field(
+        description="The token used to accept the public invitation"
+    )
+    email: Optional[StrictStr] = Field(
         description="The email of the user that has been invited to team"
     )
     status: TeamInvitationStatus
@@ -54,7 +60,6 @@ class InvitationRelation(DevopnessBaseModel):
         description="The IP of the user who accepted the invitation"
     )
     created_by_user: UserRelation
-    user: UserRelation
     team: Optional[TeamRelation]
     project: Optional[ProjectRelation]
     accepted_at: Optional[StrictStr] = Field(
@@ -77,7 +82,14 @@ class InvitationRelationPlain(TypedDict, total=False):
     """
 
     id: Required[str]
-    email: Required[str]
+    type: Required[
+        Union[
+            TeamInvitationType,
+            TeamInvitationTypePlain,
+        ]
+    ]
+    token: Optional[str]
+    email: Optional[str]
     status: Required[
         Union[
             TeamInvitationStatus,
@@ -87,12 +99,6 @@ class InvitationRelationPlain(TypedDict, total=False):
     status_human_readable: Required[str]
     accepted_from_ip: Optional[str]
     created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    user: Required[
         Union[
             UserRelation,
             UserRelationPlain,

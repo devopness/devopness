@@ -6,7 +6,10 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Optional
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
+from ..utils import parse_query_string
 
 
 class TeamInvitationsApiService(DevopnessBaseService):
@@ -17,17 +20,25 @@ class TeamInvitationsApiService(DevopnessBaseService):
     def accept_team_invitation(
         self,
         team_invitation_id: str,
+        token: Optional[str] = None,
     ) -> DevopnessResponse[None]:
         """
-        Accept a pending team invitation
+        Accept a team invitation
 
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
 
+        query_string = parse_query_string(
+            {
+                "token": token,
+            }
+        )
+
         endpoint_parts = [
             f"/team-invitations/{team_invitation_id}/accept",
+            f"?{query_string}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -61,7 +72,7 @@ class TeamInvitationsApiService(DevopnessBaseService):
         team_invitation_id: str,
     ) -> DevopnessResponse[None]:
         """
-        Reject a pending team invitation
+        Reject a pending private team invitation
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -86,17 +97,25 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def accept_team_invitation(
         self,
         team_invitation_id: str,
+        token: Optional[str] = None,
     ) -> DevopnessResponse[None]:
         """
-        Accept a pending team invitation
+        Accept a team invitation
 
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
         """
 
+        query_string = parse_query_string(
+            {
+                "token": token,
+            }
+        )
+
         endpoint_parts = [
             f"/team-invitations/{team_invitation_id}/accept",
+            f"?{query_string}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -130,7 +149,7 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         team_invitation_id: str,
     ) -> DevopnessResponse[None]:
         """
-        Reject a pending team invitation
+        Reject a pending private team invitation
 
         Raises:
             DevopnessApiError: If an API request error occurs.

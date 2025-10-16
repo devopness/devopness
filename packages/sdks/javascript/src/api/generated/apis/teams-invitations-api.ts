@@ -25,7 +25,7 @@ import { InvitationTeamCreate } from '../../generated/models';
 export class TeamsInvitationsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Send invitation to user email to participate to a team
+     * @summary Create a new invitation for a team
      * @param {number} teamId The ID of the team.
      * @param {InvitationTeamCreate} invitationTeamCreate A JSON object containing the resource data
      */
@@ -47,7 +47,7 @@ export class TeamsInvitationsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Return a list of pending invitations belonging to a team
+     * @summary Return a list of invitations belonging to a team
      * @param {number} teamId The ID of the team.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
