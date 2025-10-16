@@ -14,16 +14,13 @@
 
 
 /**
- * The possible status of Team Invitation.
+ * The possible types of Team Invitation.
  * @export
  * @enum {string}
  */
-export enum TeamInvitationStatus {
-    Accepted = 'accepted',
-    Expired = 'expired',
-    Pending = 'pending',
-    Rejected = 'rejected',
-    Active = 'active'
+export enum TeamInvitationType {
+    Private = 'private',
+    Public = 'public'
 }
 
 

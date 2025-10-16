@@ -12,6 +12,7 @@
  */
 
 
+import { TeamInvitationType } from './team-invitation-type';
 
 /**
  * 
@@ -20,10 +21,16 @@
  */
 export interface InvitationTeamCreate {
     /**
-     * The user email to send the invitation. Must be a valid email address.
+     * 
+     * @type {TeamInvitationType}
+     * @memberof InvitationTeamCreate
+     */
+    type: TeamInvitationType;
+    /**
+     * The user email to send the invitation. Must be a valid email address. This field is required when <code>type</code> is <code>private</code>.
      * @type {string}
      * @memberof InvitationTeamCreate
      */
-    email: string;
+    email?: string;
 }
 
