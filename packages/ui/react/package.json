@@ -97,7 +97,7 @@
     "prettier-plugin-multiline-arrays": "^4.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "storybook": "9.1.10",
+    "storybook": "9.1.12",
     "typescript": "^5.9.3",
     "typescript-eslint": "~8.46.1",
     "vite": "^7.1.10",
