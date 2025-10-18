@@ -1,15 +1,14 @@
 ---
 title: List Team Memberships
 intro: View the list of team memberships linked to a project environment and check which teams have access and their assigned roles.
-
 links:
-  overview:
-  quickstart:
-  previous:
-  next: team-memberships/add-team-membership
-  guides:
-  related:
-  featured:
+    overview:
+    quickstart:
+    previous: environments/index
+    next: environments/team-memberships/add-team-membership
+    guides:
+    related:
+    featured:
 ---
 
 1. Select a `Project` from the Devopness dashboard
