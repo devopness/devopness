@@ -17,9 +17,9 @@ from pydantic import Field, StrictStr
 from .. import DevopnessBaseModel
 
 
-class ProjectCreate(DevopnessBaseModel):
+class ProjectOrganizationCreate(DevopnessBaseModel):
     """
-    ProjectCreate
+    ProjectOrganizationCreate
 
     Attributes:
         name (str): The name of the project. Must not be greater than 60 characters.
@@ -39,9 +39,9 @@ class ProjectCreate(DevopnessBaseModel):
     )
 
 
-class ProjectCreatePlain(TypedDict, total=False):
+class ProjectOrganizationCreatePlain(TypedDict, total=False):
     """
-    Plain version of ProjectCreate.
+    Plain version of ProjectOrganizationCreate.
     """
 
     name: Required[str]

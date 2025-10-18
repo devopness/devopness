@@ -13,6 +13,7 @@
 
 
 import { ResourceSummaryItem } from './resource-summary-item';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -44,6 +45,12 @@ export interface OrganizationRelation {
      * @memberof OrganizationRelation
      */
     resource_summary?: Array<ResourceSummaryItem>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof OrganizationRelation
+     */
+    owner: UserRelation;
     /**
      * The date and time when the organization was created
      * @type {string}

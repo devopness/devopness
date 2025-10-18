@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "devopness"
-version = "2.0.0"
+version = "2.0.1"
 description = "Devopness API Python SDK - Painless essential DevOps to everyone"
 license = "MIT"
 readme = "README.md"
@@ -68,7 +68,7 @@ exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = { version = "7.16.0", markers = "python_version < '4.0'" }
-ruff = "^0.14.0"
+ruff = "^0.14.1"
 mypy = "1.18.2"
 
 [tool.ruff]
