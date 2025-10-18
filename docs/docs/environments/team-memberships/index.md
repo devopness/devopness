@@ -1,17 +1,23 @@
 ---
 title: Team Memberships
-intro: This feature allows for the management of team access to project environments. You can grant access to new teams by assigning them a role, or view existing team memberships.
+intro: Team Memberships are the primary way to link a Team to a specific Environment, granting permissions based on an assigned Role.
 links:
     overview:
     quickstart:
-    previous: environments/index
-    next: environments/team-memberships/add-team-membership
+    previous:
+    next:
     guides:
-    related:
+    related:        
+      - teams/index
+      - environments/index
+      - roles/index
     featured:
 ---
 
-1. On Devopness dashboard, select a `Project`
-1. Select an `Environment` linked to the chosen project
-1. On the `Environment` page, click the **TEAM MEMBERSHIPS** button located at the top-right corner of the screen
-    - The list of existing team memberships will be displayed, showing teams and their assigned roles.
+Each membership acts as a link between three key components:
+
+1.  **Team:** The group of users receiving access.
+2.  **Environment:** The resource being accessed.
+3.  **Role:** The set of permissions the team will have within that specific environment.
+
+Before you can create a team membership, you must ensure your project has the necessary teams and roles already configured.
