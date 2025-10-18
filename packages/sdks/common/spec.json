@@ -5304,10 +5304,10 @@
     },
     "/organizations/{organization_id}/projects": {
       "get": {
-        "summary": "Return a list of all projects owned by an organization",
+        "summary": "List all projects belonging to an organization",
         "operationId": "listOrganizationProjects",
         "tags": [
-          "Organizations - Projects"
+          "Projects"
         ],
         "parameters": [
           {
@@ -5345,6 +5345,14 @@
                   "$ref": "#/components/schemas/ProjectList"
                 }
               }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
             }
           },
           "403": {
@@ -5354,6 +5362,77 @@
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a project to a given organization",
+        "operationId": "addOrganizationProject",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectOrganizationCreate"
               }
             }
           }
@@ -6275,7 +6354,7 @@
         }
       },
       "post": {
-        "summary": "Create a project for a user or an organization",
+        "summary": "Create a project for the authenticated user",
         "operationId": "addProject",
         "tags": [
           "Projects"
@@ -12455,9 +12534,6 @@
       "name": "Organizations - Environments"
     },
     {
-      "name": "Organizations - Projects"
-    },
-    {
       "name": "Pipelines"
     },
     {
@@ -12643,8 +12719,7 @@
       "name": "Organizations",
       "tags": [
         "Organizations",
-        "Organizations - Environments",
-        "Organizations - Projects"
+        "Organizations - Environments"
       ]
     },
     {
@@ -19102,6 +19177,9 @@
           "resource_summary": {
             "$ref": "#/components/schemas/ResourceSummaryList"
           },
+          "owner": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
           "created_at": {
             "description": "The date and time when the organization was created",
             "example": "2019-09-25T15:50:48.000000Z",
@@ -19117,6 +19195,7 @@
           "id",
           "name",
           "url_slug",
+          "owner",
           "created_at",
           "updated_at"
         ],
@@ -19890,11 +19969,6 @@
             "example": "my project",
             "type": "string"
           },
-          "organization_id": {
-            "description": "The ID of the organization that owns the project.",
-            "example": 12345,
-            "type": "integer"
-          },
           "logo_image": {
             "description": "A base64 string representation of the logo image.",
             "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII=",
@@ -19915,6 +19989,29 @@
         "items": {
           "$ref": "#/components/schemas/ProjectRelation"
         }
+      },
+      "ProjectOrganizationCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the project. Must not be greater than 60 characters.",
+            "example": "my project",
+            "type": "string"
+          },
+          "logo_image": {
+            "description": "A base64 string representation of the logo image.",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII=",
+            "type": "string"
+          },
+          "logo_url": {
+            "description": "A URL path to the project's logo image. Must be a valid URL.",
+            "example": "https://example.com/projects-beautiful-logo.png",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
       },
       "ProjectRelation": {
         "type": "object",

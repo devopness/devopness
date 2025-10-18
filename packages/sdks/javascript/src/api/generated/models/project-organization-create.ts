@@ -16,25 +16,25 @@
 /**
  * 
  * @export
- * @interface ProjectCreate
+ * @interface ProjectOrganizationCreate
  */
-export interface ProjectCreate {
+export interface ProjectOrganizationCreate {
     /**
      * The name of the project. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof ProjectCreate
+     * @memberof ProjectOrganizationCreate
      */
     name: string;
     /**
      * A base64 string representation of the logo image.
      * @type {string}
-     * @memberof ProjectCreate
+     * @memberof ProjectOrganizationCreate
      */
     logo_image?: string;
     /**
      * A URL path to the project\'s logo image. Must be a valid URL.
      * @type {string}
-     * @memberof ProjectCreate
+     * @memberof ProjectOrganizationCreate
      */
     logo_url?: string;
 }

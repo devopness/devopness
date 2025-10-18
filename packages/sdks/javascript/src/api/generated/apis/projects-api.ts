@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Project } from '../../generated/models';
 import { ProjectCreate } from '../../generated/models';
+import { ProjectOrganizationCreate } from '../../generated/models';
 import { ProjectRelation } from '../../generated/models';
 import { ProjectUpdate } from '../../generated/models';
 
@@ -26,7 +27,29 @@ import { ProjectUpdate } from '../../generated/models';
 export class ProjectsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Create a project for a user or an organization
+     * @summary Create a project to a given organization
+     * @param {string} organizationId The numeric ID or URL Slug of an organization.
+     * @param {ProjectOrganizationCreate} projectOrganizationCreate A JSON object containing the resource data
+     */
+    public async addOrganizationProject(organizationId: string, projectOrganizationCreate: ProjectOrganizationCreate): Promise<ApiResponse<Project>> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new ArgumentNullException('organizationId', 'addOrganizationProject');
+        }
+        if (projectOrganizationCreate === null || projectOrganizationCreate === undefined) {
+            throw new ArgumentNullException('projectOrganizationCreate', 'addOrganizationProject');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/organizations/{organization_id}/projects' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Project, ProjectOrganizationCreate>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))), projectOrganizationCreate);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Create a project for the authenticated user
      * @param {ProjectCreate} projectCreate A JSON object containing the resource data
      */
     public async addProject(projectCreate: ProjectCreate): Promise<ApiResponse<Project>> {
@@ -57,6 +80,34 @@ export class ProjectsApiService extends ApiBaseService {
         const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Project>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary List all projects belonging to an organization
+     * @param {string} organizationId The numeric ID or URL Slug of an organization.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listOrganizationProjects(organizationId: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ProjectRelation>>> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new ArgumentNullException('organizationId', 'listOrganizationProjects');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/organizations/{organization_id}/projects' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<ProjectRelation>>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
         return new ApiResponse(response);
     }
 
