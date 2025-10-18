@@ -455,6 +455,8 @@ ProjectCreate:
   $ref: ./auto-generated/models/project-create.yaml
 ProjectList:
   $ref: ./auto-generated/models/project-list.yaml
+ProjectOrganizationCreate:
+  $ref: ./auto-generated/models/project-organization-create.yaml
 ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:
