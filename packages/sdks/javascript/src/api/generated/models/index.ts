@@ -181,6 +181,7 @@ export * from './pipeline-trigger-when';
 export * from './pipeline-update';
 export * from './project';
 export * from './project-create';
+export * from './project-organization-create';
 export * from './project-relation';
 export * from './project-update';
 export * from './provider-code';
