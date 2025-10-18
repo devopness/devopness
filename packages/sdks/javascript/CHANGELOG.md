@@ -1,5 +1,13 @@
 # @devopness/sdk-js
 
+## 3.0.1
+
+### Patch Changes
+
+- [#2282](https://github.com/devopness/devopness/pull/2282) [`9932dc9`](https://github.com/devopness/devopness/commit/9932dc991ed985e2148ac2ffffdf2bcaf0aeb603) Thanks [@devopness-automations](https://github.com/devopness-automations)! - ## Changes
+  - Added a dedicated method to create projects under an organization: `devopnessClient.projects.addOrganizationProject`
+  - Removed the `organization_id` parameter from `devopnessClient.projects.addProject`, as organization-specific project creation is now handled by the new method.
+
 ## 3.0.0
 
 ### Major Changes
