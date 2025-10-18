@@ -18,6 +18,7 @@ from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
+from .user_relation import UserRelation, UserRelationPlain
 
 
 class OrganizationRelation(DevopnessBaseModel):
@@ -29,6 +30,7 @@ class OrganizationRelation(DevopnessBaseModel):
         name (str): The name of the organization
         url_slug (str): The URL Slug of the organization
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
+        owner (UserRelation):
         created_at (str): The date and time when the organization was created
         updated_at (str): The date and time when the organization was last updated
     """
@@ -39,6 +41,7 @@ class OrganizationRelation(DevopnessBaseModel):
     resource_summary: Optional[List[ResourceSummaryItem]] = Field(
         default=None, description="Summary of the resource"
     )
+    owner: UserRelation
     created_at: StrictStr = Field(
         description="The date and time when the organization was created"
     )
@@ -61,6 +64,12 @@ class OrganizationRelationPlain(TypedDict, total=False):
                 ResourceSummaryItem,
                 ResourceSummaryItemPlain,
             ]
+        ]
+    ]
+    owner: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
         ]
     ]
     created_at: Required[str]
