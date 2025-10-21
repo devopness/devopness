@@ -1,11 +1,11 @@
 ---
 title: Members
-intro:
+intro: Add members to a Team so people can collaborate to all Environments on which the Team has permissions.
 links:
     overview:
     quickstart:
-    previous:
-    next:
+    previous: teams/index
+    next: teams/invitations/add-invitation
     guides:
     related:
     featured:

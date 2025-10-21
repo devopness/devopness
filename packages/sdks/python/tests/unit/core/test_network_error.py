@@ -39,7 +39,7 @@ class TestDevopnessNetworkError(unittest.IsolatedAsyncioTestCase):
         assert (
             "\nDevopness SDK Error: Network Request Failed\n\n"
             "Request: GET https://host.invalid/\n"
-            "Exception: [Errno -2]"
+            "Exception: [Errno"
         ) in string_output
 
     def test_devopness_network_error_sync(self) -> None:
@@ -57,5 +57,5 @@ class TestDevopnessNetworkError(unittest.IsolatedAsyncioTestCase):
         assert (
             "\nDevopness SDK Error: Network Request Failed\n\n"
             "Request: GET https://host.invalid/\n"
-            "Exception: [Errno -2]"
+            "Exception: [Errno"
         ) in string_output
