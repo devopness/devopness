@@ -76,9 +76,9 @@ jobs:
 
       - name: Fail if build did not succeed
         run: |
-          if [ "${{ needs.build.result }}" != "success" ]; then
+          if [ "${{ needs.build.result }}" = "failure" ] || [ "${{ needs.build.result }}" = "cancelled" ]; then
             echo "❌ Build job failed or was cancelled"
             exit 1
           fi
 
-          echo "✅ Build job succeeded"
+          echo "✅ Build job succeeded or was skipped"
