@@ -5,7 +5,7 @@ links:
     overview: Project owners and team administrators can view all invitations sent to potential team members.
     quickstart:
     previous: teams/invitations/add-invitation
-    next: teams/members/add-team-member
+    # next: teams/members/add-team-member
     guides:
     related:
     featured:
