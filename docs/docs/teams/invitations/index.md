@@ -5,12 +5,11 @@ links:
     overview: Team invitations allow project owners to invite new members to join their teams and collaborate on project environments.
     quickstart: teams/invitations/add-invitation
     previous: teams/add-team
-    next: teams/members/add-team-member
+    # next: teams/members/add-team-member
     guides:
         - teams/invitations/add-invitation
         - teams/invitations/list-invitations
     related:
-        - teams/members/add-team-member
         - teams/view-team
     featured:
 ---
