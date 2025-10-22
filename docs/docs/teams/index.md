@@ -4,7 +4,7 @@ intro: Use Teams to group people in a project to ensure they all can collaborate
 links:
     overview:
     quickstart:
-    previous:
+    previous: projects/index
     next:
     guides:
     related:
