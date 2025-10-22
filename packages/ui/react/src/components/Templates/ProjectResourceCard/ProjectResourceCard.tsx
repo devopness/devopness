@@ -104,7 +104,7 @@ export const ProjectResourceCard = ({
               {iconLoader(icon, 48, getColor('gray.500'))}
             </EmptyStateIcon>
             <EmptyStateTitle>
-              {emptyStateTitle ?? `Nenhum ${title.toLowerCase()} encontrado`}
+              {emptyStateTitle ?? `No ${title.toLowerCase()} found`}
             </EmptyStateTitle>
             {emptyStateDescription && (
               <EmptyStateDescription>

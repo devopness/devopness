@@ -32,15 +32,15 @@ const Environments: Story = {
       {
         id: 1,
         name: 'Production',
-        subText: 'Última atualização: há 2h',
+        subText: 'Last updated: 2h ago',
         tag: {
-          text: 'Ativo',
+          text: 'Active',
           color: '#10b981',
         },
       },
     ],
-    addButtonText: '+ Adicionar',
-    footerButtonText: 'VER TODOS',
+    addButtonText: '+ Add',
+    footerButtonText: 'VIEW ALL',
   },
 }
 
@@ -53,24 +53,24 @@ const Teams: Story = {
       {
         id: 1,
         name: 'developers',
-        subText: 'Última atividade: há 2h',
+        subText: 'Last activity: 2h ago',
         tag: {
-          text: '12 membros',
+          text: '12 members',
           color: '#3b82f6',
         },
       },
       {
         id: 2,
         name: 'marketing',
-        subText: 'Última atividade: há 5h',
+        subText: 'Last activity: 5h ago',
         tag: {
-          text: '8 membros',
+          text: '8 members',
           color: '#3b82f6',
         },
       },
     ],
-    addButtonText: '+ Adicionar',
-    footerButtonText: 'VER TODOS',
+    addButtonText: '+ Add',
+    footerButtonText: 'VIEW ALL',
   },
 }
 
@@ -83,7 +83,7 @@ const Roles: Story = {
       {
         id: 1,
         name: 'Admin',
-        subText: 'Acesso total ao sistema',
+        subText: 'Full system access',
         tag: {
           text: 'Full Access',
           color: '#fbbf24',
@@ -93,7 +93,7 @@ const Roles: Story = {
       {
         id: 2,
         name: 'Read',
-        subText: 'Apenas leitura',
+        subText: 'Read only',
         tag: {
           text: 'Read Only',
           color: '#fbbf24',
@@ -101,8 +101,8 @@ const Roles: Story = {
         },
       },
     ],
-    addButtonText: '+ Adicionar',
-    footerButtonText: 'VER TODOS',
+    addButtonText: '+ Add',
+    footerButtonText: 'VIEW ALL',
   },
 }
 
@@ -112,9 +112,9 @@ const EmptyState: Story = {
     icon: 'key',
     iconBackgroundColor: '#fef3c7',
     resources: [],
-    footerButtonText: '+ Criar API Token',
-    emptyStateTitle: 'Nenhum API Token encontrado',
-    emptyStateDescription: 'Crie tokens de API para integrar aplicações externas com segurança.',
+    footerButtonText: '+ Create API Token',
+    emptyStateTitle: 'No API Tokens found',
+    emptyStateDescription: 'Create API tokens to securely integrate external applications.',
   },
 }
 
