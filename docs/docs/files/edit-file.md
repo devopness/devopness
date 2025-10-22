@@ -8,6 +8,8 @@ links:
     next:
     guides:
     related:
+        - files/view-file
+        - files/add-file
     featured:
 required_permissions:
     - application:update

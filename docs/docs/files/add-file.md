@@ -8,6 +8,8 @@ links:
     next: applications/link-server-to-application
     guides:
     related:
+        - files/view-file
+        - files/edit-file
     featured:
 required_permissions:
     - application:update
