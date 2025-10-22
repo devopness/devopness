@@ -77,6 +77,19 @@ const config: Config = {
   ],
   themes: ["@easyops-cn/docusaurus-search-local"],
 
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          { to: "/docs/credentials/add-credential", from: ["/docs/environments/credentials/add-credential"] },
+          { to: "/docs/credentials/list-credentials", from: ["/docs/environments/credentials/list-credentials"] },
+          { to: "/docs/credentials/view-credential", from: ["/docs/environments/credentials/view-credential"] }
+        ],
+      },
+    ],
+  ],
+
   // 4. Theme Configuration
   // Customize the appearance and behavior of your site
   themeConfig: {
