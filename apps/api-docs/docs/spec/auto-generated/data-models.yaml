@@ -341,6 +341,10 @@ MemberList:
   $ref: ./auto-generated/models/member-list.yaml
 MemberRelation:
   $ref: ./auto-generated/models/member-relation.yaml
+MembershipList:
+  $ref: ./auto-generated/models/membership-list.yaml
+MembershipRelation:
+  $ref: ./auto-generated/models/membership-relation.yaml
 Network:
   $ref: ./auto-generated/models/network.yaml
 NetworkEnvironmentCreate:

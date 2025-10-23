@@ -481,6 +481,9 @@
     $ref: ./auto-generated/endpoints/delete-team-member.yaml
   get:
     $ref: ./auto-generated/endpoints/get-team-member.yaml
+'/teams/{team_id}/memberships':
+  get:
+    $ref: ./auto-generated/endpoints/list-team-memberships.yaml
 /users:
   post:
     $ref: ./auto-generated/endpoints/add-user.yaml
