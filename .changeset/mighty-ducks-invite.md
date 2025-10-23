@@ -16,3 +16,4 @@ response = devopness.teams.list_team_memberships(team_id)
 
 for membership in response.data:
     print(f"Access to environment {membership.environment.name} with role {membership.role.name}")
+```
