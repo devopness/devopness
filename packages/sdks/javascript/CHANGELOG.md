@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#2311](https://github.com/devopness/devopness/pull/2311) [`ca9eed3`](https://github.com/devopness/devopness/commit/ca9eed3ae6adfbfb38506cf7119efaf5bea17d8b) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added a method to list all memberships (links) of a given team, showing which environments the team has access to and the corresponding roles.
+- [#2311](https://github.com/devopness/devopness/pull/2311) [`ca9eed3`](https://github.com/devopness/devopness/commit/ca9eed3ae6adfbfb38506cf7119efaf5bea17d8b) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added a method to list all memberships (links) of a given team, showing which environments the team has access to and the corresponding roles.
 
   ### Example Usage
 
