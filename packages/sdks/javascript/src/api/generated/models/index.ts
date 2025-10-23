@@ -137,6 +137,7 @@ export * from './linked-resource-summary-field';
 export * from './log';
 export * from './member';
 export * from './member-relation';
+export * from './membership-relation';
 export * from './network';
 export * from './network-environment-create';
 export * from './network-provision-input';

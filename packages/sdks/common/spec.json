@@ -10791,6 +10791,76 @@
         }
       }
     },
+    "/teams/{team_id}/memberships": {
+      "get": {
+        "summary": "Return a list of all memberships of a team",
+        "operationId": "listTeamMemberships",
+        "tags": [
+          "Teams - Memberships"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "description": "The ID of the team.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
     "/users": {
       "post": {
         "summary": "Sign up/register a new user",
@@ -12609,6 +12679,9 @@
       "name": "Teams - Members"
     },
     {
+      "name": "Teams - Memberships"
+    },
+    {
       "name": "Users"
     },
     {
@@ -12799,6 +12872,7 @@
       "tags": [
         "Projects - Teams",
         "Teams",
+        "Teams - Memberships",
         "Teams - Invitations",
         "Team Invitations",
         "Teams - Members",
@@ -18385,6 +18459,40 @@
         },
         "required": [
           "user",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
+      },
+      "MembershipList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MembershipRelation"
+        }
+      },
+      "MembershipRelation": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "environment",
+          "role",
           "created_at",
           "updated_at"
         ],
