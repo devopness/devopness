@@ -300,6 +300,7 @@ from .linked_resource_summary_field import (
 from .log import Log, LogPlain
 from .member import Member, MemberPlain
 from .member_relation import MemberRelation, MemberRelationPlain
+from .membership_relation import MembershipRelation, MembershipRelationPlain
 from .network import Network, NetworkPlain
 from .network_environment_create import (
     NetworkEnvironmentCreate,
@@ -934,6 +935,8 @@ __all__ = [
     "MemberPlain",
     "MemberRelation",
     "MemberRelationPlain",
+    "MembershipRelation",
+    "MembershipRelationPlain",
     "Network",
     "NetworkEnvironmentCreate",
     "NetworkEnvironmentCreatePlain",
