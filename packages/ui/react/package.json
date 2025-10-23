@@ -60,7 +60,7 @@
   "dependencies": {
     "@mui/material": "^6.5.0",
     "@mui/styled-engine-sc": "^6.4.9",
-    "ldrs": "^1.1.7",
+    "ldrs": "^1.1.9",
     "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.3.6",
     "path-browserify": "^1.0.1",
@@ -100,7 +100,7 @@
     "storybook": "9.1.13",
     "typescript": "^5.9.3",
     "typescript-eslint": "~8.46.2",
-    "vite": "^7.1.11",
+    "vite": "^7.1.12",
     "vite-plugin-dts": "^4.5.4",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
