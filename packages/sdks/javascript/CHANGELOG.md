@@ -1,5 +1,28 @@
 # @devopness/sdk-js
 
+## 3.1.0
+
+### Minor Changes
+
+- [#2311](https://github.com/devopness/devopness/pull/2311) [`ca9eed3`](https://github.com/devopness/devopness/commit/ca9eed3ae6adfbfb38506cf7119efaf5bea17d8b) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added a method to list all memberships (links) of a given team, showing which environments the team has access to and the corresponding roles.
+
+  ### Example Usage
+
+  ```javascript
+  import { DevopnessApiClient } from "@devopness/sdk-js";
+
+  const devopness = new DevopnessApiClient();
+
+  const teamId = 123;
+  const response = devopness.teams.memberships.listTeamMemberships(teamId);
+
+  for (const membership of response.data) {
+    console.log(
+      `Access to environment ${membership.environment.name} with role ${membership.role.name}`,
+    );
+  }
+  ```
+
 ## 3.0.1
 
 ### Patch Changes
