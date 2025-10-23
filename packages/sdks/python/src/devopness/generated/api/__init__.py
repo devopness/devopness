@@ -194,6 +194,10 @@ from .teams_members_api import (
     TeamsMembersApiService,
     TeamsMembersApiServiceAsync,
 )
+from .teams_memberships_api import (
+    TeamsMembershipsApiService,
+    TeamsMembershipsApiServiceAsync,
+)
 from .users_api import (
     UsersApiService,
     UsersApiServiceAsync,
@@ -322,6 +326,8 @@ __all__ = [
     "TeamsInvitationsApiServiceAsync",
     "TeamsMembersApiService",
     "TeamsMembersApiServiceAsync",
+    "TeamsMembershipsApiService",
+    "TeamsMembershipsApiServiceAsync",
     "UsersApiService",
     "UsersApiServiceAsync",
     "UsersEnvironmentsApiService",
