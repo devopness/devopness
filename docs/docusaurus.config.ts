@@ -82,9 +82,9 @@ const config: Config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          { to: "/docs/credentials/add-credential", from: ["/docs/environments/credentials/add-credential"] },
-          { to: "/docs/credentials/list-credentials", from: ["/docs/environments/credentials/list-credentials"] },
-          { to: "/docs/credentials/view-credential", from: ["/docs/environments/credentials/view-credential"] }
+          { from: ["/docs/environments/credentials/add-credential"], to: "/docs/credentials/add-credential" },
+          { from: ["/docs/environments/credentials/list-credentials"], to: "/docs/credentials/list-credentials" },
+          { from: ["/docs/environments/credentials/view-credential"], to: "/docs/credentials/view-credential" }
         ],
       },
     ],
