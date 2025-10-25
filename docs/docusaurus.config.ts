@@ -82,9 +82,19 @@ const config: Config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          { from: ["/docs/environments/credentials/add-credential"], to: "/docs/credentials/add-credential" },
-          { from: ["/docs/environments/credentials/list-credentials"], to: "/docs/credentials/list-credentials" },
-          { from: ["/docs/environments/credentials/view-credential"], to: "/docs/credentials/view-credential" }
+          // Credential redirects - fixing path from environments/credentials/* to credentials/*
+          { from: ["/docs/environments/credentials/add-credential"],          to: "/docs/credentials/add-credential" },
+          { from: ["/docs/environments/credentials/add-aws-credential"],      to: "/docs/credentials/add-aws-credential" },
+          { from: ["/docs/environments/credentials/add-azure-credential"],    to: "/docs/credentials/add-azure-credential" },
+          { from: ["/docs/environments/credentials/add-digitalocean-credential"], to: "/docs/credentials/add-digitalocean-credential" },
+          { from: ["/docs/environments/credentials/add-gcp-credential"],      to: "/docs/credentials/add-gcp-credential" },
+          { from: ["/docs/environments/credentials/add-hetzner-credential"],  to: "/docs/credentials/add-hetzner-credential" },
+          { from: ["/docs/environments/credentials/edit-credential"],         to: "/docs/credentials/edit-credential" },
+          { from: ["/docs/environments/credentials/get-credential-status"],   to: "/docs/credentials/get-credential-status" },
+          { from: ["/docs/environments/credentials/list-credentials"],        to: "/docs/credentials/list-credentials" },
+          { from: ["/docs/environments/credentials/remove-credential"],       to: "/docs/credentials/remove-credential" },
+          { from: ["/docs/environments/credentials/view-credential"],         to: "/docs/credentials/view-credential" },
+          { from: ["/docs/environments/credentials"],                         to: "/docs/credentials" }
         ],
       },
     ],
