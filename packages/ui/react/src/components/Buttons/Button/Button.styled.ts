@@ -133,23 +133,23 @@ const BaseButton = styled.button<
   >
 >`
   ${({
-    $backgroundColor,
-    $borderColor,
-    $buttonType,
-    $color,
-    $noIconMargin,
-    $noMargin,
-    $noPadding,
-    $noPointerEvents,
-    $revertOrientation,
-    $typeSize,
-  }) => css`
+  $backgroundColor,
+  $borderColor,
+  $buttonType,
+  $color,
+  $noIconMargin,
+  $noMargin,
+  $noPadding,
+  $noPointerEvents,
+  $revertOrientation,
+  $typeSize,
+}) => css`
     /** Base */
     cursor: pointer;
     display: flex;
     background-color: ${getBackgroundColor($buttonType, $backgroundColor)};
     height: ${getHeight($typeSize)};
-    margin: ${$noMargin ? '0' : '0 15px'};
+    margin: ${$noMargin ? '0' : '0'};
     padding: ${$noPadding ? '0' : '5px 15px'};
     user-select: none;
 
