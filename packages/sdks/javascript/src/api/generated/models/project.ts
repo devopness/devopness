@@ -12,6 +12,8 @@
  */
 
 
+import { ProjectOwnerRelation } from './project-owner-relation';
+import { ProjectOwnerType } from './project-owner-type';
 import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
@@ -57,6 +59,18 @@ export interface Project {
      * @memberof Project
      */
     os_users: Array<object>;
+    /**
+     * 
+     * @type {ProjectOwnerRelation}
+     * @memberof Project
+     */
+    owner: ProjectOwnerRelation;
+    /**
+     * 
+     * @type {ProjectOwnerType}
+     * @memberof Project
+     */
+    owner_type: ProjectOwnerType;
     /**
      * 
      * @type {UserRelation}
