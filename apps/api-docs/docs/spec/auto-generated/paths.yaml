@@ -214,12 +214,6 @@
     $ref: ./auto-generated/endpoints/get-organization.yaml
   put:
     $ref: ./auto-generated/endpoints/update-organization.yaml
-'/organizations/{organization_id}/activity':
-  get:
-    $ref: ./auto-generated/endpoints/get-organization-activity.yaml
-'/organizations/{organization_id}/environments':
-  get:
-    $ref: ./auto-generated/endpoints/list-organization-environments.yaml
 '/organizations/{organization_id}/projects':
   get:
     $ref: ./auto-generated/endpoints/list-organization-projects.yaml

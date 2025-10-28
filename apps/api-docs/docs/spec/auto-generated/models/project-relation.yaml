@@ -22,6 +22,10 @@ properties:
     $ref: '#/components/schemas/ResourceSummaryList'
   os_users:
     $ref: '#/components/schemas/OsUsers'
+  owner:
+    $ref: '#/components/schemas/ProjectOwnerRelation'
+  owner_type:
+    $ref: '#/components/schemas/ProjectOwnerType'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   used_credits:
@@ -42,6 +46,8 @@ required:
   - name
   - logo_url
   - os_users
+  - owner
+  - owner_type
   - created_by_user
   - created_at
   - updated_at

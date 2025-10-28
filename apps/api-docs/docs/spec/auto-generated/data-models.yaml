@@ -397,8 +397,6 @@ OperationCustomSettingsList:
   $ref: ./auto-generated/models/operation-custom-settings-list.yaml
 Organization:
   $ref: ./auto-generated/models/organization.yaml
-OrganizationActivity:
-  $ref: ./auto-generated/models/organization-activity.yaml
 OrganizationCreate:
   $ref: ./auto-generated/models/organization-create.yaml
 OrganizationList:
@@ -461,6 +459,10 @@ ProjectList:
   $ref: ./auto-generated/models/project-list.yaml
 ProjectOrganizationCreate:
   $ref: ./auto-generated/models/project-organization-create.yaml
+ProjectOwnerRelation:
+  $ref: ./auto-generated/models/project-owner-relation.yaml
+ProjectOwnerType:
+  $ref: ./auto-generated/models/project-owner-type.yaml
 ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:

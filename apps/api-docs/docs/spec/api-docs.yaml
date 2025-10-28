@@ -239,7 +239,6 @@ tags:
   - name: Networks - Subnets
   - name: Network Rules
   - name: Organizations
-  - name: Organizations - Environments
   - name: Pipelines
   - name: Pipelines - Actions
   - name: Pipelines - Hooks
@@ -331,7 +330,6 @@ x-tagGroups:
   - name: Organizations
     tags:
       - Organizations
-      - Organizations - Environments
   - name: Pipelines
     tags:
       - Pipelines
