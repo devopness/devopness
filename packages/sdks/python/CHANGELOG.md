@@ -1,5 +1,13 @@
 # @devopness/sdk-python
 
+## 2.1.1
+
+### Patch Changes
+
+- [#2326](https://github.com/devopness/devopness/pull/2326) [`a1d925e`](https://github.com/devopness/devopness/commit/a1d925e6c5d7749038b6fa65632cf1bd9da4d3e3) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  - Removed methods for listing **activities** and **environments** of an **organization**
+  - Added `owner` and `owner_type` properties when listing or fetching project details, indicating the project owner (can be a user or an organization)
+
 ## 2.1.0
 
 ### Minor Changes
