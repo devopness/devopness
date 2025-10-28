@@ -11,7 +11,6 @@ from typing import List, Optional, Union
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Organization,
-    OrganizationActivity,
     OrganizationCreate,
     OrganizationCreatePlain,
     OrganizationRelation,
@@ -70,27 +69,6 @@ class OrganizationsApiService(DevopnessBaseService):
         response = self._get(endpoint)
 
         return DevopnessResponse(response, Organization)
-
-    def get_organization_activity(
-        self,
-        organization_id: str,
-    ) -> DevopnessResponse[OrganizationActivity]:
-        """
-        Get activity information for an organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/activity",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get(endpoint)
-
-        return DevopnessResponse(response, OrganizationActivity)
 
     def list_organizations(
         self,
@@ -197,27 +175,6 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(response, Organization)
-
-    async def get_organization_activity(
-        self,
-        organization_id: str,
-    ) -> DevopnessResponse[OrganizationActivity]:
-        """
-        Get activity information for an organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/activity",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = await self._get(endpoint)
-
-        return await DevopnessResponse.from_async(response, OrganizationActivity)
 
     async def list_organizations(
         self,

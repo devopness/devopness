@@ -6,10 +6,6 @@ from ..generated.api.environments_api import (
     EnvironmentsApiService,
     EnvironmentsApiServiceAsync,
 )
-from ..generated.api.organizations_environments_api import (
-    OrganizationsEnvironmentsApiService,
-    OrganizationsEnvironmentsApiServiceAsync,
-)
 from ..generated.api.projects_archived_environments_api import (
     ProjectsArchivedEnvironmentsApiService,
     ProjectsArchivedEnvironmentsApiServiceAsync,
@@ -31,7 +27,6 @@ class EnvironmentService(
     ProjectsArchivedEnvironmentsApiService,
     ProjectsEnvironmentsApiService,
     UsersEnvironmentsApiService,
-    OrganizationsEnvironmentsApiService,
 ):
     """Service for environments in the Devopness API."""
 
@@ -41,6 +36,5 @@ class EnvironmentServiceAsync(
     ProjectsArchivedEnvironmentsApiServiceAsync,
     ProjectsEnvironmentsApiServiceAsync,
     UsersEnvironmentsApiServiceAsync,
-    OrganizationsEnvironmentsApiServiceAsync,
 ):
     """Async service for environments in the Devopness API."""

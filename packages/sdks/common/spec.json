@@ -5192,116 +5192,6 @@
         }
       }
     },
-    "/organizations/{organization_id}/activity": {
-      "get": {
-        "summary": "Get activity information for an organization",
-        "operationId": "getOrganizationActivity",
-        "tags": [
-          "Organizations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "organization_id",
-            "description": "The numeric ID or URL Slug of an organization.",
-            "example": "johndoe",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrganizationActivity"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/organizations/{organization_id}/environments": {
-      "get": {
-        "summary": "Return a list of all environments owned by an organization",
-        "operationId": "listOrganizationEnvironments",
-        "tags": [
-          "Organizations - Environments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "organization_id",
-            "description": "The numeric ID or URL Slug of an organization.",
-            "example": "johndoe",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnvironmentList"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/organizations/{organization_id}/projects": {
       "get": {
         "summary": "List all projects belonging to an organization",
@@ -12601,9 +12491,6 @@
       "name": "Organizations"
     },
     {
-      "name": "Organizations - Environments"
-    },
-    {
       "name": "Pipelines"
     },
     {
@@ -12791,8 +12678,7 @@
     {
       "name": "Organizations",
       "tags": [
-        "Organizations",
-        "Organizations - Environments"
+        "Organizations"
       ]
     },
     {
@@ -19216,29 +19102,6 @@
           "updated_at"
         ]
       },
-      "OrganizationActivity": {
-        "type": "object",
-        "properties": {
-          "projects": {
-            "$ref": "#/components/schemas/UserProjectStats"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/UserEnvironmentStats"
-          },
-          "teams": {
-            "$ref": "#/components/schemas/UserTeamStats"
-          },
-          "triggered_actions": {
-            "$ref": "#/components/schemas/TriggeredActions"
-          }
-        },
-        "required": [
-          "projects",
-          "environments",
-          "teams",
-          "triggered_actions"
-        ]
-      },
       "OrganizationCreate": {
         "type": "object",
         "properties": {
@@ -20044,6 +19907,12 @@
           "os_users": {
             "$ref": "#/components/schemas/OsUsers"
           },
+          "owner": {
+            "$ref": "#/components/schemas/ProjectOwnerRelation"
+          },
+          "owner_type": {
+            "$ref": "#/components/schemas/ProjectOwnerType"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -20064,6 +19933,8 @@
           "name",
           "logo_url",
           "os_users",
+          "owner",
+          "owner_type",
           "created_by_user",
           "created_at",
           "updated_at"
@@ -20121,6 +19992,26 @@
           "name"
         ]
       },
+      "ProjectOwnerRelation": {
+        "description": "The owner of the project (user or organization)",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          }
+        ]
+      },
+      "ProjectOwnerType": {
+        "type": "string",
+        "description": "The possible types of users.",
+        "enum": [
+          "user",
+          "org"
+        ],
+        "example": "user"
+      },
       "ProjectRelation": {
         "type": "object",
         "properties": {
@@ -20151,6 +20042,12 @@
           "os_users": {
             "$ref": "#/components/schemas/OsUsers"
           },
+          "owner": {
+            "$ref": "#/components/schemas/ProjectOwnerRelation"
+          },
+          "owner_type": {
+            "$ref": "#/components/schemas/ProjectOwnerType"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -20176,6 +20073,8 @@
           "name",
           "logo_url",
           "os_users",
+          "owner",
+          "owner_type",
           "created_by_user",
           "created_at",
           "updated_at"
