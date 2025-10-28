@@ -349,7 +349,6 @@ from .operation_custom_settings import (
     OperationCustomSettingsPlain,
 )
 from .organization import Organization, OrganizationPlain
-from .organization_activity import OrganizationActivity, OrganizationActivityPlain
 from .organization_create import OrganizationCreate, OrganizationCreatePlain
 from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .organization_update import OrganizationUpdate, OrganizationUpdatePlain
@@ -395,6 +394,8 @@ from .project_organization_create import (
     ProjectOrganizationCreate,
     ProjectOrganizationCreatePlain,
 )
+from .project_owner_relation import ProjectOwnerRelation, ProjectOwnerRelationPlain
+from .project_owner_type import ProjectOwnerType, ProjectOwnerTypePlain
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .project_update import ProjectUpdate, ProjectUpdatePlain
 from .provider_code import ProviderCode, ProviderCodePlain
@@ -978,8 +979,6 @@ __all__ = [
     "OperationCustomSettings",
     "OperationCustomSettingsPlain",
     "Organization",
-    "OrganizationActivity",
-    "OrganizationActivityPlain",
     "OrganizationCreate",
     "OrganizationCreatePlain",
     "OrganizationPlain",
@@ -1028,6 +1027,10 @@ __all__ = [
     "ProjectCreatePlain",
     "ProjectOrganizationCreate",
     "ProjectOrganizationCreatePlain",
+    "ProjectOwnerRelation",
+    "ProjectOwnerRelationPlain",
+    "ProjectOwnerType",
+    "ProjectOwnerTypePlain",
     "ProjectPlain",
     "ProjectRelation",
     "ProjectRelationPlain",

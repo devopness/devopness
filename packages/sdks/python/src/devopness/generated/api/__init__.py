@@ -86,10 +86,6 @@ from .organizations_api import (
     OrganizationsApiService,
     OrganizationsApiServiceAsync,
 )
-from .organizations_environments_api import (
-    OrganizationsEnvironmentsApiService,
-    OrganizationsEnvironmentsApiServiceAsync,
-)
 from .pipelines_actions_api import (
     PipelinesActionsApiService,
     PipelinesActionsApiServiceAsync,
@@ -272,8 +268,6 @@ __all__ = [
     "NetworksSubnetsApiServiceAsync",
     "OrganizationsApiService",
     "OrganizationsApiServiceAsync",
-    "OrganizationsEnvironmentsApiService",
-    "OrganizationsEnvironmentsApiServiceAsync",
     "PipelinesActionsApiService",
     "PipelinesActionsApiServiceAsync",
     "PipelinesApiService",

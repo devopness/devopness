@@ -18,6 +18,8 @@ from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .os_users_inner import OsUsersInner, OsUsersInnerPlain
+from .project_owner_relation import ProjectOwnerRelation, ProjectOwnerRelationPlain
+from .project_owner_type import ProjectOwnerType, ProjectOwnerTypePlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 from .user_relation import UserRelation, UserRelationPlain
 
@@ -33,6 +35,8 @@ class ProjectRelation(DevopnessBaseModel):
         logo_url (str, optional, nullable): A URL path to the project&#39;s logo image
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         os_users (List[OsUsersInner]): The list of the operating system users found in all the servers linked to a project
+        owner (ProjectOwnerRelation):
+        owner_type (ProjectOwnerType):
         created_by_user (UserRelation):
         used_credits (int, optional): Number of credits used in the current monthly billing cycle by actions of resources in the project.
         created_at (str): The date and time when the record was created
@@ -51,6 +55,8 @@ class ProjectRelation(DevopnessBaseModel):
     os_users: List[OsUsersInner] = Field(
         description="The list of the operating system users found in all the servers linked to a project"
     )
+    owner: ProjectOwnerRelation
+    owner_type: ProjectOwnerType
     created_by_user: UserRelation
     used_credits: Optional[StrictInt] = Field(
         default=None,
@@ -87,6 +93,18 @@ class ProjectRelationPlain(TypedDict, total=False):
                 OsUsersInner,
                 OsUsersInnerPlain,
             ]
+        ]
+    ]
+    owner: Required[
+        Union[
+            ProjectOwnerRelation,
+            ProjectOwnerRelationPlain,
+        ]
+    ]
+    owner_type: Required[
+        Union[
+            ProjectOwnerType,
+            ProjectOwnerTypePlain,
         ]
     ]
     created_by_user: Required[
