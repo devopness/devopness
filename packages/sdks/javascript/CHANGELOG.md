@@ -4,7 +4,8 @@
 
 ### Patch Changes
 
-- [#2335](https://github.com/devopness/devopness/pull/2335) [`91b8819`](https://github.com/devopness/devopness/commit/91b8819575d07fdd300e721ab6925eaa8e0cf51d) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Add the **public_accept_url** field in team invitations
+- [#2335](https://github.com/devopness/devopness/pull/2335) [`91b8819`](https://github.com/devopness/devopness/commit/91b8819575d07fdd300e721ab6925eaa8e0cf51d) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  - Add the **public_accept_url** field in team invitations
   - Remove the **token** field from team invitations
 
 ## 3.1.1
