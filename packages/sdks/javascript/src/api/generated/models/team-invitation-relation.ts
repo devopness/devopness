@@ -37,12 +37,6 @@ export interface TeamInvitationRelation {
      */
     type: TeamInvitationType;
     /**
-     * The token used to accept the public invitation
-     * @type {string}
-     * @memberof TeamInvitationRelation
-     */
-    token: string | null;
-    /**
      * The email of the user that has been invited to team
      * @type {string}
      * @memberof TeamInvitationRelation
@@ -60,6 +54,12 @@ export interface TeamInvitationRelation {
      * @memberof TeamInvitationRelation
      */
     status_human_readable: string;
+    /**
+     * The URL to accept the public invitation
+     * @type {string}
+     * @memberof TeamInvitationRelation
+     */
+    public_accept_url: string | null;
     /**
      * The IP of the user who accepted the invitation
      * @type {string}
