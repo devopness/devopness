@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react'
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { DynamicField } from './DynamicField'
 import type { DynamicFieldProps } from './DynamicField'

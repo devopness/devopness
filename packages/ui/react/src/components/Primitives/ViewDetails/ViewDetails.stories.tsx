@@ -1,6 +1,6 @@
 import { CSSProperties, FC, ReactNode } from 'react'
 
-import { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react-vite'
 
 import { ViewDetails } from './ViewDetails'
 import { DetailsContentProps } from './ViewDetailsContent'

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { ActionMeta, MultiValue, SingleValue } from 'react-select'
 
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Select } from './index'
 import type { OptionProps } from './index'
