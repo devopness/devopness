@@ -17866,12 +17866,6 @@
           "type": {
             "$ref": "#/components/schemas/TeamInvitationType"
           },
-          "token": {
-            "description": "The token used to accept the public invitation",
-            "example": null,
-            "type": "string",
-            "nullable": true
-          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
@@ -17885,6 +17879,12 @@
             "description": "Human readable version of the invitation status",
             "example": "Pending invitation",
             "type": "string"
+          },
+          "public_accept_url": {
+            "description": "The URL to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
@@ -17923,10 +17923,10 @@
         "required": [
           "id",
           "type",
-          "token",
           "email",
           "status",
           "status_human_readable",
+          "public_accept_url",
           "accepted_from_ip",
           "created_by_user",
           "team",
@@ -17953,12 +17953,6 @@
           "type": {
             "$ref": "#/components/schemas/TeamInvitationType"
           },
-          "token": {
-            "description": "The token used to accept the public invitation",
-            "example": null,
-            "type": "string",
-            "nullable": true
-          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
@@ -17972,6 +17966,12 @@
             "description": "Human readable version of the invitation status",
             "example": "Pending invitation",
             "type": "string"
+          },
+          "public_accept_url": {
+            "description": "The URL to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
@@ -18013,10 +18013,10 @@
         "required": [
           "id",
           "type",
-          "token",
           "email",
           "status",
           "status_human_readable",
+          "public_accept_url",
           "accepted_from_ip",
           "created_by_user",
           "team",
@@ -23474,12 +23474,6 @@
           "type": {
             "$ref": "#/components/schemas/TeamInvitationType"
           },
-          "token": {
-            "description": "The token used to accept the public invitation",
-            "example": null,
-            "type": "string",
-            "nullable": true
-          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
@@ -23493,6 +23487,12 @@
             "description": "Human readable version of the invitation status",
             "example": "Pending invitation",
             "type": "string"
+          },
+          "public_accept_url": {
+            "description": "The URL to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
@@ -23534,10 +23534,10 @@
         "required": [
           "id",
           "type",
-          "token",
           "email",
           "status",
           "status_human_readable",
+          "public_accept_url",
           "accepted_from_ip",
           "created_by_user",
           "team",
