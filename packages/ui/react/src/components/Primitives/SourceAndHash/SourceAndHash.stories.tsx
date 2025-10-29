@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { SourceAndHash } from './SourceAndHash'
 import type { SourceAndHashProps } from './SourceAndHash'
