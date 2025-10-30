@@ -12,7 +12,7 @@
     "api-build-spec": "npm run update-paths-and-schemas && npm run tsc && node ./build/checkTagsUsage.js && node ./build/checkModelsReferences.js && node ./build/buildApiSpec.js && swagger-cli validate docs/build/api-docs-output.yaml",
     "api-convert-spec-to-dredd": "api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=yaml --order=alpha docs/build/api-docs-output.yaml > docs/build/api-docs-output-v2.yaml",
     "api-convert-spec-to-json": "yaml-convert docs/build/api-docs-output.yaml --pretty --output docs/build/spec.json",
-    "api-docs-export-page": "redoc-cli build docs/build/api-docs-output.yaml --title 'Devopness API Docs' --output public/index.html --cdn true -t docs/template.hbs",
+    "api-docs-export-page": "redoc-cli build docs/build/api-docs-output.yaml --title 'Devopness API Docs' --output public/index.html -t docs/template.hbs",
     "api-docs-make-description-files": "for endpoint in $(find docs/spec/auto-generated/endpoints -type f); do touch -a docs/spec/descriptions/$(basename ${endpoint%%.yaml}).md; done",
     "api-docs-serve": "npm run api-build-spec && redoc-cli serve docs/build/api-docs-output.yaml --port 9090 --title 'Devopness API Docs - Local' -t docs/template.hbs",
     "api-docs-zip-download": "aws s3 cp s3://devopness-api-docs/api-docs.zip ./docs/api-docs.zip",
@@ -22,7 +22,7 @@
     "update-paths-and-schemas": "rm -rf ./data-models.yaml ./paths.yaml && cp -R ./docs/spec/auto-generated/data-models.yaml ./docs/spec/data-models.yaml && cp -R ./docs/spec/auto-generated/paths.yaml ./docs/spec/paths.yaml",
     "remove-descriptions": "node src/utils/create-dredd-compatible-openapi-v2.js ",
     "remove-descriptions-in-json-spec": "node src/utils/remove-descriptions-in-json-spec.js",
-    "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 7 ]",
+    "ensure_index_file_is_on_size_limit": "[ `du -h public/index.html | grep -oE '^[0-9]+'` -le 9 ]",
     "test": "jest",
     "tsc": "tsc"
   },
