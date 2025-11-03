@@ -19166,7 +19166,6 @@
           "id",
           "name",
           "url_slug",
-          "owner",
           "created_at",
           "updated_at"
         ],
@@ -24181,7 +24180,8 @@
         "required": [
           "id",
           "email",
-          "name"
+          "name",
+          "url_slug"
         ]
       },
       "UserResendVerification": {

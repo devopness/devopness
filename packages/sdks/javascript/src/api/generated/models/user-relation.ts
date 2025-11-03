@@ -43,7 +43,7 @@ export interface UserRelation {
      * @type {string}
      * @memberof UserRelation
      */
-    url_slug?: string;
+    url_slug: string;
     /**
      * 
      * @type {Language}
