@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#2352](https://github.com/devopness/devopness/pull/2352) [`20ad24e`](https://github.com/devopness/devopness/commit/20ad24e08e764379379b69b990dec011942db840) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix **OrganizationRelation.owner** and **UserRelation.url_slug** types
+- [#2352](https://github.com/devopness/devopness/pull/2352) [`20ad24e`](https://github.com/devopness/devopness/commit/20ad24e08e764379379b69b990dec011942db840) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix **OrganizationRelation.owner** and **UserRelation.url_slug** types
 
 ## 3.1.2
 
