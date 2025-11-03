@@ -37,3 +37,4 @@ required:
   - id
   - email
   - name
+  - url_slug

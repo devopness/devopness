@@ -29,7 +29,6 @@ required:
   - id
   - name
   - url_slug
-  - owner
   - created_at
   - updated_at
 nullable: true
