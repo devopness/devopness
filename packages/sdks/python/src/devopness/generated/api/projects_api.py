@@ -13,8 +13,6 @@ from ..models import (
     Project,
     ProjectCreate,
     ProjectCreatePlain,
-    ProjectOrganizationCreate,
-    ProjectOrganizationCreatePlain,
     ProjectRelation,
     ProjectUpdate,
     ProjectUpdatePlain,
@@ -26,31 +24,6 @@ class ProjectsApiService(DevopnessBaseService):
     """
     ProjectsApiService - Auto Generated
     """
-
-    def add_organization_project(
-        self,
-        organization_id: str,
-        project_organization_create: Union[
-            ProjectOrganizationCreate,
-            ProjectOrganizationCreatePlain,
-        ],
-    ) -> DevopnessResponse[Project]:
-        """
-        Create a project to a given organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/projects",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, project_organization_create)
-
-        return DevopnessResponse(response, Project)
 
     def add_project(
         self,
@@ -97,44 +70,14 @@ class ProjectsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Project)
 
-    def list_organization_projects(
-        self,
-        organization_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
-        """
-        List all projects belonging to an organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = parse_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/projects",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = self._get(endpoint)
-
-        return DevopnessResponse(response, List[ProjectRelation])
-
     def list_projects(
         self,
         page: Optional[int] = None,
         per_page: Optional[int] = None,
+        owner: Optional[str] = None,
     ) -> DevopnessResponse[List[ProjectRelation]]:
         """
-        Return a list of all projects the current user has access to
+        Return a list of projects
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -145,6 +88,7 @@ class ProjectsApiService(DevopnessBaseService):
             {
                 "page": page,
                 "per_page": per_page,
+                "owner": owner,
             }
         )
 
@@ -188,31 +132,6 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ProjectsApiServiceAsync - Auto Generated
     """
-
-    async def add_organization_project(
-        self,
-        organization_id: str,
-        project_organization_create: Union[
-            ProjectOrganizationCreate,
-            ProjectOrganizationCreatePlain,
-        ],
-    ) -> DevopnessResponse[Project]:
-        """
-        Create a project to a given organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/projects",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, project_organization_create)
-
-        return await DevopnessResponse.from_async(response, Project)
 
     async def add_project(
         self,
@@ -259,44 +178,14 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
 
         return await DevopnessResponse.from_async(response, Project)
 
-    async def list_organization_projects(
-        self,
-        organization_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
-        """
-        List all projects belonging to an organization
-
-        Raises:
-            DevopnessApiError: If an API request error occurs.
-            DevopnessNetworkError: If a network error occurs.
-        """
-
-        query_string = parse_query_string(
-            {
-                "page": page,
-                "per_page": per_page,
-            }
-        )
-
-        endpoint_parts = [
-            f"/organizations/{organization_id}/projects",
-            f"?{query_string}",
-        ]
-
-        endpoint: str = "".join(endpoint_parts)
-        response = await self._get(endpoint)
-
-        return await DevopnessResponse.from_async(response, List[ProjectRelation])
-
     async def list_projects(
         self,
         page: Optional[int] = None,
         per_page: Optional[int] = None,
+        owner: Optional[str] = None,
     ) -> DevopnessResponse[List[ProjectRelation]]:
         """
-        Return a list of all projects the current user has access to
+        Return a list of projects
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -307,6 +196,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
             {
                 "page": page,
                 "per_page": per_page,
+                "owner": owner,
             }
         )
 
