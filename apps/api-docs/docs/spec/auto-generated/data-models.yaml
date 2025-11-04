@@ -457,8 +457,6 @@ ProjectCreate:
   $ref: ./auto-generated/models/project-create.yaml
 ProjectList:
   $ref: ./auto-generated/models/project-list.yaml
-ProjectOrganizationCreate:
-  $ref: ./auto-generated/models/project-organization-create.yaml
 ProjectOwnerRelation:
   $ref: ./auto-generated/models/project-owner-relation.yaml
 ProjectOwnerType:

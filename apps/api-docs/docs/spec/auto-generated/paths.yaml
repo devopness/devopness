@@ -214,11 +214,6 @@
     $ref: ./auto-generated/endpoints/get-organization.yaml
   put:
     $ref: ./auto-generated/endpoints/update-organization.yaml
-'/organizations/{organization_id}/projects':
-  get:
-    $ref: ./auto-generated/endpoints/list-organization-projects.yaml
-  post:
-    $ref: ./auto-generated/endpoints/add-organization-project.yaml
 '/pipelines/{pipeline_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-pipeline.yaml
