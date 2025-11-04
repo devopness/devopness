@@ -5192,143 +5192,6 @@
         }
       }
     },
-    "/organizations/{organization_id}/projects": {
-      "get": {
-        "summary": "List all projects belonging to an organization",
-        "operationId": "listOrganizationProjects",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "organization_id",
-            "description": "The numeric ID or URL Slug of an organization.",
-            "example": "johndoe",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectList"
-                }
-              }
-            },
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a project to a given organization",
-        "operationId": "addOrganizationProject",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "organization_id",
-            "description": "The numeric ID or URL Slug of an organization.",
-            "example": "johndoe",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Project"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectOrganizationCreate"
-              }
-            }
-          }
-        }
-      }
-    },
     "/pipelines/{pipeline_id}": {
       "delete": {
         "summary": "Delete a given Pipeline",
@@ -6200,7 +6063,7 @@
     },
     "/projects": {
       "get": {
-        "summary": "Return a list of all projects the current user has access to",
+        "summary": "Return a list of projects",
         "operationId": "listProjects",
         "tags": [
           "Projects"
@@ -6220,6 +6083,16 @@
           },
           {
             "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "query",
+            "name": "owner",
+            "description": "Filter by project's owner ID or URL Slug. If not provided, projects accessible by currently authenticated user are returned.",
+            "example": "johndoe",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -19967,29 +19840,6 @@
         "items": {
           "$ref": "#/components/schemas/ProjectRelation"
         }
-      },
-      "ProjectOrganizationCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the project. Must not be greater than 60 characters.",
-            "example": "my project",
-            "type": "string"
-          },
-          "logo_image": {
-            "description": "A base64 string representation of the logo image.",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII=",
-            "type": "string"
-          },
-          "logo_url": {
-            "description": "A URL path to the project's logo image. Must be a valid URL.",
-            "example": "https://example.com/projects-beautiful-logo.png",
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
-        ]
       },
       "ProjectOwnerRelation": {
         "description": "The owner of the project (user or organization)",
