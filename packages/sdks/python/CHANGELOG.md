@@ -4,7 +4,8 @@
 
 ### Patch Changes
 
-- [#2363](https://github.com/devopness/devopness/pull/2363) [`4701800`](https://github.com/devopness/devopness/commit/470180034a1a478c252448a4fa82dafda3e676a4) Thanks [@devopness-automations](https://github.com/devopness-automations)! - ### Added
+- [#2363](https://github.com/devopness/devopness/pull/2363) [`4701800`](https://github.com/devopness/devopness/commit/470180034a1a478c252448a4fa82dafda3e676a4) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  ### Added
   Added support for a new parameter `owner` in the `getProjects` method.
   This parameter allows filtering projects by **owner ID** or **URL slug** (user or organization).
 
