@@ -1,5 +1,20 @@
 # @devopness/sdk-python
 
+## 2.1.4
+
+### Patch Changes
+
+- [#2363](https://github.com/devopness/devopness/pull/2363) [`4701800`](https://github.com/devopness/devopness/commit/470180034a1a478c252448a4fa82dafda3e676a4) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  ### Added
+  Added support for a new parameter `owner` in the `getProjects` method.
+  This parameter allows filtering projects by **owner ID** or **URL slug** (user or organization).
+
+  If the parameter is omitted, the method retains its previous behavior — returning **all projects accessible** by the authenticated user.
+
+  ### Removed
+
+  Removed the `listOrganizationProjects` method, as its functionality is now covered by the `getProjects` method with the new `owner` filter.
+
 ## 2.1.3
 
 ### Patch Changes
