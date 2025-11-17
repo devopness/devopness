@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { getColor } from 'src/colors'
 
-export const CardWrapper = styled.div`
+const CardWrapper = styled.div`
   background-color: ${getColor('white')};
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -12,9 +12,10 @@ export const CardWrapper = styled.div`
   font-family: sans-serif;
   width: 100%;
   min-width: 400px;
+  height: 350px;
 `
 
-export const CardHeader = styled.div`
+const CardHeader = styled.div`
   background-color: ${getColor('white')};
   padding: 16px;
   display: flex;
@@ -23,13 +24,13 @@ export const CardHeader = styled.div`
   border-bottom: 1px solid ${getColor('gray.200')};
 `
 
-export const TitleContainer = styled.div`
+const TitleContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
 `
 
-export const IconContainer = styled.div<{ $backgroundColor: string }>`
+const IconContainer = styled.div<{ $backgroundColor: string }>`
   width: 32px;
   height: 32px;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
@@ -39,14 +40,14 @@ export const IconContainer = styled.div<{ $backgroundColor: string }>`
   justify-content: center;
 `
 
-export const Title = styled.h3`
+const Title = styled.h3`
   margin: 0;
   font-size: 16px;
   font-weight: 700;
   color: ${getColor('gray.800')};
 `
 
-export const CountBadge = styled.div`
+const CountBadge = styled.div`
   background-color: ${getColor('gray.500')};
   color: ${getColor('white')};
   padding: 2px 8px;
@@ -56,7 +57,7 @@ export const CountBadge = styled.div`
   margin-left: 8px;
 `
 
-export const AddButton = styled.button`
+const AddButton = styled.button`
   background-color: #8b5cf6;
   color: ${getColor('white')};
   border: none;
@@ -72,12 +73,15 @@ export const AddButton = styled.button`
   }
 `
 
-export const CardBody = styled.div`
+const CardBody = styled.div`
   padding: 16px;
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `
 
-export const ResourceList = styled.div`
+const ResourceList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -85,12 +89,33 @@ export const ResourceList = styled.div`
   border-radius: 8px;
   transition: all 0.2s;
   cursor: pointer;
+  overflow-y: auto;
+  max-height: 180px;
+  min-height: 60px;
 
   &:hover {
     background-color: ${getColor('gray.200')};
   }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${getColor('gray.200')};
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${getColor('gray.400')};
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${getColor('gray.500')};
+  }
 `
-export const ResourceListContainer = styled.div`
+const ResourceListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -98,7 +123,7 @@ export const ResourceListContainer = styled.div`
   gap: 8px;
 `
 
-export const ResourceItem = styled.div`
+const ResourceItem = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -106,18 +131,18 @@ export const ResourceItem = styled.div`
   gap: 8px;
 `
 
-export const ResourceName = styled.div`
+const ResourceName = styled.div`
   font-size: 14px;
   font-weight: 600;
   color: ${getColor('gray.800')};
 `
 
-export const ResourceSubText = styled.div`
+const ResourceSubText = styled.div`
   font-size: 12px;
   color: ${getColor('gray.600')};
 `
 
-export const ResourceTag = styled.div<{ $backgroundColor: string; $textColor: string }>`
+const ResourceTag = styled.div<{ $backgroundColor: string; $textColor: string }>`
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   color: ${({ $textColor }) => $textColor};
   padding: 4px 8px;
@@ -128,7 +153,7 @@ export const ResourceTag = styled.div<{ $backgroundColor: string; $textColor: st
   margin-top: 4px;
 `
 
-export const EmptyState = styled.div`
+const EmptyState = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,31 +161,31 @@ export const EmptyState = styled.div`
   padding: 24px 0;
 `
 
-export const EmptyStateIcon = styled.div`
+const EmptyStateIcon = styled.div`
   margin-bottom: 16px;
 `
 
-export const EmptyStateTitle = styled.div`
+const EmptyStateTitle = styled.div`
   font-size: 16px;
   font-weight: 600;
   color: ${getColor('gray.800')};
   margin-bottom: 8px;
 `
 
-export const EmptyStateDescription = styled.div`
+const EmptyStateDescription = styled.div`
   font-size: 12px;
   color: ${getColor('gray.600')};
   line-height: 1.4;
   max-width: 200px;
 `
 
-export const CardFooter = styled.div`
+const CardFooter = styled.div`
   padding: 16px;
   border-top: 1px solid ${getColor('gray.200')};
   text-align: center;
 `
 
-export const FooterButton = styled.button`
+const FooterButton = styled.button`
   width: 100%;
   background-color: ${getColor('white')};
   color: #8b5cf6;
@@ -177,3 +202,26 @@ export const FooterButton = styled.button`
     color: ${getColor('white')};
   }
 `
+
+export {
+  CardWrapper,
+  CardHeader,
+  TitleContainer,
+  IconContainer,
+  Title,
+  CountBadge,
+  AddButton,
+  CardBody,
+  ResourceList,
+  ResourceListContainer,
+  ResourceItem,
+  ResourceName,
+  ResourceSubText,
+  ResourceTag,
+  EmptyState,
+  EmptyStateIcon,
+  EmptyStateTitle,
+  EmptyStateDescription,
+  CardFooter,
+  FooterButton
+}

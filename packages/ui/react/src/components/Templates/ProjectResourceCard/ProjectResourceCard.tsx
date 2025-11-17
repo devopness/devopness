@@ -1,7 +1,6 @@
 import { getColor } from '../../../colors'
 import { iconLoader } from '../../../icons'
 import type { Icon } from '../../../icons'
-
 import {
   CardWrapper,
   CardHeader,
@@ -25,7 +24,7 @@ import {
   ResourceListContainer,
 } from './ProjectResourceCard.styled'
 
-export type ResourceItem = {
+type ResourceItem = {
   id: string | number
   name: string
   subText?: string
@@ -36,7 +35,7 @@ export type ResourceItem = {
   }
 }
 
-export type ProjectResourceCardProps = {
+type ProjectResourceCardProps = {
   title: string
   icon: Icon
   iconBackgroundColor: string
@@ -49,7 +48,7 @@ export type ProjectResourceCardProps = {
   emptyStateDescription?: string
 }
 
-export const ProjectResourceCard = ({
+const ProjectResourceCard = ({
   title,
   icon,
   iconBackgroundColor,
@@ -122,3 +121,6 @@ export const ProjectResourceCard = ({
     </CardWrapper>
   )
 }
+
+export type { ResourceItem, ProjectResourceCardProps }
+export { ProjectResourceCard }
