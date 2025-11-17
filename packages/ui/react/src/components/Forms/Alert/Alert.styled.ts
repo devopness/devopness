@@ -58,14 +58,16 @@ const StyledContent = styled.div<StyledProps>`
   border: 1px solid ${(props) => handleColor(props.type)};
   border-radius: 20px;
   padding: 9px 15px 8px;
+  gap: 10px;
 `
 
 const StyledIcon = styled.div<StyledProps>`
   height: 13px;
   width: 13px;
   padding: 0;
-  margin-right: 15px;
   color: ${(props) => handleIconColor(props.type)};
+  display: flex;
+  align-items: center;
 `
 
 const StyledLabel = styled.label<{ fullWidth?: boolean }>`
@@ -81,7 +83,7 @@ const StyledLabel = styled.label<{ fullWidth?: boolean }>`
 const LabelContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
 `
 

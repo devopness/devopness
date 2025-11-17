@@ -80,8 +80,11 @@ const Alert = (props: AlertProps) => (
               buttonType="borderless"
               iconColor={getColor(alertTypeToIconColor[props.type])}
               noPadding
+              iconSize={12}
               noIconMargin
               onClick={props.onClose}
+              typeSize="auto"
+              noMargin
             />
           ) : (
             <></>
