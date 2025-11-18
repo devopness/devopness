@@ -30,10 +30,10 @@ class InvitationRelation(DevopnessBaseModel):
     Attributes:
         id (str): The unique UUID of the given invitation
         type (TeamInvitationType):
-        token (str, optional, nullable): The token used to accept the public invitation
         email (str, optional, nullable): The email of the user that has been invited to team
         status (TeamInvitationStatus):
         status_human_readable (str): Human readable version of the invitation status
+        public_accept_url (str, optional, nullable): The URL to accept the public invitation
         accepted_from_ip (str, optional, nullable): The IP of the user who accepted the invitation
         created_by_user (UserRelation):
         team (TeamRelation, optional, nullable):
@@ -46,15 +46,15 @@ class InvitationRelation(DevopnessBaseModel):
 
     id: StrictStr = Field(description="The unique UUID of the given invitation")
     type: TeamInvitationType
-    token: Optional[StrictStr] = Field(
-        description="The token used to accept the public invitation"
-    )
     email: Optional[StrictStr] = Field(
         description="The email of the user that has been invited to team"
     )
     status: TeamInvitationStatus
     status_human_readable: StrictStr = Field(
         description="Human readable version of the invitation status"
+    )
+    public_accept_url: Optional[StrictStr] = Field(
+        description="The URL to accept the public invitation"
     )
     accepted_from_ip: Optional[StrictStr] = Field(
         description="The IP of the user who accepted the invitation"
@@ -88,7 +88,6 @@ class InvitationRelationPlain(TypedDict, total=False):
             TeamInvitationTypePlain,
         ]
     ]
-    token: Optional[str]
     email: Optional[str]
     status: Required[
         Union[
@@ -97,6 +96,7 @@ class InvitationRelationPlain(TypedDict, total=False):
         ]
     ]
     status_human_readable: Required[str]
+    public_accept_url: Optional[str]
     accepted_from_ip: Optional[str]
     created_by_user: Required[
         Union[

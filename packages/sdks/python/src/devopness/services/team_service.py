@@ -30,6 +30,10 @@ from ..generated.api.teams_members_api import (
     TeamsMembersApiService,
     TeamsMembersApiServiceAsync,
 )
+from ..generated.api.teams_memberships_api import (
+    TeamsMembershipsApiService,
+    TeamsMembershipsApiServiceAsync,
+)
 from ..generated.api.users_team_invitations_api import (
     UsersTeamInvitationsApiService,
     UsersTeamInvitationsApiServiceAsync,
@@ -58,6 +62,7 @@ class TeamService(
     TeamsApiService,
     EnvironmentsTeamsApiService,
     EnvironmentsTeamMembershipsApiService,
+    TeamsMembershipsApiService,
     ProjectsTeamsApiService,
 ):
     """Service for teams in the Devopness API."""
@@ -76,6 +81,7 @@ class TeamServiceAsync(
     TeamsApiServiceAsync,
     EnvironmentsTeamsApiServiceAsync,
     EnvironmentsTeamMembershipsApiServiceAsync,
+    TeamsMembershipsApiServiceAsync,
     ProjectsTeamsApiServiceAsync,
 ):
     """Async service for teams in the Devopness API."""

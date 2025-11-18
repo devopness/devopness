@@ -86,10 +86,6 @@ from .organizations_api import (
     OrganizationsApiService,
     OrganizationsApiServiceAsync,
 )
-from .organizations_environments_api import (
-    OrganizationsEnvironmentsApiService,
-    OrganizationsEnvironmentsApiServiceAsync,
-)
 from .pipelines_actions_api import (
     PipelinesActionsApiService,
     PipelinesActionsApiServiceAsync,
@@ -194,6 +190,10 @@ from .teams_members_api import (
     TeamsMembersApiService,
     TeamsMembersApiServiceAsync,
 )
+from .teams_memberships_api import (
+    TeamsMembershipsApiService,
+    TeamsMembershipsApiServiceAsync,
+)
 from .users_api import (
     UsersApiService,
     UsersApiServiceAsync,
@@ -268,8 +268,6 @@ __all__ = [
     "NetworksSubnetsApiServiceAsync",
     "OrganizationsApiService",
     "OrganizationsApiServiceAsync",
-    "OrganizationsEnvironmentsApiService",
-    "OrganizationsEnvironmentsApiServiceAsync",
     "PipelinesActionsApiService",
     "PipelinesActionsApiServiceAsync",
     "PipelinesApiService",
@@ -322,6 +320,8 @@ __all__ = [
     "TeamsInvitationsApiServiceAsync",
     "TeamsMembersApiService",
     "TeamsMembersApiServiceAsync",
+    "TeamsMembershipsApiService",
+    "TeamsMembershipsApiServiceAsync",
     "UsersApiService",
     "UsersApiServiceAsync",
     "UsersEnvironmentsApiService",

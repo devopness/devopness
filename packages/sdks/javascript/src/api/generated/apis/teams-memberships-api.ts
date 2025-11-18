@@ -15,22 +15,22 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
-import { EnvironmentRelation } from '../../generated/models';
+import { MembershipRelation } from '../../generated/models';
 
 /**
- * OrganizationsEnvironmentsApiService - Auto-generated
+ * TeamsMembershipsApiService - Auto-generated
  */
-export class OrganizationsEnvironmentsApiService extends ApiBaseService {
+export class TeamsMembershipsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Return a list of all environments owned by an organization
-     * @param {string} organizationId The numeric ID or URL Slug of an organization.
+     * @summary Return a list of all memberships of a team
+     * @param {number} teamId The ID of the team.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
      */
-    public async listOrganizationEnvironments(organizationId: string, page?: number, perPage?: number): Promise<ApiResponse<Array<EnvironmentRelation>>> {
-        if (organizationId === null || organizationId === undefined) {
-            throw new ArgumentNullException('organizationId', 'listOrganizationEnvironments');
+    public async listTeamMemberships(teamId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<MembershipRelation>>> {
+        if (teamId === null || teamId === undefined) {
+            throw new ArgumentNullException('teamId', 'listTeamMemberships');
         }
 
         let queryString = '';
@@ -43,9 +43,9 @@ export class OrganizationsEnvironmentsApiService extends ApiBaseService {
             queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
         }
 
-        const requestUrl = '/organizations/{organization_id}/environments' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/memberships' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<EnvironmentRelation>>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
+        const response = await this.get <Array<MembershipRelation>>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
     }
 }

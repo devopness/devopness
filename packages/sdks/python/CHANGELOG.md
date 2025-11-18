@@ -1,5 +1,62 @@
 # @devopness/sdk-python
 
+## 2.1.4
+
+### Patch Changes
+
+- [#2363](https://github.com/devopness/devopness/pull/2363) [`4701800`](https://github.com/devopness/devopness/commit/470180034a1a478c252448a4fa82dafda3e676a4) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  ### Added
+  Added support for a new parameter `owner` in the `getProjects` method.
+  This parameter allows filtering projects by **owner ID** or **URL slug** (user or organization).
+
+  If the parameter is omitted, the method retains its previous behavior — returning **all projects accessible** by the authenticated user.
+
+  ### Removed
+
+  Removed the `listOrganizationProjects` method, as its functionality is now covered by the `getProjects` method with the new `owner` filter.
+
+## 2.1.3
+
+### Patch Changes
+
+- [#2352](https://github.com/devopness/devopness/pull/2352) [`20ad24e`](https://github.com/devopness/devopness/commit/20ad24e08e764379379b69b990dec011942db840) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix **OrganizationRelation.owner** and **UserRelation.url_slug** types
+
+## 2.1.2
+
+### Patch Changes
+
+- [#2335](https://github.com/devopness/devopness/pull/2335) [`91b8819`](https://github.com/devopness/devopness/commit/91b8819575d07fdd300e721ab6925eaa8e0cf51d) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  - Add the **public_accept_url** field in team invitations
+  - Remove the **token** field from team invitations
+
+## 2.1.1
+
+### Patch Changes
+
+- [#2326](https://github.com/devopness/devopness/pull/2326) [`a1d925e`](https://github.com/devopness/devopness/commit/a1d925e6c5d7749038b6fa65632cf1bd9da4d3e3) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  - Removed methods for listing **activities** and **environments** of an **organization**
+  - Added `owner` and `owner_type` properties when listing or fetching project details, indicating the project owner (can be a user or an organization)
+
+## 2.1.0
+
+### Minor Changes
+
+- [#2311](https://github.com/devopness/devopness/pull/2311) [`ca9eed3`](https://github.com/devopness/devopness/commit/ca9eed3ae6adfbfb38506cf7119efaf5bea17d8b) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added a method to list all memberships (links) of a given team, showing which environments the team has access to and the corresponding roles.
+
+  ### Example Usage
+
+  ```python
+  from devopness import DevopnessClient
+
+  devopness = DevopnessClient()
+
+  team_id = 123
+  response = devopness.teams.list_team_memberships(team_id)
+
+  for membership in response.data:
+      print(f"Access to environment {membership.environment.name} with role {membership.role.name}")
+  ```
+
 ## 2.0.1
 
 ### Patch Changes

@@ -5192,253 +5192,6 @@
         }
       }
     },
-    "/organizations/{organization_id}/activity": {
-      "get": {
-        "summary": "Get activity information for an organization",
-        "operationId": "getOrganizationActivity",
-        "tags": [
-          "Organizations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "organization_id",
-            "description": "The numeric ID or URL Slug of an organization.",
-            "example": "johndoe",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrganizationActivity"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/organizations/{organization_id}/environments": {
-      "get": {
-        "summary": "Return a list of all environments owned by an organization",
-        "operationId": "listOrganizationEnvironments",
-        "tags": [
-          "Organizations - Environments"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "organization_id",
-            "description": "The numeric ID or URL Slug of an organization.",
-            "example": "johndoe",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EnvironmentList"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/organizations/{organization_id}/projects": {
-      "get": {
-        "summary": "List all projects belonging to an organization",
-        "operationId": "listOrganizationProjects",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "organization_id",
-            "description": "The numeric ID or URL Slug of an organization.",
-            "example": "johndoe",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectList"
-                }
-              }
-            },
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a project to a given organization",
-        "operationId": "addOrganizationProject",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "organization_id",
-            "description": "The numeric ID or URL Slug of an organization.",
-            "example": "johndoe",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Project"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectOrganizationCreate"
-              }
-            }
-          }
-        }
-      }
-    },
     "/pipelines/{pipeline_id}": {
       "delete": {
         "summary": "Delete a given Pipeline",
@@ -6310,7 +6063,7 @@
     },
     "/projects": {
       "get": {
-        "summary": "Return a list of all projects the current user has access to",
+        "summary": "Return a list of projects",
         "operationId": "listProjects",
         "tags": [
           "Projects"
@@ -6330,6 +6083,16 @@
           },
           {
             "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "query",
+            "name": "owner",
+            "description": "Filter by project's owner ID or URL Slug. If not provided, projects accessible by currently authenticated user are returned.",
+            "example": "johndoe",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -10791,6 +10554,76 @@
         }
       }
     },
+    "/teams/{team_id}/memberships": {
+      "get": {
+        "summary": "Return a list of all memberships of a team",
+        "operationId": "listTeamMemberships",
+        "tags": [
+          "Teams - Memberships"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "description": "The ID of the team.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          }
+        }
+      }
+    },
     "/users": {
       "post": {
         "summary": "Sign up/register a new user",
@@ -12531,9 +12364,6 @@
       "name": "Organizations"
     },
     {
-      "name": "Organizations - Environments"
-    },
-    {
       "name": "Pipelines"
     },
     {
@@ -12607,6 +12437,9 @@
     },
     {
       "name": "Teams - Members"
+    },
+    {
+      "name": "Teams - Memberships"
     },
     {
       "name": "Users"
@@ -12718,8 +12551,7 @@
     {
       "name": "Organizations",
       "tags": [
-        "Organizations",
-        "Organizations - Environments"
+        "Organizations"
       ]
     },
     {
@@ -12799,6 +12631,7 @@
       "tags": [
         "Projects - Teams",
         "Teams",
+        "Teams - Memberships",
         "Teams - Invitations",
         "Team Invitations",
         "Teams - Members",
@@ -17906,12 +17739,6 @@
           "type": {
             "$ref": "#/components/schemas/TeamInvitationType"
           },
-          "token": {
-            "description": "The token used to accept the public invitation",
-            "example": null,
-            "type": "string",
-            "nullable": true
-          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
@@ -17925,6 +17752,12 @@
             "description": "Human readable version of the invitation status",
             "example": "Pending invitation",
             "type": "string"
+          },
+          "public_accept_url": {
+            "description": "The URL to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
@@ -17963,10 +17796,10 @@
         "required": [
           "id",
           "type",
-          "token",
           "email",
           "status",
           "status_human_readable",
+          "public_accept_url",
           "accepted_from_ip",
           "created_by_user",
           "team",
@@ -17993,12 +17826,6 @@
           "type": {
             "$ref": "#/components/schemas/TeamInvitationType"
           },
-          "token": {
-            "description": "The token used to accept the public invitation",
-            "example": null,
-            "type": "string",
-            "nullable": true
-          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
@@ -18012,6 +17839,12 @@
             "description": "Human readable version of the invitation status",
             "example": "Pending invitation",
             "type": "string"
+          },
+          "public_accept_url": {
+            "description": "The URL to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
@@ -18053,10 +17886,10 @@
         "required": [
           "id",
           "type",
-          "token",
           "email",
           "status",
           "status_human_readable",
+          "public_accept_url",
           "accepted_from_ip",
           "created_by_user",
           "team",
@@ -18385,6 +18218,40 @@
         },
         "required": [
           "user",
+          "created_at",
+          "updated_at"
+        ],
+        "nullable": true
+      },
+      "MembershipList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MembershipRelation"
+        }
+      },
+      "MembershipRelation": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRelation"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:22:37.000000Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "environment",
+          "role",
           "created_at",
           "updated_at"
         ],
@@ -19108,29 +18975,6 @@
           "updated_at"
         ]
       },
-      "OrganizationActivity": {
-        "type": "object",
-        "properties": {
-          "projects": {
-            "$ref": "#/components/schemas/UserProjectStats"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/UserEnvironmentStats"
-          },
-          "teams": {
-            "$ref": "#/components/schemas/UserTeamStats"
-          },
-          "triggered_actions": {
-            "$ref": "#/components/schemas/TriggeredActions"
-          }
-        },
-        "required": [
-          "projects",
-          "environments",
-          "teams",
-          "triggered_actions"
-        ]
-      },
       "OrganizationCreate": {
         "type": "object",
         "properties": {
@@ -19195,7 +19039,6 @@
           "id",
           "name",
           "url_slug",
-          "owner",
           "created_at",
           "updated_at"
         ],
@@ -19936,6 +19779,12 @@
           "os_users": {
             "$ref": "#/components/schemas/OsUsers"
           },
+          "owner": {
+            "$ref": "#/components/schemas/ProjectOwnerRelation"
+          },
+          "owner_type": {
+            "$ref": "#/components/schemas/ProjectOwnerType"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -19956,6 +19805,8 @@
           "name",
           "logo_url",
           "os_users",
+          "owner",
+          "owner_type",
           "created_by_user",
           "created_at",
           "updated_at"
@@ -19990,28 +19841,25 @@
           "$ref": "#/components/schemas/ProjectRelation"
         }
       },
-      "ProjectOrganizationCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the project. Must not be greater than 60 characters.",
-            "example": "my project",
-            "type": "string"
+      "ProjectOwnerRelation": {
+        "description": "The owner of the project (user or organization)",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/UserRelation"
           },
-          "logo_image": {
-            "description": "A base64 string representation of the logo image.",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII=",
-            "type": "string"
-          },
-          "logo_url": {
-            "description": "A URL path to the project's logo image. Must be a valid URL.",
-            "example": "https://example.com/projects-beautiful-logo.png",
-            "type": "string"
+          {
+            "$ref": "#/components/schemas/OrganizationRelation"
           }
-        },
-        "required": [
-          "name"
         ]
+      },
+      "ProjectOwnerType": {
+        "type": "string",
+        "description": "The possible types of users.",
+        "enum": [
+          "user",
+          "org"
+        ],
+        "example": "user"
       },
       "ProjectRelation": {
         "type": "object",
@@ -20043,6 +19891,12 @@
           "os_users": {
             "$ref": "#/components/schemas/OsUsers"
           },
+          "owner": {
+            "$ref": "#/components/schemas/ProjectOwnerRelation"
+          },
+          "owner_type": {
+            "$ref": "#/components/schemas/ProjectOwnerType"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -20068,6 +19922,8 @@
           "name",
           "logo_url",
           "os_users",
+          "owner",
+          "owner_type",
           "created_by_user",
           "created_at",
           "updated_at"
@@ -23467,12 +23323,6 @@
           "type": {
             "$ref": "#/components/schemas/TeamInvitationType"
           },
-          "token": {
-            "description": "The token used to accept the public invitation",
-            "example": null,
-            "type": "string",
-            "nullable": true
-          },
           "email": {
             "description": "The email of the user that has been invited to team",
             "example": "invited.user@email.com",
@@ -23486,6 +23336,12 @@
             "description": "Human readable version of the invitation status",
             "example": "Pending invitation",
             "type": "string"
+          },
+          "public_accept_url": {
+            "description": "The URL to accept the public invitation",
+            "example": null,
+            "type": "string",
+            "nullable": true
           },
           "accepted_from_ip": {
             "description": "The IP of the user who accepted the invitation",
@@ -23527,10 +23383,10 @@
         "required": [
           "id",
           "type",
-          "token",
           "email",
           "status",
           "status_human_readable",
+          "public_accept_url",
           "accepted_from_ip",
           "created_by_user",
           "team",
@@ -24174,7 +24030,8 @@
         "required": [
           "id",
           "email",
-          "name"
+          "name",
+          "url_slug"
         ]
       },
       "UserResendVerification": {

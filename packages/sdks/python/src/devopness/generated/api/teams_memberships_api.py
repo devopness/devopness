@@ -9,23 +9,23 @@ Note:
 from typing import List, Optional
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import EnvironmentRelation
+from ..models import MembershipRelation
 from ..utils import parse_query_string
 
 
-class OrganizationsEnvironmentsApiService(DevopnessBaseService):
+class TeamsMembershipsApiService(DevopnessBaseService):
     """
-    OrganizationsEnvironmentsApiService - Auto Generated
+    TeamsMembershipsApiService - Auto Generated
     """
 
-    def list_organization_environments(
+    def list_team_memberships(
         self,
-        organization_id: str,
+        team_id: int,
         page: Optional[int] = None,
         per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+    ) -> DevopnessResponse[List[MembershipRelation]]:
         """
-        Return a list of all environments owned by an organization
+        Return a list of all memberships of a team
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -40,29 +40,29 @@ class OrganizationsEnvironmentsApiService(DevopnessBaseService):
         )
 
         endpoint_parts = [
-            f"/organizations/{organization_id}/environments",
+            f"/teams/{team_id}/memberships",
             f"?{query_string}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[EnvironmentRelation])
+        return DevopnessResponse(response, List[MembershipRelation])
 
 
-class OrganizationsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
+class TeamsMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
     """
-    OrganizationsEnvironmentsApiServiceAsync - Auto Generated
+    TeamsMembershipsApiServiceAsync - Auto Generated
     """
 
-    async def list_organization_environments(
+    async def list_team_memberships(
         self,
-        organization_id: str,
+        team_id: int,
         page: Optional[int] = None,
         per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+    ) -> DevopnessResponse[List[MembershipRelation]]:
         """
-        Return a list of all environments owned by an organization
+        Return a list of all memberships of a team
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -77,11 +77,11 @@ class OrganizationsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         )
 
         endpoint_parts = [
-            f"/organizations/{organization_id}/environments",
+            f"/teams/{team_id}/memberships",
             f"?{query_string}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[EnvironmentRelation])
+        return await DevopnessResponse.from_async(response, List[MembershipRelation])

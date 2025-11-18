@@ -16,7 +16,6 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Organization } from '../../generated/models';
-import { OrganizationActivity } from '../../generated/models';
 import { OrganizationCreate } from '../../generated/models';
 import { OrganizationRelation } from '../../generated/models';
 import { OrganizationUpdate } from '../../generated/models';
@@ -58,24 +57,6 @@ export class OrganizationsApiService extends ApiBaseService {
         const requestUrl = '/organizations/{organization_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Organization>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
-        return new ApiResponse(response);
-    }
-
-    /**
-     * 
-     * @summary Get activity information for an organization
-     * @param {string} organizationId The numeric ID or URL Slug of an organization.
-     */
-    public async getOrganizationActivity(organizationId: string): Promise<ApiResponse<OrganizationActivity>> {
-        if (organizationId === null || organizationId === undefined) {
-            throw new ArgumentNullException('organizationId', 'getOrganizationActivity');
-        }
-
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}/activity' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <OrganizationActivity>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
         return new ApiResponse(response);
     }
 

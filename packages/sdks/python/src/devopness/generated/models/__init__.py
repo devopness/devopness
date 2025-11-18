@@ -300,6 +300,7 @@ from .linked_resource_summary_field import (
 from .log import Log, LogPlain
 from .member import Member, MemberPlain
 from .member_relation import MemberRelation, MemberRelationPlain
+from .membership_relation import MembershipRelation, MembershipRelationPlain
 from .network import Network, NetworkPlain
 from .network_environment_create import (
     NetworkEnvironmentCreate,
@@ -348,7 +349,6 @@ from .operation_custom_settings import (
     OperationCustomSettingsPlain,
 )
 from .organization import Organization, OrganizationPlain
-from .organization_activity import OrganizationActivity, OrganizationActivityPlain
 from .organization_create import OrganizationCreate, OrganizationCreatePlain
 from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .organization_update import OrganizationUpdate, OrganizationUpdatePlain
@@ -390,10 +390,8 @@ from .pipeline_trigger_when import PipelineTriggerWhen, PipelineTriggerWhenPlain
 from .pipeline_update import PipelineUpdate, PipelineUpdatePlain
 from .project import Project, ProjectPlain
 from .project_create import ProjectCreate, ProjectCreatePlain
-from .project_organization_create import (
-    ProjectOrganizationCreate,
-    ProjectOrganizationCreatePlain,
-)
+from .project_owner_relation import ProjectOwnerRelation, ProjectOwnerRelationPlain
+from .project_owner_type import ProjectOwnerType, ProjectOwnerTypePlain
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .project_update import ProjectUpdate, ProjectUpdatePlain
 from .provider_code import ProviderCode, ProviderCodePlain
@@ -934,6 +932,8 @@ __all__ = [
     "MemberPlain",
     "MemberRelation",
     "MemberRelationPlain",
+    "MembershipRelation",
+    "MembershipRelationPlain",
     "Network",
     "NetworkEnvironmentCreate",
     "NetworkEnvironmentCreatePlain",
@@ -975,8 +975,6 @@ __all__ = [
     "OperationCustomSettings",
     "OperationCustomSettingsPlain",
     "Organization",
-    "OrganizationActivity",
-    "OrganizationActivityPlain",
     "OrganizationCreate",
     "OrganizationCreatePlain",
     "OrganizationPlain",
@@ -1023,8 +1021,10 @@ __all__ = [
     "Project",
     "ProjectCreate",
     "ProjectCreatePlain",
-    "ProjectOrganizationCreate",
-    "ProjectOrganizationCreatePlain",
+    "ProjectOwnerRelation",
+    "ProjectOwnerRelationPlain",
+    "ProjectOwnerType",
+    "ProjectOwnerTypePlain",
     "ProjectPlain",
     "ProjectRelation",
     "ProjectRelationPlain",

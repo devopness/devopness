@@ -52,29 +52,36 @@ type TooltipComponentProps = Unwrap<
 
 const DEFAULT_BACKGROUND_COLOR = getColor('blue.950')
 
+const BaseTooltip = ({ className, ...tooltipProps }: TooltipProps) => (
+  <MuiTooltip
+    {...tooltipProps}
+    classes={{ popper: className }}
+    data-testid="tooltip"
+  />
+)
+
+const WrappedTooltip = styled(BaseTooltip)<{
+  $color?: string
+  $backgroundColor?: string
+}>(({ $color, $backgroundColor }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    color: $color,
+    backgroundColor: $backgroundColor ?? DEFAULT_BACKGROUND_COLOR,
+    fontSize: '11px',
+    fontFamily: getFont('roboto'),
+  },
+}))
+
 const StyledTooltip = ({
   styles,
   ...props
-}: Pick<TooltipComponentProps, 'styles'> & TooltipProps) => {
-  const WrappedTooltip = styled(
-    ({ className, ...tooltipProps }: TooltipProps) => (
-      <MuiTooltip
-        {...tooltipProps}
-        classes={{ popper: className }}
-        data-testid="tooltip"
-      />
-    )
-  )(() => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-      color: styles?.color,
-      backgroundColor: styles?.backgroundColor ?? DEFAULT_BACKGROUND_COLOR,
-      fontSize: '11px',
-      fontFamily: getFont('roboto'),
-    },
-  }))
-
-  return <WrappedTooltip {...props} />
-}
+}: Pick<TooltipComponentProps, 'styles'> & TooltipProps) => (
+  <WrappedTooltip
+    {...props}
+    $color={styles?.color}
+    $backgroundColor={styles?.backgroundColor}
+  />
+)
 
 /** Display informative text when users hover over a child element */
 const Tooltip = ({
