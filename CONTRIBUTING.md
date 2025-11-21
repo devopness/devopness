@@ -95,7 +95,7 @@ This interactive command will ask which packages are affected, what type of bump
 
 Manual: you can also create a markdown file directly in `.changeset/`. See the docs for the exact file format and examples: [Adding a changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
 
-### PR checklist for changes that affect packages
+### Pull Request checklist for changes that affect packages
 
 - **Include a changeset:** make sure the generated or manual changeset file is in your branch and PR.
 - **Accurate bump type:** confirm the chosen bump (patch/minor/major) matches the user-visible change.
