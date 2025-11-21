@@ -65,6 +65,21 @@ The messages that appear in our changelogs are defined using changesets.
 
 [Click here to learn what changesets are, and how to add one.](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
 
+### Adding a changeset
+Don't forget to also include a changeset, by running this command at the root of the project:
+
+```sh
+yarn changeset
+```
+
+Or
+
+```sh
+npx @changesets/cli
+```
+
+If want to know more about changesets, check [here is a more in-depth explanation](https://github.com/changesets/changesets/blob/main/docs/detailed-explanation.md) documentation.
+
 ### Feature Work
 
 For larger features, we would appreciate it if you open a [new issue](https://github.com/devopness/devopness/issues/new/choose) before investing a lot of your time trying to solve it, so we can discuss and plan the feature together.
