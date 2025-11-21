@@ -10,5 +10,3 @@ Fix the `Alert` component to ensure consistent styling
   - Correcting icon positioning and sizing
   - Improving close button alignment and spacing
   - Ensuring consistent border-radius application
-
-Fix `CONTRIBUTING` document to include changesets in contributions.
