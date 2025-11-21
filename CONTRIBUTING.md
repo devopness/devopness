@@ -69,12 +69,6 @@ The messages that appear in our changelogs are defined using changesets.
 Don't forget to also include a changeset, by running this command at the root of the project:
 
 ```sh
-yarn changeset
-```
-
-Or
-
-```sh
 npx @changesets/cli
 ```
 
