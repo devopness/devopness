@@ -66,10 +66,6 @@ For larger features, we would appreciate it if you open a [new issue](https://gi
 Please also be sure to browse current issues to make sure your issue is unique, to lighten the triage burden on our maintainers.
 Finally, please limit your pull requests to contain only one feature at a time. Separating feature work into individual pull requests helps speed up code review and reduces the barrier to merge.
 
-## Getting Help
-
-If you want to talk with other folks in the Devopness community (including members of the Devopness team) please [start a discussion](https://github.com/devopness/devopness/discussions) and we will soon get in touch with you.
-
 ## Releases
 
 We publish package releases and changelogs using [GitHub Releases](https://github.com/devopness/devopness/releases) together with Changesets.
@@ -103,3 +99,7 @@ Manual: you can also create a markdown file directly in `.changeset/`. See the d
 - **Ask if unsure:** if you’re unsure what bump to choose, add a note in the PR or start a discussion so maintainers can advise.
 
 If you need help creating a changeset or understanding bump types, start a discussion or mention maintainers on your pull request.
+
+## Getting Help
+
+If you want to talk with other folks in the Devopness community (including members of the Devopness team) please [start a discussion](https://github.com/devopness/devopness/discussions) and we will soon get in touch with you.
