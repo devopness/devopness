@@ -72,7 +72,7 @@ If you want to talk with other folks in the Devopness community (including membe
 
 ## Releases
 
-We publish package releases and changelogs using [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github) together with Changesets.
+We publish package releases and changelogs using [GitHub Releases](https://github.com/devopness/devopness/releases) together with Changesets.
 
 ### Changesets
 
