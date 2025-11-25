@@ -11397,7 +11397,7 @@
     },
     "/users/{user_id}": {
       "get": {
-        "summary": "Get a user by ID or URL Slug",
+        "summary": "Get public details of a user",
         "operationId": "getUser",
         "tags": [
           "Users"
@@ -11415,7 +11415,7 @@
           {
             "in": "path",
             "name": "user_id",
-            "description": "The numeric ID or URL Slug of a user.",
+            "description": "The URL Slug of a user.",
             "example": "johndoe",
             "required": true,
             "schema": {
@@ -23708,56 +23708,22 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique ID of the given user",
+            "description": "The unique ID of the user",
             "example": 45678,
             "type": "integer"
-          },
-          "name": {
-            "description": "User's full name",
-            "example": "Some One",
-            "type": "string"
-          },
-          "email": {
-            "description": "The e-mail that will uniquely identify the user on the system and become its login credential",
-            "example": "someone@example.com",
-            "type": "string"
           },
           "url_slug": {
             "description": "The URL Slug of the user",
             "example": "someone",
             "type": "string"
           },
-          "language": {
-            "$ref": "#/components/schemas/Language"
-          },
-          "active": {
-            "description": "Tells if the user is active or not",
-            "example": true,
-            "type": "boolean"
-          },
-          "social_accounts": {
-            "$ref": "#/components/schemas/SocialAccountList"
-          },
-          "created_at": {
-            "description": "The date and time when the record was created",
-            "example": "2019-09-25T13:22:37.000000Z",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "The date and time when the record was last updated",
-            "example": "2019-09-25T13:22:37.000000Z",
-            "type": "string"
+          "type": {
+            "$ref": "#/components/schemas/UserType"
           }
         },
         "required": [
           "id",
-          "name",
-          "email",
-          "language",
-          "active",
-          "social_accounts",
-          "created_at",
-          "updated_at"
+          "type"
         ]
       },
       "UserActivity": {
@@ -24062,6 +24028,15 @@
             "example": 6
           }
         }
+      },
+      "UserType": {
+        "type": "string",
+        "description": "The possible types of users.",
+        "enum": [
+          "user",
+          "org"
+        ],
+        "example": "user"
       },
       "UserUrl": {
         "type": "object",

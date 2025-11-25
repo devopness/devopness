@@ -311,6 +311,7 @@ export * from './user-refresh-token-response';
 export * from './user-relation';
 export * from './user-resend-verification';
 export * from './user-team-stats';
+export * from './user-type';
 export * from './user-url';
 export * from './variable';
 export * from './variable-application-create';

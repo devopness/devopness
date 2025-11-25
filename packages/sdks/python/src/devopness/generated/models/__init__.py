@@ -613,6 +613,7 @@ from .user_resend_verification import (
     UserResendVerificationPlain,
 )
 from .user_team_stats import UserTeamStats, UserTeamStatsPlain
+from .user_type import UserType, UserTypePlain
 from .user_url import UserUrl, UserUrlPlain
 from .variable import Variable, VariablePlain
 from .variable_application_create import (
@@ -1288,6 +1289,8 @@ __all__ = [
     "UserResendVerificationPlain",
     "UserTeamStats",
     "UserTeamStatsPlain",
+    "UserType",
+    "UserTypePlain",
     "UserUrl",
     "UserUrlPlain",
     "Variable",
