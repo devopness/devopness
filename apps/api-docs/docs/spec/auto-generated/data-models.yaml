@@ -797,6 +797,8 @@ UserResendVerification:
   $ref: ./auto-generated/models/user-resend-verification.yaml
 UserTeamStats:
   $ref: ./auto-generated/models/user-team-stats.yaml
+UserType:
+  $ref: ./auto-generated/models/user-type.yaml
 UserUrl:
   $ref: ./auto-generated/models/user-url.yaml
 Variable:

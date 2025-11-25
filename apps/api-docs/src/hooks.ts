@@ -2,7 +2,7 @@ import hooks, { Transaction, TransactionHook } from 'hooks';
 import { v1, v4 } from 'uuid';
 
 import './augmentTransactionWithMetadata';
-import { Identifiable, PersonalAccessToken, isFixtureKey } from './fixtureTypes';
+import { Identifiable, User, PersonalAccessToken, isFixtureKey } from './fixtureTypes';
 import DevopnessAPI from './DevopnessAPI';
 import env from './envLoader';
 import FixtureStore from './FixtureStore';
@@ -277,7 +277,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     //// users
     before('addUser202', (transaction: Transaction) => {
-        const user = { id: env.DEVOPNESS_USER_ID } as Identifiable;
+        const user = { 
+          id: env.DEVOPNESS_USER_ID,
+          url_slug: env.DEVOPNESS_USER_URL_SLUG,
+        } as User;
 
         fixtures.put('user', user);
         fixtures.put('user_credentials', user);
@@ -285,6 +288,16 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
         transaction.skip = true;
     });
+
+    before('getUser200', (transaction: Transaction) => {
+        const user = fixtures.get<User>('user');
+
+        const oldPath = transaction.fullPath;
+        transaction.fullPath = `/users/${user?.url_slug}`;
+        transaction.id = `${transaction.request.method} (${transaction.expected.statusCode}) ${transaction.fullPath}`;
+
+        hooks.log(`:: rewriting request path '${oldPath}' => '${transaction.fullPath}'`);
+    })
 
     before('addOrganization201', utils.rewriteTransactionRequestBody((body: any) => {
         body['name'] = `API Docs Test Organization ${new Date().getTime()}`;

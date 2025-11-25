@@ -8,6 +8,13 @@ export interface Identifiable {
 }
 
 /**
+ * User entity.
+ */
+export type User = Identifiable & {
+    url_slug: string,
+}
+
+/**
  * Personal Access Token entity.
  */
 export type PersonalAccessToken = {
