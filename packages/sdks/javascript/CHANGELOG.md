@@ -4,7 +4,9 @@
 
 ### Patch Changes
 
-- [#2423](https://github.com/devopness/devopness/pull/2423) [`c25e683`](https://github.com/devopness/devopness/commit/c25e6832ee15519a46a9f9ff9be06cb5e7f5007e) Thanks [@devopness-automations](https://github.com/devopness-automations)! - **Changes**
+- [#2423](https://github.com/devopness/devopness/pull/2423) [`c25e683`](https://github.com/devopness/devopness/commit/c25e6832ee15519a46a9f9ff9be06cb5e7f5007e) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  **Changes**
 
   The `Get User` method has been updated to accept only the `URL Slug` of a `User` or `Organization`, returning the entity’s public information: **ID, URL Slug, and Type**.
 
