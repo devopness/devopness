@@ -46,8 +46,8 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get a user by ID or URL Slug
-     * @param {string} userId The numeric ID or URL Slug of a user.
+     * @summary Get public details of a user
+     * @param {string} userId The URL Slug of a user.
      */
     public async getUser(userId: string): Promise<ApiResponse<User>> {
         if (userId === null || userId === undefined) {
