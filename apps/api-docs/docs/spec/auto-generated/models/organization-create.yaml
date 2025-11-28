@@ -11,4 +11,3 @@ properties:
     type: string
 required:
   - name
-  - url_slug
