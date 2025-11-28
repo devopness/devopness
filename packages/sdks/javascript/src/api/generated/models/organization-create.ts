@@ -30,6 +30,6 @@ export interface OrganizationCreate {
      * @type {string}
      * @memberof OrganizationCreate
      */
-    url_slug: string;
+    url_slug?: string;
 }
 

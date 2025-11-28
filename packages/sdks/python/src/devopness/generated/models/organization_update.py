@@ -23,16 +23,14 @@ class OrganizationUpdate(DevopnessBaseModel):
     Attributes:
         id (str): The unique ID of the given Organization.
         name (str): The Name of the organization. Must not be greater than 255 characters.
-        url_slug (str): The URL Slug of the organization. Must not be greater than 255 characters.
+        url_slug (str): The URL Slug of the organization.
     """
 
     id: StrictStr = Field(description="The unique ID of the given Organization.")
     name: StrictStr = Field(
         description="The Name of the organization. Must not be greater than 255 characters."
     )
-    url_slug: StrictStr = Field(
-        description="The URL Slug of the organization. Must not be greater than 255 characters."
-    )
+    url_slug: StrictStr = Field(description="The URL Slug of the organization.")
 
 
 class OrganizationUpdatePlain(TypedDict, total=False):

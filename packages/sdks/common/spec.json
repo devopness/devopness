@@ -18990,8 +18990,7 @@
           }
         },
         "required": [
-          "name",
-          "url_slug"
+          "name"
         ]
       },
       "OrganizationList": {
@@ -19058,7 +19057,7 @@
             "type": "string"
           },
           "url_slug": {
-            "description": "The URL Slug of the organization. Must not be greater than 255 characters.",
+            "description": "The URL Slug of the organization.",
             "example": "MyOrg",
             "type": "string"
           }
