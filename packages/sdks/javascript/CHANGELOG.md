@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#2436](https://github.com/devopness/devopness/pull/2436) [`5c3fa8a`](https://github.com/devopness/devopness/commit/5c3fa8a6848b886b3d6b759e02e0ab93b8d51fbb) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the `URL Slug` type in Create and Update Organizations
+- [#2436](https://github.com/devopness/devopness/pull/2436) [`5c3fa8a`](https://github.com/devopness/devopness/commit/5c3fa8a6848b886b3d6b759e02e0ab93b8d51fbb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the `URL Slug` type in Create and Update Organizations
 
 ## 3.1.5
 
