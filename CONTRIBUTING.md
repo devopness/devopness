@@ -59,18 +59,46 @@ Here are some **bad examples** of pull requests titles we're trying to avoid:
 - `Adds a feature`
 - `Feature now does something`
 
-### Changelogs
-
-The messages that appear in our changelogs are defined using changesets.
-
-[Click here to learn what changesets are, and how to add one.](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
-
 ### Feature Work
 
 For larger features, we would appreciate it if you open a [new issue](https://github.com/devopness/devopness/issues/new/choose) before investing a lot of your time trying to solve it, so we can discuss and plan the feature together.
 
 Please also be sure to browse current issues to make sure your issue is unique, to lighten the triage burden on our maintainers.
 Finally, please limit your pull requests to contain only one feature at a time. Separating feature work into individual pull requests helps speed up code review and reduces the barrier to merge.
+
+## Releases
+
+We publish package releases and changelogs using [GitHub Releases](https://github.com/devopness/devopness/releases) together with Changesets.
+
+### Changesets
+
+Changesets are small files that describe what changed and what kind of version bump is required (patch, minor, or major). They are used to generate changelogs and help our release tooling determine new package versions.
+
+- Why: ensures consistent, readable changelogs and predictable versioning.
+- Where: changeset files live under the repository root in the `.changeset/` directory.
+
+Read the official Changesets documentation: [Changesets](https://github.com/changesets/changesets)
+
+### Adding a changeset
+
+Preferred (interactive): run the CLI from the repo root and follow the prompts:
+
+```bash
+npx @changesets/cli
+```
+
+This interactive command will ask which packages are affected, what type of bump is required, and for a short description. It will create a new file under `.changeset/` which must be included in your **Pull Request**.
+
+Manual: you can also create a markdown file directly in `.changeset/`. See the docs for the exact file format and examples: [Adding a changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
+
+### Pull Request checklist for changes that affect packages
+
+- **Include a changeset:** make sure the generated or manual changeset file is in your branch and PR.
+- **Accurate bump type:** confirm the chosen bump (patch/minor/major) matches the user-visible change.
+- **Run tests & linters:** ensure CI passes before requesting a merge.
+- **Ask if unsure:** if you’re unsure what bump to choose, add a note in the PR or start a discussion so maintainers can advise.
+
+If you need help creating a changeset or understanding bump types, start a discussion or mention maintainers on your pull request.
 
 ## Getting Help
 
