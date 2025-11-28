@@ -1,11 +1,29 @@
 # @devopness/sdk-python
 
+## 2.1.6
+
+### Patch Changes
+
+- [#2436](https://github.com/devopness/devopness/pull/2436) [`5c3fa8a`](https://github.com/devopness/devopness/commit/5c3fa8a6848b886b3d6b759e02e0ab93b8d51fbb) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the `URL Slug` type in Create and Update Organizations
+
+## 2.1.5
+
+### Patch Changes
+
+- [#2423](https://github.com/devopness/devopness/pull/2423) [`c25e683`](https://github.com/devopness/devopness/commit/c25e6832ee15519a46a9f9ff9be06cb5e7f5007e) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  **Changes**
+
+  The `Get User` method has been updated to accept only the `URL Slug` of a `User` or `Organization`, returning the entity’s public information: **ID, URL Slug, and Type**.
+
 ## 2.1.4
 
 ### Patch Changes
 
 - [#2363](https://github.com/devopness/devopness/pull/2363) [`4701800`](https://github.com/devopness/devopness/commit/470180034a1a478c252448a4fa82dafda3e676a4) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
   ### Added
+
   Added support for a new parameter `owner` in the `getProjects` method.
   This parameter allows filtering projects by **owner ID** or **URL slug** (user or organization).
 

@@ -32,7 +32,7 @@ export interface OrganizationUpdate {
      */
     name: string;
     /**
-     * The URL Slug of the organization. Must not be greater than 255 characters.
+     * The URL Slug of the organization.
      * @type {string}
      * @memberof OrganizationUpdate
      */
