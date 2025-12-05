@@ -11,7 +11,7 @@ Install the **Devopness MCP Server** in your favorite IDE:
 [![Install Devopness MCP Server in VS Code](https://img.shields.io/badge/VS_Code-000000?style=for-the-badge&label=Add%20to&labelColor=000000&color=000000
 )](https://insiders.vscode.dev/redirect/mcp/install?name=devopness&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.devopness.com%2Fmcp%2F%22%7D)
 
-> ⚠️ When the MCP Server is started in your IDE, it will require you to **log in with your Devopness Account** in order to authenticate and operate properly.
+> ⚠️ When you start the MCP Server in your IDE, it will require you to **log in with your Devopness Account** in order to authenticate and operate properly.
 
 ## Community
 [![Discord Badge](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=fff&style=for-the-badge)](https://discord.gg/5KphsWxHeJ)
