@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/sdk-js",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "publishConfig": {
     "access": "public"
   },
@@ -64,7 +64,7 @@
     "husky": "9.1.7",
     "jest": "^30.2.0",
     "ts-jest": "^29.4.5",
-    "typedoc": "^0.28.14",
+    "typedoc": "^0.28.15",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.47.0"
   },
