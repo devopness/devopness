@@ -9,12 +9,20 @@ type SkeletonProps = {
   borderRadius?: number
 }
 
-const Skeleton = (props: SkeletonProps) => (
-  <SkeletonEffect
-    data-testid="skeleton"
-    className={props.className}
-    {...props}
-  />
-)
+const Skeleton = (props: SkeletonProps) => {
+  const { className, widthPercent, heightPercent, width, height, borderRadius } = props
+
+  return (
+    <SkeletonEffect
+      data-testid="skeleton"
+      className={className}
+      $widthPercent={widthPercent}
+      $heightPercent={heightPercent}
+      $width={width}
+      $height={height}
+      $borderRadius={borderRadius}
+    />
+  )
+}
 
 export { Skeleton }
