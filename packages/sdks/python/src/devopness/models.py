@@ -4,6 +4,8 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 from .generated.models import (
     Action,
+    ActionData,
+    ActionDataPlain,
     ActionDeploymentCommit,
     ActionDeploymentCommitPlain,
     ActionDeploymentContent,
@@ -693,6 +695,8 @@ from .generated.models import (
 
 __all__ = [
     "Action",
+    "ActionData",
+    "ActionDataPlain",
     "ActionDeploymentCommit",
     "ActionDeploymentCommitPlain",
     "ActionDeploymentContent",
