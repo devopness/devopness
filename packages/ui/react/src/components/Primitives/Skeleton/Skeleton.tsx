@@ -10,7 +10,14 @@ type SkeletonProps = {
 }
 
 const Skeleton = (props: SkeletonProps) => {
-  const { className, widthPercent, heightPercent, width, height, borderRadius } = props
+  const {
+    className,
+    widthPercent,
+    heightPercent,
+    width,
+    height,
+    borderRadius,
+  } = props
 
   return (
     <SkeletonEffect

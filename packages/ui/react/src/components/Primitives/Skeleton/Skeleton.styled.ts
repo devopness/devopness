@@ -33,7 +33,9 @@ const SkeletonEffect = styled.div<TransientSkeletonProps>`
   width: ${({ $widthPercent, $width }) =>
     $widthPercent ? `${String($widthPercent)}%` : `${String($width ?? 1)}px`};
   height: ${({ $heightPercent, $height }) =>
-    $heightPercent ? `${String($heightPercent)}%` : `${String($height ?? 1)}px`};
+    $heightPercent
+      ? `${String($heightPercent)}%`
+      : `${String($height ?? 1)}px`};
   border-radius: ${(props) => props.$borderRadius ?? 0}px;
   ${skeleton}
 `
