@@ -1,36 +1,36 @@
-import { styled, css } from 'styled-components'
-
-import type { InputProps } from './Input'
 import { getColor } from 'src/colors'
 import { removeBlueMark } from 'src/components/styles'
 import { getFont } from 'src/fonts'
+import { css, styled } from 'styled-components'
 
-type IconPositionProps = Pick<InputProps, 'iconPosition'>
+type IconPositionProps = {
+  $iconPosition?: 'left' | 'right'
+}
 
 type WrapperProps = {
-  disabled?: boolean
-  readOnly?: boolean
-  error?: boolean
+  $disabled?: boolean
+  $readOnly?: boolean
+  $error?: boolean
 }
 
 type InputTextProps = {
-  disabled?: boolean
-  hasError?: boolean
+  $disabled?: boolean
+  $hasError?: boolean
   type: string
-  removeArrows?: boolean
-  publicStyle?: {
+  $removeArrows?: boolean
+  $publicStyle?: {
     fontStyleValue?: string
     fontStylePlaceholder?: string
   }
-  readOnly?: boolean
-  hasIcon?: boolean
-  iconPosition?: 'left' | 'right'
+  $readOnly?: boolean
+  $hasIcon?: boolean
+  $iconPosition?: 'left' | 'right'
 }
 
 type InputWrapperProps = {
-  hasError?: boolean
-  disabled?: boolean
-  readOnly?: boolean
+  $hasError?: boolean
+  $disabled?: boolean
+  $readOnly?: boolean
 }
 
 const wrapperModifiers = {
@@ -95,27 +95,27 @@ const Container = styled.div`
 `
 
 const InputWrapper = styled.div<InputWrapperProps>`
-  ${({ hasError, disabled, readOnly }) => css`
+  ${({ $hasError, $disabled, $readOnly }) => css`
     display: flex;
     align-items: center;
     position: relative;
-    background: ${getColor(hasError ? 'red.150' : 'gray.200')};
+    background: ${getColor($hasError ? 'red.150' : 'gray.200')};
     border-radius: 30px;
-    border: 1px solid ${getColor(hasError ? 'red.500' : 'slate.300')};
+    border: 1px solid ${getColor($hasError ? 'red.500' : 'slate.300')};
     transition: border-color 0.2s ease;
 
     &:hover,
     &:focus-within {
-      ${!(readOnly ?? disabled) &&
+      ${!($readOnly ?? $disabled) &&
       css`
-        border-color: ${getColor(hasError ? 'red.500' : 'purple.800')};
+        border-color: ${getColor($hasError ? 'red.500' : 'purple.800')};
       `}
     }
   `}
 `
 
 const InputText = styled.input<InputTextProps>`
-  ${({ hasIcon, iconPosition, publicStyle, type, removeArrows }) => css`
+  ${({ $hasIcon, $iconPosition, $publicStyle, type, $removeArrows }) => css`
     max-width: 100%;
     width: 100%;
     height: 34px;
@@ -126,34 +126,34 @@ const InputText = styled.input<InputTextProps>`
     border: none;
     background: transparent;
     color: ${getColor('blue.950')};
-    font-style: ${publicStyle?.fontStyleValue ?? 'normal'};
+    font-style: ${$publicStyle?.fontStyleValue ?? 'normal'};
     outline: none;
 
-    ${hasIcon &&
+    ${$hasIcon &&
     css`
-      padding-${iconPosition === 'left' ? 'left' : 'right'}: 8px;
+      padding-${$iconPosition === 'left' ? 'left' : 'right'}: 8px;
     `}
 
     &::placeholder {
       font-size: 13px;
       color: ${getColor('slate.400')};
-      font-style: ${publicStyle?.fontStylePlaceholder ?? 'normal'};
+      font-style: ${$publicStyle?.fontStylePlaceholder ?? 'normal'};
     }
 
     ${type === 'number' &&
-    (removeArrows ? InputTypeNumberRemoveArrows : InputTypeNumber)}
+($removeArrows ? InputTypeNumberRemoveArrows : InputTypeNumber)}
   `}
 `
 
 const Icon = styled.div<IconPositionProps>`
-  ${({ iconPosition }) => css`
+  ${({ $iconPosition }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
     width: 2.2rem;
     height: 100%;
     color: ${getColor('slate.400')};
-    order: ${iconPosition === 'right' ? 1 : 0};
+    order: ${$iconPosition === 'right' ? 1 : 0};
 
     & > svg {
       width: 100%;
@@ -165,11 +165,12 @@ const Icon = styled.div<IconPositionProps>`
 `
 
 const Wrapper = styled.div<WrapperProps>`
-  ${({ disabled, readOnly, error }) => css`
-    ${!!error && wrapperModifiers.error()};
-    ${!!disabled && wrapperModifiers.disabled()};
-    ${!!readOnly && wrapperModifiers.readOnly()};
+  ${({ $disabled, $readOnly, $error }) => css`
+    ${!!$error && wrapperModifiers.error()};
+    ${!!$disabled && wrapperModifiers.disabled()};
+    ${!!$readOnly && wrapperModifiers.readOnly()};
   `}
 `
 
-export { Container, InputWrapper, InputText, Icon, Wrapper }
+export { Container, Icon, InputText, InputWrapper, Wrapper }
+
