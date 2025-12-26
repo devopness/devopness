@@ -41,6 +41,8 @@ type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: React.ReactNode
   /** Position of the icon inside the input */
   iconPosition?: 'left' | 'right'
+  /** Removes increment/decrement arrows from number inputs */
+  removeArrows?: boolean
 }
 
 type InputProps =
@@ -50,9 +52,7 @@ type InputProps =
     })
   | (SharedProps & {
       /** HTML input type (text, number, email, etc.) */
-      type: 'number'
-      /** Removes increment/decrement arrows from number inputs */
-      removeArrows?: boolean
+    type: 'number'
     })
 
 const generateUniqueId = () =>
