@@ -2,7 +2,7 @@
 "@devopness/ui-react": patch
 ---
 
-Fix the React warning about custom props being forwarded to DOM elements (e.g. `widthPercent`).
+Fix the React `widthPercent` warning about custom prop being forwarded to DOM elements.
 
 ### What Changed
 
