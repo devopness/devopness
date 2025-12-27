@@ -1,6 +1,5 @@
 import { styled } from 'styled-components'
 
-import type { AlertProps } from './Alert'
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
 
@@ -41,12 +40,12 @@ const handleBackgroundColor = (typeAlert: string) => {
   }
 }
 
-const Wrapper = styled.div<Pick<AlertProps, 'noPadding'>>`
+const Wrapper = styled.div<{ $noPadding?: boolean }>`
   display: flex;
   align-items: center;
   width: 100%;
-  padding-top: ${(props) => (props.noPadding ? '' : '42px')};
-  padding-bottom: ${(props) => (props.noPadding ? '' : '20px')};
+  padding-top: ${(props) => (props.$noPadding ? '' : '42px')};
+  padding-bottom: ${(props) => (props.$noPadding ? '' : '20px')};
 `
 
 const StyledContent = styled.div<StyledProps>`
@@ -70,14 +69,14 @@ const StyledIcon = styled.div<StyledProps>`
   align-items: center;
 `
 
-const StyledLabel = styled.label<{ fullWidth?: boolean }>`
+const StyledLabel = styled.label<{ $fullWidth?: boolean }>`
   color: ${getColor('blue.950')};
   font-family: ${getFont('roboto')};
   font-size: 13px;
   letter-spacing: 0;
   line-height: 1.5;
   white-space: pre-wrap;
-  ${(props) => (props.fullWidth ? 'width: 100%;' : '')}
+  ${(props) => (props.$fullWidth ? 'width: 100%;' : '')}
 `
 
 const LabelContentWrapper = styled.div`
@@ -87,4 +86,4 @@ const LabelContentWrapper = styled.div`
   gap: 1rem;
 `
 
-export { Wrapper, StyledContent, StyledIcon, StyledLabel, LabelContentWrapper }
+export { LabelContentWrapper, StyledContent, StyledIcon, StyledLabel, Wrapper }
