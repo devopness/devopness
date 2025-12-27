@@ -1,11 +1,11 @@
 import React from 'react'
 
 import {
-  Wrapper,
+  LabelContentWrapper,
   StyledContent,
   StyledIcon,
   StyledLabel,
-  LabelContentWrapper,
+  Wrapper,
 } from './Alert.styled'
 import type { Color } from 'src/colors'
 import { getColor } from 'src/colors'
@@ -63,13 +63,13 @@ const DEFAULT_ICON_SIZE = 13
  * ```
  */
 const Alert = (props: AlertProps) => (
-  <Wrapper noPadding={props.noPadding}>
+  <Wrapper $noPadding={props.noPadding}>
     <StyledContent type={props.type}>
       <StyledIcon type={props.type}>
         {iconLoader(alertTypeToIcon[props.type], DEFAULT_ICON_SIZE)}
       </StyledIcon>
       <StyledLabel
-        fullWidth={props.canClose}
+        $fullWidth={props.canClose}
         className="translate"
       >
         <LabelContentWrapper>
@@ -95,5 +95,5 @@ const Alert = (props: AlertProps) => (
   </Wrapper>
 )
 
-export type { AlertProps }
 export { Alert }
+export type { AlertProps }

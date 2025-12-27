@@ -1,4 +1,4 @@
-import { Wrapper, Line, Title, Paragraph } from './FormText.styled'
+import { Line, Paragraph, Title, Wrapper } from './FormText.styled'
 
 type FormTextProps = {
   /** Main title */
@@ -28,7 +28,7 @@ const FormText = ({ title, subTitle, subTitleColor }: FormTextProps) => (
   <Wrapper>
     <Title>{title}</Title>
     {subTitle && (
-      <Paragraph subtitleColor={subTitleColor}>{subTitle}</Paragraph>
+      <Paragraph $subtitleColor={subTitleColor}>{subTitle}</Paragraph>
     )}
     <Line />
   </Wrapper>
