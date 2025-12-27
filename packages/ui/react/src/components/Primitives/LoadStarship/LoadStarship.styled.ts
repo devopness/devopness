@@ -1,7 +1,7 @@
 import { css, styled } from 'styled-components'
 
 type ContainerProps = {
-  isFullContainer?: boolean
+  $isFullContainer?: boolean
 }
 
 const loadingPage = css`
@@ -23,8 +23,8 @@ const Container = styled.div<ContainerProps>`
   justify-content: center;
   align-items: center;
   background: #fff;
-  ${({ isFullContainer }) =>
-    isFullContainer ? loadingFullWindow : loadingPage}
+  ${({ $isFullContainer }) =>
+    $isFullContainer ? loadingFullWindow : loadingPage}
 `
 
 const Gif = styled.img`

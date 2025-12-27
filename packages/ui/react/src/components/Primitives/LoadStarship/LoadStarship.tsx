@@ -1,8 +1,8 @@
-import { memo } from 'react'
 import type { PropsWithChildren } from 'react'
+import { memo } from 'react'
 
-import { Container, Gif } from './LoadStarship.styled'
 import { getImageAssetUrl } from 'src/icons'
+import { Container, Gif } from './LoadStarship.styled'
 
 const starshipGif = getImageAssetUrl('effect_load_starship_devopness.gif')
 
@@ -30,7 +30,7 @@ type LoadStarshipProps = {
 const LoadStarship = ({
   isFullContainer,
 }: PropsWithChildren<LoadStarshipProps>) => (
-  <Container isFullContainer={isFullContainer}>
+  <Container $isFullContainer={isFullContainer}>
     <Gif
       src={starshipGif}
       alt="This is an animated GIF image of the devopness starship"
