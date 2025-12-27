@@ -1,18 +1,18 @@
-import { styled, css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
+import { getColor } from 'src/colors'
 import { BarLoader as BaseBarLoader } from './BarLoader'
 import { CircleLoader as BaseCircleLoader } from './CircleLoader'
 import { PageLoader as BasePageLoader } from './PageLoader'
 import { RingLoader as BaseRingLoader } from './RingLoader'
-import { getColor } from 'src/colors'
 
 type ContainerCometSpinLoaderProps = {
-  paddingTop?: string
+  $paddingTop?: string
 }
 
 type LoaderContainerProps = {
-  paddingTop?: string
-  isAlignLeft?: boolean
+  $paddingTop?: string
+  $isAlignLeft?: boolean
 }
 
 const PageContainer = styled.div`
@@ -43,15 +43,15 @@ const loaderMargin = css`
 `
 
 const ContainerCometSpinLoader = styled.div<ContainerCometSpinLoaderProps>`
-  padding-top: ${({ paddingTop }) => paddingTop ?? '0'};
+  padding-top: ${({ $paddingTop }) => $paddingTop ?? '0'};
 `
 
 const LoaderContainer = styled.div<LoaderContainerProps>`
-  padding-top: ${({ paddingTop }) => paddingTop ?? '0'};
+  padding-top: ${({ $paddingTop }) => $paddingTop ?? '0'};
   display: flex;
   height: 42px;
-  justify-content: ${({ isAlignLeft }) =>
-    isAlignLeft ? 'flex-start' : 'center'};
+  justify-content: ${({ $isAlignLeft }) =>
+    $isAlignLeft ? 'flex-start' : 'center'};
   align-items: center;
 `
 
@@ -74,11 +74,5 @@ const RingLoader = styled(BaseRingLoader)`
 `
 
 export {
-  BarLoader,
-  PageLoader,
-  CircleLoader,
-  LoaderContainer,
-  RingLoader,
-  PageContainer,
-  ContainerCometSpinLoader,
+  BarLoader, CircleLoader, ContainerCometSpinLoader, LoaderContainer, PageContainer, PageLoader, RingLoader
 }

@@ -1,14 +1,14 @@
 import React from 'react'
 
+import { Text } from 'src/components/Primitives/Text'
 import {
   BarLoader,
-  PageLoader,
   CircleLoader,
   LoaderContainer,
+  PageLoader,
   RingLoader,
 } from './Loader.styled'
 import type { ReactSpinnersProps } from './ReactSpinners.type'
-import { Text } from 'src/components/Primitives/Text'
 
 type LoaderVariant = 'bar' | 'page' | 'circle' | 'ring'
 
@@ -44,8 +44,8 @@ const Loader = ({
 
   return (
     <LoaderContainer
-      paddingTop={paddingTop}
-      isAlignLeft={isAlignLeft}
+      $paddingTop={paddingTop}
+      $isAlignLeft={isAlignLeft}
     >
       <LoaderComponent
         paddingTop={paddingTop}
