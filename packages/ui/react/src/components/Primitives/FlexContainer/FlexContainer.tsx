@@ -33,7 +33,14 @@ type FlexContainerProps = {
  * </FlexContainer>
  * ```
  */
-const FlexContainer = ({ children, direction, align, wrap, gap, justify }: FlexContainerProps) => (
+const FlexContainer = ({
+  children,
+  direction,
+  align,
+  wrap,
+  gap,
+  justify,
+}: FlexContainerProps) => (
   <FlexContainerWrapper
     $direction={direction}
     $align={align}

@@ -3,12 +3,12 @@ import { styled } from 'styled-components'
 type FlexStyledProps = {
   $direction?: 'row' | 'column'
   $justify?:
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly'
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
   $align?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'
   $wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
   $gap?: string
