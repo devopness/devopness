@@ -1,8 +1,8 @@
 import type { RefObject, TextareaHTMLAttributes } from 'react'
 
+import { Container, StyledTextarea } from './TextArea.styled'
 import type { LabelProps } from 'src/components/Primitives'
 import { ErrorMessage, Label } from 'src/components/Primitives'
-import { Container, StyledTextarea } from './TextArea.styled'
 
 /**
  * Props for the TextArea component.

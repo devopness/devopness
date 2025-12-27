@@ -44,10 +44,10 @@ const Autocomplete = ({ inputProps, autocompleteProps }: AutocompleteProps) => (
       const { InputProps, inputProps: muiInputProps } = params
 
       return (
-        <div ref={InputProps?.ref}>
+        <div ref={InputProps.ref}>
           <Input
             {...inputProps}
-            {...(muiInputProps ?? {})}
+            {...muiInputProps}
             type="text"
           />
         </div>
@@ -58,4 +58,3 @@ const Autocomplete = ({ inputProps, autocompleteProps }: AutocompleteProps) => (
 
 export { Autocomplete }
 export type { AutocompleteProps }
-

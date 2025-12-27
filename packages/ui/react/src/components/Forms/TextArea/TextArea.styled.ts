@@ -34,7 +34,6 @@ const Container = styled.div`
   ${removeBlueMark}
 `
 
-
 const StyledTextarea = styled.textarea<PropsStyled>`
   font-family: ${getFont('mono')};
   width: 100%;
@@ -56,17 +55,17 @@ const StyledTextarea = styled.textarea<PropsStyled>`
   &:hover,
   &:focus {
     border-color: ${({ $hasError }) =>
-    $hasError ? getColor('red.500') : getColor('purple.800')};
+      $hasError ? getColor('red.500') : getColor('purple.800')};
     ${({ $readOnly }) =>
-    $readOnly && `border: 1px solid ${getColor('slate.300')}`}
+      $readOnly && `border: 1px solid ${getColor('slate.300')}`}
   }
 
   &::placeholder {
     font-family: ${getFont('roboto')};
     color: ${({ $hasError, $readOnly }) =>
-    $readOnly
+      $readOnly
         ? '#6F737C'
-    : $hasError
+        : $hasError
           ? getColor('gray.615')
           : getColor('slate.400')};
     font-size: 13px;

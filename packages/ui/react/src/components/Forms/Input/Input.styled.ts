@@ -1,7 +1,8 @@
+import { css, styled } from 'styled-components'
+
 import { getColor } from 'src/colors'
 import { removeBlueMark } from 'src/components/styles'
 import { getFont } from 'src/fonts'
-import { css, styled } from 'styled-components'
 
 type IconPositionProps = {
   $iconPosition?: 'left' | 'right'
@@ -141,7 +142,7 @@ const InputText = styled.input<InputTextProps>`
     }
 
     ${type === 'number' &&
-($removeArrows ? InputTypeNumberRemoveArrows : InputTypeNumber)}
+    ($removeArrows ? InputTypeNumberRemoveArrows : InputTypeNumber)}
   `}
 `
 
@@ -173,4 +174,3 @@ const Wrapper = styled.div<WrapperProps>`
 `
 
 export { Container, Icon, InputText, InputWrapper, Wrapper }
-

@@ -1,10 +1,5 @@
 import { forwardRef, useEffect, useRef, useState } from 'react'
 
-import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
-import { ErrorMessage } from 'src/components/Primitives/ErrorMessage'
-import type { LabelProps } from 'src/components/Primitives/Label/'
-import { Label } from 'src/components/Primitives/Label/'
-import { iconLoader } from 'src/icons'
 import {
   Container,
   Icon,
@@ -12,6 +7,11 @@ import {
   InputWrapper,
   Wrapper,
 } from './Input.styled'
+import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
+import { ErrorMessage } from 'src/components/Primitives/ErrorMessage'
+import type { LabelProps } from 'src/components/Primitives/Label/'
+import { Label } from 'src/components/Primitives/Label/'
+import { iconLoader } from 'src/icons'
 
 type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
   /** React ref for direct DOM manipulation */
@@ -52,7 +52,7 @@ type InputProps =
     })
   | (SharedProps & {
       /** HTML input type (text, number, email, etc.) */
-    type: 'number'
+      type: 'number'
     })
 
 const generateUniqueId = () =>
@@ -132,8 +132,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           htmlFor={inputId}
         />
       )}
-      <Wrapper $disabled={disabled} $readOnly={readOnly} $error={hasError}>
-        <InputWrapper $hasError={hasError} $disabled={disabled} $readOnly={readOnly}>
+      <Wrapper
+        $disabled={disabled}
+        $readOnly={readOnly}
+        $error={hasError}
+      >
+        <InputWrapper
+          $hasError={hasError}
+          $disabled={disabled}
+          $readOnly={readOnly}
+        >
           {icon && <Icon $iconPosition={iconPosition}>{icon}</Icon>}
           <InputText
             className="translate"
@@ -189,4 +197,3 @@ Input.displayName = 'Input'
 
 export { Input }
 export type { InputProps }
-
