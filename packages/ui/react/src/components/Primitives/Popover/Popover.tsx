@@ -2,10 +2,10 @@ import { ReactNode } from 'react'
 
 import type { PopoverProps as MaterialPopoverProps } from '@mui/material'
 
-import { Container, Footer, Header, Title } from './Popover.styled'
 import { Button } from 'src/components/Buttons'
 import { ConditionalWrapper } from 'src/components/helpers'
 import { iconLoader } from 'src/icons'
+import { Container, Footer, Header, Title } from './Popover.styled'
 
 type PopoverProps = {
   /** Optional header title */
@@ -44,7 +44,7 @@ const Popover = ({ title, footer, children, ...props }: PopoverProps) => (
   >
     <Header
       data-testid="popover-header"
-      justifyContent={title ? 'space-between' : 'end'}
+      $justifyContent={title ? 'space-between' : 'end'}
     >
       {title && <Title data-testid="popover-title">{title}</Title>}
       <Button
@@ -64,7 +64,7 @@ const Popover = ({ title, footer, children, ...props }: PopoverProps) => (
       wrapper={(children) => (
         <Footer
           id="popover"
-          justifyContent="space-between"
+          $justifyContent="space-between"
         >
           {children}
         </Footer>

@@ -22,14 +22,14 @@ const Container = styled(Popover)`
   }
 `
 
-const Header = styled.div<{ justifyContent: 'space-between' | 'end' }>`
+const Header = styled.div<{ $justifyContent: 'space-between' | 'end' }>`
   // This position "relative" is necessary for the workaround to embed Life Ring Button in the Popover
   // In Custom CSS Panel on Product Fruits Admin Panel, the position of the button is "absolute"
   // To more information, see Custom CSS setting um Product Fruits Admin Panel
   position: relative;
   display: flex;
   width: 100%;
-  justify-content: ${({ justifyContent }) => justifyContent};
+  justify-content: ${({ $justifyContent }) => $justifyContent};
   align-items: center;
   padding: 15px;
   box-sizing: border-box;
@@ -50,4 +50,4 @@ const Title = styled.span`
 
 const Footer = Header
 
-export { Container, Header, Title, Footer }
+export { Container, Footer, Header, Title }
