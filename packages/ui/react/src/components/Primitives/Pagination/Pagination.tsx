@@ -1,7 +1,7 @@
 import type { MouseEventHandler } from 'react'
 
-import { ContainerPagination, PaginationContent } from './Pagination.styled'
 import { Button } from 'src/components/Buttons'
+import { ContainerPagination, PaginationContent } from './Pagination.styled'
 
 type PaginationProps = {
   /** Disable all pagination actions */
@@ -48,7 +48,7 @@ const Pagination = ({
   lastPaginateAction,
 }: PaginationProps) => (
   <ContainerPagination>
-    <PaginationContent hideFirstAndLastButton={hideFirstAndLastButton}>
+    <PaginationContent $hideFirstAndLastButton={hideFirstAndLastButton}>
       <Button
         type="button"
         buttonType={'outlinedAuxiliary'}
