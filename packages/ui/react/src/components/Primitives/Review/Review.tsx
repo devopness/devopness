@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { ConditionalWrapper } from 'src/components/helpers'
+import { Icon, iconLoader } from 'src/icons'
 import { FlexContainer } from '../FlexContainer'
 import {
   ContentIcon,
@@ -7,8 +9,6 @@ import {
   DetailContentValue,
   PrefixWrapper,
 } from './Review.styled'
-import { ConditionalWrapper } from 'src/components/helpers'
-import { Icon, iconLoader } from 'src/icons'
 
 type ReviewProps = {
   /** Content text or JSX element */
@@ -74,12 +74,12 @@ const Review = ({
 
   return (
     <DetailContentInformation
-      backgroundColor={backgroundColor}
-      noIcon={!icon}
-      isIconAfterLabel={isIconAfterLabel}
+      $backgroundColor={backgroundColor}
+      $noIcon={!icon}
+      $isIconAfterLabel={isIconAfterLabel}
     >
       {!isIconAfterLabel && icon && (
-        <ContentIcon backgroundColor={iconBackgroundColor}>
+        <ContentIcon $backgroundColor={iconBackgroundColor}>
           {iconLoader(icon as Icon, iconSize, iconColor)}
         </ContentIcon>
       )}
@@ -87,11 +87,11 @@ const Review = ({
         gap="5px"
         align="center"
       >
-        <DetailContentValue isBoldFontWeight={isBoldFontWeight}>
+        <DetailContentValue $isBoldFontWeight={isBoldFontWeight}>
           <ConditionalWrapper
             wrapper={() => (
-              <PrefixWrapper showMarginRight={hasPrefixMargin}>
-                <DetailContentValue isBoldFontWeight>
+              <PrefixWrapper $showMarginRight={hasPrefixMargin}>
+                <DetailContentValue $isBoldFontWeight>
                   {prefix}
                 </DetailContentValue>
               </PrefixWrapper>
@@ -103,7 +103,7 @@ const Review = ({
           {labelContent}
         </DetailContentValue>
         {isIconAfterLabel && icon && (
-          <ContentIcon backgroundColor={iconBackgroundColor}>
+          <ContentIcon $backgroundColor={iconBackgroundColor}>
             {iconLoader(icon as Icon, iconSize, iconColor)}
           </ContentIcon>
         )}
@@ -115,5 +115,5 @@ const Review = ({
   )
 }
 
-export type { ReviewProps }
 export { Review }
+export type { ReviewProps }

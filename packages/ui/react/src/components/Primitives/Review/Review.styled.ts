@@ -3,13 +3,13 @@ import { css, styled } from 'styled-components'
 import { getColor } from 'src/colors'
 
 type DetailContentValueProps = {
-  isBoldFontWeight?: boolean
+  $isBoldFontWeight?: boolean
 }
 
 type DetailContentInformationProps = {
-  noIcon?: boolean
-  isIconAfterLabel?: boolean
-  backgroundColor?: string
+  $noIcon?: boolean
+  $isIconAfterLabel?: boolean
+  $backgroundColor?: string
 }
 
 type ContentDetailProps = {
@@ -17,7 +17,7 @@ type ContentDetailProps = {
 }
 
 type StyledProps = {
-  backgroundColor?: string
+  $backgroundColor?: string
   color?: string
 }
 
@@ -42,12 +42,11 @@ const gridInformation = css`
 
 const DetailContentInformation = styled.article<DetailContentInformationProps>`
   ${gridInformation}
-  ${({ noIcon, isIconAfterLabel }) => css`
-    grid-template-columns: ${noIcon || isIconAfterLabel ? 'auto' : '20px auto'};
-    padding-left: ${noIcon || isIconAfterLabel ? '10px' : '5px'};
+  ${({ $noIcon, $isIconAfterLabel }) => css`
+    grid-template-columns: ${$noIcon || $isIconAfterLabel ? 'auto' : '20px auto'};
+    padding-left: ${$noIcon || $isIconAfterLabel ? '10px' : '5px'};
   `}
-  background-color: ${(props) =>
-    props.backgroundColor && props.backgroundColor};
+  background-color: ${(props) => props.$backgroundColor && props.$backgroundColor};
 `
 
 const DetailContentValue = styled.span<DetailContentValueProps>`
@@ -55,16 +54,16 @@ const DetailContentValue = styled.span<DetailContentValueProps>`
   font-family: Roboto;
   font-size: 13px;
   line-height: 18px;
-  ${({ isBoldFontWeight }) => css`
-    font-weight: ${isBoldFontWeight ? 'bold' : 'normal'};
+  ${({ $isBoldFontWeight }) => css`
+    font-weight: ${$isBoldFontWeight ? 'bold' : 'normal'};
   `}
   word-break: normal;
 `
 
 const PrefixWrapper = styled.span<{
-  showMarginRight?: boolean
+  $showMarginRight?: boolean
 }>`
-  margin-right: ${({ showMarginRight }) => (showMarginRight ? '5px' : 'auto')};
+  margin-right: ${({ $showMarginRight }) => ($showMarginRight ? '5px' : 'auto')};
 `
 
 const ContentIcon = styled.div<StyledProps>`
@@ -77,8 +76,7 @@ const ContentIcon = styled.div<StyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) =>
-    props.backgroundColor && props.backgroundColor};
+  background-color: ${(props) => props.$backgroundColor && props.$backgroundColor};
   color: white;
 `
 
@@ -87,15 +85,12 @@ const ContentDetail = styled.header<ContentDetailProps>`
   background-color: ${(props) => getBackgroundColor(props)};
 `
 
-export type {
-  DetailContentInformationProps,
-  DetailContentValueProps,
-  ContentDetailProps,
-}
 export {
-  DetailContentInformation,
+  ContentDetail, ContentIcon, DetailContentInformation,
   DetailContentValue,
-  PrefixWrapper,
-  ContentIcon,
-  ContentDetail,
+  PrefixWrapper
+}
+export type {
+  ContentDetailProps, DetailContentInformationProps,
+  DetailContentValueProps
 }
