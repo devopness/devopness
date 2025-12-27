@@ -75,7 +75,7 @@
     "@storybook/addon-a11y": "^10.0.8",
     "@storybook/addon-docs": "10.0.8",
     "@storybook/react-vite": "10.0.8",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/react": "^16.3.1",
     "@types/lodash": "^4.17.21",
     "@types/node": "^24.10.1",
     "@types/path-browserify": "^1.0.3",
