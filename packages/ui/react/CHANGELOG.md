@@ -1,5 +1,39 @@
 # @devopness/ui-react
 
+## 2.184.1
+
+### Patch Changes
+
+- [#2417](https://github.com/devopness/devopness/pull/2417) [`c5e30ec`](https://github.com/devopness/devopness/commit/c5e30eca62a1e86928ad06affc8c9b7a8aa77f35) Thanks [@AladinoBorges](https://github.com/AladinoBorges)! - Fix the `Alert` component to ensure consistent styling
+
+  ### What Changed
+  - The layout, spacing, alignment, and icon positioning were corrected to improve visual accuracy and component stability.
+    - Adjusting internal spacing and text alignment
+    - Correcting icon positioning and sizing
+    - Improving close button alignment and spacing
+    - Ensuring consistent border-radius application
+
+- [#2467](https://github.com/devopness/devopness/pull/2467) [`b3a064d`](https://github.com/devopness/devopness/commit/b3a064db650b62183f67b66bab64edc59a2849ae) Thanks [@AladinoBorges](https://github.com/AladinoBorges)! - Stop forwarding styling/transient props (like `hasError`, `iconPosition`, `removeArrows`, `noResize`) to DOM elements, this reduces React "unknown prop" warnings by ensuring styling-only props are consumed by `styled-components` and not forwarded to native elements.
+
+  ### What Changed
+  - Converted several styled-component props to transient props (prefixed with `$`) and stopped spreading internal styling props into DOM-rendered elements for the following components:
+    - `Skeleton` now uses transient props (`$widthPercent`, `$heightPercent`, etc.);
+    - `src/components/Forms/Input/*` (styled + component);
+    - `src/components/Forms/TextArea/*` (styled + component);
+    - `src/components/Forms/Autocomplete/*` (renderInput integration; avoid spreading MUI params into DOM);
+    - `src/components/Primitives/Pagination/*` (hideFirstAndLastButton -> `$hideFirstAndLastButton`)
+    - `src/components/Primitives/EmptyData/*` (isSmallContainer -> `$isSmallContainer`)
+    - `src/components/Primitives/Review/*` (style props -> `$...`, ContentIcon `$backgroundColor`)
+    - `src/components/Primitives/Loader/*` (paddingTop/isAlignLeft -> `$paddingTop`/`$isAlignLeft`)
+    - `src/components/Primitives/LoadStarship/*` (isFullContainer -> `$isFullContainer`)
+    - `src/components/Primitives/Popover/*` (Header/Footer justifyContent -> `$justifyContent`)
+    - `src/components/Primitives/Cover/*` (backgroundColor -> `$backgroundColor`)
+    - `src/components/Forms/Container/*` (shouldRemoveTopMargin -> `$shouldRemoveTopMargin`)
+    - `src/components/Forms/FormText/*` (subtitleColor -> `$subtitleColor`)
+    - `src/components/Forms/Alert/*` (noPadding/fullWidth -> `$noPadding`/`$fullWidth`)
+
+  These changes are part of a grouped set of fixes bundled in this PR to remove React unknown-prop warnings emitted during tests and in built artifacts.
+
 ## 2.184.0
 
 ### Minor Changes
