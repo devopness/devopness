@@ -1,7 +1,7 @@
 import type { MouseEventHandler } from 'react'
 
-import { Button } from 'src/components/Buttons'
 import { ContainerPagination, PaginationContent } from './Pagination.styled'
+import { Button } from 'src/components/Buttons'
 
 type PaginationProps = {
   /** Disable all pagination actions */

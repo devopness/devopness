@@ -43,10 +43,13 @@ const gridInformation = css`
 const DetailContentInformation = styled.article<DetailContentInformationProps>`
   ${gridInformation}
   ${({ $noIcon, $isIconAfterLabel }) => css`
-    grid-template-columns: ${$noIcon || $isIconAfterLabel ? 'auto' : '20px auto'};
+    grid-template-columns: ${$noIcon || $isIconAfterLabel
+      ? 'auto'
+      : '20px auto'};
     padding-left: ${$noIcon || $isIconAfterLabel ? '10px' : '5px'};
   `}
-  background-color: ${(props) => props.$backgroundColor && props.$backgroundColor};
+  background-color: ${(props) =>
+    props.$backgroundColor && props.$backgroundColor};
 `
 
 const DetailContentValue = styled.span<DetailContentValueProps>`
@@ -63,7 +66,8 @@ const DetailContentValue = styled.span<DetailContentValueProps>`
 const PrefixWrapper = styled.span<{
   $showMarginRight?: boolean
 }>`
-  margin-right: ${({ $showMarginRight }) => ($showMarginRight ? '5px' : 'auto')};
+  margin-right: ${({ $showMarginRight }) =>
+    $showMarginRight ? '5px' : 'auto'};
 `
 
 const ContentIcon = styled.div<StyledProps>`
@@ -76,7 +80,8 @@ const ContentIcon = styled.div<StyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => props.$backgroundColor && props.$backgroundColor};
+  background-color: ${(props) =>
+    props.$backgroundColor && props.$backgroundColor};
   color: white;
 `
 
@@ -86,11 +91,14 @@ const ContentDetail = styled.header<ContentDetailProps>`
 `
 
 export {
-  ContentDetail, ContentIcon, DetailContentInformation,
+  ContentDetail,
+  ContentIcon,
+  DetailContentInformation,
   DetailContentValue,
-  PrefixWrapper
+  PrefixWrapper,
 }
 export type {
-  ContentDetailProps, DetailContentInformationProps,
-  DetailContentValueProps
+  ContentDetailProps,
+  DetailContentInformationProps,
+  DetailContentValueProps,
 }

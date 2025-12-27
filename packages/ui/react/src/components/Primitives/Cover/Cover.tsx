@@ -2,9 +2,9 @@ import type { PropsWithChildren } from 'react'
 
 import { useMediaQuery } from '@mui/material'
 
+import { Container } from './Cover.styled'
 import type { Color } from 'src/colors'
 import { getImageAssetUrl } from 'src/icons'
-import { Container } from './Cover.styled'
 
 const variants = {
   white: getImageAssetUrl('logo_devopness_beta.png'),

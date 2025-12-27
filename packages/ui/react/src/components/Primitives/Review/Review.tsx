@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { ConditionalWrapper } from 'src/components/helpers'
-import { Icon, iconLoader } from 'src/icons'
 import { FlexContainer } from '../FlexContainer'
 import {
   ContentIcon,
@@ -9,6 +7,8 @@ import {
   DetailContentValue,
   PrefixWrapper,
 } from './Review.styled'
+import { ConditionalWrapper } from 'src/components/helpers'
+import { Icon, iconLoader } from 'src/icons'
 
 type ReviewProps = {
   /** Content text or JSX element */

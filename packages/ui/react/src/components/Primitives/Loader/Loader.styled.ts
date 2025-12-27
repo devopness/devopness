@@ -1,10 +1,10 @@
 import { css, styled } from 'styled-components'
 
-import { getColor } from 'src/colors'
 import { BarLoader as BaseBarLoader } from './BarLoader'
 import { CircleLoader as BaseCircleLoader } from './CircleLoader'
 import { PageLoader as BasePageLoader } from './PageLoader'
 import { RingLoader as BaseRingLoader } from './RingLoader'
+import { getColor } from 'src/colors'
 
 type ContainerCometSpinLoaderProps = {
   $paddingTop?: string
@@ -74,5 +74,11 @@ const RingLoader = styled(BaseRingLoader)`
 `
 
 export {
-  BarLoader, CircleLoader, ContainerCometSpinLoader, LoaderContainer, PageContainer, PageLoader, RingLoader
+  BarLoader,
+  CircleLoader,
+  ContainerCometSpinLoader,
+  LoaderContainer,
+  PageContainer,
+  PageLoader,
+  RingLoader,
 }

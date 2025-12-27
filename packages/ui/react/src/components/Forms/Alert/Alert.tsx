@@ -1,10 +1,5 @@
 import React from 'react'
 
-import type { Color } from 'src/colors'
-import { getColor } from 'src/colors'
-import { Button } from 'src/components/Buttons'
-import type { Icon } from 'src/icons'
-import { iconLoader } from 'src/icons'
 import {
   LabelContentWrapper,
   StyledContent,
@@ -12,6 +7,11 @@ import {
   StyledLabel,
   Wrapper,
 } from './Alert.styled'
+import type { Color } from 'src/colors'
+import { getColor } from 'src/colors'
+import { Button } from 'src/components/Buttons'
+import type { Icon } from 'src/icons'
+import { iconLoader } from 'src/icons'
 
 type AlertProps = {
   /** Alert variation type that defines its appearance and icon */

@@ -1,8 +1,8 @@
 import { CircleLoader as CometSpinLoader } from 'react-spinners'
 
-import { getColor } from 'src/colors'
 import { ContainerCometSpinLoader } from './Loader.styled'
 import type { ReactSpinnersProps } from './ReactSpinners.type'
+import { getColor } from 'src/colors'
 
 type CircleLoaderProps = {
   paddingTop?: string

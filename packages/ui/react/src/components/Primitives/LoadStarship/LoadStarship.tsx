@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from 'react'
 import { memo } from 'react'
 
-import { getImageAssetUrl } from 'src/icons'
 import { Container, Gif } from './LoadStarship.styled'
+import { getImageAssetUrl } from 'src/icons'
 
 const starshipGif = getImageAssetUrl('effect_load_starship_devopness.gif')
 

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { Text } from 'src/components/Primitives/Text'
 import {
   BarLoader,
   CircleLoader,
@@ -9,6 +8,7 @@ import {
   RingLoader,
 } from './Loader.styled'
 import type { ReactSpinnersProps } from './ReactSpinners.type'
+import { Text } from 'src/components/Primitives/Text'
 
 type LoaderVariant = 'bar' | 'page' | 'circle' | 'ring'
 

@@ -2,10 +2,10 @@ import { ReactNode } from 'react'
 
 import type { PopoverProps as MaterialPopoverProps } from '@mui/material'
 
+import { Container, Footer, Header, Title } from './Popover.styled'
 import { Button } from 'src/components/Buttons'
 import { ConditionalWrapper } from 'src/components/helpers'
 import { iconLoader } from 'src/icons'
-import { Container, Footer, Header, Title } from './Popover.styled'
 
 type PopoverProps = {
   /** Optional header title */
