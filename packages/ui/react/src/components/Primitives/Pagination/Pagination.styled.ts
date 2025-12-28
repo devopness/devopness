@@ -1,7 +1,7 @@
-import { styled, css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 type PaginationContentProps = {
-  hideFirstAndLastButton: boolean
+  $hideFirstAndLastButton: boolean
 }
 
 const ContainerPagination = styled.div`
@@ -26,7 +26,7 @@ const PaginationContent = styled.div<PaginationContentProps>`
   > button:nth-child(3) {
     margin-right: 15px;
   }
-  ${(props) => props.hideFirstAndLastButton && hideFirstAndLastButton}
+  ${(props) => props.$hideFirstAndLastButton && hideFirstAndLastButton}
 `
 
 export { ContainerPagination, PaginationContent }

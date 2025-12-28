@@ -33,9 +33,24 @@ type FlexContainerProps = {
  * </FlexContainer>
  * ```
  */
-const FlexContainer = ({ children, ...props }: FlexContainerProps) => (
-  <FlexContainerWrapper {...props}>{children}</FlexContainerWrapper>
+const FlexContainer = ({
+  children,
+  direction,
+  align,
+  wrap,
+  gap,
+  justify,
+}: FlexContainerProps) => (
+  <FlexContainerWrapper
+    $direction={direction}
+    $align={align}
+    $wrap={wrap}
+    $gap={gap}
+    $justify={justify}
+  >
+    {children}
+  </FlexContainerWrapper>
 )
 
-export type { FlexContainerProps }
 export { FlexContainer }
+export type { FlexContainerProps }

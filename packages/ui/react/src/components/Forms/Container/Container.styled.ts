@@ -2,7 +2,10 @@ import { styled } from 'styled-components'
 
 import type { ContainerProps } from './Container'
 
-type StyledProps = Pick<ContainerProps, 'shouldRemoveTopMargin' | 'styles'>
+type StyledProps = {
+  $shouldRemoveTopMargin?: boolean
+  styles?: ContainerProps['styles']
+}
 
 const ContainerStyled = styled.div<StyledProps>`
   display: grid;
@@ -11,8 +14,8 @@ const ContainerStyled = styled.div<StyledProps>`
   grid-column-gap: 30px;
   grid-row-gap: 30px;
 
-  margin-top: ${({ shouldRemoveTopMargin }) =>
-    shouldRemoveTopMargin ? '0px' : '42px'};
+  margin-top: ${({ $shouldRemoveTopMargin }) =>
+    $shouldRemoveTopMargin ? '0px' : '42px'};
   padding-left: 30px;
   padding-right: 30px;
 

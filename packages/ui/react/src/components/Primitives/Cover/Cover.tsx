@@ -46,7 +46,7 @@ const Cover = ({
   return (
     <Container
       className={className}
-      backgroundColor={backgroundColor}
+      $backgroundColor={backgroundColor}
     >
       <img
         src={variants[logo]}
