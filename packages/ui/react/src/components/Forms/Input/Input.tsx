@@ -2,15 +2,15 @@ import { forwardRef, useEffect, useRef, useState } from 'react'
 
 import {
   Container,
-  Wrapper,
+  Icon,
   InputText,
   InputWrapper,
-  Icon,
+  Wrapper,
 } from './Input.styled'
 import type { ErrorMessageProps } from 'src/components/Primitives/ErrorMessage'
 import { ErrorMessage } from 'src/components/Primitives/ErrorMessage'
-import { Label } from 'src/components/Primitives/Label/'
 import type { LabelProps } from 'src/components/Primitives/Label/'
+import { Label } from 'src/components/Primitives/Label/'
 import { iconLoader } from 'src/icons'
 
 type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -41,6 +41,8 @@ type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: React.ReactNode
   /** Position of the icon inside the input */
   iconPosition?: 'left' | 'right'
+  /** Removes increment/decrement arrows from number inputs */
+  removeArrows?: boolean
 }
 
 type InputProps =
@@ -51,8 +53,6 @@ type InputProps =
   | (SharedProps & {
       /** HTML input type (text, number, email, etc.) */
       type: 'number'
-      /** Removes increment/decrement arrows from number inputs */
-      removeArrows?: boolean
     })
 
 const generateUniqueId = () =>
@@ -104,6 +104,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     disabled,
     readOnly,
     type,
+    publicStyle,
+    removeArrows,
     ...restProps
   } = props
 
@@ -131,25 +133,27 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         />
       )}
       <Wrapper
-        disabled={disabled}
-        readOnly={readOnly}
-        error={hasError}
+        $disabled={disabled}
+        $readOnly={readOnly}
+        $error={hasError}
       >
         <InputWrapper
-          hasError={hasError}
-          disabled={disabled}
-          readOnly={readOnly}
+          $hasError={hasError}
+          $disabled={disabled}
+          $readOnly={readOnly}
         >
-          {icon && <Icon iconPosition={iconPosition}>{icon}</Icon>}
+          {icon && <Icon $iconPosition={iconPosition}>{icon}</Icon>}
           <InputText
             className="translate"
             ref={inputRef}
             type={type === 'password' && showPassword ? 'text' : type}
-            hasError={hasError}
-            hasIcon={Boolean(icon)}
-            iconPosition={iconPosition}
-            disabled={disabled}
-            readOnly={readOnly}
+            $hasError={hasError}
+            $hasIcon={Boolean(icon)}
+            $iconPosition={iconPosition}
+            $disabled={disabled}
+            $readOnly={readOnly}
+            $publicStyle={publicStyle}
+            $removeArrows={removeArrows}
             aria-invalid={hasError}
             aria-errormessage={error ? errorId : undefined}
             aria-describedby={error ? errorId : undefined}
@@ -160,7 +164,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
           {type === 'password' && iconPosition !== 'right' && (
             <Icon
-              iconPosition="right"
+              $iconPosition="right"
               onClick={() => {
                 setShowPassword(!showPassword)
               }}
@@ -191,5 +195,5 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
  */
 Input.displayName = 'Input'
 
-export type { InputProps }
 export { Input }
+export type { InputProps }
