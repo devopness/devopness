@@ -9,7 +9,7 @@ type CircleLoaderProps = {
 } & ReactSpinnersProps
 
 const CircleLoader = ({ paddingTop, ...props }: CircleLoaderProps) => (
-  <ContainerCometSpinLoader paddingTop={paddingTop}>
+  <ContainerCometSpinLoader $paddingTop={paddingTop}>
     <CometSpinLoader
       color={getColor('purple.800')}
       size={20}
