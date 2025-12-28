@@ -34,7 +34,7 @@ const Container = ({
   styles,
   children,
 }: ContainerProps) => (
-  <ContainerStyled shouldRemoveTopMargin={shouldRemoveTopMargin}>
+  <ContainerStyled $shouldRemoveTopMargin={shouldRemoveTopMargin}>
     <WrapperContent styles={styles}>{children}</WrapperContent>
   </ContainerStyled>
 )

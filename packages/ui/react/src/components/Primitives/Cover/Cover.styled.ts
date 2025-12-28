@@ -1,8 +1,8 @@
 import { styled } from 'styled-components'
 
-import { getColor, Color } from 'src/colors'
+import { Color, getColor } from 'src/colors'
 type StyledCoverProps = {
-  backgroundColor: Color
+  $backgroundColor: Color
 }
 
 export const Container = styled.div<StyledCoverProps>`
@@ -12,7 +12,7 @@ export const Container = styled.div<StyledCoverProps>`
   align-items: center;
   height: 100vh;
   max-width: 100%;
-  background-color: ${(props) => getColor(props.backgroundColor)};
+  background-color: ${(props) => getColor(props.$backgroundColor)};
   text-align: center;
 
   & img {

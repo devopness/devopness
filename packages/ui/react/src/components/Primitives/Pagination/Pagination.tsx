@@ -48,7 +48,7 @@ const Pagination = ({
   lastPaginateAction,
 }: PaginationProps) => (
   <ContainerPagination>
-    <PaginationContent hideFirstAndLastButton={hideFirstAndLastButton}>
+    <PaginationContent $hideFirstAndLastButton={hideFirstAndLastButton}>
       <Button
         type="button"
         buttonType={'outlinedAuxiliary'}
