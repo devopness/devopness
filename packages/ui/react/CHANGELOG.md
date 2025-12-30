@@ -4,7 +4,9 @@
 
 ### Patch Changes
 
-- [#2473](https://github.com/devopness/devopness/pull/2473) [`fdbc8c2`](https://github.com/devopness/devopness/commit/fdbc8c2f430e133daed6eec89ea4f63fd56cd727) Thanks [@AladinoBorges](https://github.com/AladinoBorges)! - ### What Changed
+- [#2473](https://github.com/devopness/devopness/pull/2473) [`fdbc8c2`](https://github.com/devopness/devopness/commit/fdbc8c2f430e133daed6eec89ea4f63fd56cd727) Thanks [@AladinoBorges](https://github.com/AladinoBorges)!
+
+  ### What Changed
   Implements resize observer to guard state updates in the Tooltip component, avoiding redundant setState calls that causes a "Maximum update depth exceeded" runtime error. Now, the effect only updates state when the measured overflow value actually changes.
 
 ## 2.184.1
