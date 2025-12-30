@@ -1,4 +1,4 @@
-name: CI - UI React
+name: CI - SDK Python
 on:
   pull_request:
     types:
@@ -7,11 +7,11 @@ on:
 
 defaults:
   run:
-    working-directory: packages/ui/react
+    working-directory: packages/sdks/python
 
 jobs:
   detect-changes:
-    name: Detect changes in UI-React
+    name: Detect changes in SDK-Python
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
@@ -23,18 +23,26 @@ jobs:
         with:
           filters: |
             changes:
-              - 'packages/ui/react/**'
+              - 'packages/sdks/common/**'
+              - 'packages/sdks/python/**'
 
   build:
-    name: Build UI-React
+    name: Build SDK-Python
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node: [20]
-        os: [ubuntu-latest]
+        python:
+          - 3.13
+          - 3.12
+          - 3.11
+        os:
+          - ubuntu-latest
+
+    env:
+      PYTHON_VERSION: ${{ matrix.python }}
 
     steps:
       - uses: actions/checkout@v3
@@ -44,26 +52,30 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
-      - name: Use node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: make build-image
+
+      - name: Build SDK - Python
+        run: make build-sdk-python
+
+      - name: Lint SDK - Python
+        run: make lint
+
+      - name: Test SDK - Python
+        run: make test-unit
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          node-version: ${{ matrix.node }}
-          registry-url: https://registry.npmjs.org
-
-      - name: install
-        run: npm ci --ignore-scripts
-
-      - name: build
-        run: npm run build
-
-      - name: lint
-        run: npm run lint
-
-      - name: test
-        run: npm test
+          commit_message: 'docs: Update auto generated models'
+          file_pattern: 'packages/sdks/python/*'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   verify-build:
-    name: Verify build of UI-React
+    name: Verify build of SDK-Python
     needs: [build, detect-changes]
     if: always()
     runs-on: ubuntu-latest
