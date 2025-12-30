@@ -54,13 +54,13 @@ jobs:
         include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES) }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
@@ -74,7 +74,7 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
           file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
@@ -90,20 +90,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
+          node-version: '24.x'
 
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore: update package-lock.json'
           file_pattern: 'package-lock.json'
@@ -114,12 +114,12 @@ jobs:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
     if: > 
-      github.event.pull_request.user.login != 'dependabot[bot]' &&
-      (success() || failure())
+      github.event.pull_request.user.login != 'dependabot[bot]'
+      && always()
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
@@ -129,9 +129,14 @@ jobs:
           if [ "${{ needs.sync-pypi-package-versions.result }}" != "success" ]; then
             exit 1
           fi
+          if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
+            echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
+            exit 1
+          fi
 
       - name: Fail if sync-main-lockfile did not succeed
         run: |
-          if [ "${{ needs.sync-main-lockfile.result }}" != "success" ]; then
+          if [ "${{ needs.sync-main-lockfile.result }}" = "failure" ] || [ "${{ needs.sync-main-lockfile.result }}" = "cancelled" ]; then
+            echo "❌ Job `sync-main-lockfile` failed or was cancelled"
             exit 1
           fi

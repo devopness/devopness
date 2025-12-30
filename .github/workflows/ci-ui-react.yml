@@ -33,11 +33,11 @@ jobs:
 
     strategy:
       matrix:
-        node: [20]
+        node: [24]
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
@@ -45,7 +45,7 @@ jobs:
           fetch-depth: 0
 
       - name: Use node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org
@@ -65,11 +65,11 @@ jobs:
   verify-build:
     name: Verify build of UI-React
     needs: [build, detect-changes]
-    if: success() || failure()
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
@@ -77,9 +77,9 @@ jobs:
 
       - name: Fail if build did not succeed
         run: |
-          if [ "${{ needs.build.result }}" != "success" ]; then
+          if [ "${{ needs.build.result }}" = "failure" ] || [ "${{ needs.build.result }}" = "cancelled" ]; then
             echo "❌ Build job failed or was cancelled"
             exit 1
           fi
 
-          echo "✅ Build job succeeded"
+          echo "✅ Build job succeeded or was skipped"

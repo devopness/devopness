@@ -45,7 +45,7 @@ jobs:
       PYTHON_VERSION: ${{ matrix.python }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
@@ -67,8 +67,7 @@ jobs:
       - name: Test SDK - Python
         run: make test-unit
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: github.repository == 'devopness/devopness'
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'docs: Update auto generated models'
           file_pattern: 'packages/sdks/python/*'
@@ -78,11 +77,11 @@ jobs:
   verify-build:
     name: Verify build of SDK-Python
     needs: [build, detect-changes]
-    if: success() || failure()
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
@@ -90,9 +89,9 @@ jobs:
 
       - name: Fail if build did not succeed
         run: |
-          if [ "${{ needs.build.result }}" != "success" ]; then
+          if [ "${{ needs.build.result }}" = "failure" ] || [ "${{ needs.build.result }}" = "cancelled" ]; then
             echo "❌ Build job failed or was cancelled"
             exit 1
           fi
 
-          echo "✅ Build job succeeded"
+          echo "✅ Build job succeeded or was skipped"
