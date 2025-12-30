@@ -63,7 +63,7 @@ jobs:
   verify-build:
     name: Verify build of Docs web app
     needs: [build, detect-changes]
-    if: success() || failure()
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
