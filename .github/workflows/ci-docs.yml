@@ -33,7 +33,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [23]
+        node: [24]
         os: [ubuntu-latest]
 
     steps:
