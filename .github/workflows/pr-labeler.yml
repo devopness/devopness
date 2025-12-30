@@ -19,6 +19,13 @@ jobs:
       pull-requests: write
 
     steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+          fetch-depth: 0
+
       - name: Label PR - Step
         uses: actions/labeler@v6
         with:
