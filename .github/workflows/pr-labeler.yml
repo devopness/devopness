@@ -1,7 +1,10 @@
 name: PR - Labeler
 
 on:
-  pull_request:
+  pull_request_target:
+    # triggers on `pull_request_target` as this is a fork-based repository
+    # for security reasons, `npm` or other code execution jobs must not
+    # be executed on this workflow
     types:
       - opened
       - reopened
@@ -16,14 +19,6 @@ jobs:
       pull-requests: write
 
     steps:
-      - name: Checkout PR Code
-        uses: actions/checkout@v6
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
-          persist-credentials: true
-          fetch-depth: 0
-
       - name: Label PR - Step
         uses: actions/labeler@v6
         with:
