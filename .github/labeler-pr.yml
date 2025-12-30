@@ -1,20 +1,34 @@
 "scope: ci":
-  - changed-files: .github/**/*
+  - changed-files:
+    - any-glob-to-any-file:
+      - ".github/**/*"
 
 "scope: application":
-  - changed-files: applications/**/*
+  - changed-files:
+    - any-glob-to-any-file:
+      - applications/**/*
 
 "scope: docs":
-  - changed-files: docs/**/*
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/**/*
 
 "scope: packages":
-  - changed-files: packages/**/*
+  - changed-files:
+    - any-glob-to-any-file:
+      - packages/**/*
 
 "scope: repo":
-  - changed-files: "*"
+  - changed-files:
+    - any-glob-to-any-file:
+      - "*"
 
 "scope: sdks":
-  - changed-files:  packages/sdks/**/*
+  - changed-files:
+    - any-glob-to-any-file:
+      - packages/sdks/**/*
 
 "scope: sdk-javascript":
-  - changed-files: packages/sdks/javascript/**/*
+  - changed-files:
+    - any-glob-to-any-file:
+      - packages/sdks/javascript/**/*
