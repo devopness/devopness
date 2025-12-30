@@ -1,4 +1,4 @@
-name: CI - SDK Python
+name: CI - UI React
 on:
   pull_request:
     types:
@@ -7,11 +7,11 @@ on:
 
 defaults:
   run:
-    working-directory: packages/sdks/python
+    working-directory: packages/ui/react
 
 jobs:
   detect-changes:
-    name: Detect changes in SDK-Python
+    name: Detect changes in UI-React
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
@@ -23,26 +23,18 @@ jobs:
         with:
           filters: |
             changes:
-              - 'packages/sdks/common/**'
-              - 'packages/sdks/python/**'
+              - 'packages/ui/react/**'
 
   build:
-    name: Build SDK-Python
+    name: Build UI-React
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        python:
-          - 3.13
-          - 3.12
-          - 3.11
-        os:
-          - ubuntu-latest
-
-    env:
-      PYTHON_VERSION: ${{ matrix.python }}
+        node: [20]
+        os: [ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v3
@@ -52,33 +44,28 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build Docker Image
-        run: make build-image
-
-      - name: Build SDK - Python
-        run: make build-sdk-python
-
-      - name: Lint SDK - Python
-        run: make lint
-
-      - name: Test SDK - Python
-        run: make test-unit
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: github.repository == 'devopness/devopness'
+      - name: Use node ${{ matrix.node }}
+        uses: actions/setup-node@v1
         with:
-          commit_message: 'docs: Update auto generated models'
-          file_pattern: 'packages/sdks/python/*'
-          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
-          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+          node-version: ${{ matrix.node }}
+          registry-url: https://registry.npmjs.org
+
+      - name: install
+        run: npm ci --ignore-scripts
+
+      - name: build
+        run: npm run build
+
+      - name: lint
+        run: npm run lint
+
+      - name: test
+        run: npm test
 
   verify-build:
-    name: Verify build of SDK-Python
+    name: Verify build of UI-React
     needs: [build, detect-changes]
-    if: success() || failure()
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
@@ -90,9 +77,9 @@ jobs:
 
       - name: Fail if build did not succeed
         run: |
-          if [ "${{ needs.build.result }}" != "success" ]; then
+          if [ "${{ needs.build.result }}" = "failure" ] || [ "${{ needs.build.result }}" = "cancelled" ]; then
             echo "❌ Build job failed or was cancelled"
             exit 1
           fi
 
-          echo "✅ Build job succeeded"
+          echo "✅ Build job succeeded or was skipped"

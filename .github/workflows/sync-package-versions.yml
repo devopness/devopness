@@ -114,8 +114,8 @@ jobs:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
     if: > 
-      github.event.pull_request.user.login != 'dependabot[bot]' &&
-      (success() || failure())
+      github.event.pull_request.user.login != 'dependabot[bot]'
+      && always()
     runs-on: ubuntu-latest
 
     steps:
@@ -129,9 +129,14 @@ jobs:
           if [ "${{ needs.sync-pypi-package-versions.result }}" != "success" ]; then
             exit 1
           fi
+          if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
+            echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
+            exit 1
+          fi
 
       - name: Fail if sync-main-lockfile did not succeed
         run: |
-          if [ "${{ needs.sync-main-lockfile.result }}" != "success" ]; then
+          if [ "${{ needs.sync-main-lockfile.result }}" = "failure" ] || [ "${{ needs.sync-main-lockfile.result }}" = "cancelled" ]; then
+            echo "❌ Job `sync-main-lockfile` failed or was cancelled"
             exit 1
           fi
