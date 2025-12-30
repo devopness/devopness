@@ -28,5 +28,5 @@ jobs:
         uses: actions/labeler@v6
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
-          configuration-path: .github/labeler-pr.yml.test
+          configuration-path: .github/labeler-pr.yml
           sync-labels: true
