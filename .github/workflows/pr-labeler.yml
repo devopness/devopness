@@ -1,7 +1,10 @@
 name: PR - Labeler
 
 on:
-  pull_request:
+  pull_request_target:
+    # triggers on `pull_request_target` as this is a fork-based repository
+    # for security reasons, `npm` or other code execution jobs must not
+    # be executed on this workflow
     types:
       - opened
       - reopened
@@ -28,5 +31,5 @@ jobs:
         uses: actions/labeler@v6
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
-          configuration-path: .github/labeler-pr.yml
+          configuration-path: .github/labeler-pr.yml.test
           sync-labels: true
