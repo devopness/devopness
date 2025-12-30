@@ -1,20 +1,20 @@
 "scope: ci":
-  - ".github/**/*"
+  - changed-files: .github/**/*
 
 "scope: application":
-  - applications/**/*
+  - changed-files: applications/**/*
 
 "scope: docs":
-  - docs/**/*
+  - changed-files: docs/**/*
 
 "scope: packages":
-  - packages/**/*
+  - changed-files: packages/**/*
 
 "scope: repo":
-  - "*"
+  - changed-files: "*"
 
 "scope: sdks":
-  - packages/sdks/**/*
+  - changed-files:  packages/sdks/**/*
 
 "scope: sdk-javascript":
-  - packages/sdks/javascript/**/*
+  - changed-files: packages/sdks/javascript/**/*
