@@ -1,13 +1,15 @@
+"use client"
+
 import { useEffect, useRef, useState } from 'react'
 
 import { styled } from '@mui/material/styles'
 import type { TooltipProps } from '@mui/material/Tooltip'
 import MuiTooltip, { tooltipClasses } from '@mui/material/Tooltip'
 
-import { ContentChildren } from './Tooltip.styled'
 import { getColor } from 'src/colors'
 import { Unwrap } from 'src/components/types'
 import { getFont } from 'src/fonts'
+import { ContentChildren } from './Tooltip.styled'
 
 type Nullable<T extends object> = { [K in keyof T]: T[K] | null | undefined }
 
@@ -161,3 +163,4 @@ const Tooltip = ({
 
 export { Tooltip }
 export type { TooltipComponentProps as TooltipProps }
+
