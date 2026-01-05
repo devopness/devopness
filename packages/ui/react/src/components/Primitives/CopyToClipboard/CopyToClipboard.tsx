@@ -1,13 +1,15 @@
-import { useState, ReactNode } from 'react'
+"use client"
 
-import {
-  ContentMain,
-  ContentChildren,
-  ContentCopyAction,
-  CopyAction,
-} from './CopyToClipboard.styled'
+import { ReactNode, useState } from 'react'
+
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 import { iconLoader } from 'src/icons'
+import {
+  ContentChildren,
+  ContentCopyAction,
+  ContentMain,
+  CopyAction,
+} from './CopyToClipboard.styled'
 
 const ICON_SIZE = 12
 
