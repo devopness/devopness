@@ -51,12 +51,12 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@openapitools/openapi-generator-cli": "^2.25.2",
+    "@eslint/js": "^9.39.2",
+    "@openapitools/openapi-generator-cli": "^2.27.0",
     "@types/jest": "^30.0.0",
-    "@typescript-eslint/parser": "^8.48.0",
+    "@typescript-eslint/parser": "^8.51.0",
     "axios-mock-adapter": "^2.1.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^17.23.1",
@@ -66,7 +66,7 @@
     "ts-jest": "^29.4.5",
     "typedoc": "^0.28.15",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.50.1"
+    "typescript-eslint": "^8.51.0"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",

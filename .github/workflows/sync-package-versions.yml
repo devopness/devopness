@@ -14,7 +14,6 @@ on:
   pull_request_target:
     types:
       - opened
-      - edited
       - synchronize
 
 permissions:
@@ -26,6 +25,8 @@ concurrency: ${{ github.workflow }}-${{ github.head_ref }}
 jobs:
   detect-changes:
     name: Detect changes in package.json files
+    if: >
+      github.event.pull_request.user.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
@@ -40,9 +41,11 @@ jobs:
               - 'packages/**/package.json'
 
   sync-pypi-package-versions:
-    name: Sync the pyproject.toml
+    name: Sync pyproject.toml
     needs: detect-changes
-    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    if: > 
+      github.event.pull_request.user.login != 'dependabot[bot]' &&
+      ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -51,17 +54,17 @@ jobs:
         include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES) }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
-      - name: Sync the '${{ matrix.name }}' version
+      - name: Sync '${{ matrix.name }}' version
         run: |
           CHANGESET_PACKAGE_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
           sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
@@ -71,8 +74,7 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: github.repository == 'devopness/devopness'
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
           file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
@@ -82,25 +84,26 @@ jobs:
   sync-main-lockfile:
     name: Sync the package-lock.json
     needs: detect-changes
-    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    if: > 
+      github.event.pull_request.user.login != 'dependabot[bot]' &&
+      ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
+          node-version: '24.x'
 
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: github.repository == 'devopness/devopness'
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore: update package-lock.json'
           file_pattern: 'package-lock.json'
@@ -110,11 +113,13 @@ jobs:
   verify-sync:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
-    if: success() || failure()
+    if: > 
+      github.event.pull_request.user.login != 'dependabot[bot]'
+      && always()
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
@@ -124,9 +129,14 @@ jobs:
           if [ "${{ needs.sync-pypi-package-versions.result }}" != "success" ]; then
             exit 1
           fi
+          if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
+            echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
+            exit 1
+          fi
 
       - name: Fail if sync-main-lockfile did not succeed
         run: |
-          if [ "${{ needs.sync-main-lockfile.result }}" != "success" ]; then
+          if [ "${{ needs.sync-main-lockfile.result }}" = "failure" ] || [ "${{ needs.sync-main-lockfile.result }}" = "cancelled" ]; then
+            echo "❌ Job `sync-main-lockfile` failed or was cancelled"
             exit 1
           fi

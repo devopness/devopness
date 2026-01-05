@@ -1,8 +1,8 @@
 import {
   EmptyDataContainer,
   EmptyDataText,
-  ImgContainer,
   Img,
+  ImgContainer,
 } from './EmptyData.styled'
 
 const defaultMessageEmptyTable = `
@@ -29,7 +29,7 @@ const EmptyData = ({ isSmallContainer, image, message }: EmptyDataProps) => (
   <EmptyDataContainer>
     {image && (
       <ImgContainer
-        isSmallContainer={Boolean(isSmallContainer)}
+        $isSmallContainer={Boolean(isSmallContainer)}
         data-testid="emptydata-img-container"
       >
         <Img

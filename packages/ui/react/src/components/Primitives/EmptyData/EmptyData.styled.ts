@@ -1,12 +1,12 @@
 import { styled } from 'styled-components'
 
 type ImgContainerProps = {
-  isSmallContainer: boolean
+  $isSmallContainer: boolean
 }
 
 const ImgContainer = styled.div<ImgContainerProps>`
-  width: ${({ isSmallContainer }) => (isSmallContainer ? 100 : 170)}px;
-  height: ${({ isSmallContainer }) => (isSmallContainer ? 100 : 170)}px;
+  width: ${({ $isSmallContainer }) => ($isSmallContainer ? 100 : 170)}px;
+  height: ${({ $isSmallContainer }) => ($isSmallContainer ? 100 : 170)}px;
   overflow: hidden;
 `
 
@@ -36,4 +36,4 @@ const EmptyDataText = styled.div`
   width: 100%;
   text-align: center;
 `
-export { EmptyDataContainer, EmptyDataText, ImgContainer, Img }
+export { EmptyDataContainer, EmptyDataText, Img, ImgContainer }
