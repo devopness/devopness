@@ -1,15 +1,15 @@
-"use client"
+'use client'
 
 import { ReactNode, useState } from 'react'
 
-import { Tooltip } from 'src/components/Primitives/Tooltip'
-import { iconLoader } from 'src/icons'
 import {
   ContentChildren,
   ContentCopyAction,
   ContentMain,
   CopyAction,
 } from './CopyToClipboard.styled'
+import { Tooltip } from 'src/components/Primitives/Tooltip'
+import { iconLoader } from 'src/icons'
 
 const ICON_SIZE = 12
 
