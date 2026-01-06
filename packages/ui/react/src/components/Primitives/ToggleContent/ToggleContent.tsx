@@ -1,8 +1,10 @@
+'use client'
+
 import { HTMLAttributes, PropsWithChildren, ReactNode, useState } from 'react'
 
 import { Review } from '../Review'
-import { ToggleContentButton } from './ToggleContentButton'
 import type { ToggleContentButtonProps } from './ToggleContentButton'
+import { ToggleContentButton } from './ToggleContentButton'
 import { getColor } from 'src/colors'
 import { ConditionalWrapper } from 'src/components/helpers'
 

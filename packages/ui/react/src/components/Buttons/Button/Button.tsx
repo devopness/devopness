@@ -1,3 +1,5 @@
+'use client'
+
 import type { ButtonHTMLAttributes } from 'react'
 
 import { BaseButton, ContentIcon, Label } from './Button.styled'
@@ -166,5 +168,5 @@ const Button = ({
   </BaseButton>
 )
 
-export type { ButtonProps }
 export { Button }
+export type { ButtonProps }

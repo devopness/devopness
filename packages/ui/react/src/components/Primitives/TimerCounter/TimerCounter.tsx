@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback, memo, useRef } from 'react'
+'use client'
+
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 
 import { Tooltip } from '../Tooltip'
 import { Container } from './TimerCounter.styled'
