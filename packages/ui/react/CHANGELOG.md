@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#2491](https://github.com/devopness/devopness/pull/2491) [`b269715`](https://github.com/devopness/devopness/commit/b2697150754e92db05763ba25d23e52c264e0fd6) Thanks [@AladinoBorges](https://github.com/AladinoBorges)! - Guard custom element registration and prevent server-side DOM access so the package is safe to import using Next.js (App Router).
+- [#2491](https://github.com/devopness/devopness/pull/2491) [`b269715`](https://github.com/devopness/devopness/commit/b2697150754e92db05763ba25d23e52c264e0fd6) Thanks [@AladinoBorges](https://github.com/AladinoBorges)! - Guard custom element registration and prevent server-side DOM access so the package is safe to import using Next.js framework with `App Router`.
   - Mark client-only components as `use client` where appropriate to keep them out of server bundles and to ensure runtime-only APIs run only in the browser.
   - Ensure React remains a peer dependency and avoid bundling multiple React runtimes;
   - Prefer `sideEffects: false` and rebuild artifacts to produce consistent ESM and CJS outputs.
