@@ -23,12 +23,12 @@ const Title = styled.h1`
 `
 
 type ParagraphProps = {
-  subtitleColor?: string
+  $subtitleColor?: string
 }
 
 const Paragraph = styled.p<ParagraphProps>`
   width: 100%;
-  color: ${({ subtitleColor }) => subtitleColor ?? getColor('gray.800')};
+  color: ${({ $subtitleColor }) => $subtitleColor ?? getColor('gray.800')};
   font-family: ${getFont('roboto')};
   font-size: 13px;
   line-height: 1.5;
@@ -37,4 +37,4 @@ const Paragraph = styled.p<ParagraphProps>`
     color: ${getColor('purple.800')};
   }
 `
-export { Wrapper, Line, Title, Paragraph }
+export { Line, Paragraph, Title, Wrapper }

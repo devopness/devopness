@@ -12,8 +12,7 @@
  */
 
 
-import { Language } from './language';
-import { SocialAccountRelation } from './social-account-relation';
+import { UserType } from './user-type';
 
 /**
  * 
@@ -22,23 +21,11 @@ import { SocialAccountRelation } from './social-account-relation';
  */
 export interface User {
     /**
-     * The unique ID of the given user
+     * The unique ID of the user
      * @type {number}
      * @memberof User
      */
     id: number;
-    /**
-     * User\'s full name
-     * @type {string}
-     * @memberof User
-     */
-    name: string;
-    /**
-     * The e-mail that will uniquely identify the user on the system and become its login credential
-     * @type {string}
-     * @memberof User
-     */
-    email: string;
     /**
      * The URL Slug of the user
      * @type {string}
@@ -47,33 +34,9 @@ export interface User {
     url_slug?: string;
     /**
      * 
-     * @type {Language}
+     * @type {UserType}
      * @memberof User
      */
-    language: Language | null;
-    /**
-     * Tells if the user is active or not
-     * @type {boolean}
-     * @memberof User
-     */
-    active: boolean;
-    /**
-     * 
-     * @type {Array<SocialAccountRelation>}
-     * @memberof User
-     */
-    social_accounts: Array<SocialAccountRelation>;
-    /**
-     * The date and time when the record was created
-     * @type {string}
-     * @memberof User
-     */
-    created_at: string;
-    /**
-     * The date and time when the record was last updated
-     * @type {string}
-     * @memberof User
-     */
-    updated_at: string;
+    type: UserType;
 }
 

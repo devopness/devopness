@@ -63,7 +63,7 @@ class UsersApiService(DevopnessBaseService):
         user_id: str,
     ) -> DevopnessResponse[User]:
         """
-        Get a user by ID or URL Slug
+        Get public details of a user
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -368,7 +368,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         user_id: str,
     ) -> DevopnessResponse[User]:
         """
-        Get a user by ID or URL Slug
+        Get public details of a user
 
         Raises:
             DevopnessApiError: If an API request error occurs.

@@ -74,12 +74,12 @@ const Review = ({
 
   return (
     <DetailContentInformation
-      backgroundColor={backgroundColor}
-      noIcon={!icon}
-      isIconAfterLabel={isIconAfterLabel}
+      $backgroundColor={backgroundColor}
+      $noIcon={!icon}
+      $isIconAfterLabel={isIconAfterLabel}
     >
       {!isIconAfterLabel && icon && (
-        <ContentIcon backgroundColor={iconBackgroundColor}>
+        <ContentIcon $backgroundColor={iconBackgroundColor}>
           {iconLoader(icon as Icon, iconSize, iconColor)}
         </ContentIcon>
       )}
@@ -87,11 +87,11 @@ const Review = ({
         gap="5px"
         align="center"
       >
-        <DetailContentValue isBoldFontWeight={isBoldFontWeight}>
+        <DetailContentValue $isBoldFontWeight={isBoldFontWeight}>
           <ConditionalWrapper
             wrapper={() => (
-              <PrefixWrapper showMarginRight={hasPrefixMargin}>
-                <DetailContentValue isBoldFontWeight>
+              <PrefixWrapper $showMarginRight={hasPrefixMargin}>
+                <DetailContentValue $isBoldFontWeight>
                   {prefix}
                 </DetailContentValue>
               </PrefixWrapper>
@@ -103,7 +103,7 @@ const Review = ({
           {labelContent}
         </DetailContentValue>
         {isIconAfterLabel && icon && (
-          <ContentIcon backgroundColor={iconBackgroundColor}>
+          <ContentIcon $backgroundColor={iconBackgroundColor}>
             {iconLoader(icon as Icon, iconSize, iconColor)}
           </ContentIcon>
         )}
@@ -115,5 +115,5 @@ const Review = ({
   )
 }
 
-export type { ReviewProps }
 export { Review }
+export type { ReviewProps }

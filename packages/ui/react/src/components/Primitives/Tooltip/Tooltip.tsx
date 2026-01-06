@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { styled } from '@mui/material/styles'
 import type { TooltipProps } from '@mui/material/Tooltip'
@@ -8,7 +8,6 @@ import { ContentChildren } from './Tooltip.styled'
 import { getColor } from 'src/colors'
 import { Unwrap } from 'src/components/types'
 import { getFont } from 'src/fonts'
-import { useWindowSize } from 'src/hooks'
 
 type Nullable<T extends object> = { [K in keyof T]: T[K] | null | undefined }
 
@@ -93,28 +92,50 @@ const Tooltip = ({
 }: TooltipComponentProps) => {
   const [
     isOverflowed,
-    setIsOverflow,
+    setIsOverflowed,
   ] = useState(false)
-  const [
-    width,
-    height,
-  ] = useWindowSize()
   const isControlled = props.open !== undefined
   const contentChildrenRef = useRef<HTMLSpanElement>(null)
 
   const disableHoverListener = enableOnlyWithEllipsisPoints && !isOverflowed
 
+  const checkOverflow = (windowRefValue: HTMLSpanElement) => {
+    const next = windowRefValue.scrollWidth > windowRefValue.clientWidth
+
+    setIsOverflowed((previousValue) =>
+      previousValue === next ? previousValue : next
+    )
+  }
+
   useEffect(() => {
-    if (contentChildrenRef.current) {
-      // returns the width of the element
-      const elementWidth = contentChildrenRef.current.clientWidth
-      // returns the width of the content enclosed in an element
-      const containedElementWidth = contentChildrenRef.current.scrollWidth
-      setIsOverflow(containedElementWidth > elementWidth)
+    const refValue = contentChildrenRef.current
+
+    if (!refValue) return
+
+    // Initial check
+    checkOverflow(refValue)
+
+    let resizeObserver: ResizeObserver | null = null
+
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(checkOverflow.bind(null, refValue))
+
+      try {
+        resizeObserver.observe(refValue)
+      } catch (error) {
+        console.error('Tooltip: ResizeObserver observe failed', error)
+      }
+    }
+
+    // as a fallback listen to window resize
+    window.addEventListener('resize', checkOverflow.bind(null, refValue))
+
+    return () => {
+      window.removeEventListener('resize', checkOverflow.bind(null, refValue))
+      if (resizeObserver) resizeObserver.disconnect()
     }
   }, [
-    width,
-    height,
+    contentChildrenRef,
   ])
 
   return (
@@ -138,5 +159,5 @@ const Tooltip = ({
   )
 }
 
-export type { TooltipComponentProps as TooltipProps }
 export { Tooltip }
+export type { TooltipComponentProps as TooltipProps }

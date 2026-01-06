@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Label PR - Step
-        uses: actions/labeler@v4
+        uses: actions/labeler@v6
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
           configuration-path: .github/labeler-pr.yml

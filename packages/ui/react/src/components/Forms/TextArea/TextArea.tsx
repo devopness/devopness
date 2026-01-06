@@ -1,8 +1,8 @@
-import type { TextareaHTMLAttributes, RefObject } from 'react'
+import type { RefObject, TextareaHTMLAttributes } from 'react'
 
 import { Container, StyledTextarea } from './TextArea.styled'
-import { Label, ErrorMessage } from 'src/components/Primitives'
 import type { LabelProps } from 'src/components/Primitives'
+import { ErrorMessage, Label } from 'src/components/Primitives'
 
 /**
  * Props for the TextArea component.
@@ -57,8 +57,8 @@ const TextArea = ({
   <Container className={className}>
     {!!label && <Label {...label} />}
     <StyledTextarea
-      hasError={!!error}
-      noResize={!isResizable}
+      $hasError={!!error}
+      $noResize={!isResizable}
       ref={inputRef}
       {...props}
     />

@@ -7,6 +7,7 @@ Note:
 """
 
 from .action import Action, ActionPlain
+from .action_data import ActionData, ActionDataPlain
 from .action_deployment_commit import (
     ActionDeploymentCommit,
     ActionDeploymentCommitPlain,
@@ -613,6 +614,7 @@ from .user_resend_verification import (
     UserResendVerificationPlain,
 )
 from .user_team_stats import UserTeamStats, UserTeamStatsPlain
+from .user_type import UserType, UserTypePlain
 from .user_url import UserUrl, UserUrlPlain
 from .variable import Variable, VariablePlain
 from .variable_application_create import (
@@ -639,6 +641,8 @@ from .virtual_host_update import VirtualHostUpdate, VirtualHostUpdatePlain
 
 __all__ = [
     "Action",
+    "ActionData",
+    "ActionDataPlain",
     "ActionDeploymentCommit",
     "ActionDeploymentCommitPlain",
     "ActionDeploymentContent",
@@ -1288,6 +1292,8 @@ __all__ = [
     "UserResendVerificationPlain",
     "UserTeamStats",
     "UserTeamStatsPlain",
+    "UserType",
+    "UserTypePlain",
     "UserUrl",
     "UserUrlPlain",
     "Variable",
