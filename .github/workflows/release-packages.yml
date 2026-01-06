@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write  # Required for OIDC (npm, PyPi, etc). See https://docs.npmjs.com/trusted-publishers
   pull-requests: write
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
@@ -23,12 +24,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "22.x"
+          node-version: "24.x"
 
       - name: Install SDK dependencies
         run: npm ci --ignore-scripts
@@ -40,7 +41,6 @@ jobs:
           publish: npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   release-pypi-packages:
     name: Release PyPI Packages
@@ -53,7 +53,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Check if version already published on PyPI
         id: version_check
@@ -87,4 +87,5 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: make publish
         env:
+          # TO DO: enable OIDC for PyPI and remove `PYPI_TOKEN`
           PYPI_TOKEN: ${{ secrets[matrix.pypi_token] }}

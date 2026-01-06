@@ -2,9 +2,9 @@ import React from 'react'
 
 import {
   BarLoader,
-  PageLoader,
   CircleLoader,
   LoaderContainer,
+  PageLoader,
   RingLoader,
 } from './Loader.styled'
 import type { ReactSpinnersProps } from './ReactSpinners.type'
@@ -44,8 +44,8 @@ const Loader = ({
 
   return (
     <LoaderContainer
-      paddingTop={paddingTop}
-      isAlignLeft={isAlignLeft}
+      $paddingTop={paddingTop}
+      $isAlignLeft={isAlignLeft}
     >
       <LoaderComponent
         paddingTop={paddingTop}

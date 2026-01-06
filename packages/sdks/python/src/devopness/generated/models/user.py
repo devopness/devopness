@@ -7,18 +7,16 @@ Note:
 """
 
 from typing import (
-    List,
     Optional,
     Required,
     TypedDict,
     Union,
 )
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .language import Language, LanguagePlain
-from .social_account_relation import SocialAccountRelation, SocialAccountRelationPlain
+from .user_type import UserType, UserTypePlain
 
 
 class User(DevopnessBaseModel):
@@ -26,34 +24,16 @@ class User(DevopnessBaseModel):
     User
 
     Attributes:
-        id (int): The unique ID of the given user
-        name (str): User&#39;s full name
-        email (str): The e-mail that will uniquely identify the user on the system and become its login credential
+        id (int): The unique ID of the user
         url_slug (str, optional): The URL Slug of the user
-        language (Language, optional, nullable):
-        active (bool): Tells if the user is active or not
-        social_accounts (List[SocialAccountRelation]):
-        created_at (str): The date and time when the record was created
-        updated_at (str): The date and time when the record was last updated
+        type (UserType):
     """
 
-    id: StrictInt = Field(description="The unique ID of the given user")
-    name: StrictStr = Field(description="User's full name")
-    email: StrictStr = Field(
-        description="The e-mail that will uniquely identify the user on the system and become its login credential"
-    )
+    id: StrictInt = Field(description="The unique ID of the user")
     url_slug: Optional[StrictStr] = Field(
         default=None, description="The URL Slug of the user"
     )
-    language: Optional[Language]
-    active: StrictBool = Field(description="Tells if the user is active or not")
-    social_accounts: List[Optional[SocialAccountRelation]]
-    created_at: StrictStr = Field(
-        description="The date and time when the record was created"
-    )
-    updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
-    )
+    type: UserType
 
 
 class UserPlain(TypedDict, total=False):
@@ -62,23 +42,10 @@ class UserPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    name: Required[str]
-    email: Required[str]
     url_slug: Optional[str]
-    language: Optional[
+    type: Required[
         Union[
-            Language,
-            LanguagePlain,
+            UserType,
+            UserTypePlain,
         ]
     ]
-    active: Required[bool]
-    social_accounts: Required[
-        List[
-            Union[
-                SocialAccountRelation,
-                SocialAccountRelationPlain,
-            ]
-        ]
-    ]
-    created_at: Required[str]
-    updated_at: Required[str]

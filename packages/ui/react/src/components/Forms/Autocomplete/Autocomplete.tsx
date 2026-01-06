@@ -40,15 +40,19 @@ const Autocomplete = ({ inputProps, autocompleteProps }: AutocompleteProps) => (
     {...autocompleteProps}
     freeSolo
     slots={{ popper: AutocompletePopper }}
-    renderInput={({ size: _, ...params }) => (
-      <div ref={params.InputProps.ref}>
-        <Input
-          {...params}
-          {...inputProps}
-          type="text"
-        />
-      </div>
-    )}
+    renderInput={(params) => {
+      const { InputProps, inputProps: muiInputProps } = params
+
+      return (
+        <div ref={InputProps.ref}>
+          <Input
+            {...inputProps}
+            {...muiInputProps}
+            type="text"
+          />
+        </div>
+      )
+    }}
   />
 )
 

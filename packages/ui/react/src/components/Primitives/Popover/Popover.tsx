@@ -44,7 +44,7 @@ const Popover = ({ title, footer, children, ...props }: PopoverProps) => (
   >
     <Header
       data-testid="popover-header"
-      justifyContent={title ? 'space-between' : 'end'}
+      $justifyContent={title ? 'space-between' : 'end'}
     >
       {title && <Title data-testid="popover-title">{title}</Title>}
       <Button
@@ -64,7 +64,7 @@ const Popover = ({ title, footer, children, ...props }: PopoverProps) => (
       wrapper={(children) => (
         <Footer
           id="popover"
-          justifyContent="space-between"
+          $justifyContent="space-between"
         >
           {children}
         </Footer>
