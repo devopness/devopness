@@ -26,6 +26,14 @@ import type { Unwrap } from 'src/components/types'
 
 const DEFAULT_BUTTON_ICON_SIZE = 10
 const DEFAULT_ICON_MARGIN = 10
+const DEFAULT_ANCHOR_ORIGIN: PopoverOrigin = {
+  vertical: 'bottom',
+  horizontal: 'left',
+}
+const DEFAULT_TRANSFORM_ORIGIN: PopoverOrigin = {
+  vertical: 'top',
+  horizontal: 'left',
+}
 
 type DropdownOptionIcon = Unwrap<
   IconProps & Pick<React.CSSProperties, 'backgroundColor'>
@@ -266,6 +274,9 @@ const Dropdown = ({
   onToggle,
   ...props
 }: DropdownProps) => {
+  const anchorOrigin = props.anchorOrigin ?? DEFAULT_ANCHOR_ORIGIN
+  const transformOrigin = props.transformOrigin ?? DEFAULT_TRANSFORM_ORIGIN
+
   const handleDropdownOptionClick = async (
     option: DropdownOption,
     onSelect: DropdownProps['onSelect'],
@@ -327,6 +338,8 @@ const Dropdown = ({
                   },
                 },
               }}
+              anchorOrigin={anchorOrigin}
+              transformOrigin={transformOrigin}
               {...bindPopover(popupState)}
               {...props.popoverProps}
             >
