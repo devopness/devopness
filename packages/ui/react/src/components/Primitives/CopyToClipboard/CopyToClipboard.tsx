@@ -1,9 +1,11 @@
-import { useState, ReactNode } from 'react'
+'use client'
+
+import { ReactNode, useState } from 'react'
 
 import {
-  ContentMain,
   ContentChildren,
   ContentCopyAction,
+  ContentMain,
   CopyAction,
 } from './CopyToClipboard.styled'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
