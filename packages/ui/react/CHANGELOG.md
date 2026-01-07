@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.184.4
+
+### Patch Changes
+
+- [#2487](https://github.com/devopness/devopness/pull/2487) [`ea774f8`](https://github.com/devopness/devopness/commit/ea774f8dd13c1c991f3728caac0195ca80add7c6) Thanks [@SwannyAlves](https://github.com/SwannyAlves)! - Anchor the Dropdown popover below the trigger by default
+
 ## 2.184.3
 
 ### Patch Changes
