@@ -68,7 +68,7 @@
     "react-icons": "^5.5.0",
     "react-select": "^5.10.2",
     "react-spinners": "^0.17.0",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.3.5"
   },
   "devDependencies": {
     "@emotion/styled": "^11.14.1",
