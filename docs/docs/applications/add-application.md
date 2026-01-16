@@ -30,16 +30,6 @@ You can add unlimited applications to the same environment, one per repository. 
 
 If you later need to separate demo and production (separate domains, versions, data, or access rules), create a new environment and deploy those applications there.
 
-## Choose the right credential
-
-For team workflows, prefer a shared automation account instead of a personal account.
-
-Suggested setup:
-1. Create a dedicated GitHub user (for example `devopness` or `devopness-<org>`)
-1. Add it to your organization or repositories with the minimum permissions needed
-1. Create a personal access token or SSH key for that user
-1. Add the credential in Devopness and select it when adding the application
-
 ## Enable auto deployments on git push
 
 To deploy automatically when you push commits, set up an incoming webhook in Devopness and connect it to your Git provider. This is currently done via the API (not the UI yet).
