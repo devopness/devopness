@@ -28,7 +28,7 @@ required_permissions:
 
 You can add unlimited applications to the same environment, one per repository. This works well when your marketing site, demo app, production app, API, AI agents, and MCP servers belong to the same product and are managed by the same teams.
 
-If you later need to isolate demo and production (separate domains, versions, data, or access rules), create a new environment and deploy those applications there.
+If you later need to separate demo and production (separate domains, versions, data, or access rules), create a new environment and deploy those applications there.
 
 ## Choose the right credential
 
@@ -36,13 +36,13 @@ For team workflows, prefer a shared automation account instead of a personal acc
 
 Suggested setup:
 1. Create a dedicated GitHub user (for example `devopness` or `devopness-<org>`)
-1. Add it to your organization or repositories with the minimum required permissions
+1. Add it to your organization or repositories with the minimum permissions needed
 1. Create a personal access token or SSH key for that user
 1. Add the credential in Devopness and select it when adding the application
 
 ## Enable auto deployments on git push
 
-To deploy automatically when you push commits, configure an incoming webhook in Devopness and connect it to your Git provider. This is currently done via the API (not the UI yet).
+To deploy automatically when you push commits, set up an incoming webhook in Devopness and connect it to your Git provider. This is currently done via the API (not the UI yet).
 
 Steps:
 1. Create an incoming webhook in Devopness

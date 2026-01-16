@@ -23,4 +23,4 @@ links:
 Notes:
 - Use `Production` for live customer traffic.
 - If you started with a single environment (for example `Demo`) and do not need separation yet, you can keep using it while you get started.
-- When you are ready to isolate production, add a new `Production` environment and deploy your applications there.
+- When you are ready to separate production, add a new `Production` environment and deploy your applications there.
