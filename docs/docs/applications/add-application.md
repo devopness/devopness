@@ -26,7 +26,7 @@ required_permissions:
 
 ## Multiple repositories in the same environment
 
-You can add unlimited applications to the same environment, one per repository. This works well when your marketing site, demo app, and backend belong to the same product and share the same team.
+You can add unlimited applications to the same environment, one per repository. This works well when your marketing site, demo app, production app, API, AI agents, and MCP servers belong to the same product and are managed by the same teams.
 
 If you later need to isolate demo and production (separate domains, versions, data, or access rules), create a new environment and deploy those applications there.
 

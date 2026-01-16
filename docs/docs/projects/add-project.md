@@ -20,4 +20,5 @@ links:
 
 Tips:
 - Create a new project for each product when teams and permissions should be isolated.
-- Keep multiple applications in the same project when they belong to the same product and share the same team.
+- Use a new project if you need different Git or cloud provider credentials.
+- Keep multiple applications in the same project when they belong to the same product and are managed by the same teams.
