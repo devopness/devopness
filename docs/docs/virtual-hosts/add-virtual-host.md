@@ -24,6 +24,10 @@ required_permissions:
     - A new deployment is required for your changes to take effect
         - Follow the guide [/docs/pipelines/run-pipeline]
 
+Tips:
+- Add one virtual host per domain you want to use (for example `www.my-product.ai`, `demo.my-product.ai`, `api.my-product.ai`).
+- You can add multiple virtual hosts for the same application when you need multiple domains.
+
 :::note
 
 For virtual hosts of type `Server IP address` ("ip-based virtual host"), please make sure:

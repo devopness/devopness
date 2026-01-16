@@ -17,3 +17,8 @@ links:
 1. Click `CONFIRM`
   - You will be redirected to the `Project resources` page, with details of your newly created project
   - You can now manage `Environments`, `Teams` and `Roles` in your new project
+
+Tips:
+- Create a new project for each product when teams and permissions should be kept separate.
+- Use a new project if you need different Git or cloud provider credentials.
+- Keep multiple applications in the same project when they belong to the same product and are managed by the same teams.

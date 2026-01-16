@@ -22,3 +22,17 @@ links:
 1. In the upper-right corner of the list, click `ADD CREDENTIAL`.
 1. Follow the prompts and click `CONFIRM`
 1. In the `Credential` details view, the recently created `Credential` details can be seen
+
+## Choose the right credential
+
+For team workflows, use a shared automation account instead of a personal account. This keeps access consistent and avoids tying deployments to one person.
+
+Example for a source provider (for example GitHub):
+1. Create a dedicated user (for example `devopness` or `devopness-<org>`)
+1. Add it to your organization or repositories with the minimum permissions needed
+1. Create a personal access token or SSH key for that user
+1. Add the credential in Devopness
+
+Devopness also supports other source providers (for example GitLab or Bitbucket).
+
+For cloud providers, you can add multiple credentials as needed (for example AWS, Azure, GCP, DigitalOcean, Hetzner). Use different credentials if you want to keep access separate between projects or teams.
