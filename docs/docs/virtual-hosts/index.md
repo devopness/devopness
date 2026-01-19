@@ -15,3 +15,7 @@ links:
     featured:
 required_permissions:
 ---
+
+## When to add a virtual host
+
+Add a virtual host for each domain you want to route to an application (for example `app.my-product.com` or `demo.my-product.com`). You can add multiple virtual hosts per environment and per application.
