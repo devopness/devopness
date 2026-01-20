@@ -41,7 +41,7 @@ Please make sure to read and observe our [Contributor Code of Conduct](./CODE_OF
 1. Once you implemented a new feature or a fix for an issue, open a pull request for review
    - Please ensure all automated checks on your PR are passing, otherwise the PR will not be considered ready to be reviewed
 1. **Code Review:** Your pull request will be reviewed
-   - Note: you might need to make changes on your pull request based on reviewers's feedbacks
+   - Note: you might need to make changes on your pull request based on reviewers' feedback
 1. **Merge:** Once approved, maintainers will merge your pull request into the main repository branch
 
 ### Pull request titles

@@ -8,6 +8,14 @@ The Devopness documentation website is built using [Docusaurus](https://docusaur
 npm ci
 ```
 
+## Configuration
+
+Copy the example environment file and configure it:
+
+```bash
+cp .env.example .env
+```
+
 ## Local Development
 
 ```bash

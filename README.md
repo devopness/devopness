@@ -20,9 +20,9 @@ Install the **Devopness MCP Server** in your favorite IDE:
 
 `Devopness` drastically simplifies the way we manage cloud applications and multi cloud infrastructure in a secure and productive way.
 
-Deovpness allows AI Agents and humans to provision and manage cloud infrastructure and deploy applications to `AWS`, `Azure`, `DigitalOcean`, `GCP`, ..., and any other major cloud provider.
+Devopness allows AI Agents and humans to provision and manage cloud infrastructure and deploy applications to `AWS`, `Azure`, `DigitalOcean`, `GCP`, ..., and any other major cloud provider.
 
-* Simplified role based access control and permisson management
+* Simplified role based access control and permission management
 * No surprise on your cloud provider bills, as we only deploy the infra that each team of humans or agents have permissions to
 * Full control on what AI Agents can do on your DevOps and CI/CD workflows
 * Full visibility, auditing and traceability on what has been done by each person or agent in your teams
