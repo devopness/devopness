@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.1.7
+
+### Patch Changes
+
+- [#2532](https://github.com/devopness/devopness/pull/2532) [`8052719`](https://github.com/devopness/devopness/commit/80527194b5711abaabcf430fb4e5a1b9e5e62dfa) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix runtime errors when invoking devopness.hooks.delete_hook and devopness.hooks.get_hook.
+
 ## 2.1.6
 
 ### Patch Changes
