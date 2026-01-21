@@ -42,7 +42,7 @@ class {{classname}}Service(DevopnessBaseService):
 {{/isDeprecated}}
 
 {{>api_method_body_endpoint}}
-        response = self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
+        response = self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{^isPathParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isPathParam}}{{/isHeaderParam}}{{/allParams}})
 
         return DevopnessResponse(response, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}None{{/returnType}})
 {{/operation}}
@@ -82,7 +82,7 @@ class {{classname}}ServiceAsync(DevopnessBaseServiceAsync):
 {{/isDeprecated}}
 
 {{>api_method_body_endpoint}}
-        response = await self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isHeaderParam}}{{/allParams}})
+        response = await self._{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(endpoint{{#allParams}}{{^isHeaderParam}}{{^isPathParam}}{{#-last}}{{^isPrimitiveType}}, {{paramName}}{{/isPrimitiveType}}{{/-last}}{{/isPathParam}}{{/isHeaderParam}}{{/allParams}})
 
         return await DevopnessResponse.from_async(response, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}None{{/returnType}})
 {{/operation}}
