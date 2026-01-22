@@ -13402,8 +13402,8 @@
         ]
       },
       "ActionStatus": {
-        "description": "Current item status",
         "type": "string",
+        "description": "The possible status of an action.",
         "enum": [
           "pending",
           "waiting",
@@ -13690,7 +13690,7 @@
             "$ref": "#/components/schemas/ProviderType"
           },
           "provider_code": {
-            "$ref": "#/components/schemas/CloudProviderCode"
+            "$ref": "#/components/schemas/ProviderCode"
           },
           "provider_name": {
             "description": "The name of the cloud provider of the credential",
@@ -15068,8 +15068,8 @@
         ]
       },
       "CloudProviderCode": {
-        "description": "The code of the cloud service provider",
         "type": "string",
+        "description": "The code of the cloud service provider.",
         "enum": [
           "aws",
           "azure",
@@ -15236,6 +15236,7 @@
       },
       "CloudProviderServiceCode": {
         "type": "string",
+        "description": "The code that uniquely identify this cloud service.",
         "enum": [
           "aws-ec2",
           "azure-rm",
@@ -15244,7 +15245,6 @@
           "hetzner-hcloud",
           "self-hosted-custom"
         ],
-        "description": "The code that uniquely identify this cloud service",
         "example": "aws-ec2"
       },
       "CloudProviderServiceList": {
@@ -19959,8 +19959,8 @@
         ]
       },
       "ProviderCode": {
-        "description": "The code of the service provider",
         "type": "string",
+        "description": "The code of the service provider.",
         "enum": [
           "aws",
           "azure",
@@ -20095,8 +20095,8 @@
         ]
       },
       "ProviderType": {
-        "description": "Type of provider.",
         "type": "string",
+        "description": "The possible types of providers.",
         "enum": [
           "cloud_provider",
           "source_provider"
