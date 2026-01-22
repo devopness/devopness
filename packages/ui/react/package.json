@@ -19,6 +19,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/ui-react.js",
       "require": "./dist/ui-react.cjs"
+    },
+    "./radix": {
+      "types": "./dist/radix.d.ts",
+      "import": "./dist/radix.js",
+      "require": "./dist/radix.cjs"
     }
   },
   "scripts": {
@@ -61,6 +66,9 @@
   "dependencies": {
     "@mui/material": "^6.5.0",
     "@mui/styled-engine-sc": "^6.4.9",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/themes": "^3.2.1",
+    "classnames": "^2.5.1",
     "ldrs": "^1.1.9",
     "lodash": "^4.17.23",
     "material-ui-popup-state": "^5.3.6",

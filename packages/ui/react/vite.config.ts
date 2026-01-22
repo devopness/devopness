@@ -4,7 +4,6 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -18,11 +17,10 @@ export default defineConfig({
         'src/test-utils/**/*.ts',
         '.storybook/**/*.ts',
       ],
+      entryRoot: 'src',
     }),
     tsconfigPaths({
-      projects: [
-        resolve(__dirname, 'tsconfig.json'),
-      ],
+      projects: [resolve(__dirname, 'tsconfig.json')],
     }),
   ],
   resolve: {
@@ -32,11 +30,15 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      formats: [
-        'es',
-        'cjs',
-      ],
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        radix: resolve(__dirname, 'src/radix.tsx'),
+      },
+      formats: ['es', 'cjs'],
+      fileName: (format, entryName) => {
+        if (entryName === 'index') return `ui-react.${format === 'es' ? 'js' : 'cjs'}`
+        return `radix.${format === 'es' ? 'js' : 'cjs'}`
+      },
     },
     rollupOptions: {
       external: [
