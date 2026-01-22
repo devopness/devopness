@@ -14,7 +14,7 @@
 
 
 /**
- * The code of the service provider
+ * The code of the service provider.
  * @export
  * @enum {string}
  */
