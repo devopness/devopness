@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.1.7
+
+### Patch Changes
+
+- [#2544](https://github.com/devopness/devopness/pull/2544) [`5a31613`](https://github.com/devopness/devopness/commit/5a31613a8711bd5398aefda3d3cadf160c1c39e8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the `ActionTargetCredentialData::provider_code` type to include `Source Providers` (ProviderCode::Enum)
+
 ## 3.1.6
 
 ### Patch Changes
