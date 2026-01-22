@@ -13,7 +13,7 @@ from typing import Literal, Self
 
 class CloudProviderServiceCode(str, Enum):
     """
-    The code that uniquely identify this cloud service
+    The code that uniquely identify this cloud service.
     """
 
     AWS_MINUS_EC2 = "aws-ec2"

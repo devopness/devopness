@@ -14,7 +14,7 @@
 
 
 /**
- * Current item status
+ * The possible status of an action.
  * @export
  * @enum {string}
  */
