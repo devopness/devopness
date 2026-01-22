@@ -20,7 +20,9 @@ export default defineConfig({
       entryRoot: 'src',
     }),
     tsconfigPaths({
-      projects: [resolve(__dirname, 'tsconfig.json')],
+      projects: [
+        resolve(__dirname, 'tsconfig.json'),
+      ],
     }),
   ],
   resolve: {
@@ -32,13 +34,12 @@ export default defineConfig({
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
-        radix: resolve(__dirname, 'src/radix.tsx'),
+        radix: resolve(__dirname, 'src/radix/index.tsx'),
       },
-      formats: ['es', 'cjs'],
-      fileName: (format, entryName) => {
-        if (entryName === 'index') return `ui-react.${format === 'es' ? 'js' : 'cjs'}`
-        return `radix.${format === 'es' ? 'js' : 'cjs'}`
-      },
+      formats: [
+        'es',
+        'cjs',
+      ],
     },
     rollupOptions: {
       external: [
