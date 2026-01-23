@@ -2,7 +2,7 @@
 @import '@radix-ui/themes/styles.css';
 
 /* Import custom theme overrides and colors */
-/* @import './colors/custom-styles.css'; */
+@import './colors/custom-styles.css';
 
 /* 
  * Any additional global styles or customizations can be added here.

@@ -11,14 +11,9 @@ export default {
   },
   tags: ['autodocs'],
   argTypes: {
-    accentColor: { 
-      control: 'select', 
-      options: ['red',
-'blue',
-'green',
-'purple',
-'mint',
-'aqua']
+    accentColor: {
+      control: 'select',
+      options: ['devopness', 'red', 'blue', 'green', 'purple', 'mint', 'aqua'],
     },
     appearance: {
       control: 'radio',
@@ -35,8 +30,8 @@ export default {
 
 export const Default = {
   args: {
-    accentColor: 'red',
-    appearance: 'dark',
+    accentColor: 'devopness',
+    appearance: 'light',
     panelBackground: 'solid',
     children: (
       <Box p="6" style={{ maxWidth: 500 }}>
