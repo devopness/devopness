@@ -1,0 +1,10 @@
+/* Import Radix UI Themes base styles */
+@import '@radix-ui/themes/styles.css';
+
+/* Import custom theme overrides and colors */
+/* @import './colors/custom-styles.css'; */
+
+/* 
+ * Any additional global styles or customizations can be added here.
+ * These styles will be bundled into the final styles.css file.
+ */

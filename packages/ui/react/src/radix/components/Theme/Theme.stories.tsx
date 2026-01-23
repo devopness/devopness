@@ -1,25 +1,34 @@
-import { Theme } from './Theme';
 import { Box, Button, Flex, Text, Card, Heading } from '@radix-ui/themes';
+
+import { Theme } from './Theme';
 
 export default {
   title: 'Layout/Theme',
   component: Theme,
   parameters: {
     layout: 'centered',
+    useRadixTheme: true,
   },
   tags: ['autodocs'],
   argTypes: {
-    accentColor: {
-      control: 'select',
-      options: ['red', 'blue', 'green', 'purple', 'mint', 'aqua']
+    accentColor: { 
+      control: 'select', 
+      options: ['red',
+'blue',
+'green',
+'purple',
+'mint',
+'aqua']
     },
     appearance: {
       control: 'radio',
-      options: ['light', 'dark']
+      options: ['light',
+'dark']
     },
     panelBackground: {
       control: 'radio',
-      options: ['solid', 'translucent']
+      options: ['solid',
+'translucent']
     },
   },
 };
@@ -55,4 +64,4 @@ export const LightTheme = {
     ...Default.args,
     appearance: 'light',
   },
-};
+}; 
