@@ -70,7 +70,7 @@
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
-    "axios": "^1.13.2",
+    "axios": "^1.13.3",
     "parse-link-header": "^2.0.0"
   }
 }
