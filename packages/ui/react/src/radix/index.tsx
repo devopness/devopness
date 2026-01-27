@@ -20,7 +20,6 @@ import {
   IconButton,
   Inset,
   Popover,
-  Progress,
   Radio,
   RadioGroup,
   RadioCards,
@@ -74,7 +73,6 @@ export {
   IconButton,
   Inset,
   Popover,
-  Progress,
   Radio,
   RadioGroup,
   RadioCards,
@@ -110,3 +108,4 @@ export {
 }
 
 export { Theme } from './components/Theme/Theme.tsx';
+export { Progress } from './components/Progress/Progress';
