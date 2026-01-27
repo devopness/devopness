@@ -80,5 +80,5 @@ export const Overview: StoryObj = {
       canvas: { hidden: true },
     },
   },
-  render: () => null,
+  render: () => <></>,
 }
