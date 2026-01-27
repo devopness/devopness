@@ -87,7 +87,7 @@
   --accent-a11: var(--devopness-a11);
   --accent-a12: var(--devopness-a12);
 
-  --accent-contrast: var(--devopness-12);
+  --accent-contrast: white;
   --accent-surface: var(--devopness-3);
   --accent-indicator: var(--devopness-9);
   --accent-track: var(--devopness-4);
