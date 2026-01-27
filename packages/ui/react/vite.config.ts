@@ -32,10 +32,12 @@ export default defineConfig({
     },
   },
   build: {
+    cssCodeSplit: true,
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
         radix: resolve(__dirname, 'src/radix/index.tsx'),
+        'radix/styles': resolve(__dirname, 'src/radix/styles.css'),
       },
       formats: [
         'es',
@@ -50,6 +52,13 @@ export default defineConfig({
         'react/jsx-dev-runtime',
         /^react(\/.*)?$/,
       ],
+      output: {
+        assetFileNames: (assetInfo) => {
+          const name = String(assetInfo.name ?? '')
+          if (name.endsWith('.css')) return 'radix/styles.css'
+          return 'assets/[name]-[hash][extname]'
+        },
+      },
     },
   },
 })

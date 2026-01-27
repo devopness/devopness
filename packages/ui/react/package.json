@@ -24,7 +24,8 @@
       "types": "./dist/radix.d.ts",
       "import": "./dist/radix.js",
       "require": "./dist/radix.cjs"
-    }
+    },
+    "./radix/styles.css": "./dist/radix/styles.css"
   },
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vite build",
