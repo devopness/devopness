@@ -1,12 +1,6 @@
 import type { ComponentProps } from 'react'
-import {
-  Box,
-  Flex,
-  Text,
-  Heading,
-  Theme,
-  Progress,
-} from '../../index'
+
+import { Box, Flex, Text, Heading, Theme, Progress } from '../../index'
 
 export default {
   title: 'Radix/Progress',
@@ -44,9 +38,7 @@ export const Default = {
   },
   render: (args: ComponentProps<typeof Progress>) => (
     <Theme>
-      <Box
-        style={{ width: 300, maxWidth: '100%' }}
-      >
+      <Box style={{ width: 300, maxWidth: '100%' }}>
         <Progress {...args} />
       </Box>
     </Theme>
@@ -145,7 +137,8 @@ export const Duration = {
             size="2"
             color="gray"
           >
-            Use the duration prop for indeterminate progress with an estimated time.
+            Use the duration prop for indeterminate progress with an estimated
+            time.
           </Text>
           <Box style={{ maxWidth: 300 }}>
             <Progress duration="30s" />

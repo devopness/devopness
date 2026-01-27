@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Text,
-  Heading,
-  Theme,
-} from '../../index'
+import { Box, Button, Flex, Text, Heading, Theme } from '../../index'
 
 export default {
   title: 'Radix/Button',
@@ -158,7 +151,8 @@ export const Loading = {
             size="2"
             color="gray"
           >
-            Use the loading prop to display a loading spinner in place of button content.
+            Use the loading prop to display a loading spinner in place of button
+            content.
           </Text>
           <Flex
             gap="3"

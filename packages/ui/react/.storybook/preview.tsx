@@ -1,6 +1,6 @@
-import React from 'react'
 import type { Preview } from '@storybook/react'
 import '@radix-ui/themes/styles.css'
+
 import '../src/radix/styles.css'
 import { Theme } from '../src/radix/components/Theme/Theme'
 

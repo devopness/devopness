@@ -1,4 +1,3 @@
-
 // Import and re-export components from Radix UI Themes
 
 import {
@@ -107,5 +106,5 @@ export {
   Strong,
 }
 
-export { Theme } from './components/Theme/Theme.tsx';
-export { Progress } from './components/Progress/Progress';
+export { Theme } from './components/Theme/Theme.tsx'
+export { Progress } from './components/Progress/Progress'

@@ -54,7 +54,8 @@ export default defineConfig({
       ],
       output: {
         assetFileNames: (assetInfo) => {
-          const name = String(assetInfo.name ?? '')
+          // eslint-disable-next-line @typescript-eslint/no-deprecated -- Rollup 'name' deprecated in favor of 'names'; still works
+          const name = assetInfo.name ?? ''
           if (name.endsWith('.css')) return 'radix/styles.css'
           return 'assets/[name]-[hash][extname]'
         },
