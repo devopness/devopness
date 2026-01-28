@@ -11,7 +11,7 @@ name: Sync - Package Versions
 # versions of these packages are also synchronized in the root package-lock.json file.
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize
@@ -43,7 +43,7 @@ jobs:
   sync-pypi-package-versions:
     name: Sync pyproject.toml
     needs: detect-changes
-    if: > 
+    if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
       ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
@@ -84,7 +84,7 @@ jobs:
   sync-main-lockfile:
     name: Sync the package-lock.json
     needs: detect-changes
-    if: > 
+    if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
       ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
@@ -113,7 +113,7 @@ jobs:
   verify-sync:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
-    if: > 
+    if: >
       github.event.pull_request.user.login != 'dependabot[bot]'
       && always()
     runs-on: ubuntu-latest
