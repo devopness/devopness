@@ -112,12 +112,10 @@ jobs:
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
 
-      - uses: stefanzweifel/git-auto-commit-action@v7
+      - uses: planetscale/ghcommit-action@v0.2.20
         with:
           commit_message: 'chore: update package-lock.json'
           file_pattern: 'package-lock.json'
-          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
-          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   verify-sync:
     name: Verify sync of package versions
