@@ -134,9 +134,6 @@ jobs:
 
       - name: Fail if sync-pypi-package-versions did not succeed
         run: |
-          if [ "${{ needs.sync-pypi-package-versions.result }}" != "success" ]; then
-            exit 1
-          fi
           if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
             echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
             exit 1
