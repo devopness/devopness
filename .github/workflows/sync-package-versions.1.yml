@@ -23,14 +23,6 @@ permissions:
 concurrency: ${{ github.workflow }}-${{ github.head_ref }}
 
 jobs:
-  DEBUG:
-    name: Debug Info
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login != 'dependabot[bot]'
-    steps:
-      - name: DEBUG
-        run: echo "[DEBUG] Hello from the debug job!"
-
   detect-changes:
     name: Detect changes in package.json files
     if: >
@@ -112,12 +104,12 @@ jobs:
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
 
-      - uses: planetscale/ghcommit-action@v0.2.20
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          repo: ${{ github.repository }}
-          branch: ${{ github.head_ref || github.ref_name }}
-          file_pattern: 'package-lock.json'
           commit_message: 'chore: update package-lock.json'
+          file_pattern: 'package-lock.json'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
         env:
           GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 

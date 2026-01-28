@@ -11,7 +11,7 @@ name: Sync - Package Versions
 # versions of these packages are also synchronized in the root package-lock.json file.
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - synchronize
@@ -23,14 +23,6 @@ permissions:
 concurrency: ${{ github.workflow }}-${{ github.head_ref }}
 
 jobs:
-  DEBUG:
-    name: Debug Info
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login != 'dependabot[bot]'
-    steps:
-      - name: DEBUG
-        run: echo "[DEBUG] Hello from the debug job!"
-
   detect-changes:
     name: Detect changes in package.json files
     if: >
@@ -51,9 +43,9 @@ jobs:
   sync-pypi-package-versions:
     name: Sync pyproject.toml
     needs: detect-changes
-    if: >
+    if: > 
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
+      ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -78,7 +70,7 @@ jobs:
           sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
 
       - name: Run post-version-sync commands for '${{ matrix.name }}'
-        if: matrix.post_version_sync_commands != ''
+        if: ${{ matrix.post_version_sync_commands }} != ''
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
@@ -92,9 +84,9 @@ jobs:
   sync-main-lockfile:
     name: Sync the package-lock.json
     needs: detect-changes
-    if: >
+    if: > 
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
+      ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -121,7 +113,7 @@ jobs:
   verify-sync:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
-    if: >
+    if: > 
       github.event.pull_request.user.login != 'dependabot[bot]'
       && always()
     runs-on: ubuntu-latest
@@ -134,6 +126,9 @@ jobs:
 
       - name: Fail if sync-pypi-package-versions did not succeed
         run: |
+          if [ "${{ needs.sync-pypi-package-versions.result }}" != "success" ]; then
+            exit 1
+          fi
           if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
             echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
             exit 1
