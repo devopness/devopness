@@ -114,8 +114,10 @@ jobs:
 
       - uses: planetscale/ghcommit-action@v0.2.20
         with:
-          commit_message: 'chore: update package-lock.json'
+          repo: ${{ github.repository }}
+          branch: ${{ github.head_ref || github.ref_name }}
           file_pattern: 'package-lock.json'
+          commit_message: 'chore: update package-lock.json'
 
   verify-sync:
     name: Verify sync of package versions
