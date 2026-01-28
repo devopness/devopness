@@ -95,6 +95,7 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -110,8 +111,6 @@ jobs:
           file_pattern: 'package-lock.json'
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
   verify-sync:
     name: Verify sync of package versions
