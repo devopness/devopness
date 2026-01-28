@@ -47,6 +47,7 @@ jobs:
           filters: |
             changes:
               - 'packages/**/package.json'
+              - '.github/workflows/*.yml'
 
   sync-pypi-package-versions:
     name: Sync pyproject.toml
