@@ -53,7 +53,7 @@ jobs:
     needs: detect-changes
     if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      ${{ needs.detect-changes.outputs.changes == 'true' }}
+      needs.detect-changes.outputs.changes == 'true'
     runs-on: ubuntu-latest
 
     strategy:
@@ -78,7 +78,7 @@ jobs:
           sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
 
       - name: Run post-version-sync commands for '${{ matrix.name }}'
-        if: ${{ matrix.post_version_sync_commands }} != ''
+        if: matrix.post_version_sync_commands != ''
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
@@ -94,7 +94,7 @@ jobs:
     needs: detect-changes
     if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      ${{ needs.detect-changes.outputs.changes == 'true' }}
+      needs.detect-changes.outputs.changes == 'true'
     runs-on: ubuntu-latest
 
     steps:
