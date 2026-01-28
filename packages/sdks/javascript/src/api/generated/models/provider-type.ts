@@ -14,7 +14,7 @@
 
 
 /**
- * Type of provider.
+ * The possible types of providers.
  * @export
  * @enum {string}
  */

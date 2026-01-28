@@ -13,7 +13,7 @@ from typing import Literal, Self
 
 class ActionStatus(str, Enum):
     """
-    Current item status
+    The possible status of an action.
     """
 
     PENDING = "pending"

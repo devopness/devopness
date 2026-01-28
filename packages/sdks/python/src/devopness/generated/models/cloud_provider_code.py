@@ -13,7 +13,7 @@ from typing import Literal, Self
 
 class CloudProviderCode(str, Enum):
     """
-    The code of the cloud service provider
+    The code of the cloud service provider.
     """
 
     AWS = "aws"

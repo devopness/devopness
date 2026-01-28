@@ -16,7 +16,7 @@ import { ActionTargetCredentialData } from './action-target-credential-data';
 import { ActionTargetNetworkData } from './action-target-network-data';
 import { ActionTargetServerData } from './action-target-server-data';
 import { CloudOsVersionCode } from './cloud-os-version-code';
-import { CloudProviderCode } from './cloud-provider-code';
+import { ProviderCode } from './provider-code';
 import { ProviderType } from './provider-type';
 import { ServerProvisionInput } from './server-provision-input';
 

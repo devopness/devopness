@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/sdk-js",
-  "version": "3.1.6",
+  "version": "3.1.7",
   "publishConfig": {
     "access": "public"
   },
@@ -54,7 +54,7 @@
     "@eslint/js": "^9.39.2",
     "@openapitools/openapi-generator-cli": "^2.28.0",
     "@types/jest": "^30.0.0",
-    "@typescript-eslint/parser": "^8.53.1",
+    "@typescript-eslint/parser": "^8.54.0",
     "axios-mock-adapter": "^2.1.0",
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -66,11 +66,11 @@
     "ts-jest": "^29.4.5",
     "typedoc": "^0.28.16",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.53.1"
+    "typescript-eslint": "^8.54.0"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
-    "axios": "^1.13.2",
+    "axios": "^1.13.4",
     "parse-link-header": "^2.0.0"
   }
 }

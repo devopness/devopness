@@ -14,7 +14,7 @@
 
 
 /**
- * The code that uniquely identify this cloud service
+ * The code that uniquely identify this cloud service.
  * @export
  * @enum {string}
  */
