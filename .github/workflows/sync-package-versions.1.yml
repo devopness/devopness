@@ -119,7 +119,7 @@ jobs:
           file_pattern: 'package-lock.json'
           commit_message: 'chore: update package-lock.json'
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
   verify-sync:
     name: Verify sync of package versions
