@@ -23,6 +23,14 @@ permissions:
 concurrency: ${{ github.workflow }}-${{ github.head_ref }}
 
 jobs:
+  DEBUG:
+    name: Debug Info
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
+    steps:
+      - name: DEBUG
+        run: echo "[DEBUG] Hello from the debug job!"
+
   detect-changes:
     name: Detect changes in package.json files
     if: >
