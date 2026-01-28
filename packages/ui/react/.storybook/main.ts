@@ -19,6 +19,7 @@ function getAbsolutePath(packageName: string) {
 const config: StorybookConfig = {
   stories: [
     '../src/components/**/*.stories.@(ts|tsx)',
+    '../src/radix/**/*.stories.@(ts|tsx)',
   ],
 
   addons: [

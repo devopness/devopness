@@ -1,0 +1,63 @@
+/* Import Radix UI Themes base styles */
+@import '@radix-ui/themes/styles.css';
+
+/* Import custom theme overrides and colors */
+@import './colors/custom-styles.css';
+
+/* 
+ * Any additional global styles or customizations can be added here.
+ * These styles will be bundled into the final styles.css file.
+ */
+
+:where(.radix-themes)
+  button[class*='rt-Button'][class*='rt-r-size-4']:not(
+    [class*='rt-variant-ghost']
+  ),
+:where(.radix-themes)
+  button[class*='rt-Button'][data-size='4']:not([class*='rt-variant-ghost']) {
+  border-radius: 16px !important;
+  height: 44px !important;
+}
+
+:where(.radix-themes)
+  button[class*='rt-Button'][class*='rt-r-size-4'][class*='rt-variant-ghost'],
+:where(.radix-themes)
+  button[class*='rt-Button'][data-size='4'][class*='rt-variant-ghost'] {
+  border-radius: 16px !important;
+}
+
+:where(.radix-themes) button[class*='rt-Button'][class*='rt-r-size-3'],
+:where(.radix-themes) button[class*='rt-Button'][data-size='3'] {
+  border-radius: 12px !important;
+}
+
+:where(.radix-themes) button[class*='rt-Button'][class*='rt-r-size-2'],
+:where(.radix-themes) button[class*='rt-Button'][data-size='2'],
+:where(.radix-themes)
+  button[class*='rt-Button']:not([class*='rt-r-size-1']):not(
+    [class*='rt-r-size-3']
+  ):not([class*='rt-r-size-4']):not([data-size]) {
+  border-radius: 8px !important;
+}
+
+:where(.radix-themes) button[class*='rt-Button'][class*='rt-r-size-1'],
+:where(.radix-themes) button[class*='rt-Button'][data-size='1'] {
+  border-radius: 4px !important;
+}
+
+:where(.radix-themes) button[class*='rt-Button'][class*='rt-variant-solid'] {
+  color: white !important;
+}
+
+:where(.radix-themes)[data-theme='dark']
+  button[class*='rt-Button'][class*='rt-variant-solid'] {
+  color: white !important;
+}
+
+:where(.radix-themes) button[class*='rt-Button']:hover:not(:disabled) {
+  cursor: pointer !important;
+}
+
+:where(.radix-themes) button[class*='rt-Button']:disabled {
+  cursor: default !important;
+}
