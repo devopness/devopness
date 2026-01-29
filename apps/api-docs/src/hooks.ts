@@ -1,11 +1,10 @@
 import hooks, { Transaction, TransactionHook } from 'hooks';
-import { v1, v4 } from 'uuid';
 
 import './augmentTransactionWithMetadata';
-import { Identifiable, User, PersonalAccessToken, isFixtureKey } from './fixtureTypes';
 import DevopnessAPI from './DevopnessAPI';
 import env from './envLoader';
 import FixtureStore from './FixtureStore';
+import { Identifiable, PersonalAccessToken, User, isFixtureKey } from './fixtureTypes';
 import Logger from './Logger';
 import OpenAPISpec from './OpenAPISpec';
 import TransactionGraph, { FixtureTransactionAdjacencyList, TransactionGraphEdge } from './TransactionGraph';
@@ -83,6 +82,13 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // So, we skip them for now
         'loginUser200',
         'updateUser204',
+
+        // Skipping the deletion of resource 'containers' (organization, project, environment)
+        // because the tests do not delete all created resources linked to them, causing
+        // errors when trying to delete these resources
+        'deleteOrganization204',
+        'deleteProject204',
+        'deleteEnvironment204',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -277,7 +283,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     //// users
     before('addUser202', (transaction: Transaction) => {
-        const user = { 
+        const user = {
           id: env.DEVOPNESS_USER_ID,
           url_slug: env.DEVOPNESS_USER_URL_SLUG,
         } as User;

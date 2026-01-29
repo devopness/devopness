@@ -78,6 +78,8 @@
   post:
     $ref: ./auto-generated/endpoints/stop-daemon.yaml
 '/environments/{environment_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-environment.yaml
   get:
     $ref: ./auto-generated/endpoints/get-environment.yaml
   put:
@@ -210,6 +212,8 @@
   post:
     $ref: ./auto-generated/endpoints/add-organization.yaml
 '/organizations/{organization_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-organization.yaml
   get:
     $ref: ./auto-generated/endpoints/get-organization.yaml
   put:
@@ -255,6 +259,8 @@
   post:
     $ref: ./auto-generated/endpoints/add-project.yaml
 '/projects/{project_id}':
+  delete:
+    $ref: ./auto-generated/endpoints/delete-project.yaml
   get:
     $ref: ./auto-generated/endpoints/get-project.yaml
   put:
