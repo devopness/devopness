@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#2578](https://github.com/devopness/devopness/pull/2578) [`75ae202`](https://github.com/devopness/devopness/commit/75ae202fc3224d339c67ea673e2c9228eb4f9506) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add methods to `delete` **environments**, **projects** and **organizations**.
+- [#2578](https://github.com/devopness/devopness/pull/2578) [`75ae202`](https://github.com/devopness/devopness/commit/75ae202fc3224d339c67ea673e2c9228eb4f9506) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add methods to `delete` **environments**, **projects** and **organizations**.
 
 ## 3.1.7
 
