@@ -46,6 +46,7 @@
     "src",
     "vite.config.ts",
     "vitest.config.ts",
-    ".storybook/**/*.ts"
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx"
   ]
 }

@@ -18,6 +18,7 @@ export default defineConfig({
         'src/test-utils/**/*.ts',
         '.storybook/**/*.ts',
       ],
+      entryRoot: 'src',
     }),
     tsconfigPaths({
       projects: [
@@ -31,8 +32,13 @@ export default defineConfig({
     },
   },
   build: {
+    cssCodeSplit: true,
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        radix: resolve(__dirname, 'src/radix/index.tsx'),
+        'radix/styles': resolve(__dirname, 'src/radix/styles.css'),
+      },
       formats: [
         'es',
         'cjs',
@@ -46,6 +52,14 @@ export default defineConfig({
         'react/jsx-dev-runtime',
         /^react(\/.*)?$/,
       ],
+      output: {
+        assetFileNames: (assetInfo) => {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated -- Rollup 'name' deprecated in favor of 'names'; still works
+          const name = assetInfo.name ?? ''
+          if (name.endsWith('.css')) return 'radix/styles.css'
+          return 'assets/[name]-[hash][extname]'
+        },
+      },
     },
   },
 })

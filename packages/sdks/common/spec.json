@@ -1802,6 +1802,50 @@
       }
     },
     "/environments/{environment_id}": {
+      "delete": {
+        "summary": "Delete a given environment",
+        "operationId": "deleteEnvironment",
+        "tags": [
+          "Environments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "summary": "Get an environment by ID",
         "operationId": "getEnvironment",
@@ -5077,6 +5121,49 @@
       }
     },
     "/organizations/{organization_id}": {
+      "delete": {
+        "summary": "Delete a given organization",
+        "operationId": "deleteOrganization",
+        "tags": [
+          "Organizations"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "summary": "Get an organization by ID or URL Slug",
         "operationId": "getOrganization",
@@ -6179,6 +6266,50 @@
       }
     },
     "/projects/{project_id}": {
+      "delete": {
+        "summary": "Delete a given project",
+        "operationId": "deleteProject",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "summary": "Get a Project by ID",
         "operationId": "getProject",

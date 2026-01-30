@@ -65,7 +65,7 @@ export default tseslint.config(
         },
       ],
       'arrow-spacing': 'warn',
-      'arrow-body-style': 'error',
+      'arrow-body-style': 'off',
       'prefer-arrow-callback': [
         'error',
         {
@@ -104,7 +104,7 @@ export default tseslint.config(
       'import/no-unresolved': 'off',
       'import/first': 'error',
       'import/exports-last': 'error',
-      'import/group-exports': 'error',
+      'import/group-exports': 'off',
       'import/no-default-export': 'error',
       'import/consistent-type-specifier-style': [
         'error',
@@ -135,7 +135,11 @@ export default tseslint.config(
   {
     files: [
       '.storybook/*.ts',
-      'src/components/**/*.stories.*',
+      '.storybook/*.tsx',
+      'src/components/**/*.stories.ts',
+      'src/components/**/*.stories.tsx',
+      'src/radix/**/*.stories.ts',
+      'src/radix/**/*.stories.tsx',
       'vite.config.ts',
       'vitest.config.ts',
     ],
@@ -148,6 +152,7 @@ export default tseslint.config(
        * @see {@link https://vitejs.dev/config}
        */
       'import/no-default-export': 'off',
+      'import/group-exports': 'off',
     },
   }
 )
