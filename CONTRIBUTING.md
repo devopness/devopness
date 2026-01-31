@@ -1,10 +1,6 @@
 # Contributing to Devopness
 
-Thank you for considering contributing to Devopness!
-
-We appreciate the help!
-
-All community contributions are helpful to our team and for the Devopness community!
+Thank you for considering contributing to Devopness! We appreciate your help and value all community contributions.
 
 ## Before getting started
 
@@ -12,8 +8,13 @@ Show your appreciation for Devopness 💜! It means a lot to our team:
 
 - ⭐ Star this repository
 - [Sign up](https://app.devopness.com/signup/) for a FREE Devopness account
-- Follow [Devopness page on LinkedIn](https://www.linkedin.com/company/devopness/)
-- 📣 Share [our LinkedIn posts](https://www.linkedin.com/company/devopness/posts/) on social networks: Discord, LinkedIn, Slack, Twitter, ...
+- Join our community on [Discord](https://devopness.com/discord/): we're friendly and always happy to help :-)
+- Follow us on social networks:
+  - [LinkedIn](https://www.linkedin.com/company/devopness/)
+  - [Twitter/X](https://twitter.com/devopness)
+  - [YouTube](https://www.youtube.com/@devopness)
+  - [TikTok](https://www.tiktok.com/@devopness)
+  - [Instagram](https://www.instagram.com/devopness)
 
 ## Code of Conduct
 
@@ -23,26 +24,56 @@ Please make sure to read and observe our [Contributor Code of Conduct](./CODE_OF
 
 ### Getting Started
 
-1. [Fork the repository](https://github.com/devopness/devopness/fork) and start working on it
-   - To become familiar working with forks, please read and follow the [standard fork based workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962), which could be summarized with the following steps:
-      - Fork Devopness repository
-      - Create a branch
-      - When the changes in a branch are tested, open a pull request from your fork
-2. [Report a bug 🐛 or submit new ideas 🆕 💡](https://github.com/devopness/devopness/issues/new/choose)
+**Fork & Setup Workflow:**
+
+1. To become familiar with working with forks, please read and follow the [standard fork based workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962), which could be summarized with the following steps:
+   - [Fork Devopness repository](https://github.com/devopness/devopness/fork)
+   - Create a branch
+   - When the changes in a branch are tested, open a pull request from your fork
+
+**Ways to Contribute:**
+
+1. [Report a bug 🐛 or submit new ideas 🆕 💡](https://github.com/devopness/devopness/issues/new/choose)
    - ❓ Ask questions and help other Devopness users with open [discussions](https://github.com/devopness/devopness/discussions)
-3. Find a "[Good First Issue](https://github.com/devopness/devopness/labels/"good%20first%20issue")"
-   - **Good first issues** are a great way to start contributing to the project and get familiar with the codebase. Here's how to find them:
-     - Visit the "[Issues](https://github.com/devopness/devopness/issues)" tab on the main [repository](https://github.com/devopness/devopness)
-     - Use the "Labels" filter and select "[Good First Issue](https://github.com/devopness/devopness/labels/"good%20first%20issue")" to see a list of beginner-friendly tasks
-     - Choose an issue that interests you
+1. Find a [Good First Issue](https://github.com/devopness/devopness/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
+   - **Good first issues** are a great way to start contributing to the project and get familiar with the codebase. Browse the list and choose an issue that interests you!
 
 ### Submitting a Pull Request
 
-1. Once you implemented a new feature or a fix for an issue, open a pull request for review
-   - Please ensure all automated checks on your PR are passing, otherwise the PR will not be considered ready to be reviewed
-1. **Code Review:** Your pull request will be reviewed
+1. **Open a pull request:** Once you've implemented a new feature or fix, open a pull request for review
+1. **Review your own PR first:** Take a moment to review your own changes:
+   - Ensure all automated checks are passing
+   - Verify code quality and adherence to best practices
+   - Check that all files end with a final newline (this is important!)
+   - Make sure you have properly [configured git](https://docs.github.com/en/get-started/git-basics/configuring-git-to-handle-line-endings) or your IDE (see IDE Configuration below) to automatically add final newlines
+     - 💡 Tip: IDE configuration is easier than git configuration 🥭 🍒
+1. **Ask for review:**
+   - Ask for review in our [Discord channel #open-source-contributions](https://discord.com/channels/1354644459031232655/1366431403931336714)
+   - Your pull request will be reviewed
    - Note: you might need to make changes on your pull request based on reviewers' feedback
 1. **Merge:** Once approved, maintainers will merge your pull request into the main repository branch
+
+#### IDE Configuration
+
+To ensure [consistent code formatting](https://docs.github.com/en/get-started/git-basics/configuring-git-to-handle-line-endings) and avoid common issues, please configure your IDE with these settings:
+
+**For VSCode, Cursor, Windsurf, and similar editors:**
+
+Add these settings to your workspace or user settings (`settings.json`):
+
+```json
+{
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true
+}
+```
+
+This ensures:
+
+- All files end with a final newline (prevents "No newline at end of file" warnings)
+- Trailing newlines are trimmed (keeps files clean)
+
+**Why this matters:** Consistent file endings make diffs cleaner, prevent merge conflicts, and follow POSIX standards. It's a small detail that makes a big difference in collaborative development!
 
 ### Pull request titles
 
@@ -50,27 +81,54 @@ Please make sure to read and observe our [Contributor Code of Conduct](./CODE_OF
 
 - be written in the active imperative form
 - not end with a period (`.`)
-- be read in natural language. As a simple rule one can pretend the message in a pull request title starts with `"This change will ..."`
+- be read in natural language. As a simple rule, one can pretend the message in a pull request title starts with `"This change will ..."`
   - **Example**: for a pull request that has the title `fix broken links on user profile page`, it could be read as `This change will ... fix broken links on user profile page`
 
-Here are some **bad examples** of pull requests titles we're trying to avoid:
+Here are some **bad examples** of pull request titles we're trying to avoid:
 
 - `Fixes a bug`
 - `Adds a feature`
 - `Feature now does something`
 
+### Pull request descriptions
+
+**A good PR description is essential** - even for DRAFT pull requests! It helps reviewers understand your changes quickly and provides context for future reference.
+
+**What to include:**
+
+- **Clear summary:** What does this PR do? Why is it needed?
+- **Visual evidence (when applicable):** For changes that affect UI, documentation, or visual elements, include BEFORE and AFTER screenshots or examples
+  - This is especially important for design system changes, documentation updates, or any visual modifications
+  - Show that images are rendering correctly, layouts work as expected, etc.
+- **Testing notes:** How did you test this? What scenarios did you cover?
+- **Related issues:** Link to any related issues or discussions
+
+**Examples of great PR descriptions:**
+
+- [docs: add help/documentation for servers #2213](https://github.com/devopness/devopness/pull/2213) - Comprehensive documentation with clear examples and screenshots.
+- [feat(design-system): add borderBottomColor prop to customize Card header #1515](https://github.com/devopness/devopness/pull/1515) - Design system change with visual BEFORE/AFTER examples.
+- [fix(design-system): runtime error rendering shieldLock icon #1556](https://github.com/devopness/devopness/pull/1556) - Bug fix with clear problem description, solution, and testing notes.
+- [refactor(sdk-python): remove usage of subprocess in build script](https://github.com/devopness/devopness/pull/1955) - Refactor and security improvements with clear mentions of code changes.
+- [ci: always run verification jobs](https://github.com/devopness/devopness/pull/2482) - CI improvements and dependencies upgrade in GitHub Actions workflows.
+
+**Remember:** Even if your PR is a work in progress (DRAFT), a good description helps maintainers understand your direction and provide early feedback!
+
 ### Feature Work
 
-For larger features, we would appreciate it if you open a [new issue](https://github.com/devopness/devopness/issues/new/choose) before investing a lot of your time trying to solve it, so we can discuss and plan the feature together.
+**When to open an issue first:**
 
-Please also be sure to browse current issues to make sure your issue is unique, to lighten the triage burden on our maintainers.
-Finally, please limit your pull requests to contain only one feature at a time. Separating feature work into individual pull requests helps speed up code review and reduces the barrier to merge.
+- For larger features or breaking changes, please open a [new issue](https://github.com/devopness/devopness/issues/new/choose) before investing a lot of your time, so we can discuss and plan the feature together.
+- Please browse current issues to make sure your issue is unique, to lighten the triage burden on our maintainers.
+
+**For smaller features:** Feel free to submit a PR directly, but please limit your pull requests to contain only one feature at a time. Separating feature work into individual pull requests helps speed up code review and reduces the barrier to merge.
 
 ## Releases
 
 We publish package releases and changelogs using [GitHub Releases](https://github.com/devopness/devopness/releases) together with Changesets.
 
 ### Changesets
+
+**TL;DR:** If your changes affect packages, you'll need to add a changeset file. This helps us generate changelogs and version packages correctly.
 
 Changesets are small files that describe what changed and what kind of version bump is required (patch, minor, or major). They are used to generate changelogs and help our release tooling determine new package versions.
 
@@ -102,4 +160,4 @@ If you need help creating a changeset or understanding bump types, start a discu
 
 ## Getting Help
 
-If you want to talk with other folks in the Devopness community (including members of the Devopness team) please [start a discussion](https://github.com/devopness/devopness/discussions) and we will soon get in touch with you.
+Need help? Have questions? Want to connect with other contributors? Join us on [Discord](https://devopness.com/discord/) or start a [GitHub discussion](https://github.com/devopness/devopness/discussions)!

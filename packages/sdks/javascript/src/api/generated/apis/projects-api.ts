@@ -44,6 +44,24 @@ export class ProjectsApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Delete a given project
+     * @param {number} projectId The ID of the project.
+     */
+    public async deleteProject(projectId: number): Promise<ApiResponse<void>> {
+        if (projectId === null || projectId === undefined) {
+            throw new ArgumentNullException('projectId', 'deleteProject');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get a Project by ID
      * @param {number} projectId The ID of the project.
      */

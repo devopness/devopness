@@ -49,6 +49,27 @@ class OrganizationsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Organization)
 
+    def delete_organization(
+        self,
+        organization_id: str,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
     def get_organization(
         self,
         organization_id: str,
@@ -154,6 +175,27 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._post(endpoint, organization_create)
 
         return await DevopnessResponse.from_async(response, Organization)
+
+    async def delete_organization(
+        self,
+        organization_id: str,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_organization(
         self,

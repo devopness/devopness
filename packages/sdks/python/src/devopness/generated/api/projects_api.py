@@ -49,6 +49,27 @@ class ProjectsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Project)
 
+    def delete_project(
+        self,
+        project_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
     def get_project(
         self,
         project_id: int,
@@ -156,6 +177,27 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._post(endpoint, project_create)
 
         return await DevopnessResponse.from_async(response, Project)
+
+    async def delete_project(
+        self,
+        project_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_project(
         self,
