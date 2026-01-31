@@ -5279,6 +5279,79 @@
         }
       }
     },
+    "/organizations/{organization_id}/projects": {
+      "post": {
+        "summary": "Create a project to a given organization",
+        "operationId": "addOrganizationProject",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectOrganizationCreate"
+              }
+            }
+          }
+        }
+      }
+    },
     "/pipelines/{pipeline_id}": {
       "delete": {
         "summary": "Delete a given Pipeline",
@@ -19970,6 +20043,29 @@
         "items": {
           "$ref": "#/components/schemas/ProjectRelation"
         }
+      },
+      "ProjectOrganizationCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the project. Must not be greater than 60 characters.",
+            "example": "my project",
+            "type": "string"
+          },
+          "logo_image": {
+            "description": "A base64 string representation of the logo image.",
+            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII=",
+            "type": "string"
+          },
+          "logo_url": {
+            "description": "A URL path to the project's logo image. Must be a valid URL.",
+            "example": "https://example.com/projects-beautiful-logo.png",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
       },
       "ProjectOwnerRelation": {
         "description": "The owner of the project (user or organization)",
