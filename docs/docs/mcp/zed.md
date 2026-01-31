@@ -1,88 +1,91 @@
-Installing and Using the Devopness MCP Server in Zed
+# Installing and Using the Devopness MCP Server in Zed
 
-This guide explains how to configure and use the Devopness Model Context Protocol (MCP) server in the Zed editor.
+This guide explains how to configure and use the **Devopness Model Context Protocol (MCP) server** in the Zed editor.
 
-By completing these steps, you allow Zed’s AI features to access real Devopness context and actions, such as projects, environments, and applications.
+By completing these steps, you allow Zed’s AI features to access **real Devopness context and actions**, such as projects, environments, and applications.
 
-⚠️ This guide assumes you already have:
+> ⚠️ **Prerequisites**
+>
+> - Zed installed
+> - Node.js and `npx` available
+> - A Devopness Personal Access Token (PAT)
 
-Zed installed
+---
 
-Node.js and npx available
+## 🧠 What is MCP in Zed
 
-A Devopness Personal Access Token (PAT)
-
-🧠 What is MCP in Zed
-
-Zed uses the Model Context Protocol (MCP) to connect to external context servers.
+Zed uses the **Model Context Protocol (MCP)** to connect to external context servers.
 
 An MCP server:
 
-Exposes structured data and tools
+- Exposes structured data and tools
+- Is invoked by a language model (LLM) configured in Zed
+- Does **not** act autonomously
 
-Is invoked by a language model (LLM) configured in Zed
+Devopness provides an MCP server that exposes your Devopness resources (projects, environments, applications, pipelines) as tools and context that a configured LLM can use inside Zed.
 
-Does not act autonomously
+> ℹ️ **Important**
+> Devopness is **not an agent** in Zed.
+> It is an MCP server whose tools are used by a language model configured in the editor.
 
-Devopness provides an MCP server that exposes your Devopness resources (projects, environments, applications, pipelines) as tools and context that an LLM can use inside Zed.
+---
 
-ℹ️ Important:
-Devopness is not an agent in Zed.
-It is an MCP server whose tools are used by a language model configured in the editor.
+## ⚙️ Prerequisites
 
-⚙️ Prerequisites
+Ensure the following are installed and available before continuing.
 
-Before configuring Zed, ensure the following are installed and available.
-
-✔️ Zed editor
+### ✔️ Zed editor
 
 Install or update Zed from:
-https://zed.dev
+[https://zed.dev](https://zed.dev)
 
-✔️ Node.js and npx
+### ✔️ Node.js and `npx`
 
-Zed uses npx to run the remote MCP client.
+Zed uses `npx` to run the remote MCP client.
 
 Verify installation:
 
+```bash
 node --version
 npx --version
-
+```
 
 If not installed, download from:
-https://nodejs.org
+[https://nodejs.org](https://nodejs.org)
 
-✔️ Devopness Personal Access Token
+### ✔️ Devopness Personal Access Token
 
-Generate a Personal Access Token (PAT) from your Devopness account.
+Generate a **Personal Access Token (PAT)** from your Devopness account.
 This token authenticates the MCP connection.
 
-🛠️ Configuring the Devopness MCP Server
+---
 
-In Zed, configuration and activation are separate steps.
+## 🛠️ Configuring the Devopness MCP Server
+
+In Zed, **configuration** and **activation** are separate steps.
 
 You must configure the MCP server first, then activate it.
 
-Step 1 — Configure the MCP server (one of the options below)
+---
 
-You can configure the Devopness MCP server using either of the following methods.
+### Step 1 — Configure the MCP server
 
-Option A — Edit the Zed configuration file
+Choose **one** of the following methods.
 
-Open Zed
+---
 
-Open Settings
+#### Option A — Edit the Zed configuration file
 
-macOS: Cmd + ,
+1. Open Zed
+2. Open **Settings**
+   - macOS: `Cmd + ,`
+   - Linux / Windows: `Ctrl + ,`
 
-Linux/Windows: Ctrl + ,
+3. Navigate to **AI → Context Servers**
+4. Click **Edit in settings.json**
+5. Add the following block:
 
-Navigate to AI → Context Servers
-
-Click Edit in settings.json
-
-Add the following block to your settings file:
-
+```json
 {
   "context_servers": {
     "devopness": {
@@ -100,104 +103,100 @@ Add the following block to your settings file:
     }
   }
 }
+```
 
-Option B — Use the Command Palette
+---
 
-Press Ctrl + Shift + P
+#### Option B — Use the Command Palette
 
-Run agent:add context server
+1. Press **Ctrl + Shift + P**
+2. Run **`agent:add context server`**
+3. Paste the same JSON configuration shown above
+4. Save
 
-Paste the same JSON configuration shown above
+> 📌 **Options A and B are alternatives.**
+> Use **only one** of them.
 
-Save
+---
 
-📌 Options A and B are alternatives.
-Use only one of them.
+### Step 2 — Activate the Devopness MCP server (required)
 
-Step 2 — Activate the Devopness MCP server (required)
+After configuration, the MCP server must be enabled.
 
-After configuring the server, you must activate it.
+1. Open the **Agent Panel**
+   - Shortcut: **Ctrl + Shift + ?**
+   - Or menu: **View → AI Settings**
 
-Open the Agent Panel
+2. Locate **Model Context Protocol (MCP)**
+3. Enable **Devopness** using the toggle
 
-Shortcut: Ctrl + Shift + ?
+> ⚠️ Configuration alone is not enough.
+> The MCP server must be explicitly activated.
 
-Or menu: View → AI Settings
+---
 
-Locate the section Model Context Protocol (MCP)
-
-Enable the Devopness server using the toggle
-
-⚠️ Configuration alone is not enough.
-The MCP server must be explicitly enabled.
-
-✅ Verifying the MCP Connection
+## ✅ Verifying the MCP Connection
 
 After configuration and activation:
 
-Open Ctrl + Shift + ? or View → AI Settings
-
-Under Model Context Protocol, you should see:
-
-devopness
-
-Status: active
-
-A list of available tools (for example: 55 tools)
+1. Open **Ctrl + Shift + ?** or **View → AI Settings**
+2. Under **Model Context Protocol**, you should see:
+   - `devopness`
+   - Status: **active**
+   - A list of available tools (for example: _55 tools_)
 
 If the server appears but does not respond correctly, verify:
 
-Your Personal Access Token
+- Your Personal Access Token
+- Node.js and `npx` availability
+- That a language model is configured in Zed
 
-Node.js and npx availability
+---
 
-That a language model is configured in Zed
-
-🤖 Using Devopness Context in Zed
+## 🤖 Using Devopness Context in Zed
 
 Once active, the Devopness MCP server provides tools that a configured LLM can use.
 
 Example prompts:
 
-List my Devopness projects
+- `List my Devopness projects`
+- `Show my Devopness environments`
+- `Fetch my Devopness applications`
 
-Show my Devopness environments
+> ℹ️ If your Devopness account has no resources, empty results are expected.
 
-Fetch my Devopness applications
+---
 
-ℹ️ If your Devopness account has no resources, empty results are expected.
+## ⚠️ Common Issues
 
-⚠️ Common Issues
-No language model configured
+### No language model configured
 
 An MCP server requires an active LLM (OpenAI, Anthropic, Ollama, etc.).
 Configure a language model before testing prompts.
 
-Generic or fictional responses
+### Generic or fictional responses
 
-This usually means the LLM responded without calling the MCP server.
-Verify that:
+This usually means the LLM responded **without invoking the MCP server**.
+Ensure:
 
-Devopness is active under Model Context Protocol
+- Devopness is active under **Model Context Protocol**
+- The token is valid
 
-The token is valid
+### `npx: command not found`
 
-npx: command not found
+Install Node.js and ensure `npx` is available in your system PATH.
 
-Install Node.js and ensure npx is in your system PATH.
-
-Authentication errors
+### Authentication errors
 
 Double-check your Devopness Personal Access Token.
 
-📌 Summary
+---
 
-Devopness provides an MCP server, not an autonomous agent
+## 📌 Summary
 
-MCP servers must be configured and activated
+- Devopness provides an **MCP server**, not an autonomous agent
+- MCP servers must be **configured and activated**
+- A language model is required to use MCP tools
+- Once active, Devopness context becomes available to Zed’s AI features
 
-A language model is required to use MCP tools
-
-Once active, Devopness context becomes available to Zed’s AI features
-
-This setup enables Zed to interact with real Devopness data, improving accuracy and usefulness when working with Devopness-related workflows.
+This setup enables Zed to interact with **real Devopness data**, improving accuracy and usefulness when working with Devopness-related workflows.
