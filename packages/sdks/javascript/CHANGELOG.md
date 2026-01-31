@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.1.9
+
+### Patch Changes
+
+- [#2581](https://github.com/devopness/devopness/pull/2581) [`75c81ab`](https://github.com/devopness/devopness/commit/75c81ab40beedb394c36f0bb74ac1837e5147e45) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose the `addOrganizationProject` method to create a project under an organization.
+
 ## 3.1.8
 
 ### Patch Changes
