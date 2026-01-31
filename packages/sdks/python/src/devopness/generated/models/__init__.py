@@ -391,6 +391,10 @@ from .pipeline_trigger_when import PipelineTriggerWhen, PipelineTriggerWhenPlain
 from .pipeline_update import PipelineUpdate, PipelineUpdatePlain
 from .project import Project, ProjectPlain
 from .project_create import ProjectCreate, ProjectCreatePlain
+from .project_organization_create import (
+    ProjectOrganizationCreate,
+    ProjectOrganizationCreatePlain,
+)
 from .project_owner_relation import ProjectOwnerRelation, ProjectOwnerRelationPlain
 from .project_owner_type import ProjectOwnerType, ProjectOwnerTypePlain
 from .project_relation import ProjectRelation, ProjectRelationPlain
@@ -1025,6 +1029,8 @@ __all__ = [
     "Project",
     "ProjectCreate",
     "ProjectCreatePlain",
+    "ProjectOrganizationCreate",
+    "ProjectOrganizationCreatePlain",
     "ProjectOwnerRelation",
     "ProjectOwnerRelationPlain",
     "ProjectOwnerType",

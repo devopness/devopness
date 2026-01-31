@@ -13,6 +13,8 @@ from ..models import (
     Project,
     ProjectCreate,
     ProjectCreatePlain,
+    ProjectOrganizationCreate,
+    ProjectOrganizationCreatePlain,
     ProjectRelation,
     ProjectUpdate,
     ProjectUpdatePlain,
@@ -24,6 +26,31 @@ class ProjectsApiService(DevopnessBaseService):
     """
     ProjectsApiService - Auto Generated
     """
+
+    def add_organization_project(
+        self,
+        organization_id: str,
+        project_organization_create: Union[
+            ProjectOrganizationCreate,
+            ProjectOrganizationCreatePlain,
+        ],
+    ) -> DevopnessResponse[Project]:
+        """
+        Create a project to a given organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/projects",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, project_organization_create)
+
+        return DevopnessResponse(response, Project)
 
     def add_project(
         self,
@@ -153,6 +180,31 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     ProjectsApiServiceAsync - Auto Generated
     """
+
+    async def add_organization_project(
+        self,
+        organization_id: str,
+        project_organization_create: Union[
+            ProjectOrganizationCreate,
+            ProjectOrganizationCreatePlain,
+        ],
+    ) -> DevopnessResponse[Project]:
+        """
+        Create a project to a given organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/projects",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, project_organization_create)
+
+        return await DevopnessResponse.from_async(response, Project)
 
     async def add_project(
         self,
