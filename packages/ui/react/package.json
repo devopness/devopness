@@ -83,7 +83,7 @@
     "@emotion/styled": "^11.14.1",
     "@eslint/js": "^9.39.2",
     "@storybook/addon-a11y": "^10.2.3",
-    "@storybook/addon-docs": "10.2.1",
+    "@storybook/addon-docs": "10.2.3",
     "@storybook/react-vite": "10.2.3",
     "@testing-library/react": "^16.3.2",
     "@types/lodash": "^4.17.23",
