@@ -2,24 +2,24 @@
 
 exports[`Card > renders correctly > with both header background and border colors 1`] = `
 <div
-  class="sc-bRKDuR eAuLul"
+  class="sc-beySbL SUWic"
 >
   <a
-    class="sc-eqYatC jOuVVh"
+    class="sc-irLwvM srBUj"
     color="#786efd"
     rel="noopener noreferrer"
     style="display: block; margin-right: auto; width: 100%;"
     target="_blank"
   >
     <div
-      class="sc-jwTyAe dWVCDu"
+      class="sc-jTQDnk iMnXlK"
       data-testid="card-header"
     >
       <div
-        class="sc-hvigdm hAPlbG"
+        class="sc-guDLRU gHhAsQ"
       >
         <span
-          class="sc-hwkwBN gwkCiw"
+          class="sc-fsYeqr ifhdzD"
         >
           T
         </span>
@@ -27,12 +27,12 @@ exports[`Card > renders correctly > with both header background and border color
       <div>
         <span
           aria-label="Test Card"
-          class="sc-kcLKEh jzBbsG translate"
+          class="sc-csKIKD kpcBlP translate"
           data-mui-internal-clone-element="true"
           data-testid="tooltip"
         >
           <span
-            class="sc-fhHczv jwuUAs"
+            class="sc-dmyDGl brGFJY"
           >
             Test Card
           </span>
@@ -41,17 +41,17 @@ exports[`Card > renders correctly > with both header background and border color
     </div>
   </a>
   <div
-    class="sc-hjsuWn fbvJFN only-child"
+    class="sc-gLLvbB QxgBH only-child"
     data-testid="card-footer"
   >
     <span
       aria-label=""
-      class="sc-kcLKEh jzBbsG translate"
+      class="sc-csKIKD kpcBlP translate"
       data-mui-internal-clone-element="true"
       data-testid="tooltip"
     >
       <a
-        class="sc-eqYatC bUqRXR"
+        class="sc-irLwvM dcCqof"
         color="#786efd"
         href="/settings"
         rel="noopener noreferrer"
@@ -59,15 +59,15 @@ exports[`Card > renders correctly > with both header background and border color
         target="_blank"
       >
         <button
-          class="sc-lgpSej dlOtfd"
+          class="sc-kFCscd iJyYvu"
           data-testid="button"
         >
           <span
-            class="sc-dYwGCk translate"
+            class="sc-jsEegq translate"
             data-testid="button-label"
           >
             <span
-              class="sc-jJLAfE gkHyEA"
+              class="sc-iBdmCa gSvxfA"
             >
               Settings
             </span>
@@ -81,24 +81,24 @@ exports[`Card > renders correctly > with both header background and border color
 
 exports[`Card > renders correctly > with custom header border bottom color 1`] = `
 <div
-  class="sc-bRKDuR eAuLul"
+  class="sc-beySbL SUWic"
 >
   <a
-    class="sc-eqYatC jOuVVh"
+    class="sc-irLwvM srBUj"
     color="#786efd"
     rel="noopener noreferrer"
     style="display: block; margin-right: auto; width: 100%;"
     target="_blank"
   >
     <div
-      class="sc-jwTyAe bAkNFh"
+      class="sc-jTQDnk kgXVod"
       data-testid="card-header"
     >
       <div
-        class="sc-hvigdm hAPlbG"
+        class="sc-guDLRU gHhAsQ"
       >
         <span
-          class="sc-hwkwBN gwkCiw"
+          class="sc-fsYeqr ifhdzD"
         >
           T
         </span>
@@ -106,12 +106,12 @@ exports[`Card > renders correctly > with custom header border bottom color 1`] =
       <div>
         <span
           aria-label="Test Card"
-          class="sc-kcLKEh jzBbsG translate"
+          class="sc-csKIKD kpcBlP translate"
           data-mui-internal-clone-element="true"
           data-testid="tooltip"
         >
           <span
-            class="sc-fhHczv jwuUAs"
+            class="sc-dmyDGl brGFJY"
           >
             Test Card
           </span>
@@ -120,17 +120,17 @@ exports[`Card > renders correctly > with custom header border bottom color 1`] =
     </div>
   </a>
   <div
-    class="sc-hjsuWn fbvJFN only-child"
+    class="sc-gLLvbB QxgBH only-child"
     data-testid="card-footer"
   >
     <span
       aria-label=""
-      class="sc-kcLKEh jzBbsG translate"
+      class="sc-csKIKD kpcBlP translate"
       data-mui-internal-clone-element="true"
       data-testid="tooltip"
     >
       <a
-        class="sc-eqYatC bUqRXR"
+        class="sc-irLwvM dcCqof"
         color="#786efd"
         href="/settings"
         rel="noopener noreferrer"
@@ -138,15 +138,15 @@ exports[`Card > renders correctly > with custom header border bottom color 1`] =
         target="_blank"
       >
         <button
-          class="sc-lgpSej dlOtfd"
+          class="sc-kFCscd iJyYvu"
           data-testid="button"
         >
           <span
-            class="sc-dYwGCk translate"
+            class="sc-jsEegq translate"
             data-testid="button-label"
           >
             <span
-              class="sc-jJLAfE gkHyEA"
+              class="sc-iBdmCa gSvxfA"
             >
               Settings
             </span>
