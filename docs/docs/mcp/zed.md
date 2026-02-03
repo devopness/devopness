@@ -105,13 +105,17 @@ Choose **one** of the following methods.
 }
 ```
 
+![Edit in settings.json](../assets/mcp/zed/zed-crl-virgula.png)
+
 ---
 
 #### Option B — Use the Command Palette
 
 1. Press **Ctrl + Shift + P**
 2. Run **`agent:add context server`**
+   ![agent:add context server](../assets/mcp/zed/zed-crt-ship-p.png)
 3. Paste the same JSON configuration shown above
+   ![consfigure-remote](../assets/mcp/zed/zed-config-remote.png)
 4. Save
 
 > 📌 **Options A and B are alternatives.**
@@ -126,8 +130,8 @@ After configuration, the MCP server must be enabled.
 1. Open the **Agent Panel**
    - Shortcut: **Ctrl + Shift + ?**
    - Or menu: **View → AI Settings**
-
 2. Locate **Model Context Protocol (MCP)**
+   ![View → AI Settings](../assets/mcp/zed/zed-crl-shift-int.png)
 3. Enable **Devopness** using the toggle
 
 > ⚠️ Configuration alone is not enough.
@@ -144,6 +148,7 @@ After configuration and activation:
    - `devopness`
    - Status: **active**
    - A list of available tools (for example: _55 tools_)
+     ![View → AI Settings](../assets/mcp/zed/zed-crt-ship-ativo.png)
 
 If the server appears but does not respond correctly, verify:
 
