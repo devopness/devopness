@@ -10,6 +10,9 @@
     "@changesets/cli": "^2.29.8"
   },
   "overrides": {
+    "babel-plugin-istanbul": {
+      "test-exclude": "^7.0.1"
+    },
     "test-exclude": "^7.0.1",
     "glob": "^11.0.0"
   }
