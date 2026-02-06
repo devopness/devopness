@@ -82,7 +82,7 @@
   "devDependencies": {
     "@emotion/styled": "^11.14.1",
     "@eslint/js": "^9.39.2",
-    "@storybook/addon-a11y": "^10.2.4",
+    "@storybook/addon-a11y": "^10.2.7",
     "@storybook/addon-docs": "10.2.4",
     "@storybook/react-vite": "10.2.4",
     "@testing-library/react": "^16.3.2",
