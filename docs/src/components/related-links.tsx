@@ -38,9 +38,9 @@ export function RelatedLinks({ links }: RelatedLinksProps) {
           <Link
             key={item.url}
             href={item.url}
-            className="block rounded-lg border p-4 transition-colors hover:bg-fd-accent"
+            className="block rounded-lg border p-4 no-underline hover:no-underline transition-colors hover:bg-fd-accent"
           >
-            <p className="font-medium">{item.title}</p>
+            <p className="font-medium text-[#786efd]">{item.title}</p>
             {item.description && (
               <p className="mt-1 text-sm text-fd-muted-foreground line-clamp-2">
                 {item.description}
