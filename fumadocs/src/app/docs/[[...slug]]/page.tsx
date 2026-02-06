@@ -1,10 +1,12 @@
 import { getPageImage, source } from '@/lib/source';
-import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/layouts/docs/page';
+import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/layouts/notebook/page';
 import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
+import { RequiredPermissions } from '@/components/required-permissions';
+import { RelatedLinks } from '@/components/related-links';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;
@@ -13,30 +15,37 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
 
   const MDX = page.data.body;
   const gitConfig = {
-    user: 'username',
-    repo: 'repo',
+    user: 'devopness',
+    repo: 'devopness',
     branch: 'main',
   };
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
       <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
+      <DocsDescription className="mb-0">
+        {!page.data.intro ? page.data.description : undefined}
+      </DocsDescription>
       <div className="flex flex-row gap-2 items-center border-b pb-6">
         <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
         <ViewOptions
           markdownUrl={`${page.url}.mdx`}
-          // update it to match your repo
-          githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/docs/content/docs/${page.path}`}
+          githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/fumadocs/content/docs/${page.path}`}
         />
       </div>
       <DocsBody>
+        {page.data.intro && <p>{page.data.intro}</p>}
         <MDX
           components={getMDXComponents({
-            // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
           })}
         />
+        {page.data.required_permissions && page.data.required_permissions.length > 0 && (
+          <RequiredPermissions permissions={page.data.required_permissions} />
+        )}
+        {page.data.links?.related && page.data.links.related.length > 0 && (
+          <RelatedLinks links={page.data.links.related} />
+        )}
       </DocsBody>
     </DocsPage>
   );
