@@ -1,10 +1,10 @@
-import { getPageImage, source } from '@/lib/source';
-import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/layouts/notebook/page';
+import { getPageImage, getLLMText, source } from '@/lib/source';
+import { DocsBody, DocsDescription, DocsPage, DocsTitle, EditOnGitHub } from 'fumadocs-ui/layouts/notebook/page';
 import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
+import { LLMCopyButton } from '@/components/ai/page-actions';
 import { RequiredPermissions } from '@/components/required-permissions';
 import { RelatedLinks } from '@/components/related-links';
 
@@ -14,11 +14,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   if (!page) notFound();
 
   const MDX = page.data.body;
-  const gitConfig = {
-    user: 'devopness',
-    repo: 'devopness',
-    branch: 'main',
-  };
+  const markdown = await getLLMText(page);
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
@@ -27,11 +23,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
         {!page.data.intro ? page.data.description : undefined}
       </DocsDescription>
       <div className="flex flex-row gap-2 items-center border-b pb-6">
-        <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
-        <ViewOptions
-          markdownUrl={`${page.url}.mdx`}
-          githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/docs/content/docs/${page.path}`}
-        />
+        <LLMCopyButton markdown={markdown} />
       </div>
       <DocsBody>
         {page.data.intro && <p>{page.data.intro}</p>}
@@ -47,6 +39,9 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
           <RelatedLinks links={page.data.links.related} />
         )}
       </DocsBody>
+      <EditOnGitHub
+        href={`https://github.com/devopness/devopness/blob/main/docs/content/docs/${page.path}`}
+      />
     </DocsPage>
   );
 }

@@ -28,6 +28,7 @@ const docusaurusCompatSchema = frontmatterSchema.extend({
 export const docs = defineDocs({
   dir: 'content/docs',
   docs: {
+    files: ['**/*.md', '**/*.mdx', '!**/README.md'],
     schema: docusaurusCompatSchema,
     postprocess: {
       includeProcessedMarkdown: true,
