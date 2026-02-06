@@ -1,18 +1,22 @@
-# Devopness documentation
+---
+title: Devopness Documentation
+description: Contribution guidelines and documentation authoring standards
+---
+
 Devopness maintains its documentation in an open source repository, so feel free to contribute to this project!
 
-# Contribution guidelines
+## Contribution guidelines
 Make sure all files created in this folder adhere to the following basic rules:
 1. Are defined as `Markdown` files (.md)
 2. Use front matter headers, see the list of available headers in [this topic](#predefined-variables)
 3. **DO NOT** set heading level one (a single `#` in `Markdown` content), as it is reserved for the documentation article title. Headings inside the documentation article content must start from heading level two (`##`). Please refer to [Markdown basic syntax](https://www.markdownguide.org/basic-syntax/#headings) for examples and detailed instructions
 4. **DO NOT** use `HTML` tags in `Markdown` content
 
-# Documentation authoring guidelines
-## What to document?
+## Documentation authoring guidelines
+### What to document?
 We should document use cases that will help our users successfully achieve their goals while using Devopness platform.
 
-## How to document?
+### How to document?
 1. Adopt a **Step by step** approach, making it super easy for readers to follow along:
     - Each step should be clear, with a short sentence.
     - If a process is long, break it down into multiple small steps.
