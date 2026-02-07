@@ -1,18 +1,18 @@
 export const siteConfig = {
   title: 'Devopness Docs',
   tagline: 'DevOps Happiness: for AI Agents & Humans',
-  url: 'https://www.devopness.com',
+  url: process.env.NEXT_PUBLIC_DEVOPNESS_URL_SITE!,
 
   assets: {
-    logo: 'https://assets.devopness.com/images/logo-devopness-primary.svg',
-    favicon: 'https://assets.devopness.com/images/favicon-devopness-site-512x512.png',
+    logo: `${process.env.NEXT_PUBLIC_DEVOPNESS_URL_IMAGES}/logo-devopness-primary.svg`,
+    favicon: `${process.env.NEXT_PUBLIC_DEVOPNESS_URL_IMAGES}/favicon-devopness-site-512x512.png`,
   },
 
   links: {
-    webApp: 'https://app.devopness.com',
-    signUp: 'https://app.devopness.com/signup',
-    github: 'https://github.com/devopness/devopness',
-    linkedin: 'https://www.linkedin.com/company/devopness',
-    youtube: 'https://www.youtube.com/@devopness',
+    webApp: process.env.NEXT_PUBLIC_DEVOPNESS_URL_WEB_APP!,
+    signUp: process.env.NEXT_PUBLIC_DEVOPNESS_URL_SIGNUP!,
+    github: process.env.NEXT_PUBLIC_DEVOPNESS_GITHUB_CONTACT!,
+    linkedin: process.env.NEXT_PUBLIC_DEVOPNESS_URL_LINKEDIN!,
+    youtube: process.env.NEXT_PUBLIC_DEVOPNESS_URL_YOUTUBE!,
   },
 };
