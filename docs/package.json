@@ -10,6 +10,7 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
+    "dotenv-expand": "^12.0.3",
     "fumadocs-core": "16.4.9",
     "fumadocs-mdx": "14.2.6",
     "fumadocs-ui": "16.4.9",

@@ -1,8 +1,7 @@
+import 'dotenv-expand/config';
 import { createMDX } from 'fumadocs-mdx/next';
 import { validateEnv } from './src/lib/env.mjs';
-import envLoader from '@next/env';
 
-envLoader.loadEnvConfig(process.cwd());
 validateEnv();
 
 const withMDX = createMDX();
