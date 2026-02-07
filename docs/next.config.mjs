@@ -1,6 +1,8 @@
 import { createMDX } from 'fumadocs-mdx/next';
 import { validateEnv } from './src/lib/env.mjs';
+import { loadEnvConfig } from '@next/env';
 
+loadEnvConfig(process.cwd());
 validateEnv();
 
 const withMDX = createMDX();
