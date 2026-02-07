@@ -40,7 +40,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
         )}
       </DocsBody>
       <EditOnGitHub
-        href={`https://github.com/devopness/devopness/blob/main/docs/content/docs/${page.path}`}
+        href={`https://github.com/devopness/devopness/blob/main/docs/docs/${page.path}`}
       />
     </DocsPage>
   );

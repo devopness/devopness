@@ -7,7 +7,9 @@ export async function GET() {
   lines.push('# Documentation');
   lines.push('');
   for (const page of source.getPages()) {
-    lines.push(`- [${page.data.title}](${page.url}): ${page.data.description}`);
+    const description = page.data.description ?? '';
+    const descriptionSuffix = description ? `: ${description}` : '';
+    lines.push(`- [${page.data.title}](${page.url})${descriptionSuffix}`);
   }
   return new Response(lines.join('\n'));
 }
