@@ -2,7 +2,7 @@
 
 exports[`Illustration > has fixed height and border bottom 1`] = `
 <div
-  class="sc-beySbL hKEOFE"
+  class="sc-test hash-test"
 >
   <span>
     Border test
