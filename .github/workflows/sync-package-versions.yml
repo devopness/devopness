@@ -119,12 +119,12 @@ jobs:
       github.event.pull_request.user.login != 'dependabot[bot]'
       && always()
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
       - name: Fail if sync-pypi-package-versions did not succeed
         run: |
