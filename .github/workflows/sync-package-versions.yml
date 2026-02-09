@@ -52,7 +52,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES) }}
+        include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES || '[]') }}
 
     steps:
       - uses: actions/checkout@v6
