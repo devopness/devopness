@@ -23,6 +23,8 @@ jobs:
         with:
           filters: |
             changes:
+              - 'package.json'
+              - 'package-lock.json'
               - 'packages/ui/react/**'
 
   build:
