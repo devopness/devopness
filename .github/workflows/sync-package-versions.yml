@@ -42,9 +42,27 @@ jobs:
               - 'package-lock.json'
               - 'packages/**/package.json'
 
+  load-pypi-projects:
+    name: Load Python packages matrix
+    needs: detect-changes
+    if: >
+      github.event.pull_request.user.login != 'dependabot[bot]' &&
+      needs.detect-changes.outputs.changes == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Load matrix of Pypi projects
+        id: set-matrix
+        run: |
+          MATRIX=$(cat .github/configs/python-packages.json | jq -c .)
+          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
+
   sync-pypi-package-versions:
     name: Sync pyproject.toml
-    needs: detect-changes
+    needs: [detect-changes, load-pypi-projects]
     if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
       needs.detect-changes.outputs.changes == 'true'
@@ -52,7 +70,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES || '[]') }}
+        include: ${{ fromJSON(needs.load-pypi-projects.outputs.matrix) }}
 
     steps:
       - uses: actions/checkout@v6
