@@ -12,7 +12,7 @@ on:
 
 permissions:
   contents: write
-  id-token: write  # Required for OIDC (npm, PyPi, etc). See https://docs.npmjs.com/trusted-publishers
+  id-token: write # Required for OIDC with trusted publishers. See https://docs.pypi.org/trusted-publishers/
   pull-requests: write
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
@@ -86,6 +86,4 @@ jobs:
         if: steps.version_check.outputs.should_publish == 'true'
         working-directory: ${{ matrix.path }}
         run: make publish
-        env:
-          # TO DO: enable OIDC for PyPI and remove `PYPI_TOKEN`
-          PYPI_TOKEN: ${{ secrets[matrix.pypi_token] }}
+        # Note: we publish to for PyPI using OIDC trusted publishers, so no need to set PYPI_TOKEN
