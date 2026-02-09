@@ -38,6 +38,8 @@ jobs:
         with:
           filters: |
             changes:
+              - 'package.json'
+              - 'package-lock.json'
               - 'packages/**/package.json'
 
   sync-pypi-package-versions:
@@ -47,23 +49,22 @@ jobs:
       github.event.pull_request.user.login != 'dependabot[bot]' &&
       needs.detect-changes.outputs.changes == 'true'
     runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES) }}
+        include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES || '[]') }}
 
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
-          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.13'
+          python-version: "3.13"
 
       - name: Sync '${{ matrix.name }}' version
         run: |
@@ -78,7 +79,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
-          file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
+          file_pattern: "${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock"
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
@@ -89,26 +90,25 @@ jobs:
       github.event.pull_request.user.login != 'dependabot[bot]' &&
       needs.detect-changes.outputs.changes == 'true'
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
-          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: '24.x'
+          node-version: "24.x"
 
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'chore: update package-lock.json'
-          file_pattern: 'package-lock.json'
+          commit_message: "chore: update package-lock.json"
+          file_pattern: "package-lock.json"
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
@@ -119,12 +119,12 @@ jobs:
       github.event.pull_request.user.login != 'dependabot[bot]'
       && always()
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail if sync-pypi-package-versions did not succeed
         run: |
