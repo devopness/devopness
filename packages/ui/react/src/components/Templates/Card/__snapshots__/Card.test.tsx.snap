@@ -2,37 +2,37 @@
 
 exports[`Card > renders correctly > with both header background and border colors 1`] = `
 <div
-  class="sc-beySbL SUWic"
+  class="sc-test hash-test"
 >
   <a
-    class="sc-irLwvM srBUj"
+    class="sc-test hash-test"
     color="#786efd"
     rel="noopener noreferrer"
     style="display: block; margin-right: auto; width: 100%;"
     target="_blank"
   >
     <div
-      class="sc-jTQDnk iMnXlK"
+      class="sc-test hash-test"
       data-testid="card-header"
     >
       <div
-        class="sc-guDLRU gHhAsQ"
+        class="sc-test hash-test"
       >
         <span
-          class="sc-fsYeqr ifhdzD"
+          class="sc-test hash-test"
         >
           T
         </span>
       </div>
       <div>
         <span
-          aria-label="Test Card"
-          class="sc-csKIKD kpcBlP translate"
+          aria-label="hash-test hash-test"
+          class="sc-test hash-test translate"
           data-mui-internal-clone-element="true"
           data-testid="tooltip"
         >
           <span
-            class="sc-dmyDGl brGFJY"
+            class="sc-test iepkvi"
           >
             Test Card
           </span>
@@ -41,17 +41,17 @@ exports[`Card > renders correctly > with both header background and border color
     </div>
   </a>
   <div
-    class="sc-gLLvbB QxgBH only-child"
+    class="sc-test hash-test only-child"
     data-testid="card-footer"
   >
     <span
       aria-label=""
-      class="sc-csKIKD kpcBlP translate"
+      class="sc-test hash-test translate"
       data-mui-internal-clone-element="true"
       data-testid="tooltip"
     >
       <a
-        class="sc-irLwvM dcCqof"
+        class="sc-test hash-test"
         color="#786efd"
         href="/settings"
         rel="noopener noreferrer"
@@ -59,15 +59,15 @@ exports[`Card > renders correctly > with both header background and border color
         target="_blank"
       >
         <button
-          class="sc-kFCscd iJyYvu"
+          class="sc-test hash-test"
           data-testid="button"
         >
           <span
-            class="sc-jsEegq translate"
+            class="sc-test translate"
             data-testid="button-label"
           >
             <span
-              class="sc-iBdmCa gSvxfA"
+              class="sc-test hash-test"
             >
               Settings
             </span>
@@ -81,37 +81,37 @@ exports[`Card > renders correctly > with both header background and border color
 
 exports[`Card > renders correctly > with custom header border bottom color 1`] = `
 <div
-  class="sc-beySbL SUWic"
+  class="sc-test hash-test"
 >
   <a
-    class="sc-irLwvM srBUj"
+    class="sc-test hash-test"
     color="#786efd"
     rel="noopener noreferrer"
     style="display: block; margin-right: auto; width: 100%;"
     target="_blank"
   >
     <div
-      class="sc-jTQDnk kgXVod"
+      class="sc-test hash-test"
       data-testid="card-header"
     >
       <div
-        class="sc-guDLRU gHhAsQ"
+        class="sc-test hash-test"
       >
         <span
-          class="sc-fsYeqr ifhdzD"
+          class="sc-test hash-test"
         >
           T
         </span>
       </div>
       <div>
         <span
-          aria-label="Test Card"
-          class="sc-csKIKD kpcBlP translate"
+          aria-label="hash-test hash-test"
+          class="sc-test hash-test translate"
           data-mui-internal-clone-element="true"
           data-testid="tooltip"
         >
           <span
-            class="sc-dmyDGl brGFJY"
+            class="sc-test iepkvi"
           >
             Test Card
           </span>
@@ -120,17 +120,17 @@ exports[`Card > renders correctly > with custom header border bottom color 1`] =
     </div>
   </a>
   <div
-    class="sc-gLLvbB QxgBH only-child"
+    class="sc-test hash-test only-child"
     data-testid="card-footer"
   >
     <span
       aria-label=""
-      class="sc-csKIKD kpcBlP translate"
+      class="sc-test hash-test translate"
       data-mui-internal-clone-element="true"
       data-testid="tooltip"
     >
       <a
-        class="sc-irLwvM dcCqof"
+        class="sc-test hash-test"
         color="#786efd"
         href="/settings"
         rel="noopener noreferrer"
@@ -138,15 +138,15 @@ exports[`Card > renders correctly > with custom header border bottom color 1`] =
         target="_blank"
       >
         <button
-          class="sc-kFCscd iJyYvu"
+          class="sc-test hash-test"
           data-testid="button"
         >
           <span
-            class="sc-jsEegq translate"
+            class="sc-test translate"
             data-testid="button-label"
           >
             <span
-              class="sc-iBdmCa gSvxfA"
+              class="sc-test hash-test"
             >
               Settings
             </span>
