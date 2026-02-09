@@ -51,7 +51,7 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^10.0.1",
     "@openapitools/openapi-generator-cli": "^2.28.2",
     "@types/jest": "^30.0.0",
     "@typescript-eslint/parser": "^8.54.0",
