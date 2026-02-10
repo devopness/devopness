@@ -54,7 +54,7 @@
     "@eslint/js": "^10.0.1",
     "@openapitools/openapi-generator-cli": "^2.28.2",
     "@types/jest": "^30.0.0",
-    "@typescript-eslint/parser": "^8.54.0",
+    "@typescript-eslint/parser": "^8.55.0",
     "axios-mock-adapter": "^2.1.0",
     "eslint": "^10.0.0",
     "eslint-import-resolver-typescript": "^4.4.4",
