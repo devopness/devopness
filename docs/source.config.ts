@@ -4,9 +4,11 @@ import remarkDirective from 'remark-directive';
 import { remarkMentionLink } from './src/plugins/remark-mention-link';
 import { z } from 'zod';
 
-// Extended frontmatter schema to support Docusaurus-originated fields.
-
-const docusaurusCompatSchema = frontmatterSchema.extend({
+// Extended frontmatter schema with custom fields used in the existing markdown files.
+// These fields (intro, slug, sidebar_position, links, required_permissions) were
+// originally defined when the docs used Docusaurus. Rather than rewriting all markdown
+// frontmatter, we extend Fumadocs' schema to recognize them as-is.
+const docsSchema = frontmatterSchema.extend({
   intro: z.string().nullable().optional(),
   slug: z.string().nullable().optional(),
   sidebar_position: z.number().nullable().optional(),
@@ -29,7 +31,7 @@ export const docs = defineDocs({
   dir: 'docs',
   docs: {
     files: ['**/*.md', '**/*.mdx', '!**/README.md'],
-    schema: docusaurusCompatSchema,
+    schema: docsSchema,
     postprocess: {
       includeProcessedMarkdown: true,
     },
@@ -44,7 +46,7 @@ export default defineConfig({
     remarkPlugins: [
       // Required by remarkDirectiveAdmonition
       [remarkDirective],
-      // Supports :::note, :::warning, :::danger admonition syntax from Docusaurus
+      // Supports :::note, :::warning, :::danger admonition syntax used in the existing markdown files
       // @see https://fumadocs.dev/docs/mdx/admonition
       [remarkDirectiveAdmonition],
       // Converts [/docs/path/to/page] mention syntax to standard markdown links
@@ -53,7 +55,7 @@ export default defineConfig({
   },
   plugins: [
     {
-      name: 'docusaurus-frontmatter-compat',
+      name: 'intro-to-description',
       doc: {
         frontmatter: (data: Record<string, unknown>) => {
           // Map `intro` to `description` so Fumadocs renders it under the title
