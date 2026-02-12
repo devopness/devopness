@@ -99,7 +99,7 @@ const Icon = ({
        * Icon is safe to use non-null assertion because this component only renders
        * when either isLoading or icon prop is defined, as checked by noDefinedIcons
        */
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
       aria-label={isLoading ? 'loading' : `${icon!} icon`}
     >
       {iconLoader(
