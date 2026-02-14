@@ -149,6 +149,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             className="translate"
             ref={inputRef}
             type={type === 'password' && showPassword ? 'text' : type}
+            autoComplete="off"
             $hasError={hasError}
             $hasIcon={Boolean(icon)}
             $iconPosition={iconPosition}
