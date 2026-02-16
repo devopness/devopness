@@ -1,4 +1,5 @@
 import json
+import math
 import unittest
 from typing import Any, Optional, Self
 from unittest.mock import AsyncMock, Mock, patch
@@ -13,10 +14,10 @@ class DummyModel(DevopnessBaseModel):
     id: int
 
     @classmethod
-    def from_json(cls, raw_data: str) -> Self:
-        data = json.loads(raw_data)
+    def from_json(cls, data: str) -> Self:
+        json_data = json.loads(data)
 
-        return cls(**data)
+        return cls(**json_data)
 
 
 def build_response(
@@ -100,7 +101,7 @@ class TestDevopnessResponse(unittest.TestCase):
         )
 
         assert isinstance(response.data, float)
-        assert response.data == 3.14
+        assert math.isclose(response.data, 3.14)
 
     def test_devopness_response_with_empty_body(self) -> None:
         response: DevopnessResponse[None] = DevopnessResponse(
