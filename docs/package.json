@@ -17,11 +17,11 @@
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
     "@docusaurus/preset-classic": "^3.9.2",
-    "@easyops-cn/docusaurus-search-local": "^0.54.0",
+    "@easyops-cn/docusaurus-search-local": "^0.55.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mdx-js/react": "^3.1.1",
-    "@mui/material": "^7.3.7",
+    "@mui/material": "^7.3.8",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
