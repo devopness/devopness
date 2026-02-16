@@ -23,6 +23,7 @@ class CronJobPattern(str, Enum):
     WEEKLY = "Weekly"
     MONTHLY = "Monthly"
     YEARLY = "Yearly"
+    CUSTOM = "Custom"
 
     def __str__(self) -> str:
         """Return the string representation of the CronJobPattern"""
@@ -43,4 +44,5 @@ CronJobPatternPlain = Literal[
     "Weekly",
     "Monthly",
     "Yearly",
+    "Custom",
 ]
