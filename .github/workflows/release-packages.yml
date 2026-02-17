@@ -97,8 +97,13 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: make build-image
 
-      - name: Publish '${{ matrix.name }}' to PyPI
+      - name: Package '${{ matrix.name }}' to dist/ using Poetry
         if: steps.version_check.outputs.should_publish == 'true'
         working-directory: ${{ matrix.path }}
-        run: make publish
-        # Note: we publish to for PyPI using OIDC trusted publishers, so no need to set PYPI_TOKEN
+        run: make package-sdk-python
+
+      - name: Publish '${{ matrix.name }}' to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        if: steps.version_check.outputs.should_publish == 'true'
+        with:
+          verbose: true
