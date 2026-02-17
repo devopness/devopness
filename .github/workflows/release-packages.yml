@@ -20,10 +20,6 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   load-pypi-projects:
     name: Load Python packages matrix
-    needs: detect-changes
-    if: >
-      github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
