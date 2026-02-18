@@ -54,25 +54,15 @@ build-sdk-python: build-image ## ⚙️  Build the Devopness SDK for Python
 			echo "✅  Devopness SDK - Python Build Completed"; \
 		'
 
-# Publishes the SDK to PyPI. Configures PyPI token if PYPI_TOKEN is provided,
-# otherwise uses existing Poetry config or OIDC trusted publishers.
-# See: https://docs.pypi.org/trusted-publishers/
-#
-# Usage:
-#   make publish PYPI_TOKEN=pypi-xxxx  # With token authentication
-#   make publish                       # Uses Poetry config or OIDC
-publish: build-image ## 🚀 Publish the SDK to PyPI
-	$(info 📦 Publishing SDK to PyPI...)
+
+package-sdk-python: build-sdk-python ## 📦 Package the Devopness SDK for Python (output in 'dist/')
+	$(info 📦 Packaging Devopness SDK using Poetry...)
 	@docker run --rm \
 		-v $(PWD):/$(WORKDIR) \
-		--env DEVOPNESS_SDK_PYTHON_PYPI_TOKEN=$(PYPI_TOKEN) \
-		--name devopness-sdk-python-publish \
+		--name devopness-sdk-python-dist \
 		$(IMAGE):$(TAG) \
 		/bin/bash -cex ' \
-			if [ -n "$$DEVOPNESS_SDK_PYTHON_PYPI_TOKEN" ]; then \
-				poetry config pypi-token.pypi "$$DEVOPNESS_SDK_PYTHON_PYPI_TOKEN" &> /dev/null; \
-			fi; \
-			poetry publish --build; \
+			poetry build; \
 		'
 
 ##@ Lint & Format
