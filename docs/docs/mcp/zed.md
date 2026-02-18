@@ -1,3 +1,7 @@
+---
+title: Install Devopness MCP Server on Zed
+---
+
 # Installing and Using the Devopness MCP Server in Zed
 
 This guide explains how to configure and use the **Devopness Model Context Protocol (MCP) server** in the Zed editor.
