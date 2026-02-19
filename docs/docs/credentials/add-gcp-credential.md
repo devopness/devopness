@@ -140,7 +140,8 @@ You may need to check the box labeled "Include Google-provided role grants" to s
     - Click `GRANT ACCESS` button
     - The `Grant access to "..."` form will be displayed
     - Under `Add Principals`, click the `New principals` field and paste the service account email you copied earlier
-    - Under `Assign roles`, click the `Role` field and select the `Reader` option
+    - Under `Assign roles`, click the `Role` field
+    - In the role selector, search for `Reader` or locate it under `Basic` roles
     - Click `SAVE`
 
 ### Grant the Service account user role
