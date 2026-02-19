@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.1.10
+
+### Patch Changes
+
+- [#2660](https://github.com/devopness/devopness/pull/2660) [`2ac061b`](https://github.com/devopness/devopness/commit/2ac061ba08629ee8093f68eb5150241779e5aae4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix `CronJobPattern` Enum to include `Custom` option.
+
 ## 3.1.9
 
 ### Patch Changes
