@@ -76,68 +76,97 @@ featured:
 
 ## Grant required IAM roles to the service account
 
-To allow Devopness to provision compute and network resources, the service account must have the following roles assigned at the **project level**.
+:::info Why are these permissions required?
 
-### Minimum required roles
+Devopness requires these roles to fully manage your infrastructure lifecycle on GCP.  
+In addition to reading resources, it must be able to create, start, stop, and delete Compute Engine instances when provisioning or updating environments.
 
-- **Project / IAM (read-only)**
-  - `Reader`
-
-- **Compute**
-  - `Compute Instance Admin (v1)`
-
-- **Network**
-  - `Compute Network Admin`
-
-- **Service Account usage**
-  - `Service Account User`
-
-These roles are sufficient for provisioning while avoiding broad administrative access.
-
-:::note
-
-Avoid assigning primitive roles such as `Owner`, `Editor`, or `Viewer`.
-The roles listed above provide the required permissions with reduced security exposure.
+The roles requested follow the principle of least privilege and avoid primitive roles like `Owner` or `Editor`.
 
 :::
 
-### Grant the Compute Engine Service Agent role
+### Grant the Compute Engine Service Broker role
 
 13. Below your service account name, go to the `PERMISSIONS` tab
 14. In the permissions table, go to `VIEW BY ROLES` tab
-15. Make sure your service account has the `Compute Engine Service Agent` role
+15. Make sure your service account has the `Compute Engine Service Broker` role
 
 :::note
 
-You may need to check the box labeled "Include Google-provided role grants" to see the `Compute Engine Service Agent` role in the list.
+You may need to check the box labeled "Include Google-provided role grants" to see the `Compute Engine Service Broker` role in the list.
 
 :::
 
-16. If the service account doesn't have the `Compute Engine Service Agent` role, set it:
+16. If the service account doesn't have the `Compute Engine Service Broker` role, set it:
     - Click `GRANT ACCESS` button
     - The `Grant access to "..."` form will be displayed
     - Under `Add Principals`, click the `New principals` field and paste the service account email you copied earlier
-    - Under `Assign roles`, click the `Role` field and select the `Compute Engine Service Agent` option
+    - Under `Assign roles`, click the `Role` field and select the `Compute Engine Service Broker` option
     - Click `SAVE`
 
-17. On the left side menu under `IAM & Admin`, select the `IAM` option
-18. Having your service account listed, edit its roles:
-    - Click the edit icon on your service account
-    - Click `ADD ANOTHER ROLE`
-    - Select the `Compute Instance Admin (v1)` role to this email
+### Grant the Compute Instance Administrator role
+
+17. Below your service account name, go to the `PERMISSIONS` tab
+18. In the permissions table, go to `VIEW BY ROLES` tab
+19. Make sure your service account has the `Compute Instance Administrator (v1)` role
+
+20. If the service account doesn't have the `Compute Instance Administrator (v1)` role, set it:
+    - Click `GRANT ACCESS` button
+    - The `Grant access to "..."` form will be displayed
+    - Under `Add Principals`, click the `New principals` field and paste the service account email you copied earlier
+    - Under `Assign roles`, click the `Role` field and select the `Compute Instance Administrator (v1)` option
+    - Click `SAVE`
+
+### Grant the Compute Security Administrator role
+
+21. Below your service account name, go to the `PERMISSIONS` tab
+22. In the permissions table, go to `VIEW BY ROLES` tab
+23. Make sure your service account has the `Compute Security Administrator` role
+
+24. If the service account doesn't have the `Compute Security Administrator` role, set it:
+    - Click `GRANT ACCESS` button
+    - The `Grant access to "..."` form will be displayed
+    - Under `Add Principals`, click the `New principals` field and paste the service account email you copied earlier
+    - Under `Assign roles`, click the `Role` field and select the `Compute Security Administrator` option
+    - Click `SAVE`
+
+### Grant the Reader role
+
+25. Below your service account name, go to the `PERMISSIONS` tab
+26. In the permissions table, go to `VIEW BY ROLES` tab
+27. Make sure your service account has the `Reader` role
+
+28. If the service account doesn't have the `Reader` role, set it:
+    - Click `GRANT ACCESS` button
+    - The `Grant access to "..."` form will be displayed
+    - Under `Add Principals`, click the `New principals` field and paste the service account email you copied earlier
+    - Under `Assign roles`, click the `Role` field and select the `Reader` option
+    - Click `SAVE`
+
+### Grant the Service account user role
+
+29. Below your service account name, go to the `PERMISSIONS` tab
+30. In the permissions table, go to `VIEW BY ROLES` tab
+31. Make sure your service account has the `Service account user` role
+
+32. If the service account doesn't have the `Service account user` role, set it:
+    - Click `GRANT ACCESS` button
+    - The `Grant access to "..."` form will be displayed
+    - Under `Add Principals`, click the `New principals` field and paste the service account email you copied earlier
+    - Under `Assign roles`, click the `Role` field and select the `Service account user` option
     - Click `SAVE`
 
 ## Generate a service account key
 
-19. On the left side menu under `IAM & Admin`, select the `Service Accounts` option
-20. Go to the `Actions` column on your service account, click the three dot menu and choose `Manage keys` option
-21. Add a new service account key:
+33. On the left side menu under `IAM & Admin`, select the `Service Accounts` option
+34. Go to the `Actions` column on your service account, click the three dot menu and choose `Manage keys` option
+35. Add a new service account key:
     - Click `ADD KEY` button
     - Select `Create new key` option
     - Pick `JSON` key type
     - Click `CREATE`
-22. A JSON file containing your service account credentials will be downloaded, copy its content to your clipboard
+36. A JSON file containing your service account credentials will be downloaded, copy its content to your clipboard
 
 ## Add credentials to Devopness
 
-23. To add the copied credentials to Devopness, follow the guide [/docs/credentials/add-credential]
+37. To add the copied credentials to Devopness, follow the guide [/docs/credentials/add-credential]
