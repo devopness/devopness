@@ -8,9 +8,7 @@ Note:
 
 from datetime import datetime
 from typing import (
-    Optional,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -32,16 +30,16 @@ class ServerBlueprint(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
-    id: Optional[StrictInt] = Field(
+    id: StrictInt | None = Field(
         default=None, description="The unique id of the blueprint"
     )
-    name: Optional[StrictStr] = Field(default=None, description="Name of the blueprint")
-    type: Optional[StrictStr] = Field(default=None, description="The blueprint type")
-    spec: Optional[ServerBlueprintSpec] = None
-    created_at: Optional[datetime] = Field(
+    name: StrictStr | None = Field(default=None, description="Name of the blueprint")
+    type: StrictStr | None = Field(default=None, description="The blueprint type")
+    spec: ServerBlueprintSpec | None = None
+    created_at: datetime | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[datetime] = Field(
+    updated_at: datetime | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -51,14 +49,9 @@ class ServerBlueprintPlain(TypedDict, total=False):
     Plain version of ServerBlueprint.
     """
 
-    id: Optional[int]
-    name: Optional[str]
-    type: Optional[str]
-    spec: Optional[
-        Union[
-            ServerBlueprintSpec,
-            ServerBlueprintSpecPlain,
-        ]
-    ]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    id: int | None
+    name: str | None
+    type: str | None
+    spec: ServerBlueprintSpec | ServerBlueprintSpecPlain | None
+    created_at: datetime | None
+    updated_at: datetime | None

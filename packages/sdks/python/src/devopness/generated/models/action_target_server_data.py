@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -41,13 +39,13 @@ class ActionTargetServerData(DevopnessBaseModel):
     provider_name_human_readable: StrictStr = Field(
         description="The human readable version of the provider's name"
     )
-    ip_address: Optional[StrictStr] = Field(
+    ip_address: StrictStr | None = Field(
         description="Public ipv4 address for server access"
     )
     ssh_port: StrictInt = Field(
         description="The network port to which the SSH daemon is listening to SSH connections on the server"
     )
-    os_version_code: Optional[CloudOsVersionCode]
+    os_version_code: CloudOsVersionCode | None
     provision_input: ServerProvisionInput
 
 
@@ -60,17 +58,7 @@ class ActionTargetServerDataPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    ip_address: Optional[str]
+    ip_address: str | None
     ssh_port: Required[int]
-    os_version_code: Optional[
-        Union[
-            CloudOsVersionCode,
-            CloudOsVersionCodePlain,
-        ]
-    ]
-    provision_input: Required[
-        Union[
-            ServerProvisionInput,
-            ServerProvisionInputPlain,
-        ]
-    ]
+    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None
+    provision_input: Required[ServerProvisionInput | ServerProvisionInputPlain]

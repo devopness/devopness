@@ -7,7 +7,6 @@ Note:
 """
 
 import warnings
-from typing import List, Optional, Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -27,10 +26,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
     def add_service_variable(
         self,
         service_id: int,
-        variable_service_create: Union[
-            VariableServiceCreate,
-            VariableServiceCreatePlain,
-        ],
+        variable_service_create: VariableServiceCreate | VariableServiceCreatePlain,
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a service
@@ -60,9 +56,9 @@ class ServicesVariablesApiService(DevopnessBaseService):
     def list_service_variables(
         self,
         service_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VariableRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[VariableRelation]]:
         """
         Return a list of variables belonging to a service
 
@@ -94,7 +90,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[VariableRelation])
+        return DevopnessResponse(response, list[VariableRelation])
 
 
 class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
@@ -105,10 +101,7 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_service_variable(
         self,
         service_id: int,
-        variable_service_create: Union[
-            VariableServiceCreate,
-            VariableServiceCreatePlain,
-        ],
+        variable_service_create: VariableServiceCreate | VariableServiceCreatePlain,
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a service
@@ -138,9 +131,9 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_service_variables(
         self,
         service_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VariableRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[VariableRelation]]:
         """
         Return a list of variables belonging to a service
 
@@ -172,4 +165,4 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[VariableRelation])
+        return await DevopnessResponse.from_async(response, list[VariableRelation])

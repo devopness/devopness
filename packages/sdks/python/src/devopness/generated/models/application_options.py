@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -31,11 +29,11 @@ class ApplicationOptions(DevopnessBaseModel):
         script_runners (List[ScriptRunner]):
     """
 
-    variable_targets: List[VariableTargets] = Field(
+    variable_targets: list[VariableTargets] = Field(
         description="The list of VariableTarget"
     )
-    language_runtimes: List[LanguageRuntime]
-    script_runners: List[ScriptRunner]
+    language_runtimes: list[LanguageRuntime]
+    script_runners: list[ScriptRunner]
 
 
 class ApplicationOptionsPlain(TypedDict, total=False):
@@ -43,27 +41,6 @@ class ApplicationOptionsPlain(TypedDict, total=False):
     Plain version of ApplicationOptions.
     """
 
-    variable_targets: Required[
-        List[
-            Union[
-                VariableTargets,
-                VariableTargetsPlain,
-            ]
-        ]
-    ]
-    language_runtimes: Required[
-        List[
-            Union[
-                LanguageRuntime,
-                LanguageRuntimePlain,
-            ]
-        ]
-    ]
-    script_runners: Required[
-        List[
-            Union[
-                ScriptRunner,
-                ScriptRunnerPlain,
-            ]
-        ]
-    ]
+    variable_targets: Required[list[VariableTargets | VariableTargetsPlain]]
+    language_runtimes: Required[list[LanguageRuntime | LanguageRuntimePlain]]
+    script_runners: Required[list[ScriptRunner | ScriptRunnerPlain]]

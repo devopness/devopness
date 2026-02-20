@@ -8,10 +8,8 @@ Note:
 
 from datetime import datetime
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -52,34 +50,34 @@ class ActionStep(DevopnessBaseModel):
     action_target_id: StrictInt = Field(
         description="The unique id of the action target linked to this step"
     )
-    name: Optional[StrictStr] = Field(
+    name: StrictStr | None = Field(
         description="Name of the action describing your purpose"
     )
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         default=None,
         description="A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.",
     )
     order: StrictInt = Field(description="The execution order of the given step")
     status: ActionStatus
-    status_human_readable: Optional[StrictStr] = Field(
+    status_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the action status"
     )
-    status_reason_code: Optional[ActionStatusReasonCode] = None
-    status_reason_human_readable: Optional[StrictStr] = Field(
+    status_reason_code: ActionStatusReasonCode | None = None
+    status_reason_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the status reason code"
     )
-    started_at: Optional[datetime] = Field(
+    started_at: datetime | None = Field(
         default=None,
         description="The date and time when the action started execution (i.e., left the `pending/queued` status)",
     )
-    completed_at: Optional[datetime] = Field(
+    completed_at: datetime | None = Field(
         default=None,
         description="The date and time when the action has finished execution",
     )
-    created_at: Optional[datetime] = Field(
+    created_at: datetime | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[datetime] = Field(
+    updated_at: datetime | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -92,24 +90,14 @@ class ActionStepPlain(TypedDict, total=False):
     id: Required[int]
     action_id: Required[int]
     action_target_id: Required[int]
-    name: Optional[str]
-    description: Optional[str]
+    name: str | None
+    description: str | None
     order: Required[int]
-    status: Required[
-        Union[
-            ActionStatus,
-            ActionStatusPlain,
-        ]
-    ]
-    status_human_readable: Optional[str]
-    status_reason_code: Optional[
-        Union[
-            ActionStatusReasonCode,
-            ActionStatusReasonCodePlain,
-        ]
-    ]
-    status_reason_human_readable: Optional[str]
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    status: Required[ActionStatus | ActionStatusPlain]
+    status_human_readable: str | None
+    status_reason_code: ActionStatusReasonCode | ActionStatusReasonCodePlain | None
+    status_reason_human_readable: str | None
+    started_at: datetime | None
+    completed_at: datetime | None
+    created_at: datetime | None
+    updated_at: datetime | None

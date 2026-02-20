@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SocialAccount,
@@ -26,10 +24,7 @@ class SocialAccountsApiService(DevopnessBaseService):
 
     def add_social_account(
         self,
-        social_account_create: Union[
-            SocialAccountCreate,
-            SocialAccountCreatePlain,
-        ],
+        social_account_create: SocialAccountCreate | SocialAccountCreatePlain,
     ) -> DevopnessResponse[SocialAccount]:
         """
         Add a social account
@@ -113,9 +108,9 @@ class SocialAccountsApiService(DevopnessBaseService):
 
     def list_social_accounts(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SocialAccountRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SocialAccountRelation]]:
         """
         Return a list of all social accounts of the current user
 
@@ -139,7 +134,7 @@ class SocialAccountsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[SocialAccountRelation])
+        return DevopnessResponse(response, list[SocialAccountRelation])
 
 
 class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -149,10 +144,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_social_account(
         self,
-        social_account_create: Union[
-            SocialAccountCreate,
-            SocialAccountCreatePlain,
-        ],
+        social_account_create: SocialAccountCreate | SocialAccountCreatePlain,
     ) -> DevopnessResponse[SocialAccount]:
         """
         Add a social account
@@ -236,9 +228,9 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def list_social_accounts(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SocialAccountRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SocialAccountRelation]]:
         """
         Return a list of all social accounts of the current user
 
@@ -262,4 +254,4 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[SocialAccountRelation])
+        return await DevopnessResponse.from_async(response, list[SocialAccountRelation])

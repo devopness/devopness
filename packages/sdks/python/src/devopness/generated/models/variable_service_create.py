@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -39,7 +37,7 @@ class VariableServiceCreate(DevopnessBaseModel):
     value: StrictStr = Field(
         description="The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content. Must not be greater than 21504 characters."
     )
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         default=None,
         description="A text describing the variable, provided by the end user.",
     )
@@ -57,17 +55,7 @@ class VariableServiceCreatePlain(TypedDict, total=False):
 
     key: Required[str]
     value: Required[str]
-    description: Optional[str]
-    target: Required[
-        Union[
-            VariableTarget,
-            VariableTargetPlain,
-        ]
-    ]
-    type: Required[
-        Union[
-            VariableType,
-            VariableTypePlain,
-        ]
-    ]
+    description: str | None
+    target: Required[VariableTarget | VariableTargetPlain]
+    type: Required[VariableType | VariableTypePlain]
     hidden: Required[bool]

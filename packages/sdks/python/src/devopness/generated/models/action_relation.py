@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -70,17 +67,17 @@ class ActionRelation(DevopnessBaseModel):
     url_web_permalink: StrictStr = Field(
         description="The permalink URL to the action details on Devopness web app"
     )
-    action_data: Optional[ActionData] = None
+    action_data: ActionData | None = None
     triggered_from: ActionTriggeredFrom
     resource: ActionResource
-    summary: Optional[ActionSummary] = None
-    targets: Optional[List[ActionTarget]] = Field(
+    summary: ActionSummary | None = None
+    targets: list[ActionTarget] | None = Field(
         default=None, description="List of actions dispatched to cloud resource targets"
     )
-    started_at: Optional[StrictStr] = Field(
+    started_at: StrictStr | None = Field(
         description="The date and time when the action started execution (i.e., left the `pending/queued` status)"
     )
-    completed_at: Optional[StrictStr] = Field(
+    completed_at: StrictStr | None = Field(
         description="The date and time when the action has finished execution"
     )
     created_at: StrictStr = Field(
@@ -97,61 +94,19 @@ class ActionRelationPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    status: Required[
-        Union[
-            ActionStatus,
-            ActionStatusPlain,
-        ]
-    ]
+    status: Required[ActionStatus | ActionStatusPlain]
     status_human_readable: Required[str]
-    status_reason_code: Required[
-        Union[
-            ActionStatusReasonCode,
-            ActionStatusReasonCodePlain,
-        ]
-    ]
+    status_reason_code: Required[ActionStatusReasonCode | ActionStatusReasonCodePlain]
     status_reason_human_readable: Required[str]
-    type: Required[
-        Union[
-            ActionType,
-            ActionTypePlain,
-        ]
-    ]
+    type: Required[ActionType | ActionTypePlain]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Optional[
-        Union[
-            ActionData,
-            ActionDataPlain,
-        ]
-    ]
-    triggered_from: Required[
-        Union[
-            ActionTriggeredFrom,
-            ActionTriggeredFromPlain,
-        ]
-    ]
-    resource: Required[
-        Union[
-            ActionResource,
-            ActionResourcePlain,
-        ]
-    ]
-    summary: Optional[
-        Union[
-            ActionSummary,
-            ActionSummaryPlain,
-        ]
-    ]
-    targets: Optional[
-        List[
-            Union[
-                ActionTarget,
-                ActionTargetPlain,
-            ]
-        ]
-    ]
-    started_at: Optional[str]
-    completed_at: Optional[str]
+    action_data: ActionData | ActionDataPlain | None
+    triggered_from: Required[ActionTriggeredFrom | ActionTriggeredFromPlain]
+    resource: Required[ActionResource | ActionResourcePlain]
+    summary: ActionSummary | ActionSummaryPlain | None
+    targets: list[ActionTarget | ActionTargetPlain] | None
+    started_at: str | None
+    completed_at: str | None
     created_at: Required[str]
     updated_at: Required[str]

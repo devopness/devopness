@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Role, RoleProjectCreate, RoleProjectCreatePlain, RoleRelation
 from ..utils import parse_query_string
@@ -21,10 +19,7 @@ class ProjectsRolesApiService(DevopnessBaseService):
     def add_project_role(
         self,
         project_id: int,
-        role_project_create: Union[
-            RoleProjectCreate,
-            RoleProjectCreatePlain,
-        ],
+        role_project_create: RoleProjectCreate | RoleProjectCreatePlain,
     ) -> DevopnessResponse[Role]:
         """
         Create a role to a given project
@@ -46,9 +41,9 @@ class ProjectsRolesApiService(DevopnessBaseService):
     def list_project_roles(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RoleRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[RoleRelation]]:
         """
         List all roles from a project
 
@@ -72,7 +67,7 @@ class ProjectsRolesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[RoleRelation])
+        return DevopnessResponse(response, list[RoleRelation])
 
 
 class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
@@ -83,10 +78,7 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_project_role(
         self,
         project_id: int,
-        role_project_create: Union[
-            RoleProjectCreate,
-            RoleProjectCreatePlain,
-        ],
+        role_project_create: RoleProjectCreate | RoleProjectCreatePlain,
     ) -> DevopnessResponse[Role]:
         """
         Create a role to a given project
@@ -108,9 +100,9 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_project_roles(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RoleRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[RoleRelation]]:
         """
         List all roles from a project
 
@@ -134,4 +126,4 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[RoleRelation])
+        return await DevopnessResponse.from_async(response, list[RoleRelation])

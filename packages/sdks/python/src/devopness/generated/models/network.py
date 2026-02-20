@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -51,10 +49,10 @@ class Network(DevopnessBaseModel):
     name: StrictStr = Field(description="The networks's name")
     provision_input: NetworkProvisionInput
     created_by_user: UserRelation
-    project: Optional[ProjectRelation]
-    environment: Optional[EnvironmentRelation]
-    credential: Optional[CredentialRelation]
-    last_action: Optional[ActionRelation]
+    project: ProjectRelation | None
+    environment: EnvironmentRelation | None
+    credential: CredentialRelation | None
+    last_action: ActionRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -72,41 +70,11 @@ class NetworkPlain(TypedDict, total=False):
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
     name: Required[str]
-    provision_input: Required[
-        Union[
-            NetworkProvisionInput,
-            NetworkProvisionInputPlain,
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
-        ]
-    ]
+    provision_input: Required[NetworkProvisionInput | NetworkProvisionInputPlain]
+    created_by_user: Required[UserRelation | UserRelationPlain]
+    project: ProjectRelation | ProjectRelationPlain | None
+    environment: EnvironmentRelation | EnvironmentRelationPlain | None
+    credential: CredentialRelation | CredentialRelationPlain | None
+    last_action: ActionRelation | ActionRelationPlain | None
     created_at: Required[str]
     updated_at: Required[str]

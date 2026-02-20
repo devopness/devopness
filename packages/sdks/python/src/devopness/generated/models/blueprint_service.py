@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -31,11 +29,11 @@ class BlueprintService(DevopnessBaseModel):
         version (str): The service version
     """
 
-    auto_start: Optional[StrictBool] = Field(
+    auto_start: StrictBool | None = Field(
         default=None,
         description="Indicates if the service will start automatically on operating system boot",
     )
-    initial_state: Optional[ServiceInitialState] = ServiceInitialState.STARTED
+    initial_state: ServiceInitialState | None = ServiceInitialState.STARTED
     type: ServiceType
     version: StrictStr = Field(description="The service version")
 
@@ -45,17 +43,7 @@ class BlueprintServicePlain(TypedDict, total=False):
     Plain version of BlueprintService.
     """
 
-    auto_start: Optional[bool]
-    initial_state: Optional[
-        Union[
-            ServiceInitialState,
-            ServiceInitialStatePlain,
-        ]
-    ]
-    type: Required[
-        Union[
-            ServiceType,
-            ServiceTypePlain,
-        ]
-    ]
+    auto_start: bool | None
+    initial_state: ServiceInitialState | ServiceInitialStatePlain | None
+    type: Required[ServiceType | ServiceTypePlain]
     version: Required[str]

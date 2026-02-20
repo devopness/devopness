@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -55,8 +53,8 @@ class HookRelation(DevopnessBaseModel):
     )
     type: HookType
     action_type: ActionType
-    url: Optional[StrictStr] = Field(description="URL that triggers incoming hooks")
-    target_url: Optional[StrictStr] = Field(
+    url: StrictStr | None = Field(description="URL that triggers incoming hooks")
+    target_url: StrictStr | None = Field(
         description="URL that outgoing hooks make a request to"
     )
     is_auto_generated: StrictBool = Field(
@@ -71,12 +69,12 @@ class HookRelation(DevopnessBaseModel):
     active: StrictBool = Field(description="Determines if the hook is currently active")
     project_id: StrictInt = Field(description="The ID of the project")
     environment_id: StrictInt = Field(description="The ID of the environment")
-    pipeline_id: Optional[StrictInt] = Field(
+    pipeline_id: StrictInt | None = Field(
         description="The ID of the pipeline executed by this hook"
     )
     resource_type: ResourceType
     resource_id: StrictInt = Field(description="The hooks' resource ID")
-    settings: Optional[HookSettings]
+    settings: HookSettings | None
     trigger_when: HookTriggerWhen
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
@@ -93,45 +91,20 @@ class HookRelationPlain(TypedDict, total=False):
 
     id: Required[str]
     name: Required[str]
-    type: Required[
-        Union[
-            HookType,
-            HookTypePlain,
-        ]
-    ]
-    action_type: Required[
-        Union[
-            ActionType,
-            ActionTypePlain,
-        ]
-    ]
-    url: Optional[str]
-    target_url: Optional[str]
+    type: Required[HookType | HookTypePlain]
+    action_type: Required[ActionType | ActionTypePlain]
+    url: str | None
+    target_url: str | None
     is_auto_generated: Required[bool]
     requires_secret: Required[bool]
     verify_ssl: Required[bool]
     active: Required[bool]
     project_id: Required[int]
     environment_id: Required[int]
-    pipeline_id: Optional[int]
-    resource_type: Required[
-        Union[
-            ResourceType,
-            ResourceTypePlain,
-        ]
-    ]
+    pipeline_id: int | None
+    resource_type: Required[ResourceType | ResourceTypePlain]
     resource_id: Required[int]
-    settings: Optional[
-        Union[
-            HookSettings,
-            HookSettingsPlain,
-        ]
-    ]
-    trigger_when: Required[
-        Union[
-            HookTriggerWhen,
-            HookTriggerWhenPlain,
-        ]
-    ]
+    settings: HookSettings | HookSettingsPlain | None
+    trigger_when: Required[HookTriggerWhen | HookTriggerWhenPlain]
     created_at: Required[str]
     updated_at: Required[str]

@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import TeamMembershipRelation
 from ..utils import parse_query_string
@@ -21,9 +19,9 @@ class EnvironmentsTeamMembershipsApiService(DevopnessBaseService):
     def list_environment_team_memberships(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[TeamMembershipRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamMembershipRelation]]:
         """
         Return a list of teams with access to an environment
 
@@ -47,7 +45,7 @@ class EnvironmentsTeamMembershipsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[TeamMembershipRelation])
+        return DevopnessResponse(response, list[TeamMembershipRelation])
 
 
 class EnvironmentsTeamMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -58,9 +56,9 @@ class EnvironmentsTeamMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_team_memberships(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[TeamMembershipRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamMembershipRelation]]:
         """
         Return a list of teams with access to an environment
 
@@ -85,5 +83,5 @@ class EnvironmentsTeamMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(
-            response, List[TeamMembershipRelation]
+            response, list[TeamMembershipRelation]
         )

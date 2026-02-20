@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -31,10 +28,10 @@ class BillingPlansOptionsRelation(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(description="Product name of the plan")
-    hint: Optional[StrictStr] = Field(
+    hint: StrictStr | None = Field(
         description="A short text describing the target audience of the product"
     )
-    plans: List[BillingPlan] = Field(
+    plans: list[BillingPlan] = Field(
         description="The list of plans available for billing"
     )
 
@@ -45,12 +42,5 @@ class BillingPlansOptionsRelationPlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    hint: Optional[str]
-    plans: Required[
-        List[
-            Union[
-                BillingPlan,
-                BillingPlanPlain,
-            ]
-        ]
-    ]
+    hint: str | None
+    plans: Required[list[BillingPlan | BillingPlanPlain]]

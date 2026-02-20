@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -107,19 +104,19 @@ class Application(DevopnessBaseModel):
     deployments_keep: StrictInt = Field(
         description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions"
     )
-    install_dependencies_command: Optional[StrictStr] = Field(
+    install_dependencies_command: StrictStr | None = Field(
         description="Indicates command that Devopness must execute to install application dependencies"
     )
-    build_command: Optional[StrictStr] = Field(
+    build_command: StrictStr | None = Field(
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state"
     )
     created_by_user: UserRelation
     last_deployments: ApplicationLastDeployments
-    environment: Optional[EnvironmentRelation]
-    servers: List[Optional[ServerRelation]]
-    credential: Optional[CredentialRelation]
-    virtual_hosts: List[Optional[VirtualHostRelation]]
-    daemons: List[Optional[DaemonRelation]]
+    environment: EnvironmentRelation | None
+    servers: list[ServerRelation | None]
+    credential: CredentialRelation | None
+    virtual_hosts: list[VirtualHostRelation | None]
+    daemons: list[DaemonRelation | None]
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -149,55 +146,16 @@ class ApplicationPlain(TypedDict, total=False):
     framework_human_readable: Required[str]
     root_directory: Required[str]
     deployments_keep: Required[int]
-    install_dependencies_command: Optional[str]
-    build_command: Optional[str]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    install_dependencies_command: str | None
+    build_command: str | None
+    created_by_user: Required[UserRelation | UserRelationPlain]
     last_deployments: Required[
-        Union[
-            ApplicationLastDeployments,
-            ApplicationLastDeploymentsPlain,
-        ]
+        ApplicationLastDeployments | ApplicationLastDeploymentsPlain
     ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    servers: Required[
-        List[
-            Union[
-                ServerRelation,
-                ServerRelationPlain,
-            ]
-        ]
-    ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
-        ]
-    ]
-    virtual_hosts: Required[
-        List[
-            Union[
-                VirtualHostRelation,
-                VirtualHostRelationPlain,
-            ]
-        ]
-    ]
-    daemons: Required[
-        List[
-            Union[
-                DaemonRelation,
-                DaemonRelationPlain,
-            ]
-        ]
-    ]
+    environment: EnvironmentRelation | EnvironmentRelationPlain | None
+    servers: Required[list[ServerRelation | ServerRelationPlain]]
+    credential: CredentialRelation | CredentialRelationPlain | None
+    virtual_hosts: Required[list[VirtualHostRelation | VirtualHostRelationPlain]]
+    daemons: Required[list[DaemonRelation | DaemonRelationPlain]]
     created_at: Required[str]
     updated_at: Required[str]

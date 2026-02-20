@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -54,7 +51,7 @@ class Service(DevopnessBaseModel):
     type_human_readable: StrictStr = Field(
         description="Formatted/human readable version of the service type"
     )
-    version: Optional[StrictStr] = Field(
+    version: StrictStr | None = Field(
         description="The service current installed version"
     )
     is_auto_generated: StrictBool = Field(
@@ -64,14 +61,14 @@ class Service(DevopnessBaseModel):
         description="Indicates if the service will start automatically on operating system boot"
     )
     initial_state: ServiceInitialState
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         description="A text describing the service, provided by the service author"
     )
-    environment: Optional[EnvironmentRelation]
+    environment: EnvironmentRelation | None
     created_by_user: UserRelation
-    project: Optional[ProjectRelation]
-    servers: List[Optional[ServerRelation]]
-    last_action: Optional[ActionRelation]
+    project: ProjectRelation | None
+    servers: list[ServerRelation | None]
+    last_action: ActionRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -89,47 +86,15 @@ class ServicePlain(TypedDict, total=False):
     name: Required[str]
     type: Required[str]
     type_human_readable: Required[str]
-    version: Optional[str]
+    version: str | None
     is_auto_generated: Required[bool]
     auto_start: Required[bool]
-    initial_state: Required[
-        Union[
-            ServiceInitialState,
-            ServiceInitialStatePlain,
-        ]
-    ]
-    description: Optional[str]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    servers: Required[
-        List[
-            Union[
-                ServerRelation,
-                ServerRelationPlain,
-            ]
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
-        ]
-    ]
+    initial_state: Required[ServiceInitialState | ServiceInitialStatePlain]
+    description: str | None
+    environment: EnvironmentRelation | EnvironmentRelationPlain | None
+    created_by_user: Required[UserRelation | UserRelationPlain]
+    project: ProjectRelation | ProjectRelationPlain | None
+    servers: Required[list[ServerRelation | ServerRelationPlain]]
+    last_action: ActionRelation | ActionRelationPlain | None
     created_at: Required[str]
     updated_at: Required[str]

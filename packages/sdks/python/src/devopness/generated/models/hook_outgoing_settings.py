@@ -7,10 +7,7 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -35,10 +32,10 @@ class HookOutgoingSettings(DevopnessBaseModel):
         request_body (HookOutgoingSettingsRequestBody, optional):
     """
 
-    request_headers: Optional[List[HookOutgoingRequestHeader]] = Field(
+    request_headers: list[HookOutgoingRequestHeader] | None = Field(
         default=None, description="List of outgoing hook request headers"
     )
-    request_body: Optional[HookOutgoingSettingsRequestBody] = None
+    request_body: HookOutgoingSettingsRequestBody | None = None
 
 
 class HookOutgoingSettingsPlain(TypedDict, total=False):
@@ -46,17 +43,9 @@ class HookOutgoingSettingsPlain(TypedDict, total=False):
     Plain version of HookOutgoingSettings.
     """
 
-    request_headers: Optional[
-        List[
-            Union[
-                HookOutgoingRequestHeader,
-                HookOutgoingRequestHeaderPlain,
-            ]
-        ]
-    ]
-    request_body: Optional[
-        Union[
-            HookOutgoingSettingsRequestBody,
-            HookOutgoingSettingsRequestBodyPlain,
-        ]
-    ]
+    request_headers: (
+        list[HookOutgoingRequestHeader | HookOutgoingRequestHeaderPlain] | None
+    )
+    request_body: (
+        HookOutgoingSettingsRequestBody | HookOutgoingSettingsRequestBodyPlain | None
+    )

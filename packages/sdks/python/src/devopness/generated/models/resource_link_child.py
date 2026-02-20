@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -55,9 +54,4 @@ class ResourceLinkChildPlain(TypedDict, total=False):
     resource_type: Required[str]
     resource_type_human_readable: Required[str]
     can_be_unlinked: Required[bool]
-    linked_resource_data: Required[
-        Union[
-            LinkedResourceData,
-            LinkedResourceDataPlain,
-        ]
-    ]
+    linked_resource_data: Required[LinkedResourceData | LinkedResourceDataPlain]

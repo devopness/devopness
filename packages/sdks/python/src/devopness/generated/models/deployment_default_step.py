@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -40,11 +39,6 @@ class DeploymentDefaultStepPlain(TypedDict, total=False):
     Plain version of DeploymentDefaultStep.
     """
 
-    value: Required[
-        Union[
-            TriggerEvent,
-            TriggerEventPlain,
-        ]
-    ]
+    value: Required[TriggerEvent | TriggerEventPlain]
     human_readable: Required[str]
     hint: Required[str]

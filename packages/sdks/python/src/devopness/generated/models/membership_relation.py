@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -31,8 +29,8 @@ class MembershipRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    environment: Optional[EnvironmentRelation]
-    role: Optional[RoleRelation]
+    environment: EnvironmentRelation | None
+    role: RoleRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -46,17 +44,7 @@ class MembershipRelationPlain(TypedDict, total=False):
     Plain version of MembershipRelation.
     """
 
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    role: Optional[
-        Union[
-            RoleRelation,
-            RoleRelationPlain,
-        ]
-    ]
+    environment: EnvironmentRelation | EnvironmentRelationPlain | None
+    role: RoleRelation | RoleRelationPlain | None
     created_at: Required[str]
     updated_at: Required[str]

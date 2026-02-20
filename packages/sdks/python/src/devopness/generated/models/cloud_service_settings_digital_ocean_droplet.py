@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -36,10 +34,10 @@ class CloudServiceSettingsDigitalOceanDroplet(DevopnessBaseModel):
     region: StrictStr = Field(
         description="Datacenter region where the cloud instance will be launched"
     )
-    region_human_readable: Optional[StrictStr] = Field(
+    region_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the server region"
     )
-    os_version_code: Optional[CloudOsVersionCode]
+    os_version_code: CloudOsVersionCode | None
 
 
 class CloudServiceSettingsDigitalOceanDropletPlain(TypedDict, total=False):
@@ -49,10 +47,5 @@ class CloudServiceSettingsDigitalOceanDropletPlain(TypedDict, total=False):
 
     instance_type: Required[str]
     region: Required[str]
-    region_human_readable: Optional[str]
-    os_version_code: Optional[
-        Union[
-            CloudOsVersionCode,
-            CloudOsVersionCodePlain,
-        ]
-    ]
+    region_human_readable: str | None
+    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None

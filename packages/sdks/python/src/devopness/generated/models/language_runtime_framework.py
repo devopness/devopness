@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -48,8 +47,5 @@ class LanguageRuntimeFrameworkPlain(TypedDict, total=False):
     name: Required[str]
     name_human_readable: Required[str]
     defaults: Required[
-        Union[
-            LanguageRuntimeFrameworkDefaults,
-            LanguageRuntimeFrameworkDefaultsPlain,
-        ]
+        LanguageRuntimeFrameworkDefaults | LanguageRuntimeFrameworkDefaultsPlain
     ]

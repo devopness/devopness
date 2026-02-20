@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -36,11 +34,11 @@ class PipelineCreate(DevopnessBaseModel):
     operation: StrictStr = Field(
         description="The resource operation associated to the pipeline. Must not be greater than 20 characters."
     )
-    max_parallel_actions: Optional[StrictInt] = Field(
+    max_parallel_actions: StrictInt | None = Field(
         default=None,
         description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.",
     )
-    trigger_when: Optional[PipelineTriggerWhen] = None
+    trigger_when: PipelineTriggerWhen | None = None
 
 
 class PipelineCreatePlain(TypedDict, total=False):
@@ -50,10 +48,5 @@ class PipelineCreatePlain(TypedDict, total=False):
 
     name: Required[str]
     operation: Required[str]
-    max_parallel_actions: Optional[int]
-    trigger_when: Optional[
-        Union[
-            PipelineTriggerWhen,
-            PipelineTriggerWhenPlain,
-        ]
-    ]
+    max_parallel_actions: int | None
+    trigger_when: PipelineTriggerWhen | PipelineTriggerWhenPlain | None

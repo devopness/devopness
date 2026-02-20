@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Application,
@@ -30,10 +28,8 @@ class ApplicationsApiService(DevopnessBaseService):
     def add_application_deployment(
         self,
         application_id: int,
-        deployment_application_create: Union[
-            DeploymentApplicationCreate,
-            DeploymentApplicationCreatePlain,
-        ],
+        deployment_application_create: DeploymentApplicationCreate
+        | DeploymentApplicationCreatePlain,
     ) -> DevopnessResponse[None]:
         """
         Trigger a new deployment for current application
@@ -55,10 +51,8 @@ class ApplicationsApiService(DevopnessBaseService):
     def add_environment_application(
         self,
         environment_id: int,
-        application_environment_create: Union[
-            ApplicationEnvironmentCreate,
-            ApplicationEnvironmentCreatePlain,
-        ],
+        application_environment_create: ApplicationEnvironmentCreate
+        | ApplicationEnvironmentCreatePlain,
     ) -> DevopnessResponse[Application]:
         """
         Create a new application
@@ -122,9 +116,9 @@ class ApplicationsApiService(DevopnessBaseService):
     def list_environment_applications(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApplicationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ApplicationRelation]]:
         """
         Return a list of all Applications belonging to an environment
 
@@ -148,15 +142,12 @@ class ApplicationsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ApplicationRelation])
+        return DevopnessResponse(response, list[ApplicationRelation])
 
     def update_application(
         self,
         application_id: int,
-        application_update: Union[
-            ApplicationUpdate,
-            ApplicationUpdatePlain,
-        ],
+        application_update: ApplicationUpdate | ApplicationUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing application
@@ -184,10 +175,8 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_application_deployment(
         self,
         application_id: int,
-        deployment_application_create: Union[
-            DeploymentApplicationCreate,
-            DeploymentApplicationCreatePlain,
-        ],
+        deployment_application_create: DeploymentApplicationCreate
+        | DeploymentApplicationCreatePlain,
     ) -> DevopnessResponse[None]:
         """
         Trigger a new deployment for current application
@@ -209,10 +198,8 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_application(
         self,
         environment_id: int,
-        application_environment_create: Union[
-            ApplicationEnvironmentCreate,
-            ApplicationEnvironmentCreatePlain,
-        ],
+        application_environment_create: ApplicationEnvironmentCreate
+        | ApplicationEnvironmentCreatePlain,
     ) -> DevopnessResponse[Application]:
         """
         Create a new application
@@ -276,9 +263,9 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_applications(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApplicationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ApplicationRelation]]:
         """
         Return a list of all Applications belonging to an environment
 
@@ -302,15 +289,12 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ApplicationRelation])
+        return await DevopnessResponse.from_async(response, list[ApplicationRelation])
 
     async def update_application(
         self,
         application_id: int,
-        application_update: Union[
-            ApplicationUpdate,
-            ApplicationUpdatePlain,
-        ],
+        application_update: ApplicationUpdate | ApplicationUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing application

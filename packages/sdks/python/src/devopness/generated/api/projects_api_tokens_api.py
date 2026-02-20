@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     ApiToken,
@@ -29,10 +27,7 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
     def add_project_api_token(
         self,
         project_id: int,
-        api_token_project_create: Union[
-            ApiTokenProjectCreate,
-            ApiTokenProjectCreatePlain,
-        ],
+        api_token_project_create: ApiTokenProjectCreate | ApiTokenProjectCreatePlain,
     ) -> DevopnessResponse[ApiToken]:
         """
         Create a new API token for specific project.
@@ -76,9 +71,9 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
     def list_project_api_tokens(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApiTokenRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ApiTokenRelation]]:
         """
         List the API tokens of specific project.
 
@@ -102,7 +97,7 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ApiTokenRelation])
+        return DevopnessResponse(response, list[ApiTokenRelation])
 
     def revoke_project_api_token(
         self,
@@ -130,10 +125,7 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
         self,
         project_id: int,
         token_id: str,
-        api_token_project_rotate: Union[
-            ApiTokenProjectRotate,
-            ApiTokenProjectRotatePlain,
-        ],
+        api_token_project_rotate: ApiTokenProjectRotate | ApiTokenProjectRotatePlain,
     ) -> DevopnessResponse[ApiTokenRotateResponse]:
         """
         Rotate a specific project API token.
@@ -161,10 +153,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_project_api_token(
         self,
         project_id: int,
-        api_token_project_create: Union[
-            ApiTokenProjectCreate,
-            ApiTokenProjectCreatePlain,
-        ],
+        api_token_project_create: ApiTokenProjectCreate | ApiTokenProjectCreatePlain,
     ) -> DevopnessResponse[ApiToken]:
         """
         Create a new API token for specific project.
@@ -208,9 +197,9 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_project_api_tokens(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApiTokenRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ApiTokenRelation]]:
         """
         List the API tokens of specific project.
 
@@ -234,7 +223,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ApiTokenRelation])
+        return await DevopnessResponse.from_async(response, list[ApiTokenRelation])
 
     async def revoke_project_api_token(
         self,
@@ -262,10 +251,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         project_id: int,
         token_id: str,
-        api_token_project_rotate: Union[
-            ApiTokenProjectRotate,
-            ApiTokenProjectRotatePlain,
-        ],
+        api_token_project_rotate: ApiTokenProjectRotate | ApiTokenProjectRotatePlain,
     ) -> DevopnessResponse[ApiTokenRotateResponse]:
         """
         Rotate a specific project API token.

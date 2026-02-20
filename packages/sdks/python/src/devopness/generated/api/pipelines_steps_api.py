@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Step,
@@ -26,10 +24,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
     def add_pipeline_step(
         self,
         pipeline_id: int,
-        step_pipeline_create: Union[
-            StepPipelineCreate,
-            StepPipelineCreatePlain,
-        ],
+        step_pipeline_create: StepPipelineCreate | StepPipelineCreatePlain,
     ) -> DevopnessResponse[Step]:
         """
         Add a step to a pipeline
@@ -96,10 +91,7 @@ class PipelinesStepsApiService(DevopnessBaseService):
         self,
         pipeline_id: int,
         step_id: int,
-        step_pipeline_update: Union[
-            StepPipelineUpdate,
-            StepPipelineUpdatePlain,
-        ],
+        step_pipeline_update: StepPipelineUpdate | StepPipelineUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline Step
@@ -127,10 +119,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_pipeline_step(
         self,
         pipeline_id: int,
-        step_pipeline_create: Union[
-            StepPipelineCreate,
-            StepPipelineCreatePlain,
-        ],
+        step_pipeline_create: StepPipelineCreate | StepPipelineCreatePlain,
     ) -> DevopnessResponse[Step]:
         """
         Add a step to a pipeline
@@ -197,10 +186,7 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         pipeline_id: int,
         step_id: int,
-        step_pipeline_update: Union[
-            StepPipelineUpdate,
-            StepPipelineUpdatePlain,
-        ],
+        step_pipeline_update: StepPipelineUpdate | StepPipelineUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline Step

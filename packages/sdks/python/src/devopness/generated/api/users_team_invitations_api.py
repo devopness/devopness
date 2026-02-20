@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import TeamInvitationRelation
 from ..utils import parse_query_string
@@ -20,9 +18,9 @@ class UsersTeamInvitationsApiService(DevopnessBaseService):
 
     def list_user_team_invitations(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[TeamInvitationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamInvitationRelation]]:
         """
         Return a list of all pending team invitations for the authenticated user
 
@@ -46,7 +44,7 @@ class UsersTeamInvitationsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[TeamInvitationRelation])
+        return DevopnessResponse(response, list[TeamInvitationRelation])
 
 
 class UsersTeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -56,9 +54,9 @@ class UsersTeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def list_user_team_invitations(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[TeamInvitationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamInvitationRelation]]:
         """
         Return a list of all pending team invitations for the authenticated user
 
@@ -83,5 +81,5 @@ class UsersTeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(
-            response, List[TeamInvitationRelation]
+            response, list[TeamInvitationRelation]
         )

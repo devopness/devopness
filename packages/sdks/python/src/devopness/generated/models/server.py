@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -76,14 +74,14 @@ class Server(DevopnessBaseModel):
         description="The human readable version of the provider's name"
     )
     cloud_service_code: ServerCloudServiceCode
-    ip_address: Optional[StrictStr] = Field(
+    ip_address: StrictStr | None = Field(
         default=None, description="Public ipv4 address for server access"
     )
     ssh_port: StrictInt = Field(
         description="The network port to which the SSH daemon is listening to SSH connections on the server"
     )
     os: OperatingSystemVersion
-    os_version_code: Optional[CloudOsVersionCode]
+    os_version_code: CloudOsVersionCode | None
     active: StrictBool = Field(description="Tells if the server is active or not")
     status: ServerStatus
     max_parallel_actions: StrictInt = Field(
@@ -92,10 +90,10 @@ class Server(DevopnessBaseModel):
     blueprint: ServerBlueprint
     provision_input: ServerProvisionInput
     created_by_user: UserRelation
-    project: Optional[ProjectRelation]
-    last_action: Optional[ActionRelation]
-    environment: Optional[EnvironmentRelation]
-    credential: Optional[CredentialRelation]
+    project: ProjectRelation | None
+    last_action: ActionRelation | None
+    environment: EnvironmentRelation | None
+    credential: CredentialRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -115,75 +113,20 @@ class ServerPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    cloud_service_code: Required[
-        Union[
-            ServerCloudServiceCode,
-            ServerCloudServiceCodePlain,
-        ]
-    ]
-    ip_address: Optional[str]
+    cloud_service_code: Required[ServerCloudServiceCode | ServerCloudServiceCodePlain]
+    ip_address: str | None
     ssh_port: Required[int]
-    os: Required[
-        Union[
-            OperatingSystemVersion,
-            OperatingSystemVersionPlain,
-        ]
-    ]
-    os_version_code: Optional[
-        Union[
-            CloudOsVersionCode,
-            CloudOsVersionCodePlain,
-        ]
-    ]
+    os: Required[OperatingSystemVersion | OperatingSystemVersionPlain]
+    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None
     active: Required[bool]
-    status: Required[
-        Union[
-            ServerStatus,
-            ServerStatusPlain,
-        ]
-    ]
+    status: Required[ServerStatus | ServerStatusPlain]
     max_parallel_actions: Required[int]
-    blueprint: Required[
-        Union[
-            ServerBlueprint,
-            ServerBlueprintPlain,
-        ]
-    ]
-    provision_input: Required[
-        Union[
-            ServerProvisionInput,
-            ServerProvisionInputPlain,
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
-        ]
-    ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
-        ]
-    ]
+    blueprint: Required[ServerBlueprint | ServerBlueprintPlain]
+    provision_input: Required[ServerProvisionInput | ServerProvisionInputPlain]
+    created_by_user: Required[UserRelation | UserRelationPlain]
+    project: ProjectRelation | ProjectRelationPlain | None
+    last_action: ActionRelation | ActionRelationPlain | None
+    environment: EnvironmentRelation | EnvironmentRelationPlain | None
+    credential: CredentialRelation | CredentialRelationPlain | None
     created_at: Required[str]
     updated_at: Required[str]

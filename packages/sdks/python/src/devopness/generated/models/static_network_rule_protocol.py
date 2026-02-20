@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -44,16 +43,8 @@ class StaticNetworkRuleProtocolPlain(TypedDict, total=False):
     Plain version of StaticNetworkRuleProtocol.
     """
 
-    value: Required[
-        Union[
-            NetworkRuleProtocol,
-            NetworkRuleProtocolPlain,
-        ]
-    ]
+    value: Required[NetworkRuleProtocol | NetworkRuleProtocolPlain]
     human_readable: Required[str]
     defaults: Required[
-        Union[
-            StaticNetworkRuleProtocolDefaults,
-            StaticNetworkRuleProtocolDefaultsPlain,
-        ]
+        StaticNetworkRuleProtocolDefaults | StaticNetworkRuleProtocolDefaultsPlain
     ]

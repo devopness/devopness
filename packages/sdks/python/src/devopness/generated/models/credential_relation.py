@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -46,10 +44,10 @@ class CredentialRelation(DevopnessBaseModel):
     )
     active: StrictBool = Field(description="If this credential is active or not")
     created_by_user: UserRelation
-    created_at: Optional[StrictStr] = Field(
+    created_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -61,25 +59,10 @@ class CredentialRelationPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    provider: Required[
-        Union[
-            ProviderRelation,
-            ProviderRelationPlain,
-        ]
-    ]
-    provider_type: Required[
-        Union[
-            ProviderType,
-            ProviderTypePlain,
-        ]
-    ]
+    provider: Required[ProviderRelation | ProviderRelationPlain]
+    provider_type: Required[ProviderType | ProviderTypePlain]
     provider_type_human_readable: Required[str]
     active: Required[bool]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    created_by_user: Required[UserRelation | UserRelationPlain]
+    created_at: str | None
+    updated_at: str | None

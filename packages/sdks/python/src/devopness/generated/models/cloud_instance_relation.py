@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
@@ -38,16 +36,16 @@ class CloudInstanceRelation(DevopnessBaseModel):
     name: StrictStr = Field(description="The name of the cloud instance")
     type: StrictStr = Field(description="The type of the cloud instance")
     family: StrictStr = Field(description="The family to which the instance belongs")
-    architecture: Optional[StrictStr] = Field(
+    architecture: StrictStr | None = Field(
         description="The type of CPU used in the cloud server (x86_64 or arm64)"
     )
     default_disk_size: StrictInt = Field(
         description="The default disk size (in GB) used to instance"
     )
-    price_hourly: Union[StrictFloat, StrictInt] = Field(
+    price_hourly: StrictFloat | StrictInt = Field(
         description="The price per hour of the instance"
     )
-    price_monthly: Union[StrictFloat, StrictInt] = Field(
+    price_monthly: StrictFloat | StrictInt = Field(
         description="The price per month of the instance"
     )
     price_currency: StrictStr = Field(description="The currency of the prices")
@@ -63,7 +61,7 @@ class CloudInstanceRelationPlain(TypedDict, total=False):
     name: Required[str]
     type: Required[str]
     family: Required[str]
-    architecture: Optional[str]
+    architecture: str | None
     default_disk_size: Required[int]
     price_hourly: Required[float]
     price_monthly: Required[float]

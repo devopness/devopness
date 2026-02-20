@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Team, TeamUpdate, TeamUpdatePlain
 
@@ -62,10 +60,7 @@ class TeamsApiService(DevopnessBaseService):
     def update_team(
         self,
         team_id: int,
-        team_update: Union[
-            TeamUpdate,
-            TeamUpdatePlain,
-        ],
+        team_update: TeamUpdate | TeamUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing team
@@ -135,10 +130,7 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_team(
         self,
         team_id: int,
-        team_update: Union[
-            TeamUpdate,
-            TeamUpdatePlain,
-        ],
+        team_update: TeamUpdate | TeamUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing team

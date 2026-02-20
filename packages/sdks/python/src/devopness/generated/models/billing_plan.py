@@ -7,9 +7,7 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
@@ -29,19 +27,17 @@ class BillingPlan(DevopnessBaseModel):
         billing_period (str, optional): The billing period of the billing plan
     """
 
-    id: Optional[StrictInt] = Field(
-        default=None, description="The ID of the billing plan"
-    )
-    provider_plan_id: Optional[StrictStr] = Field(
+    id: StrictInt | None = Field(default=None, description="The ID of the billing plan")
+    provider_plan_id: StrictStr | None = Field(
         default=None, description="The provider ID of the billing plan"
     )
-    price: Optional[Union[StrictFloat, StrictInt]] = Field(
+    price: StrictFloat | StrictInt | None = Field(
         default=None, description="The price of the billing plan"
     )
-    credit_limit: Optional[Union[StrictFloat, StrictInt]] = Field(
+    credit_limit: StrictFloat | StrictInt | None = Field(
         default=None, description="The credit limit of the billing plan"
     )
-    billing_period: Optional[StrictStr] = Field(
+    billing_period: StrictStr | None = Field(
         default=None, description="The billing period of the billing plan"
     )
 
@@ -51,8 +47,8 @@ class BillingPlanPlain(TypedDict, total=False):
     Plain version of BillingPlan.
     """
 
-    id: Optional[int]
-    provider_plan_id: Optional[str]
-    price: Optional[float]
-    credit_limit: Optional[float]
-    billing_period: Optional[str]
+    id: int | None
+    provider_plan_id: str | None
+    price: float | None
+    credit_limit: float | None
+    billing_period: str | None

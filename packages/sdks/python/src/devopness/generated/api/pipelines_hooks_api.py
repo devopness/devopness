@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Hook,
@@ -27,15 +25,9 @@ class PipelinesHooksApiService(DevopnessBaseService):
 
     def add_pipeline_hook(
         self,
-        hook_type: Union[
-            HookTypeParam,
-            HookTypeParamPlain,
-        ],
+        hook_type: HookTypeParam | HookTypeParamPlain,
         pipeline_id: int,
-        hook_pipeline_create: Union[
-            HookPipelineCreate,
-            HookPipelineCreatePlain,
-        ],
+        hook_pipeline_create: HookPipelineCreate | HookPipelineCreatePlain,
     ) -> DevopnessResponse[Hook]:
         """
         Create a hook to a specific pipeline
@@ -57,9 +49,9 @@ class PipelinesHooksApiService(DevopnessBaseService):
     def list_pipeline_hooks(
         self,
         pipeline_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[HookRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[HookRelation]]:
         """
         List all hooks in a pipeline
 
@@ -83,7 +75,7 @@ class PipelinesHooksApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[HookRelation])
+        return DevopnessResponse(response, list[HookRelation])
 
 
 class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
@@ -93,15 +85,9 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_pipeline_hook(
         self,
-        hook_type: Union[
-            HookTypeParam,
-            HookTypeParamPlain,
-        ],
+        hook_type: HookTypeParam | HookTypeParamPlain,
         pipeline_id: int,
-        hook_pipeline_create: Union[
-            HookPipelineCreate,
-            HookPipelineCreatePlain,
-        ],
+        hook_pipeline_create: HookPipelineCreate | HookPipelineCreatePlain,
     ) -> DevopnessResponse[Hook]:
         """
         Create a hook to a specific pipeline
@@ -123,9 +109,9 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_pipeline_hooks(
         self,
         pipeline_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[HookRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[HookRelation]]:
         """
         List all hooks in a pipeline
 
@@ -149,4 +135,4 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[HookRelation])
+        return await DevopnessResponse.from_async(response, list[HookRelation])

@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -27,7 +25,7 @@ class ServiceOptions(DevopnessBaseModel):
         types (List[StaticServiceType]): List of service types
     """
 
-    types: List[StaticServiceType] = Field(description="List of service types")
+    types: list[StaticServiceType] = Field(description="List of service types")
 
 
 class ServiceOptionsPlain(TypedDict, total=False):
@@ -35,11 +33,4 @@ class ServiceOptionsPlain(TypedDict, total=False):
     Plain version of ServiceOptions.
     """
 
-    types: Required[
-        List[
-            Union[
-                StaticServiceType,
-                StaticServiceTypePlain,
-            ]
-        ]
-    ]
+    types: Required[list[StaticServiceType | StaticServiceTypePlain]]

@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -43,10 +41,10 @@ class LanguageRuntime(DevopnessBaseModel):
     name_human_readable: StrictStr = Field(
         description="The formatted name to be displayed in user interfaces"
     )
-    engine_versions: List[LanguageRuntimeEngineVersionsInner] = Field(
+    engine_versions: list[LanguageRuntimeEngineVersionsInner] = Field(
         description="The list of the supported versions of the runtime engine"
     )
-    frameworks: List[LanguageRuntimeFramework] = Field(
+    frameworks: list[LanguageRuntimeFramework] = Field(
         description="The list of supported frameworks built on top of the runtime engine"
     )
 
@@ -59,18 +57,8 @@ class LanguageRuntimePlain(TypedDict, total=False):
     name: Required[str]
     name_human_readable: Required[str]
     engine_versions: Required[
-        List[
-            Union[
-                LanguageRuntimeEngineVersionsInner,
-                LanguageRuntimeEngineVersionsInnerPlain,
-            ]
+        list[
+            LanguageRuntimeEngineVersionsInner | LanguageRuntimeEngineVersionsInnerPlain
         ]
     ]
-    frameworks: Required[
-        List[
-            Union[
-                LanguageRuntimeFramework,
-                LanguageRuntimeFrameworkPlain,
-            ]
-        ]
-    ]
+    frameworks: Required[list[LanguageRuntimeFramework | LanguageRuntimeFrameworkPlain]]

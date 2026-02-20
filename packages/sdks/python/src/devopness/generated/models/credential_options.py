@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -32,10 +30,10 @@ class CredentialOptions(DevopnessBaseModel):
         supported_providers (List[CredentialProvider]): The list of supported credential providers
     """
 
-    provider_types: List[CredentialProviderType] = Field(
+    provider_types: list[CredentialProviderType] = Field(
         description="The list of credential provider types"
     )
-    supported_providers: List[CredentialProvider] = Field(
+    supported_providers: list[CredentialProvider] = Field(
         description="The list of supported credential providers"
     )
 
@@ -45,19 +43,5 @@ class CredentialOptionsPlain(TypedDict, total=False):
     Plain version of CredentialOptions.
     """
 
-    provider_types: Required[
-        List[
-            Union[
-                CredentialProviderType,
-                CredentialProviderTypePlain,
-            ]
-        ]
-    ]
-    supported_providers: Required[
-        List[
-            Union[
-                CredentialProvider,
-                CredentialProviderPlain,
-            ]
-        ]
-    ]
+    provider_types: Required[list[CredentialProviderType | CredentialProviderTypePlain]]
+    supported_providers: Required[list[CredentialProvider | CredentialProviderPlain]]

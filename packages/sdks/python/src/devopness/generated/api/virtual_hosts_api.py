@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     VirtualHost,
@@ -30,10 +28,8 @@ class VirtualHostsApiService(DevopnessBaseService):
     def add_environment_virtual_host(
         self,
         environment_id: int,
-        virtual_host_environment_create: Union[
-            VirtualHostEnvironmentCreate,
-            VirtualHostEnvironmentCreatePlain,
-        ],
+        virtual_host_environment_create: VirtualHostEnvironmentCreate
+        | VirtualHostEnvironmentCreatePlain,
     ) -> DevopnessResponse[VirtualHost]:
         """
         Create a new virtual host
@@ -76,10 +72,7 @@ class VirtualHostsApiService(DevopnessBaseService):
     def get_status_virtual_host(
         self,
         virtual_host_id: int,
-        virtual_host_get_status: Union[
-            VirtualHostGetStatus,
-            VirtualHostGetStatusPlain,
-        ],
+        virtual_host_get_status: VirtualHostGetStatus | VirtualHostGetStatusPlain,
     ) -> DevopnessResponse[None]:
         """
         Get current status of a virtual host
@@ -122,9 +115,9 @@ class VirtualHostsApiService(DevopnessBaseService):
     def list_environment_virtual_hosts(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VirtualHostRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[VirtualHostRelation]]:
         """
         Return a list of all Virtual Hosts belonging to an environment
 
@@ -148,15 +141,12 @@ class VirtualHostsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[VirtualHostRelation])
+        return DevopnessResponse(response, list[VirtualHostRelation])
 
     def update_virtual_host(
         self,
         virtual_host_id: int,
-        virtual_host_update: Union[
-            VirtualHostUpdate,
-            VirtualHostUpdatePlain,
-        ],
+        virtual_host_update: VirtualHostUpdate | VirtualHostUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing virtual host
@@ -184,10 +174,8 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_virtual_host(
         self,
         environment_id: int,
-        virtual_host_environment_create: Union[
-            VirtualHostEnvironmentCreate,
-            VirtualHostEnvironmentCreatePlain,
-        ],
+        virtual_host_environment_create: VirtualHostEnvironmentCreate
+        | VirtualHostEnvironmentCreatePlain,
     ) -> DevopnessResponse[VirtualHost]:
         """
         Create a new virtual host
@@ -230,10 +218,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     async def get_status_virtual_host(
         self,
         virtual_host_id: int,
-        virtual_host_get_status: Union[
-            VirtualHostGetStatus,
-            VirtualHostGetStatusPlain,
-        ],
+        virtual_host_get_status: VirtualHostGetStatus | VirtualHostGetStatusPlain,
     ) -> DevopnessResponse[None]:
         """
         Get current status of a virtual host
@@ -276,9 +261,9 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_virtual_hosts(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VirtualHostRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[VirtualHostRelation]]:
         """
         Return a list of all Virtual Hosts belonging to an environment
 
@@ -302,15 +287,12 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[VirtualHostRelation])
+        return await DevopnessResponse.from_async(response, list[VirtualHostRelation])
 
     async def update_virtual_host(
         self,
         virtual_host_id: int,
-        virtual_host_update: Union[
-            VirtualHostUpdate,
-            VirtualHostUpdatePlain,
-        ],
+        virtual_host_update: VirtualHostUpdate | VirtualHostUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing virtual host

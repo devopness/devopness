@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -41,13 +39,13 @@ class SslCertificateEnvironmentCreate(DevopnessBaseModel):
         description="The ID of the virtual host to which this SSL certificate will be issued."
     )
     issuer: SslCertificateIssuer
-    type: Optional[SslCertificateType] = None
-    validation_level: Optional[SslCertificateValidationLevel] = None
-    custom_private_key: Optional[StrictStr] = Field(
+    type: SslCertificateType | None = None
+    validation_level: SslCertificateValidationLevel | None = None
+    custom_private_key: StrictStr | None = Field(
         default=None,
         description="The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
     )
-    custom_certificate: Optional[StrictStr] = Field(
+    custom_certificate: StrictStr | None = Field(
         default=None,
         description="The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
     )
@@ -59,23 +57,10 @@ class SslCertificateEnvironmentCreatePlain(TypedDict, total=False):
     """
 
     virtual_host_id: Required[int]
-    issuer: Required[
-        Union[
-            SslCertificateIssuer,
-            SslCertificateIssuerPlain,
-        ]
-    ]
-    type: Optional[
-        Union[
-            SslCertificateType,
-            SslCertificateTypePlain,
-        ]
-    ]
-    validation_level: Optional[
-        Union[
-            SslCertificateValidationLevel,
-            SslCertificateValidationLevelPlain,
-        ]
-    ]
-    custom_private_key: Optional[str]
-    custom_certificate: Optional[str]
+    issuer: Required[SslCertificateIssuer | SslCertificateIssuerPlain]
+    type: SslCertificateType | SslCertificateTypePlain | None
+    validation_level: (
+        SslCertificateValidationLevel | SslCertificateValidationLevelPlain | None
+    )
+    custom_private_key: str | None
+    custom_certificate: str | None

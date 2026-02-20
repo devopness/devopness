@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt
@@ -36,12 +34,12 @@ class ServerProvisionInput(DevopnessBaseModel):
         settings (ServerProvisionInputSettings, optional):
     """
 
-    subnet_id: Optional[StrictInt] = Field(
+    subnet_id: StrictInt | None = Field(
         default=None,
         description="The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider",
     )
     cloud_service_code: ServerCloudServiceCode
-    settings: Optional[ServerProvisionInputSettings] = None
+    settings: ServerProvisionInputSettings | None = None
 
 
 class ServerProvisionInputPlain(TypedDict, total=False):
@@ -49,16 +47,6 @@ class ServerProvisionInputPlain(TypedDict, total=False):
     Plain version of ServerProvisionInput.
     """
 
-    subnet_id: Optional[int]
-    cloud_service_code: Required[
-        Union[
-            ServerCloudServiceCode,
-            ServerCloudServiceCodePlain,
-        ]
-    ]
-    settings: Optional[
-        Union[
-            ServerProvisionInputSettings,
-            ServerProvisionInputSettingsPlain,
-        ]
-    ]
+    subnet_id: int | None
+    cloud_service_code: Required[ServerCloudServiceCode | ServerCloudServiceCodePlain]
+    settings: ServerProvisionInputSettings | ServerProvisionInputSettingsPlain | None

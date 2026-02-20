@@ -7,7 +7,6 @@ Note:
 """
 
 import warnings
-from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import PasswordResetResponse, PasswordUserReset, PasswordUserResetPlain
@@ -20,10 +19,7 @@ class UsersPasswordsApiService(DevopnessBaseService):
 
     def reset_user_password(
         self,
-        password_user_reset: Union[
-            PasswordUserReset,
-            PasswordUserResetPlain,
-        ],
+        password_user_reset: PasswordUserReset | PasswordUserResetPlain,
     ) -> DevopnessResponse[PasswordResetResponse]:
         """
         Reset the user password
@@ -86,10 +82,7 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def reset_user_password(
         self,
-        password_user_reset: Union[
-            PasswordUserReset,
-            PasswordUserResetPlain,
-        ],
+        password_user_reset: PasswordUserReset | PasswordUserResetPlain,
     ) -> DevopnessResponse[PasswordResetResponse]:
         """
         Reset the user password

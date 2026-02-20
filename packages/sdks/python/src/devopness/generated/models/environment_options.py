@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -27,7 +25,7 @@ class EnvironmentOptions(DevopnessBaseModel):
         types (List[StaticEnvironmentType]): The supported environments types
     """
 
-    types: List[StaticEnvironmentType] = Field(
+    types: list[StaticEnvironmentType] = Field(
         description="The supported environments types"
     )
 
@@ -37,11 +35,4 @@ class EnvironmentOptionsPlain(TypedDict, total=False):
     Plain version of EnvironmentOptions.
     """
 
-    types: Required[
-        List[
-            Union[
-                StaticEnvironmentType,
-                StaticEnvironmentTypePlain,
-            ]
-        ]
-    ]
+    types: Required[list[StaticEnvironmentType | StaticEnvironmentTypePlain]]

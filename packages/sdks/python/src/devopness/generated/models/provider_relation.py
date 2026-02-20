@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -38,7 +36,7 @@ class ProviderRelation(DevopnessBaseModel):
         description="Human readable version of provider code"
     )
     type: ProviderType
-    type_human_readable: Optional[StrictStr] = Field(
+    type_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of provider type"
     )
 
@@ -49,17 +47,7 @@ class ProviderRelationPlain(TypedDict, total=False):
     """
 
     active: Required[bool]
-    code: Required[
-        Union[
-            ProviderCode,
-            ProviderCodePlain,
-        ]
-    ]
+    code: Required[ProviderCode | ProviderCodePlain]
     code_human_readable: Required[str]
-    type: Required[
-        Union[
-            ProviderType,
-            ProviderTypePlain,
-        ]
-    ]
-    type_human_readable: Optional[str]
+    type: Required[ProviderType | ProviderTypePlain]
+    type_human_readable: str | None

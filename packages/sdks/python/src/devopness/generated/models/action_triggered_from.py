@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -34,24 +32,24 @@ class ActionTriggeredFrom(DevopnessBaseModel):
         hook_request_id (str, optional, nullable): The hook request&#39;s ID if the action have been triggered by a hook.
     """
 
-    origin: Optional[StrictStr] = Field(
+    origin: StrictStr | None = Field(
         description="The HTTP origin of the request that have been dispatched the action."
     )
     trigger_type: ActionTriggerType
     name: StrictStr = Field(
         description="The hook or user name that have been triggered the action."
     )
-    email: Optional[StrictStr] = Field(
+    email: StrictStr | None = Field(
         description="The user's email if the action have been manually triggered."
     )
     ip_address: StrictStr = Field(description="The IP address of the request origin.")
-    user_id: Optional[StrictInt] = Field(
+    user_id: StrictInt | None = Field(
         description="The user's ID if the action have been manually triggered."
     )
-    hook_id: Optional[StrictStr] = Field(
+    hook_id: StrictStr | None = Field(
         description="The hook's ID if the action have been triggered by a hook."
     )
-    hook_request_id: Optional[StrictStr] = Field(
+    hook_request_id: StrictStr | None = Field(
         description="The hook request's ID if the action have been triggered by a hook."
     )
 
@@ -61,16 +59,11 @@ class ActionTriggeredFromPlain(TypedDict, total=False):
     Plain version of ActionTriggeredFrom.
     """
 
-    origin: Optional[str]
-    trigger_type: Required[
-        Union[
-            ActionTriggerType,
-            ActionTriggerTypePlain,
-        ]
-    ]
+    origin: str | None
+    trigger_type: Required[ActionTriggerType | ActionTriggerTypePlain]
     name: Required[str]
-    email: Optional[str]
+    email: str | None
     ip_address: Required[str]
-    user_id: Optional[int]
-    hook_id: Optional[str]
-    hook_request_id: Optional[str]
+    user_id: int | None
+    hook_id: str | None
+    hook_request_id: str | None

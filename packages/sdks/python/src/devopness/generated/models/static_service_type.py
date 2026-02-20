@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -41,7 +39,7 @@ class StaticServiceType(DevopnessBaseModel):
     hint: StrictStr = Field(
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
     )
-    supported_versions: List[StaticServiceTypeSupportedVersionsInner] = Field(
+    supported_versions: list[StaticServiceTypeSupportedVersionsInner] = Field(
         description="List of service versions supported by Devopness"
     )
 
@@ -51,19 +49,12 @@ class StaticServiceTypePlain(TypedDict, total=False):
     Plain version of StaticServiceType.
     """
 
-    value: Required[
-        Union[
-            ServiceType,
-            ServiceTypePlain,
-        ]
-    ]
+    value: Required[ServiceType | ServiceTypePlain]
     human_readable: Required[str]
     hint: Required[str]
     supported_versions: Required[
-        List[
-            Union[
-                StaticServiceTypeSupportedVersionsInner,
-                StaticServiceTypeSupportedVersionsInnerPlain,
-            ]
+        list[
+            StaticServiceTypeSupportedVersionsInner
+            | StaticServiceTypeSupportedVersionsInnerPlain
         ]
     ]

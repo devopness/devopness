@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Network,
@@ -28,10 +26,8 @@ class NetworksApiService(DevopnessBaseService):
     def add_environment_network(
         self,
         environment_id: int,
-        network_environment_create: Union[
-            NetworkEnvironmentCreate,
-            NetworkEnvironmentCreatePlain,
-        ],
+        network_environment_create: NetworkEnvironmentCreate
+        | NetworkEnvironmentCreatePlain,
     ) -> DevopnessResponse[Network]:
         """
         Create a new network for the given environment
@@ -116,12 +112,12 @@ class NetworksApiService(DevopnessBaseService):
     def list_environment_networks(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        include_default_network: Optional[bool] = None,
-        provider_name: Optional[str] = None,
-        region: Optional[str] = None,
-    ) -> DevopnessResponse[List[NetworkRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        include_default_network: bool | None = None,
+        provider_name: str | None = None,
+        region: str | None = None,
+    ) -> DevopnessResponse[list[NetworkRelation]]:
         """
         Return a list of all networks belonging to an environment
 
@@ -148,15 +144,12 @@ class NetworksApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[NetworkRelation])
+        return DevopnessResponse(response, list[NetworkRelation])
 
     def update_network(
         self,
         network_id: int,
-        network_update: Union[
-            NetworkUpdate,
-            NetworkUpdatePlain,
-        ],
+        network_update: NetworkUpdate | NetworkUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network
@@ -184,10 +177,8 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_network(
         self,
         environment_id: int,
-        network_environment_create: Union[
-            NetworkEnvironmentCreate,
-            NetworkEnvironmentCreatePlain,
-        ],
+        network_environment_create: NetworkEnvironmentCreate
+        | NetworkEnvironmentCreatePlain,
     ) -> DevopnessResponse[Network]:
         """
         Create a new network for the given environment
@@ -272,12 +263,12 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_networks(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        include_default_network: Optional[bool] = None,
-        provider_name: Optional[str] = None,
-        region: Optional[str] = None,
-    ) -> DevopnessResponse[List[NetworkRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        include_default_network: bool | None = None,
+        provider_name: str | None = None,
+        region: str | None = None,
+    ) -> DevopnessResponse[list[NetworkRelation]]:
         """
         Return a list of all networks belonging to an environment
 
@@ -304,15 +295,12 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[NetworkRelation])
+        return await DevopnessResponse.from_async(response, list[NetworkRelation])
 
     async def update_network(
         self,
         network_id: int,
-        network_update: Union[
-            NetworkUpdate,
-            NetworkUpdatePlain,
-        ],
+        network_update: NetworkUpdate | NetworkUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network

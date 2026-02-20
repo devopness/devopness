@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -35,10 +33,10 @@ class NetworkRuleOptions(DevopnessBaseModel):
         protocols (List[StaticNetworkRuleProtocol]): The supported network rule&#39;s protocols
     """
 
-    directions: List[StaticNetworkRuleDirection] = Field(
+    directions: list[StaticNetworkRuleDirection] = Field(
         description="The supported network rule's traffic directions"
     )
-    protocols: List[StaticNetworkRuleProtocol] = Field(
+    protocols: list[StaticNetworkRuleProtocol] = Field(
         description="The supported network rule's protocols"
     )
 
@@ -49,18 +47,8 @@ class NetworkRuleOptionsPlain(TypedDict, total=False):
     """
 
     directions: Required[
-        List[
-            Union[
-                StaticNetworkRuleDirection,
-                StaticNetworkRuleDirectionPlain,
-            ]
-        ]
+        list[StaticNetworkRuleDirection | StaticNetworkRuleDirectionPlain]
     ]
     protocols: Required[
-        List[
-            Union[
-                StaticNetworkRuleProtocol,
-                StaticNetworkRuleProtocolPlain,
-            ]
-        ]
+        list[StaticNetworkRuleProtocol | StaticNetworkRuleProtocolPlain]
     ]

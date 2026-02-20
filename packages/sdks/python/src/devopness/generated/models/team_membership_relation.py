@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -35,7 +33,7 @@ class TeamMembershipRelation(DevopnessBaseModel):
     id: StrictInt = Field(description="The unique ID of the given team")
     name: StrictStr = Field(description="The name of the given team")
     photo_url: StrictStr = Field(description="The URL to team's image")
-    role: Optional[RoleRelation]
+    role: RoleRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -52,11 +50,6 @@ class TeamMembershipRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     photo_url: Required[str]
-    role: Optional[
-        Union[
-            RoleRelation,
-            RoleRelationPlain,
-        ]
-    ]
+    role: RoleRelation | RoleRelationPlain | None
     created_at: Required[str]
     updated_at: Required[str]

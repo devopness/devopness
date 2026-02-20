@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -42,11 +41,6 @@ class StaticNetworkRuleDirectionPlain(TypedDict, total=False):
     Plain version of StaticNetworkRuleDirection.
     """
 
-    value: Required[
-        Union[
-            NetworkRuleDirection,
-            NetworkRuleDirectionPlain,
-        ]
-    ]
+    value: Required[NetworkRuleDirection | NetworkRuleDirectionPlain]
     human_readable: Required[str]
     hint: Required[str]

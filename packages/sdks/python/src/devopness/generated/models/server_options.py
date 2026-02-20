@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -27,7 +25,7 @@ class ServerOptions(DevopnessBaseModel):
         variable_targets (List[VariableTargets]): The list of VariableTarget
     """
 
-    variable_targets: List[VariableTargets] = Field(
+    variable_targets: list[VariableTargets] = Field(
         description="The list of VariableTarget"
     )
 
@@ -37,11 +35,4 @@ class ServerOptionsPlain(TypedDict, total=False):
     Plain version of ServerOptions.
     """
 
-    variable_targets: Required[
-        List[
-            Union[
-                VariableTargets,
-                VariableTargetsPlain,
-            ]
-        ]
-    ]
+    variable_targets: Required[list[VariableTargets | VariableTargetsPlain]]

@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -33,7 +31,7 @@ class PermissionRelation(DevopnessBaseModel):
         description="The type of resource this permission affects"
     )
     human_readable: StrictStr = Field(description="Human readable resource name")
-    permissions: List[StaticPermission] = Field(
+    permissions: list[StaticPermission] = Field(
         description="List of permissions available for this resource"
     )
 
@@ -45,11 +43,4 @@ class PermissionRelationPlain(TypedDict, total=False):
 
     resource_type: Required[str]
     human_readable: Required[str]
-    permissions: Required[
-        List[
-            Union[
-                StaticPermission,
-                StaticPermissionPlain,
-            ]
-        ]
-    ]
+    permissions: Required[list[StaticPermission | StaticPermissionPlain]]

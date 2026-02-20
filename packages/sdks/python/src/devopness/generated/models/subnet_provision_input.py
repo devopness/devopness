@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -35,9 +34,4 @@ class SubnetProvisionInputPlain(TypedDict, total=False):
     Plain version of SubnetProvisionInput.
     """
 
-    settings: Required[
-        Union[
-            SubnetProvisionInputSettings,
-            SubnetProvisionInputSettingsPlain,
-        ]
-    ]
+    settings: Required[SubnetProvisionInputSettings | SubnetProvisionInputSettingsPlain]

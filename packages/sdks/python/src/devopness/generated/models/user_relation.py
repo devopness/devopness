@@ -8,14 +8,12 @@ Note:
 
 from datetime import datetime
 from typing import (
-    Optional,
+    Annotated,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
-from typing_extensions import Annotated
 
 from .. import DevopnessBaseModel
 from .language import Language, LanguagePlain
@@ -44,14 +42,14 @@ class UserRelation(DevopnessBaseModel):
         description="The e-mail that will uniquely identify the user on the system and become its login credential"
     )
     url_slug: StrictStr = Field(description="The URL Slug of the user")
-    language: Optional[Language] = None
-    active: Optional[StrictBool] = Field(
+    language: Language | None = None
+    active: StrictBool | None = Field(
         default=None, description="Tells if the user is active or not"
     )
-    created_at: Optional[datetime] = Field(
+    created_at: datetime | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[datetime] = Field(
+    updated_at: datetime | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -65,12 +63,7 @@ class UserRelationPlain(TypedDict, total=False):
     name: Required[str]
     email: Required[str]
     url_slug: Required[str]
-    language: Optional[
-        Union[
-            Language,
-            LanguagePlain,
-        ]
-    ]
-    active: Optional[bool]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    language: Language | LanguagePlain | None
+    active: bool | None
+    created_at: datetime | None
+    updated_at: datetime | None

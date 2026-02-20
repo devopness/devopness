@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -42,16 +40,14 @@ class PersonalAccessTokenRotateResponse(DevopnessBaseModel):
     id: StrictStr = Field(description="Unique identifier of the Token")
     name: StrictStr = Field(description="Name of the Token")
     type: ApiTokenType
-    token: Optional[StrictStr] = Field(
+    token: StrictStr | None = Field(
         description="The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time."
     )
     status: ApiTokenStatus
     user: UserRelation
-    last_used_at: Optional[StrictStr] = Field(
-        description="Last time the Token was used"
-    )
+    last_used_at: StrictStr | None = Field(description="Last time the Token was used")
     expires_at: StrictStr = Field(description="Expiration date of the Token")
-    revoked_at: Optional[StrictStr] = Field(description="Revocation date of the Token")
+    revoked_at: StrictStr | None = Field(description="Revocation date of the Token")
     updated_at: StrictStr = Field(description="Last time the Token was updated")
     created_at: StrictStr = Field(description="Creation date of the Token")
 
@@ -63,27 +59,12 @@ class PersonalAccessTokenRotateResponsePlain(TypedDict, total=False):
 
     id: Required[str]
     name: Required[str]
-    type: Required[
-        Union[
-            ApiTokenType,
-            ApiTokenTypePlain,
-        ]
-    ]
-    token: Optional[str]
-    status: Required[
-        Union[
-            ApiTokenStatus,
-            ApiTokenStatusPlain,
-        ]
-    ]
-    user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    last_used_at: Optional[str]
+    type: Required[ApiTokenType | ApiTokenTypePlain]
+    token: str | None
+    status: Required[ApiTokenStatus | ApiTokenStatusPlain]
+    user: Required[UserRelation | UserRelationPlain]
+    last_used_at: str | None
     expires_at: Required[str]
-    revoked_at: Optional[str]
+    revoked_at: str | None
     updated_at: Required[str]
     created_at: Required[str]

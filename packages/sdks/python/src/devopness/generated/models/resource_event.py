@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -33,7 +31,7 @@ class ResourceEvent(DevopnessBaseModel):
         description="The resource type to create events for."
     )
     resource_id: StrictInt = Field(description="The resource ID.")
-    resource_data: Optional[Subscription]
+    resource_data: Subscription | None
 
 
 class ResourceEventPlain(TypedDict, total=False):
@@ -43,9 +41,4 @@ class ResourceEventPlain(TypedDict, total=False):
 
     resource_type: Required[str]
     resource_id: Required[int]
-    resource_data: Optional[
-        Union[
-            Subscription,
-            SubscriptionPlain,
-        ]
-    ]
+    resource_data: Subscription | SubscriptionPlain | None

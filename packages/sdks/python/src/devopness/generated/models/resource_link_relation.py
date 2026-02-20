@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -47,7 +44,7 @@ class ResourceLinkRelation(DevopnessBaseModel):
         description="If false, the link cannot be manually removed"
     )
     linked_resource_data: LinkedResourceData
-    children: Optional[List[ResourceLinkChild]] = None
+    children: list[ResourceLinkChild] | None = None
 
 
 class ResourceLinkRelationPlain(TypedDict, total=False):
@@ -60,17 +57,5 @@ class ResourceLinkRelationPlain(TypedDict, total=False):
     resource_type: Required[str]
     resource_id: Required[int]
     can_be_unlinked: Required[bool]
-    linked_resource_data: Required[
-        Union[
-            LinkedResourceData,
-            LinkedResourceDataPlain,
-        ]
-    ]
-    children: Optional[
-        List[
-            Union[
-                ResourceLinkChild,
-                ResourceLinkChildPlain,
-            ]
-        ]
-    ]
+    linked_resource_data: Required[LinkedResourceData | LinkedResourceDataPlain]
+    children: list[ResourceLinkChild | ResourceLinkChildPlain] | None

@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -43,8 +41,8 @@ class Repository(DevopnessBaseModel):
     html_url: StrictStr = Field(
         description="The URL for viewing repository details on the provider's web application"
     )
-    branches: List[RepositoryBranch] = Field(description="List of repository branches")
-    tags: List[RepositoryTag] = Field(description="List of repository tags")
+    branches: list[RepositoryBranch] = Field(description="List of repository branches")
+    tags: list[RepositoryTag] = Field(description="List of repository tags")
 
 
 class RepositoryPlain(TypedDict, total=False):
@@ -56,19 +54,5 @@ class RepositoryPlain(TypedDict, total=False):
     user_name: Required[str]
     full_name: Required[str]
     html_url: Required[str]
-    branches: Required[
-        List[
-            Union[
-                RepositoryBranch,
-                RepositoryBranchPlain,
-            ]
-        ]
-    ]
-    tags: Required[
-        List[
-            Union[
-                RepositoryTag,
-                RepositoryTagPlain,
-            ]
-        ]
-    ]
+    branches: Required[list[RepositoryBranch | RepositoryBranchPlain]]
+    tags: Required[list[RepositoryTag | RepositoryTagPlain]]

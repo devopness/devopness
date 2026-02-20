@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -46,12 +43,12 @@ class ArchivedEnvironmentRelation(DevopnessBaseModel):
         description="The human readable version of the type"
     )
     name: StrictStr = Field(description="Environment's name")
-    description: Optional[StrictStr] = Field(description="Environment's description")
-    used_credits: Optional[StrictInt] = Field(
+    description: StrictStr | None = Field(description="Environment's description")
+    used_credits: StrictInt | None = Field(
         default=None,
         description="Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
     )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+    resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
     created_at: StrictStr = Field(
@@ -60,10 +57,10 @@ class ArchivedEnvironmentRelation(DevopnessBaseModel):
     updated_at: StrictStr = Field(
         description="The date and time when the record was last updated"
     )
-    archived_at: Optional[StrictStr] = Field(
+    archived_at: StrictStr | None = Field(
         description="The date and time when the record was archived"
     )
-    project: Optional[ProjectRelation]
+    project: ProjectRelation | None
 
 
 class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
@@ -72,30 +69,13 @@ class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    type: Required[
-        Union[
-            EnvironmentType,
-            EnvironmentTypePlain,
-        ]
-    ]
+    type: Required[EnvironmentType | EnvironmentTypePlain]
     type_human_readable: Required[str]
     name: Required[str]
-    description: Optional[str]
-    used_credits: Optional[int]
-    resource_summary: Optional[
-        List[
-            Union[
-                ResourceSummaryItem,
-                ResourceSummaryItemPlain,
-            ]
-        ]
-    ]
+    description: str | None
+    used_credits: int | None
+    resource_summary: list[ResourceSummaryItem | ResourceSummaryItemPlain] | None
     created_at: Required[str]
     updated_at: Required[str]
-    archived_at: Optional[str]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
+    archived_at: str | None
+    project: ProjectRelation | ProjectRelationPlain | None

@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -41,15 +40,7 @@ class NetworkProvisionInputPlain(TypedDict, total=False):
     Plain version of NetworkProvisionInput.
     """
 
-    cloud_service_code: Required[
-        Union[
-            ServerCloudServiceCode,
-            ServerCloudServiceCodePlain,
-        ]
-    ]
+    cloud_service_code: Required[ServerCloudServiceCode | ServerCloudServiceCodePlain]
     settings: Required[
-        Union[
-            NetworkProvisionInputSettings,
-            NetworkProvisionInputSettingsPlain,
-        ]
+        NetworkProvisionInputSettings | NetworkProvisionInputSettingsPlain
     ]

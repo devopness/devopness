@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -75,18 +74,8 @@ class SubnetRelationPlain(TypedDict, total=False):
     created_by: Required[int]
     network_id: Required[int]
     name: Required[str]
-    type: Required[
-        Union[
-            SubnetType,
-            SubnetTypePlain,
-        ]
-    ]
+    type: Required[SubnetType | SubnetTypePlain]
     is_auto_generated: Required[bool]
-    provision_input: Required[
-        Union[
-            SubnetProvisionInput,
-            SubnetProvisionInputPlain,
-        ]
-    ]
+    provision_input: Required[SubnetProvisionInput | SubnetProvisionInputPlain]
     created_at: Required[str]
     updated_at: Required[str]

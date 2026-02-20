@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -63,7 +61,7 @@ class PipelineRelation(DevopnessBaseModel):
     max_parallel_actions: StrictInt = Field(
         description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline."
     )
-    trigger_when: Optional[PipelineTriggerWhen]
+    trigger_when: PipelineTriggerWhen | None
     created_by_user: UserRelation
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
@@ -88,17 +86,7 @@ class PipelineRelationPlain(TypedDict, total=False):
     operation: Required[str]
     operation_human_readable: Required[str]
     max_parallel_actions: Required[int]
-    trigger_when: Optional[
-        Union[
-            PipelineTriggerWhen,
-            PipelineTriggerWhenPlain,
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    trigger_when: PipelineTriggerWhen | PipelineTriggerWhenPlain | None
+    created_by_user: Required[UserRelation | UserRelationPlain]
     created_at: Required[str]
     updated_at: Required[str]

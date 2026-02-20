@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -33,10 +31,10 @@ class ActionTargetNetworkData(DevopnessBaseModel):
 
     id: StrictInt = Field(description="The unique id of the network")
     name: StrictStr = Field(description="The networks's name")
-    provider_name: Optional[StrictStr] = Field(
+    provider_name: StrictStr | None = Field(
         default=None, description="The name of the network's cloud provider."
     )
-    provider_name_human_readable: Optional[StrictStr] = Field(
+    provider_name_human_readable: StrictStr | None = Field(
         default=None,
         description="The human readable version of the cloud provider's name",
     )
@@ -50,11 +48,6 @@ class ActionTargetNetworkDataPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    provider_name: Optional[str]
-    provider_name_human_readable: Optional[str]
-    provision_input: Required[
-        Union[
-            NetworkProvisionInput,
-            NetworkProvisionInputPlain,
-        ]
-    ]
+    provider_name: str | None
+    provider_name_human_readable: str | None
+    provision_input: Required[NetworkProvisionInput | NetworkProvisionInputPlain]

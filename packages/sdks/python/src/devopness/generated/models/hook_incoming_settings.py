@@ -7,10 +7,7 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -27,7 +24,7 @@ class HookIncomingSettings(DevopnessBaseModel):
         variables (List[HookVariable], optional): List of variables to incoming hook
     """
 
-    variables: Optional[List[HookVariable]] = Field(
+    variables: list[HookVariable] | None = Field(
         default=None, description="List of variables to incoming hook"
     )
 
@@ -37,11 +34,4 @@ class HookIncomingSettingsPlain(TypedDict, total=False):
     Plain version of HookIncomingSettings.
     """
 
-    variables: Optional[
-        List[
-            Union[
-                HookVariable,
-                HookVariablePlain,
-            ]
-        ]
-    ]
+    variables: list[HookVariable | HookVariablePlain] | None

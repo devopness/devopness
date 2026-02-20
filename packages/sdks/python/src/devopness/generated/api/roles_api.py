@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Role, RoleUpdate, RoleUpdatePlain
 
@@ -62,10 +60,7 @@ class RolesApiService(DevopnessBaseService):
     def update_role(
         self,
         role_id: int,
-        role_update: Union[
-            RoleUpdate,
-            RoleUpdatePlain,
-        ],
+        role_update: RoleUpdate | RoleUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing role
@@ -135,10 +130,7 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_role(
         self,
         role_id: int,
-        role_update: Union[
-            RoleUpdate,
-            RoleUpdatePlain,
-        ],
+        role_update: RoleUpdate | RoleUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing role

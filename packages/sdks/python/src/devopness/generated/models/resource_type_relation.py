@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -41,13 +39,13 @@ class ResourceTypeRelation(DevopnessBaseModel):
     resource_type_human_readable_plural: StrictStr = Field(
         description="Human readable version of the resource type, in plural form"
     )
-    supported_operations: List[ResourceOperation] = Field(
+    supported_operations: list[ResourceOperation] = Field(
         description="A list of resource operations"
     )
-    can_be_child_of: List[ResourceTypeRelated] = Field(
+    can_be_child_of: list[ResourceTypeRelated] = Field(
         description="A list of related resources"
     )
-    can_be_parent_of: List[ResourceTypeRelated] = Field(
+    can_be_parent_of: list[ResourceTypeRelated] = Field(
         description="A list of related resources"
     )
 
@@ -57,35 +55,9 @@ class ResourceTypeRelationPlain(TypedDict, total=False):
     Plain version of ResourceTypeRelation.
     """
 
-    resource_type: Required[
-        Union[
-            ResourceType,
-            ResourceTypePlain,
-        ]
-    ]
+    resource_type: Required[ResourceType | ResourceTypePlain]
     resource_type_human_readable: Required[str]
     resource_type_human_readable_plural: Required[str]
-    supported_operations: Required[
-        List[
-            Union[
-                ResourceOperation,
-                ResourceOperationPlain,
-            ]
-        ]
-    ]
-    can_be_child_of: Required[
-        List[
-            Union[
-                ResourceTypeRelated,
-                ResourceTypeRelatedPlain,
-            ]
-        ]
-    ]
-    can_be_parent_of: Required[
-        List[
-            Union[
-                ResourceTypeRelated,
-                ResourceTypeRelatedPlain,
-            ]
-        ]
-    ]
+    supported_operations: Required[list[ResourceOperation | ResourceOperationPlain]]
+    can_be_child_of: Required[list[ResourceTypeRelated | ResourceTypeRelatedPlain]]
+    can_be_parent_of: Required[list[ResourceTypeRelated | ResourceTypeRelatedPlain]]

@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Environment,
@@ -26,10 +24,8 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
     def add_project_environment(
         self,
         project_id: int,
-        environment_project_create: Union[
-            EnvironmentProjectCreate,
-            EnvironmentProjectCreatePlain,
-        ],
+        environment_project_create: EnvironmentProjectCreate
+        | EnvironmentProjectCreatePlain,
     ) -> DevopnessResponse[Environment]:
         """
         Create a new environment on the current project
@@ -51,9 +47,9 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
     def list_project_environments(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[EnvironmentRelation]]:
         """
         Return a list of all environments belonging to a project
 
@@ -77,7 +73,7 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[EnvironmentRelation])
+        return DevopnessResponse(response, list[EnvironmentRelation])
 
 
 class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -88,10 +84,8 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_project_environment(
         self,
         project_id: int,
-        environment_project_create: Union[
-            EnvironmentProjectCreate,
-            EnvironmentProjectCreatePlain,
-        ],
+        environment_project_create: EnvironmentProjectCreate
+        | EnvironmentProjectCreatePlain,
     ) -> DevopnessResponse[Environment]:
         """
         Create a new environment on the current project
@@ -113,9 +107,9 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_project_environments(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[EnvironmentRelation]]:
         """
         Return a list of all environments belonging to a project
 
@@ -139,4 +133,4 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[EnvironmentRelation])
+        return await DevopnessResponse.from_async(response, list[EnvironmentRelation])

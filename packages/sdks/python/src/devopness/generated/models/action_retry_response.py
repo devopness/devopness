@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -68,10 +65,10 @@ class ActionRetryResponse(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="The Id of the given action")
-    pipeline_id: Optional[StrictInt] = Field(
+    pipeline_id: StrictInt | None = Field(
         description="The ID of the pipeline executed by this action"
     )
-    retry_of: Optional[StrictInt] = Field(
+    retry_of: StrictInt | None = Field(
         description="The Id of the parent action that this action is a retry of"
     )
     status: ActionStatus
@@ -89,25 +86,23 @@ class ActionRetryResponse(DevopnessBaseModel):
     url_web_permalink: StrictStr = Field(
         description="The permalink URL to the action details on Devopness web app"
     )
-    action_data: Optional[ActionData]
+    action_data: ActionData | None
     triggered_from: ActionTriggeredFrom
-    parent: Optional[RelatedAction]
-    children: List[Optional[RelatedAction]] = Field(
-        description="List of related actions"
-    )
-    triggered_by_user: Optional[UserRelation] = None
+    parent: RelatedAction | None
+    children: list[RelatedAction | None] = Field(description="List of related actions")
+    triggered_by_user: UserRelation | None = None
     resource: ActionResource
     summary: ActionSummary
-    environment: Optional[EnvironmentRelation]
-    project: Optional[ProjectRelation]
-    targets: Optional[List[ActionTarget]] = Field(
+    environment: EnvironmentRelation | None
+    project: ProjectRelation | None
+    targets: list[ActionTarget] | None = Field(
         default=None, description="List of actions dispatched to cloud resource targets"
     )
-    hook_requests: Optional[ActionHookRequest] = None
-    started_at: Optional[StrictStr] = Field(
+    hook_requests: ActionHookRequest | None = None
+    started_at: StrictStr | None = Field(
         description="The date and time when the action started execution (i.e., left the `pending/queued` status)"
     )
-    completed_at: Optional[StrictStr] = Field(
+    completed_at: StrictStr | None = Field(
         description="The date and time when the action has finished execution"
     )
     created_at: StrictStr = Field(
@@ -124,101 +119,27 @@ class ActionRetryResponsePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    pipeline_id: Optional[int]
-    retry_of: Optional[int]
-    status: Required[
-        Union[
-            ActionStatus,
-            ActionStatusPlain,
-        ]
-    ]
+    pipeline_id: int | None
+    retry_of: int | None
+    status: Required[ActionStatus | ActionStatusPlain]
     status_human_readable: Required[str]
-    status_reason_code: Required[
-        Union[
-            ActionStatusReasonCode,
-            ActionStatusReasonCodePlain,
-        ]
-    ]
+    status_reason_code: Required[ActionStatusReasonCode | ActionStatusReasonCodePlain]
     status_reason_human_readable: Required[str]
-    type: Required[
-        Union[
-            ActionType,
-            ActionTypePlain,
-        ]
-    ]
+    type: Required[ActionType | ActionTypePlain]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Optional[
-        Union[
-            ActionData,
-            ActionDataPlain,
-        ]
-    ]
-    triggered_from: Required[
-        Union[
-            ActionTriggeredFrom,
-            ActionTriggeredFromPlain,
-        ]
-    ]
-    parent: Optional[
-        Union[
-            RelatedAction,
-            RelatedActionPlain,
-        ]
-    ]
-    children: Required[
-        List[
-            Union[
-                RelatedAction,
-                RelatedActionPlain,
-            ]
-        ]
-    ]
-    triggered_by_user: Optional[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    resource: Required[
-        Union[
-            ActionResource,
-            ActionResourcePlain,
-        ]
-    ]
-    summary: Required[
-        Union[
-            ActionSummary,
-            ActionSummaryPlain,
-        ]
-    ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    targets: Optional[
-        List[
-            Union[
-                ActionTarget,
-                ActionTargetPlain,
-            ]
-        ]
-    ]
-    hook_requests: Optional[
-        Union[
-            ActionHookRequest,
-            ActionHookRequestPlain,
-        ]
-    ]
-    started_at: Optional[str]
-    completed_at: Optional[str]
+    action_data: ActionData | ActionDataPlain | None
+    triggered_from: Required[ActionTriggeredFrom | ActionTriggeredFromPlain]
+    parent: RelatedAction | RelatedActionPlain | None
+    children: Required[list[RelatedAction | RelatedActionPlain]]
+    triggered_by_user: UserRelation | UserRelationPlain | None
+    resource: Required[ActionResource | ActionResourcePlain]
+    summary: Required[ActionSummary | ActionSummaryPlain]
+    environment: EnvironmentRelation | EnvironmentRelationPlain | None
+    project: ProjectRelation | ProjectRelationPlain | None
+    targets: list[ActionTarget | ActionTargetPlain] | None
+    hook_requests: ActionHookRequest | ActionHookRequestPlain | None
+    started_at: str | None
+    completed_at: str | None
     created_at: Required[str]
     updated_at: Required[str]

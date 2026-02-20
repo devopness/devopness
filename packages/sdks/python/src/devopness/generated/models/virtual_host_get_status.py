@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
 )
 
@@ -25,7 +23,7 @@ class VirtualHostGetStatus(DevopnessBaseModel):
         servers (List[int], optional): List of valid resource IDs
     """
 
-    servers: Optional[List[StrictInt]] = Field(
+    servers: list[StrictInt] | None = Field(
         default=None, description="List of valid resource IDs"
     )
 
@@ -35,4 +33,4 @@ class VirtualHostGetStatusPlain(TypedDict, total=False):
     Plain version of VirtualHostGetStatus.
     """
 
-    servers: Optional[List[int]]
+    servers: list[int] | None

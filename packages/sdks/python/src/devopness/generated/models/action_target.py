@@ -8,15 +8,12 @@ Note:
 
 from datetime import datetime
 from typing import (
-    List,
-    Optional,
+    Annotated,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
-from typing_extensions import Annotated
 
 from .. import DevopnessBaseModel
 from .action_status import ActionStatus, ActionStatusPlain
@@ -55,33 +52,33 @@ class ActionTarget(DevopnessBaseModel):
     resource_type: StrictStr = Field(
         description="The type of the cloud resource on which the action must be performed"
     )
-    resource_type_human_readable: Optional[StrictStr] = Field(
+    resource_type_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the resource type"
     )
     resource_id: StrictInt = Field(
         description="The Id of the cloud resource on which the action must be performed"
     )
     status: ActionStatus
-    status_human_readable: Optional[StrictStr] = Field(
+    status_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the action status"
     )
     status_reason_code: ActionStatusReasonCode
-    status_reason_human_readable: Optional[StrictStr] = Field(
+    status_reason_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the status reason code"
     )
-    total_steps: Optional[Annotated[int, Field(le=127, strict=True, ge=0)]] = Field(
+    total_steps: Annotated[int, Field(le=127, strict=True, ge=0)] | None = Field(
         description="The total number of steps to complete the action"
     )
-    current_step: Optional[ActionStep]
-    steps: Optional[List[Optional[ActionStep]]] = Field(
+    current_step: ActionStep | None
+    steps: list[ActionStep | None] | None = Field(
         default=None, description="The list of action steps"
     )
-    resource_data: Optional[ActionTargetData]
-    started_at: Optional[datetime] = Field(
+    resource_data: ActionTargetData | None
+    started_at: datetime | None = Field(
         default=None,
         description="The date and time when the action started execution (i.e., left the `pending/queued` status)",
     )
-    completed_at: Optional[datetime] = Field(
+    completed_at: datetime | None = Field(
         default=None,
         description="The date and time when the action has finished execution",
     )
@@ -100,44 +97,17 @@ class ActionTargetPlain(TypedDict, total=False):
 
     id: Required[int]
     resource_type: Required[str]
-    resource_type_human_readable: Optional[str]
+    resource_type_human_readable: str | None
     resource_id: Required[int]
-    status: Required[
-        Union[
-            ActionStatus,
-            ActionStatusPlain,
-        ]
-    ]
-    status_human_readable: Optional[str]
-    status_reason_code: Required[
-        Union[
-            ActionStatusReasonCode,
-            ActionStatusReasonCodePlain,
-        ]
-    ]
-    status_reason_human_readable: Optional[str]
-    total_steps: Optional[int]
-    current_step: Optional[
-        Union[
-            ActionStep,
-            ActionStepPlain,
-        ]
-    ]
-    steps: Optional[
-        List[
-            Union[
-                ActionStep,
-                ActionStepPlain,
-            ]
-        ]
-    ]
-    resource_data: Optional[
-        Union[
-            ActionTargetData,
-            ActionTargetDataPlain,
-        ]
-    ]
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
+    status: Required[ActionStatus | ActionStatusPlain]
+    status_human_readable: str | None
+    status_reason_code: Required[ActionStatusReasonCode | ActionStatusReasonCodePlain]
+    status_reason_human_readable: str | None
+    total_steps: int | None
+    current_step: ActionStep | ActionStepPlain | None
+    steps: list[ActionStep | ActionStepPlain] | None
+    resource_data: ActionTargetData | ActionTargetDataPlain | None
+    started_at: datetime | None
+    completed_at: datetime | None
     created_at: Required[datetime]
     updated_at: Required[datetime]

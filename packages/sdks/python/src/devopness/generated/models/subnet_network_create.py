@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -44,16 +43,6 @@ class SubnetNetworkCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    type: Required[
-        Union[
-            SubnetType,
-            SubnetTypePlain,
-        ]
-    ]
-    provision_input: Required[
-        Union[
-            SubnetProvisionInput,
-            SubnetProvisionInputPlain,
-        ]
-    ]
+    type: Required[SubnetType | SubnetTypePlain]
+    provision_input: Required[SubnetProvisionInput | SubnetProvisionInputPlain]
     credential_id: Required[int]

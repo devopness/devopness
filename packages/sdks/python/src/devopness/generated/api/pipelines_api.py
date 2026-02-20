@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Pipeline,
@@ -29,10 +27,7 @@ class PipelinesApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        pipeline_create: Union[
-            PipelineCreate,
-            PipelineCreatePlain,
-        ],
+        pipeline_create: PipelineCreate | PipelineCreatePlain,
     ) -> DevopnessResponse[Pipeline]:
         """
         Add a Pipeline to a resource
@@ -97,9 +92,9 @@ class PipelinesApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PipelineRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[PipelineRelation]]:
         """
         Return a list of pipelines to a resource
 
@@ -123,15 +118,12 @@ class PipelinesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[PipelineRelation])
+        return DevopnessResponse(response, list[PipelineRelation])
 
     def update_pipeline(
         self,
         pipeline_id: int,
-        pipeline_update: Union[
-            PipelineUpdate,
-            PipelineUpdatePlain,
-        ],
+        pipeline_update: PipelineUpdate | PipelineUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline
@@ -160,10 +152,7 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        pipeline_create: Union[
-            PipelineCreate,
-            PipelineCreatePlain,
-        ],
+        pipeline_create: PipelineCreate | PipelineCreatePlain,
     ) -> DevopnessResponse[Pipeline]:
         """
         Add a Pipeline to a resource
@@ -228,9 +217,9 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PipelineRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[PipelineRelation]]:
         """
         Return a list of pipelines to a resource
 
@@ -254,15 +243,12 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[PipelineRelation])
+        return await DevopnessResponse.from_async(response, list[PipelineRelation])
 
     async def update_pipeline(
         self,
         pipeline_id: int,
-        pipeline_update: Union[
-            PipelineUpdate,
-            PipelineUpdatePlain,
-        ],
+        pipeline_update: PipelineUpdate | PipelineUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline

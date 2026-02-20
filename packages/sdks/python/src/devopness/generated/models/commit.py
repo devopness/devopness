@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -59,12 +58,7 @@ class CommitPlain(TypedDict, total=False):
     hash: Required[str]
     message: Required[str]
     committed_at: Required[str]
-    provider: Required[
-        Union[
-            SourceProviderName,
-            SourceProviderNamePlain,
-        ]
-    ]
+    provider: Required[SourceProviderName | SourceProviderNamePlain]
     repository: Required[str]
     url: Required[str]
     author_email: Required[str]

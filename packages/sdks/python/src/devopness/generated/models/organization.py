@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -38,7 +35,7 @@ class Organization(DevopnessBaseModel):
     id: StrictInt = Field(description="The unique identifier for the organization")
     name: StrictStr = Field(description="The name of the organization")
     url_slug: StrictStr = Field(description="The URL Slug of the organization")
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+    resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
     owner: UserRelation
@@ -58,19 +55,7 @@ class OrganizationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     url_slug: Required[str]
-    resource_summary: Optional[
-        List[
-            Union[
-                ResourceSummaryItem,
-                ResourceSummaryItemPlain,
-            ]
-        ]
-    ]
-    owner: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    resource_summary: list[ResourceSummaryItem | ResourceSummaryItemPlain] | None
+    owner: Required[UserRelation | UserRelationPlain]
     created_at: Required[str]
     updated_at: Required[str]

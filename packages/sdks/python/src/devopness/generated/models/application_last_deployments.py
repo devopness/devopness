@@ -7,9 +7,7 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
-    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -25,8 +23,8 @@ class ApplicationLastDeployments(DevopnessBaseModel):
         live (ActionRelationShallow, optional, nullable):
     """
 
-    latest: Optional[ActionRelationShallow] = None
-    live: Optional[ActionRelationShallow] = None
+    latest: ActionRelationShallow | None = None
+    live: ActionRelationShallow | None = None
 
 
 class ApplicationLastDeploymentsPlain(TypedDict, total=False):
@@ -34,15 +32,5 @@ class ApplicationLastDeploymentsPlain(TypedDict, total=False):
     Plain version of ApplicationLastDeployments.
     """
 
-    latest: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
-        ]
-    ]
-    live: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
-        ]
-    ]
+    latest: ActionRelationShallow | ActionRelationShallowPlain | None
+    live: ActionRelationShallow | ActionRelationShallowPlain | None

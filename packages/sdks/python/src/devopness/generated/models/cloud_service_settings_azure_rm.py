@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -37,13 +35,13 @@ class CloudServiceSettingsAzureRm(DevopnessBaseModel):
     region: StrictStr = Field(
         description="Datacenter region where the cloud instance will be launched"
     )
-    region_human_readable: Optional[StrictStr] = Field(
+    region_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the server region"
     )
     storage_size: StrictInt = Field(
         description="The storage's size of the cloud instance"
     )
-    os_version_code: Optional[CloudOsVersionCode]
+    os_version_code: CloudOsVersionCode | None
 
 
 class CloudServiceSettingsAzureRmPlain(TypedDict, total=False):
@@ -53,11 +51,6 @@ class CloudServiceSettingsAzureRmPlain(TypedDict, total=False):
 
     instance_type: Required[str]
     region: Required[str]
-    region_human_readable: Optional[str]
+    region_human_readable: str | None
     storage_size: Required[int]
-    os_version_code: Optional[
-        Union[
-            CloudOsVersionCode,
-            CloudOsVersionCodePlain,
-        ]
-    ]
+    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None

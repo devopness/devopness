@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -43,11 +41,9 @@ class PersonalAccessTokenRelation(DevopnessBaseModel):
     type: ApiTokenType
     status: ApiTokenStatus
     user: UserRelation
-    last_used_at: Optional[StrictStr] = Field(
-        description="Last time the Token was used"
-    )
+    last_used_at: StrictStr | None = Field(description="Last time the Token was used")
     expires_at: StrictStr = Field(description="Expiration date of the Token")
-    revoked_at: Optional[StrictStr] = Field(description="Revocation date of the Token")
+    revoked_at: StrictStr | None = Field(description="Revocation date of the Token")
     updated_at: StrictStr = Field(description="Last time the Token was updated")
     created_at: StrictStr = Field(description="Creation date of the Token")
 
@@ -59,26 +55,11 @@ class PersonalAccessTokenRelationPlain(TypedDict, total=False):
 
     id: Required[str]
     name: Required[str]
-    type: Required[
-        Union[
-            ApiTokenType,
-            ApiTokenTypePlain,
-        ]
-    ]
-    status: Required[
-        Union[
-            ApiTokenStatus,
-            ApiTokenStatusPlain,
-        ]
-    ]
-    user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    last_used_at: Optional[str]
+    type: Required[ApiTokenType | ApiTokenTypePlain]
+    status: Required[ApiTokenStatus | ApiTokenStatusPlain]
+    user: Required[UserRelation | UserRelationPlain]
+    last_used_at: str | None
     expires_at: Required[str]
-    revoked_at: Optional[str]
+    revoked_at: str | None
     updated_at: Required[str]
     created_at: Required[str]

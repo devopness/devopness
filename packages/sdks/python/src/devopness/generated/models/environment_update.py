@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -35,7 +33,7 @@ class EnvironmentUpdate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The environment's name. Must not be greater than 60 characters."
     )
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         default=None,
         description="The environment's description. Must not be greater than 255 characters.",
     )
@@ -47,11 +45,6 @@ class EnvironmentUpdatePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    type: Required[
-        Union[
-            EnvironmentType,
-            EnvironmentTypePlain,
-        ]
-    ]
+    type: Required[EnvironmentType | EnvironmentTypePlain]
     name: Required[str]
-    description: Optional[str]
+    description: str | None

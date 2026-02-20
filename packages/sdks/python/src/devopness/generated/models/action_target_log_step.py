@@ -8,7 +8,6 @@ Note:
 
 from datetime import datetime
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -30,13 +29,13 @@ class ActionTargetLogStep(DevopnessBaseModel):
     """
 
     order: StrictInt = Field(description="The execution order of the given step")
-    started_at: Optional[datetime] = Field(
+    started_at: datetime | None = Field(
         description="The date and time when the step started execution (i.e., left the `pending/queued` status)"
     )
-    completed_at: Optional[datetime] = Field(
+    completed_at: datetime | None = Field(
         description="The date and time when the step has finished execution"
     )
-    output: Optional[StrictStr] = Field(description="The full text output log")
+    output: StrictStr | None = Field(description="The full text output log")
 
 
 class ActionTargetLogStepPlain(TypedDict, total=False):
@@ -45,6 +44,6 @@ class ActionTargetLogStepPlain(TypedDict, total=False):
     """
 
     order: Required[int]
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
-    output: Optional[str]
+    started_at: datetime | None
+    completed_at: datetime | None
+    output: str | None

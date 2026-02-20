@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -46,19 +43,19 @@ class ProjectRelation(DevopnessBaseModel):
     id: StrictInt = Field(description="The Id of the project")
     user_id: StrictInt = Field(description="The id of the user that own the project")
     name: StrictStr = Field(description="The project's name")
-    logo_url: Optional[StrictStr] = Field(
+    logo_url: StrictStr | None = Field(
         description="A URL path to the project's logo image"
     )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+    resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
-    os_users: List[OsUsersInner] = Field(
+    os_users: list[OsUsersInner] = Field(
         description="The list of the operating system users found in all the servers linked to a project"
     )
     owner: ProjectOwnerRelation
     owner_type: ProjectOwnerType
     created_by_user: UserRelation
-    used_credits: Optional[StrictInt] = Field(
+    used_credits: StrictInt | None = Field(
         default=None,
         description="Number of credits used in the current monthly billing cycle by actions of resources in the project.",
     )
@@ -78,41 +75,12 @@ class ProjectRelationPlain(TypedDict, total=False):
     id: Required[int]
     user_id: Required[int]
     name: Required[str]
-    logo_url: Optional[str]
-    resource_summary: Optional[
-        List[
-            Union[
-                ResourceSummaryItem,
-                ResourceSummaryItemPlain,
-            ]
-        ]
-    ]
-    os_users: Required[
-        List[
-            Union[
-                OsUsersInner,
-                OsUsersInnerPlain,
-            ]
-        ]
-    ]
-    owner: Required[
-        Union[
-            ProjectOwnerRelation,
-            ProjectOwnerRelationPlain,
-        ]
-    ]
-    owner_type: Required[
-        Union[
-            ProjectOwnerType,
-            ProjectOwnerTypePlain,
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    used_credits: Optional[int]
+    logo_url: str | None
+    resource_summary: list[ResourceSummaryItem | ResourceSummaryItemPlain] | None
+    os_users: Required[list[OsUsersInner | OsUsersInnerPlain]]
+    owner: Required[ProjectOwnerRelation | ProjectOwnerRelationPlain]
+    owner_type: Required[ProjectOwnerType | ProjectOwnerTypePlain]
+    created_by_user: Required[UserRelation | UserRelationPlain]
+    used_credits: int | None
     created_at: Required[str]
     updated_at: Required[str]

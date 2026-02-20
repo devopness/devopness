@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -44,22 +42,22 @@ class Invitation(DevopnessBaseModel):
 
     id: StrictStr = Field(description="The unique UUID of the given invitation")
     type: TeamInvitationType
-    email: Optional[StrictStr] = Field(
+    email: StrictStr | None = Field(
         description="The email of the user that has been invited to team"
     )
     status: TeamInvitationStatus
     status_human_readable: StrictStr = Field(
         description="Human readable version of the invitation status"
     )
-    public_accept_url: Optional[StrictStr] = Field(
+    public_accept_url: StrictStr | None = Field(
         description="The URL to accept the public invitation"
     )
-    accepted_from_ip: Optional[StrictStr] = Field(
+    accepted_from_ip: StrictStr | None = Field(
         description="The IP of the user who accepted the invitation"
     )
     created_by_user: UserRelation
-    team: Optional[TeamRelation]
-    accepted_at: Optional[StrictStr] = Field(
+    team: TeamRelation | None
+    accepted_at: StrictStr | None = Field(
         description="The date and time when the invitation was accepted"
     )
     expires_at: StrictStr = Field(
@@ -79,35 +77,15 @@ class InvitationPlain(TypedDict, total=False):
     """
 
     id: Required[str]
-    type: Required[
-        Union[
-            TeamInvitationType,
-            TeamInvitationTypePlain,
-        ]
-    ]
-    email: Optional[str]
-    status: Required[
-        Union[
-            TeamInvitationStatus,
-            TeamInvitationStatusPlain,
-        ]
-    ]
+    type: Required[TeamInvitationType | TeamInvitationTypePlain]
+    email: str | None
+    status: Required[TeamInvitationStatus | TeamInvitationStatusPlain]
     status_human_readable: Required[str]
-    public_accept_url: Optional[str]
-    accepted_from_ip: Optional[str]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    team: Optional[
-        Union[
-            TeamRelation,
-            TeamRelationPlain,
-        ]
-    ]
-    accepted_at: Optional[str]
+    public_accept_url: str | None
+    accepted_from_ip: str | None
+    created_by_user: Required[UserRelation | UserRelationPlain]
+    team: TeamRelation | TeamRelationPlain | None
+    accepted_at: str | None
     expires_at: Required[str]
     created_at: Required[str]
     updated_at: Required[str]

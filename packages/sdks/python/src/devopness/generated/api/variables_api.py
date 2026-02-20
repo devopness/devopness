@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Variable,
@@ -29,10 +27,7 @@ class VariablesApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        variable_create: Union[
-            VariableCreate,
-            VariableCreatePlain,
-        ],
+        variable_create: VariableCreate | VariableCreatePlain,
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a resource
@@ -97,11 +92,11 @@ class VariablesApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        include_virtual_variables: Optional[bool] = None,
-        variable_target: Optional[str] = None,
-    ) -> DevopnessResponse[List[VariableRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        include_virtual_variables: bool | None = None,
+        variable_target: str | None = None,
+    ) -> DevopnessResponse[list[VariableRelation]]:
         """
         Return a list of variables belonging to a resource
 
@@ -127,15 +122,12 @@ class VariablesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[VariableRelation])
+        return DevopnessResponse(response, list[VariableRelation])
 
     def update_variable(
         self,
         variable_id: int,
-        variable_update: Union[
-            VariableUpdate,
-            VariableUpdatePlain,
-        ],
+        variable_update: VariableUpdate | VariableUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing variable
@@ -164,10 +156,7 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        variable_create: Union[
-            VariableCreate,
-            VariableCreatePlain,
-        ],
+        variable_create: VariableCreate | VariableCreatePlain,
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a resource
@@ -232,11 +221,11 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        include_virtual_variables: Optional[bool] = None,
-        variable_target: Optional[str] = None,
-    ) -> DevopnessResponse[List[VariableRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        include_virtual_variables: bool | None = None,
+        variable_target: str | None = None,
+    ) -> DevopnessResponse[list[VariableRelation]]:
         """
         Return a list of variables belonging to a resource
 
@@ -262,15 +251,12 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[VariableRelation])
+        return await DevopnessResponse.from_async(response, list[VariableRelation])
 
     async def update_variable(
         self,
         variable_id: int,
-        variable_update: Union[
-            VariableUpdate,
-            VariableUpdatePlain,
-        ],
+        variable_update: VariableUpdate | VariableUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing variable

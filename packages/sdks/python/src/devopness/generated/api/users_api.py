@@ -7,7 +7,6 @@ Note:
 """
 
 import warnings
-from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -218,10 +217,7 @@ class UsersApiService(DevopnessBaseService):
 
     def refresh_token_user(
         self,
-        user_refresh_token: Union[
-            UserRefreshToken,
-            UserRefreshTokenPlain,
-        ],
+        user_refresh_token: UserRefreshToken | UserRefreshTokenPlain,
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
@@ -250,10 +246,7 @@ class UsersApiService(DevopnessBaseService):
 
     def resend_verification_user(
         self,
-        user_resend_verification: Union[
-            UserResendVerification,
-            UserResendVerificationPlain,
-        ],
+        user_resend_verification: UserResendVerification | UserResendVerificationPlain,
     ) -> DevopnessResponse[None]:
         """
         Resend the verification email
@@ -523,10 +516,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def refresh_token_user(
         self,
-        user_refresh_token: Union[
-            UserRefreshToken,
-            UserRefreshTokenPlain,
-        ],
+        user_refresh_token: UserRefreshToken | UserRefreshTokenPlain,
     ) -> DevopnessResponse[UserRefreshTokenResponse]:
         """
         Refresh an existing user access token
@@ -555,10 +545,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def resend_verification_user(
         self,
-        user_resend_verification: Union[
-            UserResendVerification,
-            UserResendVerificationPlain,
-        ],
+        user_resend_verification: UserResendVerification | UserResendVerificationPlain,
     ) -> DevopnessResponse[None]:
         """
         Resend the verification email

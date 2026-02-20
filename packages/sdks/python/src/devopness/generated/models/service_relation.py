@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -45,7 +43,7 @@ class ServiceRelation(DevopnessBaseModel):
     type_human_readable: StrictStr = Field(
         description="Formatted/human readable version of the service type"
     )
-    version: Optional[StrictStr] = Field(
+    version: StrictStr | None = Field(
         description="The service current installed version"
     )
     is_auto_generated: StrictBool = Field(
@@ -55,14 +53,14 @@ class ServiceRelation(DevopnessBaseModel):
         description="Indicates if the service will start automatically on operating system boot"
     )
     initial_state: ServiceInitialState
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         description="A text describing the service, provided by the service author"
     )
-    last_action: Optional[ActionRelationShallow] = None
-    created_at: Optional[StrictStr] = Field(
+    last_action: ActionRelationShallow | None = None
+    created_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -76,21 +74,11 @@ class ServiceRelationPlain(TypedDict, total=False):
     name: Required[str]
     type: Required[str]
     type_human_readable: Required[str]
-    version: Optional[str]
+    version: str | None
     is_auto_generated: Required[bool]
     auto_start: Required[bool]
-    initial_state: Required[
-        Union[
-            ServiceInitialState,
-            ServiceInitialStatePlain,
-        ]
-    ]
-    description: Optional[str]
-    last_action: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
-        ]
-    ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    initial_state: Required[ServiceInitialState | ServiceInitialStatePlain]
+    description: str | None
+    last_action: ActionRelationShallow | ActionRelationShallowPlain | None
+    created_at: str | None
+    updated_at: str | None

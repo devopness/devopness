@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -43,10 +40,10 @@ class SshKey(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="The Id of the given SSH public key")
-    created_by: Optional[StrictInt] = Field(
+    created_by: StrictInt | None = Field(
         default=None, description="The id of the user to which the SSH key belongs to"
     )
-    project_id: Optional[StrictInt] = Field(
+    project_id: StrictInt | None = Field(
         default=None,
         description="The project id to which the SSH public key belongs to",
     )
@@ -60,13 +57,13 @@ class SshKey(DevopnessBaseModel):
         description="The hashed fingerprint of the public key"
     )
     created_by_user: UserRelation
-    environment: Optional[EnvironmentRelation]
-    servers: List[Optional[ServerRelation]]
-    last_action: Optional[ActionRelation]
-    created_at: Optional[StrictStr] = Field(
+    environment: EnvironmentRelation | None
+    servers: list[ServerRelation | None]
+    last_action: ActionRelation | None
+    created_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -77,36 +74,14 @@ class SshKeyPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    created_by: Optional[int]
-    project_id: Optional[int]
+    created_by: int | None
+    project_id: int | None
     environment_id: Required[int]
     name: Required[str]
     fingerprint: Required[str]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    servers: Required[
-        List[
-            Union[
-                ServerRelation,
-                ServerRelationPlain,
-            ]
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
-        ]
-    ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    created_by_user: Required[UserRelation | UserRelationPlain]
+    environment: EnvironmentRelation | EnvironmentRelationPlain | None
+    servers: Required[list[ServerRelation | ServerRelationPlain]]
+    last_action: ActionRelation | ActionRelationPlain | None
+    created_at: str | None
+    updated_at: str | None

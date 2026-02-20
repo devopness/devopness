@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -29,10 +27,10 @@ class VirtualHostOptions(DevopnessBaseModel):
         virtual_host_types (List[StaticVirtualHostType]):
     """
 
-    variable_targets: List[VariableTargets] = Field(
+    variable_targets: list[VariableTargets] = Field(
         description="The list of VariableTarget"
     )
-    virtual_host_types: List[StaticVirtualHostType]
+    virtual_host_types: list[StaticVirtualHostType]
 
 
 class VirtualHostOptionsPlain(TypedDict, total=False):
@@ -40,19 +38,7 @@ class VirtualHostOptionsPlain(TypedDict, total=False):
     Plain version of VirtualHostOptions.
     """
 
-    variable_targets: Required[
-        List[
-            Union[
-                VariableTargets,
-                VariableTargetsPlain,
-            ]
-        ]
-    ]
+    variable_targets: Required[list[VariableTargets | VariableTargetsPlain]]
     virtual_host_types: Required[
-        List[
-            Union[
-                StaticVirtualHostType,
-                StaticVirtualHostTypePlain,
-            ]
-        ]
+        list[StaticVirtualHostType | StaticVirtualHostTypePlain]
     ]

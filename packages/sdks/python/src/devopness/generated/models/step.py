@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -44,10 +42,8 @@ class Step(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="The unique ID of the given pipeline step")
-    name: Optional[StrictStr] = Field(
-        default=None, description="The pipeline step's name"
-    )
-    description: Optional[StrictStr] = Field(
+    name: StrictStr | None = Field(default=None, description="The pipeline step's name")
+    description: StrictStr | None = Field(
         default=None, description="The pipeline step's description"
     )
     type: StrictStr = Field(description="The pipeline step's type")
@@ -83,17 +79,12 @@ class StepPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    name: Optional[str]
-    description: Optional[str]
+    name: str | None
+    description: str | None
     type: Required[str]
     run_as_user: Required[str]
     command: Required[str]
-    runner: Required[
-        Union[
-            PipelineStepRunnerName,
-            PipelineStepRunnerNamePlain,
-        ]
-    ]
+    runner: Required[PipelineStepRunnerName | PipelineStepRunnerNamePlain]
     script_id: Required[int]
     pipeline_id: Required[int]
     trigger_order: Required[int]

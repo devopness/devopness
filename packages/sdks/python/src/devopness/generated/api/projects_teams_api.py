@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Team, TeamProjectCreate, TeamProjectCreatePlain, TeamRelation
 from ..utils import parse_query_string
@@ -21,10 +19,7 @@ class ProjectsTeamsApiService(DevopnessBaseService):
     def add_project_team(
         self,
         project_id: int,
-        team_project_create: Union[
-            TeamProjectCreate,
-            TeamProjectCreatePlain,
-        ],
+        team_project_create: TeamProjectCreate | TeamProjectCreatePlain,
     ) -> DevopnessResponse[Team]:
         """
         Create a team to the given project
@@ -46,9 +41,9 @@ class ProjectsTeamsApiService(DevopnessBaseService):
     def list_project_teams(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[TeamRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamRelation]]:
         """
         Return a list of all teams belonging to a project
 
@@ -72,7 +67,7 @@ class ProjectsTeamsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[TeamRelation])
+        return DevopnessResponse(response, list[TeamRelation])
 
 
 class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -83,10 +78,7 @@ class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_project_team(
         self,
         project_id: int,
-        team_project_create: Union[
-            TeamProjectCreate,
-            TeamProjectCreatePlain,
-        ],
+        team_project_create: TeamProjectCreate | TeamProjectCreatePlain,
     ) -> DevopnessResponse[Team]:
         """
         Create a team to the given project
@@ -108,9 +100,9 @@ class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_project_teams(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[TeamRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamRelation]]:
         """
         Return a list of all teams belonging to a project
 
@@ -134,4 +126,4 @@ class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[TeamRelation])
+        return await DevopnessResponse.from_async(response, list[TeamRelation])

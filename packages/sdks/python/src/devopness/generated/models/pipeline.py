@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -67,8 +64,8 @@ class Pipeline(DevopnessBaseModel):
     max_parallel_actions: StrictInt = Field(
         description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline."
     )
-    trigger_when: Optional[PipelineTriggerWhen]
-    steps: List[Step]
+    trigger_when: PipelineTriggerWhen | None
+    steps: list[Step]
     created_by_user: UserRelation
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
@@ -87,36 +84,14 @@ class PipelinePlain(TypedDict, total=False):
     name: Required[str]
     environment_id: Required[int]
     project_id: Required[int]
-    resource_type: Required[
-        Union[
-            ResourceType,
-            ResourceTypePlain,
-        ]
-    ]
+    resource_type: Required[ResourceType | ResourceTypePlain]
     resource_type_human_readable: Required[str]
     resource_id: Required[int]
     operation: Required[str]
     operation_human_readable: Required[str]
     max_parallel_actions: Required[int]
-    trigger_when: Optional[
-        Union[
-            PipelineTriggerWhen,
-            PipelineTriggerWhenPlain,
-        ]
-    ]
-    steps: Required[
-        List[
-            Union[
-                Step,
-                StepPlain,
-            ]
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    trigger_when: PipelineTriggerWhen | PipelineTriggerWhenPlain | None
+    steps: Required[list[Step | StepPlain]]
+    created_by_user: Required[UserRelation | UserRelationPlain]
     created_at: Required[str]
     updated_at: Required[str]

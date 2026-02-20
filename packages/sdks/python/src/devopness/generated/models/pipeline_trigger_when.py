@@ -7,10 +7,7 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field
@@ -27,7 +24,7 @@ class PipelineTriggerWhen(DevopnessBaseModel):
         conditions (List[TriggerWhenCondition], optional): Conditions that must be met to trigger the pipeline
     """
 
-    conditions: Optional[List[TriggerWhenCondition]] = Field(
+    conditions: list[TriggerWhenCondition] | None = Field(
         default=None, description="Conditions that must be met to trigger the pipeline"
     )
 
@@ -37,11 +34,4 @@ class PipelineTriggerWhenPlain(TypedDict, total=False):
     Plain version of PipelineTriggerWhen.
     """
 
-    conditions: Optional[
-        List[
-            Union[
-                TriggerWhenCondition,
-                TriggerWhenConditionPlain,
-            ]
-        ]
-    ]
+    conditions: list[TriggerWhenCondition | TriggerWhenConditionPlain] | None

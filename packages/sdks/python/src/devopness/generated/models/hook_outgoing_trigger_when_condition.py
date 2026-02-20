@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
 )
@@ -29,7 +28,7 @@ class HookOutgoingTriggerWhenCondition(DevopnessBaseModel):
     path: StrictStr = Field(
         description="A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition."
     )
-    accepted_values: List[StrictStr] = Field(
+    accepted_values: list[StrictStr] = Field(
         description="List of accepted values for this condition."
     )
 
@@ -40,4 +39,4 @@ class HookOutgoingTriggerWhenConditionPlain(TypedDict, total=False):
     """
 
     path: Required[str]
-    accepted_values: Required[List[str]]
+    accepted_values: Required[list[str]]

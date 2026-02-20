@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
 )
 
@@ -24,7 +23,7 @@ class ApiErrorErrorsFieldNameInner(DevopnessBaseModel):
         field (str, optional): Field name and respective error message
     """
 
-    var_field: Optional[StrictStr] = Field(
+    var_field: StrictStr | None = Field(
         default=None,
         description="Field name and respective error message",
         alias="field",
@@ -36,4 +35,4 @@ class ApiErrorErrorsFieldNameInnerPlain(TypedDict, total=False):
     Plain version of ApiErrorErrorsFieldNameInner.
     """
 
-    field: Optional[str]
+    field: str | None

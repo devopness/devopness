@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Server,
@@ -29,10 +27,8 @@ class ServersApiService(DevopnessBaseService):
     def add_environment_server(
         self,
         environment_id: int,
-        server_environment_create: Union[
-            ServerEnvironmentCreate,
-            ServerEnvironmentCreatePlain,
-        ],
+        server_environment_create: ServerEnvironmentCreate
+        | ServerEnvironmentCreatePlain,
     ) -> DevopnessResponse[Server]:
         """
         Creates a server and link it to the given environment
@@ -76,7 +72,7 @@ class ServersApiService(DevopnessBaseService):
     def delete_server(
         self,
         server_id: int,
-        destroy_server_disks: Optional[bool] = None,
+        destroy_server_disks: bool | None = None,
     ) -> DevopnessResponse[None]:
         """
         Delete a given server
@@ -168,9 +164,9 @@ class ServersApiService(DevopnessBaseService):
     def list_environment_servers(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ServerRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ServerRelation]]:
         """
         Return a list of all servers belonging to an environment
 
@@ -194,7 +190,7 @@ class ServersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ServerRelation])
+        return DevopnessResponse(response, list[ServerRelation])
 
     def restart_server(
         self,
@@ -283,10 +279,7 @@ class ServersApiService(DevopnessBaseService):
     def update_server(
         self,
         server_id: int,
-        server_update: Union[
-            ServerUpdate,
-            ServerUpdatePlain,
-        ],
+        server_update: ServerUpdate | ServerUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing server
@@ -314,10 +307,8 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_server(
         self,
         environment_id: int,
-        server_environment_create: Union[
-            ServerEnvironmentCreate,
-            ServerEnvironmentCreatePlain,
-        ],
+        server_environment_create: ServerEnvironmentCreate
+        | ServerEnvironmentCreatePlain,
     ) -> DevopnessResponse[Server]:
         """
         Creates a server and link it to the given environment
@@ -361,7 +352,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     async def delete_server(
         self,
         server_id: int,
-        destroy_server_disks: Optional[bool] = None,
+        destroy_server_disks: bool | None = None,
     ) -> DevopnessResponse[None]:
         """
         Delete a given server
@@ -453,9 +444,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_servers(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ServerRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ServerRelation]]:
         """
         Return a list of all servers belonging to an environment
 
@@ -479,7 +470,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ServerRelation])
+        return await DevopnessResponse.from_async(response, list[ServerRelation])
 
     async def restart_server(
         self,
@@ -568,10 +559,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_server(
         self,
         server_id: int,
-        server_update: Union[
-            ServerUpdate,
-            ServerUpdatePlain,
-        ],
+        server_update: ServerUpdate | ServerUpdatePlain,
     ) -> DevopnessResponse[None]:
         """
         Update an existing server

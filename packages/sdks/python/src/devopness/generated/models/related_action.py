@@ -7,10 +7,8 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -39,14 +37,14 @@ class RelatedAction(DevopnessBaseModel):
 
     id: StrictInt = Field(description="The Id of the given action")
     status: ActionStatus
-    status_human_readable: Optional[StrictStr] = Field(
+    status_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the action status"
     )
     type: ActionType
     type_human_readable: StrictStr = Field(
         description="Human readable version of the action type"
     )
-    resource_name: Optional[StrictStr] = Field(
+    resource_name: StrictStr | None = Field(
         default=None, description="The name of the resource"
     )
     resource_type: ResourceType
@@ -64,26 +62,11 @@ class RelatedActionPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    status: Required[
-        Union[
-            ActionStatus,
-            ActionStatusPlain,
-        ]
-    ]
-    status_human_readable: Optional[str]
-    type: Required[
-        Union[
-            ActionType,
-            ActionTypePlain,
-        ]
-    ]
+    status: Required[ActionStatus | ActionStatusPlain]
+    status_human_readable: str | None
+    type: Required[ActionType | ActionTypePlain]
     type_human_readable: Required[str]
-    resource_name: Optional[str]
-    resource_type: Required[
-        Union[
-            ResourceType,
-            ResourceTypePlain,
-        ]
-    ]
+    resource_name: str | None
+    resource_type: Required[ResourceType | ResourceTypePlain]
     resource_type_human_readable: Required[str]
     url_web_permalink: Required[str]

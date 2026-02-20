@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -42,11 +41,6 @@ class StaticVirtualHostTypePlain(TypedDict, total=False):
     Plain version of StaticVirtualHostType.
     """
 
-    name: Required[
-        Union[
-            VirtualHostType,
-            VirtualHostTypePlain,
-        ]
-    ]
+    name: Required[VirtualHostType | VirtualHostTypePlain]
     name_human_readable: Required[str]
     hint: Required[str]

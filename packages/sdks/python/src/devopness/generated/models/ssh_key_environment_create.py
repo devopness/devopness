@@ -7,11 +7,8 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -30,7 +27,7 @@ class SshKeyEnvironmentCreate(DevopnessBaseModel):
         public_key (str): The public key of the ssh key.
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+    linked_resources: list[ResourceToBeLinked] | None = Field(
         default=None, description="The resources to be linked with this resource"
     )
     name: StrictStr = Field(
@@ -44,13 +41,6 @@ class SshKeyEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of SshKeyEnvironmentCreate.
     """
 
-    linked_resources: Optional[
-        List[
-            Union[
-                ResourceToBeLinked,
-                ResourceToBeLinkedPlain,
-            ]
-        ]
-    ]
+    linked_resources: list[ResourceToBeLinked | ResourceToBeLinkedPlain] | None
     name: Required[str]
     public_key: Required[str]

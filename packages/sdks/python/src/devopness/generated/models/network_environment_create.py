@@ -9,7 +9,6 @@ Note:
 from typing import (
     Required,
     TypedDict,
-    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -41,10 +40,5 @@ class NetworkEnvironmentCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    provision_input: Required[
-        Union[
-            NetworkProvisionInput,
-            NetworkProvisionInputPlain,
-        ]
-    ]
+    provision_input: Required[NetworkProvisionInput | NetworkProvisionInputPlain]
     credential_id: Required[int]
