@@ -126,34 +126,9 @@ Once connected and authenticated, you can use natural language to interact with 
 
 ## Troubleshooting
 
-#### Server shows "needs authentication" status
-
-Run the `/mcp` command, select the Devopness server, and choose **Authenticate** to complete the OAuth flow.
-
-#### OAuth callback errors or timeout
-
-- Verify you can access `https://mcp.devopness.com` from your browser
-- Check if your firewall is blocking the OAuth callback on localhost
-- Try specifying a different port: `claude mcp add --transport http --callback-port 8081 devopness https://mcp.devopness.com/mcp/`
-- Use the **Re-authenticate** option in the `/mcp` menu
-
-#### API Token authentication errors
-
-- Ensure you're using the complete token and include the `Bearer` prefix in the header
-- Check if your Personal Access Token is still valid in your Devopness account settings
-- Double-check that you copied the token correctly without extra spaces or characters
-
-#### Tools not appearing
-
-- Restart Claude Code: Exit completely and run `claude` again
-- Verify authentication: Run `/mcp` and confirm the server shows `✔ authenticated`
-- Check connection status: Ensure the server shows `✔ connected`
-- Re-authenticate: If using OAuth, try the **Re-authenticate** option
-- Remove and re-add the server via `/mcp` if necessary
-
-#### Claude Code responds without using Devopness data
-
-- Ensure the MCP server status is `✔ connected` and `✔ authenticated`
-- Be more specific in your prompts (e.g., "List my Devopness projects" instead of "What projects do I have?")
-- Verify you have actual resources in your Devopness account
+- **Server shows "needs authentication" status:** Run the `/mcp` command, select the Devopness server, and choose **Authenticate** to complete the OAuth flow.
+- **OAuth callback errors or timeout:** Verify you can access `https://mcp.devopness.com` from your browser, check if your firewall is blocking the OAuth callback on localhost, or try specifying a different port with `--callback-port 8081`. Use the **Re-authenticate** option in the `/mcp` menu if needed.
+- **API Token authentication errors:** Ensure you're using the complete token with the `Bearer` prefix in the header. Check if your Personal Access Token is still valid in your Devopness account settings.
+- **Tools not appearing:** Restart Claude Code (`claude` command), verify authentication status shows `✔ authenticated`, and ensure connection shows `✔ connected`. Try the **Re-authenticate** option or remove and re-add the server via `/mcp` if necessary.
+- **Claude Code responds without using Devopness data:** Ensure the MCP server status is `✔ connected` and `✔ authenticated`. Be more specific in your prompts (e.g., "List my Devopness projects" instead of "What projects do I have?"). Verify you have actual resources in your Devopness account.
 
