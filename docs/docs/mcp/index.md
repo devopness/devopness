@@ -9,6 +9,7 @@ The Devopness MCP (Model Context Protocol) server allows AI assistants to manage
 Choose your editor or AI tool below for step-by-step installation instructions:
 
 - [AntiGravity](/docs/mcp/antigravity)
+- [Claude Code](/docs/mcp/claude-code)
 - [Gemini CLI](/docs/mcp/gemini-cli)
 - [JetBrains AI](/docs/mcp/jetbrains)
 - [Trae](/docs/mcp/trae)
