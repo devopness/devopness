@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -48,16 +46,16 @@ class Environment(DevopnessBaseModel):
         description="The human readable version of the type"
     )
     name: StrictStr = Field(description="Environment's name")
-    description: Optional[StrictStr] = Field(description="Environment's description")
+    description: StrictStr | None = Field(description="Environment's description")
     is_archived: StrictBool = Field(
         description="Indicates whether the record was archived"
     )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+    resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
-    teams: List[Optional[TeamRelation]]
+    teams: list[TeamRelation | None]
     created_by_user: UserRelation
-    current_user_permissions: List[StrictStr] = Field(
+    current_user_permissions: list[StrictStr] = Field(
         description="The list of permissions granted for this role"
     )
     created_at: StrictStr = Field(
@@ -82,18 +80,11 @@ class EnvironmentPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    description: Optional[str]
+    description: str | None
     is_archived: Required[bool]
-    resource_summary: Optional[
-        List[
-            Union[
-                ResourceSummaryItem,
-                ResourceSummaryItemPlain,
-            ]
-        ]
-    ]
+    resource_summary: list[Union[ResourceSummaryItem, ResourceSummaryItemPlain]] | None
     teams: Required[
-        List[
+        list[
             Union[
                 TeamRelation,
                 TeamRelationPlain,
@@ -106,6 +97,6 @@ class EnvironmentPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    current_user_permissions: Required[List[str]]
+    current_user_permissions: Required[list[str]]
     created_at: Required[str]
     updated_at: Required[str]

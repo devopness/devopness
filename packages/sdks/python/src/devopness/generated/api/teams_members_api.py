@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Member, MemberRelation
 from ..utils import parse_query_string
@@ -65,9 +63,9 @@ class TeamsMembersApiService(DevopnessBaseService):
     def list_team_members(
         self,
         team_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[MemberRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[MemberRelation]]:
         """
         Return a list of all members belonging to a team
 
@@ -91,7 +89,7 @@ class TeamsMembersApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[MemberRelation])
+        return DevopnessResponse(response, list[MemberRelation])
 
 
 class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
@@ -146,9 +144,9 @@ class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_team_members(
         self,
         team_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[MemberRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[MemberRelation]]:
         """
         Return a list of all members belonging to a team
 
@@ -172,4 +170,4 @@ class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[MemberRelation])
+        return await DevopnessResponse.from_async(response, list[MemberRelation])

@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -39,14 +38,14 @@ class RelatedAction(DevopnessBaseModel):
 
     id: StrictInt = Field(description="The Id of the given action")
     status: ActionStatus
-    status_human_readable: Optional[StrictStr] = Field(
+    status_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the action status"
     )
     type: ActionType
     type_human_readable: StrictStr = Field(
         description="Human readable version of the action type"
     )
-    resource_name: Optional[StrictStr] = Field(
+    resource_name: StrictStr | None = Field(
         default=None, description="The name of the resource"
     )
     resource_type: ResourceType
@@ -70,7 +69,7 @@ class RelatedActionPlain(TypedDict, total=False):
             ActionStatusPlain,
         ]
     ]
-    status_human_readable: Optional[str]
+    status_human_readable: str | None
     type: Required[
         Union[
             ActionType,
@@ -78,7 +77,7 @@ class RelatedActionPlain(TypedDict, total=False):
         ]
     ]
     type_human_readable: Required[str]
-    resource_name: Optional[str]
+    resource_name: str | None
     resource_type: Required[
         Union[
             ResourceType,

@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -28,7 +27,7 @@ class CronJobOptions(DevopnessBaseModel):
         frequencies (List[StaticCronJobFrequency]):
     """
 
-    frequencies: List[StaticCronJobFrequency]
+    frequencies: list[StaticCronJobFrequency]
 
 
 class CronJobOptionsPlain(TypedDict, total=False):
@@ -37,7 +36,7 @@ class CronJobOptionsPlain(TypedDict, total=False):
     """
 
     frequencies: Required[
-        List[
+        list[
             Union[
                 StaticCronJobFrequency,
                 StaticCronJobFrequencyPlain,

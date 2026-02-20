@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -29,10 +28,10 @@ class VirtualHostOptions(DevopnessBaseModel):
         virtual_host_types (List[StaticVirtualHostType]):
     """
 
-    variable_targets: List[VariableTargets] = Field(
+    variable_targets: list[VariableTargets] = Field(
         description="The list of VariableTarget"
     )
-    virtual_host_types: List[StaticVirtualHostType]
+    virtual_host_types: list[StaticVirtualHostType]
 
 
 class VirtualHostOptionsPlain(TypedDict, total=False):
@@ -41,7 +40,7 @@ class VirtualHostOptionsPlain(TypedDict, total=False):
     """
 
     variable_targets: Required[
-        List[
+        list[
             Union[
                 VariableTargets,
                 VariableTargetsPlain,
@@ -49,7 +48,7 @@ class VirtualHostOptionsPlain(TypedDict, total=False):
         ]
     ]
     virtual_host_types: Required[
-        List[
+        list[
             Union[
                 StaticVirtualHostType,
                 StaticVirtualHostTypePlain,

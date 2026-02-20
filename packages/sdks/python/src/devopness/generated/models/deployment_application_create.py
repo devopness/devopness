@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -33,22 +31,22 @@ class DeploymentApplicationCreate(DevopnessBaseModel):
         servers (List[int], optional): List of valid resource IDs
     """
 
-    environment: Optional[StrictStr] = Field(
+    environment: StrictStr | None = Field(
         default=None, description="The environment type of the deployment."
     )
     type: DeploymentType
-    source_type: Optional[StrictStr] = Field(
+    source_type: StrictStr | None = Field(
         default=None,
         description="The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. This field is required when <code>source_ref</code> is present.",
     )
-    source_ref: Optional[StrictStr] = Field(
+    source_ref: StrictStr | None = Field(
         default=None,
         description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. This field is required when <code>source_type</code> is present. Must not be greater than 200 characters.",
     )
-    pipeline_id: Optional[StrictInt] = Field(
+    pipeline_id: StrictInt | None = Field(
         default=None, description="The pipeline's ID to use for deployment."
     )
-    servers: Optional[List[StrictInt]] = Field(
+    servers: list[StrictInt] | None = Field(
         default=None, description="List of valid resource IDs"
     )
 
@@ -58,14 +56,14 @@ class DeploymentApplicationCreatePlain(TypedDict, total=False):
     Plain version of DeploymentApplicationCreate.
     """
 
-    environment: Optional[str]
+    environment: str | None
     type: Required[
         Union[
             DeploymentType,
             DeploymentTypePlain,
         ]
     ]
-    source_type: Optional[str]
-    source_ref: Optional[str]
-    pipeline_id: Optional[int]
-    servers: Optional[List[int]]
+    source_type: str | None
+    source_ref: str | None
+    pipeline_id: int | None
+    servers: list[int] | None

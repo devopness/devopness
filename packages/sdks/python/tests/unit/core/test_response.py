@@ -1,7 +1,7 @@
 import json
 import math
 import unittest
-from typing import Any, Optional, Self
+from typing import Any, Self
 from unittest.mock import AsyncMock, Mock, patch
 
 import httpx
@@ -23,7 +23,7 @@ class DummyModel(DevopnessBaseModel):
 def build_response(
     content: Any = b"",
     status_code: int = 200,
-    headers: Optional[dict[str, Any]] = None,
+    headers: dict[str, Any] | None = None,
 ) -> Mock:
     response = Mock(spec=httpx.Response)
 
@@ -40,7 +40,7 @@ def build_response(
 def build_async_response(
     content: Any = b"",
     status_code: int = 200,
-    headers: Optional[dict[str, Any]] = None,
+    headers: dict[str, Any] | None = None,
 ) -> Mock:
     response = Mock(spec=httpx.Response)
     response.aread = AsyncMock()

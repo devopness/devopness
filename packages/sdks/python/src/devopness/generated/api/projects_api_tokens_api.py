@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -76,9 +76,9 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
     def list_project_api_tokens(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApiTokenRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ApiTokenRelation]]:
         """
         List the API tokens of specific project.
 
@@ -102,7 +102,7 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ApiTokenRelation])
+        return DevopnessResponse(response, list[ApiTokenRelation])
 
     def revoke_project_api_token(
         self,
@@ -208,9 +208,9 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_project_api_tokens(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApiTokenRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ApiTokenRelation]]:
         """
         List the API tokens of specific project.
 
@@ -234,7 +234,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ApiTokenRelation])
+        return await DevopnessResponse.from_async(response, list[ApiTokenRelation])
 
     async def revoke_project_api_token(
         self,

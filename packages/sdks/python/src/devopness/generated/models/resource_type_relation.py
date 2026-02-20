@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -41,13 +40,13 @@ class ResourceTypeRelation(DevopnessBaseModel):
     resource_type_human_readable_plural: StrictStr = Field(
         description="Human readable version of the resource type, in plural form"
     )
-    supported_operations: List[ResourceOperation] = Field(
+    supported_operations: list[ResourceOperation] = Field(
         description="A list of resource operations"
     )
-    can_be_child_of: List[ResourceTypeRelated] = Field(
+    can_be_child_of: list[ResourceTypeRelated] = Field(
         description="A list of related resources"
     )
-    can_be_parent_of: List[ResourceTypeRelated] = Field(
+    can_be_parent_of: list[ResourceTypeRelated] = Field(
         description="A list of related resources"
     )
 
@@ -66,7 +65,7 @@ class ResourceTypeRelationPlain(TypedDict, total=False):
     resource_type_human_readable: Required[str]
     resource_type_human_readable_plural: Required[str]
     supported_operations: Required[
-        List[
+        list[
             Union[
                 ResourceOperation,
                 ResourceOperationPlain,
@@ -74,7 +73,7 @@ class ResourceTypeRelationPlain(TypedDict, total=False):
         ]
     ]
     can_be_child_of: Required[
-        List[
+        list[
             Union[
                 ResourceTypeRelated,
                 ResourceTypeRelatedPlain,
@@ -82,7 +81,7 @@ class ResourceTypeRelationPlain(TypedDict, total=False):
         ]
     ]
     can_be_parent_of: Required[
-        List[
+        list[
             Union[
                 ResourceTypeRelated,
                 ResourceTypeRelatedPlain,

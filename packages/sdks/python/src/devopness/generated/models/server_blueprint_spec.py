@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
     Union,
 )
@@ -27,7 +25,7 @@ class ServerBlueprintSpec(DevopnessBaseModel):
         services (List[BlueprintService], optional): The service names and their respective versions for a blueprint.
     """
 
-    services: Optional[List[BlueprintService]] = Field(
+    services: list[BlueprintService] | None = Field(
         default=None,
         description="The service names and their respective versions for a blueprint.",
     )
@@ -38,11 +36,4 @@ class ServerBlueprintSpecPlain(TypedDict, total=False):
     Plain version of ServerBlueprintSpec.
     """
 
-    services: Optional[
-        List[
-            Union[
-                BlueprintService,
-                BlueprintServicePlain,
-            ]
-        ]
-    ]
+    services: list[Union[BlueprintService, BlueprintServicePlain]] | None

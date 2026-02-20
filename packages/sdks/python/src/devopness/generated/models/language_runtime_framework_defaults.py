@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -36,32 +35,32 @@ class LanguageRuntimeFrameworkDefaults(DevopnessBaseModel):
         build_command (str, optional, nullable): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
     """
 
-    default_branch: Optional[StrictStr] = Field(
+    default_branch: StrictStr | None = Field(
         default=None,
         description="The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
     )
-    engine_version: Optional[StrictStr] = Field(
+    engine_version: StrictStr | None = Field(
         default=None,
         description="The language runtime engine version to be used to execute this application code on the deployed servers",
     )
-    framework: Optional[StrictStr] = Field(
+    framework: StrictStr | None = Field(
         default=None,
         description="The base framework on top of which the application has been implemented - if any",
     )
-    root_directory: Optional[StrictStr] = Field(
+    root_directory: StrictStr | None = Field(
         default=None,
         description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
     )
-    deployments_keep: Optional[StrictInt] = Field(
+    deployments_keep: StrictInt | None = Field(
         default=None,
         description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
     )
-    commands: Optional[LanguageRuntimeFrameworkCommands] = None
-    install_dependencies_command: Optional[StrictStr] = Field(
+    commands: LanguageRuntimeFrameworkCommands | None = None
+    install_dependencies_command: StrictStr | None = Field(
         default=None,
         description="Indicates command that Devopness must execute to install application dependencies",
     )
-    build_command: Optional[StrictStr] = Field(
+    build_command: StrictStr | None = Field(
         default=None,
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
     )
@@ -72,16 +71,14 @@ class LanguageRuntimeFrameworkDefaultsPlain(TypedDict, total=False):
     Plain version of LanguageRuntimeFrameworkDefaults.
     """
 
-    default_branch: Optional[str]
-    engine_version: Optional[str]
-    framework: Optional[str]
-    root_directory: Optional[str]
-    deployments_keep: Optional[int]
-    commands: Optional[
-        Union[
-            LanguageRuntimeFrameworkCommands,
-            LanguageRuntimeFrameworkCommandsPlain,
-        ]
-    ]
-    install_dependencies_command: Optional[str]
-    build_command: Optional[str]
+    default_branch: str | None
+    engine_version: str | None
+    framework: str | None
+    root_directory: str | None
+    deployments_keep: int | None
+    commands: (
+        Union[LanguageRuntimeFrameworkCommands, LanguageRuntimeFrameworkCommandsPlain]
+        | None
+    )
+    install_dependencies_command: str | None
+    build_command: str | None

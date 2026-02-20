@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -46,17 +45,17 @@ class VariableRelation(DevopnessBaseModel):
         description="The unique key used to identify the variable on the target"
     )
     type: VariableType
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         description="A text describing the variable, provided by the end user"
     )
-    value: Optional[StrictStr] = Field(
+    value: StrictStr | None = Field(
         description="The value to be assigned to this variable when deployed to its target"
     )
     target: VariableTarget
     target_human_readable: StrictStr = Field(
         description="Human readable version of target"
     )
-    resource_id: Optional[StrictInt] = Field(
+    resource_id: StrictInt | None = Field(
         description="The ID of the resource this variable is linked to"
     )
     resource_type: StrictStr = Field(
@@ -65,7 +64,7 @@ class VariableRelation(DevopnessBaseModel):
     hidden: StrictBool = Field(
         description="Indicates if the variable value should be visible or not in the deployment logs"
     )
-    created_by_user: Optional[UserRelation] = None
+    created_by_user: UserRelation | None = None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -87,8 +86,8 @@ class VariableRelationPlain(TypedDict, total=False):
             VariableTypePlain,
         ]
     ]
-    description: Optional[str]
-    value: Optional[str]
+    description: str | None
+    value: str | None
     target: Required[
         Union[
             VariableTarget,
@@ -96,14 +95,9 @@ class VariableRelationPlain(TypedDict, total=False):
         ]
     ]
     target_human_readable: Required[str]
-    resource_id: Optional[int]
+    resource_id: int | None
     resource_type: Required[str]
     hidden: Required[bool]
-    created_by_user: Optional[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

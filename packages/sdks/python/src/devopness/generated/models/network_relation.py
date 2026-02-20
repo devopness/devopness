@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -58,14 +57,14 @@ class NetworkRelation(DevopnessBaseModel):
     provider_name_human_readable: StrictStr = Field(
         description="The human readable version of the provider's name"
     )
-    credential: Optional[Credential] = None
+    credential: Credential | None = None
     name: StrictStr = Field(description="The networks's name")
     provision_input: NetworkProvisionInput
-    last_action: Optional[ActionRelationShallow] = None
-    created_at: Optional[StrictStr] = Field(
+    last_action: ActionRelationShallow | None = None
+    created_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -82,12 +81,7 @@ class NetworkRelationPlain(TypedDict, total=False):
     is_auto_generated: Required[bool]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    credential: Optional[
-        Union[
-            Credential,
-            CredentialPlain,
-        ]
-    ]
+    credential: Union[Credential, CredentialPlain] | None
     name: Required[str]
     provision_input: Required[
         Union[
@@ -95,11 +89,6 @@ class NetworkRelationPlain(TypedDict, total=False):
             NetworkProvisionInputPlain,
         ]
     ]
-    last_action: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
-        ]
-    ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
+    created_at: str | None
+    updated_at: str | None

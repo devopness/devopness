@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -68,10 +66,10 @@ class Action(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="The Id of the given action")
-    pipeline_id: Optional[StrictInt] = Field(
+    pipeline_id: StrictInt | None = Field(
         description="The ID of the pipeline executed by this action"
     )
-    retry_of: Optional[StrictInt] = Field(
+    retry_of: StrictInt | None = Field(
         description="The Id of the parent action that this action is a retry of"
     )
     status: ActionStatus
@@ -89,25 +87,23 @@ class Action(DevopnessBaseModel):
     url_web_permalink: StrictStr = Field(
         description="The permalink URL to the action details on Devopness web app"
     )
-    action_data: Optional[ActionData]
+    action_data: ActionData | None
     triggered_from: ActionTriggeredFrom
-    parent: Optional[RelatedAction]
-    children: List[Optional[RelatedAction]] = Field(
-        description="List of related actions"
-    )
-    triggered_by_user: Optional[UserRelation] = None
+    parent: RelatedAction | None
+    children: list[RelatedAction | None] = Field(description="List of related actions")
+    triggered_by_user: UserRelation | None = None
     resource: ActionResource
     summary: ActionSummary
-    environment: Optional[EnvironmentRelation]
-    project: Optional[ProjectRelation]
-    targets: Optional[List[ActionTarget]] = Field(
+    environment: EnvironmentRelation | None
+    project: ProjectRelation | None
+    targets: list[ActionTarget] | None = Field(
         default=None, description="List of actions dispatched to cloud resource targets"
     )
-    hook_requests: Optional[ActionHookRequest] = None
-    started_at: Optional[StrictStr] = Field(
+    hook_requests: ActionHookRequest | None = None
+    started_at: StrictStr | None = Field(
         description="The date and time when the action started execution (i.e., left the `pending/queued` status)"
     )
-    completed_at: Optional[StrictStr] = Field(
+    completed_at: StrictStr | None = Field(
         description="The date and time when the action has finished execution"
     )
     created_at: StrictStr = Field(
@@ -124,8 +120,8 @@ class ActionPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    pipeline_id: Optional[int]
-    retry_of: Optional[int]
+    pipeline_id: int | None
+    retry_of: int | None
     status: Required[
         Union[
             ActionStatus,
@@ -148,38 +144,23 @@ class ActionPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Optional[
-        Union[
-            ActionData,
-            ActionDataPlain,
-        ]
-    ]
+    action_data: Union[ActionData, ActionDataPlain] | None
     triggered_from: Required[
         Union[
             ActionTriggeredFrom,
             ActionTriggeredFromPlain,
         ]
     ]
-    parent: Optional[
-        Union[
-            RelatedAction,
-            RelatedActionPlain,
-        ]
-    ]
+    parent: Union[RelatedAction, RelatedActionPlain] | None
     children: Required[
-        List[
+        list[
             Union[
                 RelatedAction,
                 RelatedActionPlain,
             ]
         ]
     ]
-    triggered_by_user: Optional[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    triggered_by_user: Union[UserRelation, UserRelationPlain] | None
     resource: Required[
         Union[
             ActionResource,
@@ -192,33 +173,11 @@ class ActionPlain(TypedDict, total=False):
             ActionSummaryPlain,
         ]
     ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    targets: Optional[
-        List[
-            Union[
-                ActionTarget,
-                ActionTargetPlain,
-            ]
-        ]
-    ]
-    hook_requests: Optional[
-        Union[
-            ActionHookRequest,
-            ActionHookRequestPlain,
-        ]
-    ]
-    started_at: Optional[str]
-    completed_at: Optional[str]
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    targets: list[Union[ActionTarget, ActionTargetPlain]] | None
+    hook_requests: Union[ActionHookRequest, ActionHookRequestPlain] | None
+    started_at: str | None
+    completed_at: str | None
     created_at: Required[str]
     updated_at: Required[str]

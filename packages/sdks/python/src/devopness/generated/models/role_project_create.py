@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
 )
@@ -31,11 +29,11 @@ class RoleProjectCreate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The role's name. Must be at least 2 characters. Must not be greater than 60 characters."
     )
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         default=None,
         description="Description of this role. Must not be greater than 255 characters.",
     )
-    permissions: List[StrictStr] = Field(
+    permissions: list[StrictStr] = Field(
         description="The list of permissions granted for this role"
     )
 
@@ -46,5 +44,5 @@ class RoleProjectCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    description: Optional[str]
-    permissions: Required[List[str]]
+    description: str | None
+    permissions: Required[list[str]]

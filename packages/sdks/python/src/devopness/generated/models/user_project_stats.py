@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -26,11 +25,11 @@ class UserProjectStats(DevopnessBaseModel):
         member_of (float, optional): Total number of projects that user has access to, as team member.
     """
 
-    owner_of: Optional[Union[StrictFloat, StrictInt]] = Field(
+    owner_of: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total number of projects that user has access to, as owner.",
     )
-    member_of: Optional[Union[StrictFloat, StrictInt]] = Field(
+    member_of: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total number of projects that user has access to, as team member.",
     )
@@ -41,5 +40,5 @@ class UserProjectStatsPlain(TypedDict, total=False):
     Plain version of UserProjectStats.
     """
 
-    owner_of: Optional[float]
-    member_of: Optional[float]
+    owner_of: float | None
+    member_of: float | None

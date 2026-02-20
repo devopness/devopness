@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import MembershipRelation
 from ..utils import parse_query_string
@@ -21,9 +19,9 @@ class TeamsMembershipsApiService(DevopnessBaseService):
     def list_team_memberships(
         self,
         team_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[MembershipRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[MembershipRelation]]:
         """
         Return a list of all memberships of a team
 
@@ -47,7 +45,7 @@ class TeamsMembershipsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[MembershipRelation])
+        return DevopnessResponse(response, list[MembershipRelation])
 
 
 class TeamsMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -58,9 +56,9 @@ class TeamsMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_team_memberships(
         self,
         team_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[MembershipRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[MembershipRelation]]:
         """
         Return a list of all memberships of a team
 
@@ -84,4 +82,4 @@ class TeamsMembershipsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[MembershipRelation])
+        return await DevopnessResponse.from_async(response, list[MembershipRelation])

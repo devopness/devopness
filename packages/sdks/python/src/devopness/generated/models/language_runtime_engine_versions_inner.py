@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
 )
 
@@ -24,7 +23,7 @@ class LanguageRuntimeEngineVersionsInner(DevopnessBaseModel):
         version (str, optional):
     """
 
-    version: Optional[StrictStr] = None
+    version: StrictStr | None = None
 
 
 class LanguageRuntimeEngineVersionsInnerPlain(TypedDict, total=False):
@@ -32,4 +31,4 @@ class LanguageRuntimeEngineVersionsInnerPlain(TypedDict, total=False):
     Plain version of LanguageRuntimeEngineVersionsInner.
     """
 
-    version: Optional[str]
+    version: str | None
