@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -58,10 +59,20 @@ class CredentialPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    provider: Required[ProviderRelation | ProviderRelationPlain]
+    provider: Required[
+        Union[
+            ProviderRelation,
+            ProviderRelationPlain,
+        ]
+    ]
     provider_type: Required[str]
     provider_type_human_readable: Required[str]
     active: Required[bool]
-    created_by_user: Required[UserRelation | UserRelationPlain]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Network,
@@ -26,8 +28,10 @@ class NetworksApiService(DevopnessBaseService):
     def add_environment_network(
         self,
         environment_id: int,
-        network_environment_create: NetworkEnvironmentCreate
-        | NetworkEnvironmentCreatePlain,
+        network_environment_create: Union[
+            NetworkEnvironmentCreate,
+            NetworkEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Network]:
         """
         Create a new network for the given environment
@@ -149,7 +153,10 @@ class NetworksApiService(DevopnessBaseService):
     def update_network(
         self,
         network_id: int,
-        network_update: NetworkUpdate | NetworkUpdatePlain,
+        network_update: Union[
+            NetworkUpdate,
+            NetworkUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network
@@ -177,8 +184,10 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_network(
         self,
         environment_id: int,
-        network_environment_create: NetworkEnvironmentCreate
-        | NetworkEnvironmentCreatePlain,
+        network_environment_create: Union[
+            NetworkEnvironmentCreate,
+            NetworkEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Network]:
         """
         Create a new network for the given environment
@@ -300,7 +309,10 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_network(
         self,
         network_id: int,
-        network_update: NetworkUpdate | NetworkUpdatePlain,
+        network_update: Union[
+            NetworkUpdate,
+            NetworkUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network

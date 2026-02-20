@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -72,6 +73,11 @@ class StepPipelineUpdatePlain(TypedDict, total=False):
     description: str | None
     type: str | None
     command: Required[str]
-    runner: Required[PipelineStepRunnerName | PipelineStepRunnerNamePlain]
+    runner: Required[
+        Union[
+            PipelineStepRunnerName,
+            PipelineStepRunnerNamePlain,
+        ]
+    ]
     run_as_user: str | None
     trigger_after: int | None

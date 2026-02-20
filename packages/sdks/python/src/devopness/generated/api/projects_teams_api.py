@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Team, TeamProjectCreate, TeamProjectCreatePlain, TeamRelation
 from ..utils import parse_query_string
@@ -19,7 +21,10 @@ class ProjectsTeamsApiService(DevopnessBaseService):
     def add_project_team(
         self,
         project_id: int,
-        team_project_create: TeamProjectCreate | TeamProjectCreatePlain,
+        team_project_create: Union[
+            TeamProjectCreate,
+            TeamProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[Team]:
         """
         Create a team to the given project
@@ -78,7 +83,10 @@ class ProjectsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_project_team(
         self,
         project_id: int,
-        team_project_create: TeamProjectCreate | TeamProjectCreatePlain,
+        team_project_create: Union[
+            TeamProjectCreate,
+            TeamProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[Team]:
         """
         Create a team to the given project

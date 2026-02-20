@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Action,
@@ -24,7 +26,10 @@ class PipelinesActionsApiService(DevopnessBaseService):
     def add_pipeline_action(
         self,
         pipeline_id: int,
-        action_pipeline_create: ActionPipelineCreate | ActionPipelineCreatePlain,
+        action_pipeline_create: Union[
+            ActionPipelineCreate,
+            ActionPipelineCreatePlain,
+        ],
     ) -> DevopnessResponse[Action]:
         """
         Create an action to run a Pipeline
@@ -83,7 +88,10 @@ class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_pipeline_action(
         self,
         pipeline_id: int,
-        action_pipeline_create: ActionPipelineCreate | ActionPipelineCreatePlain,
+        action_pipeline_create: Union[
+            ActionPipelineCreate,
+            ActionPipelineCreatePlain,
+        ],
     ) -> DevopnessResponse[Action]:
         """
         Create an action to run a Pipeline

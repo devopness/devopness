@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -53,4 +54,4 @@ class CloudServiceSettingsHetznerHcloudPlain(TypedDict, total=False):
     region: Required[str]
     region_human_readable: str | None
     storage_size: Required[int]
-    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None
+    os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None

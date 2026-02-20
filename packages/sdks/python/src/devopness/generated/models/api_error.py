@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -36,4 +37,4 @@ class ApiErrorPlain(TypedDict, total=False):
     """
 
     message: Required[str]
-    errors: ApiErrorErrors | ApiErrorErrorsPlain | None
+    errors: Union[ApiErrorErrors, ApiErrorErrorsPlain] | None

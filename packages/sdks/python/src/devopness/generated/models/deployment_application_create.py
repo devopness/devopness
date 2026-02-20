@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -56,7 +57,12 @@ class DeploymentApplicationCreatePlain(TypedDict, total=False):
     """
 
     environment: str | None
-    type: Required[DeploymentType | DeploymentTypePlain]
+    type: Required[
+        Union[
+            DeploymentType,
+            DeploymentTypePlain,
+        ]
+    ]
     source_type: str | None
     source_ref: str | None
     pipeline_id: int | None

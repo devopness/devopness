@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -71,13 +72,26 @@ class SslCertificateRelationPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    type: Required[SslCertificateType | SslCertificateTypePlain]
-    issuer: Required[SslCertificateIssuer | SslCertificateIssuerPlain]
+    type: Required[
+        Union[
+            SslCertificateType,
+            SslCertificateTypePlain,
+        ]
+    ]
+    issuer: Required[
+        Union[
+            SslCertificateIssuer,
+            SslCertificateIssuerPlain,
+        ]
+    ]
     validation_level: Required[
-        SslCertificateValidationLevel | SslCertificateValidationLevelPlain
+        Union[
+            SslCertificateValidationLevel,
+            SslCertificateValidationLevelPlain,
+        ]
     ]
     active: Required[bool]
-    last_action: ActionRelationShallow | ActionRelationShallowPlain | None
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
     expires_at: str | None
     last_renewed_at: str | None
     created_at: str | None

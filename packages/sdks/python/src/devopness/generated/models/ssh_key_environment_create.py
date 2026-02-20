@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -41,6 +42,6 @@ class SshKeyEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of SshKeyEnvironmentCreate.
     """
 
-    linked_resources: list[ResourceToBeLinked | ResourceToBeLinkedPlain] | None
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     name: Required[str]
     public_key: Required[str]

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -44,6 +45,11 @@ class BlueprintServicePlain(TypedDict, total=False):
     """
 
     auto_start: bool | None
-    initial_state: ServiceInitialState | ServiceInitialStatePlain | None
-    type: Required[ServiceType | ServiceTypePlain]
+    initial_state: Union[ServiceInitialState, ServiceInitialStatePlain] | None
+    type: Required[
+        Union[
+            ServiceType,
+            ServiceTypePlain,
+        ]
+    ]
     version: Required[str]

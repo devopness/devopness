@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -34,4 +35,4 @@ class StaticBillingInfoPlain(TypedDict, total=False):
     Plain version of StaticBillingInfo.
     """
 
-    subscription_plans: list[SubscriptionPlan | SubscriptionPlanPlain] | None
+    subscription_plans: list[Union[SubscriptionPlan, SubscriptionPlanPlain]] | None

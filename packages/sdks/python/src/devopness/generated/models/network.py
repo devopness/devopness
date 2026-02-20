@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -70,11 +71,21 @@ class NetworkPlain(TypedDict, total=False):
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
     name: Required[str]
-    provision_input: Required[NetworkProvisionInput | NetworkProvisionInputPlain]
-    created_by_user: Required[UserRelation | UserRelationPlain]
-    project: ProjectRelation | ProjectRelationPlain | None
-    environment: EnvironmentRelation | EnvironmentRelationPlain | None
-    credential: CredentialRelation | CredentialRelationPlain | None
-    last_action: ActionRelation | ActionRelationPlain | None
+    provision_input: Required[
+        Union[
+            NetworkProvisionInput,
+            NetworkProvisionInputPlain,
+        ]
+    ]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

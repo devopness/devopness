@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -86,7 +87,12 @@ class PipelineRelationPlain(TypedDict, total=False):
     operation: Required[str]
     operation_human_readable: Required[str]
     max_parallel_actions: Required[int]
-    trigger_when: PipelineTriggerWhen | PipelineTriggerWhenPlain | None
-    created_by_user: Required[UserRelation | UserRelationPlain]
+    trigger_when: Union[PipelineTriggerWhen, PipelineTriggerWhenPlain] | None
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

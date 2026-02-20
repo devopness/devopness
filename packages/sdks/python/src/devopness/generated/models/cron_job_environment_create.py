@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -56,7 +57,7 @@ class CronJobEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of CronJobEnvironmentCreate.
     """
 
-    linked_resources: list[ResourceToBeLinked | ResourceToBeLinkedPlain] | None
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     name: Required[str]
     command: Required[str]
     pattern: Required[str]

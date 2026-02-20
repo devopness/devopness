@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -38,5 +39,5 @@ class CloudProviderSettingsListPlain(TypedDict, total=False):
     """
 
     credential: (
-        list[CloudProviderInputSettings | CloudProviderInputSettingsPlain] | None
+        list[Union[CloudProviderInputSettings, CloudProviderInputSettingsPlain]] | None
     )

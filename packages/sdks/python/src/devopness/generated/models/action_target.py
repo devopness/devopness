@@ -11,6 +11,7 @@ from typing import (
     Annotated,
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -99,14 +100,24 @@ class ActionTargetPlain(TypedDict, total=False):
     resource_type: Required[str]
     resource_type_human_readable: str | None
     resource_id: Required[int]
-    status: Required[ActionStatus | ActionStatusPlain]
+    status: Required[
+        Union[
+            ActionStatus,
+            ActionStatusPlain,
+        ]
+    ]
     status_human_readable: str | None
-    status_reason_code: Required[ActionStatusReasonCode | ActionStatusReasonCodePlain]
+    status_reason_code: Required[
+        Union[
+            ActionStatusReasonCode,
+            ActionStatusReasonCodePlain,
+        ]
+    ]
     status_reason_human_readable: str | None
     total_steps: int | None
-    current_step: ActionStep | ActionStepPlain | None
-    steps: list[ActionStep | ActionStepPlain] | None
-    resource_data: ActionTargetData | ActionTargetDataPlain | None
+    current_step: Union[ActionStep, ActionStepPlain] | None
+    steps: list[Union[ActionStep, ActionStepPlain]] | None
+    resource_data: Union[ActionTargetData, ActionTargetDataPlain] | None
     started_at: datetime | None
     completed_at: datetime | None
     created_at: Required[datetime]

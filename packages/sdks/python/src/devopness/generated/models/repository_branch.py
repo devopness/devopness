@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -41,4 +42,9 @@ class RepositoryBranchPlain(TypedDict, total=False):
 
     name: Required[str]
     repo_full_name: Required[str]
-    commit: Required[Commit | CommitPlain]
+    commit: Required[
+        Union[
+            Commit,
+            CommitPlain,
+        ]
+    ]

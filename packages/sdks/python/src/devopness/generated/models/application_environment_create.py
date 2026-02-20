@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -86,7 +87,7 @@ class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of ApplicationEnvironmentCreate.
     """
 
-    linked_resources: list[ResourceToBeLinked | ResourceToBeLinkedPlain] | None
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     name: Required[str]
     build_command: str | None
     engine_version: Required[str]
@@ -98,4 +99,4 @@ class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
     default_branch: Required[str]
     deployments_keep: int | None
     install_dependencies_command: str | None
-    environments: list[EnvironmentLink | EnvironmentLinkPlain] | None
+    environments: list[Union[EnvironmentLink, EnvironmentLinkPlain]] | None

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -71,14 +72,31 @@ class EnvironmentPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    type: Required[EnvironmentType | EnvironmentTypePlain]
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
+    ]
     type_human_readable: Required[str]
     name: Required[str]
     description: str | None
     is_archived: Required[bool]
-    resource_summary: list[ResourceSummaryItem | ResourceSummaryItemPlain] | None
-    teams: Required[list[TeamRelation | TeamRelationPlain]]
-    created_by_user: Required[UserRelation | UserRelationPlain]
+    resource_summary: list[Union[ResourceSummaryItem, ResourceSummaryItemPlain]] | None
+    teams: Required[
+        list[
+            Union[
+                TeamRelation,
+                TeamRelationPlain,
+            ]
+        ]
+    ]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
     current_user_permissions: Required[list[str]]
     created_at: Required[str]
     updated_at: Required[str]

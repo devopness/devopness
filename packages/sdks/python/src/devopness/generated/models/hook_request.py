@@ -10,6 +10,7 @@ from typing import (
     Any,
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -83,6 +84,6 @@ class HookRequestPlain(TypedDict, total=False):
     response_status_code: Required[int]
     response_headers: Required[object]
     response_body: Required[object]
-    hook: HookRelation | HookRelationPlain | None
+    hook: Union[HookRelation, HookRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

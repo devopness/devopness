@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Environment,
@@ -24,8 +26,10 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
     def add_project_environment(
         self,
         project_id: int,
-        environment_project_create: EnvironmentProjectCreate
-        | EnvironmentProjectCreatePlain,
+        environment_project_create: Union[
+            EnvironmentProjectCreate,
+            EnvironmentProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[Environment]:
         """
         Create a new environment on the current project
@@ -84,8 +88,10 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_project_environment(
         self,
         project_id: int,
-        environment_project_create: EnvironmentProjectCreate
-        | EnvironmentProjectCreatePlain,
+        environment_project_create: Union[
+            EnvironmentProjectCreate,
+            EnvironmentProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[Environment]:
         """
         Create a new environment on the current project

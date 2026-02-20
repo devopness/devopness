@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -34,4 +35,4 @@ class HookIncomingSettingsPlain(TypedDict, total=False):
     Plain version of HookIncomingSettings.
     """
 
-    variables: list[HookVariable | HookVariablePlain] | None
+    variables: list[Union[HookVariable, HookVariablePlain]] | None

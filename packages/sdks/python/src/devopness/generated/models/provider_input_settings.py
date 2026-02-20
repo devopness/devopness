@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -53,7 +54,10 @@ class ProviderInputSettingsPlain(TypedDict, total=False):
     name: Required[str]
     name_human_readable: Required[str]
     validation: Required[
-        ProviderInputSettingsValidation | ProviderInputSettingsValidationPlain
+        Union[
+            ProviderInputSettingsValidation,
+            ProviderInputSettingsValidationPlain,
+        ]
     ]
     default_value: str | None
     sensitive: Required[bool]

@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Invitation,
@@ -24,7 +26,10 @@ class TeamsInvitationsApiService(DevopnessBaseService):
     def add_team_invitation(
         self,
         team_id: int,
-        invitation_team_create: InvitationTeamCreate | InvitationTeamCreatePlain,
+        invitation_team_create: Union[
+            InvitationTeamCreate,
+            InvitationTeamCreatePlain,
+        ],
     ) -> DevopnessResponse[Invitation]:
         """
         Create a new invitation for a team
@@ -83,7 +88,10 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_team_invitation(
         self,
         team_id: int,
-        invitation_team_create: InvitationTeamCreate | InvitationTeamCreatePlain,
+        invitation_team_create: Union[
+            InvitationTeamCreate,
+            InvitationTeamCreatePlain,
+        ],
     ) -> DevopnessResponse[Invitation]:
         """
         Create a new invitation for a team

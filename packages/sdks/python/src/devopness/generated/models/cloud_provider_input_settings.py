@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -55,11 +56,16 @@ class CloudProviderInputSettingsPlain(TypedDict, total=False):
     name: Required[str]
     name_human_readable: Required[str]
     default_value: (
-        CloudProviderInputSettingsDefaultValue
-        | CloudProviderInputSettingsDefaultValuePlain
+        Union[
+            CloudProviderInputSettingsDefaultValue,
+            CloudProviderInputSettingsDefaultValuePlain,
+        ]
         | None
     )
     sensitive: Required[bool]
     validation: Required[
-        CloudProviderPropertyValidation | CloudProviderPropertyValidationPlain
+        Union[
+            CloudProviderPropertyValidation,
+            CloudProviderPropertyValidationPlain,
+        ]
     ]

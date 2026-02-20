@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -32,5 +33,5 @@ class ApplicationLastDeploymentsPlain(TypedDict, total=False):
     Plain version of ApplicationLastDeployments.
     """
 
-    latest: ActionRelationShallow | ActionRelationShallowPlain | None
-    live: ActionRelationShallow | ActionRelationShallowPlain | None
+    latest: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
+    live: Union[ActionRelationShallow, ActionRelationShallowPlain] | None

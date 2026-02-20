@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -62,11 +63,21 @@ class ApiTokenRotateResponsePlain(TypedDict, total=False):
 
     id: Required[str]
     name: Required[str]
-    type: Required[ApiTokenType | ApiTokenTypePlain]
+    type: Required[
+        Union[
+            ApiTokenType,
+            ApiTokenTypePlain,
+        ]
+    ]
     token: str | None
-    status: Required[ApiTokenStatus | ApiTokenStatusPlain]
-    role: RoleRelation | RoleRelationPlain | None
-    project: ProjectRelation | ProjectRelationPlain | None
+    status: Required[
+        Union[
+            ApiTokenStatus,
+            ApiTokenStatusPlain,
+        ]
+    ]
+    role: Union[RoleRelation, RoleRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
     last_used_at: str | None
     expires_at: Required[str]
     revoked_at: str | None

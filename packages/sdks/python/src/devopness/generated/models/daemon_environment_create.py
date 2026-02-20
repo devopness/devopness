@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -60,7 +61,7 @@ class DaemonEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of DaemonEnvironmentCreate.
     """
 
-    linked_resources: list[ResourceToBeLinked | ResourceToBeLinkedPlain] | None
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     command: Required[str]
     process_count: Required[int]
     working_directory: str | None

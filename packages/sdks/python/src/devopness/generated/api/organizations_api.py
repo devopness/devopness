@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Organization,
@@ -25,7 +27,10 @@ class OrganizationsApiService(DevopnessBaseService):
 
     def add_organization(
         self,
-        organization_create: OrganizationCreate | OrganizationCreatePlain,
+        organization_create: Union[
+            OrganizationCreate,
+            OrganizationCreatePlain,
+        ],
     ) -> DevopnessResponse[Organization]:
         """
         Create a new organization
@@ -119,7 +124,10 @@ class OrganizationsApiService(DevopnessBaseService):
     def update_organization(
         self,
         organization_id: str,
-        organization_update: OrganizationUpdate | OrganizationUpdatePlain,
+        organization_update: Union[
+            OrganizationUpdate,
+            OrganizationUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing organization
@@ -146,7 +154,10 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_organization(
         self,
-        organization_create: OrganizationCreate | OrganizationCreatePlain,
+        organization_create: Union[
+            OrganizationCreate,
+            OrganizationCreatePlain,
+        ],
     ) -> DevopnessResponse[Organization]:
         """
         Create a new organization
@@ -240,7 +251,10 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_organization(
         self,
         organization_id: str,
-        organization_update: OrganizationUpdate | OrganizationUpdatePlain,
+        organization_update: Union[
+            OrganizationUpdate,
+            OrganizationUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing organization

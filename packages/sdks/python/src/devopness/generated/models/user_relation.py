@@ -11,6 +11,7 @@ from typing import (
     Annotated,
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -63,7 +64,7 @@ class UserRelationPlain(TypedDict, total=False):
     name: Required[str]
     email: Required[str]
     url_slug: Required[str]
-    language: Language | LanguagePlain | None
+    language: Union[Language, LanguagePlain] | None
     active: bool | None
     created_at: datetime | None
     updated_at: datetime | None

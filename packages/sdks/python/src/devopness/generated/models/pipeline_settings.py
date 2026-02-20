@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt
@@ -51,5 +52,7 @@ class PipelineSettingsPlain(TypedDict, total=False):
 
     max_pipelines_per_resource: int | None
     is_user_managed: bool | None
-    stages: list[PipelineSettingsStage | PipelineSettingsStagePlain] | None
-    variables: list[PipelineSettingsVariable | PipelineSettingsVariablePlain] | None
+    stages: list[Union[PipelineSettingsStage, PipelineSettingsStagePlain]] | None
+    variables: (
+        list[Union[PipelineSettingsVariable, PipelineSettingsVariablePlain]] | None
+    )

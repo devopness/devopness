@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -44,4 +45,4 @@ class CredentialUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    settings: CredentialInputSettings | CredentialInputSettingsPlain | None
+    settings: Union[CredentialInputSettings, CredentialInputSettingsPlain] | None

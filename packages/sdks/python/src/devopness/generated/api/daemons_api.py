@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Daemon,
@@ -34,8 +36,10 @@ class DaemonsApiService(DevopnessBaseService):
     def add_environment_daemon(
         self,
         environment_id: int,
-        daemon_environment_create: DaemonEnvironmentCreate
-        | DaemonEnvironmentCreatePlain,
+        daemon_environment_create: Union[
+            DaemonEnvironmentCreate,
+            DaemonEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Daemon]:
         """
         Add a Daemon to the given environment
@@ -99,7 +103,10 @@ class DaemonsApiService(DevopnessBaseService):
     def get_status_daemon(
         self,
         daemon_id: int,
-        daemon_get_status: DaemonGetStatus | DaemonGetStatusPlain,
+        daemon_get_status: Union[
+            DaemonGetStatus,
+            DaemonGetStatusPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Get current status of a daemon
@@ -152,7 +159,10 @@ class DaemonsApiService(DevopnessBaseService):
     def restart_daemon(
         self,
         daemon_id: int,
-        daemon_restart: DaemonRestart | DaemonRestartPlain,
+        daemon_restart: Union[
+            DaemonRestart,
+            DaemonRestartPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Restart a Daemon
@@ -174,7 +184,10 @@ class DaemonsApiService(DevopnessBaseService):
     def start_daemon(
         self,
         daemon_id: int,
-        daemon_start: DaemonStart | DaemonStartPlain,
+        daemon_start: Union[
+            DaemonStart,
+            DaemonStartPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Start a Daemon
@@ -196,7 +209,10 @@ class DaemonsApiService(DevopnessBaseService):
     def stop_daemon(
         self,
         daemon_id: int,
-        daemon_stop: DaemonStop | DaemonStopPlain,
+        daemon_stop: Union[
+            DaemonStop,
+            DaemonStopPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Stop a Daemon
@@ -218,7 +234,10 @@ class DaemonsApiService(DevopnessBaseService):
     def update_daemon(
         self,
         daemon_id: int,
-        daemon_update: DaemonUpdate | DaemonUpdatePlain,
+        daemon_update: Union[
+            DaemonUpdate,
+            DaemonUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Daemon
@@ -246,8 +265,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_daemon(
         self,
         environment_id: int,
-        daemon_environment_create: DaemonEnvironmentCreate
-        | DaemonEnvironmentCreatePlain,
+        daemon_environment_create: Union[
+            DaemonEnvironmentCreate,
+            DaemonEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Daemon]:
         """
         Add a Daemon to the given environment
@@ -311,7 +332,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     async def get_status_daemon(
         self,
         daemon_id: int,
-        daemon_get_status: DaemonGetStatus | DaemonGetStatusPlain,
+        daemon_get_status: Union[
+            DaemonGetStatus,
+            DaemonGetStatusPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Get current status of a daemon
@@ -364,7 +388,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     async def restart_daemon(
         self,
         daemon_id: int,
-        daemon_restart: DaemonRestart | DaemonRestartPlain,
+        daemon_restart: Union[
+            DaemonRestart,
+            DaemonRestartPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Restart a Daemon
@@ -386,7 +413,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     async def start_daemon(
         self,
         daemon_id: int,
-        daemon_start: DaemonStart | DaemonStartPlain,
+        daemon_start: Union[
+            DaemonStart,
+            DaemonStartPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Start a Daemon
@@ -408,7 +438,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     async def stop_daemon(
         self,
         daemon_id: int,
-        daemon_stop: DaemonStop | DaemonStopPlain,
+        daemon_stop: Union[
+            DaemonStop,
+            DaemonStopPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Stop a Daemon
@@ -430,7 +463,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_daemon(
         self,
         daemon_id: int,
-        daemon_update: DaemonUpdate | DaemonUpdatePlain,
+        daemon_update: Union[
+            DaemonUpdate,
+            DaemonUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Daemon

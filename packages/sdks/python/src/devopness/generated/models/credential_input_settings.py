@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -35,5 +36,8 @@ class CredentialInputSettingsPlain(TypedDict, total=False):
     """
 
     credential: Required[
-        CredentialInputSettingsCredential | CredentialInputSettingsCredentialPlain
+        Union[
+            CredentialInputSettingsCredential,
+            CredentialInputSettingsCredentialPlain,
+        ]
     ]

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -36,4 +37,9 @@ class RepositoryTagPlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    commit: Required[RepositoryTagCommit | RepositoryTagCommitPlain]
+    commit: Required[
+        Union[
+            RepositoryTagCommit,
+            RepositoryTagCommitPlain,
+        ]
+    ]

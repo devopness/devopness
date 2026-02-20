@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
@@ -31,10 +32,10 @@ class BillingPlan(DevopnessBaseModel):
     provider_plan_id: StrictStr | None = Field(
         default=None, description="The provider ID of the billing plan"
     )
-    price: StrictFloat | StrictInt | None = Field(
+    price: Union[StrictFloat, StrictInt] | None = Field(
         default=None, description="The price of the billing plan"
     )
-    credit_limit: StrictFloat | StrictInt | None = Field(
+    credit_limit: Union[StrictFloat, StrictInt] | None = Field(
         default=None, description="The credit limit of the billing plan"
     )
     billing_period: StrictStr | None = Field(

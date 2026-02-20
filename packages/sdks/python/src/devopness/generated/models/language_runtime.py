@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -58,7 +59,17 @@ class LanguageRuntimePlain(TypedDict, total=False):
     name_human_readable: Required[str]
     engine_versions: Required[
         list[
-            LanguageRuntimeEngineVersionsInner | LanguageRuntimeEngineVersionsInnerPlain
+            Union[
+                LanguageRuntimeEngineVersionsInner,
+                LanguageRuntimeEngineVersionsInnerPlain,
+            ]
         ]
     ]
-    frameworks: Required[list[LanguageRuntimeFramework | LanguageRuntimeFrameworkPlain]]
+    frameworks: Required[
+        list[
+            Union[
+                LanguageRuntimeFramework,
+                LanguageRuntimeFrameworkPlain,
+            ]
+        ]
+    ]

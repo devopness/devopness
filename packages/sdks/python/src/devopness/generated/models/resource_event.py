@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -41,4 +42,4 @@ class ResourceEventPlain(TypedDict, total=False):
 
     resource_type: Required[str]
     resource_id: Required[int]
-    resource_data: Subscription | SubscriptionPlain | None
+    resource_data: Union[Subscription, SubscriptionPlain] | None

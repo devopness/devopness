@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -148,14 +149,43 @@ class ApplicationPlain(TypedDict, total=False):
     deployments_keep: Required[int]
     install_dependencies_command: str | None
     build_command: str | None
-    created_by_user: Required[UserRelation | UserRelationPlain]
-    last_deployments: Required[
-        ApplicationLastDeployments | ApplicationLastDeploymentsPlain
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
     ]
-    environment: EnvironmentRelation | EnvironmentRelationPlain | None
-    servers: Required[list[ServerRelation | ServerRelationPlain]]
-    credential: CredentialRelation | CredentialRelationPlain | None
-    virtual_hosts: Required[list[VirtualHostRelation | VirtualHostRelationPlain]]
-    daemons: Required[list[DaemonRelation | DaemonRelationPlain]]
+    last_deployments: Required[
+        Union[
+            ApplicationLastDeployments,
+            ApplicationLastDeploymentsPlain,
+        ]
+    ]
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    servers: Required[
+        list[
+            Union[
+                ServerRelation,
+                ServerRelationPlain,
+            ]
+        ]
+    ]
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
+    virtual_hosts: Required[
+        list[
+            Union[
+                VirtualHostRelation,
+                VirtualHostRelationPlain,
+            ]
+        ]
+    ]
+    daemons: Required[
+        list[
+            Union[
+                DaemonRelation,
+                DaemonRelationPlain,
+            ]
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

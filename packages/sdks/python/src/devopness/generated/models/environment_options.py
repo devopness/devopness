@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -35,4 +36,11 @@ class EnvironmentOptionsPlain(TypedDict, total=False):
     Plain version of EnvironmentOptions.
     """
 
-    types: Required[list[StaticEnvironmentType | StaticEnvironmentTypePlain]]
+    types: Required[
+        list[
+            Union[
+                StaticEnvironmentType,
+                StaticEnvironmentTypePlain,
+            ]
+        ]
+    ]

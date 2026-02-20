@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -75,10 +76,15 @@ class CronJobRelationPlain(TypedDict, total=False):
     command: Required[str]
     run_as_user: Required[str]
     pattern: Required[str]
-    pattern_human_readable: Required[CronJobPattern | CronJobPatternPlain]
+    pattern_human_readable: Required[
+        Union[
+            CronJobPattern,
+            CronJobPatternPlain,
+        ]
+    ]
     is_auto_generated: Required[bool]
-    last_action: ActionRelationShallow | ActionRelationShallowPlain | None
-    created_by_user: UserRelation | UserRelationPlain | None
-    application: ApplicationRelation | ApplicationRelationPlain | None
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
+    application: Union[ApplicationRelation, ApplicationRelationPlain] | None
     created_at: str | None
     updated_at: str | None

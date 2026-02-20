@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -50,6 +51,6 @@ class TeamMembershipRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     photo_url: Required[str]
-    role: RoleRelation | RoleRelationPlain | None
+    role: Union[RoleRelation, RoleRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

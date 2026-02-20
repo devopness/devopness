@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Environment, EnvironmentUpdate, EnvironmentUpdatePlain
 
@@ -102,7 +104,10 @@ class EnvironmentsApiService(DevopnessBaseService):
     def update_environment(
         self,
         environment_id: int,
-        environment_update: EnvironmentUpdate | EnvironmentUpdatePlain,
+        environment_update: Union[
+            EnvironmentUpdate,
+            EnvironmentUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update a given environment
@@ -214,7 +219,10 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_environment(
         self,
         environment_id: int,
-        environment_update: EnvironmentUpdate | EnvironmentUpdatePlain,
+        environment_update: Union[
+            EnvironmentUpdate,
+            EnvironmentUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update a given environment

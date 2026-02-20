@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -89,12 +90,29 @@ class ServicePlain(TypedDict, total=False):
     version: str | None
     is_auto_generated: Required[bool]
     auto_start: Required[bool]
-    initial_state: Required[ServiceInitialState | ServiceInitialStatePlain]
+    initial_state: Required[
+        Union[
+            ServiceInitialState,
+            ServiceInitialStatePlain,
+        ]
+    ]
     description: str | None
-    environment: EnvironmentRelation | EnvironmentRelationPlain | None
-    created_by_user: Required[UserRelation | UserRelationPlain]
-    project: ProjectRelation | ProjectRelationPlain | None
-    servers: Required[list[ServerRelation | ServerRelationPlain]]
-    last_action: ActionRelation | ActionRelationPlain | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    servers: Required[
+        list[
+            Union[
+                ServerRelation,
+                ServerRelationPlain,
+            ]
+        ]
+    ]
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

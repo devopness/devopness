@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -43,4 +44,11 @@ class BillingPlansOptionsRelationPlain(TypedDict, total=False):
 
     name: Required[str]
     hint: str | None
-    plans: Required[list[BillingPlan | BillingPlanPlain]]
+    plans: Required[
+        list[
+            Union[
+                BillingPlan,
+                BillingPlanPlain,
+            ]
+        ]
+    ]

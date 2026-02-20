@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -69,14 +70,21 @@ class CloudProviderServiceResourceTypePlain(TypedDict, total=False):
     provider_resource_type: Required[str]
     devopness_resource_type: Required[str]
     scope: Required[
-        CloudProviderServiceResourceTypeScope
-        | CloudProviderServiceResourceTypeScopePlain
+        Union[
+            CloudProviderServiceResourceTypeScope,
+            CloudProviderServiceResourceTypeScopePlain,
+        ]
     ]
     input_settings: Required[
-        list[CloudProviderInputSettings | CloudProviderInputSettingsPlain]
+        list[
+            Union[
+                CloudProviderInputSettings,
+                CloudProviderInputSettingsPlain,
+            ]
+        ]
     ]
-    os: list[OperatingSystem | OperatingSystemPlain] | None
+    os: list[Union[OperatingSystem, OperatingSystemPlain]] | None
     can_keep_disk_after_delete_server: bool | None
     operation_custom_settings: (
-        OperationCustomSettings | OperationCustomSettingsPlain | None
+        Union[OperationCustomSettings, OperationCustomSettingsPlain] | None
     )

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -47,4 +48,4 @@ class PipelineUpdatePlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     max_parallel_actions: int | None
-    trigger_when: PipelineTriggerWhen | PipelineTriggerWhenPlain | None
+    trigger_when: Union[PipelineTriggerWhen, PipelineTriggerWhenPlain] | None

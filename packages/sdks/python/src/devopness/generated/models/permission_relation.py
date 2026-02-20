@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -43,4 +44,11 @@ class PermissionRelationPlain(TypedDict, total=False):
 
     resource_type: Required[str]
     human_readable: Required[str]
-    permissions: Required[list[StaticPermission | StaticPermissionPlain]]
+    permissions: Required[
+        list[
+            Union[
+                StaticPermission,
+                StaticPermissionPlain,
+            ]
+        ]
+    ]

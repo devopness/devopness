@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -47,7 +48,17 @@ class ProviderRelationPlain(TypedDict, total=False):
     """
 
     active: Required[bool]
-    code: Required[ProviderCode | ProviderCodePlain]
+    code: Required[
+        Union[
+            ProviderCode,
+            ProviderCodePlain,
+        ]
+    ]
     code_human_readable: Required[str]
-    type: Required[ProviderType | ProviderTypePlain]
+    type: Required[
+        Union[
+            ProviderType,
+            ProviderTypePlain,
+        ]
+    ]
     type_human_readable: str | None

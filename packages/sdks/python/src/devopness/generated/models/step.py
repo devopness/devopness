@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -84,7 +85,12 @@ class StepPlain(TypedDict, total=False):
     type: Required[str]
     run_as_user: Required[str]
     command: Required[str]
-    runner: Required[PipelineStepRunnerName | PipelineStepRunnerNamePlain]
+    runner: Required[
+        Union[
+            PipelineStepRunnerName,
+            PipelineStepRunnerNamePlain,
+        ]
+    ]
     script_id: Required[int]
     pipeline_id: Required[int]
     trigger_order: Required[int]

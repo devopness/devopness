@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -54,5 +55,5 @@ class CloudProviderPlain(TypedDict, total=False):
     name: Required[str]
     hint: str | None
     logo_url: Required[str]
-    cloud_services: list[CloudProviderService | CloudProviderServicePlain] | None
-    settings: CloudProviderSettingsList | CloudProviderSettingsListPlain | None
+    cloud_services: list[Union[CloudProviderService, CloudProviderServicePlain]] | None
+    settings: Union[CloudProviderSettingsList, CloudProviderSettingsListPlain] | None

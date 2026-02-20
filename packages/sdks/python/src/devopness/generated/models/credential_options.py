@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -43,5 +44,19 @@ class CredentialOptionsPlain(TypedDict, total=False):
     Plain version of CredentialOptions.
     """
 
-    provider_types: Required[list[CredentialProviderType | CredentialProviderTypePlain]]
-    supported_providers: Required[list[CredentialProvider | CredentialProviderPlain]]
+    provider_types: Required[
+        list[
+            Union[
+                CredentialProviderType,
+                CredentialProviderTypePlain,
+            ]
+        ]
+    ]
+    supported_providers: Required[
+        list[
+            Union[
+                CredentialProvider,
+                CredentialProviderPlain,
+            ]
+        ]
+    ]

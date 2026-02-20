@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -53,7 +54,14 @@ class TeamPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     photo_url: str | None
-    project: ProjectRelation | ProjectRelationPlain | None
-    users: Required[list[UserRelation | UserRelationPlain]]
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    users: Required[
+        list[
+            Union[
+                UserRelation,
+                UserRelationPlain,
+            ]
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -53,9 +54,19 @@ class NetworkRuleEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of NetworkRuleEnvironmentCreate.
     """
 
-    linked_resources: list[ResourceToBeLinked | ResourceToBeLinkedPlain] | None
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     name: Required[str]
-    direction: Required[NetworkRuleDirection | NetworkRuleDirectionPlain]
-    protocol: Required[NetworkRuleProtocol | NetworkRuleProtocolPlain]
+    direction: Required[
+        Union[
+            NetworkRuleDirection,
+            NetworkRuleDirectionPlain,
+        ]
+    ]
+    protocol: Required[
+        Union[
+            NetworkRuleProtocol,
+            NetworkRuleProtocolPlain,
+        ]
+    ]
     cidr_block: Required[str]
     port: Required[int]

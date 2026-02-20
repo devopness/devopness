@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Application,
@@ -28,8 +30,10 @@ class ApplicationsApiService(DevopnessBaseService):
     def add_application_deployment(
         self,
         application_id: int,
-        deployment_application_create: DeploymentApplicationCreate
-        | DeploymentApplicationCreatePlain,
+        deployment_application_create: Union[
+            DeploymentApplicationCreate,
+            DeploymentApplicationCreatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Trigger a new deployment for current application
@@ -51,8 +55,10 @@ class ApplicationsApiService(DevopnessBaseService):
     def add_environment_application(
         self,
         environment_id: int,
-        application_environment_create: ApplicationEnvironmentCreate
-        | ApplicationEnvironmentCreatePlain,
+        application_environment_create: Union[
+            ApplicationEnvironmentCreate,
+            ApplicationEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Application]:
         """
         Create a new application
@@ -147,7 +153,10 @@ class ApplicationsApiService(DevopnessBaseService):
     def update_application(
         self,
         application_id: int,
-        application_update: ApplicationUpdate | ApplicationUpdatePlain,
+        application_update: Union[
+            ApplicationUpdate,
+            ApplicationUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing application
@@ -175,8 +184,10 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_application_deployment(
         self,
         application_id: int,
-        deployment_application_create: DeploymentApplicationCreate
-        | DeploymentApplicationCreatePlain,
+        deployment_application_create: Union[
+            DeploymentApplicationCreate,
+            DeploymentApplicationCreatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Trigger a new deployment for current application
@@ -198,8 +209,10 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_application(
         self,
         environment_id: int,
-        application_environment_create: ApplicationEnvironmentCreate
-        | ApplicationEnvironmentCreatePlain,
+        application_environment_create: Union[
+            ApplicationEnvironmentCreate,
+            ApplicationEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Application]:
         """
         Create a new application
@@ -294,7 +307,10 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_application(
         self,
         application_id: int,
-        application_update: ApplicationUpdate | ApplicationUpdatePlain,
+        application_update: Union[
+            ApplicationUpdate,
+            ApplicationUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing application

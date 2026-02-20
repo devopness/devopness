@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -48,6 +49,11 @@ class NetworkRuleUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    direction: Required[NetworkRuleDirection | NetworkRuleDirectionPlain]
-    protocol: NetworkRuleProtocol | NetworkRuleProtocolPlain | None
+    direction: Required[
+        Union[
+            NetworkRuleDirection,
+            NetworkRuleDirectionPlain,
+        ]
+    ]
+    protocol: Union[NetworkRuleProtocol, NetworkRuleProtocolPlain] | None
     cidr_block: Required[str]

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -56,7 +57,7 @@ class VirtualHostEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of VirtualHostEnvironmentCreate.
     """
 
-    linked_resources: list[ResourceToBeLinked | ResourceToBeLinkedPlain] | None
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     type: Required[str]
     name: Required[str]
     root_directory: str | None

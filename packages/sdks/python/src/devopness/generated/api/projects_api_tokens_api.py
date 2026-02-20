@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     ApiToken,
@@ -27,7 +29,10 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
     def add_project_api_token(
         self,
         project_id: int,
-        api_token_project_create: ApiTokenProjectCreate | ApiTokenProjectCreatePlain,
+        api_token_project_create: Union[
+            ApiTokenProjectCreate,
+            ApiTokenProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[ApiToken]:
         """
         Create a new API token for specific project.
@@ -125,7 +130,10 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
         self,
         project_id: int,
         token_id: str,
-        api_token_project_rotate: ApiTokenProjectRotate | ApiTokenProjectRotatePlain,
+        api_token_project_rotate: Union[
+            ApiTokenProjectRotate,
+            ApiTokenProjectRotatePlain,
+        ],
     ) -> DevopnessResponse[ApiTokenRotateResponse]:
         """
         Rotate a specific project API token.
@@ -153,7 +161,10 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_project_api_token(
         self,
         project_id: int,
-        api_token_project_create: ApiTokenProjectCreate | ApiTokenProjectCreatePlain,
+        api_token_project_create: Union[
+            ApiTokenProjectCreate,
+            ApiTokenProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[ApiToken]:
         """
         Create a new API token for specific project.
@@ -251,7 +262,10 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         project_id: int,
         token_id: str,
-        api_token_project_rotate: ApiTokenProjectRotate | ApiTokenProjectRotatePlain,
+        api_token_project_rotate: Union[
+            ApiTokenProjectRotate,
+            ApiTokenProjectRotatePlain,
+        ],
     ) -> DevopnessResponse[ApiTokenRotateResponse]:
         """
         Rotate a specific project API token.

@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Pipeline,
@@ -27,7 +29,10 @@ class PipelinesApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        pipeline_create: PipelineCreate | PipelineCreatePlain,
+        pipeline_create: Union[
+            PipelineCreate,
+            PipelineCreatePlain,
+        ],
     ) -> DevopnessResponse[Pipeline]:
         """
         Add a Pipeline to a resource
@@ -123,7 +128,10 @@ class PipelinesApiService(DevopnessBaseService):
     def update_pipeline(
         self,
         pipeline_id: int,
-        pipeline_update: PipelineUpdate | PipelineUpdatePlain,
+        pipeline_update: Union[
+            PipelineUpdate,
+            PipelineUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline
@@ -152,7 +160,10 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        pipeline_create: PipelineCreate | PipelineCreatePlain,
+        pipeline_create: Union[
+            PipelineCreate,
+            PipelineCreatePlain,
+        ],
     ) -> DevopnessResponse[Pipeline]:
         """
         Add a Pipeline to a resource
@@ -248,7 +259,10 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_pipeline(
         self,
         pipeline_id: int,
-        pipeline_update: PipelineUpdate | PipelineUpdatePlain,
+        pipeline_update: Union[
+            PipelineUpdate,
+            PipelineUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline

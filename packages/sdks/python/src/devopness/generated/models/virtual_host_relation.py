@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -73,14 +74,19 @@ class VirtualHostRelationPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    type: Required[VirtualHostType | VirtualHostTypePlain]
+    type: Required[
+        Union[
+            VirtualHostType,
+            VirtualHostTypePlain,
+        ]
+    ]
     type_human_readable: str | None
     name: Required[str]
-    application: ApplicationRelation | ApplicationRelationPlain | None
+    application: Union[ApplicationRelation, ApplicationRelationPlain] | None
     root_directory: str | None
     application_listen_address: str | None
-    ssl_certificate: SslCertificateRelation | SslCertificateRelationPlain | None
-    last_action: ActionRelationShallow | ActionRelationShallowPlain | None
-    created_by_user: UserRelation | UserRelationPlain | None
+    ssl_certificate: Union[SslCertificateRelation, SslCertificateRelationPlain] | None
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: str | None
     updated_at: str | None

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -41,6 +42,11 @@ class MemberRelationPlain(TypedDict, total=False):
     Plain version of MemberRelation.
     """
 
-    user: Required[UserRelation | UserRelationPlain]
+    user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

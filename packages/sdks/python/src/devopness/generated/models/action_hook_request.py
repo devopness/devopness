@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -32,5 +33,5 @@ class ActionHookRequestPlain(TypedDict, total=False):
     Plain version of ActionHookRequest.
     """
 
-    incoming: HookRequestRelation | HookRequestRelationPlain | None
-    outgoing: HookRequestRelation | HookRequestRelationPlain | None
+    incoming: Union[HookRequestRelation, HookRequestRelationPlain] | None
+    outgoing: Union[HookRequestRelation, HookRequestRelationPlain] | None

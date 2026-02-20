@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -59,6 +60,16 @@ class VariableUpdatePlain(TypedDict, total=False):
     key: Required[str]
     value: Required[str]
     description: str | None
-    target: Required[VariableTarget | VariableTargetPlain]
-    type: Required[VariableType | VariableTypePlain]
+    target: Required[
+        Union[
+            VariableTarget,
+            VariableTargetPlain,
+        ]
+    ]
+    type: Required[
+        Union[
+            VariableType,
+            VariableTypePlain,
+        ]
+    ]
     hidden: Required[bool]

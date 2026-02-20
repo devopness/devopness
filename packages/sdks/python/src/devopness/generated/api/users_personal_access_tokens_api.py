@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     PersonalAccessToken,
@@ -26,8 +28,10 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
 
     def add_user_personal_access_token(
         self,
-        personal_access_token_user_create: PersonalAccessTokenUserCreate
-        | PersonalAccessTokenUserCreatePlain,
+        personal_access_token_user_create: Union[
+            PersonalAccessTokenUserCreate,
+            PersonalAccessTokenUserCreatePlain,
+        ],
     ) -> DevopnessResponse[PersonalAccessToken]:
         """
         Create a new personal access token for the authenticated user.
@@ -121,8 +125,10 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
     def rotate_user_personal_access_token(
         self,
         personal_access_token_id: str,
-        personal_access_token_user_rotate: PersonalAccessTokenUserRotate
-        | PersonalAccessTokenUserRotatePlain,
+        personal_access_token_user_rotate: Union[
+            PersonalAccessTokenUserRotate,
+            PersonalAccessTokenUserRotatePlain,
+        ],
     ) -> DevopnessResponse[PersonalAccessTokenRotateResponse]:
         """
         Rotate a specific personal access token.
@@ -149,8 +155,10 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_user_personal_access_token(
         self,
-        personal_access_token_user_create: PersonalAccessTokenUserCreate
-        | PersonalAccessTokenUserCreatePlain,
+        personal_access_token_user_create: Union[
+            PersonalAccessTokenUserCreate,
+            PersonalAccessTokenUserCreatePlain,
+        ],
     ) -> DevopnessResponse[PersonalAccessToken]:
         """
         Create a new personal access token for the authenticated user.
@@ -246,8 +254,10 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
     async def rotate_user_personal_access_token(
         self,
         personal_access_token_id: str,
-        personal_access_token_user_rotate: PersonalAccessTokenUserRotate
-        | PersonalAccessTokenUserRotatePlain,
+        personal_access_token_user_rotate: Union[
+            PersonalAccessTokenUserRotate,
+            PersonalAccessTokenUserRotatePlain,
+        ],
     ) -> DevopnessResponse[PersonalAccessTokenRotateResponse]:
         """
         Rotate a specific personal access token.

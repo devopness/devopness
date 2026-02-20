@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -53,11 +54,22 @@ class CloudProviderServicePlain(TypedDict, total=False):
     Plain version of CloudProviderService.
     """
 
-    code: Required[CloudProviderServiceCode | CloudProviderServiceCodePlain]
+    code: Required[
+        Union[
+            CloudProviderServiceCode,
+            CloudProviderServiceCodePlain,
+        ]
+    ]
     name: Required[str]
-    provider: ProviderRelation | ProviderRelationPlain | None
-    regions: list[CloudProviderServiceRegion | CloudProviderServiceRegionPlain] | None
+    provider: Union[ProviderRelation, ProviderRelationPlain] | None
+    regions: (
+        list[Union[CloudProviderServiceRegion, CloudProviderServiceRegionPlain]] | None
+    )
     resource_types: (
-        list[CloudProviderServiceResourceType | CloudProviderServiceResourceTypePlain]
+        list[
+            Union[
+                CloudProviderServiceResourceType, CloudProviderServiceResourceTypePlain
+            ]
+        ]
         | None
     )

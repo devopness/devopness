@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -77,8 +78,13 @@ class ServiceRelationPlain(TypedDict, total=False):
     version: str | None
     is_auto_generated: Required[bool]
     auto_start: Required[bool]
-    initial_state: Required[ServiceInitialState | ServiceInitialStatePlain]
+    initial_state: Required[
+        Union[
+            ServiceInitialState,
+            ServiceInitialStatePlain,
+        ]
+    ]
     description: str | None
-    last_action: ActionRelationShallow | ActionRelationShallowPlain | None
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
     created_at: str | None
     updated_at: str | None

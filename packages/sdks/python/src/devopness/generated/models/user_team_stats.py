@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictFloat, StrictInt
@@ -24,11 +25,11 @@ class UserTeamStats(DevopnessBaseModel):
         member_of (float, optional): Total number of teams that user has access to, as team member.
     """
 
-    owner_of: StrictFloat | StrictInt | None = Field(
+    owner_of: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total number of teams that user has access to, as owner.",
     )
-    member_of: StrictFloat | StrictInt | None = Field(
+    member_of: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total number of teams that user has access to, as team member.",
     )

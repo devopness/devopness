@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -43,6 +44,6 @@ class HookTriggerWhenPlain(TypedDict, total=False):
 
     events: list[str] | None
     conditions: (
-        list[HookTriggerWhenConditionsInner | HookTriggerWhenConditionsInnerPlain]
+        list[Union[HookTriggerWhenConditionsInner, HookTriggerWhenConditionsInnerPlain]]
         | None
     )

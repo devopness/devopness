@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Server,
@@ -27,8 +29,10 @@ class ServersApiService(DevopnessBaseService):
     def add_environment_server(
         self,
         environment_id: int,
-        server_environment_create: ServerEnvironmentCreate
-        | ServerEnvironmentCreatePlain,
+        server_environment_create: Union[
+            ServerEnvironmentCreate,
+            ServerEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Server]:
         """
         Creates a server and link it to the given environment
@@ -279,7 +283,10 @@ class ServersApiService(DevopnessBaseService):
     def update_server(
         self,
         server_id: int,
-        server_update: ServerUpdate | ServerUpdatePlain,
+        server_update: Union[
+            ServerUpdate,
+            ServerUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing server
@@ -307,8 +314,10 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_server(
         self,
         environment_id: int,
-        server_environment_create: ServerEnvironmentCreate
-        | ServerEnvironmentCreatePlain,
+        server_environment_create: Union[
+            ServerEnvironmentCreate,
+            ServerEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Server]:
         """
         Creates a server and link it to the given environment
@@ -559,7 +568,10 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_server(
         self,
         server_id: int,
-        server_update: ServerUpdate | ServerUpdatePlain,
+        server_update: Union[
+            ServerUpdate,
+            ServerUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing server

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -41,4 +42,9 @@ class UserPlain(TypedDict, total=False):
 
     id: Required[int]
     url_slug: str | None
-    type: Required[UserType | UserTypePlain]
+    type: Required[
+        Union[
+            UserType,
+            UserTypePlain,
+        ]
+    ]

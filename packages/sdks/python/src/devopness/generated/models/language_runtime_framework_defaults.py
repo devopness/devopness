@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -76,7 +77,8 @@ class LanguageRuntimeFrameworkDefaultsPlain(TypedDict, total=False):
     root_directory: str | None
     deployments_keep: int | None
     commands: (
-        LanguageRuntimeFrameworkCommands | LanguageRuntimeFrameworkCommandsPlain | None
+        Union[LanguageRuntimeFrameworkCommands, LanguageRuntimeFrameworkCommandsPlain]
+        | None
     )
     install_dependencies_command: str | None
     build_command: str | None

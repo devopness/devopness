@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -48,4 +49,4 @@ class CloudServiceSettingsGcpGcePlain(TypedDict, total=False):
     instance_type: Required[str]
     region: Required[str]
     region_human_readable: str | None
-    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None
+    os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None

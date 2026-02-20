@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -34,4 +35,11 @@ class CronJobOptionsPlain(TypedDict, total=False):
     Plain version of CronJobOptions.
     """
 
-    frequencies: Required[list[StaticCronJobFrequency | StaticCronJobFrequencyPlain]]
+    frequencies: Required[
+        list[
+            Union[
+                StaticCronJobFrequency,
+                StaticCronJobFrequencyPlain,
+            ]
+        ]
+    ]

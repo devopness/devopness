@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -72,14 +73,36 @@ class NetworkRulePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    direction: Required[NetworkRuleDirection | NetworkRuleDirectionPlain]
-    protocol: Required[NetworkRuleProtocol | NetworkRuleProtocolPlain]
+    direction: Required[
+        Union[
+            NetworkRuleDirection,
+            NetworkRuleDirectionPlain,
+        ]
+    ]
+    protocol: Required[
+        Union[
+            NetworkRuleProtocol,
+            NetworkRuleProtocolPlain,
+        ]
+    ]
     port: Required[int]
     cidr_block: Required[str]
     is_auto_generated: Required[bool]
-    last_action: ActionRelation | ActionRelationPlain | None
-    created_by_user: Required[UserRelation | UserRelationPlain]
-    environment: EnvironmentRelation | EnvironmentRelationPlain | None
-    servers: Required[list[ServerRelation | ServerRelationPlain]]
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    servers: Required[
+        list[
+            Union[
+                ServerRelation,
+                ServerRelationPlain,
+            ]
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

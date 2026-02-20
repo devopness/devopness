@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -113,20 +114,50 @@ class ServerPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    cloud_service_code: Required[ServerCloudServiceCode | ServerCloudServiceCodePlain]
+    cloud_service_code: Required[
+        Union[
+            ServerCloudServiceCode,
+            ServerCloudServiceCodePlain,
+        ]
+    ]
     ip_address: str | None
     ssh_port: Required[int]
-    os: Required[OperatingSystemVersion | OperatingSystemVersionPlain]
-    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None
+    os: Required[
+        Union[
+            OperatingSystemVersion,
+            OperatingSystemVersionPlain,
+        ]
+    ]
+    os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None
     active: Required[bool]
-    status: Required[ServerStatus | ServerStatusPlain]
+    status: Required[
+        Union[
+            ServerStatus,
+            ServerStatusPlain,
+        ]
+    ]
     max_parallel_actions: Required[int]
-    blueprint: Required[ServerBlueprint | ServerBlueprintPlain]
-    provision_input: Required[ServerProvisionInput | ServerProvisionInputPlain]
-    created_by_user: Required[UserRelation | UserRelationPlain]
-    project: ProjectRelation | ProjectRelationPlain | None
-    last_action: ActionRelation | ActionRelationPlain | None
-    environment: EnvironmentRelation | EnvironmentRelationPlain | None
-    credential: CredentialRelation | CredentialRelationPlain | None
+    blueprint: Required[
+        Union[
+            ServerBlueprint,
+            ServerBlueprintPlain,
+        ]
+    ]
+    provision_input: Required[
+        Union[
+            ServerProvisionInput,
+            ServerProvisionInputPlain,
+        ]
+    ]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

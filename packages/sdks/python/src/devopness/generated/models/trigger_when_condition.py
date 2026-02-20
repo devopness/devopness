@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -51,11 +52,18 @@ class TriggerWhenConditionPlain(TypedDict, total=False):
     """
 
     name: str | None
-    type: Required[TriggerWhenConditionType | TriggerWhenConditionTypePlain]
+    type: Required[
+        Union[
+            TriggerWhenConditionType,
+            TriggerWhenConditionTypePlain,
+        ]
+    ]
     path: Required[str]
     accepted_values: Required[
         list[
-            TriggerWhenConditionAcceptedValuesInner
-            | TriggerWhenConditionAcceptedValuesInnerPlain
+            Union[
+                TriggerWhenConditionAcceptedValuesInner,
+                TriggerWhenConditionAcceptedValuesInnerPlain,
+            ]
         ]
     ]

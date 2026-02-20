@@ -9,6 +9,7 @@ Note:
 from datetime import datetime
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
@@ -51,10 +52,10 @@ class Subscription(DevopnessBaseModel):
     quantity: StrictInt | None = Field(
         default=None, description="Amount of plans purchased in this subscription"
     )
-    price_unit: StrictFloat | StrictInt | None = Field(
+    price_unit: Union[StrictFloat, StrictInt] | None = Field(
         default=None, description="Unitary price of the subscribed plan"
     )
-    price_total: StrictFloat | StrictInt | None = Field(
+    price_total: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total price of this subscription (quantity x price_unit)",
     )
@@ -98,5 +99,5 @@ class SubscriptionPlain(TypedDict, total=False):
     ends_at: datetime | None
     created_at: datetime | None
     updated_at: datetime | None
-    current_balance: SubscriptionBalance | SubscriptionBalancePlain | None
-    balances: list[SubscriptionBalance | SubscriptionBalancePlain] | None
+    current_balance: Union[SubscriptionBalance, SubscriptionBalancePlain] | None
+    balances: list[Union[SubscriptionBalance, SubscriptionBalancePlain]] | None

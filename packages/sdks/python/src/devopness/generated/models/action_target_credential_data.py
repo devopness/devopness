@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -50,7 +51,17 @@ class ActionTargetCredentialDataPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    provider_type: Required[ProviderType | ProviderTypePlain]
-    provider_code: Required[ProviderCode | ProviderCodePlain]
+    provider_type: Required[
+        Union[
+            ProviderType,
+            ProviderTypePlain,
+        ]
+    ]
+    provider_code: Required[
+        Union[
+            ProviderCode,
+            ProviderCodePlain,
+        ]
+    ]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]

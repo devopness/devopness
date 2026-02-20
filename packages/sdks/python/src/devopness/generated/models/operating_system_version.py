@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -59,7 +60,7 @@ class OperatingSystemVersionPlain(TypedDict, total=False):
     name: Required[str]
     code_name: Required[str]
     version: Required[str]
-    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None
+    os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None
     os_version_code_human_readable: str | None
     released_at: Required[str]
     end_standard_support_at: Required[str]

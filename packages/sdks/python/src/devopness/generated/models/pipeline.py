@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -84,14 +85,31 @@ class PipelinePlain(TypedDict, total=False):
     name: Required[str]
     environment_id: Required[int]
     project_id: Required[int]
-    resource_type: Required[ResourceType | ResourceTypePlain]
+    resource_type: Required[
+        Union[
+            ResourceType,
+            ResourceTypePlain,
+        ]
+    ]
     resource_type_human_readable: Required[str]
     resource_id: Required[int]
     operation: Required[str]
     operation_human_readable: Required[str]
     max_parallel_actions: Required[int]
-    trigger_when: PipelineTriggerWhen | PipelineTriggerWhenPlain | None
-    steps: Required[list[Step | StepPlain]]
-    created_by_user: Required[UserRelation | UserRelationPlain]
+    trigger_when: Union[PipelineTriggerWhen, PipelineTriggerWhenPlain] | None
+    steps: Required[
+        list[
+            Union[
+                Step,
+                StepPlain,
+            ]
+        ]
+    ]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

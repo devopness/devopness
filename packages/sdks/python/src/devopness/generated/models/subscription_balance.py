@@ -9,6 +9,7 @@ Note:
 from datetime import datetime
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -53,7 +54,7 @@ class SubscriptionBalancePlain(TypedDict, total=False):
     Plain version of SubscriptionBalance.
     """
 
-    credits: Credits | CreditsPlain | None
+    credits: Union[Credits, CreditsPlain] | None
     unit: str | None
     billing_period_started_at: datetime | None
     billing_period_ends_at: datetime | None

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -40,7 +41,27 @@ class UserActivityPlain(TypedDict, total=False):
     Plain version of UserActivity.
     """
 
-    projects: Required[UserProjectStats | UserProjectStatsPlain]
-    environments: Required[UserEnvironmentStats | UserEnvironmentStatsPlain]
-    teams: Required[UserTeamStats | UserTeamStatsPlain]
-    triggered_actions: Required[TriggeredActions | TriggeredActionsPlain]
+    projects: Required[
+        Union[
+            UserProjectStats,
+            UserProjectStatsPlain,
+        ]
+    ]
+    environments: Required[
+        Union[
+            UserEnvironmentStats,
+            UserEnvironmentStatsPlain,
+        ]
+    ]
+    teams: Required[
+        Union[
+            UserTeamStats,
+            UserTeamStatsPlain,
+        ]
+    ]
+    triggered_actions: Required[
+        Union[
+            TriggeredActions,
+            TriggeredActionsPlain,
+        ]
+    ]

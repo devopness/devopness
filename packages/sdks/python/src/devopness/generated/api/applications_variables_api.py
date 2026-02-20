@@ -7,6 +7,7 @@ Note:
 """
 
 import warnings
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -26,8 +27,10 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
     def add_application_variable(
         self,
         application_id: int,
-        variable_application_create: VariableApplicationCreate
-        | VariableApplicationCreatePlain,
+        variable_application_create: Union[
+            VariableApplicationCreate,
+            VariableApplicationCreatePlain,
+        ],
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to an application
@@ -102,8 +105,10 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_application_variable(
         self,
         application_id: int,
-        variable_application_create: VariableApplicationCreate
-        | VariableApplicationCreatePlain,
+        variable_application_create: Union[
+            VariableApplicationCreate,
+            VariableApplicationCreatePlain,
+        ],
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to an application

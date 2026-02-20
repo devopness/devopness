@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -38,5 +39,10 @@ class InvitationTeamCreatePlain(TypedDict, total=False):
     Plain version of InvitationTeamCreate.
     """
 
-    type: Required[TeamInvitationType | TeamInvitationTypePlain]
+    type: Required[
+        Union[
+            TeamInvitationType,
+            TeamInvitationTypePlain,
+        ]
+    ]
     email: str | None

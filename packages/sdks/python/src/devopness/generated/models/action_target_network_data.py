@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -50,4 +51,9 @@ class ActionTargetNetworkDataPlain(TypedDict, total=False):
     name: Required[str]
     provider_name: str | None
     provider_name_human_readable: str | None
-    provision_input: Required[NetworkProvisionInput | NetworkProvisionInputPlain]
+    provision_input: Required[
+        Union[
+            NetworkProvisionInput,
+            NetworkProvisionInputPlain,
+        ]
+    ]

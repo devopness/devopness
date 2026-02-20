@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -106,8 +107,18 @@ class HookPlain(TypedDict, total=False):
 
     id: Required[str]
     name: Required[str]
-    type: Required[HookType | HookTypePlain]
-    action_type: Required[ActionType | ActionTypePlain]
+    type: Required[
+        Union[
+            HookType,
+            HookTypePlain,
+        ]
+    ]
+    action_type: Required[
+        Union[
+            ActionType,
+            ActionTypePlain,
+        ]
+    ]
     url: str | None
     target_url: str | None
     is_auto_generated: Required[bool]
@@ -117,13 +128,28 @@ class HookPlain(TypedDict, total=False):
     project_id: Required[int]
     environment_id: Required[int]
     pipeline_id: int | None
-    resource_type: Required[ResourceType | ResourceTypePlain]
+    resource_type: Required[
+        Union[
+            ResourceType,
+            ResourceTypePlain,
+        ]
+    ]
     resource_id: Required[int]
-    settings: HookSettings | HookSettingsPlain | None
-    trigger_when: Required[HookTriggerWhen | HookTriggerWhenPlain]
+    settings: Union[HookSettings, HookSettingsPlain] | None
+    trigger_when: Required[
+        Union[
+            HookTriggerWhen,
+            HookTriggerWhenPlain,
+        ]
+    ]
     secret: Required[str]
     secret_algorithm: str | None
     secret_header_name: str | None
-    created_by_user: Required[UserRelation | UserRelationPlain]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

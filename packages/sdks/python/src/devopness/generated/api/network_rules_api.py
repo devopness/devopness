@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     NetworkRule,
@@ -26,8 +28,10 @@ class NetworkRulesApiService(DevopnessBaseService):
     def add_environment_network_rule(
         self,
         environment_id: int,
-        network_rule_environment_create: NetworkRuleEnvironmentCreate
-        | NetworkRuleEnvironmentCreatePlain,
+        network_rule_environment_create: Union[
+            NetworkRuleEnvironmentCreate,
+            NetworkRuleEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[NetworkRule]:
         """
         Add a Network Rule to the given environment
@@ -122,7 +126,10 @@ class NetworkRulesApiService(DevopnessBaseService):
     def update_network_rule(
         self,
         network_rule_id: int,
-        network_rule_update: NetworkRuleUpdate | NetworkRuleUpdatePlain,
+        network_rule_update: Union[
+            NetworkRuleUpdate,
+            NetworkRuleUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network Rule
@@ -150,8 +157,10 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_network_rule(
         self,
         environment_id: int,
-        network_rule_environment_create: NetworkRuleEnvironmentCreate
-        | NetworkRuleEnvironmentCreatePlain,
+        network_rule_environment_create: Union[
+            NetworkRuleEnvironmentCreate,
+            NetworkRuleEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[NetworkRule]:
         """
         Add a Network Rule to the given environment
@@ -246,7 +255,10 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_network_rule(
         self,
         network_rule_id: int,
-        network_rule_update: NetworkRuleUpdate | NetworkRuleUpdatePlain,
+        network_rule_update: Union[
+            NetworkRuleUpdate,
+            NetworkRuleUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network Rule

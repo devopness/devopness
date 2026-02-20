@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -54,4 +55,9 @@ class ResourceSummaryItemPlain(TypedDict, total=False):
     resource_type_plural: Required[str]
     resource_type_human_readable: Required[str]
     resource_type_human_readable_plural: Required[str]
-    summary: Required[ResourceSummaryItemSummary | ResourceSummaryItemSummaryPlain]
+    summary: Required[
+        Union[
+            ResourceSummaryItemSummary,
+            ResourceSummaryItemSummaryPlain,
+        ]
+    ]

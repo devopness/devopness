@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -44,8 +45,9 @@ class HookOutgoingSettingsPlain(TypedDict, total=False):
     """
 
     request_headers: (
-        list[HookOutgoingRequestHeader | HookOutgoingRequestHeaderPlain] | None
+        list[Union[HookOutgoingRequestHeader, HookOutgoingRequestHeaderPlain]] | None
     )
     request_body: (
-        HookOutgoingSettingsRequestBody | HookOutgoingSettingsRequestBodyPlain | None
+        Union[HookOutgoingSettingsRequestBody, HookOutgoingSettingsRequestBodyPlain]
+        | None
     )

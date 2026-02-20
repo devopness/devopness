@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -60,5 +61,10 @@ class ActionTargetServerDataPlain(TypedDict, total=False):
     provider_name_human_readable: Required[str]
     ip_address: str | None
     ssh_port: Required[int]
-    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None
-    provision_input: Required[ServerProvisionInput | ServerProvisionInputPlain]
+    os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None
+    provision_input: Required[
+        Union[
+            ServerProvisionInput,
+            ServerProvisionInputPlain,
+        ]
+    ]

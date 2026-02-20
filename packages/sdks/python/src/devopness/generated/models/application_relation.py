@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -134,8 +135,8 @@ class ApplicationRelationPlain(TypedDict, total=False):
     install_dependencies_command: str | None
     build_command: str | None
     last_deployments: (
-        ApplicationLastDeployments | ApplicationLastDeploymentsPlain | None
+        Union[ApplicationLastDeployments, ApplicationLastDeploymentsPlain] | None
     )
-    credential: Credential | CredentialPlain | None
+    credential: Union[Credential, CredentialPlain] | None
     created_at: str | None
     updated_at: str | None

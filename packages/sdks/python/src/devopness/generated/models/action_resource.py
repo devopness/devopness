@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -43,6 +44,11 @@ class ActionResourcePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    type: Required[ResourceType | ResourceTypePlain]
+    type: Required[
+        Union[
+            ResourceType,
+            ResourceTypePlain,
+        ]
+    ]
     type_human_readable: Required[str]
-    data: ActionResourceData | ActionResourceDataPlain | None
+    data: Union[ActionResourceData, ActionResourceDataPlain] | None

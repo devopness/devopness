@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -47,5 +48,15 @@ class ActionDataPlain(TypedDict, total=False):
     """
 
     release_name: Required[str]
-    commit: Required[ActionDeploymentCommit | ActionDeploymentCommitPlain]
-    deployment: Required[ActionDeploymentContent | ActionDeploymentContentPlain]
+    commit: Required[
+        Union[
+            ActionDeploymentCommit,
+            ActionDeploymentCommitPlain,
+        ]
+    ]
+    deployment: Required[
+        Union[
+            ActionDeploymentContent,
+            ActionDeploymentContentPlain,
+        ]
+    ]

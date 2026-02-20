@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SslCertificate,
@@ -24,8 +26,10 @@ class SSLCertificatesApiService(DevopnessBaseService):
     def add_environment_ssl_certificate(
         self,
         environment_id: int,
-        ssl_certificate_environment_create: SslCertificateEnvironmentCreate
-        | SslCertificateEnvironmentCreatePlain,
+        ssl_certificate_environment_create: Union[
+            SslCertificateEnvironmentCreate,
+            SslCertificateEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[SslCertificate]:
         """
         Create a new ssl certificate
@@ -126,8 +130,10 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_ssl_certificate(
         self,
         environment_id: int,
-        ssl_certificate_environment_create: SslCertificateEnvironmentCreate
-        | SslCertificateEnvironmentCreatePlain,
+        ssl_certificate_environment_create: Union[
+            SslCertificateEnvironmentCreate,
+            SslCertificateEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[SslCertificate]:
         """
         Create a new ssl certificate

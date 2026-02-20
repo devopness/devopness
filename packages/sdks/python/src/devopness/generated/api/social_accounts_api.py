@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SocialAccount,
@@ -24,7 +26,10 @@ class SocialAccountsApiService(DevopnessBaseService):
 
     def add_social_account(
         self,
-        social_account_create: SocialAccountCreate | SocialAccountCreatePlain,
+        social_account_create: Union[
+            SocialAccountCreate,
+            SocialAccountCreatePlain,
+        ],
     ) -> DevopnessResponse[SocialAccount]:
         """
         Add a social account
@@ -144,7 +149,10 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_social_account(
         self,
-        social_account_create: SocialAccountCreate | SocialAccountCreatePlain,
+        social_account_create: Union[
+            SocialAccountCreate,
+            SocialAccountCreatePlain,
+        ],
     ) -> DevopnessResponse[SocialAccount]:
         """
         Add a social account

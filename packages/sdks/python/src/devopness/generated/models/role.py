@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -65,6 +66,6 @@ class RolePlain(TypedDict, total=False):
     project_id: int | None
     is_predefined: Required[bool]
     permissions: Required[list[str]]
-    parent: RoleRelation | RoleRelationPlain | None
+    parent: Union[RoleRelation, RoleRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -34,4 +35,4 @@ class PipelineTriggerWhenPlain(TypedDict, total=False):
     Plain version of PipelineTriggerWhen.
     """
 
-    conditions: list[TriggerWhenCondition | TriggerWhenConditionPlain] | None
+    conditions: list[Union[TriggerWhenCondition, TriggerWhenConditionPlain]] | None

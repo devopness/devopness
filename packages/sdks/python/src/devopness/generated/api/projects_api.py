@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Project,
@@ -28,8 +30,10 @@ class ProjectsApiService(DevopnessBaseService):
     def add_organization_project(
         self,
         organization_id: str,
-        project_organization_create: ProjectOrganizationCreate
-        | ProjectOrganizationCreatePlain,
+        project_organization_create: Union[
+            ProjectOrganizationCreate,
+            ProjectOrganizationCreatePlain,
+        ],
     ) -> DevopnessResponse[Project]:
         """
         Create a project to a given organization
@@ -50,7 +54,10 @@ class ProjectsApiService(DevopnessBaseService):
 
     def add_project(
         self,
-        project_create: ProjectCreate | ProjectCreatePlain,
+        project_create: Union[
+            ProjectCreate,
+            ProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[Project]:
         """
         Create a project for the authenticated user
@@ -146,7 +153,10 @@ class ProjectsApiService(DevopnessBaseService):
     def update_project(
         self,
         project_id: int,
-        project_update: ProjectUpdate | ProjectUpdatePlain,
+        project_update: Union[
+            ProjectUpdate,
+            ProjectUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Project
@@ -174,8 +184,10 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_organization_project(
         self,
         organization_id: str,
-        project_organization_create: ProjectOrganizationCreate
-        | ProjectOrganizationCreatePlain,
+        project_organization_create: Union[
+            ProjectOrganizationCreate,
+            ProjectOrganizationCreatePlain,
+        ],
     ) -> DevopnessResponse[Project]:
         """
         Create a project to a given organization
@@ -196,7 +208,10 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_project(
         self,
-        project_create: ProjectCreate | ProjectCreatePlain,
+        project_create: Union[
+            ProjectCreate,
+            ProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[Project]:
         """
         Create a project for the authenticated user
@@ -292,7 +307,10 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_project(
         self,
         project_id: int,
-        project_update: ProjectUpdate | ProjectUpdatePlain,
+        project_update: Union[
+            ProjectUpdate,
+            ProjectUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Project

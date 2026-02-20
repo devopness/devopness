@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -48,8 +49,18 @@ class ActionDeploymentContentPlain(TypedDict, total=False):
     Plain version of ActionDeploymentContent.
     """
 
-    type: Required[DeploymentType | DeploymentTypePlain]
-    source_type: Required[SourceType | SourceTypePlain]
+    type: Required[
+        Union[
+            DeploymentType,
+            DeploymentTypePlain,
+        ]
+    ]
+    source_type: Required[
+        Union[
+            SourceType,
+            SourceTypePlain,
+        ]
+    ]
     source_ref: Required[str]
     repository: Required[str]
     provider_name: Required[str]

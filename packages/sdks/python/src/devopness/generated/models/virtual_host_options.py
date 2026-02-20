@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -38,7 +39,19 @@ class VirtualHostOptionsPlain(TypedDict, total=False):
     Plain version of VirtualHostOptions.
     """
 
-    variable_targets: Required[list[VariableTargets | VariableTargetsPlain]]
+    variable_targets: Required[
+        list[
+            Union[
+                VariableTargets,
+                VariableTargetsPlain,
+            ]
+        ]
+    ]
     virtual_host_types: Required[
-        list[StaticVirtualHostType | StaticVirtualHostTypePlain]
+        list[
+            Union[
+                StaticVirtualHostType,
+                StaticVirtualHostTypePlain,
+            ]
+        ]
     ]

@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -39,6 +40,6 @@ class LogPlain(TypedDict, total=False):
     Plain version of Log.
     """
 
-    target: ActionTargetData | ActionTargetDataPlain | None
-    step: ActionTargetLogStep | ActionTargetLogStepPlain | None
+    target: Union[ActionTargetData, ActionTargetDataPlain] | None
+    step: Union[ActionTargetLogStep, ActionTargetLogStepPlain] | None
     updated_at: str | None

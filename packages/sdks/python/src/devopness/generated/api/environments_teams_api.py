@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import TeamEnvironmentLink, TeamEnvironmentLinkPlain
 
@@ -19,7 +21,10 @@ class EnvironmentsTeamsApiService(DevopnessBaseService):
         self,
         environment_id: int,
         team_id: int,
-        team_environment_link: TeamEnvironmentLink | TeamEnvironmentLinkPlain,
+        team_environment_link: Union[
+            TeamEnvironmentLink,
+            TeamEnvironmentLinkPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Link team to a given environment
@@ -70,7 +75,10 @@ class EnvironmentsTeamsApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         environment_id: int,
         team_id: int,
-        team_environment_link: TeamEnvironmentLink | TeamEnvironmentLinkPlain,
+        team_environment_link: Union[
+            TeamEnvironmentLink,
+            TeamEnvironmentLinkPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Link team to a given environment

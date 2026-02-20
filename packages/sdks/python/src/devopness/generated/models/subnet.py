@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -72,14 +73,29 @@ class SubnetPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    type: Required[SubnetType | SubnetTypePlain]
+    type: Required[
+        Union[
+            SubnetType,
+            SubnetTypePlain,
+        ]
+    ]
     is_auto_generated: Required[bool]
-    provision_input: Required[SubnetProvisionInput | SubnetProvisionInputPlain]
-    created_by_user: Required[UserRelation | UserRelationPlain]
-    project: ProjectRelation | ProjectRelationPlain | None
-    environment: EnvironmentRelation | EnvironmentRelationPlain | None
-    network: NetworkRelation | NetworkRelationPlain | None
-    credential: CredentialRelation | CredentialRelationPlain | None
-    last_action: ActionRelation | ActionRelationPlain | None
+    provision_input: Required[
+        Union[
+            SubnetProvisionInput,
+            SubnetProvisionInputPlain,
+        ]
+    ]
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    network: Union[NetworkRelation, NetworkRelationPlain] | None
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

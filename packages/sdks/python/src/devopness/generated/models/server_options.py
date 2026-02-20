@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -35,4 +36,11 @@ class ServerOptionsPlain(TypedDict, total=False):
     Plain version of ServerOptions.
     """
 
-    variable_targets: Required[list[VariableTargets | VariableTargetsPlain]]
+    variable_targets: Required[
+        list[
+            Union[
+                VariableTargets,
+                VariableTargetsPlain,
+            ]
+        ]
+    ]

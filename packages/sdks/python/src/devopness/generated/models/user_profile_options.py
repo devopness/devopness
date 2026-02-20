@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -37,6 +38,11 @@ class UserProfileOptionsPlain(TypedDict, total=False):
     Plain version of UserProfileOptions.
     """
 
-    billing: Required[StaticBillingInfo | StaticBillingInfoPlain]
+    billing: Required[
+        Union[
+            StaticBillingInfo,
+            StaticBillingInfoPlain,
+        ]
+    ]
     languages: Required[list[str]]
     timezones: Required[list[str]]

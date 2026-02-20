@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Hook,
@@ -25,9 +27,15 @@ class PipelinesHooksApiService(DevopnessBaseService):
 
     def add_pipeline_hook(
         self,
-        hook_type: HookTypeParam | HookTypeParamPlain,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
         pipeline_id: int,
-        hook_pipeline_create: HookPipelineCreate | HookPipelineCreatePlain,
+        hook_pipeline_create: Union[
+            HookPipelineCreate,
+            HookPipelineCreatePlain,
+        ],
     ) -> DevopnessResponse[Hook]:
         """
         Create a hook to a specific pipeline
@@ -85,9 +93,15 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_pipeline_hook(
         self,
-        hook_type: HookTypeParam | HookTypeParamPlain,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
         pipeline_id: int,
-        hook_pipeline_create: HookPipelineCreate | HookPipelineCreatePlain,
+        hook_pipeline_create: Union[
+            HookPipelineCreate,
+            HookPipelineCreatePlain,
+        ],
     ) -> DevopnessResponse[Hook]:
         """
         Create a hook to a specific pipeline

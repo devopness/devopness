@@ -10,6 +10,7 @@ from datetime import datetime
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -54,7 +55,7 @@ class LinkedResourceDataPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     summary_fields: (
-        list[LinkedResourceSummaryField | LinkedResourceSummaryFieldPlain] | None
+        list[Union[LinkedResourceSummaryField, LinkedResourceSummaryFieldPlain]] | None
     )
     created_at: datetime | None
     updated_at: datetime | None

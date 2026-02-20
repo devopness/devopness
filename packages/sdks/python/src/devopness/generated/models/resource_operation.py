@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import StrictStr
@@ -38,4 +39,4 @@ class ResourceOperationPlain(TypedDict, total=False):
 
     operation: str | None
     operation_human_readable: str | None
-    pipeline_settings: PipelineSettings | PipelineSettingsPlain | None
+    pipeline_settings: Union[PipelineSettings, PipelineSettingsPlain] | None

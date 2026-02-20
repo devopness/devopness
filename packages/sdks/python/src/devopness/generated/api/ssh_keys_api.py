@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SshKey,
@@ -26,8 +28,10 @@ class SSHKeysApiService(DevopnessBaseService):
     def add_environment_ssh_key(
         self,
         environment_id: int,
-        ssh_key_environment_create: SshKeyEnvironmentCreate
-        | SshKeyEnvironmentCreatePlain,
+        ssh_key_environment_create: Union[
+            SshKeyEnvironmentCreate,
+            SshKeyEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[SshKey]:
         """
         Create an SSH key and link it to the given environment
@@ -122,7 +126,10 @@ class SSHKeysApiService(DevopnessBaseService):
     def update_ssh_key(
         self,
         ssh_key_id: int,
-        ssh_key_update: SshKeyUpdate | SshKeyUpdatePlain,
+        ssh_key_update: Union[
+            SshKeyUpdate,
+            SshKeyUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing SSH key
@@ -150,8 +157,10 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_ssh_key(
         self,
         environment_id: int,
-        ssh_key_environment_create: SshKeyEnvironmentCreate
-        | SshKeyEnvironmentCreatePlain,
+        ssh_key_environment_create: Union[
+            SshKeyEnvironmentCreate,
+            SshKeyEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[SshKey]:
         """
         Create an SSH key and link it to the given environment
@@ -246,7 +255,10 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_ssh_key(
         self,
         ssh_key_id: int,
-        ssh_key_update: SshKeyUpdate | SshKeyUpdatePlain,
+        ssh_key_update: Union[
+            SshKeyUpdate,
+            SshKeyUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing SSH key

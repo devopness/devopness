@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -62,11 +63,26 @@ class RelatedActionPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    status: Required[ActionStatus | ActionStatusPlain]
+    status: Required[
+        Union[
+            ActionStatus,
+            ActionStatusPlain,
+        ]
+    ]
     status_human_readable: str | None
-    type: Required[ActionType | ActionTypePlain]
+    type: Required[
+        Union[
+            ActionType,
+            ActionTypePlain,
+        ]
+    ]
     type_human_readable: Required[str]
     resource_name: str | None
-    resource_type: Required[ResourceType | ResourceTypePlain]
+    resource_type: Required[
+        Union[
+            ResourceType,
+            ResourceTypePlain,
+        ]
+    ]
     resource_type_human_readable: Required[str]
     url_web_permalink: Required[str]

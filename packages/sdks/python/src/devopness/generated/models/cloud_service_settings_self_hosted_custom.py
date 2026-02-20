@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -30,4 +31,4 @@ class CloudServiceSettingsSelfHostedCustomPlain(TypedDict, total=False):
     Plain version of CloudServiceSettingsSelfHostedCustom.
     """
 
-    os_version_code: CloudOsVersionCode | CloudOsVersionCodePlain | None
+    os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None

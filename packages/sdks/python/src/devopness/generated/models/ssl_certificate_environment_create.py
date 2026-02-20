@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -57,10 +58,15 @@ class SslCertificateEnvironmentCreatePlain(TypedDict, total=False):
     """
 
     virtual_host_id: Required[int]
-    issuer: Required[SslCertificateIssuer | SslCertificateIssuerPlain]
-    type: SslCertificateType | SslCertificateTypePlain | None
+    issuer: Required[
+        Union[
+            SslCertificateIssuer,
+            SslCertificateIssuerPlain,
+        ]
+    ]
+    type: Union[SslCertificateType, SslCertificateTypePlain] | None
     validation_level: (
-        SslCertificateValidationLevel | SslCertificateValidationLevelPlain | None
+        Union[SslCertificateValidationLevel, SslCertificateValidationLevelPlain] | None
     )
     custom_private_key: str | None
     custom_certificate: str | None

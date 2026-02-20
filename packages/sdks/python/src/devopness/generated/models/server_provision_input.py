@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt
@@ -48,5 +49,12 @@ class ServerProvisionInputPlain(TypedDict, total=False):
     """
 
     subnet_id: int | None
-    cloud_service_code: Required[ServerCloudServiceCode | ServerCloudServiceCodePlain]
-    settings: ServerProvisionInputSettings | ServerProvisionInputSettingsPlain | None
+    cloud_service_code: Required[
+        Union[
+            ServerCloudServiceCode,
+            ServerCloudServiceCodePlain,
+        ]
+    ]
+    settings: (
+        Union[ServerProvisionInputSettings, ServerProvisionInputSettingsPlain] | None
+    )

@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -39,4 +40,4 @@ class StaticServiceTypeSupportedVersionsInnerPlain(TypedDict, total=False):
     """
 
     version: str | None
-    variable_targets: list[VariableTargets | VariableTargetsPlain] | None
+    variable_targets: list[Union[VariableTargets, VariableTargetsPlain]] | None

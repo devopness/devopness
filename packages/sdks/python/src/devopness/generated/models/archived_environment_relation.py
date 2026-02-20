@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -69,13 +70,18 @@ class ArchivedEnvironmentRelationPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    type: Required[EnvironmentType | EnvironmentTypePlain]
+    type: Required[
+        Union[
+            EnvironmentType,
+            EnvironmentTypePlain,
+        ]
+    ]
     type_human_readable: Required[str]
     name: Required[str]
     description: str | None
     used_credits: int | None
-    resource_summary: list[ResourceSummaryItem | ResourceSummaryItemPlain] | None
+    resource_summary: list[Union[ResourceSummaryItem, ResourceSummaryItemPlain]] | None
     created_at: Required[str]
     updated_at: Required[str]
     archived_at: str | None
-    project: ProjectRelation | ProjectRelationPlain | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None

@@ -9,6 +9,7 @@ Note:
 from datetime import datetime
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -52,6 +53,6 @@ class ServerBlueprintPlain(TypedDict, total=False):
     id: int | None
     name: str | None
     type: str | None
-    spec: ServerBlueprintSpec | ServerBlueprintSpecPlain | None
+    spec: Union[ServerBlueprintSpec, ServerBlueprintSpecPlain] | None
     created_at: datetime | None
     updated_at: datetime | None

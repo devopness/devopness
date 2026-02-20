@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Credential,
@@ -27,8 +29,10 @@ class CredentialsApiService(DevopnessBaseService):
     def add_environment_credential(
         self,
         environment_id: int,
-        credential_environment_create: CredentialEnvironmentCreate
-        | CredentialEnvironmentCreatePlain,
+        credential_environment_create: Union[
+            CredentialEnvironmentCreate,
+            CredentialEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Credential]:
         """
         Add a Credential to the given environment
@@ -170,7 +174,10 @@ class CredentialsApiService(DevopnessBaseService):
     def update_credential(
         self,
         credential_id: int,
-        credential_update: CredentialUpdate | CredentialUpdatePlain,
+        credential_update: Union[
+            CredentialUpdate,
+            CredentialUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Credential
@@ -198,8 +205,10 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_credential(
         self,
         environment_id: int,
-        credential_environment_create: CredentialEnvironmentCreate
-        | CredentialEnvironmentCreatePlain,
+        credential_environment_create: Union[
+            CredentialEnvironmentCreate,
+            CredentialEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Credential]:
         """
         Add a Credential to the given environment
@@ -341,7 +350,10 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_credential(
         self,
         credential_id: int,
-        credential_update: CredentialUpdate | CredentialUpdatePlain,
+        credential_update: Union[
+            CredentialUpdate,
+            CredentialUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Credential

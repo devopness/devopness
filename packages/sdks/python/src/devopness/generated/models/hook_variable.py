@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -51,6 +52,6 @@ class HookVariablePlain(TypedDict, total=False):
 
     name: str | None
     path: str | None
-    type: HookVariableType | HookVariableTypePlain | None
+    type: Union[HookVariableType, HookVariableTypePlain] | None
     required: bool | None
-    default_value: HookVariableDefaultValue | HookVariableDefaultValuePlain | None
+    default_value: Union[HookVariableDefaultValue, HookVariableDefaultValuePlain] | None

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -40,5 +41,10 @@ class StaticCronJobFrequencyPlain(TypedDict, total=False):
     """
 
     value: Required[str]
-    human_readable: Required[CronJobPattern | CronJobPatternPlain]
+    human_readable: Required[
+        Union[
+            CronJobPattern,
+            CronJobPatternPlain,
+        ]
+    ]
     hint: Required[str]

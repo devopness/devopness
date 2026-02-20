@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     VirtualHost,
@@ -28,8 +30,10 @@ class VirtualHostsApiService(DevopnessBaseService):
     def add_environment_virtual_host(
         self,
         environment_id: int,
-        virtual_host_environment_create: VirtualHostEnvironmentCreate
-        | VirtualHostEnvironmentCreatePlain,
+        virtual_host_environment_create: Union[
+            VirtualHostEnvironmentCreate,
+            VirtualHostEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[VirtualHost]:
         """
         Create a new virtual host
@@ -72,7 +76,10 @@ class VirtualHostsApiService(DevopnessBaseService):
     def get_status_virtual_host(
         self,
         virtual_host_id: int,
-        virtual_host_get_status: VirtualHostGetStatus | VirtualHostGetStatusPlain,
+        virtual_host_get_status: Union[
+            VirtualHostGetStatus,
+            VirtualHostGetStatusPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Get current status of a virtual host
@@ -146,7 +153,10 @@ class VirtualHostsApiService(DevopnessBaseService):
     def update_virtual_host(
         self,
         virtual_host_id: int,
-        virtual_host_update: VirtualHostUpdate | VirtualHostUpdatePlain,
+        virtual_host_update: Union[
+            VirtualHostUpdate,
+            VirtualHostUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing virtual host
@@ -174,8 +184,10 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_virtual_host(
         self,
         environment_id: int,
-        virtual_host_environment_create: VirtualHostEnvironmentCreate
-        | VirtualHostEnvironmentCreatePlain,
+        virtual_host_environment_create: Union[
+            VirtualHostEnvironmentCreate,
+            VirtualHostEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[VirtualHost]:
         """
         Create a new virtual host
@@ -218,7 +230,10 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     async def get_status_virtual_host(
         self,
         virtual_host_id: int,
-        virtual_host_get_status: VirtualHostGetStatus | VirtualHostGetStatusPlain,
+        virtual_host_get_status: Union[
+            VirtualHostGetStatus,
+            VirtualHostGetStatusPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Get current status of a virtual host
@@ -292,7 +307,10 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_virtual_host(
         self,
         virtual_host_id: int,
-        virtual_host_update: VirtualHostUpdate | VirtualHostUpdatePlain,
+        virtual_host_update: Union[
+            VirtualHostUpdate,
+            VirtualHostUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing virtual host

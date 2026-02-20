@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -48,5 +49,10 @@ class OperatingSystemPlain(TypedDict, total=False):
     name: Required[str]
     hint: Required[str]
     supported_versions: Required[
-        list[OperatingSystemVersion | OperatingSystemVersionPlain]
+        list[
+            Union[
+                OperatingSystemVersion,
+                OperatingSystemVersionPlain,
+            ]
+        ]
     ]

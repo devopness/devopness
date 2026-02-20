@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -47,8 +48,18 @@ class NetworkRuleOptionsPlain(TypedDict, total=False):
     """
 
     directions: Required[
-        list[StaticNetworkRuleDirection | StaticNetworkRuleDirectionPlain]
+        list[
+            Union[
+                StaticNetworkRuleDirection,
+                StaticNetworkRuleDirectionPlain,
+            ]
+        ]
     ]
     protocols: Required[
-        list[StaticNetworkRuleProtocol | StaticNetworkRuleProtocolPlain]
+        list[
+            Union[
+                StaticNetworkRuleProtocol,
+                StaticNetworkRuleProtocolPlain,
+            ]
+        ]
     ]

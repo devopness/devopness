@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -49,7 +50,22 @@ class CredentialEnvironmentCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    provider_code: Required[ProviderCode | ProviderCodePlain]
-    provider_type: Required[ProviderType | ProviderTypePlain]
+    provider_code: Required[
+        Union[
+            ProviderCode,
+            ProviderCodePlain,
+        ]
+    ]
+    provider_type: Required[
+        Union[
+            ProviderType,
+            ProviderTypePlain,
+        ]
+    ]
     active: Required[bool]
-    settings: Required[CredentialInputSettings | CredentialInputSettingsPlain]
+    settings: Required[
+        Union[
+            CredentialInputSettings,
+            CredentialInputSettingsPlain,
+        ]
+    ]

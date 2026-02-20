@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
@@ -42,10 +43,10 @@ class CloudInstanceRelation(DevopnessBaseModel):
     default_disk_size: StrictInt = Field(
         description="The default disk size (in GB) used to instance"
     )
-    price_hourly: StrictFloat | StrictInt = Field(
+    price_hourly: Union[StrictFloat, StrictInt] = Field(
         description="The price per hour of the instance"
     )
-    price_monthly: StrictFloat | StrictInt = Field(
+    price_monthly: Union[StrictFloat, StrictInt] = Field(
         description="The price per month of the instance"
     )
     price_currency: StrictStr = Field(description="The currency of the prices")

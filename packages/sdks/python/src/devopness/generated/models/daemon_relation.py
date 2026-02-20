@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -80,8 +81,8 @@ class DaemonRelationPlain(TypedDict, total=False):
     working_directory: str | None
     process_count: Required[int]
     is_auto_generated: Required[bool]
-    last_action: ActionRelationShallow | ActionRelationShallowPlain | None
-    application: ApplicationRelation | ApplicationRelationPlain | None
-    created_by_user: UserRelation | UserRelationPlain | None
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
+    application: Union[ApplicationRelation, ApplicationRelationPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: str | None
     updated_at: str | None

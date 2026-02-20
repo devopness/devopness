@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -54,5 +55,19 @@ class RepositoryPlain(TypedDict, total=False):
     user_name: Required[str]
     full_name: Required[str]
     html_url: Required[str]
-    branches: Required[list[RepositoryBranch | RepositoryBranchPlain]]
-    tags: Required[list[RepositoryTag | RepositoryTagPlain]]
+    branches: Required[
+        list[
+            Union[
+                RepositoryBranch,
+                RepositoryBranchPlain,
+            ]
+        ]
+    ]
+    tags: Required[
+        list[
+            Union[
+                RepositoryTag,
+                RepositoryTagPlain,
+            ]
+        ]
+    ]

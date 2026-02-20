@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Hook,
@@ -25,7 +27,10 @@ class HooksApiService(DevopnessBaseService):
     def delete_hook(
         self,
         hook_id: str,
-        hook_type: HookTypeParam | HookTypeParamPlain,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Delete a given hook
@@ -47,7 +52,10 @@ class HooksApiService(DevopnessBaseService):
     def get_hook(
         self,
         hook_id: str,
-        hook_type: HookTypeParam | HookTypeParamPlain,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
     ) -> DevopnessResponse[Hook]:
         """
         Get a hook by ID
@@ -90,8 +98,14 @@ class HooksApiService(DevopnessBaseService):
     def update_hook(
         self,
         hook_id: str,
-        hook_type: HookTypeParam | HookTypeParamPlain,
-        hook_update: HookUpdate | HookUpdatePlain,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
+        hook_update: Union[
+            HookUpdate,
+            HookUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing hook
@@ -119,7 +133,10 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     async def delete_hook(
         self,
         hook_id: str,
-        hook_type: HookTypeParam | HookTypeParamPlain,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Delete a given hook
@@ -141,7 +158,10 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     async def get_hook(
         self,
         hook_id: str,
-        hook_type: HookTypeParam | HookTypeParamPlain,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
     ) -> DevopnessResponse[Hook]:
         """
         Get a hook by ID
@@ -184,8 +204,14 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_hook(
         self,
         hook_id: str,
-        hook_type: HookTypeParam | HookTypeParamPlain,
-        hook_update: HookUpdate | HookUpdatePlain,
+        hook_type: Union[
+            HookTypeParam,
+            HookTypeParamPlain,
+        ],
+        hook_update: Union[
+            HookUpdate,
+            HookUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing hook

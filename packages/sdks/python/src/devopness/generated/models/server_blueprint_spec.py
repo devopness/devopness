@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -35,4 +36,4 @@ class ServerBlueprintSpecPlain(TypedDict, total=False):
     Plain version of ServerBlueprintSpec.
     """
 
-    services: list[BlueprintService | BlueprintServicePlain] | None
+    services: list[Union[BlueprintService, BlueprintServicePlain]] | None

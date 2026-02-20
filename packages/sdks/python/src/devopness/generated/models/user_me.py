@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -62,8 +63,15 @@ class UserMePlain(TypedDict, total=False):
     name: Required[str]
     email: Required[str]
     url_slug: str | None
-    language: Language | LanguagePlain | None
+    language: Union[Language, LanguagePlain] | None
     active: Required[bool]
-    social_accounts: Required[list[SocialAccountRelation | SocialAccountRelationPlain]]
+    social_accounts: Required[
+        list[
+            Union[
+                SocialAccountRelation,
+                SocialAccountRelationPlain,
+            ]
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

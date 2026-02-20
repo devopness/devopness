@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -77,14 +78,29 @@ class InvitationPlain(TypedDict, total=False):
     """
 
     id: Required[str]
-    type: Required[TeamInvitationType | TeamInvitationTypePlain]
+    type: Required[
+        Union[
+            TeamInvitationType,
+            TeamInvitationTypePlain,
+        ]
+    ]
     email: str | None
-    status: Required[TeamInvitationStatus | TeamInvitationStatusPlain]
+    status: Required[
+        Union[
+            TeamInvitationStatus,
+            TeamInvitationStatusPlain,
+        ]
+    ]
     status_human_readable: Required[str]
     public_accept_url: str | None
     accepted_from_ip: str | None
-    created_by_user: Required[UserRelation | UserRelationPlain]
-    team: TeamRelation | TeamRelationPlain | None
+    created_by_user: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
+    team: Union[TeamRelation, TeamRelationPlain] | None
     accepted_at: str | None
     expires_at: Required[str]
     created_at: Required[str]

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -65,9 +66,17 @@ class SocialAccountRelationPlain(TypedDict, total=False):
 
     id: Required[int]
     user_id: Required[int]
-    provider: Required[SocialAccountProvider | SocialAccountProviderPlain]
+    provider: Required[
+        Union[
+            SocialAccountProvider,
+            SocialAccountProviderPlain,
+        ]
+    ]
     provider_human_readable: Required[
-        SocialAccountDisplayableName | SocialAccountDisplayableNamePlain
+        Union[
+            SocialAccountDisplayableName,
+            SocialAccountDisplayableNamePlain,
+        ]
     ]
     provider_user_nickname: Required[str]
     is_vcs: Required[bool]

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -49,12 +50,19 @@ class StaticServiceTypePlain(TypedDict, total=False):
     Plain version of StaticServiceType.
     """
 
-    value: Required[ServiceType | ServiceTypePlain]
+    value: Required[
+        Union[
+            ServiceType,
+            ServiceTypePlain,
+        ]
+    ]
     human_readable: Required[str]
     hint: Required[str]
     supported_versions: Required[
         list[
-            StaticServiceTypeSupportedVersionsInner
-            | StaticServiceTypeSupportedVersionsInnerPlain
+            Union[
+                StaticServiceTypeSupportedVersionsInner,
+                StaticServiceTypeSupportedVersionsInnerPlain,
+            ]
         ]
     ]

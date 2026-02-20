@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Service,
@@ -36,8 +38,10 @@ class ServicesApiService(DevopnessBaseService):
     def add_environment_service(
         self,
         environment_id: int,
-        service_environment_create: ServiceEnvironmentCreate
-        | ServiceEnvironmentCreatePlain,
+        service_environment_create: Union[
+            ServiceEnvironmentCreate,
+            ServiceEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Service]:
         """
         Add a Service to the given environment
@@ -101,7 +105,10 @@ class ServicesApiService(DevopnessBaseService):
     def get_status_service(
         self,
         service_id: int,
-        service_get_status: ServiceGetStatus | ServiceGetStatusPlain,
+        service_get_status: Union[
+            ServiceGetStatus,
+            ServiceGetStatusPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Get current status of a service
@@ -154,7 +161,10 @@ class ServicesApiService(DevopnessBaseService):
     def reload_service(
         self,
         service_id: int,
-        service_reload: ServiceReload | ServiceReloadPlain,
+        service_reload: Union[
+            ServiceReload,
+            ServiceReloadPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Reload a service
@@ -176,7 +186,10 @@ class ServicesApiService(DevopnessBaseService):
     def restart_service(
         self,
         service_id: int,
-        service_restart: ServiceRestart | ServiceRestartPlain,
+        service_restart: Union[
+            ServiceRestart,
+            ServiceRestartPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Restart a service
@@ -198,7 +211,10 @@ class ServicesApiService(DevopnessBaseService):
     def start_service(
         self,
         service_id: int,
-        service_start: ServiceStart | ServiceStartPlain,
+        service_start: Union[
+            ServiceStart,
+            ServiceStartPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Start a service
@@ -220,7 +236,10 @@ class ServicesApiService(DevopnessBaseService):
     def stop_service(
         self,
         service_id: int,
-        service_stop: ServiceStop | ServiceStopPlain,
+        service_stop: Union[
+            ServiceStop,
+            ServiceStopPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Stop a service
@@ -242,7 +261,10 @@ class ServicesApiService(DevopnessBaseService):
     def update_service(
         self,
         service_id: int,
-        service_update: ServiceUpdate | ServiceUpdatePlain,
+        service_update: Union[
+            ServiceUpdate,
+            ServiceUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing service
@@ -270,8 +292,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_service(
         self,
         environment_id: int,
-        service_environment_create: ServiceEnvironmentCreate
-        | ServiceEnvironmentCreatePlain,
+        service_environment_create: Union[
+            ServiceEnvironmentCreate,
+            ServiceEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[Service]:
         """
         Add a Service to the given environment
@@ -335,7 +359,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     async def get_status_service(
         self,
         service_id: int,
-        service_get_status: ServiceGetStatus | ServiceGetStatusPlain,
+        service_get_status: Union[
+            ServiceGetStatus,
+            ServiceGetStatusPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Get current status of a service
@@ -388,7 +415,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     async def reload_service(
         self,
         service_id: int,
-        service_reload: ServiceReload | ServiceReloadPlain,
+        service_reload: Union[
+            ServiceReload,
+            ServiceReloadPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Reload a service
@@ -410,7 +440,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     async def restart_service(
         self,
         service_id: int,
-        service_restart: ServiceRestart | ServiceRestartPlain,
+        service_restart: Union[
+            ServiceRestart,
+            ServiceRestartPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Restart a service
@@ -432,7 +465,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     async def start_service(
         self,
         service_id: int,
-        service_start: ServiceStart | ServiceStartPlain,
+        service_start: Union[
+            ServiceStart,
+            ServiceStartPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Start a service
@@ -454,7 +490,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     async def stop_service(
         self,
         service_id: int,
-        service_stop: ServiceStop | ServiceStopPlain,
+        service_stop: Union[
+            ServiceStop,
+            ServiceStopPlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Stop a service
@@ -476,7 +515,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_service(
         self,
         service_id: int,
-        service_update: ServiceUpdate | ServiceUpdatePlain,
+        service_update: Union[
+            ServiceUpdate,
+            ServiceUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing service

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -70,6 +71,6 @@ class SshKeyRelationPlain(TypedDict, total=False):
     environment_id: Required[int]
     name: Required[str]
     fingerprint: Required[str]
-    last_action: ActionRelationShallow | ActionRelationShallowPlain | None
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
     created_at: str | None
     updated_at: str | None

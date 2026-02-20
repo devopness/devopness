@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -30,4 +31,4 @@ class UserBillingPlain(TypedDict, total=False):
     Plain version of UserBilling.
     """
 
-    active_subscription: Subscription | SubscriptionPlain | None
+    active_subscription: Union[Subscription, SubscriptionPlain] | None

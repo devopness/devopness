@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -37,5 +38,10 @@ class SocialAccountCreatePlain(TypedDict, total=False):
     Plain version of SocialAccountCreate.
     """
 
-    provider: Required[SourceProviderName | SourceProviderNamePlain]
+    provider: Required[
+        Union[
+            SourceProviderName,
+            SourceProviderNamePlain,
+        ]
+    ]
     callback_code: Required[str]

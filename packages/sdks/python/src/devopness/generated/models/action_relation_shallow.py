@@ -10,6 +10,7 @@ from datetime import datetime
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -84,17 +85,32 @@ class ActionRelationShallowPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    status: Required[ActionStatus | ActionStatusPlain]
+    status: Required[
+        Union[
+            ActionStatus,
+            ActionStatusPlain,
+        ]
+    ]
     status_human_readable: Required[str]
-    status_reason_code: Required[ActionStatusReasonCode | ActionStatusReasonCodePlain]
+    status_reason_code: Required[
+        Union[
+            ActionStatusReasonCode,
+            ActionStatusReasonCodePlain,
+        ]
+    ]
     status_reason_human_readable: Required[str]
-    type: Required[ActionType | ActionTypePlain]
+    type: Required[
+        Union[
+            ActionType,
+            ActionTypePlain,
+        ]
+    ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: ActionData | ActionDataPlain | None
-    triggered_from: ActionTriggeredFrom | ActionTriggeredFromPlain | None
-    summary: ActionSummary | ActionSummaryPlain | None
-    targets: list[ActionTarget | ActionTargetPlain] | None
+    action_data: Union[ActionData, ActionDataPlain] | None
+    triggered_from: Union[ActionTriggeredFrom, ActionTriggeredFromPlain] | None
+    summary: Union[ActionSummary, ActionSummaryPlain] | None
+    targets: list[Union[ActionTarget, ActionTargetPlain]] | None
     started_at: datetime | None
     completed_at: datetime | None
     created_at: Required[datetime]

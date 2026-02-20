@@ -7,6 +7,7 @@ Note:
 """
 
 import warnings
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -26,7 +27,10 @@ class ServicesVariablesApiService(DevopnessBaseService):
     def add_service_variable(
         self,
         service_id: int,
-        variable_service_create: VariableServiceCreate | VariableServiceCreatePlain,
+        variable_service_create: Union[
+            VariableServiceCreate,
+            VariableServiceCreatePlain,
+        ],
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a service
@@ -101,7 +105,10 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_service_variable(
         self,
         service_id: int,
-        variable_service_create: VariableServiceCreate | VariableServiceCreatePlain,
+        variable_service_create: Union[
+            VariableServiceCreate,
+            VariableServiceCreatePlain,
+        ],
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a service

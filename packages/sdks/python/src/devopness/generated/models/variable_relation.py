@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -79,14 +80,24 @@ class VariableRelationPlain(TypedDict, total=False):
 
     id: Required[int]
     key: Required[str]
-    type: Required[VariableType | VariableTypePlain]
+    type: Required[
+        Union[
+            VariableType,
+            VariableTypePlain,
+        ]
+    ]
     description: str | None
     value: str | None
-    target: Required[VariableTarget | VariableTargetPlain]
+    target: Required[
+        Union[
+            VariableTarget,
+            VariableTargetPlain,
+        ]
+    ]
     target_human_readable: Required[str]
     resource_id: int | None
     resource_type: Required[str]
     hidden: Required[bool]
-    created_by_user: UserRelation | UserRelationPlain | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

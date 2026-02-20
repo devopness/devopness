@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
@@ -87,13 +88,18 @@ class ServerRelationPlain(TypedDict, total=False):
     hostname: Required[str]
     provider_name: Required[str]
     provider_name_human_readable: Required[str]
-    credential: CredentialRelation | CredentialRelationPlain | None
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
     region: str | None
     region_human_readable: str | None
     ip_address: str | None
     ssh_port: Required[int]
     active: Required[bool]
-    status: Required[ServerStatus | ServerStatusPlain]
-    last_action: ActionRelationShallow | ActionRelationShallowPlain | None
+    status: Required[
+        Union[
+            ServerStatus,
+            ServerStatusPlain,
+        ]
+    ]
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
     created_at: str | None
     updated_at: str | None

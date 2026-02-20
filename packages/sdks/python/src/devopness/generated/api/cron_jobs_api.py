@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     CronJob,
@@ -26,8 +28,10 @@ class CronJobsApiService(DevopnessBaseService):
     def add_environment_cron_job(
         self,
         environment_id: int,
-        cron_job_environment_create: CronJobEnvironmentCreate
-        | CronJobEnvironmentCreatePlain,
+        cron_job_environment_create: Union[
+            CronJobEnvironmentCreate,
+            CronJobEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[CronJob]:
         """
         Add a Cron Job to the given environment
@@ -122,7 +126,10 @@ class CronJobsApiService(DevopnessBaseService):
     def update_cron_job(
         self,
         cron_job_id: int,
-        cron_job_update: CronJobUpdate | CronJobUpdatePlain,
+        cron_job_update: Union[
+            CronJobUpdate,
+            CronJobUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Cron Job
@@ -150,8 +157,10 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_environment_cron_job(
         self,
         environment_id: int,
-        cron_job_environment_create: CronJobEnvironmentCreate
-        | CronJobEnvironmentCreatePlain,
+        cron_job_environment_create: Union[
+            CronJobEnvironmentCreate,
+            CronJobEnvironmentCreatePlain,
+        ],
     ) -> DevopnessResponse[CronJob]:
         """
         Add a Cron Job to the given environment
@@ -246,7 +255,10 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_cron_job(
         self,
         cron_job_id: int,
-        cron_job_update: CronJobUpdate | CronJobUpdatePlain,
+        cron_job_update: Union[
+            CronJobUpdate,
+            CronJobUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing Cron Job

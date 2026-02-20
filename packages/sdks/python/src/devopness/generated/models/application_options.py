@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -41,6 +42,27 @@ class ApplicationOptionsPlain(TypedDict, total=False):
     Plain version of ApplicationOptions.
     """
 
-    variable_targets: Required[list[VariableTargets | VariableTargetsPlain]]
-    language_runtimes: Required[list[LanguageRuntime | LanguageRuntimePlain]]
-    script_runners: Required[list[ScriptRunner | ScriptRunnerPlain]]
+    variable_targets: Required[
+        list[
+            Union[
+                VariableTargets,
+                VariableTargetsPlain,
+            ]
+        ]
+    ]
+    language_runtimes: Required[
+        list[
+            Union[
+                LanguageRuntime,
+                LanguageRuntimePlain,
+            ]
+        ]
+    ]
+    script_runners: Required[
+        list[
+            Union[
+                ScriptRunner,
+                ScriptRunnerPlain,
+            ]
+        ]
+    ]

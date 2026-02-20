@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Variable,
@@ -27,7 +29,10 @@ class VariablesApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        variable_create: VariableCreate | VariableCreatePlain,
+        variable_create: Union[
+            VariableCreate,
+            VariableCreatePlain,
+        ],
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a resource
@@ -127,7 +132,10 @@ class VariablesApiService(DevopnessBaseService):
     def update_variable(
         self,
         variable_id: int,
-        variable_update: VariableUpdate | VariableUpdatePlain,
+        variable_update: Union[
+            VariableUpdate,
+            VariableUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing variable
@@ -156,7 +164,10 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        variable_create: VariableCreate | VariableCreatePlain,
+        variable_create: Union[
+            VariableCreate,
+            VariableCreatePlain,
+        ],
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a resource
@@ -256,7 +267,10 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
     async def update_variable(
         self,
         variable_id: int,
-        variable_update: VariableUpdate | VariableUpdatePlain,
+        variable_update: Union[
+            VariableUpdate,
+            VariableUpdatePlain,
+        ],
     ) -> DevopnessResponse[None]:
         """
         Update an existing variable

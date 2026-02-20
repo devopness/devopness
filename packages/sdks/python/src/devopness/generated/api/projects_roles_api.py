@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Role, RoleProjectCreate, RoleProjectCreatePlain, RoleRelation
 from ..utils import parse_query_string
@@ -19,7 +21,10 @@ class ProjectsRolesApiService(DevopnessBaseService):
     def add_project_role(
         self,
         project_id: int,
-        role_project_create: RoleProjectCreate | RoleProjectCreatePlain,
+        role_project_create: Union[
+            RoleProjectCreate,
+            RoleProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[Role]:
         """
         Create a role to a given project
@@ -78,7 +83,10 @@ class ProjectsRolesApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_project_role(
         self,
         project_id: int,
-        role_project_create: RoleProjectCreate | RoleProjectCreatePlain,
+        role_project_create: Union[
+            RoleProjectCreate,
+            RoleProjectCreatePlain,
+        ],
     ) -> DevopnessResponse[Role]:
         """
         Create a role to a given project

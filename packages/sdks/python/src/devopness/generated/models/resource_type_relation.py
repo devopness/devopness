@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -55,9 +56,35 @@ class ResourceTypeRelationPlain(TypedDict, total=False):
     Plain version of ResourceTypeRelation.
     """
 
-    resource_type: Required[ResourceType | ResourceTypePlain]
+    resource_type: Required[
+        Union[
+            ResourceType,
+            ResourceTypePlain,
+        ]
+    ]
     resource_type_human_readable: Required[str]
     resource_type_human_readable_plural: Required[str]
-    supported_operations: Required[list[ResourceOperation | ResourceOperationPlain]]
-    can_be_child_of: Required[list[ResourceTypeRelated | ResourceTypeRelatedPlain]]
-    can_be_parent_of: Required[list[ResourceTypeRelated | ResourceTypeRelatedPlain]]
+    supported_operations: Required[
+        list[
+            Union[
+                ResourceOperation,
+                ResourceOperationPlain,
+            ]
+        ]
+    ]
+    can_be_child_of: Required[
+        list[
+            Union[
+                ResourceTypeRelated,
+                ResourceTypeRelatedPlain,
+            ]
+        ]
+    ]
+    can_be_parent_of: Required[
+        list[
+            Union[
+                ResourceTypeRelated,
+                ResourceTypeRelatedPlain,
+            ]
+        ]
+    ]

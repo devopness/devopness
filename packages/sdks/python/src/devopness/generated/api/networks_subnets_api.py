@@ -6,6 +6,8 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Subnet,
@@ -24,7 +26,10 @@ class NetworksSubnetsApiService(DevopnessBaseService):
     def add_network_subnet(
         self,
         network_id: int,
-        subnet_network_create: SubnetNetworkCreate | SubnetNetworkCreatePlain,
+        subnet_network_create: Union[
+            SubnetNetworkCreate,
+            SubnetNetworkCreatePlain,
+        ],
     ) -> DevopnessResponse[Subnet]:
         """
         Create a new subnet for the given network
@@ -87,7 +92,10 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
     async def add_network_subnet(
         self,
         network_id: int,
-        subnet_network_create: SubnetNetworkCreate | SubnetNetworkCreatePlain,
+        subnet_network_create: Union[
+            SubnetNetworkCreate,
+            SubnetNetworkCreatePlain,
+        ],
     ) -> DevopnessResponse[Subnet]:
         """
         Create a new subnet for the given network

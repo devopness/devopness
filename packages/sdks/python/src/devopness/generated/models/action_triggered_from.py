@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -60,7 +61,12 @@ class ActionTriggeredFromPlain(TypedDict, total=False):
     """
 
     origin: str | None
-    trigger_type: Required[ActionTriggerType | ActionTriggerTypePlain]
+    trigger_type: Required[
+        Union[
+            ActionTriggerType,
+            ActionTriggerTypePlain,
+        ]
+    ]
     name: Required[str]
     email: str | None
     ip_address: Required[str]

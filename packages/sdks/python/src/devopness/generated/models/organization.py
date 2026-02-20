@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -55,7 +56,12 @@ class OrganizationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     url_slug: Required[str]
-    resource_summary: list[ResourceSummaryItem | ResourceSummaryItemPlain] | None
-    owner: Required[UserRelation | UserRelationPlain]
+    resource_summary: list[Union[ResourceSummaryItem, ResourceSummaryItemPlain]] | None
+    owner: Required[
+        Union[
+            UserRelation,
+            UserRelationPlain,
+        ]
+    ]
     created_at: Required[str]
     updated_at: Required[str]

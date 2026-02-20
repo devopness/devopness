@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -121,24 +122,61 @@ class ActionRetryResponsePlain(TypedDict, total=False):
     id: Required[int]
     pipeline_id: int | None
     retry_of: int | None
-    status: Required[ActionStatus | ActionStatusPlain]
+    status: Required[
+        Union[
+            ActionStatus,
+            ActionStatusPlain,
+        ]
+    ]
     status_human_readable: Required[str]
-    status_reason_code: Required[ActionStatusReasonCode | ActionStatusReasonCodePlain]
+    status_reason_code: Required[
+        Union[
+            ActionStatusReasonCode,
+            ActionStatusReasonCodePlain,
+        ]
+    ]
     status_reason_human_readable: Required[str]
-    type: Required[ActionType | ActionTypePlain]
+    type: Required[
+        Union[
+            ActionType,
+            ActionTypePlain,
+        ]
+    ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: ActionData | ActionDataPlain | None
-    triggered_from: Required[ActionTriggeredFrom | ActionTriggeredFromPlain]
-    parent: RelatedAction | RelatedActionPlain | None
-    children: Required[list[RelatedAction | RelatedActionPlain]]
-    triggered_by_user: UserRelation | UserRelationPlain | None
-    resource: Required[ActionResource | ActionResourcePlain]
-    summary: Required[ActionSummary | ActionSummaryPlain]
-    environment: EnvironmentRelation | EnvironmentRelationPlain | None
-    project: ProjectRelation | ProjectRelationPlain | None
-    targets: list[ActionTarget | ActionTargetPlain] | None
-    hook_requests: ActionHookRequest | ActionHookRequestPlain | None
+    action_data: Union[ActionData, ActionDataPlain] | None
+    triggered_from: Required[
+        Union[
+            ActionTriggeredFrom,
+            ActionTriggeredFromPlain,
+        ]
+    ]
+    parent: Union[RelatedAction, RelatedActionPlain] | None
+    children: Required[
+        list[
+            Union[
+                RelatedAction,
+                RelatedActionPlain,
+            ]
+        ]
+    ]
+    triggered_by_user: Union[UserRelation, UserRelationPlain] | None
+    resource: Required[
+        Union[
+            ActionResource,
+            ActionResourcePlain,
+        ]
+    ]
+    summary: Required[
+        Union[
+            ActionSummary,
+            ActionSummaryPlain,
+        ]
+    ]
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    targets: list[Union[ActionTarget, ActionTargetPlain]] | None
+    hook_requests: Union[ActionHookRequest, ActionHookRequestPlain] | None
     started_at: str | None
     completed_at: str | None
     created_at: Required[str]

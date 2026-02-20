@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -44,5 +45,12 @@ class ProviderSettingsPlain(TypedDict, total=False):
     """
 
     connect_url: str | None
-    input_settings: Required[list[ProviderInputSettings | ProviderInputSettingsPlain]]
-    cloud_services: list[CloudProviderService | CloudProviderServicePlain] | None
+    input_settings: Required[
+        list[
+            Union[
+                ProviderInputSettings,
+                ProviderInputSettingsPlain,
+            ]
+        ]
+    ]
+    cloud_services: list[Union[CloudProviderService, CloudProviderServicePlain]] | None

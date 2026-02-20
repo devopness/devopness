@@ -10,6 +10,7 @@ from datetime import datetime
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -93,9 +94,16 @@ class ActionStepPlain(TypedDict, total=False):
     name: str | None
     description: str | None
     order: Required[int]
-    status: Required[ActionStatus | ActionStatusPlain]
+    status: Required[
+        Union[
+            ActionStatus,
+            ActionStatusPlain,
+        ]
+    ]
     status_human_readable: str | None
-    status_reason_code: ActionStatusReasonCode | ActionStatusReasonCodePlain | None
+    status_reason_code: (
+        Union[ActionStatusReasonCode, ActionStatusReasonCodePlain] | None
+    )
     status_reason_human_readable: str | None
     started_at: datetime | None
     completed_at: datetime | None

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -67,5 +68,5 @@ class HookPipelineCreatePlain(TypedDict, total=False):
     requires_secret: bool | None
     secret_algorithm: str | None
     secret_header_name: str | None
-    trigger_when: HookTriggerWhen | HookTriggerWhenPlain | None
-    settings: HookPipelineCreateSettings | HookPipelineCreateSettingsPlain | None
+    trigger_when: Union[HookTriggerWhen, HookTriggerWhenPlain] | None
+    settings: Union[HookPipelineCreateSettings, HookPipelineCreateSettingsPlain] | None

@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictStr
@@ -46,7 +47,7 @@ class ResourceTypeRelatedPlain(TypedDict, total=False):
     Plain version of ResourceTypeRelated.
     """
 
-    resource_type: ResourceType | ResourceTypePlain | None
+    resource_type: Union[ResourceType, ResourceTypePlain] | None
     resource_type_human_readable: str | None
     resource_type_human_readable_plural: str | None
     can_be_linked: bool | None

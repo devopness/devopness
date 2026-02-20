@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -41,6 +42,6 @@ class VariableTargetsPlain(TypedDict, total=False):
     Plain version of VariableTargets.
     """
 
-    name: VariableTarget | VariableTargetPlain | None
+    name: Union[VariableTarget, VariableTargetPlain] | None
     name_human_readable: str | None
     hint: str | None

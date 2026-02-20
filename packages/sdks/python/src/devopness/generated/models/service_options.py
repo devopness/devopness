@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -33,4 +34,11 @@ class ServiceOptionsPlain(TypedDict, total=False):
     Plain version of ServiceOptions.
     """
 
-    types: Required[list[StaticServiceType | StaticServiceTypePlain]]
+    types: Required[
+        list[
+            Union[
+                StaticServiceType,
+                StaticServiceTypePlain,
+            ]
+        ]
+    ]

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -68,11 +69,16 @@ class ServerEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of ServerEnvironmentCreate.
     """
 
-    linked_resources: list[ResourceToBeLinked | ResourceToBeLinkedPlain] | None
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     hostname: Required[str]
     ip_address: str | None
     ssh_port: int | None
     max_parallel_actions: int | None
-    blueprint: list[BlueprintService | BlueprintServicePlain] | None
-    provision_input: Required[ServerProvisionInput | ServerProvisionInputPlain]
+    blueprint: list[Union[BlueprintService, BlueprintServicePlain]] | None
+    provision_input: Required[
+        Union[
+            ServerProvisionInput,
+            ServerProvisionInputPlain,
+        ]
+    ]
     credential_id: str | None

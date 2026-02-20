@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictFloat, StrictInt
@@ -28,26 +29,26 @@ class TriggeredActionSummary(DevopnessBaseModel):
         failed (float, optional): Total of actions that were triggered by the user with status failed
     """
 
-    count: StrictFloat | StrictInt | None = Field(
+    count: Union[StrictFloat, StrictInt] | None = Field(
         default=None, description="Total of actions that were triggered by the user"
     )
-    queued: StrictFloat | StrictInt | None = Field(
+    queued: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status queued",
     )
-    pending: StrictFloat | StrictInt | None = Field(
+    pending: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status pending",
     )
-    in_progress: StrictFloat | StrictInt | None = Field(
+    in_progress: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status in_progress",
     )
-    completed: StrictFloat | StrictInt | None = Field(
+    completed: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status completed",
     )
-    failed: StrictFloat | StrictInt | None = Field(
+    failed: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status failed",
     )

@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -31,4 +32,9 @@ class ActionSummaryPlain(TypedDict, total=False):
     Plain version of ActionSummary.
     """
 
-    targets: Required[ActionSummaryTarget | ActionSummaryTargetPlain]
+    targets: Required[
+        Union[
+            ActionSummaryTarget,
+            ActionSummaryTargetPlain,
+        ]
+    ]

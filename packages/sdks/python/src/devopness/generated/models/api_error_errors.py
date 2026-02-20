@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field
@@ -39,5 +40,6 @@ class ApiErrorErrorsPlain(TypedDict, total=False):
     """
 
     field_name: (
-        list[ApiErrorErrorsFieldNameInner | ApiErrorErrorsFieldNameInnerPlain] | None
+        list[Union[ApiErrorErrorsFieldNameInner, ApiErrorErrorsFieldNameInnerPlain]]
+        | None
     )

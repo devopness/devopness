@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from .. import DevopnessBaseModel
@@ -36,5 +37,5 @@ class TriggeredActionsPlain(TypedDict, total=False):
     Plain version of TriggeredActions.
     """
 
-    summary: TriggeredActionSummary | TriggeredActionSummaryPlain | None
-    operations: list[TriggeredActionStats | TriggeredActionStatsPlain] | None
+    summary: Union[TriggeredActionSummary, TriggeredActionSummaryPlain] | None
+    operations: list[Union[TriggeredActionStats, TriggeredActionStatsPlain]] | None

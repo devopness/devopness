@@ -9,6 +9,7 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt
@@ -43,6 +44,16 @@ class CredentialSettingPlain(TypedDict, total=False):
     Plain version of CredentialSetting.
     """
 
-    provider: Required[CredentialProviderType | CredentialProviderTypePlain]
+    provider: Required[
+        Union[
+            CredentialProviderType,
+            CredentialProviderTypePlain,
+        ]
+    ]
     environment_id: Required[int]
-    settings: Required[ProviderSettings | ProviderSettingsPlain]
+    settings: Required[
+        Union[
+            ProviderSettings,
+            ProviderSettingsPlain,
+        ]
+    ]

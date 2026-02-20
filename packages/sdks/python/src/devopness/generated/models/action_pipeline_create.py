@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
@@ -42,5 +43,5 @@ class ActionPipelineCreatePlain(TypedDict, total=False):
     """
 
     servers: list[int] | None
-    source_type: SourceType | SourceTypePlain | None
+    source_type: Union[SourceType, SourceTypePlain] | None
     source_ref: str | None

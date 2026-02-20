@@ -8,6 +8,7 @@ Note:
 
 from typing import (
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
@@ -53,4 +54,4 @@ class TriggeredActionStatsPlain(TypedDict, total=False):
     action_type: str | None
     resource_type_human_readable: str | None
     action_type_human_readable: str | None
-    summary: TriggeredActionSummary | TriggeredActionSummaryPlain | None
+    summary: Union[TriggeredActionSummary, TriggeredActionSummaryPlain] | None
