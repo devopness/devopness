@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
 )
@@ -33,7 +32,7 @@ class CloudProviderServiceRegion(DevopnessBaseModel):
     hint: StrictStr = Field(
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
     )
-    zones: List[StrictStr] = Field(
+    zones: list[StrictStr] = Field(
         description="List of availability zones of the cloud provider region"
     )
 
@@ -46,4 +45,4 @@ class CloudProviderServiceRegionPlain(TypedDict, total=False):
     code: Required[str]
     name: Required[str]
     hint: Required[str]
-    zones: Required[List[str]]
+    zones: Required[list[str]]

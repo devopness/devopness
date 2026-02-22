@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -90,24 +89,24 @@ class ApplicationRelation(DevopnessBaseModel):
     framework_human_readable: StrictStr = Field(
         description="The human readable version of the framework of the application."
     )
-    root_directory: Optional[StrictStr] = Field(
+    root_directory: StrictStr | None = Field(
         description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository."
     )
     deployments_keep: StrictInt = Field(
         description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions"
     )
-    install_dependencies_command: Optional[StrictStr] = Field(
+    install_dependencies_command: StrictStr | None = Field(
         description="Indicates command that Devopness must execute to install application dependencies"
     )
-    build_command: Optional[StrictStr] = Field(
+    build_command: StrictStr | None = Field(
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state"
     )
-    last_deployments: Optional[ApplicationLastDeployments] = None
-    credential: Optional[Credential] = None
-    created_at: Optional[StrictStr] = Field(
+    last_deployments: ApplicationLastDeployments | None = None
+    credential: Credential | None = None
+    created_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -131,21 +130,13 @@ class ApplicationRelationPlain(TypedDict, total=False):
     engine_version: Required[str]
     framework: Required[str]
     framework_human_readable: Required[str]
-    root_directory: Optional[str]
+    root_directory: str | None
     deployments_keep: Required[int]
-    install_dependencies_command: Optional[str]
-    build_command: Optional[str]
-    last_deployments: Optional[
-        Union[
-            ApplicationLastDeployments,
-            ApplicationLastDeploymentsPlain,
-        ]
-    ]
-    credential: Optional[
-        Union[
-            Credential,
-            CredentialPlain,
-        ]
-    ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    install_dependencies_command: str | None
+    build_command: str | None
+    last_deployments: (
+        Union[ApplicationLastDeployments, ApplicationLastDeploymentsPlain] | None
+    )
+    credential: Union[Credential, CredentialPlain] | None
+    created_at: str | None
+    updated_at: str | None

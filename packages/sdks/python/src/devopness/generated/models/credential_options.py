@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -32,10 +31,10 @@ class CredentialOptions(DevopnessBaseModel):
         supported_providers (List[CredentialProvider]): The list of supported credential providers
     """
 
-    provider_types: List[CredentialProviderType] = Field(
+    provider_types: list[CredentialProviderType] = Field(
         description="The list of credential provider types"
     )
-    supported_providers: List[CredentialProvider] = Field(
+    supported_providers: list[CredentialProvider] = Field(
         description="The list of supported credential providers"
     )
 
@@ -46,7 +45,7 @@ class CredentialOptionsPlain(TypedDict, total=False):
     """
 
     provider_types: Required[
-        List[
+        list[
             Union[
                 CredentialProviderType,
                 CredentialProviderTypePlain,
@@ -54,7 +53,7 @@ class CredentialOptionsPlain(TypedDict, total=False):
         ]
     ]
     supported_providers: Required[
-        List[
+        list[
             Union[
                 CredentialProvider,
                 CredentialProviderPlain,

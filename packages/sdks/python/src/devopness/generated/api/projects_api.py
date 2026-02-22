@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -120,10 +120,10 @@ class ProjectsApiService(DevopnessBaseService):
 
     def list_projects(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        owner: Optional[str] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        owner: str | None = None,
+    ) -> DevopnessResponse[list[ProjectRelation]]:
         """
         Return a list of projects
 
@@ -148,7 +148,7 @@ class ProjectsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ProjectRelation])
+        return DevopnessResponse(response, list[ProjectRelation])
 
     def update_project(
         self,
@@ -274,10 +274,10 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def list_projects(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        owner: Optional[str] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        owner: str | None = None,
+    ) -> DevopnessResponse[list[ProjectRelation]]:
         """
         Return a list of projects
 
@@ -302,7 +302,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ProjectRelation])
+        return await DevopnessResponse.from_async(response, list[ProjectRelation])
 
     async def update_project(
         self,

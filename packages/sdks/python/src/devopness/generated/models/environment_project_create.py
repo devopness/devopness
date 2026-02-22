@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -33,7 +32,7 @@ class EnvironmentProjectCreate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The environment's name. Must not be greater than 60 characters."
     )
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         default=None,
         description="The environment's description. Must not be greater than 255 characters.",
     )
@@ -51,4 +50,4 @@ class EnvironmentProjectCreatePlain(TypedDict, total=False):
         ]
     ]
     name: Required[str]
-    description: Optional[str]
+    description: str | None

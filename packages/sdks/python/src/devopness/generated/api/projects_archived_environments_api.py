@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ArchivedEnvironmentRelation
 from ..utils import parse_query_string
@@ -21,9 +19,9 @@ class ProjectsArchivedEnvironmentsApiService(DevopnessBaseService):
     def list_project_archived_environments(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ArchivedEnvironmentRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ArchivedEnvironmentRelation]]:
         """
         Return a list of all archived environments belonging to a project
 
@@ -47,7 +45,7 @@ class ProjectsArchivedEnvironmentsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ArchivedEnvironmentRelation])
+        return DevopnessResponse(response, list[ArchivedEnvironmentRelation])
 
 
 class ProjectsArchivedEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -58,9 +56,9 @@ class ProjectsArchivedEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_project_archived_environments(
         self,
         project_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ArchivedEnvironmentRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ArchivedEnvironmentRelation]]:
         """
         Return a list of all archived environments belonging to a project
 
@@ -85,5 +83,5 @@ class ProjectsArchivedEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(
-            response, List[ArchivedEnvironmentRelation]
+            response, list[ArchivedEnvironmentRelation]
         )

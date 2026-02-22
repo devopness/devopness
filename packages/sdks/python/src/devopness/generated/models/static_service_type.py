@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -41,7 +40,7 @@ class StaticServiceType(DevopnessBaseModel):
     hint: StrictStr = Field(
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
     )
-    supported_versions: List[StaticServiceTypeSupportedVersionsInner] = Field(
+    supported_versions: list[StaticServiceTypeSupportedVersionsInner] = Field(
         description="List of service versions supported by Devopness"
     )
 
@@ -60,7 +59,7 @@ class StaticServiceTypePlain(TypedDict, total=False):
     human_readable: Required[str]
     hint: Required[str]
     supported_versions: Required[
-        List[
+        list[
             Union[
                 StaticServiceTypeSupportedVersionsInner,
                 StaticServiceTypeSupportedVersionsInnerPlain,

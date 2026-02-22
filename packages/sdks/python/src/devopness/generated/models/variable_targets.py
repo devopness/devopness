@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -28,11 +27,11 @@ class VariableTargets(DevopnessBaseModel):
         hint (str, optional): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    name: Optional[VariableTarget] = None
-    name_human_readable: Optional[StrictStr] = Field(
+    name: VariableTarget | None = None
+    name_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the variable target name"
     )
-    hint: Optional[StrictStr] = Field(
+    hint: StrictStr | None = Field(
         default=None,
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
     )
@@ -43,11 +42,6 @@ class VariableTargetsPlain(TypedDict, total=False):
     Plain version of VariableTargets.
     """
 
-    name: Optional[
-        Union[
-            VariableTarget,
-            VariableTargetPlain,
-        ]
-    ]
-    name_human_readable: Optional[str]
-    hint: Optional[str]
+    name: Union[VariableTarget, VariableTargetPlain] | None
+    name_human_readable: str | None
+    hint: str | None

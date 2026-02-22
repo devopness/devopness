@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Repository, RepositoryRelation
 from ..utils import parse_query_string
@@ -44,9 +42,9 @@ class CredentialsRepositoriesApiService(DevopnessBaseService):
     def list_credential_repositories(
         self,
         credential_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RepositoryRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[RepositoryRelation]]:
         """
         Return a list of all repositories belonging to the source provider linked to the credential
 
@@ -70,7 +68,7 @@ class CredentialsRepositoriesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[RepositoryRelation])
+        return DevopnessResponse(response, list[RepositoryRelation])
 
 
 class CredentialsRepositoriesApiServiceAsync(DevopnessBaseServiceAsync):
@@ -104,9 +102,9 @@ class CredentialsRepositoriesApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_credential_repositories(
         self,
         credential_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RepositoryRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[RepositoryRelation]]:
         """
         Return a list of all repositories belonging to the source provider linked to the credential
 
@@ -130,4 +128,4 @@ class CredentialsRepositoriesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[RepositoryRelation])
+        return await DevopnessResponse.from_async(response, list[RepositoryRelation])

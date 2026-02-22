@@ -42,6 +42,41 @@ describe('Input', () => {
       expect(errorMessage).toBeInTheDocument()
     })
 
+    it('with autocomplete off by default', () => {
+      render(
+        <Input
+          type="text"
+          data-testid="autocomplete-input"
+        />
+      )
+      const input = screen.getByTestId('autocomplete-input')
+      expect(input).toHaveAttribute('autocomplete', 'off')
+    })
+
+    it('allows overriding autocomplete via props', () => {
+      render(
+        <Input
+          type="text"
+          autoComplete="email"
+          data-testid="autocomplete-override"
+        />
+      )
+      const input = screen.getByTestId('autocomplete-override')
+      expect(input).toHaveAttribute('autocomplete', 'email')
+    })
+
+    it('allows overriding autocomplete via inputProps', () => {
+      render(
+        <Input
+          type="text"
+          inputProps={{ autoComplete: 'username' }}
+          data-testid="autocomplete-inputprops"
+        />
+      )
+      const input = screen.getByTestId('autocomplete-inputprops')
+      expect(input).toHaveAttribute('autocomplete', 'username')
+    })
+
     it('with custom styles', () => {
       render(
         <Input

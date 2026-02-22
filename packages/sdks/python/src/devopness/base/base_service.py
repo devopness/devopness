@@ -2,8 +2,8 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from datetime import datetime, timedelta, timezone
-from typing import Any, Optional, Union
+from datetime import UTC, datetime, timedelta
+from typing import Any
 
 import httpx
 
@@ -35,9 +35,9 @@ class DevopnessBaseService:
     _client: httpx.Client
     _config: DevopnessClientConfig
 
-    _access_token: Optional[str] = None
-    _refresh_token: Optional[str] = None
-    _token_expires_at: Optional[datetime] = None
+    _access_token: str | None = None
+    _refresh_token: str | None = None
+    _token_expires_at: datetime | None = None
 
     def __init__(self) -> None:
         """
@@ -134,7 +134,7 @@ class DevopnessBaseService:
         response.read()
         data = response.json()
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         expires_in: int = data["expires_in"]
         expires_at = now + timedelta(seconds=expires_in)
 
@@ -209,9 +209,9 @@ class DevopnessBaseServiceAsync:
     _client: httpx.AsyncClient
     _config: DevopnessClientConfig
 
-    _access_token: Optional[str] = None
-    _refresh_token: Optional[str] = None
-    _token_expires_at: Optional[datetime] = None
+    _access_token: str | None = None
+    _refresh_token: str | None = None
+    _token_expires_at: datetime | None = None
 
     def __init__(self) -> None:
         """
@@ -308,7 +308,7 @@ class DevopnessBaseServiceAsync:
         await response.aread()
         data = response.json()
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         expires_in: int = data["expires_in"]
         expires_at = now + timedelta(seconds=expires_in)
 
@@ -401,10 +401,7 @@ def debug_response(response: httpx.Response) -> None:
 
 
 def is_access_token_expired(
-    service_cls: Union[
-        type[DevopnessBaseService],
-        type[DevopnessBaseServiceAsync],
-    ],
+    service_cls: type[DevopnessBaseService] | type[DevopnessBaseServiceAsync],
 ) -> bool:
     """
     Checks if the access token has expired.
@@ -414,7 +411,7 @@ def is_access_token_expired(
         return True
 
     safety_margin = timedelta(seconds=30)
-    return datetime.now(timezone.utc) >= (expires_at - safety_margin)
+    return datetime.now(UTC) >= (expires_at - safety_margin)
 
 
 def is_token_change_request(endpoint: str) -> bool:
@@ -428,8 +425,8 @@ def is_token_change_request(endpoint: str) -> bool:
 
 
 def parse_payload(
-    data: Union[dict[str, Any], DevopnessBaseModel, None],
-) -> Union[dict[str, Any], None]:
+    data: dict[str, Any] | DevopnessBaseModel | None,
+) -> dict[str, Any] | None:
     """
     Returns the payload for a request.
 

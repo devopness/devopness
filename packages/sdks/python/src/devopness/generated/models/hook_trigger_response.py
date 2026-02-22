@@ -8,8 +8,6 @@ Note:
 
 from typing import (
     Any,
-    Dict,
-    Optional,
     Required,
     TypedDict,
 )
@@ -31,7 +29,7 @@ class HookTriggerResponse(DevopnessBaseModel):
     message: StrictStr = Field(
         description="Message containing information about the hook being triggered"
     )
-    errors: Optional[Dict[str, Any]] = Field(
+    errors: dict[str, Any] | None = Field(
         description="Optional error object containing details of the server error"
     )
 
@@ -42,4 +40,4 @@ class HookTriggerResponsePlain(TypedDict, total=False):
     """
 
     message: Required[str]
-    errors: Optional[object]
+    errors: object | None

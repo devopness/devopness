@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
 )
@@ -36,13 +34,13 @@ class RoleRelation(DevopnessBaseModel):
     id: StrictInt = Field(description="The unique ID of the given role")
     name: StrictStr = Field(description="The name of the given role")
     description: StrictStr = Field(description="Description of this role")
-    project_id: Optional[StrictInt] = Field(
+    project_id: StrictInt | None = Field(
         description="The ID of the project this role belongs to"
     )
     is_predefined: StrictBool = Field(
         description="Defines if the role is predefined or a custom role for specific project"
     )
-    permissions: List[StrictStr] = Field(
+    permissions: list[StrictStr] = Field(
         description="The list of permissions granted for this role"
     )
     created_at: StrictStr = Field(
@@ -61,8 +59,8 @@ class RoleRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     description: Required[str]
-    project_id: Optional[int]
+    project_id: int | None
     is_predefined: Required[bool]
-    permissions: Required[List[str]]
+    permissions: Required[list[str]]
     created_at: Required[str]
     updated_at: Required[str]

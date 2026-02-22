@@ -5,18 +5,18 @@ from devopness.generated.utils import parse_query_string
 
 class TestParseQueryString(unittest.TestCase):
     def test_parse_query_string(self) -> None:
-        params = dict(
-            string="hello",
-            integer=123,
-            float=123.456,
-            boolean=True,
-            list=["a", "b", "c"],
-            dict={"a": 1, "b": 2},
-            null=None,
-            empty_string="",
-            empty_list=[],
-            empty_dict={},
-        )
+        params = {
+            "string": "hello",
+            "integer": 123,
+            "float": 123.456,
+            "boolean": True,
+            "list": ["a", "b", "c"],
+            "dict": {"a": 1, "b": 2},
+            "null": None,
+            "empty_string": "",
+            "empty_list": [],
+            "empty_dict": {},
+        }
 
         query_string = parse_query_string(params)
         expected_query_string = "string=hello"

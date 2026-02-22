@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ProjectRelation
 from ..utils import parse_query_string
@@ -21,10 +19,10 @@ class UsersProjectsApiService(DevopnessBaseService):
     def list_user_projects(
         self,
         user_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        subscription_id: Optional[int] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        subscription_id: int | None = None,
+    ) -> DevopnessResponse[list[ProjectRelation]]:
         """
         Return a list of all projects owned by a user
 
@@ -49,7 +47,7 @@ class UsersProjectsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ProjectRelation])
+        return DevopnessResponse(response, list[ProjectRelation])
 
 
 class UsersProjectsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -60,10 +58,10 @@ class UsersProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_user_projects(
         self,
         user_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        subscription_id: Optional[int] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        subscription_id: int | None = None,
+    ) -> DevopnessResponse[list[ProjectRelation]]:
         """
         Return a list of all projects owned by a user
 
@@ -88,4 +86,4 @@ class UsersProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ProjectRelation])
+        return await DevopnessResponse.from_async(response, list[ProjectRelation])

@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -30,10 +29,10 @@ class ProjectOrganizationCreate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The name of the project. Must not be greater than 60 characters."
     )
-    logo_image: Optional[StrictStr] = Field(
+    logo_image: StrictStr | None = Field(
         default=None, description="A base64 string representation of the logo image."
     )
-    logo_url: Optional[StrictStr] = Field(
+    logo_url: StrictStr | None = Field(
         default=None,
         description="A URL path to the project's logo image. Must be a valid URL.",
     )
@@ -45,5 +44,5 @@ class ProjectOrganizationCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    logo_image: Optional[str]
-    logo_url: Optional[str]
+    logo_image: str | None
+    logo_url: str | None

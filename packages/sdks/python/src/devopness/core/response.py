@@ -3,7 +3,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import json
-from typing import Any, Generic, Optional, TypeVar, Union, cast, get_args, get_origin
+from typing import Any, Generic, TypeVar, cast, get_args, get_origin
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
 
@@ -33,12 +33,12 @@ class DevopnessResponse(Generic[T]):
     status: int
     data: T
     page_count: int
-    action_id: Optional[int]
+    action_id: int | None
 
     def __init__(
         self,
         response: httpx.Response,
-        model_cls: Optional[Union[type[DevopnessBaseModel], type]] = None,
+        model_cls: type[DevopnessBaseModel] | type | None = None,
     ) -> None:
         """
         Initialize an DevopnessResponse object from an httpx.Response.
@@ -59,7 +59,7 @@ class DevopnessResponse(Generic[T]):
     async def from_async(
         cls,
         response: httpx.Response,
-        model_cls: Optional[Union[type[DevopnessBaseModel], type]] = None,
+        model_cls: type[DevopnessBaseModel] | type | None = None,
     ) -> "DevopnessResponse[T]":
         """
         Asynchronously initialize an DevopnessResponse object from an httpx.Response.
@@ -108,7 +108,7 @@ class DevopnessResponse(Generic[T]):
                     return 1
         return 1
 
-    def _parse_action_id(self, response: httpx.Response) -> Optional[int]:
+    def _parse_action_id(self, response: httpx.Response) -> int | None:
         """
         Parse the 'x-devopness-action-id' header into an integer.
 
@@ -128,16 +128,16 @@ class DevopnessResponse(Generic[T]):
     def _parse_data(
         self,
         response: httpx.Response,
-        model_cls: Optional[Union[type[DevopnessBaseModel], type]],
-    ) -> Union[
-        str,
-        int,
-        float,
-        DevopnessBaseModel,
-        list[DevopnessBaseModel],
-        dict[str, Any],
-        None,
-    ]:
+        model_cls: type[DevopnessBaseModel] | type | None,
+    ) -> (
+        str
+        | int
+        | float
+        | DevopnessBaseModel
+        | list[DevopnessBaseModel]
+        | dict[str, Any]
+        | None
+    ):
         """
         Parse the response data into the specified model class.
 
@@ -155,16 +155,16 @@ class DevopnessResponse(Generic[T]):
     async def _async_parse_data(
         self,
         response: httpx.Response,
-        model_cls: Optional[Union[type[DevopnessBaseModel], type]],
-    ) -> Union[
-        str,
-        int,
-        float,
-        DevopnessBaseModel,
-        list[DevopnessBaseModel],
-        dict[str, Any],
-        None,
-    ]:
+        model_cls: type[DevopnessBaseModel] | type | None,
+    ) -> (
+        str
+        | int
+        | float
+        | DevopnessBaseModel
+        | list[DevopnessBaseModel]
+        | dict[str, Any]
+        | None
+    ):
         """
         Parse the response data into the specified model class.
 
@@ -182,16 +182,16 @@ class DevopnessResponse(Generic[T]):
     def _deserialize_data(
         self,
         raw_data: bytes,
-        model_cls: Optional[Union[type[DevopnessBaseModel], type]],
-    ) -> Union[
-        str,
-        int,
-        float,
-        DevopnessBaseModel,
-        list[DevopnessBaseModel],
-        dict[str, Any],
-        None,
-    ]:
+        model_cls: type[DevopnessBaseModel] | type | None,
+    ) -> (
+        str
+        | int
+        | float
+        | DevopnessBaseModel
+        | list[DevopnessBaseModel]
+        | dict[str, Any]
+        | None
+    ):
         """
         Deserialize raw response data into the specified model class.
         """

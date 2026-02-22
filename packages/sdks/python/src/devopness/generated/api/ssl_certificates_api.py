@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -93,9 +93,9 @@ class SSLCertificatesApiService(DevopnessBaseService):
     def list_environment_ssl_certificates(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SslCertificateRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SslCertificateRelation]]:
         """
         Return a list of all SSL Certificates belonging to an environment
 
@@ -119,7 +119,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[SslCertificateRelation])
+        return DevopnessResponse(response, list[SslCertificateRelation])
 
 
 class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
@@ -197,9 +197,9 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_ssl_certificates(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SslCertificateRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SslCertificateRelation]]:
         """
         Return a list of all SSL Certificates belonging to an environment
 
@@ -224,5 +224,5 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(
-            response, List[SslCertificateRelation]
+            response, list[SslCertificateRelation]
         )

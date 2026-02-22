@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -36,7 +35,7 @@ class ActionResource(DevopnessBaseModel):
     type_human_readable: StrictStr = Field(
         description="Human readable version of the resource type"
     )
-    data: Optional[ActionResourceData] = None
+    data: ActionResourceData | None = None
 
 
 class ActionResourcePlain(TypedDict, total=False):
@@ -52,9 +51,4 @@ class ActionResourcePlain(TypedDict, total=False):
         ]
     ]
     type_human_readable: Required[str]
-    data: Optional[
-        Union[
-            ActionResourceData,
-            ActionResourceDataPlain,
-        ]
-    ]
+    data: Union[ActionResourceData, ActionResourceDataPlain] | None

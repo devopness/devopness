@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -38,15 +37,15 @@ class StepPipelineUpdate(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="The unique ID of the given Pipeline Step.")
-    name: Optional[StrictStr] = Field(
+    name: StrictStr | None = Field(
         default=None,
         description="Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
     )
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         default=None,
         description="A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
     )
-    type: Optional[StrictStr] = Field(
+    type: StrictStr | None = Field(
         default=None,
         description="The pipeline step's type. Must not be greater than 20 characters.",
     )
@@ -54,11 +53,11 @@ class StepPipelineUpdate(DevopnessBaseModel):
         description="A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters."
     )
     runner: PipelineStepRunnerName
-    run_as_user: Optional[StrictStr] = Field(
+    run_as_user: StrictStr | None = Field(
         default=None,
         description="The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
     )
-    trigger_after: Optional[StrictInt] = Field(
+    trigger_after: StrictInt | None = Field(
         default=None,
         description="Repositions the pipeline step after the step with the given `trigger_order`. Must be at least 0. Must not be greater than 16777214.",
     )
@@ -70,9 +69,9 @@ class StepPipelineUpdatePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    name: Optional[str]
-    description: Optional[str]
-    type: Optional[str]
+    name: str | None
+    description: str | None
+    type: str | None
     command: Required[str]
     runner: Required[
         Union[
@@ -80,5 +79,5 @@ class StepPipelineUpdatePlain(TypedDict, total=False):
             PipelineStepRunnerNamePlain,
         ]
     ]
-    run_as_user: Optional[str]
-    trigger_after: Optional[int]
+    run_as_user: str | None
+    trigger_after: int | None

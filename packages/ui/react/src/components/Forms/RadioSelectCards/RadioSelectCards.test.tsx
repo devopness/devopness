@@ -56,11 +56,11 @@ describe('RadioSelectCards', () => {
         data={sampleData}
       />
     )
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+
     const option1 = screen.getByRole('radio', {
       name: 'Option 1',
     }) as HTMLInputElement
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+
     const option2 = screen.getByRole('radio', {
       name: 'Option 2',
     }) as HTMLInputElement

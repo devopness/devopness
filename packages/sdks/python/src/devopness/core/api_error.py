@@ -4,7 +4,6 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 
 import contextlib
 import json
-from typing import Optional
 
 import httpx
 
@@ -33,10 +32,10 @@ class DevopnessApiError(DevopnessSdkError):
 
     status_code: int
     response_text: str
-    request_url: Optional[str] = None
-    request_method: Optional[str] = None
+    request_url: str | None = None
+    request_method: str | None = None
     message: str
-    errors: Optional[dict[str, list[str]]] = None
+    errors: dict[str, list[str]] | None = None
 
     def __init__(self, err: httpx.HTTPStatusError) -> None:
         e_res = err.response
@@ -85,8 +84,7 @@ class DevopnessApiError(DevopnessSdkError):
 
             for field, errors in self.errors.items():
                 lines.append(f"  - {field}:")
-                for error in errors:
-                    lines.append(f"      {error}")
+                lines.extend(f"      {error}" for error in errors)
 
         return "\n".join(lines)
 

@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -30,26 +29,26 @@ class TriggeredActionSummary(DevopnessBaseModel):
         failed (float, optional): Total of actions that were triggered by the user with status failed
     """
 
-    count: Optional[Union[StrictFloat, StrictInt]] = Field(
+    count: Union[StrictFloat, StrictInt] | None = Field(
         default=None, description="Total of actions that were triggered by the user"
     )
-    queued: Optional[Union[StrictFloat, StrictInt]] = Field(
+    queued: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status queued",
     )
-    pending: Optional[Union[StrictFloat, StrictInt]] = Field(
+    pending: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status pending",
     )
-    in_progress: Optional[Union[StrictFloat, StrictInt]] = Field(
+    in_progress: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status in_progress",
     )
-    completed: Optional[Union[StrictFloat, StrictInt]] = Field(
+    completed: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status completed",
     )
-    failed: Optional[Union[StrictFloat, StrictInt]] = Field(
+    failed: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status failed",
     )
@@ -60,9 +59,9 @@ class TriggeredActionSummaryPlain(TypedDict, total=False):
     Plain version of TriggeredActionSummary.
     """
 
-    count: Optional[float]
-    queued: Optional[float]
-    pending: Optional[float]
-    in_progress: Optional[float]
-    completed: Optional[float]
-    failed: Optional[float]
+    count: float | None
+    queued: float | None
+    pending: float | None
+    in_progress: float | None
+    completed: float | None
+    failed: float | None

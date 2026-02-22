@@ -6,7 +6,7 @@ import re
 import warnings
 from importlib.metadata import version
 from platform import python_version, system
-from typing import Any, Optional, TypedDict
+from typing import Any, TypedDict
 
 from pydantic import ValidationInfo, field_validator, model_validator
 
@@ -46,7 +46,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
         timeout (int): Request timeout in seconds.
     """
 
-    api_token: Optional[str] = None
+    api_token: str | None = None
     auto_refresh_token: bool = True
     base_url: str = "https://api.devopness.com"
     debug: bool = False

@@ -8,8 +8,6 @@ Note:
 
 from datetime import datetime
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -69,14 +67,14 @@ class ActionRelationShallow(DevopnessBaseModel):
     url_web_permalink: StrictStr = Field(
         description="Permalink to view the action on Devopness web"
     )
-    action_data: Optional[ActionData] = None
-    triggered_from: Optional[ActionTriggeredFrom] = None
-    summary: Optional[ActionSummary] = None
-    targets: Optional[List[ActionTarget]] = Field(
+    action_data: ActionData | None = None
+    triggered_from: ActionTriggeredFrom | None = None
+    summary: ActionSummary | None = None
+    targets: list[ActionTarget] | None = Field(
         default=None, description="List of actions dispatched to cloud resource targets"
     )
-    started_at: Optional[datetime] = Field(description="When the action started")
-    completed_at: Optional[datetime] = Field(description="When the action completed")
+    started_at: datetime | None = Field(description="When the action started")
+    completed_at: datetime | None = Field(description="When the action completed")
     created_at: datetime = Field(description="When the action was created")
     updated_at: datetime = Field(description="When the action was last updated")
 
@@ -109,33 +107,11 @@ class ActionRelationShallowPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
-    action_data: Optional[
-        Union[
-            ActionData,
-            ActionDataPlain,
-        ]
-    ]
-    triggered_from: Optional[
-        Union[
-            ActionTriggeredFrom,
-            ActionTriggeredFromPlain,
-        ]
-    ]
-    summary: Optional[
-        Union[
-            ActionSummary,
-            ActionSummaryPlain,
-        ]
-    ]
-    targets: Optional[
-        List[
-            Union[
-                ActionTarget,
-                ActionTargetPlain,
-            ]
-        ]
-    ]
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
+    action_data: Union[ActionData, ActionDataPlain] | None
+    triggered_from: Union[ActionTriggeredFrom, ActionTriggeredFromPlain] | None
+    summary: Union[ActionSummary, ActionSummaryPlain] | None
+    targets: list[Union[ActionTarget, ActionTargetPlain]] | None
+    started_at: datetime | None
+    completed_at: datetime | None
     created_at: Required[datetime]
     updated_at: Required[datetime]

@@ -8,8 +8,6 @@ Note:
 
 from typing import (
     Any,
-    Dict,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -46,22 +44,22 @@ class HookRequest(DevopnessBaseModel):
     hook_id: StrictStr = Field(
         description="The UUID of the hook that the request belongs to"
     )
-    action_id: Optional[StrictInt] = Field(
+    action_id: StrictInt | None = Field(
         description="The ID of the action that the request belongs to"
     )
-    retry_of: Optional[StrictStr] = Field(
+    retry_of: StrictStr | None = Field(
         description="The UUID of the request that this request is a retry of"
     )
     ip_address: StrictStr = Field(
         description="The IP address of the source that triggered the hook"
     )
     url: StrictStr = Field(description="Original URL used on the request")
-    request_headers: Dict[str, Any] = Field(description="The headers of the request")
-    request_body: Dict[str, Any] = Field(description="The body of the request")
+    request_headers: dict[str, Any] = Field(description="The headers of the request")
+    request_body: dict[str, Any] = Field(description="The body of the request")
     response_status_code: StrictInt = Field(description="The response status code")
-    response_headers: Dict[str, Any] = Field(description="The headers of the response")
-    response_body: Dict[str, Any] = Field(description="The body of the response")
-    hook: Optional[HookRelation]
+    response_headers: dict[str, Any] = Field(description="The headers of the response")
+    response_body: dict[str, Any] = Field(description="The body of the response")
+    hook: HookRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -77,8 +75,8 @@ class HookRequestPlain(TypedDict, total=False):
 
     id: Required[str]
     hook_id: Required[str]
-    action_id: Optional[int]
-    retry_of: Optional[str]
+    action_id: int | None
+    retry_of: str | None
     ip_address: Required[str]
     url: Required[str]
     request_headers: Required[object]
@@ -86,11 +84,6 @@ class HookRequestPlain(TypedDict, total=False):
     response_status_code: Required[int]
     response_headers: Required[object]
     response_body: Required[object]
-    hook: Optional[
-        Union[
-            HookRelation,
-            HookRelationPlain,
-        ]
-    ]
+    hook: Union[HookRelation, HookRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

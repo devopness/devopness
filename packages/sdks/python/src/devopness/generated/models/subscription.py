@@ -8,8 +8,6 @@ Note:
 
 from datetime import datetime
 from typing import (
-    List,
-    Optional,
     TypedDict,
     Union,
 )
@@ -41,47 +39,45 @@ class Subscription(DevopnessBaseModel):
         balances (List[SubscriptionBalance], optional): The list of subscription balances
     """
 
-    id: Optional[StrictInt] = Field(
-        default=None, description="The ID of the subscription"
-    )
-    user_id: Optional[StrictInt] = Field(
+    id: StrictInt | None = Field(default=None, description="The ID of the subscription")
+    user_id: StrictInt | None = Field(
         default=None, description="The ID of the user this subscription belongs to"
     )
-    plan_name: Optional[StrictStr] = Field(
+    plan_name: StrictStr | None = Field(
         default=None, description="The plan name of this subscription"
     )
-    status: Optional[StrictStr] = Field(
+    status: StrictStr | None = Field(
         default=None, description="Status of this subscription"
     )
-    quantity: Optional[StrictInt] = Field(
+    quantity: StrictInt | None = Field(
         default=None, description="Amount of plans purchased in this subscription"
     )
-    price_unit: Optional[Union[StrictFloat, StrictInt]] = Field(
+    price_unit: Union[StrictFloat, StrictInt] | None = Field(
         default=None, description="Unitary price of the subscribed plan"
     )
-    price_total: Optional[Union[StrictFloat, StrictInt]] = Field(
+    price_total: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total price of this subscription (quantity x price_unit)",
     )
-    price_currency: Optional[StrictStr] = Field(
+    price_currency: StrictStr | None = Field(
         default=None, description="Currency of the prices"
     )
-    cancelled_at: Optional[datetime] = Field(
+    cancelled_at: datetime | None = Field(
         default=None,
         description="If not null, indicates the date when this subscription was cancelled",
     )
-    ends_at: Optional[datetime] = Field(
+    ends_at: datetime | None = Field(
         default=None,
         description="Indicates the date and time when this subscription ends",
     )
-    created_at: Optional[datetime] = Field(
+    created_at: datetime | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[datetime] = Field(
+    updated_at: datetime | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
-    current_balance: Optional[SubscriptionBalance] = None
-    balances: Optional[List[Optional[SubscriptionBalance]]] = Field(
+    current_balance: SubscriptionBalance | None = None
+    balances: list[SubscriptionBalance | None] | None = Field(
         default=None, description="The list of subscription balances"
     )
 
@@ -91,29 +87,17 @@ class SubscriptionPlain(TypedDict, total=False):
     Plain version of Subscription.
     """
 
-    id: Optional[int]
-    user_id: Optional[int]
-    plan_name: Optional[str]
-    status: Optional[str]
-    quantity: Optional[int]
-    price_unit: Optional[float]
-    price_total: Optional[float]
-    price_currency: Optional[str]
-    cancelled_at: Optional[datetime]
-    ends_at: Optional[datetime]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
-    current_balance: Optional[
-        Union[
-            SubscriptionBalance,
-            SubscriptionBalancePlain,
-        ]
-    ]
-    balances: Optional[
-        List[
-            Union[
-                SubscriptionBalance,
-                SubscriptionBalancePlain,
-            ]
-        ]
-    ]
+    id: int | None
+    user_id: int | None
+    plan_name: str | None
+    status: str | None
+    quantity: int | None
+    price_unit: float | None
+    price_total: float | None
+    price_currency: str | None
+    cancelled_at: datetime | None
+    ends_at: datetime | None
+    created_at: datetime | None
+    updated_at: datetime | None
+    current_balance: Union[SubscriptionBalance, SubscriptionBalancePlain] | None
+    balances: list[Union[SubscriptionBalance, SubscriptionBalancePlain]] | None

@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -49,7 +48,7 @@ class SocialAccount(DevopnessBaseModel):
     is_vcs: StrictBool = Field(
         description="Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github"
     )
-    token_expires_at: Optional[StrictStr] = Field(
+    token_expires_at: StrictStr | None = Field(
         description="The date and time indicating when the authentication token will expire at"
     )
     created_at: StrictStr = Field(
@@ -81,6 +80,6 @@ class SocialAccountPlain(TypedDict, total=False):
     ]
     provider_user_nickname: Required[str]
     is_vcs: Required[bool]
-    token_expires_at: Optional[str]
+    token_expires_at: str | None
     created_at: Required[str]
     updated_at: Required[str]

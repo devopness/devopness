@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -46,10 +45,10 @@ class CredentialRelation(DevopnessBaseModel):
     )
     active: StrictBool = Field(description="If this credential is active or not")
     created_by_user: UserRelation
-    created_at: Optional[StrictStr] = Field(
+    created_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -81,5 +80,5 @@ class CredentialRelationPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    created_at: str | None
+    updated_at: str | None
