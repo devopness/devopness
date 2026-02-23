@@ -16392,7 +16392,8 @@
           "Twice a day",
           "Weekly",
           "Monthly",
-          "Yearly"
+          "Yearly",
+          "Custom"
         ],
         "example": "Every minute"
       },

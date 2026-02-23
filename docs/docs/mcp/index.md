@@ -14,3 +14,4 @@ Choose your editor or AI tool below for step-by-step installation instructions:
 - [Trae](/docs/mcp/trae)
 - [Warp](/docs/mcp/warp)
 - [Windsurf](/docs/mcp/windsurf)
+- [Zed](/docs/mcp/zed)

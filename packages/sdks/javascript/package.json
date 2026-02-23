@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/sdk-js",
-  "version": "3.1.9",
+  "version": "3.1.10",
   "publishConfig": {
     "access": "public"
   },
@@ -52,21 +52,21 @@
   "homepage": "https://github.com/devopness/devopness#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@openapitools/openapi-generator-cli": "^2.28.3",
+    "@openapitools/openapi-generator-cli": "^2.29.0",
     "@types/jest": "^30.0.0",
-    "@typescript-eslint/parser": "^8.54.0",
+    "@typescript-eslint/parser": "^8.56.0",
     "axios-mock-adapter": "^2.1.0",
     "eslint": "^10.0.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.23.2",
+    "eslint-plugin-n": "^17.24.0",
     "eslint-plugin-promise": "^7.2.1",
     "husky": "9.1.7",
     "jest": "^30.2.0",
     "ts-jest": "^29.4.5",
-    "typedoc": "^0.28.16",
+    "typedoc": "^0.28.17",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.55.0"
+    "typescript-eslint": "^8.56.0"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",

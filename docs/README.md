@@ -1,6 +1,6 @@
 # Devopness Documentation
 
-The Devopness documentation website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+The Devopness documentation website is built using [Fumadocs](https://fumadocs.dev/), a modern documentation framework powered by Next.js.
 
 ## Install dependencies
 
@@ -8,21 +8,13 @@ The Devopness documentation website is built using [Docusaurus](https://docusaur
 npm ci
 ```
 
-## Configuration
-
-Copy the example environment file and configure it:
-
-```bash
-cp .env.example .env
-```
-
 ## Local Development
 
 ```bash
-npm start
+npm run dev
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server. Most changes are reflected live without having to restart the server.
 
 ## Production Build
 
@@ -30,7 +22,7 @@ This command starts a local development server and opens up a browser window. Mo
 npm run build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+This command generates an optimized production build that can be served using any static contents hosting service.
 
 ## Deployment
 
