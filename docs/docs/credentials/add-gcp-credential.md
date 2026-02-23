@@ -144,17 +144,17 @@ You may need to check the box labeled "Include Google-provided role grants" to s
     - In the role selector, search for `Reader` or locate it under `Basic` roles
     - Click `SAVE`
 
-### Grant the Service account user role
+### Grant the Service Account User role
 
 29. Below your service account name, go to the `PERMISSIONS` tab
 30. In the permissions table, go to `VIEW BY ROLES` tab
-31. Make sure your service account has the `Service account user` role
+31. Make sure your service account has the `Service Account User` role
 
-32. If the service account doesn't have the `Service account user` role, set it:
+32. If the service account doesn't have the `Service Account User` role, set it:
     - Click `GRANT ACCESS` button
     - The `Grant access to "..."` form will be displayed
     - Under `Add Principals`, click the `New principals` field and paste the service account email you copied earlier
-    - Under `Assign roles`, click the `Role` field and select the `Service account user` option
+    - Under `Assign roles`, click the `Role` field and select the `Service Account User` option
     - Click `SAVE`
 
 ## Generate a service account key
