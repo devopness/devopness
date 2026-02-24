@@ -47,6 +47,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
     """
 
     api_token: str | None = None
+    # TODO: Change default to False - incompatible with api_token (now primary auth method)
     auto_refresh_token: bool = True
     base_url: str = "https://api.devopness.com"
     debug: bool = False
