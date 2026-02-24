@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -95,9 +95,9 @@ class NetworkRulesApiService(DevopnessBaseService):
     def list_environment_network_rules(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[NetworkRuleRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[NetworkRuleRelation]]:
         """
         Return a list of all Network Rules belonging to an environment
 
@@ -121,7 +121,7 @@ class NetworkRulesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[NetworkRuleRelation])
+        return DevopnessResponse(response, list[NetworkRuleRelation])
 
     def update_network_rule(
         self,
@@ -224,9 +224,9 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_network_rules(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[NetworkRuleRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[NetworkRuleRelation]]:
         """
         Return a list of all Network Rules belonging to an environment
 
@@ -250,7 +250,7 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[NetworkRuleRelation])
+        return await DevopnessResponse.from_async(response, list[NetworkRuleRelation])
 
     async def update_network_rule(
         self,

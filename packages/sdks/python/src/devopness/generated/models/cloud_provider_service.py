@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -46,9 +44,9 @@ class CloudProviderService(DevopnessBaseModel):
 
     code: CloudProviderServiceCode
     name: StrictStr = Field(description="The full name of the cloud service")
-    provider: Optional[ProviderRelation] = None
-    regions: Optional[List[CloudProviderServiceRegion]] = None
-    resource_types: Optional[List[CloudProviderServiceResourceType]] = None
+    provider: ProviderRelation | None = None
+    regions: list[CloudProviderServiceRegion] | None = None
+    resource_types: list[CloudProviderServiceResourceType] | None = None
 
 
 class CloudProviderServicePlain(TypedDict, total=False):
@@ -63,25 +61,15 @@ class CloudProviderServicePlain(TypedDict, total=False):
         ]
     ]
     name: Required[str]
-    provider: Optional[
-        Union[
-            ProviderRelation,
-            ProviderRelationPlain,
-        ]
-    ]
-    regions: Optional[
-        List[
+    provider: Union[ProviderRelation, ProviderRelationPlain] | None
+    regions: (
+        list[Union[CloudProviderServiceRegion, CloudProviderServiceRegionPlain]] | None
+    )
+    resource_types: (
+        list[
             Union[
-                CloudProviderServiceRegion,
-                CloudProviderServiceRegionPlain,
+                CloudProviderServiceResourceType, CloudProviderServiceResourceTypePlain
             ]
         ]
-    ]
-    resource_types: Optional[
-        List[
-            Union[
-                CloudProviderServiceResourceType,
-                CloudProviderServiceResourceTypePlain,
-            ]
-        ]
-    ]
+        | None
+    )

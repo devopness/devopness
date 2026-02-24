@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -38,12 +36,12 @@ class TriggerWhenCondition(DevopnessBaseModel):
         accepted_values (List[TriggerWhenConditionAcceptedValuesInner]): List of accepted values for this condition.
     """
 
-    name: Optional[StrictStr] = Field(default=None, description="Name of the condition")
+    name: StrictStr | None = Field(default=None, description="Name of the condition")
     type: TriggerWhenConditionType
     path: StrictStr = Field(
         description="A dot-notation path of the request body attribute to be used as the value to evaluate this condition."
     )
-    accepted_values: List[TriggerWhenConditionAcceptedValuesInner] = Field(
+    accepted_values: list[TriggerWhenConditionAcceptedValuesInner] = Field(
         description="List of accepted values for this condition."
     )
 
@@ -53,7 +51,7 @@ class TriggerWhenConditionPlain(TypedDict, total=False):
     Plain version of TriggerWhenCondition.
     """
 
-    name: Optional[str]
+    name: str | None
     type: Required[
         Union[
             TriggerWhenConditionType,
@@ -62,7 +60,7 @@ class TriggerWhenConditionPlain(TypedDict, total=False):
     ]
     path: Required[str]
     accepted_values: Required[
-        List[
+        list[
             Union[
                 TriggerWhenConditionAcceptedValuesInner,
                 TriggerWhenConditionAcceptedValuesInnerPlain,

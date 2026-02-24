@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -31,7 +30,7 @@ class TeamRelation(DevopnessBaseModel):
 
     id: StrictInt = Field(description="The unique ID of the given team")
     name: StrictStr = Field(description="The name of the given team")
-    photo_url: Optional[StrictStr] = Field(description="The URL to team's image")
+    photo_url: StrictStr | None = Field(description="The URL to team's image")
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -47,6 +46,6 @@ class TeamRelationPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Optional[str]
+    photo_url: str | None
     created_at: Required[str]
     updated_at: Required[str]

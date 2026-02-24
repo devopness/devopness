@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -35,10 +34,10 @@ class NetworkRuleOptions(DevopnessBaseModel):
         protocols (List[StaticNetworkRuleProtocol]): The supported network rule&#39;s protocols
     """
 
-    directions: List[StaticNetworkRuleDirection] = Field(
+    directions: list[StaticNetworkRuleDirection] = Field(
         description="The supported network rule's traffic directions"
     )
-    protocols: List[StaticNetworkRuleProtocol] = Field(
+    protocols: list[StaticNetworkRuleProtocol] = Field(
         description="The supported network rule's protocols"
     )
 
@@ -49,7 +48,7 @@ class NetworkRuleOptionsPlain(TypedDict, total=False):
     """
 
     directions: Required[
-        List[
+        list[
             Union[
                 StaticNetworkRuleDirection,
                 StaticNetworkRuleDirectionPlain,
@@ -57,7 +56,7 @@ class NetworkRuleOptionsPlain(TypedDict, total=False):
         ]
     ]
     protocols: Required[
-        List[
+        list[
             Union[
                 StaticNetworkRuleProtocol,
                 StaticNetworkRuleProtocolPlain,

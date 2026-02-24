@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
     Union,
 )
@@ -30,7 +28,7 @@ class CloudProviderSettingsList(DevopnessBaseModel):
         credential (List[CloudProviderInputSettings], optional): Settings of the cloud provider credential
     """
 
-    credential: Optional[List[CloudProviderInputSettings]] = Field(
+    credential: list[CloudProviderInputSettings] | None = Field(
         default=None, description="Settings of the cloud provider credential"
     )
 
@@ -40,11 +38,6 @@ class CloudProviderSettingsListPlain(TypedDict, total=False):
     Plain version of CloudProviderSettingsList.
     """
 
-    credential: Optional[
-        List[
-            Union[
-                CloudProviderInputSettings,
-                CloudProviderInputSettingsPlain,
-            ]
-        ]
-    ]
+    credential: (
+        list[Union[CloudProviderInputSettings, CloudProviderInputSettingsPlain]] | None
+    )

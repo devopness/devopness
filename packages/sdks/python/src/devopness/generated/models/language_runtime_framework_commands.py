@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
 )
 
@@ -26,10 +24,10 @@ class LanguageRuntimeFrameworkCommands(DevopnessBaseModel):
         dependencies (List[str], optional): Available dependencies installation command options for the stack
     """
 
-    build: Optional[List[StrictStr]] = Field(
+    build: list[StrictStr] | None = Field(
         default=None, description="Available build command options for the stack"
     )
-    dependencies: Optional[List[StrictStr]] = Field(
+    dependencies: list[StrictStr] | None = Field(
         default=None,
         description="Available dependencies installation command options for the stack",
     )
@@ -40,5 +38,5 @@ class LanguageRuntimeFrameworkCommandsPlain(TypedDict, total=False):
     Plain version of LanguageRuntimeFrameworkCommands.
     """
 
-    build: Optional[List[str]]
-    dependencies: Optional[List[str]]
+    build: list[str] | None
+    dependencies: list[str] | None

@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     ApplicationOptions,
@@ -236,9 +234,9 @@ class StaticDataApiService(DevopnessBaseService):
 
     def list_static_billing_plans_options(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[BillingPlansOptionsRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[BillingPlansOptionsRelation]]:
         """
         List `Billing Plans` options
 
@@ -262,15 +260,15 @@ class StaticDataApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[BillingPlansOptionsRelation])
+        return DevopnessResponse(response, list[BillingPlansOptionsRelation])
 
     def list_static_cloud_instances_by_cloud_provider_service_code_and_region_code(
         self,
         cloud_provider_service_code: str,
         region_code: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[CloudInstanceRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[CloudInstanceRelation]]:
         """
         List `Cloud Provider Service` instance types by region
 
@@ -294,13 +292,13 @@ class StaticDataApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[CloudInstanceRelation])
+        return DevopnessResponse(response, list[CloudInstanceRelation])
 
     def list_static_permissions(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PermissionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[PermissionRelation]]:
         """
         List available `Role` permissions
 
@@ -324,13 +322,13 @@ class StaticDataApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[PermissionRelation])
+        return DevopnessResponse(response, list[PermissionRelation])
 
     def list_static_resource_types(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceTypeRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ResourceTypeRelation]]:
         """
         List available resource types
 
@@ -354,7 +352,7 @@ class StaticDataApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ResourceTypeRelation])
+        return DevopnessResponse(response, list[ResourceTypeRelation])
 
 
 class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
@@ -565,9 +563,9 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def list_static_billing_plans_options(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[BillingPlansOptionsRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[BillingPlansOptionsRelation]]:
         """
         List `Billing Plans` options
 
@@ -592,16 +590,16 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(
-            response, List[BillingPlansOptionsRelation]
+            response, list[BillingPlansOptionsRelation]
         )
 
     async def list_static_cloud_instances_by_cloud_provider_service_code_and_region_code(
         self,
         cloud_provider_service_code: str,
         region_code: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[CloudInstanceRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[CloudInstanceRelation]]:
         """
         List `Cloud Provider Service` instance types by region
 
@@ -625,13 +623,13 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[CloudInstanceRelation])
+        return await DevopnessResponse.from_async(response, list[CloudInstanceRelation])
 
     async def list_static_permissions(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PermissionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[PermissionRelation]]:
         """
         List available `Role` permissions
 
@@ -655,13 +653,13 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[PermissionRelation])
+        return await DevopnessResponse.from_async(response, list[PermissionRelation])
 
     async def list_static_resource_types(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceTypeRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ResourceTypeRelation]]:
         """
         List available resource types
 
@@ -685,4 +683,4 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ResourceTypeRelation])
+        return await DevopnessResponse.from_async(response, list[ResourceTypeRelation])

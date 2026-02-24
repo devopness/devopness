@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -107,19 +105,19 @@ class Application(DevopnessBaseModel):
     deployments_keep: StrictInt = Field(
         description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions"
     )
-    install_dependencies_command: Optional[StrictStr] = Field(
+    install_dependencies_command: StrictStr | None = Field(
         description="Indicates command that Devopness must execute to install application dependencies"
     )
-    build_command: Optional[StrictStr] = Field(
+    build_command: StrictStr | None = Field(
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state"
     )
     created_by_user: UserRelation
     last_deployments: ApplicationLastDeployments
-    environment: Optional[EnvironmentRelation]
-    servers: List[Optional[ServerRelation]]
-    credential: Optional[CredentialRelation]
-    virtual_hosts: List[Optional[VirtualHostRelation]]
-    daemons: List[Optional[DaemonRelation]]
+    environment: EnvironmentRelation | None
+    servers: list[ServerRelation | None]
+    credential: CredentialRelation | None
+    virtual_hosts: list[VirtualHostRelation | None]
+    daemons: list[DaemonRelation | None]
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -149,8 +147,8 @@ class ApplicationPlain(TypedDict, total=False):
     framework_human_readable: Required[str]
     root_directory: Required[str]
     deployments_keep: Required[int]
-    install_dependencies_command: Optional[str]
-    build_command: Optional[str]
+    install_dependencies_command: str | None
+    build_command: str | None
     created_by_user: Required[
         Union[
             UserRelation,
@@ -163,28 +161,18 @@ class ApplicationPlain(TypedDict, total=False):
             ApplicationLastDeploymentsPlain,
         ]
     ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
     servers: Required[
-        List[
+        list[
             Union[
                 ServerRelation,
                 ServerRelationPlain,
             ]
         ]
     ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
-        ]
-    ]
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
     virtual_hosts: Required[
-        List[
+        list[
             Union[
                 VirtualHostRelation,
                 VirtualHostRelationPlain,
@@ -192,7 +180,7 @@ class ApplicationPlain(TypedDict, total=False):
         ]
     ]
     daemons: Required[
-        List[
+        list[
             Union[
                 DaemonRelation,
                 DaemonRelationPlain,

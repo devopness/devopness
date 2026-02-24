@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -34,11 +33,11 @@ class PipelineUpdate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters."
     )
-    max_parallel_actions: Optional[StrictInt] = Field(
+    max_parallel_actions: StrictInt | None = Field(
         default=None,
         description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.",
     )
-    trigger_when: Optional[PipelineTriggerWhen] = None
+    trigger_when: PipelineTriggerWhen | None = None
 
 
 class PipelineUpdatePlain(TypedDict, total=False):
@@ -48,10 +47,5 @@ class PipelineUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    max_parallel_actions: Optional[int]
-    trigger_when: Optional[
-        Union[
-            PipelineTriggerWhen,
-            PipelineTriggerWhenPlain,
-        ]
-    ]
+    max_parallel_actions: int | None
+    trigger_when: Union[PipelineTriggerWhen, PipelineTriggerWhenPlain] | None

@@ -8,8 +8,6 @@ Note:
 
 from datetime import datetime
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -38,13 +36,13 @@ class LinkedResourceData(DevopnessBaseModel):
 
     id: StrictInt = Field(description="The unique ID of the resource")
     name: StrictStr = Field(description="Resource name")
-    summary_fields: Optional[List[LinkedResourceSummaryField]] = Field(
+    summary_fields: list[LinkedResourceSummaryField] | None = Field(
         default=None, description="The summary of linked resource fields"
     )
-    created_at: Optional[datetime] = Field(
+    created_at: datetime | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[datetime] = Field(
+    updated_at: datetime | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -56,13 +54,8 @@ class LinkedResourceDataPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    summary_fields: Optional[
-        List[
-            Union[
-                LinkedResourceSummaryField,
-                LinkedResourceSummaryFieldPlain,
-            ]
-        ]
-    ]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    summary_fields: (
+        list[Union[LinkedResourceSummaryField, LinkedResourceSummaryFieldPlain]] | None
+    )
+    created_at: datetime | None
+    updated_at: datetime | None

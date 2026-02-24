@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -37,30 +35,30 @@ class ServerEnvironmentCreate(DevopnessBaseModel):
         credential_id (str, optional): The ID of the cloud credential. This field is required unless &lt;code&gt;provision_input.cloud_service_code&lt;/code&gt; is in &lt;code&gt;self-hosted-custom&lt;/code&gt;.
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+    linked_resources: list[ResourceToBeLinked] | None = Field(
         default=None, description="The resources to be linked with this resource"
     )
     hostname: StrictStr = Field(
         description="The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters."
     )
-    ip_address: Optional[StrictStr] = Field(
+    ip_address: StrictStr | None = Field(
         default=None,
         description="Public ipv4 address for server access. This field is required when <code>provision_input.cloud_service_code</code> is <code>self-hosted-custom</code>.",
     )
-    ssh_port: Optional[StrictInt] = Field(
+    ssh_port: StrictInt | None = Field(
         default=None,
         description="The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_input.cloud_service_code</code> is <code>self-hosted-custom</code>. Must be between 22 and 65535.",
     )
-    max_parallel_actions: Optional[StrictInt] = Field(
+    max_parallel_actions: StrictInt | None = Field(
         default=None,
         description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.",
     )
-    blueprint: Optional[List[BlueprintService]] = Field(
+    blueprint: list[BlueprintService] | None = Field(
         default=None,
         description="The service names and their respective versions for a blueprint.",
     )
     provision_input: ServerProvisionInput
-    credential_id: Optional[StrictStr] = Field(
+    credential_id: StrictStr | None = Field(
         default=None,
         description="The ID of the cloud credential. This field is required unless <code>provision_input.cloud_service_code</code> is in <code>self-hosted-custom</code>.",
     )
@@ -71,30 +69,16 @@ class ServerEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of ServerEnvironmentCreate.
     """
 
-    linked_resources: Optional[
-        List[
-            Union[
-                ResourceToBeLinked,
-                ResourceToBeLinkedPlain,
-            ]
-        ]
-    ]
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     hostname: Required[str]
-    ip_address: Optional[str]
-    ssh_port: Optional[int]
-    max_parallel_actions: Optional[int]
-    blueprint: Optional[
-        List[
-            Union[
-                BlueprintService,
-                BlueprintServicePlain,
-            ]
-        ]
-    ]
+    ip_address: str | None
+    ssh_port: int | None
+    max_parallel_actions: int | None
+    blueprint: list[Union[BlueprintService, BlueprintServicePlain]] | None
     provision_input: Required[
         Union[
             ServerProvisionInput,
             ServerProvisionInputPlain,
         ]
     ]
-    credential_id: Optional[str]
+    credential_id: str | None

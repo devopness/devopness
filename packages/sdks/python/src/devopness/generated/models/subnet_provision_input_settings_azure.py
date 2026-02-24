@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -27,11 +26,11 @@ class SubnetProvisionInputSettingsAzure(DevopnessBaseModel):
         cidr_block (str): The IP CIDR range of the subnet
     """
 
-    region: Optional[StrictStr] = Field(
+    region: StrictStr | None = Field(
         default=None,
         description="The cloud provider region where the subnet will be created",
     )
-    region_human_readable: Optional[StrictStr] = Field(
+    region_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the subnet region"
     )
     cidr_block: StrictStr = Field(description="The IP CIDR range of the subnet")
@@ -42,6 +41,6 @@ class SubnetProvisionInputSettingsAzurePlain(TypedDict, total=False):
     Plain version of SubnetProvisionInputSettingsAzure.
     """
 
-    region: Optional[str]
-    region_human_readable: Optional[str]
+    region: str | None
+    region_human_readable: str | None
     cidr_block: Required[str]

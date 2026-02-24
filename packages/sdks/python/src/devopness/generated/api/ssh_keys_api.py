@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -95,9 +95,9 @@ class SSHKeysApiService(DevopnessBaseService):
     def list_environment_ssh_keys(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SshKeyRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SshKeyRelation]]:
         """
         Return a list of all SSH keys added to an environment
 
@@ -121,7 +121,7 @@ class SSHKeysApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[SshKeyRelation])
+        return DevopnessResponse(response, list[SshKeyRelation])
 
     def update_ssh_key(
         self,
@@ -224,9 +224,9 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_ssh_keys(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SshKeyRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SshKeyRelation]]:
         """
         Return a list of all SSH keys added to an environment
 
@@ -250,7 +250,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[SshKeyRelation])
+        return await DevopnessResponse.from_async(response, list[SshKeyRelation])
 
     async def update_ssh_key(
         self,

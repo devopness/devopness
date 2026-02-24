@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -44,17 +43,15 @@ class ApiToken(DevopnessBaseModel):
     id: StrictStr = Field(description="Unique identifier of the Token")
     name: StrictStr = Field(description="Name of the Token")
     type: ApiTokenType
-    token: Optional[StrictStr] = Field(
+    token: StrictStr | None = Field(
         description="The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time."
     )
     status: ApiTokenStatus
-    role: Optional[RoleRelation]
-    project: Optional[ProjectRelation]
-    last_used_at: Optional[StrictStr] = Field(
-        description="Last time the Token was used"
-    )
+    role: RoleRelation | None
+    project: ProjectRelation | None
+    last_used_at: StrictStr | None = Field(description="Last time the Token was used")
     expires_at: StrictStr = Field(description="Expiration date of the Token")
-    revoked_at: Optional[StrictStr] = Field(description="Revocation date of the Token")
+    revoked_at: StrictStr | None = Field(description="Revocation date of the Token")
     updated_at: StrictStr = Field(description="Last time the Token was updated")
     created_at: StrictStr = Field(description="Creation date of the Token")
 
@@ -72,27 +69,17 @@ class ApiTokenPlain(TypedDict, total=False):
             ApiTokenTypePlain,
         ]
     ]
-    token: Optional[str]
+    token: str | None
     status: Required[
         Union[
             ApiTokenStatus,
             ApiTokenStatusPlain,
         ]
     ]
-    role: Optional[
-        Union[
-            RoleRelation,
-            RoleRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    last_used_at: Optional[str]
+    role: Union[RoleRelation, RoleRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    last_used_at: str | None
     expires_at: Required[str]
-    revoked_at: Optional[str]
+    revoked_at: str | None
     updated_at: Required[str]
     created_at: Required[str]

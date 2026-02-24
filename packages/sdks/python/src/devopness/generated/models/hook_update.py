@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -44,23 +43,23 @@ class HookUpdate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The name of the outgoing hook. Must not be greater than 60 characters."
     )
-    active: Optional[StrictBool] = Field(
+    active: StrictBool | None = Field(
         default=None, description="Determines if the hook is currently active."
     )
-    requires_secret: Optional[StrictBool] = Field(
+    requires_secret: StrictBool | None = Field(
         default=None,
         description="Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources.",
     )
-    secret_algorithm: Optional[StrictStr] = Field(
+    secret_algorithm: StrictStr | None = Field(
         default=None,
         description="The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 20 characters.",
     )
-    secret_header_name: Optional[StrictStr] = Field(
+    secret_header_name: StrictStr | None = Field(
         default=None,
         description="The name of the HTTP request header from which the request digital signature should be extracted. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 64 characters.",
     )
-    trigger_when: Optional[HookTriggerWhen] = None
-    settings: Optional[HookPipelineCreateSettings] = None
+    trigger_when: HookTriggerWhen | None = None
+    settings: HookPipelineCreateSettings | None = None
 
 
 class HookUpdatePlain(TypedDict, total=False):
@@ -70,19 +69,9 @@ class HookUpdatePlain(TypedDict, total=False):
 
     id: Required[str]
     name: Required[str]
-    active: Optional[bool]
-    requires_secret: Optional[bool]
-    secret_algorithm: Optional[str]
-    secret_header_name: Optional[str]
-    trigger_when: Optional[
-        Union[
-            HookTriggerWhen,
-            HookTriggerWhenPlain,
-        ]
-    ]
-    settings: Optional[
-        Union[
-            HookPipelineCreateSettings,
-            HookPipelineCreateSettingsPlain,
-        ]
-    ]
+    active: bool | None
+    requires_secret: bool | None
+    secret_algorithm: str | None
+    secret_header_name: str | None
+    trigger_when: Union[HookTriggerWhen, HookTriggerWhenPlain] | None
+    settings: Union[HookPipelineCreateSettings, HookPipelineCreateSettingsPlain] | None

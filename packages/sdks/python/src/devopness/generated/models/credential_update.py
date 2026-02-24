@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -36,7 +35,7 @@ class CredentialUpdate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The name of the credential. Must not be greater than 60 characters."
     )
-    settings: Optional[CredentialInputSettings] = None
+    settings: CredentialInputSettings | None = None
 
 
 class CredentialUpdatePlain(TypedDict, total=False):
@@ -46,9 +45,4 @@ class CredentialUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    settings: Optional[
-        Union[
-            CredentialInputSettings,
-            CredentialInputSettingsPlain,
-        ]
-    ]
+    settings: Union[CredentialInputSettings, CredentialInputSettingsPlain] | None

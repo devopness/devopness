@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -25,8 +24,8 @@ class ActionHookRequest(DevopnessBaseModel):
         outgoing (HookRequestRelation, optional, nullable):
     """
 
-    incoming: Optional[HookRequestRelation] = None
-    outgoing: Optional[HookRequestRelation] = None
+    incoming: HookRequestRelation | None = None
+    outgoing: HookRequestRelation | None = None
 
 
 class ActionHookRequestPlain(TypedDict, total=False):
@@ -34,15 +33,5 @@ class ActionHookRequestPlain(TypedDict, total=False):
     Plain version of ActionHookRequest.
     """
 
-    incoming: Optional[
-        Union[
-            HookRequestRelation,
-            HookRequestRelationPlain,
-        ]
-    ]
-    outgoing: Optional[
-        Union[
-            HookRequestRelation,
-            HookRequestRelationPlain,
-        ]
-    ]
+    incoming: Union[HookRequestRelation, HookRequestRelationPlain] | None
+    outgoing: Union[HookRequestRelation, HookRequestRelationPlain] | None

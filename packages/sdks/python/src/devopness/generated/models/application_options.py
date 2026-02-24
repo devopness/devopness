@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -31,11 +30,11 @@ class ApplicationOptions(DevopnessBaseModel):
         script_runners (List[ScriptRunner]):
     """
 
-    variable_targets: List[VariableTargets] = Field(
+    variable_targets: list[VariableTargets] = Field(
         description="The list of VariableTarget"
     )
-    language_runtimes: List[LanguageRuntime]
-    script_runners: List[ScriptRunner]
+    language_runtimes: list[LanguageRuntime]
+    script_runners: list[ScriptRunner]
 
 
 class ApplicationOptionsPlain(TypedDict, total=False):
@@ -44,7 +43,7 @@ class ApplicationOptionsPlain(TypedDict, total=False):
     """
 
     variable_targets: Required[
-        List[
+        list[
             Union[
                 VariableTargets,
                 VariableTargetsPlain,
@@ -52,7 +51,7 @@ class ApplicationOptionsPlain(TypedDict, total=False):
         ]
     ]
     language_runtimes: Required[
-        List[
+        list[
             Union[
                 LanguageRuntime,
                 LanguageRuntimePlain,
@@ -60,7 +59,7 @@ class ApplicationOptionsPlain(TypedDict, total=False):
         ]
     ]
     script_runners: Required[
-        List[
+        list[
             Union[
                 ScriptRunner,
                 ScriptRunnerPlain,

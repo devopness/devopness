@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -93,9 +93,9 @@ class OrganizationsApiService(DevopnessBaseService):
 
     def list_organizations(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[OrganizationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[OrganizationRelation]]:
         """
         List all organizations of authenticated user
 
@@ -119,7 +119,7 @@ class OrganizationsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[OrganizationRelation])
+        return DevopnessResponse(response, list[OrganizationRelation])
 
     def update_organization(
         self,
@@ -220,9 +220,9 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def list_organizations(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[OrganizationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[OrganizationRelation]]:
         """
         List all organizations of authenticated user
 
@@ -246,7 +246,7 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[OrganizationRelation])
+        return await DevopnessResponse.from_async(response, list[OrganizationRelation])
 
     async def update_organization(
         self,

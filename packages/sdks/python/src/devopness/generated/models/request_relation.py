@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -35,10 +34,10 @@ class RequestRelation(DevopnessBaseModel):
     hook_id: StrictStr = Field(
         description="The UUID of the hook that the request belongs to"
     )
-    action_id: Optional[StrictInt] = Field(
+    action_id: StrictInt | None = Field(
         description="The ID of the action that the request belongs to"
     )
-    retry_of: Optional[StrictStr] = Field(
+    retry_of: StrictStr | None = Field(
         description="The UUID of the request that this request is a retry of"
     )
     ip_address: StrictStr = Field(
@@ -59,8 +58,8 @@ class RequestRelationPlain(TypedDict, total=False):
 
     id: Required[str]
     hook_id: Required[str]
-    action_id: Optional[int]
-    retry_of: Optional[str]
+    action_id: int | None
+    retry_of: str | None
     ip_address: Required[str]
     created_at: Required[str]
     updated_at: Required[str]

@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -41,13 +39,13 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
         environments (List[EnvironmentLink], optional):
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+    linked_resources: list[ResourceToBeLinked] | None = Field(
         default=None, description="The resources to be linked with this resource"
     )
     name: StrictStr = Field(
         description="The application's unique name. Must not be greater than 60 characters."
     )
-    build_command: Optional[StrictStr] = Field(
+    build_command: StrictStr | None = Field(
         default=None,
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
     )
@@ -66,22 +64,22 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
     credential_id: StrictInt = Field(
         description="Numeric ID of the credential to source provider where the repository is hosted."
     )
-    root_directory: Optional[StrictStr] = Field(
+    root_directory: StrictStr | None = Field(
         default=None,
         description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
     )
     default_branch: StrictStr = Field(
         description="The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters."
     )
-    deployments_keep: Optional[StrictInt] = Field(
+    deployments_keep: StrictInt | None = Field(
         default=None,
         description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.",
     )
-    install_dependencies_command: Optional[StrictStr] = Field(
+    install_dependencies_command: StrictStr | None = Field(
         default=None,
         description="Indicates command that Devopness must execute to install application dependencies.",
     )
-    environments: Optional[List[EnvironmentLink]] = None
+    environments: list[EnvironmentLink] | None = None
 
 
 class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
@@ -89,30 +87,16 @@ class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of ApplicationEnvironmentCreate.
     """
 
-    linked_resources: Optional[
-        List[
-            Union[
-                ResourceToBeLinked,
-                ResourceToBeLinkedPlain,
-            ]
-        ]
-    ]
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     name: Required[str]
-    build_command: Optional[str]
+    build_command: str | None
     engine_version: Required[str]
     framework: Required[str]
     programming_language: Required[str]
     repository: Required[str]
     credential_id: Required[int]
-    root_directory: Optional[str]
+    root_directory: str | None
     default_branch: Required[str]
-    deployments_keep: Optional[int]
-    install_dependencies_command: Optional[str]
-    environments: Optional[
-        List[
-            Union[
-                EnvironmentLink,
-                EnvironmentLinkPlain,
-            ]
-        ]
-    ]
+    deployments_keep: int | None
+    install_dependencies_command: str | None
+    environments: list[Union[EnvironmentLink, EnvironmentLinkPlain]] | None

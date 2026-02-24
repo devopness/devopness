@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -38,7 +37,7 @@ class OperatingSystem(DevopnessBaseModel):
     hint: StrictStr = Field(
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
     )
-    supported_versions: List[OperatingSystemVersion]
+    supported_versions: list[OperatingSystemVersion]
 
 
 class OperatingSystemPlain(TypedDict, total=False):
@@ -50,7 +49,7 @@ class OperatingSystemPlain(TypedDict, total=False):
     name: Required[str]
     hint: Required[str]
     supported_versions: Required[
-        List[
+        list[
             Union[
                 OperatingSystemVersion,
                 OperatingSystemVersionPlain,

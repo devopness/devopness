@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -37,9 +35,9 @@ class Team(DevopnessBaseModel):
 
     id: StrictInt = Field(description="The unique ID of the given team")
     name: StrictStr = Field(description="The name of the given team")
-    photo_url: Optional[StrictStr] = Field(description="The URL to team's image")
-    project: Optional[ProjectRelation]
-    users: List[UserRelation] = Field(description="The list of users")
+    photo_url: StrictStr | None = Field(description="The URL to team's image")
+    project: ProjectRelation | None
+    users: list[UserRelation] = Field(description="The list of users")
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -55,15 +53,10 @@ class TeamPlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Optional[str]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
+    photo_url: str | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
     users: Required[
-        List[
+        list[
             Union[
                 UserRelation,
                 UserRelationPlain,

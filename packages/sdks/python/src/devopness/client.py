@@ -2,8 +2,6 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from typing import Optional, Union
-
 from .base import (
     DevopnessBaseService,
     DevopnessBaseServiceAsync,
@@ -159,9 +157,7 @@ class DevopnessClient:
 
     def __init__(
         self,
-        config: Optional[
-            Union[DevopnessClientConfig, DevopnessClientConfigDict]
-        ] = None,
+        config: DevopnessClientConfig | DevopnessClientConfigDict | None = None,
     ) -> None:
         if config is None:
             config = DevopnessClientConfig()
@@ -202,7 +198,7 @@ class DevopnessClient:
         # pylint: disable=protected-access
         DevopnessBaseService._config.api_token = api_token
 
-    def __get_api_token(self) -> Optional[str]:
+    def __get_api_token(self) -> str | None:
         # pylint: disable=protected-access
         return DevopnessBaseService._config.api_token
 
@@ -210,7 +206,7 @@ class DevopnessClient:
         # pylint: disable=protected-access
         DevopnessBaseService._access_token = access_token
 
-    def __get_access_token(self) -> Optional[str]:
+    def __get_access_token(self) -> str | None:
         # pylint: disable=protected-access
         return DevopnessBaseService._access_token
 
@@ -253,9 +249,7 @@ class DevopnessClientAsync:
 
     def __init__(
         self,
-        config: Optional[
-            Union[DevopnessClientConfig, DevopnessClientConfigDict]
-        ] = None,
+        config: DevopnessClientConfig | DevopnessClientConfigDict | None = None,
     ) -> None:
         if config is None:
             config = DevopnessClientConfig()
@@ -296,7 +290,7 @@ class DevopnessClientAsync:
         # pylint: disable=protected-access
         DevopnessBaseServiceAsync._config.api_token = api_token
 
-    def __get_api_token(self) -> Optional[str]:
+    def __get_api_token(self) -> str | None:
         # pylint: disable=protected-access
         return DevopnessBaseServiceAsync._config.api_token
 
@@ -304,7 +298,7 @@ class DevopnessClientAsync:
         # pylint: disable=protected-access
         DevopnessBaseServiceAsync._access_token = access_token
 
-    def __get_access_token(self) -> Optional[str]:
+    def __get_access_token(self) -> str | None:
         # pylint: disable=protected-access
         return DevopnessBaseServiceAsync._access_token
 

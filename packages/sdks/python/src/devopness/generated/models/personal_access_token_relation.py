@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -43,11 +42,9 @@ class PersonalAccessTokenRelation(DevopnessBaseModel):
     type: ApiTokenType
     status: ApiTokenStatus
     user: UserRelation
-    last_used_at: Optional[StrictStr] = Field(
-        description="Last time the Token was used"
-    )
+    last_used_at: StrictStr | None = Field(description="Last time the Token was used")
     expires_at: StrictStr = Field(description="Expiration date of the Token")
-    revoked_at: Optional[StrictStr] = Field(description="Revocation date of the Token")
+    revoked_at: StrictStr | None = Field(description="Revocation date of the Token")
     updated_at: StrictStr = Field(description="Last time the Token was updated")
     created_at: StrictStr = Field(description="Creation date of the Token")
 
@@ -77,8 +74,8 @@ class PersonalAccessTokenRelationPlain(TypedDict, total=False):
             UserRelationPlain,
         ]
     ]
-    last_used_at: Optional[str]
+    last_used_at: str | None
     expires_at: Required[str]
-    revoked_at: Optional[str]
+    revoked_at: str | None
     updated_at: Required[str]
     created_at: Required[str]

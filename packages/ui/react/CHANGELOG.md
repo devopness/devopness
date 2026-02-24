@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.184.5
+
+### Patch Changes
+
+- [#2699](https://github.com/devopness/devopness/pull/2699) [`8e9a532`](https://github.com/devopness/devopness/commit/8e9a532c328fe1c7c8bfbd088d233db5b04a994e) Thanks [@AhmadYasser1](https://github.com/AhmadYasser1)!- Disable browser autofill on Input component by default by setting `autoComplete="off"` as the default value. Consumers can override it via `autoComplete` prop or `inputProps`.
+
 ## 2.184.4
 
 ### Patch Changes

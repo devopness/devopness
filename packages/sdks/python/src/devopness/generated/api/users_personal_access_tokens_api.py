@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -73,9 +73,9 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
 
     def list_user_personal_access_tokens(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PersonalAccessTokenRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[PersonalAccessTokenRelation]]:
         """
         List the personal access tokens of authenticated user.
 
@@ -99,7 +99,7 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[PersonalAccessTokenRelation])
+        return DevopnessResponse(response, list[PersonalAccessTokenRelation])
 
     def revoke_user_personal_access_token(
         self,
@@ -200,9 +200,9 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def list_user_personal_access_tokens(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PersonalAccessTokenRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[PersonalAccessTokenRelation]]:
         """
         List the personal access tokens of authenticated user.
 
@@ -227,7 +227,7 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(
-            response, List[PersonalAccessTokenRelation]
+            response, list[PersonalAccessTokenRelation]
         )
 
     async def revoke_user_personal_access_token(

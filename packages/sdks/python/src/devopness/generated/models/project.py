@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -45,13 +43,13 @@ class Project(DevopnessBaseModel):
     id: StrictInt = Field(description="The Id of the project")
     user_id: StrictInt = Field(description="The id of the user that own the project")
     name: StrictStr = Field(description="The project's name")
-    logo_url: Optional[StrictStr] = Field(
+    logo_url: StrictStr | None = Field(
         description="A URL path to the project's logo image"
     )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+    resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
-    os_users: List[OsUsersInner] = Field(
+    os_users: list[OsUsersInner] = Field(
         description="The list of the operating system users found in all the servers linked to a project"
     )
     owner: ProjectOwnerRelation
@@ -73,17 +71,10 @@ class ProjectPlain(TypedDict, total=False):
     id: Required[int]
     user_id: Required[int]
     name: Required[str]
-    logo_url: Optional[str]
-    resource_summary: Optional[
-        List[
-            Union[
-                ResourceSummaryItem,
-                ResourceSummaryItemPlain,
-            ]
-        ]
-    ]
+    logo_url: str | None
+    resource_summary: list[Union[ResourceSummaryItem, ResourceSummaryItemPlain]] | None
     os_users: Required[
-        List[
+        list[
             Union[
                 OsUsersInner,
                 OsUsersInnerPlain,

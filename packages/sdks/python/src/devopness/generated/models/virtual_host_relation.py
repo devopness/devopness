@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -47,24 +46,24 @@ class VirtualHostRelation(DevopnessBaseModel):
 
     id: StrictInt = Field(description="Unique ID of the Virtual Host")
     type: VirtualHostType
-    type_human_readable: Optional[StrictStr] = Field(
+    type_human_readable: StrictStr | None = Field(
         default=None, description="The human readable version of the type"
     )
     name: StrictStr = Field(description="The name of the Virtual Host")
-    application: Optional[ApplicationRelation]
-    root_directory: Optional[StrictStr] = Field(
+    application: ApplicationRelation | None
+    root_directory: StrictStr | None = Field(
         description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host"
     )
-    application_listen_address: Optional[StrictStr] = Field(
+    application_listen_address: StrictStr | None = Field(
         description="The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)"
     )
-    ssl_certificate: Optional[SslCertificateRelation]
-    last_action: Optional[ActionRelationShallow] = None
-    created_by_user: Optional[UserRelation] = None
-    created_at: Optional[StrictStr] = Field(
+    ssl_certificate: SslCertificateRelation | None
+    last_action: ActionRelationShallow | None = None
+    created_by_user: UserRelation | None = None
+    created_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was updated"
     )
 
@@ -81,33 +80,13 @@ class VirtualHostRelationPlain(TypedDict, total=False):
             VirtualHostTypePlain,
         ]
     ]
-    type_human_readable: Optional[str]
+    type_human_readable: str | None
     name: Required[str]
-    application: Optional[
-        Union[
-            ApplicationRelation,
-            ApplicationRelationPlain,
-        ]
-    ]
-    root_directory: Optional[str]
-    application_listen_address: Optional[str]
-    ssl_certificate: Optional[
-        Union[
-            SslCertificateRelation,
-            SslCertificateRelationPlain,
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
-        ]
-    ]
-    created_by_user: Optional[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    application: Union[ApplicationRelation, ApplicationRelationPlain] | None
+    root_directory: str | None
+    application_listen_address: str | None
+    ssl_certificate: Union[SslCertificateRelation, SslCertificateRelationPlain] | None
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
+    created_at: str | None
+    updated_at: str | None

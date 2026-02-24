@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -33,22 +31,22 @@ class VirtualHostEnvironmentCreate(DevopnessBaseModel):
         application_id (int, optional, nullable): The ID of the application to be associated with the virtual host. The value of &#x60;root_directory&#x60; will be relative to this application directory.
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+    linked_resources: list[ResourceToBeLinked] | None = Field(
         default=None, description="The resources to be linked with this resource"
     )
     type: StrictStr = Field(description="The type of virtual host to be created.")
     name: StrictStr = Field(
         description="The name of the virtual host, unique within the environment. For `name-based` type, it must be a valid domain name (e.g., `my-site.example.com`). For `ip-based` type, it must be a valid IPv4 address or an IPv4 address with port (e.g., `127.0.0.1:3000`). Must not be greater than 255 characters."
     )
-    root_directory: Optional[StrictStr] = Field(
+    root_directory: StrictStr | None = Field(
         default=None,
         description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
     )
-    application_listen_address: Optional[StrictStr] = Field(
+    application_listen_address: StrictStr | None = Field(
         default=None,
         description="The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket). Must not be greater than 255 characters.",
     )
-    application_id: Optional[StrictInt] = Field(
+    application_id: StrictInt | None = Field(
         default=None,
         description="The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
     )
@@ -59,16 +57,9 @@ class VirtualHostEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of VirtualHostEnvironmentCreate.
     """
 
-    linked_resources: Optional[
-        List[
-            Union[
-                ResourceToBeLinked,
-                ResourceToBeLinkedPlain,
-            ]
-        ]
-    ]
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     type: Required[str]
     name: Required[str]
-    root_directory: Optional[str]
-    application_listen_address: Optional[str]
-    application_id: Optional[int]
+    root_directory: str | None
+    application_listen_address: str | None
+    application_id: int | None
