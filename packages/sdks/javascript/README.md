@@ -9,7 +9,9 @@ Devopness SDK includes a pre-defined set of classes that provide convenient acce
 ## Usage
 
 ### Install/Upgrade
+
 Use your favourite package manager to install Devopness SDK as a dependency of your project:
+
 ```bash
 # Using npm
 npm install @devopness/sdk-js
@@ -34,107 +36,152 @@ The name of the methods at services is the same as the operation name in the doc
 Devopness API. You can consult the URL of an endpoint to see the operation name. For instance,
 the URL to endpoint `POST /users/login` in the documentation is: `/#operation/login`
 
-### Authenticating
+### Authentication
 
-To authenticate, just invoke the `login` method on the `users` service:
+#### Authentication with Personal Access Token
+
+Ensure you have a Personal Access Token from Devopness. If you don't have one, see [Add a Personal Access Token](https://www.devopness.com/docs/api-tokens/personal-access-tokens/add-personal-access-token).
 
 ```javascript
-async function authenticate(email, pass) {
-  const userTokens = await devopnessApi.users.loginUser({ email: email, password: pass });
-  // The `accessToken` must be set every time a token is obtained or refreshed.
-  devopnessApi.accessToken = userTokens.data.access_token;
-}
+import { DevopnessApiClient } from '@devopness/sdk-js'
 
-// invoke the authentication method
-authenticate('user@email.com', 'secret-password');
+// Option 1: Pass token during initialization
+const devopnessApi = new DevopnessApiClient({
+  apiToken: 'your-personal-access-token-here'
+});
+
+// Option 2: Set token after initialization
+const devopnessApi = new DevopnessApiClient();
+devopnessApi.apiToken = 'your-personal-access-token-here';
+
+const currentUser = await devopnessApi.users.getUserMe();
 ```
 
-In the example above, `userTokens` is an instance of `ApiResponse` and the `data` property has the data requested from the API. See [ApiResponse.ts](https://github.com/devopness/devopness/blob/main/packages/sdks/javascript/src/common/ApiResponse.ts) for reference.
+#### Authentication with Project API Token
 
-### Invoking authentication protected endpoints
-Once an authentication token is set, any protected endpoint can be invoked.
-Example retrieving current user details:
+Ensure you have a Project API Token from Devopness. If you don't have one, see [Add a Project API Token](https://www.devopness.com/docs/api-tokens/project-api-tokens/add-project-api-token).
 
 ```javascript
-async function getUserProfile() {
-    // invoke the authentication method to ensure an auth token
-    // is retrieved and set to the SDK instance
-    await authenticate('user@email.com', 'secret-password');
+import { DevopnessApiClient } from '@devopness/sdk-js'
 
-    // Now that we're authenticated, we can invoke methods on any services.
-    // Here we're invoking the `getUserMe()` method on the `users` service
+const devopnessApi = new DevopnessApiClient({
+  apiToken: 'your-project-api-token-here'
+});
+
+const project = await devopnessApi.projects.getProject(projectId);
+```
+
+#### Authentication with Login (Deprecated)
+
+> **Warning:** Email/password authentication is no longer supported. API requests using this method return 4xx errors.
+
+### Invoking authentication-protected endpoints
+
+Once authenticated, you can invoke protected endpoints. Here's an example of retrieving user details and listing projects:
+
+```javascript
+import { DevopnessApiClient } from '@devopness/sdk-js'
+
+const devopnessApi = new DevopnessApiClient({
+  apiToken: process.env.DEVOPNESS_API_TOKEN
+});
+
+async function getUserProfile() {
+  try {
+    // Retrieve current user details
     const currentUser = await devopnessApi.users.getUserMe();
-    console.log('Successfully retrieved user profile: ', currentUser);
+    console.log('User ID:', currentUser.data.id);
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
 }
 
 getUserProfile();
 ```
 
 ### TypeScript support
+
 This package includes TypeScript declarations for every method.
 TypeScript versions `>= 4.4` are supported.
 
 >Some methods in `Devopness SDK JavaScript` accept and return objects from the Devopness API. The type declarations for these objects will always track the latest version of the API. Therefore, if you're using the latest version of this package, you can rely on the Devopness API documentation for checking the input and return types of each API endpoint.
 
 ## Development & Testing
+
 To build and test the SDK locally, [**fork this repository**](https://github.com/devopness/devopness/fork) and follow these steps:
 
 ### With Docker
+
 #### Pre-requisites
+
 - [Docker](https://www.docker.com/products/docker-desktop/)
 - [make](https://www.gnu.org/software/make/)
   - `make` is pre-installed in most Linux systems.
   - In `macOS` it is included as part of the `Xcode` command line utils. It can be installed with the following command:
+
   ```
   xcode-select --install
   ```
+
 ### Setup and run in local environment
+
 #### 1. Navigate to the project directory
+
 ```shell
 cd packages/sdks/javascript/
 ```
 
 #### 2. Build Docker Image
+
 ```
 make build-image
 ```
 
 #### 3. Install Dependencies
+
 ```
 make npm-ci
 ```
 
 #### 4. Build SDK
+
 ```
 make build-sdk-js
 ```
 
 #### 5. Run Tests
+
 ```
 make test
 ```
 
 ### Without Docker
+
 Installing on ``Linux`` or ``macOS`` systems.
 
 #### 1. Navigate to the project directory
+
 ```shell
 cd packages/sdks/javascript/
 ```
 
 #### 2. Install missing dependencies
+
 This command will install all modules listed as dependencies in [package.json](package.json). **A working Java Runtime Environment is also required.** Please, check out the installation instructions
 for your operating system.
+
 ```
 npm install
 ```
 
 #### 3. Build SDK
+
 ```
 npm run build
 ```
 
 #### 4. Run tests
+
 ```
 npm run test
 ```
