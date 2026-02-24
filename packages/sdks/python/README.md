@@ -96,7 +96,7 @@ import asyncio
 from devopness import DevopnessClientAsync, DevopnessClientConfig
 
 # Option 1: Pass token during initialization
-config = DevopnessClientConfig(api_token='your-personal-access-token-here')
+config = DevopnessClientConfig(api_token='your-personal-access-token-here', auto_refresh_token=False)
 devopness = DevopnessClientAsync(config)
 
 # Option 2: Set token after initialization
@@ -117,7 +117,7 @@ if __name__ == "__main__":
 from devopness import DevopnessClient, DevopnessClientConfig
 
 # Option 1: Pass token during initialization
-config = DevopnessClientConfig(api_token='your-personal-access-token-here')
+config = DevopnessClientConfig(api_token='your-personal-access-token-here', auto_refresh_token=False)
 devopness = DevopnessClient(config)
 
 # Option 2: Set token after initialization
@@ -185,7 +185,7 @@ import os
 from devopness import DevopnessClientAsync, DevopnessClientConfig
 from devopness.core import DevopnessSdkError
 
-config = DevopnessClientConfig(api_token=os.getenv('DEVOPNESS_API_TOKEN'))
+config = DevopnessClientConfig(api_token=os.getenv('DEVOPNESS_API_TOKEN'), auto_refresh_token=False)
 devopness = DevopnessClientAsync(config)
 
 async def get_user_profile():
@@ -208,7 +208,7 @@ import os
 from devopness import DevopnessClient, DevopnessClientConfig
 from devopness.core import DevopnessSdkError
 
-config = DevopnessClientConfig(api_token=os.getenv('DEVOPNESS_API_TOKEN'))
+config = DevopnessClientConfig(api_token=os.getenv('DEVOPNESS_API_TOKEN'), auto_refresh_token=False)
 devopness = DevopnessClient(config)
 
 def get_user_profile():
