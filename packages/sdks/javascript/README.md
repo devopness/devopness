@@ -42,15 +42,23 @@ the URL to endpoint `POST /users/login` in the documentation is: `/#operation/lo
 
 Ensure you have a Personal Access Token from Devopness. If you don't have one, see [Add a Personal Access Token](https://www.devopness.com/docs/api-tokens/personal-access-tokens/add-personal-access-token).
 
+**Option 1: Pass token during initialization**
+
 ```javascript
 import { DevopnessApiClient } from '@devopness/sdk-js'
 
-// Option 1: Pass token during initialization
 const devopnessApi = new DevopnessApiClient({
   apiToken: 'your-personal-access-token-here'
 });
 
-// Option 2: Set token after initialization
+const currentUser = await devopnessApi.users.getUserMe();
+```
+
+**Option 2: Set token after initialization**
+
+```javascript
+import { DevopnessApiClient } from '@devopness/sdk-js'
+
 const devopnessApi = new DevopnessApiClient();
 devopnessApi.apiToken = 'your-personal-access-token-here';
 
