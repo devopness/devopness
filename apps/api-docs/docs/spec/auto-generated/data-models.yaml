@@ -205,6 +205,8 @@ Credits:
   $ref: ./auto-generated/models/credits.yaml
 CronJob:
   $ref: ./auto-generated/models/cron-job.yaml
+CronJobDeploy:
+  $ref: ./auto-generated/models/cron-job-deploy.yaml
 CronJobEnvironmentCreate:
   $ref: ./auto-generated/models/cron-job-environment-create.yaml
 CronJobList:
@@ -219,6 +221,8 @@ CronJobUpdate:
   $ref: ./auto-generated/models/cron-job-update.yaml
 Daemon:
   $ref: ./auto-generated/models/daemon.yaml
+DaemonDeploy:
+  $ref: ./auto-generated/models/daemon-deploy.yaml
 DaemonEnvironmentCreate:
   $ref: ./auto-generated/models/daemon-environment-create.yaml
 DaemonGetStatus:
@@ -367,6 +371,8 @@ NetworkRelation:
   $ref: ./auto-generated/models/network-relation.yaml
 NetworkRule:
   $ref: ./auto-generated/models/network-rule.yaml
+NetworkRuleDeploy:
+  $ref: ./auto-generated/models/network-rule-deploy.yaml
 NetworkRuleDirection:
   $ref: ./auto-generated/models/network-rule-direction.yaml
 NetworkRuleEnvironmentCreate:
@@ -583,6 +589,8 @@ ServerUpdate:
   $ref: ./auto-generated/models/server-update.yaml
 Service:
   $ref: ./auto-generated/models/service.yaml
+ServiceDeploy:
+  $ref: ./auto-generated/models/service-deploy.yaml
 ServiceEnvironmentCreate:
   $ref: ./auto-generated/models/service-environment-create.yaml
 ServiceGetStatus:
@@ -629,6 +637,8 @@ SourceType:
   $ref: ./auto-generated/models/source-type.yaml
 SshKey:
   $ref: ./auto-generated/models/ssh-key.yaml
+SshKeyDeploy:
+  $ref: ./auto-generated/models/ssh-key-deploy.yaml
 SshKeyEnvironmentCreate:
   $ref: ./auto-generated/models/ssh-key-environment-create.yaml
 SshKeyList:
@@ -639,6 +649,8 @@ SshKeyUpdate:
   $ref: ./auto-generated/models/ssh-key-update.yaml
 SslCertificate:
   $ref: ./auto-generated/models/ssl-certificate.yaml
+SslCertificateDeploy:
+  $ref: ./auto-generated/models/ssl-certificate-deploy.yaml
 SslCertificateDomainList:
   $ref: ./auto-generated/models/ssl-certificate-domain-list.yaml
 SslCertificateEnvironmentCreate:
@@ -827,6 +839,8 @@ VariableUpdate:
   $ref: ./auto-generated/models/variable-update.yaml
 VirtualHost:
   $ref: ./auto-generated/models/virtual-host.yaml
+VirtualHostDeploy:
+  $ref: ./auto-generated/models/virtual-host-deploy.yaml
 VirtualHostEnvironmentCreate:
   $ref: ./auto-generated/models/virtual-host-environment-create.yaml
 VirtualHostGetStatus:

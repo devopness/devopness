@@ -99,6 +99,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'cron_job', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
+    'cron_job_deploy': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
     'deployment_application_create': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
         { path: 'pipeline_id', fixture: 'pipeline', field: 'id' },
@@ -150,6 +153,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'network_rule', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
+    'network_rule_deploy': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
     'organization': [],
     'organization_create': [],
     'organization_update': [
@@ -174,6 +180,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'daemon_stop': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' }
+    ],
+    'daemon_deploy': [
         { path: 'servers[0]', fixture: 'server', field: 'id' }
     ],
     'personal_access_token': [],
@@ -218,6 +227,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'service_stop': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
+    'service_deploy': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
     'service_update': [
         { path: 'id', fixture: 'service', field: 'id' },
     ],
@@ -231,9 +243,15 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'ssh_key', field: 'id' },
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
+    'ssh_key_deploy': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
     'ssl_certificate': [],
     'ssl_certificate_environment_create': [
         { path: 'virtual_host_id', fixture: 'virtual_host', field: 'id' }
+    ],
+    'ssl_certificate_deploy': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'step': [],
     'step_pipeline_update': [
@@ -275,6 +293,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'id', fixture: 'virtual_host', field: 'id' },
     ],
     'virtual_host_get_status': [
+        { path: 'servers[0]', fixture: 'server', field: 'id' },
+    ],
+    'virtual_host_deploy': [
         { path: 'servers[0]', fixture: 'server', field: 'id' },
     ],
     'virtual_host_environment_create': [

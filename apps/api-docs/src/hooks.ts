@@ -103,6 +103,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'activateUser204',
         'resetUserPassword200',
         'sendResetLinkUserPassword202',
+        // deployServer: The server created in tests is self-hosted, but the API does not allow
+        // server:deploy operations on self-hosted servers. This action can only be performed
+        // on servers provisioned via Devopness.
+        'deployServer204',
     ];
 
     // initial fixture-transaction graph definitions

@@ -58,6 +58,9 @@
     $ref: ./auto-generated/endpoints/get-cron-job.yaml
   put:
     $ref: ./auto-generated/endpoints/update-cron-job.yaml
+'/cron-jobs/{cron_job_id}/deploy':
+  post:
+    $ref: ./auto-generated/endpoints/deploy-cron-job.yaml
 '/daemons/{daemon_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-daemon.yaml
@@ -65,6 +68,9 @@
     $ref: ./auto-generated/endpoints/get-daemon.yaml
   put:
     $ref: ./auto-generated/endpoints/update-daemon.yaml
+'/daemons/{daemon_id}/deploy':
+  post:
+    $ref: ./auto-generated/endpoints/deploy-daemon.yaml
 '/daemons/{daemon_id}/get-status':
   post:
     $ref: ./auto-generated/endpoints/get-status-daemon.yaml
@@ -191,6 +197,9 @@
     $ref: ./auto-generated/endpoints/get-network-rule.yaml
   put:
     $ref: ./auto-generated/endpoints/update-network-rule.yaml
+'/network-rules/{network_rule_id}/deploy':
+  post:
+    $ref: ./auto-generated/endpoints/deploy-network-rule.yaml
 '/networks/{network_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-network.yaml
@@ -335,6 +344,9 @@
 '/servers/{server_id}/connect/{activation_token}':
   post:
     $ref: ./auto-generated/endpoints/connect-server.yaml
+'/servers/{server_id}/deploy':
+  post:
+    $ref: ./auto-generated/endpoints/deploy-server.yaml
 '/servers/{server_id}/get-status':
   post:
     $ref: ./auto-generated/endpoints/get-status-server.yaml
@@ -357,6 +369,9 @@
     $ref: ./auto-generated/endpoints/get-service.yaml
   put:
     $ref: ./auto-generated/endpoints/update-service.yaml
+'/services/{service_id}/deploy':
+  post:
+    $ref: ./auto-generated/endpoints/deploy-service.yaml
 '/services/{service_id}/get-status':
   post:
     $ref: ./auto-generated/endpoints/get-status-service.yaml
@@ -398,11 +413,17 @@
     $ref: ./auto-generated/endpoints/get-ssh-key.yaml
   put:
     $ref: ./auto-generated/endpoints/update-ssh-key.yaml
+'/ssh-keys/{ssh_key_id}/deploy':
+  post:
+    $ref: ./auto-generated/endpoints/deploy-ssh-key.yaml
 '/ssl-certificates/{ssl_certificate_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-ssl-certificate.yaml
   get:
     $ref: ./auto-generated/endpoints/get-ssl-certificate.yaml
+'/ssl-certificates/{ssl_certificate_id}/deploy':
+  post:
+    $ref: ./auto-generated/endpoints/deploy-ssl-certificate.yaml
 /static/application-options:
   get:
     $ref: ./auto-generated/endpoints/get-static-application-options.yaml
@@ -565,6 +586,9 @@
     $ref: ./auto-generated/endpoints/get-virtual-host.yaml
   put:
     $ref: ./auto-generated/endpoints/update-virtual-host.yaml
+'/virtual-hosts/{virtual_host_id}/deploy':
+  post:
+    $ref: ./auto-generated/endpoints/deploy-virtual-host.yaml
 '/virtual-hosts/{virtual_host_id}/get-status':
   post:
     $ref: ./auto-generated/endpoints/get-status-virtual-host.yaml
