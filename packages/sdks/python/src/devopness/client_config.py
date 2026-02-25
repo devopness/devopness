@@ -47,8 +47,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
     """
 
     api_token: str | None = None
-    # TODO: Change default to False - incompatible with api_token
-    auto_refresh_token: bool = True
+    auto_refresh_token: bool = False
     base_url: str = "https://api.devopness.com"
     debug: bool = False
     default_encoding: str = "utf-8"
