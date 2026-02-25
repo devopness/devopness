@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { CronJob } from '../../generated/models';
+import { CronJobDeploy } from '../../generated/models';
 import { CronJobEnvironmentCreate } from '../../generated/models';
 import { CronJobRelation } from '../../generated/models';
 import { CronJobUpdate } from '../../generated/models';
@@ -61,6 +62,28 @@ export class CronJobsApiService extends ApiBaseService {
         const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Deploy a Cron Job
+     * @param {number} cronJobId The ID of the cron job.
+     * @param {CronJobDeploy} cronJobDeploy A JSON object containing the resource data
+     */
+    public async deployCronJob(cronJobId: number, cronJobDeploy: CronJobDeploy): Promise<ApiResponse<void>> {
+        if (cronJobId === null || cronJobId === undefined) {
+            throw new ArgumentNullException('cronJobId', 'deployCronJob');
+        }
+        if (cronJobDeploy === null || cronJobDeploy === undefined) {
+            throw new ArgumentNullException('cronJobDeploy', 'deployCronJob');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/cron-jobs/{cron_job_id}/deploy' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, CronJobDeploy>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))), cronJobDeploy);
         return new ApiResponse(response);
     }
 
