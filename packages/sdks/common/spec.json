@@ -1310,6 +1310,84 @@
         }
       }
     },
+    "/cron-jobs/{cron_job_id}/deploy": {
+      "post": {
+        "summary": "Deploy a Cron Job",
+        "operationId": "deployCronJob",
+        "tags": [
+          "Cron Jobs"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "cron_job_id",
+            "description": "The ID of the cron job.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CronJobDeploy"
+              }
+            }
+          }
+        }
+      }
+    },
     "/daemons/{daemon_id}": {
       "delete": {
         "summary": "Delete a given Daemon",
@@ -1483,6 +1561,84 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/DaemonUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/daemons/{daemon_id}/deploy": {
+      "post": {
+        "summary": "Deploy a Daemon",
+        "operationId": "deployDaemon",
+        "tags": [
+          "Daemons"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "daemon_id",
+            "description": "The ID of the daemon.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DaemonDeploy"
               }
             }
           }
@@ -4613,6 +4769,84 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/NetworkRuleUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/network-rules/{network_rule_id}/deploy": {
+      "post": {
+        "summary": "Deploy a Network Rule",
+        "operationId": "deployNetworkRule",
+        "tags": [
+          "Network Rules"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "network_rule_id",
+            "description": "The ID of the network rule.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NetworkRuleDeploy"
               }
             }
           }
@@ -8090,6 +8324,73 @@
         }
       }
     },
+    "/servers/{server_id}/deploy": {
+      "post": {
+        "summary": "Deploy a Server",
+        "operationId": "deployServer",
+        "tags": [
+          "Servers"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "server_id",
+            "description": "The ID of the server.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/servers/{server_id}/get-status": {
       "post": {
         "summary": "Get current status of the server on the cloud provider",
@@ -8533,6 +8834,84 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ServiceUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/{service_id}/deploy": {
+      "post": {
+        "summary": "Deploy a Service",
+        "operationId": "deployService",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "service_id",
+            "description": "The ID of the service.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceDeploy"
               }
             }
           }
@@ -9446,6 +9825,84 @@
         }
       }
     },
+    "/ssh-keys/{ssh_key_id}/deploy": {
+      "post": {
+        "summary": "Deploy a SSH Key",
+        "operationId": "deploySshKey",
+        "tags": [
+          "SSH Keys"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "ssh_key_id",
+            "description": "The ID of the ssh key.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SshKeyDeploy"
+              }
+            }
+          }
+        }
+      }
+    },
     "/ssl-certificates/{ssl_certificate_id}": {
       "delete": {
         "summary": "Delete a given SSL Certificate",
@@ -9545,6 +10002,84 @@
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ssl-certificates/{ssl_certificate_id}/deploy": {
+      "post": {
+        "summary": "Deploy a SSL Certificate",
+        "operationId": "deploySslCertificate",
+        "tags": [
+          "SSL Certificates"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "ssl_certificate_id",
+            "description": "The ID of the ssl certificate.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SslCertificateDeploy"
               }
             }
           }
@@ -12397,6 +12932,84 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/VirtualHostUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/virtual-hosts/{virtual_host_id}/deploy": {
+      "post": {
+        "summary": "Deploy a Virtual Host",
+        "operationId": "deployVirtualHost",
+        "tags": [
+          "Virtual Hosts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "virtual_host_id",
+            "description": "The ID of the virtual host.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VirtualHostDeploy"
               }
             }
           }
@@ -16326,6 +16939,14 @@
           "updated_at"
         ]
       },
+      "CronJobDeploy": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
+      },
       "CronJobEnvironmentCreate": {
         "type": "object",
         "properties": {
@@ -16591,6 +17212,14 @@
           "created_at",
           "updated_at"
         ]
+      },
+      "DaemonDeploy": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
       },
       "DaemonEnvironmentCreate": {
         "type": "object",
@@ -18829,6 +19458,14 @@
           "created_at",
           "updated_at"
         ]
+      },
+      "NetworkRuleDeploy": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
       },
       "NetworkRuleDirection": {
         "type": "string",
@@ -21748,6 +22385,14 @@
           "updated_at"
         ]
       },
+      "ServiceDeploy": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
+      },
       "ServiceEnvironmentCreate": {
         "type": "object",
         "properties": {
@@ -22235,6 +22880,14 @@
           "last_action"
         ]
       },
+      "SshKeyDeploy": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
+      },
       "SshKeyEnvironmentCreate": {
         "type": "object",
         "properties": {
@@ -22407,6 +23060,14 @@
           "created_at",
           "updated_at"
         ]
+      },
+      "SslCertificateDeploy": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
       },
       "SslCertificateDomainList": {
         "description": "The list of domain names to which the SSL certificate refers to",
@@ -24729,6 +25390,14 @@
           "created_at",
           "updated_at"
         ]
+      },
+      "VirtualHostDeploy": {
+        "type": "object",
+        "properties": {
+          "servers": {
+            "$ref": "#/components/schemas/ResourceIdList"
+          }
+        }
       },
       "VirtualHostEnvironmentCreate": {
         "type": "object",
