@@ -37,6 +37,8 @@ class DevopnessClientConfig(DevopnessBaseModel):
 
     Attributes:
         api_token (str): API Token for authentication.
+        auto_refresh_token (bool): Deprecated. The 'auto_refresh_token' option is
+                                   no longer necessary with token-based auth.
         base_url (str): Base URL for API requests.
         debug (bool): Controls whether debug information is printed to the console.
         default_encoding (str): Default encoding for response content.
@@ -45,6 +47,11 @@ class DevopnessClientConfig(DevopnessBaseModel):
     """
 
     api_token: str | None = None
+    auto_refresh_token: bool = False
+    """
+    Deprecated.
+    The 'auto_refresh_token' option is no longer necessary with token-based auth.
+    """
     base_url: str = "https://api.devopness.com"
     debug: bool = False
     default_encoding: str = "utf-8"
@@ -54,12 +61,6 @@ class DevopnessClientConfig(DevopnessBaseModel):
         "User-Agent": get_user_agent(),
     }
     timeout: int = 30
-
-    auto_refresh_token: bool = False
-    """
-    Deprecated.
-    The 'auto_refresh_token' option is no longer necessary with token-based auth.
-    """
 
     @field_validator("base_url", mode="before")
     @classmethod
