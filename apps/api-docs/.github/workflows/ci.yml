@@ -4,9 +4,6 @@
 name: CI
 
 on:
-  pull_request:
-    branches:
-      - main
   pull_request_target:
     branches:
       - main
@@ -26,9 +23,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # For pull_request_target (Dependabot), checkout the PR head ref
-          # For pull_request (regular PRs), this defaults to the PR head
-          ref: ${{ github.event.pull_request.head.sha || github.ref }}
+          # Checkout the PR head ref for testing
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Create `.env` file
         # DEV_API_DOCS_ENV_FILE: contents of a `.env` to be used when executing this job
@@ -64,8 +60,9 @@ jobs:
         run: npm run api-docs-zip-extract
 
       - uses: stefanzweifel/git-auto-commit-action@v5
-        # Skip auto-commit for Dependabot PRs (pull_request_target doesn't have write access to fork)
-        if: github.event_name == 'pull_request'
+        # Disabled for bot PRs (Dependabot) since we cannot push to their branches
+        # Enabled for regular user PRs to auto-commit updated generated files
+        if: github.event.pull_request.user.type != 'Bot'
         with:
           commit_message: "docs: Update API generated files"
           file_pattern: "docs/spec/*"
