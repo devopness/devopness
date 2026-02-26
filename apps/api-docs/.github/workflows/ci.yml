@@ -7,6 +7,9 @@ on:
   pull_request:
     branches:
       - main
+  pull_request_target:
+    branches:
+      - main
 
 jobs:
   build:
@@ -22,6 +25,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # For pull_request_target (Dependabot), checkout the PR head ref
+          # For pull_request (regular PRs), this defaults to the PR head
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
       - name: Create `.env` file
         # DEV_API_DOCS_ENV_FILE: contents of a `.env` to be used when executing this job
@@ -57,6 +64,8 @@ jobs:
         run: npm run api-docs-zip-extract
 
       - uses: stefanzweifel/git-auto-commit-action@v5
+        # Skip auto-commit for Dependabot PRs (pull_request_target doesn't have write access to fork)
+        if: github.event_name == 'pull_request'
         with:
           commit_message: "docs: Update API generated files"
           file_pattern: "docs/spec/*"
