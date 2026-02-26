@@ -194,6 +194,7 @@ from .credential_source_provider import (
 from .credential_update import CredentialUpdate, CredentialUpdatePlain
 from .credits import Credits, CreditsPlain
 from .cron_job import CronJob, CronJobPlain
+from .cron_job_deploy import CronJobDeploy, CronJobDeployPlain
 from .cron_job_environment_create import (
     CronJobEnvironmentCreate,
     CronJobEnvironmentCreatePlain,
@@ -203,6 +204,7 @@ from .cron_job_pattern import CronJobPattern, CronJobPatternPlain
 from .cron_job_relation import CronJobRelation, CronJobRelationPlain
 from .cron_job_update import CronJobUpdate, CronJobUpdatePlain
 from .daemon import Daemon, DaemonPlain
+from .daemon_deploy import DaemonDeploy, DaemonDeployPlain
 from .daemon_environment_create import (
     DaemonEnvironmentCreate,
     DaemonEnvironmentCreatePlain,
@@ -330,6 +332,7 @@ from .network_provision_input_settings_gcp import (
 )
 from .network_relation import NetworkRelation, NetworkRelationPlain
 from .network_rule import NetworkRule, NetworkRulePlain
+from .network_rule_deploy import NetworkRuleDeploy, NetworkRuleDeployPlain
 from .network_rule_direction import NetworkRuleDirection, NetworkRuleDirectionPlain
 from .network_rule_environment_create import (
     NetworkRuleEnvironmentCreate,
@@ -457,6 +460,7 @@ from .server_relation import ServerRelation, ServerRelationPlain
 from .server_status import ServerStatus, ServerStatusPlain
 from .server_update import ServerUpdate, ServerUpdatePlain
 from .service import Service, ServicePlain
+from .service_deploy import ServiceDeploy, ServiceDeployPlain
 from .service_environment_create import (
     ServiceEnvironmentCreate,
     ServiceEnvironmentCreatePlain,
@@ -487,6 +491,7 @@ from .source_provider_displayable_name import (
 from .source_provider_name import SourceProviderName, SourceProviderNamePlain
 from .source_type import SourceType, SourceTypePlain
 from .ssh_key import SshKey, SshKeyPlain
+from .ssh_key_deploy import SshKeyDeploy, SshKeyDeployPlain
 from .ssh_key_environment_create import (
     SshKeyEnvironmentCreate,
     SshKeyEnvironmentCreatePlain,
@@ -494,6 +499,7 @@ from .ssh_key_environment_create import (
 from .ssh_key_relation import SshKeyRelation, SshKeyRelationPlain
 from .ssh_key_update import SshKeyUpdate, SshKeyUpdatePlain
 from .ssl_certificate import SslCertificate, SslCertificatePlain
+from .ssl_certificate_deploy import SslCertificateDeploy, SslCertificateDeployPlain
 from .ssl_certificate_environment_create import (
     SslCertificateEnvironmentCreate,
     SslCertificateEnvironmentCreatePlain,
@@ -633,6 +639,7 @@ from .variable_targets import VariableTargets, VariableTargetsPlain
 from .variable_type import VariableType, VariableTypePlain
 from .variable_update import VariableUpdate, VariableUpdatePlain
 from .virtual_host import VirtualHost, VirtualHostPlain
+from .virtual_host_deploy import VirtualHostDeploy, VirtualHostDeployPlain
 from .virtual_host_environment_create import (
     VirtualHostEnvironmentCreate,
     VirtualHostEnvironmentCreatePlain,
@@ -821,6 +828,8 @@ __all__ = [
     "Credits",
     "CreditsPlain",
     "CronJob",
+    "CronJobDeploy",
+    "CronJobDeployPlain",
     "CronJobEnvironmentCreate",
     "CronJobEnvironmentCreatePlain",
     "CronJobOptions",
@@ -833,6 +842,8 @@ __all__ = [
     "CronJobUpdate",
     "CronJobUpdatePlain",
     "Daemon",
+    "DaemonDeploy",
+    "DaemonDeployPlain",
     "DaemonEnvironmentCreate",
     "DaemonEnvironmentCreatePlain",
     "DaemonGetStatus",
@@ -961,6 +972,8 @@ __all__ = [
     "NetworkRelation",
     "NetworkRelationPlain",
     "NetworkRule",
+    "NetworkRuleDeploy",
+    "NetworkRuleDeployPlain",
     "NetworkRuleDirection",
     "NetworkRuleDirectionPlain",
     "NetworkRuleEnvironmentCreate",
@@ -1125,6 +1138,8 @@ __all__ = [
     "ServerUpdate",
     "ServerUpdatePlain",
     "Service",
+    "ServiceDeploy",
+    "ServiceDeployPlain",
     "ServiceEnvironmentCreate",
     "ServiceEnvironmentCreatePlain",
     "ServiceGetStatus",
@@ -1167,6 +1182,8 @@ __all__ = [
     "SourceType",
     "SourceTypePlain",
     "SshKey",
+    "SshKeyDeploy",
+    "SshKeyDeployPlain",
     "SshKeyEnvironmentCreate",
     "SshKeyEnvironmentCreatePlain",
     "SshKeyPlain",
@@ -1175,6 +1192,8 @@ __all__ = [
     "SshKeyUpdate",
     "SshKeyUpdatePlain",
     "SslCertificate",
+    "SslCertificateDeploy",
+    "SslCertificateDeployPlain",
     "SslCertificateEnvironmentCreate",
     "SslCertificateEnvironmentCreatePlain",
     "SslCertificateIssuer",
@@ -1321,6 +1340,8 @@ __all__ = [
     "VariableUpdate",
     "VariableUpdatePlain",
     "VirtualHost",
+    "VirtualHostDeploy",
+    "VirtualHostDeployPlain",
     "VirtualHostEnvironmentCreate",
     "VirtualHostEnvironmentCreatePlain",
     "VirtualHostGetStatus",

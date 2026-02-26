@@ -11,6 +11,8 @@ from typing import Union
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     VirtualHost,
+    VirtualHostDeploy,
+    VirtualHostDeployPlain,
     VirtualHostEnvironmentCreate,
     VirtualHostEnvironmentCreatePlain,
     VirtualHostGetStatus,
@@ -70,6 +72,31 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def deploy_virtual_host(
+        self,
+        virtual_host_id: int,
+        virtual_host_deploy: Union[
+            VirtualHostDeploy,
+            VirtualHostDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Virtual Host
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/virtual-hosts/{virtual_host_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, virtual_host_deploy)
 
         return DevopnessResponse(response, None)
 
@@ -224,6 +251,31 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def deploy_virtual_host(
+        self,
+        virtual_host_id: int,
+        virtual_host_deploy: Union[
+            VirtualHostDeploy,
+            VirtualHostDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Virtual Host
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/virtual-hosts/{virtual_host_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, virtual_host_deploy)
 
         return await DevopnessResponse.from_async(response, None)
 
