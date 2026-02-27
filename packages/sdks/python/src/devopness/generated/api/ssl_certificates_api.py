@@ -11,6 +11,8 @@ from typing import Union
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SslCertificate,
+    SslCertificateDeploy,
+    SslCertificateDeployPlain,
     SslCertificateEnvironmentCreate,
     SslCertificateEnvironmentCreatePlain,
     SslCertificateRelation,
@@ -66,6 +68,31 @@ class SSLCertificatesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def deploy_ssl_certificate(
+        self,
+        ssl_certificate_id: int,
+        ssl_certificate_deploy: Union[
+            SslCertificateDeploy,
+            SslCertificateDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a SSL Certificate
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssl-certificates/{ssl_certificate_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, ssl_certificate_deploy)
 
         return DevopnessResponse(response, None)
 
@@ -170,6 +197,31 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def deploy_ssl_certificate(
+        self,
+        ssl_certificate_id: int,
+        ssl_certificate_deploy: Union[
+            SslCertificateDeploy,
+            SslCertificateDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a SSL Certificate
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssl-certificates/{ssl_certificate_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, ssl_certificate_deploy)
 
         return await DevopnessResponse.from_async(response, None)
 

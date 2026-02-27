@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { VirtualHost } from '../../generated/models';
+import { VirtualHostDeploy } from '../../generated/models';
 import { VirtualHostEnvironmentCreate } from '../../generated/models';
 import { VirtualHostGetStatus } from '../../generated/models';
 import { VirtualHostRelation } from '../../generated/models';
@@ -62,6 +63,28 @@ export class VirtualHostsApiService extends ApiBaseService {
         const requestUrl = '/virtual-hosts/{virtual_host_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Deploy a Virtual Host
+     * @param {number} virtualHostId The ID of the virtual host.
+     * @param {VirtualHostDeploy} virtualHostDeploy A JSON object containing the resource data
+     */
+    public async deployVirtualHost(virtualHostId: number, virtualHostDeploy: VirtualHostDeploy): Promise<ApiResponse<void>> {
+        if (virtualHostId === null || virtualHostId === undefined) {
+            throw new ArgumentNullException('virtualHostId', 'deployVirtualHost');
+        }
+        if (virtualHostDeploy === null || virtualHostDeploy === undefined) {
+            throw new ArgumentNullException('virtualHostDeploy', 'deployVirtualHost');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/virtual-hosts/{virtual_host_id}/deploy' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, VirtualHostDeploy>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))), virtualHostDeploy);
         return new ApiResponse(response);
     }
 

@@ -102,6 +102,27 @@ class ServersApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
+    def deploy_server(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint)
+
+        return DevopnessResponse(response, None)
+
     def get_server(
         self,
         server_id: int,
@@ -384,6 +405,27 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def deploy_server(
+        self,
+        server_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Server
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/servers/{server_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint)
 
         return await DevopnessResponse.from_async(response, None)
 

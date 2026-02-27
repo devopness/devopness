@@ -11,6 +11,8 @@ from typing import Union
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Service,
+    ServiceDeploy,
+    ServiceDeployPlain,
     ServiceEnvironmentCreate,
     ServiceEnvironmentCreatePlain,
     ServiceGetStatus,
@@ -78,6 +80,31 @@ class ServicesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def deploy_service(
+        self,
+        service_id: int,
+        service_deploy: Union[
+            ServiceDeploy,
+            ServiceDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, service_deploy)
 
         return DevopnessResponse(response, None)
 
@@ -332,6 +359,31 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def deploy_service(
+        self,
+        service_id: int,
+        service_deploy: Union[
+            ServiceDeploy,
+            ServiceDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, service_deploy)
 
         return await DevopnessResponse.from_async(response, None)
 

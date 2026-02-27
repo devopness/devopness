@@ -11,6 +11,8 @@ from typing import Union
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     NetworkRule,
+    NetworkRuleDeploy,
+    NetworkRuleDeployPlain,
     NetworkRuleEnvironmentCreate,
     NetworkRuleEnvironmentCreatePlain,
     NetworkRuleRelation,
@@ -68,6 +70,31 @@ class NetworkRulesApiService(DevopnessBaseService):
 
         endpoint: str = "".join(endpoint_parts)
         response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def deploy_network_rule(
+        self,
+        network_rule_id: int,
+        network_rule_deploy: Union[
+            NetworkRuleDeploy,
+            NetworkRuleDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Network Rule
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/network-rules/{network_rule_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, network_rule_deploy)
 
         return DevopnessResponse(response, None)
 
@@ -197,6 +224,31 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def deploy_network_rule(
+        self,
+        network_rule_id: int,
+        network_rule_deploy: Union[
+            NetworkRuleDeploy,
+            NetworkRuleDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Network Rule
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/network-rules/{network_rule_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, network_rule_deploy)
 
         return await DevopnessResponse.from_async(response, None)
 

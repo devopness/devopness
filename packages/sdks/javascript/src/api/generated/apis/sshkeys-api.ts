@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { SshKey } from '../../generated/models';
+import { SshKeyDeploy } from '../../generated/models';
 import { SshKeyEnvironmentCreate } from '../../generated/models';
 import { SshKeyRelation } from '../../generated/models';
 import { SshKeyUpdate } from '../../generated/models';
@@ -61,6 +62,28 @@ export class SSHKeysApiService extends ApiBaseService {
         const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Deploy a SSH Key
+     * @param {number} sshKeyId The ID of the ssh key.
+     * @param {SshKeyDeploy} sshKeyDeploy A JSON object containing the resource data
+     */
+    public async deploySshKey(sshKeyId: number, sshKeyDeploy: SshKeyDeploy): Promise<ApiResponse<void>> {
+        if (sshKeyId === null || sshKeyId === undefined) {
+            throw new ArgumentNullException('sshKeyId', 'deploySshKey');
+        }
+        if (sshKeyDeploy === null || sshKeyDeploy === undefined) {
+            throw new ArgumentNullException('sshKeyDeploy', 'deploySshKey');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/ssh-keys/{ssh_key_id}/deploy' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, SshKeyDeploy>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))), sshKeyDeploy);
         return new ApiResponse(response);
     }
 

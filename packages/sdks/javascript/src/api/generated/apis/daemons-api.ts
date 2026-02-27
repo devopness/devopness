@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
+import { DaemonDeploy } from '../../generated/models';
 import { DaemonEnvironmentCreate } from '../../generated/models';
 import { DaemonGetStatus } from '../../generated/models';
 import { DaemonRelation } from '../../generated/models';
@@ -65,6 +66,28 @@ export class DaemonsApiService extends ApiBaseService {
         const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Deploy a Daemon
+     * @param {number} daemonId The ID of the daemon.
+     * @param {DaemonDeploy} daemonDeploy A JSON object containing the resource data
+     */
+    public async deployDaemon(daemonId: number, daemonDeploy: DaemonDeploy): Promise<ApiResponse<void>> {
+        if (daemonId === null || daemonId === undefined) {
+            throw new ArgumentNullException('daemonId', 'deployDaemon');
+        }
+        if (daemonDeploy === null || daemonDeploy === undefined) {
+            throw new ArgumentNullException('daemonDeploy', 'deployDaemon');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/daemons/{daemon_id}/deploy' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, DaemonDeploy>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonDeploy);
         return new ApiResponse(response);
     }
 

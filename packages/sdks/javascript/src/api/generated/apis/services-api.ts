@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Service } from '../../generated/models';
+import { ServiceDeploy } from '../../generated/models';
 import { ServiceEnvironmentCreate } from '../../generated/models';
 import { ServiceGetStatus } from '../../generated/models';
 import { ServiceRelation } from '../../generated/models';
@@ -66,6 +67,28 @@ export class ServicesApiService extends ApiBaseService {
         const requestUrl = '/services/{service_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Deploy a Service
+     * @param {number} serviceId The ID of the service.
+     * @param {ServiceDeploy} serviceDeploy A JSON object containing the resource data
+     */
+    public async deployService(serviceId: number, serviceDeploy: ServiceDeploy): Promise<ApiResponse<void>> {
+        if (serviceId === null || serviceId === undefined) {
+            throw new ArgumentNullException('serviceId', 'deployService');
+        }
+        if (serviceDeploy === null || serviceDeploy === undefined) {
+            throw new ArgumentNullException('serviceDeploy', 'deployService');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/services/{service_id}/deploy' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, ServiceDeploy>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), serviceDeploy);
         return new ApiResponse(response);
     }
 
