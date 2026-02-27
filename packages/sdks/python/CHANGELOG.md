@@ -4,7 +4,9 @@
 
 ### Minor Changes
 
-- [#2717](https://github.com/devopness/devopness/pull/2717) [`633041c`](https://github.com/devopness/devopness/commit/633041cc95c0951868be9e47df79943a680fe5df) Thanks [@devopness-automations](https://github.com/devopness-automations)! - ## ⚠️ Breaking Change
+- [#2717](https://github.com/devopness/devopness/pull/2717) [`633041c`](https://github.com/devopness/devopness/commit/633041cc95c0951868be9e47df79943a680fe5df) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
 
   ### Simplified deployment workflow for multiple resource types
 
@@ -73,9 +75,11 @@
 
 ### Patch Changes
 
-- [#2710](https://github.com/devopness/devopness/pull/2710) [`9717960`](https://github.com/devopness/devopness/commit/97179603f7a873000fe899b69f557a0692b60ee5) Thanks [@Diegiwg](https://github.com/Diegiwg)! - - Change `auto_refresh_token` default from `True` to `False` and mark as deprecated
+- [#2710](https://github.com/devopness/devopness/pull/2710) [`9717960`](https://github.com/devopness/devopness/commit/97179603f7a873000fe899b69f557a0692b60ee5) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  
+  - Change `auto_refresh_token` default from `True` to `False` and mark as deprecated
   - Token-based authentication (api_token) is now the primary method and incompatible with auto-refresh
-  * Update documentation to guide users to use token-based authentication (Personal Access Tokens and Project API Tokens) instead of deprecated email/password method
+    * Update documentation to guide users to use token-based authentication (Personal Access Tokens and Project API Tokens) instead of deprecated email/password method
 
 ## 2.1.11
 
