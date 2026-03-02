@@ -152,6 +152,9 @@
     $ref: ./auto-generated/endpoints/list-environment-ssl-certificates.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-ssl-certificate.yaml
+'/environments/{environment_id}/subnets':
+  get:
+    $ref: ./auto-generated/endpoints/list-environment-subnets.yaml
 '/environments/{environment_id}/team-memberships':
   get:
     $ref: ./auto-generated/endpoints/list-environment-team-memberships.yaml

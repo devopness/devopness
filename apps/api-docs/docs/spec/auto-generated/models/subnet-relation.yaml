@@ -17,10 +17,8 @@ properties:
     description: 'The id of the user who created the subnet'
     example: 789
     type: integer
-  network_id:
-    description: 'Numeric ID of the network to which the subnet belongs to'
-    example: 6721
-    type: integer
+  network:
+    $ref: '#/components/schemas/NetworkRelation'
   name:
     description: "The subnet's name"
     example: my-subnet
@@ -46,7 +44,7 @@ required:
   - project_id
   - environment_id
   - created_by
-  - network_id
+  - network
   - name
   - type
   - is_auto_generated
