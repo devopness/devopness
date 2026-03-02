@@ -1,5 +1,17 @@
 # @devopness/sdk-js
 
+## 3.2.1
+
+### Patch Changes
+
+- [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  
+  - Added a method to list all subnets belonging to an environment:
+
+      ```javascript
+      devopness.subnets.listEnvironmentSubnets(environmentId);
+      ```
+
 ## 3.2.0
 
 ### Minor Changes
