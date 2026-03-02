@@ -3711,6 +3711,63 @@
         }
       }
     },
+    "/environments/{environment_id}/subnets": {
+      "get": {
+        "summary": "Return a list of all subnets belonging to an environment",
+        "operationId": "listEnvironmentSubnets",
+        "tags": [
+          "Subnets"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubnetList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/team-memberships": {
       "get": {
         "summary": "Return a list of teams with access to an environment",
@@ -23930,10 +23987,8 @@
             "example": 789,
             "type": "integer"
           },
-          "network_id": {
-            "description": "Numeric ID of the network to which the subnet belongs to",
-            "example": 6721,
-            "type": "integer"
+          "network": {
+            "$ref": "#/components/schemas/NetworkRelation"
           },
           "name": {
             "description": "The subnet's name",
@@ -23967,7 +24022,7 @@
           "project_id",
           "environment_id",
           "created_by",
-          "network_id",
+          "network",
           "name",
           "type",
           "is_auto_generated",
