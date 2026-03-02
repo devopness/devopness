@@ -4,15 +4,9 @@
 
 ### Patch Changes
 
-- [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Added a method to list all subnets belonging to an environment:
+- [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
-      **JavaScript/TypeScript:**
-
-      ```javascript
-      devopness.subnets.listEnvironmentSubnets(environmentId);
-      ```
-
-      **Python:**
+  - Added a method to list all subnets belonging to an environment:
 
       ```python
       devopness.subnets.list_environment_subnets(environment_id)
