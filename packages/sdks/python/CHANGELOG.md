@@ -1,5 +1,23 @@
 # @devopness/sdk-python
 
+## 2.2.1
+
+### Patch Changes
+
+- [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@devopness-automations](https://github.com/devopness-automations)! - - Added a method to list all subnets belonging to an environment:
+
+      **JavaScript/TypeScript:**
+
+      ```javascript
+      devopness.subnets.listEnvironmentSubnets(environmentId);
+      ```
+
+      **Python:**
+
+      ```python
+      devopness.subnets.list_environment_subnets(environment_id)
+      ```
+
 ## 2.2.0
 
 ### Minor Changes
@@ -76,10 +94,9 @@
 ### Patch Changes
 
 - [#2710](https://github.com/devopness/devopness/pull/2710) [`9717960`](https://github.com/devopness/devopness/commit/97179603f7a873000fe899b69f557a0692b60ee5) Thanks [@Diegiwg](https://github.com/Diegiwg)!
-  
   - Change `auto_refresh_token` default from `True` to `False` and mark as deprecated
   - Token-based authentication (api_token) is now the primary method and incompatible with auto-refresh
-    * Update documentation to guide users to use token-based authentication (Personal Access Tokens and Project API Tokens) instead of deprecated email/password method
+    - Update documentation to guide users to use token-based authentication (Personal Access Tokens and Project API Tokens) instead of deprecated email/password method
 
 ## 2.1.11
 
