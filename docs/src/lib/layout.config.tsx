@@ -11,13 +11,16 @@ export function baseOptions(): BaseLayoutProps {
           style={{ height: 28 }}
         />
       ),
+      // url: Internal navigation link (Next.js basePath will be prepended automatically)
+      // '/' becomes '/docs/' because next.config.mjs has basePath: '/docs'
       url: '/',
     },
     githubUrl: siteConfig.links.github,
     links: [
       {
         text: 'Documentation',
-        url: '/docs',
+        // Internal link - Next.js basePath (/docs) will be prepended
+        url: '/',
         active: 'nested-url',
       },
       {

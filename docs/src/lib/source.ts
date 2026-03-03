@@ -4,7 +4,10 @@ import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
 
 // See https://fumadocs.dev/docs/headless/source-api for more info
 export const source = loader({
-  baseUrl: '/docs',
+  // baseUrl: Internal URL prefix for Fumadocs links (should be '/' when using Next.js basePath)
+  // Since next.config.mjs has basePath: '/docs', this should NOT include /docs to avoid double prefix
+  // Fumadocs generates /actions/, then Next.js adds /docs/ → final URL: /docs/actions/
+  baseUrl: '/',
   source: docs.toFumadocsSource(),
   plugins: [lucideIconsPlugin()],
 });
