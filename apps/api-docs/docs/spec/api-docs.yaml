@@ -225,8 +225,6 @@ tags:
       The terms `process`, `background process` and `daemon` may be used interchangeably in the `devopness` API documentation to denote the same thing: i.e., a computer process that runs behind the scenes without user intervention, detached from TTY (teletype/terminal type) and having no associated console or controlling terminal, therefore prevented from receiving `SIGHUP` on shell termination.
   - name: Environments
   - name: Environments - Actions
-  - name: Environments - Teams
-  - name: Environments - Team Memberships
   - name: Credentials
   - name: Credentials - Repositories
   - name: Hooks
@@ -249,8 +247,6 @@ tags:
       A cronjob or scheduled task is a scheduled command to be set on one or more project servers to ensure a given routine will be executed on time.
   - name: Projects - Archived Environments
   - name: Projects - Environments
-  - name: Projects - Roles
-  - name: Projects - Teams
   - name: Resource Events
   - name: Resource Links
   - name: Roles
@@ -269,7 +265,6 @@ tags:
   - name: Team Invitations
   - name: Teams - Invitations
   - name: Teams - Members
-  - name: Teams - Memberships
   - name: Users
   - name: Users - Environments
   - name: Users - Passwords
@@ -348,7 +343,6 @@ x-tagGroups:
   - name: Roles
     tags:
       - Roles
-      - Projects - Roles
   - name: Servers
     tags:
       - Servers
@@ -371,14 +365,10 @@ x-tagGroups:
       - Networks - Subnets
   - name: Teams
     tags:
-      - Projects - Teams
       - Teams
-      - Teams - Memberships
       - Teams - Invitations
       - Team Invitations
       - Teams - Members
-      - Environments - Teams
-      - Environments - Team Memberships
   - name: Users
     tags:
       - Users

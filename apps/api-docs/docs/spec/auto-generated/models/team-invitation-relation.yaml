@@ -32,8 +32,8 @@ properties:
     $ref: '#/components/schemas/UserRelation'
   team:
     $ref: '#/components/schemas/TeamRelation'
-  project:
-    $ref: '#/components/schemas/ProjectRelation'
+  organization:
+    $ref: '#/components/schemas/OrganizationRelation'
   accepted_at:
     description: 'The date and time when the invitation was accepted'
     example: '2019-09-26T13:22:37.000000Z'
@@ -61,7 +61,7 @@ required:
   - accepted_from_ip
   - created_by_user
   - team
-  - project
+  - organization
   - accepted_at
   - expires_at
   - created_at

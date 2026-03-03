@@ -13,17 +13,16 @@ properties:
     description: 'Description of this role'
     example: 'Has total access to resources'
     type: string
-  project_id:
-    description: 'The ID of the project this role belongs to'
-    example: 984123
-    type: integer
-    nullable: true
   is_predefined:
-    description: 'Defines if the role is predefined or a custom role for specific project'
+    description: 'Defines if the role is predefined or a custom role for specific organization'
     example: false
     type: boolean
   permissions:
     $ref: '#/components/schemas/RolePermissions'
+  organization:
+    $ref: '#/components/schemas/OrganizationRelation'
+  created_by_user:
+    $ref: '#/components/schemas/UserRelation'
   created_at:
     description: 'The date and time when the record was created'
     example: '2019-09-25T13:22:37.000000Z'
@@ -36,7 +35,6 @@ required:
   - id
   - name
   - description
-  - project_id
   - is_predefined
   - permissions
   - created_at

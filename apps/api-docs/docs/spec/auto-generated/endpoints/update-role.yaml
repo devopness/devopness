@@ -15,7 +15,7 @@ parameters:
   -
     in: path
     name: role_id
-    description: 'The ID of the role.'
+    description: 'The ID of a role.'
     example: 123
     required: true
     schema:
@@ -30,6 +30,8 @@ responses:
       application/json:
         schema:
           $ref: '#/components/schemas/ApiError'
+  404:
+    description: 'The specified resource was not found'
 requestBody:
   description: 'A JSON object containing the resource data'
   required: true

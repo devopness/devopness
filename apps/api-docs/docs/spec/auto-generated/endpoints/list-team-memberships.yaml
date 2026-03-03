@@ -4,7 +4,7 @@ operationId: listTeamMemberships
 description:
   $ref: ../spec/descriptions/list-team-memberships.md
 tags:
-  - 'Teams - Memberships'
+  - Teams
 parameters:
   -
     $ref: '#/components/parameters/acceptHeader'
@@ -16,6 +16,14 @@ parameters:
     $ref: '#/components/parameters/pageNumber'
   -
     $ref: '#/components/parameters/pageSize'
+  -
+    in: query
+    name: filter_by
+    description: 'Returns only memberships associated with the given link type.'
+    example: environment
+    required: false
+    schema:
+      type: string
   -
     in: path
     name: team_id

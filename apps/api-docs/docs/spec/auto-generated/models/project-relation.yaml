@@ -7,7 +7,7 @@ properties:
     type: integer
   user_id:
     description: 'The id of the user that own the project'
-    example: 45678
+    example: 984123
     type: integer
   name:
     description: "The project's name"
@@ -22,10 +22,8 @@ properties:
     $ref: '#/components/schemas/ResourceSummaryList'
   os_users:
     $ref: '#/components/schemas/OsUsers'
-  owner:
-    $ref: '#/components/schemas/ProjectOwnerRelation'
-  owner_type:
-    $ref: '#/components/schemas/ProjectOwnerType'
+  organization:
+    $ref: '#/components/schemas/OrganizationRelation'
   created_by_user:
     $ref: '#/components/schemas/UserRelation'
   used_credits:
@@ -46,8 +44,7 @@ required:
   - name
   - logo_url
   - os_users
-  - owner
-  - owner_type
+  - organization
   - created_by_user
   - created_at
   - updated_at

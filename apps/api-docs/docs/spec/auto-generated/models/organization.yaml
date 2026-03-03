@@ -15,6 +15,8 @@ properties:
     type: string
   resource_summary:
     $ref: '#/components/schemas/ResourceSummaryList'
+  current_user_permissions:
+    $ref: '#/components/schemas/RolePermissions'
   owner:
     $ref: '#/components/schemas/UserRelation'
   created_at:
@@ -29,6 +31,7 @@ required:
   - id
   - name
   - url_slug
+  - current_user_permissions
   - owner
   - created_at
   - updated_at

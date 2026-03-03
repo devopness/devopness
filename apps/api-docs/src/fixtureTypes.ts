@@ -111,6 +111,12 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
     'environment_link_item': [
         { path: 'id', fixture: 'environment', field: 'id' },
     ],
+    'team_organization_link': [
+        { path: 'role_id', fixture: 'role', field: 'id' },
+    ],
+    'team_project_link': [
+        { path: 'role_id', fixture: 'role', field: 'id' },
+    ],
     'environment_team_link': [
         { path: 'role_id', fixture: 'role', field: 'id' },
     ],

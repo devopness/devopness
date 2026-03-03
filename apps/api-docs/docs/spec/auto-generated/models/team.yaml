@@ -14,10 +14,12 @@ properties:
     example: 'https://example.com/images/my_team.png'
     type: string
     nullable: true
-  project:
-    $ref: '#/components/schemas/ProjectRelation'
   users:
     $ref: '#/components/schemas/UserList'
+  organization:
+    $ref: '#/components/schemas/OrganizationRelation'
+  created_by_user:
+    $ref: '#/components/schemas/UserRelation'
   created_at:
     description: 'The date and time when the record was created'
     example: '2019-09-25T13:22:37.000000Z'
@@ -30,7 +32,8 @@ required:
   - id
   - name
   - photo_url
-  - project
   - users
+  - organization
+  - created_by_user
   - created_at
   - updated_at

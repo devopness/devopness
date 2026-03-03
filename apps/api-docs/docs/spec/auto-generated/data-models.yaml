@@ -459,16 +459,10 @@ PipelineUpdate:
   $ref: ./auto-generated/models/pipeline-update.yaml
 Project:
   $ref: ./auto-generated/models/project.yaml
-ProjectCreate:
-  $ref: ./auto-generated/models/project-create.yaml
 ProjectList:
   $ref: ./auto-generated/models/project-list.yaml
 ProjectOrganizationCreate:
   $ref: ./auto-generated/models/project-organization-create.yaml
-ProjectOwnerRelation:
-  $ref: ./auto-generated/models/project-owner-relation.yaml
-ProjectOwnerType:
-  $ref: ./auto-generated/models/project-owner-type.yaml
 ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:
@@ -553,10 +547,10 @@ Role:
   $ref: ./auto-generated/models/role.yaml
 RoleList:
   $ref: ./auto-generated/models/role-list.yaml
+RoleOrganizationCreate:
+  $ref: ./auto-generated/models/role-organization-create.yaml
 RolePermissions:
   $ref: ./auto-generated/models/role-permissions.yaml
-RoleProjectCreate:
-  $ref: ./auto-generated/models/role-project-create.yaml
 RoleRelation:
   $ref: ./auto-generated/models/role-relation.yaml
 RoleUpdate:
@@ -763,8 +757,12 @@ TeamMembershipList:
   $ref: ./auto-generated/models/team-membership-list.yaml
 TeamMembershipRelation:
   $ref: ./auto-generated/models/team-membership-relation.yaml
-TeamProjectCreate:
-  $ref: ./auto-generated/models/team-project-create.yaml
+TeamOrganizationCreate:
+  $ref: ./auto-generated/models/team-organization-create.yaml
+TeamOrganizationLink:
+  $ref: ./auto-generated/models/team-organization-link.yaml
+TeamProjectLink:
+  $ref: ./auto-generated/models/team-project-link.yaml
 TeamRelation:
   $ref: ./auto-generated/models/team-relation.yaml
 TeamUpdate:
