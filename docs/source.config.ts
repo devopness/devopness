@@ -5,8 +5,8 @@ import { remarkMentionLink } from './src/plugins/remark-mention-link';
 import { z } from 'zod';
 
 // Extended frontmatter schema with custom fields used in the existing markdown files.
-// These fields (intro, slug, sidebar_position, links, required_permissions) were
-// originally defined when the docs used Docusaurus. Rather than rewriting all markdown
+// These fields (intro, slug, sidebar_position, links, required_permissions) are
+// preserved from the original markdown structure. Rather than rewriting all markdown
 // frontmatter, we extend Fumadocs' schema to recognize them as-is.
 const docsSchema = frontmatterSchema.extend({
   intro: z.string().nullable().optional(),

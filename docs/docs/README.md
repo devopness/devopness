@@ -49,7 +49,7 @@ Here is a list of predefined variables that can be set in the `front-matter` blo
 
 Links represent a relative path to the documentation root (`/docs`) without the file extension, e.g. `actions/view-action` represents `/docs/actions/view-action.md` file.
 
-For more details on available frontmatter options, see the [Docusaurus Content Docs Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter).
+For more details on available frontmatter options, see the [Fumadocs MDX documentation](https://www.fumadocs.dev/docs/mdx).
 
 ### Deprecated Variables
 
@@ -79,7 +79,7 @@ This is an introduction to my document
 
 #### `links.previous` and `links.next`
 
-**Why**: Use standard Docusaurus pagination variables.
+**Why**: Use standard pagination variables.
 
 Before:
 ```yaml
@@ -104,9 +104,7 @@ pagination_next: advanced-usage
 
 You can reference other documentation pages using the markdown reference link syntax: `[/docs/<id>]`. By default, the `id` is the "file path (including folders, without the extension)", e.g. `/docs/pipelines/run-pipeline.md` becomes `[/docs/pipelines/run-pipeline]`.
 
-The `/docs/` prefix is required to differentiate between internal links and external links.
-
-See [Docusaurus Content Docs Plugin documentation](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter) for more details on finding the id of a documentation page.
+The `/docs/` prefix is required to differentiate between internal links and external links. This syntax is supported by the `remarkMentionLink` plugin (see `src/plugins/remark-mention-link.ts`), which automatically generates link text from the file path.
 
 Examples:
 
@@ -136,4 +134,4 @@ This is the content of the note.
 :::
 ```
 
-To learn more about admonitions, you can check the [Docusaurus Admonitions Plugin documentation](https://docusaurus.io/docs/markdown-features/admonitions).
+To learn more about admonitions, you can check the [Fumadocs Remark Admonition documentation](https://www.fumadocs.dev/docs/headless/mdx/remark-admonition).
