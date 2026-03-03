@@ -114,3 +114,6 @@ __pycache__
 
 ## MyPy Cache
 .mypy_cache
+
+# misc
+.DS_Store
