@@ -7,22 +7,27 @@ interface TextNode extends Node {
 }
 
 /**
- * Remark plugin that converts Docusaurus-style mention syntax `[/docs/path/to/page]`
- * into standard markdown links.
+ * Remark plugin that converts mention syntax `[/docs/path/to/page]` or `[/path/to/page]`
+ * into standard markdown links with auto-generated titles.
  *
- * In the Docusaurus setup, these were converted to `<MentionPost>` JSX components
- * that resolved page titles via hooks. Here we convert them to plain links, which
- * Fumadocs renders natively with `createRelativeLink`.
+ * This syntax (originally from the previous docs setup) is preserved for backwards
+ * compatibility and maintainability. The plugin converts these mentions to standard
+ * markdown links, which Fumadocs renders natively with `createRelativeLink`.
  *
- * Example: `follow the guide [/docs/credentials/add-credential]`
- * becomes: `follow the guide [Add credential](/docs/credentials/add-credential)`
+ * The plugin automatically removes the `/docs` prefix if present (since Next.js basePath adds it).
+ * It generates link text from the slug by converting hyphens to spaces and capitalizing.
+ *
+ * Examples:
+ * - `[/docs/credentials/add-credential]` → `[Add credential](/credentials/add-credential)`
+ * - `[/credentials/add-credential]` → `[Add credential](/credentials/add-credential)`
  */
 export function remarkMentionLink() {
   return (tree: Node) => {
     visit(tree, 'text', (node: TextNode, index: number | undefined, parent: Parent | undefined) => {
       if (!parent || index === undefined || !node.value) return;
 
-      const regex = /\[(\/docs\/[^\]]+)\]/g;
+      // Match both [/docs/path] and [/path] patterns
+      const regex = /\[(\/(?:docs\/)?[^\]]+)\]/g;
       if (!regex.test(node.value)) return;
       regex.lastIndex = 0;
 
@@ -38,7 +43,8 @@ export function remarkMentionLink() {
           } as TextNode);
         }
 
-        const docPath = match[1];
+        // Remove /docs prefix if present (since basePath adds it)
+        const docPath = match[1].replace(/^\/docs\//, '/');
         const slug = docPath.split('/').pop() ?? docPath;
         const label = slug
           .replace(/^index$/, docPath.split('/').at(-2) ?? slug)
