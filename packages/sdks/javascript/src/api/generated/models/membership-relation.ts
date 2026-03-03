@@ -13,7 +13,10 @@
 
 
 import { EnvironmentRelation } from './environment-relation';
+import { OrganizationRelation } from './organization-relation';
+import { ProjectRelation } from './project-relation';
 import { RoleRelation } from './role-relation';
+import { TeamRelation } from './team-relation';
 
 /**
  * 
@@ -23,16 +26,34 @@ import { RoleRelation } from './role-relation';
 export interface MembershipRelation {
     /**
      * 
-     * @type {EnvironmentRelation}
+     * @type {TeamRelation}
      * @memberof MembershipRelation
      */
-    environment: EnvironmentRelation | null;
+    team: TeamRelation | null;
     /**
      * 
      * @type {RoleRelation}
      * @memberof MembershipRelation
      */
     role: RoleRelation | null;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof MembershipRelation
+     */
+    organization: OrganizationRelation | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof MembershipRelation
+     */
+    project: ProjectRelation | null;
+    /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof MembershipRelation
+     */
+    environment: EnvironmentRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

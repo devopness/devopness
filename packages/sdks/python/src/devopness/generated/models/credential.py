@@ -30,7 +30,7 @@ class Credential(DevopnessBaseModel):
         provider_type (str): The type of the credential
         provider_type_human_readable (str): The human readable version of the type of the credential
         active (bool): If this credential is active or not
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -43,7 +43,7 @@ class Credential(DevopnessBaseModel):
         description="The human readable version of the type of the credential"
     )
     active: StrictBool = Field(description="If this credential is active or not")
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -68,11 +68,6 @@ class CredentialPlain(TypedDict, total=False):
     provider_type: Required[str]
     provider_type_human_readable: Required[str]
     active: Required[bool]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

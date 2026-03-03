@@ -14,13 +14,16 @@
 
 
 /**
- * The possible types of users.
+ * 
  * @export
- * @enum {string}
+ * @interface TeamOrganizationLink
  */
-export enum ProjectOwnerType {
-    User = 'user',
-    Org = 'org'
+export interface TeamOrganizationLink {
+    /**
+     * The role\'s ID to link to the team.
+     * @type {number}
+     * @memberof TeamOrganizationLink
+     */
+    role_id: number;
 }
-
 

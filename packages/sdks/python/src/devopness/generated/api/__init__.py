@@ -50,14 +50,6 @@ from .environments_api import (
     EnvironmentsApiService,
     EnvironmentsApiServiceAsync,
 )
-from .environments_team_memberships_api import (
-    EnvironmentsTeamMembershipsApiService,
-    EnvironmentsTeamMembershipsApiServiceAsync,
-)
-from .environments_teams_api import (
-    EnvironmentsTeamsApiService,
-    EnvironmentsTeamsApiServiceAsync,
-)
 from .hook_requests_api import (
     HookRequestsApiService,
     HookRequestsApiServiceAsync,
@@ -122,14 +114,6 @@ from .projects_environments_api import (
     ProjectsEnvironmentsApiService,
     ProjectsEnvironmentsApiServiceAsync,
 )
-from .projects_roles_api import (
-    ProjectsRolesApiService,
-    ProjectsRolesApiServiceAsync,
-)
-from .projects_teams_api import (
-    ProjectsTeamsApiService,
-    ProjectsTeamsApiServiceAsync,
-)
 from .resource_events_api import (
     ResourceEventsApiService,
     ResourceEventsApiServiceAsync,
@@ -190,10 +174,6 @@ from .teams_members_api import (
     TeamsMembersApiService,
     TeamsMembersApiServiceAsync,
 )
-from .teams_memberships_api import (
-    TeamsMembershipsApiService,
-    TeamsMembershipsApiServiceAsync,
-)
 from .users_api import (
     UsersApiService,
     UsersApiServiceAsync,
@@ -250,10 +230,6 @@ __all__ = [
     "EnvironmentsActionsApiServiceAsync",
     "EnvironmentsApiService",
     "EnvironmentsApiServiceAsync",
-    "EnvironmentsTeamMembershipsApiService",
-    "EnvironmentsTeamMembershipsApiServiceAsync",
-    "EnvironmentsTeamsApiService",
-    "EnvironmentsTeamsApiServiceAsync",
     "HookRequestsApiService",
     "HookRequestsApiServiceAsync",
     "HooksApiService",
@@ -286,10 +262,6 @@ __all__ = [
     "ProjectsArchivedEnvironmentsApiServiceAsync",
     "ProjectsEnvironmentsApiService",
     "ProjectsEnvironmentsApiServiceAsync",
-    "ProjectsRolesApiService",
-    "ProjectsRolesApiServiceAsync",
-    "ProjectsTeamsApiService",
-    "ProjectsTeamsApiServiceAsync",
     "ResourceEventsApiService",
     "ResourceEventsApiServiceAsync",
     "ResourceLinksApiService",
@@ -320,8 +292,6 @@ __all__ = [
     "TeamsInvitationsApiServiceAsync",
     "TeamsMembersApiService",
     "TeamsMembersApiServiceAsync",
-    "TeamsMembershipsApiService",
-    "TeamsMembershipsApiServiceAsync",
     "UsersApiService",
     "UsersApiServiceAsync",
     "UsersEnvironmentsApiService",

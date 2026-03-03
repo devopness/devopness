@@ -35,7 +35,7 @@ class PipelineRelation(DevopnessBaseModel):
         operation_human_readable (str): Human readable version of the operation
         max_parallel_actions (int): Maximum number of actions that can run in parallel for this pipeline. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run this pipeline.
         trigger_when (PipelineTriggerWhen, optional, nullable):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -63,7 +63,7 @@ class PipelineRelation(DevopnessBaseModel):
         description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline."
     )
     trigger_when: PipelineTriggerWhen | None
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -88,11 +88,6 @@ class PipelineRelationPlain(TypedDict, total=False):
     operation_human_readable: Required[str]
     max_parallel_actions: Required[int]
     trigger_when: Union[PipelineTriggerWhen, PipelineTriggerWhenPlain] | None
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

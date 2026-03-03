@@ -57,7 +57,7 @@ export interface PersonalAccessToken {
      * @type {UserRelation}
      * @memberof PersonalAccessToken
      */
-    user: UserRelation;
+    user: UserRelation | null;
     /**
      * Last time the Token was used
      * @type {string}

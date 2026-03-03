@@ -139,7 +139,7 @@ export interface Application {
      * @type {UserRelation}
      * @memberof Application
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {ApplicationLastDeployments}

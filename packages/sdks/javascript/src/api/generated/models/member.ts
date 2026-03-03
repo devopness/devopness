@@ -26,7 +26,7 @@ export interface Member {
      * @type {UserRelation}
      * @memberof Member
      */
-    user: UserRelation;
+    user: UserRelation | null;
     /**
      * 
      * @type {TeamRelation}

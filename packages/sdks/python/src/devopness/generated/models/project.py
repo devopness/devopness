@@ -15,9 +15,8 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .os_users_inner import OsUsersInner, OsUsersInnerPlain
-from .project_owner_relation import ProjectOwnerRelation, ProjectOwnerRelationPlain
-from .project_owner_type import ProjectOwnerType, ProjectOwnerTypePlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 from .user_relation import UserRelation, UserRelationPlain
 
@@ -33,9 +32,9 @@ class Project(DevopnessBaseModel):
         logo_url (str, optional, nullable): A URL path to the project&#39;s logo image
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         os_users (List[OsUsersInner]): The list of the operating system users found in all the servers linked to a project
-        owner (ProjectOwnerRelation):
-        owner_type (ProjectOwnerType):
-        created_by_user (UserRelation):
+        organization (OrganizationRelation, optional, nullable):
+        current_user_permissions (List[str]): The list of permissions granted for this role
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -52,9 +51,11 @@ class Project(DevopnessBaseModel):
     os_users: list[OsUsersInner] = Field(
         description="The list of the operating system users found in all the servers linked to a project"
     )
-    owner: ProjectOwnerRelation
-    owner_type: ProjectOwnerType
-    created_by_user: UserRelation
+    organization: OrganizationRelation | None
+    current_user_permissions: list[StrictStr] = Field(
+        description="The list of permissions granted for this role"
+    )
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -81,23 +82,8 @@ class ProjectPlain(TypedDict, total=False):
             ]
         ]
     ]
-    owner: Required[
-        Union[
-            ProjectOwnerRelation,
-            ProjectOwnerRelationPlain,
-        ]
-    ]
-    owner_type: Required[
-        Union[
-            ProjectOwnerType,
-            ProjectOwnerTypePlain,
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
+    current_user_permissions: Required[list[str]]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

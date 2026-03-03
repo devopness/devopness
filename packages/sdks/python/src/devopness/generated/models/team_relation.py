@@ -9,11 +9,14 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
+from .user_relation import UserRelation, UserRelationPlain
 
 
 class TeamRelation(DevopnessBaseModel):
@@ -24,6 +27,8 @@ class TeamRelation(DevopnessBaseModel):
         id (int): The unique ID of the given team
         name (str): The name of the given team
         photo_url (str, optional, nullable): The URL to team&#39;s image
+        organization (OrganizationRelation, optional, nullable):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -31,6 +36,8 @@ class TeamRelation(DevopnessBaseModel):
     id: StrictInt = Field(description="The unique ID of the given team")
     name: StrictStr = Field(description="The name of the given team")
     photo_url: StrictStr | None = Field(description="The URL to team's image")
+    organization: OrganizationRelation | None
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -47,5 +54,7 @@ class TeamRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     photo_url: str | None
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

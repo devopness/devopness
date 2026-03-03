@@ -72,17 +72,17 @@ export interface Environment {
      */
     teams: Array<TeamRelation>;
     /**
-     * 
-     * @type {UserRelation}
-     * @memberof Environment
-     */
-    created_by_user: UserRelation;
-    /**
      * The list of permissions granted for this role
      * @type {Array<string>}
      * @memberof Environment
      */
     current_user_permissions: Array<string>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Environment
+     */
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

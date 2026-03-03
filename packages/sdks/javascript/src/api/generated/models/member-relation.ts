@@ -25,7 +25,7 @@ export interface MemberRelation {
      * @type {UserRelation}
      * @memberof MemberRelation
      */
-    user: UserRelation;
+    user: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -55,7 +55,7 @@ class Server(DevopnessBaseModel):
         max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server,
         blueprint (ServerBlueprint):
         provision_input (ServerProvisionInput):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
         last_action (ActionRelation, optional, nullable):
         environment (EnvironmentRelation, optional, nullable):
@@ -90,7 +90,7 @@ class Server(DevopnessBaseModel):
     )
     blueprint: ServerBlueprint
     provision_input: ServerProvisionInput
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     project: ProjectRelation | None
     last_action: ActionRelation | None
     environment: EnvironmentRelation | None
@@ -149,12 +149,7 @@ class ServerPlain(TypedDict, total=False):
             ServerProvisionInputPlain,
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     project: Union[ProjectRelation, ProjectRelationPlain] | None
     last_action: Union[ActionRelation, ActionRelationPlain] | None
     environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None

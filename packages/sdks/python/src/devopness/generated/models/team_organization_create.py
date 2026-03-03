@@ -16,9 +16,9 @@ from pydantic import Field, StrictStr
 from .. import DevopnessBaseModel
 
 
-class TeamProjectCreate(DevopnessBaseModel):
+class TeamOrganizationCreate(DevopnessBaseModel):
     """
-    TeamProjectCreate
+    TeamOrganizationCreate
 
     Attributes:
         name (str): The name of the team. Must not be greater than 255 characters.
@@ -33,9 +33,9 @@ class TeamProjectCreate(DevopnessBaseModel):
     )
 
 
-class TeamProjectCreatePlain(TypedDict, total=False):
+class TeamOrganizationCreatePlain(TypedDict, total=False):
     """
-    Plain version of TeamProjectCreate.
+    Plain version of TeamOrganizationCreate.
     """
 
     name: Required[str]

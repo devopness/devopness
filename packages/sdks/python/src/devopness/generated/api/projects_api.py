@@ -6,13 +6,12 @@ Note:
     https://openapi-generator.tech
 """
 
+import warnings
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Project,
-    ProjectCreate,
-    ProjectCreatePlain,
     ProjectOrganizationCreate,
     ProjectOrganizationCreatePlain,
     ProjectRelation,
@@ -54,10 +53,6 @@ class ProjectsApiService(DevopnessBaseService):
 
     def add_project(
         self,
-        project_create: Union[
-            ProjectCreate,
-            ProjectCreatePlain,
-        ],
     ) -> DevopnessResponse[Project]:
         """
         Create a project for the authenticated user
@@ -65,14 +60,22 @@ class ProjectsApiService(DevopnessBaseService):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_project` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/projects",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, project_create)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, Project)
 
@@ -208,10 +211,6 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def add_project(
         self,
-        project_create: Union[
-            ProjectCreate,
-            ProjectCreatePlain,
-        ],
     ) -> DevopnessResponse[Project]:
         """
         Create a project for the authenticated user
@@ -219,14 +218,22 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
         """
+        warnings.warn(
+            "`add_project` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
 
         endpoint_parts = [
             "/projects",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, project_create)
+        response = await self._post(endpoint)
 
         return await DevopnessResponse.from_async(response, Project)
 
