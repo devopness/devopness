@@ -90,7 +90,7 @@ export interface Service {
      * @type {UserRelation}
      * @memberof Service
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {ProjectRelation}

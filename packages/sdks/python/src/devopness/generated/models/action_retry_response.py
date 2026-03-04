@@ -52,7 +52,7 @@ class ActionRetryResponse(DevopnessBaseModel):
         triggered_from (ActionTriggeredFrom):
         parent (RelatedAction, optional, nullable):
         children (List[RelatedAction]): List of related actions
-        triggered_by_user (UserRelation, optional):
+        triggered_by_user (UserRelation, optional, nullable):
         resource (ActionResource):
         summary (ActionSummary):
         environment (EnvironmentRelation, optional, nullable):

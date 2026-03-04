@@ -121,7 +121,7 @@ export interface Action {
      * @type {UserRelation}
      * @memberof Action
      */
-    triggered_by_user?: UserRelation;
+    triggered_by_user?: UserRelation | null;
     /**
      * 
      * @type {ActionResource}

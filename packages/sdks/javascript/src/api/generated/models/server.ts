@@ -131,7 +131,7 @@ export interface Server {
      * @type {UserRelation}
      * @memberof Server
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {ProjectRelation}

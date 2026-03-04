@@ -35,7 +35,7 @@ class Subnet(DevopnessBaseModel):
         type (SubnetType):
         is_auto_generated (bool): True if this subnet is auto-generated or false if this was created by the user
         provision_input (SubnetProvisionInput):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
         environment (EnvironmentRelation, optional, nullable):
         network (NetworkRelation, optional, nullable):
@@ -52,7 +52,7 @@ class Subnet(DevopnessBaseModel):
         description="True if this subnet is auto-generated or false if this was created by the user"
     )
     provision_input: SubnetProvisionInput
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     project: ProjectRelation | None
     environment: EnvironmentRelation | None
     network: NetworkRelation | None
@@ -86,12 +86,7 @@ class SubnetPlain(TypedDict, total=False):
             SubnetProvisionInputPlain,
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     project: Union[ProjectRelation, ProjectRelationPlain] | None
     environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
     network: Union[NetworkRelation, NetworkRelationPlain] | None

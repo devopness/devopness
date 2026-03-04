@@ -50,7 +50,7 @@ class Application(DevopnessBaseModel):
         deployments_keep (int): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers. OR The number of deployment artifacts to be retained in the user&#39;s servers, making it easier and faster to rollback to previous versions
         install_dependencies_command (str, optional, nullable): Indicates command that Devopness must execute to install application dependencies
         build_command (str, optional, nullable): The optional command that should be executed once during deployment to build the source code and get the application in a ready state
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         last_deployments (ApplicationLastDeployments):
         environment (EnvironmentRelation, optional, nullable):
         servers (List[ServerRelation]):
@@ -111,7 +111,7 @@ class Application(DevopnessBaseModel):
     build_command: StrictStr | None = Field(
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state"
     )
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     last_deployments: ApplicationLastDeployments
     environment: EnvironmentRelation | None
     servers: list[ServerRelation | None]
@@ -149,12 +149,7 @@ class ApplicationPlain(TypedDict, total=False):
     deployments_keep: Required[int]
     install_dependencies_command: str | None
     build_command: str | None
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     last_deployments: Required[
         Union[
             ApplicationLastDeployments,

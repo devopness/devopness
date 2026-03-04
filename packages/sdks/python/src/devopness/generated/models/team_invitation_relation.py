@@ -15,7 +15,7 @@ from typing import (
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
-from .project_relation import ProjectRelation, ProjectRelationPlain
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .team_invitation_status import TeamInvitationStatus, TeamInvitationStatusPlain
 from .team_invitation_type import TeamInvitationType, TeamInvitationTypePlain
 from .team_relation import TeamRelation, TeamRelationPlain
@@ -34,9 +34,9 @@ class TeamInvitationRelation(DevopnessBaseModel):
         status_human_readable (str): Human readable version of the invitation status
         public_accept_url (str, optional, nullable): The URL to accept the public invitation
         accepted_from_ip (str, optional, nullable): The IP of the user who accepted the invitation
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         team (TeamRelation, optional, nullable):
-        project (ProjectRelation, optional, nullable):
+        organization (OrganizationRelation, optional, nullable):
         accepted_at (str, optional, nullable): The date and time when the invitation was accepted
         expires_at (str): The date and time when the invitation will expire
         created_at (str): The date and time when the record was created
@@ -58,9 +58,9 @@ class TeamInvitationRelation(DevopnessBaseModel):
     accepted_from_ip: StrictStr | None = Field(
         description="The IP of the user who accepted the invitation"
     )
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     team: TeamRelation | None
-    project: ProjectRelation | None
+    organization: OrganizationRelation | None
     accepted_at: StrictStr | None = Field(
         description="The date and time when the invitation was accepted"
     )
@@ -97,14 +97,9 @@ class TeamInvitationRelationPlain(TypedDict, total=False):
     status_human_readable: Required[str]
     public_accept_url: str | None
     accepted_from_ip: str | None
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     team: Union[TeamRelation, TeamRelationPlain] | None
-    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
     accepted_at: str | None
     expires_at: Required[str]
     created_at: Required[str]

@@ -9,11 +9,14 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
+from .user_relation import UserRelation, UserRelationPlain
 
 
 class RoleRelation(DevopnessBaseModel):
@@ -24,9 +27,10 @@ class RoleRelation(DevopnessBaseModel):
         id (int): The unique ID of the given role
         name (str): The name of the given role
         description (str): Description of this role
-        project_id (int, optional, nullable): The ID of the project this role belongs to
-        is_predefined (bool): Defines if the role is predefined or a custom role for specific project
+        is_predefined (bool): Defines if the role is predefined or a custom role for specific organization
         permissions (List[str]): The list of permissions granted for this role
+        organization (OrganizationRelation, optional, nullable):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -34,15 +38,14 @@ class RoleRelation(DevopnessBaseModel):
     id: StrictInt = Field(description="The unique ID of the given role")
     name: StrictStr = Field(description="The name of the given role")
     description: StrictStr = Field(description="Description of this role")
-    project_id: StrictInt | None = Field(
-        description="The ID of the project this role belongs to"
-    )
     is_predefined: StrictBool = Field(
-        description="Defines if the role is predefined or a custom role for specific project"
+        description="Defines if the role is predefined or a custom role for specific organization"
     )
     permissions: list[StrictStr] = Field(
         description="The list of permissions granted for this role"
     )
+    organization: OrganizationRelation | None = None
+    created_by_user: UserRelation | None = None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -59,8 +62,9 @@ class RoleRelationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     description: Required[str]
-    project_id: int | None
     is_predefined: Required[bool]
     permissions: Required[list[str]]
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

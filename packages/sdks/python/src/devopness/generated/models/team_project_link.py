@@ -16,9 +16,9 @@ from pydantic import Field, StrictInt
 from .. import DevopnessBaseModel
 
 
-class TeamEnvironmentLink(DevopnessBaseModel):
+class TeamProjectLink(DevopnessBaseModel):
     """
-    TeamEnvironmentLink
+    TeamProjectLink
 
     Attributes:
         role_id (int): The role&#39;s ID to link to the team.
@@ -27,9 +27,9 @@ class TeamEnvironmentLink(DevopnessBaseModel):
     role_id: StrictInt = Field(description="The role's ID to link to the team.")
 
 
-class TeamEnvironmentLinkPlain(TypedDict, total=False):
+class TeamProjectLinkPlain(TypedDict, total=False):
     """
-    Plain version of TeamEnvironmentLink.
+    Plain version of TeamProjectLink.
     """
 
     role_id: Required[int]

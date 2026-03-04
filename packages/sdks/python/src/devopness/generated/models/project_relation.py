@@ -15,9 +15,8 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .os_users_inner import OsUsersInner, OsUsersInnerPlain
-from .project_owner_relation import ProjectOwnerRelation, ProjectOwnerRelationPlain
-from .project_owner_type import ProjectOwnerType, ProjectOwnerTypePlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 from .user_relation import UserRelation, UserRelationPlain
 
@@ -33,9 +32,8 @@ class ProjectRelation(DevopnessBaseModel):
         logo_url (str, optional, nullable): A URL path to the project&#39;s logo image
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         os_users (List[OsUsersInner]): The list of the operating system users found in all the servers linked to a project
-        owner (ProjectOwnerRelation):
-        owner_type (ProjectOwnerType):
-        created_by_user (UserRelation):
+        organization (OrganizationRelation, optional, nullable):
+        created_by_user (UserRelation, optional, nullable):
         used_credits (int, optional): Number of credits used in the current monthly billing cycle by actions of resources in the project.
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
@@ -53,9 +51,8 @@ class ProjectRelation(DevopnessBaseModel):
     os_users: list[OsUsersInner] = Field(
         description="The list of the operating system users found in all the servers linked to a project"
     )
-    owner: ProjectOwnerRelation
-    owner_type: ProjectOwnerType
-    created_by_user: UserRelation
+    organization: OrganizationRelation | None
+    created_by_user: UserRelation | None
     used_credits: StrictInt | None = Field(
         default=None,
         description="Number of credits used in the current monthly billing cycle by actions of resources in the project.",
@@ -86,24 +83,8 @@ class ProjectRelationPlain(TypedDict, total=False):
             ]
         ]
     ]
-    owner: Required[
-        Union[
-            ProjectOwnerRelation,
-            ProjectOwnerRelationPlain,
-        ]
-    ]
-    owner_type: Required[
-        Union[
-            ProjectOwnerType,
-            ProjectOwnerTypePlain,
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     used_credits: int | None
     created_at: Required[str]
     updated_at: Required[str]

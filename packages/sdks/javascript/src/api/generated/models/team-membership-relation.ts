@@ -12,7 +12,11 @@
  */
 
 
+import { EnvironmentRelation } from './environment-relation';
+import { OrganizationRelation } from './organization-relation';
+import { ProjectRelation } from './project-relation';
 import { RoleRelation } from './role-relation';
+import { TeamRelation } from './team-relation';
 
 /**
  * 
@@ -21,29 +25,35 @@ import { RoleRelation } from './role-relation';
  */
 export interface TeamMembershipRelation {
     /**
-     * The unique ID of the given team
-     * @type {number}
+     * 
+     * @type {TeamRelation}
      * @memberof TeamMembershipRelation
      */
-    id: number;
-    /**
-     * The name of the given team
-     * @type {string}
-     * @memberof TeamMembershipRelation
-     */
-    name: string;
-    /**
-     * The URL to team\'s image
-     * @type {string}
-     * @memberof TeamMembershipRelation
-     */
-    photo_url: string;
+    team: TeamRelation | null;
     /**
      * 
      * @type {RoleRelation}
      * @memberof TeamMembershipRelation
      */
     role: RoleRelation | null;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof TeamMembershipRelation
+     */
+    organization: OrganizationRelation | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof TeamMembershipRelation
+     */
+    project: ProjectRelation | null;
+    /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof TeamMembershipRelation
+     */
+    environment: EnvironmentRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -30,7 +30,7 @@ class PersonalAccessTokenRotateResponse(DevopnessBaseModel):
         type (ApiTokenType):
         token (str, optional, nullable): The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.
         status (ApiTokenStatus):
-        user (UserRelation):
+        user (UserRelation, optional, nullable):
         last_used_at (str, optional, nullable): Last time the Token was used
         expires_at (str): Expiration date of the Token
         revoked_at (str, optional, nullable): Revocation date of the Token
@@ -45,7 +45,7 @@ class PersonalAccessTokenRotateResponse(DevopnessBaseModel):
         description="The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time."
     )
     status: ApiTokenStatus
-    user: UserRelation
+    user: UserRelation | None
     last_used_at: StrictStr | None = Field(description="Last time the Token was used")
     expires_at: StrictStr = Field(description="Expiration date of the Token")
     revoked_at: StrictStr | None = Field(description="Revocation date of the Token")
@@ -73,12 +73,7 @@ class PersonalAccessTokenRotateResponsePlain(TypedDict, total=False):
             ApiTokenStatusPlain,
         ]
     ]
-    user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    user: Union[UserRelation, UserRelationPlain] | None
     last_used_at: str | None
     expires_at: Required[str]
     revoked_at: str | None

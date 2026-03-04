@@ -16,13 +16,13 @@
 /**
  * 
  * @export
- * @interface TeamEnvironmentLink
+ * @interface TeamProjectLink
  */
-export interface TeamEnvironmentLink {
+export interface TeamProjectLink {
     /**
      * The role\'s ID to link to the team.
      * @type {number}
-     * @memberof TeamEnvironmentLink
+     * @memberof TeamProjectLink
      */
     role_id: number;
 }
