@@ -19,26 +19,27 @@ export function baseOptions(): BaseLayoutProps {
         text: 'Documentation',
         url: siteConfig.docsUrl,
         active: 'nested-url',
+        external: false,
       },
       {
         text: 'MCP',
         url: `${siteConfig.url}/mcp/`,
-        external: true,
+        external: false,
       },
       {
         text: 'Blog',
         url: `${siteConfig.url}/blog`,
-        external: true,
+        external: false,
       },
       {
         text: 'Pricing',
         url: `${siteConfig.url}/pricing`,
-        external: true,
+        external: false,
       },
       {
         text: 'Careers',
         url: `${siteConfig.url}/careers`,
-        external: true,
+        external: false,
       },
       {
         type: 'icon',
@@ -55,7 +56,7 @@ export function baseOptions(): BaseLayoutProps {
         type: 'button',
         text: 'Get Started',
         url: siteConfig.links.webApp,
-        external: true,
+        external: false,
       },
     ],
   };
