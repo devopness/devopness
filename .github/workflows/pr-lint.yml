@@ -39,10 +39,10 @@ jobs:
 
       - name: Write JSON to Disk
         run: |
-          cat > .github/scripts/tmp-pr-description-data.json <<EOF
+          cat > .github/scripts/tmp-pr-description-data.json <<'PR_JSON_EOF'
           ${{ steps.markdown.outputs.data }}
-          EOF
+          PR_JSON_EOF
 
       - name: Validate PR Description Fields
         run: |-
-          PR_DESCRIPTION_JSON=$(cat .github/scripts/tmp-pr-description-data.json | base64) node .github/scripts/pr-validate-description.js
+          node .github/scripts/pr-validate-description.js

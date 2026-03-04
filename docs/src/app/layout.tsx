@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(siteConfig.docsUrl),
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.title}`,
@@ -25,7 +25,8 @@ export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
-        <RootProvider search={{ options: { type: 'static' } }}>
+        {/* '/docs/api/search' must stay in sync with basePath in next.config.mjs */}
+        <RootProvider search={{ options: { type: 'static', api: '/docs/api/search' } }}>
           {children}
           <SiteFooter />
         </RootProvider>

@@ -11,34 +11,35 @@ export function baseOptions(): BaseLayoutProps {
           style={{ height: 28 }}
         />
       ),
-      url: '/',
+      url: siteConfig.url,
     },
     githubUrl: siteConfig.links.github,
     links: [
       {
         text: 'Documentation',
-        url: '/docs',
+        url: siteConfig.docsUrl,
         active: 'nested-url',
+        external: false,
       },
       {
         text: 'MCP',
-        url: 'https://devopness.com/mcp/',
-        external: true,
+        url: `${siteConfig.url}/mcp/`,
+        external: false,
       },
       {
         text: 'Blog',
-        url: '/blog',
-        external: true,
+        url: `${siteConfig.url}/blog`,
+        external: false,
       },
       {
         text: 'Pricing',
-        url: '/pricing',
-        external: true,
+        url: `${siteConfig.url}/pricing`,
+        external: false,
       },
       {
         text: 'Careers',
-        url: '/careers',
-        external: true,
+        url: `${siteConfig.url}/careers`,
+        external: false,
       },
       {
         type: 'icon',
@@ -55,7 +56,7 @@ export function baseOptions(): BaseLayoutProps {
         type: 'button',
         text: 'Get Started',
         url: siteConfig.links.webApp,
-        external: true,
+        external: false,
       },
     ],
   };

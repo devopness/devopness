@@ -1,7 +1,11 @@
 export const siteConfig = {
   title: 'Devopness Docs',
   tagline: 'DevOps Happiness: for AI Agents & Humans',
+  // The main Devopness website (used for navigation links: logo, MCP, etc.)
   url: process.env.NEXT_PUBLIC_DEVOPNESS_URL_SITE!,
+  // The public URL where the docs are served (used for metadataBase, OG images, canonical URLs)
+  // Docs are served under /docs/ on the main site (e.g. devopness.com/docs/)
+  docsUrl: `${process.env.NEXT_PUBLIC_DEVOPNESS_URL_SITE}/docs`,
 
   assets: {
     icons: process.env.NEXT_PUBLIC_DEVOPNESS_URL_ICONS!,
