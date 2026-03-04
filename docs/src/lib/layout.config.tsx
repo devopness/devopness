@@ -11,9 +11,7 @@ export function baseOptions(): BaseLayoutProps {
           style={{ height: 28 }}
         />
       ),
-      // url: Internal navigation link (Next.js basePath will be prepended automatically)
-      // '/' becomes '/docs/' because next.config.mjs has basePath: '/docs'
-      url: '/',
+      url: siteConfig.url,
     },
     githubUrl: siteConfig.links.github,
     links: [
