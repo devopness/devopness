@@ -51,7 +51,7 @@ export interface SubnetRelation {
      * @type {NetworkRelation}
      * @memberof SubnetRelation
      */
-    network: NetworkRelation | null;
+    network?: NetworkRelation | null;
     /**
      * The subnet\'s name
      * @type {string}
