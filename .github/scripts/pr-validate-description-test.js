@@ -1,10 +1,20 @@
 #!/usr/bin/env node
 /**
- * Test for pr-validate-description.js
+ * Regression test for pr-validate-description.js
  *
- * Reproduces CI failures, for instance when PR descriptions containing backticks,
- * parentheses, or other shell-special characters in the Quality Assurance
- * section caused the "Write JSON to Disk" workflow step to crash.
+ * Simulates exactly how the GitHub Actions "Write JSON to Disk" step
+ * feeds data to the validation script:
+ *
+ *   cat > .github/scripts/tmp-pr-description-data.json <<'PR_JSON_EOF'
+ *   ${{ steps.markdown.outputs.data }}
+ *   PR_JSON_EOF
+ *
+ * The fixture file (pr-validate-description-test-fixture.json) holds the
+ * real JSON payload from the failed CI run (PR #2756). It was captured from:
+ *   https://github.com/devopness/devopness/actions/runs/22670293172/job/65712314795
+ *
+ * That run broke because pr-lint.yml used <<EOF (unquoted heredoc), so bash
+ * interpreted backtick-wrapped markdown like `/docs` as command substitutions.
  *
  * Usage:
  *   node .github/scripts/pr-validate-description-test.js
@@ -18,6 +28,10 @@ const path = require("path");
 
 const SCRIPT = path.join(__dirname, "pr-validate-description.js");
 const TMP_JSON = path.join(__dirname, "tmp-pr-description-data.json");
+const FIXTURE = path.join(
+  __dirname,
+  "pr-validate-description-test-fixture.json"
+);
 
 function runScript() {
   try {
@@ -28,57 +42,9 @@ function runScript() {
   }
 }
 
-function writeTestData(data) {
-  fs.writeFileSync(TMP_JSON, JSON.stringify(data, null, 2), "utf8");
-}
-
 function cleanup() {
   if (fs.existsSync(TMP_JSON)) fs.unlinkSync(TMP_JSON);
 }
-
-// Reproduces sample PR description that fails in CI:
-// success criteria text contains backticks (markdown code spans) and
-// parentheses — the characters that broke the unquoted bash heredoc.
-const PR_WITH_SPECIAL_CHARS_IN_SUCCESS_CRITERIA = {
-  Description_of_changes: {
-    bodies: [
-      {
-        type: "list",
-        raw: "- [x] Some item using `backticks` and single 'quotes'\n- [x] Another checklist item",
-        items: [
-          {
-            checked: true,
-            raw: "Some configuration changes",
-          },
-          { checked: true, raw: "Another checklist item" },
-        ],
-      },
-    ],
-  },
-  GitHub_issues_resolved_by_this_PR: {
-    bodies: [
-      {
-        type: "list",
-        raw: "- [x] N/A",
-        items: [{ checked: true, raw: "N/A" }],
-      },
-    ],
-  },
-  Quality_Assurance: {
-    bodies: [
-      {
-        type: "list",
-        raw: "- Once the changes in this PR are merged and deployed, success criteria is: no errors, even when success criteria use `/paths/within/backticks`.",
-        items: [
-          {
-            checked: false,
-            raw: "Once the changes in this PR are merged and deployed, success criteria is: no errors, even when success criteria use `/paths/within/backticks`.",
-          },
-        ],
-      },
-    ],
-  },
-};
 
 let passed = 0;
 let failed = 0;
@@ -101,10 +67,19 @@ console.log("pr-validate-description tests");
 console.log("─".repeat(50));
 console.log("");
 
+// Reproduces the exact CI failure from PR #2756:
+// The JSON payload (from kkurno/action-markdown-reader) contains backticks and
+// parentheses in the Quality Assurance success criteria. This is written to disk
+// exactly as the "Write JSON to Disk" CI step does — raw string, no serialization.
 test(
-  "PR with backticks and parentheses in success criteria passes validation",
+  "Real CI payload with backticks and parentheses in success criteria passes validation",
   () => {
-    writeTestData(PR_WITH_SPECIAL_CHARS_IN_SUCCESS_CRITERIA);
+    // Simulate: cat > tmp-pr-description-data.json <<'PR_JSON_EOF'
+    //           ${{ steps.markdown.outputs.data }}
+    //           PR_JSON_EOF
+    const rawJson = fs.readFileSync(FIXTURE, "utf8");
+    fs.writeFileSync(TMP_JSON, rawJson, "utf8");
+
     const { exitCode, output } = runScript();
     assert.strictEqual(
       exitCode,
