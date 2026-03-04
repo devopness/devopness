@@ -26,7 +26,7 @@
  *   out/docs/_next/...   → serves requests for direct access
  *                          (<https://docs website>/docs/_next/...)
  *
- * A symlink (out/docs → .) would also work for webservers and revere proxies (e.g: nginx) but is
+ * A symlink (out/docs → .) would also work for webservers and reverse proxies (e.g: nginx) but is
  * not reliable when deploying to CDNs (S3, Cloudflare, etc.), which don't follow or preserve
  * symlinks. A real copy works everywhere.
  */
