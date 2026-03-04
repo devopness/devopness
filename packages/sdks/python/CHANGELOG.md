@@ -1,16 +1,40 @@
 # @devopness/sdk-python
 
+## 2.3.0
+
+### Minor Changes
+
+- [#2749](https://github.com/devopness/devopness/pull/2749) [`894e01d`](https://github.com/devopness/devopness/commit/894e01d7d66c2131e473caa769cca8f8f7da467a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Migrate team and role management to organization-based architecture
+
+  ## New Features
+
+  ### Organization-level team management
+  - `add_organization_team(organization_id, data)` - Create team at organization level
+  - `list_organization_teams(organization_id)` - List all teams in an organization
+  - `list_organization_team_memberships(organization_id)` - List team memberships in organization
+  - `link_team_to_organization(organization_id, team_id, data)` - Link team to organization with role
+  - `unlink_team_from_organization(organization_id, team_id)` - Remove team from organization
+
+  ### Enhanced team linking
+  - `link_team_to_project(project_id, team_id, data)` - Link team to project with role
+  - `unlink_team_from_project(project_id, team_id)` - Remove team from project
+  - `list_project_team_memberships(project_id)` - List team memberships in project
+  - `list_team_memberships(team_id)` - List all memberships of a specific team
+
+  ### Organization-level role management
+  - `add_organization_role(organization_id, data)` - Create custom role at organization level
+  - `list_organization_roles(organization_id)` - List all roles in an organization
+
 ## 2.2.1
 
 ### Patch Changes
 
 - [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@Diegiwg](https://github.com/Diegiwg)!
-
   - Added a method to list all subnets belonging to an environment:
- 
-      ```python
-      devopness.subnets.list_environment_subnets(environment_id)
-      ```
+
+    ```python
+    devopness.subnets.list_environment_subnets(environment_id)
+    ```
 
 ## 2.2.0
 

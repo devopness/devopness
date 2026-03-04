@@ -53,6 +53,8 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Load matrix of Pypi projects
         id: set-matrix
@@ -78,6 +80,7 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -93,6 +96,14 @@ jobs:
         if: matrix.post_version_sync_commands != ''
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
+
+      - name: Ensure branch is up-to-date
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git fetch origin ${{ github.head_ref }} || true
+          # Try to rebase local changes onto the latest remote to avoid non-fast-forward push errors
+          git pull --rebase origin ${{ github.head_ref }} || true
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
@@ -114,6 +125,7 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -122,6 +134,13 @@ jobs:
 
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
+
+      - name: Ensure branch is up-to-date
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git fetch origin ${{ github.head_ref }} || true
+          git pull --rebase origin ${{ github.head_ref }} || true
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
