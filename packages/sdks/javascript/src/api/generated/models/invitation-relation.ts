@@ -12,7 +12,7 @@
  */
 
 
-import { ProjectRelation } from './project-relation';
+import { OrganizationRelation } from './organization-relation';
 import { TeamInvitationStatus } from './team-invitation-status';
 import { TeamInvitationType } from './team-invitation-type';
 import { TeamRelation } from './team-relation';
@@ -71,7 +71,7 @@ export interface InvitationRelation {
      * @type {UserRelation}
      * @memberof InvitationRelation
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {TeamRelation}
@@ -80,10 +80,10 @@ export interface InvitationRelation {
     team: TeamRelation | null;
     /**
      * 
-     * @type {ProjectRelation}
+     * @type {OrganizationRelation}
      * @memberof InvitationRelation
      */
-    project: ProjectRelation | null;
+    organization: OrganizationRelation | null;
     /**
      * The date and time when the invitation was accepted
      * @type {string}

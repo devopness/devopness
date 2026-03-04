@@ -393,13 +393,10 @@ from .pipeline_step_runner_name import (
 from .pipeline_trigger_when import PipelineTriggerWhen, PipelineTriggerWhenPlain
 from .pipeline_update import PipelineUpdate, PipelineUpdatePlain
 from .project import Project, ProjectPlain
-from .project_create import ProjectCreate, ProjectCreatePlain
 from .project_organization_create import (
     ProjectOrganizationCreate,
     ProjectOrganizationCreatePlain,
 )
-from .project_owner_relation import ProjectOwnerRelation, ProjectOwnerRelationPlain
-from .project_owner_type import ProjectOwnerType, ProjectOwnerTypePlain
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .project_update import ProjectUpdate, ProjectUpdatePlain
 from .provider_code import ProviderCode, ProviderCodePlain
@@ -434,7 +431,10 @@ from .resource_type import ResourceType, ResourceTypePlain
 from .resource_type_related import ResourceTypeRelated, ResourceTypeRelatedPlain
 from .resource_type_relation import ResourceTypeRelation, ResourceTypeRelationPlain
 from .role import Role, RolePlain
-from .role_project_create import RoleProjectCreate, RoleProjectCreatePlain
+from .role_organization_create import (
+    RoleOrganizationCreate,
+    RoleOrganizationCreatePlain,
+)
 from .role_relation import RoleRelation, RoleRelationPlain
 from .role_update import RoleUpdate, RoleUpdatePlain
 from .script_runner import ScriptRunner, ScriptRunnerPlain
@@ -586,7 +586,12 @@ from .team_membership_relation import (
     TeamMembershipRelation,
     TeamMembershipRelationPlain,
 )
-from .team_project_create import TeamProjectCreate, TeamProjectCreatePlain
+from .team_organization_create import (
+    TeamOrganizationCreate,
+    TeamOrganizationCreatePlain,
+)
+from .team_organization_link import TeamOrganizationLink, TeamOrganizationLinkPlain
+from .team_project_link import TeamProjectLink, TeamProjectLinkPlain
 from .team_relation import TeamRelation, TeamRelationPlain
 from .team_update import TeamUpdate, TeamUpdatePlain
 from .trigger_event import TriggerEvent, TriggerEventPlain
@@ -1040,14 +1045,8 @@ __all__ = [
     "PipelineUpdate",
     "PipelineUpdatePlain",
     "Project",
-    "ProjectCreate",
-    "ProjectCreatePlain",
     "ProjectOrganizationCreate",
     "ProjectOrganizationCreatePlain",
-    "ProjectOwnerRelation",
-    "ProjectOwnerRelationPlain",
-    "ProjectOwnerType",
-    "ProjectOwnerTypePlain",
     "ProjectPlain",
     "ProjectRelation",
     "ProjectRelationPlain",
@@ -1104,9 +1103,9 @@ __all__ = [
     "ResourceTypeRelation",
     "ResourceTypeRelationPlain",
     "Role",
+    "RoleOrganizationCreate",
+    "RoleOrganizationCreatePlain",
     "RolePlain",
-    "RoleProjectCreate",
-    "RoleProjectCreatePlain",
     "RoleRelation",
     "RoleRelationPlain",
     "RoleUpdate",
@@ -1270,9 +1269,13 @@ __all__ = [
     "TeamInvitationTypePlain",
     "TeamMembershipRelation",
     "TeamMembershipRelationPlain",
+    "TeamOrganizationCreate",
+    "TeamOrganizationCreatePlain",
+    "TeamOrganizationLink",
+    "TeamOrganizationLinkPlain",
     "TeamPlain",
-    "TeamProjectCreate",
-    "TeamProjectCreatePlain",
+    "TeamProjectLink",
+    "TeamProjectLinkPlain",
     "TeamRelation",
     "TeamRelationPlain",
     "TeamUpdate",

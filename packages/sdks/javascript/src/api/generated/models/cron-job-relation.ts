@@ -76,7 +76,7 @@ export interface CronJobRelation {
      * @type {UserRelation}
      * @memberof CronJobRelation
      */
-    created_by_user?: UserRelation;
+    created_by_user?: UserRelation | null;
     /**
      * 
      * @type {ApplicationRelation}

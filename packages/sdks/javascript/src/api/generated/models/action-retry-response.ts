@@ -121,7 +121,7 @@ export interface ActionRetryResponse {
      * @type {UserRelation}
      * @memberof ActionRetryResponse
      */
-    triggered_by_user?: UserRelation;
+    triggered_by_user?: UserRelation | null;
     /**
      * 
      * @type {ActionResource}

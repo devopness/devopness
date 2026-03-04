@@ -36,7 +36,7 @@ class SslCertificate(DevopnessBaseModel):
         issuer (SslCertificateIssuer):
         validation_level (SslCertificateValidationLevel):
         active (bool): Tells if the certificate is active for all linked servers and applications
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         last_action (ActionRelation, optional, nullable):
         expires_at (str, optional, nullable): The date and time when this certificate will no longer be valid, down to minute precision
         last_renewed_at (str, optional, nullable): The date and time when this certificate was renewed for the last time
@@ -52,7 +52,7 @@ class SslCertificate(DevopnessBaseModel):
     active: StrictBool = Field(
         description="Tells if the certificate is active for all linked servers and applications"
     )
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     last_action: ActionRelation | None
     expires_at: StrictStr | None = Field(
         description="The date and time when this certificate will no longer be valid, down to minute precision"
@@ -94,12 +94,7 @@ class SslCertificatePlain(TypedDict, total=False):
         ]
     ]
     active: Required[bool]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     last_action: Union[ActionRelation, ActionRelationPlain] | None
     expires_at: str | None
     last_renewed_at: str | None

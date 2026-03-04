@@ -78,7 +78,7 @@ export interface NetworkRule {
      * @type {UserRelation}
      * @memberof NetworkRule
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {EnvironmentRelation}

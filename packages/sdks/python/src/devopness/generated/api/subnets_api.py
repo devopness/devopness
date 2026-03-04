@@ -7,7 +7,8 @@ Note:
 """
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import Subnet
+from ..models import Subnet, SubnetRelation
+from ..utils import parse_query_string
 
 
 class SubnetsApiService(DevopnessBaseService):
@@ -57,6 +58,37 @@ class SubnetsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Subnet)
 
+    def list_environment_subnets(
+        self,
+        environment_id: int,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SubnetRelation]]:
+        """
+        Return a list of all subnets belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/subnets",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, list[SubnetRelation])
+
 
 class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
     """
@@ -104,3 +136,34 @@ class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(response, Subnet)
+
+    async def list_environment_subnets(
+        self,
+        environment_id: int,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SubnetRelation]]:
+        """
+        Return a list of all subnets belonging to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/subnets",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(response, list[SubnetRelation])

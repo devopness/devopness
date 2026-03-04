@@ -16,19 +16,19 @@
 /**
  * 
  * @export
- * @interface TeamProjectCreate
+ * @interface TeamOrganizationCreate
  */
-export interface TeamProjectCreate {
+export interface TeamOrganizationCreate {
     /**
      * The name of the team. Must not be greater than 255 characters.
      * @type {string}
-     * @memberof TeamProjectCreate
+     * @memberof TeamOrganizationCreate
      */
     name: string;
     /**
      * The URL to team\'s image. Must be a valid URL.
      * @type {string}
-     * @memberof TeamProjectCreate
+     * @memberof TeamOrganizationCreate
      */
     photo_url?: string;
 }

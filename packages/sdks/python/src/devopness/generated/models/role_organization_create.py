@@ -16,9 +16,9 @@ from pydantic import Field, StrictStr
 from .. import DevopnessBaseModel
 
 
-class RoleProjectCreate(DevopnessBaseModel):
+class RoleOrganizationCreate(DevopnessBaseModel):
     """
-    RoleProjectCreate
+    RoleOrganizationCreate
 
     Attributes:
         name (str): The role&#39;s name. Must be at least 2 characters. Must not be greater than 60 characters.
@@ -38,9 +38,9 @@ class RoleProjectCreate(DevopnessBaseModel):
     )
 
 
-class RoleProjectCreatePlain(TypedDict, total=False):
+class RoleOrganizationCreatePlain(TypedDict, total=False):
     """
-    Plain version of RoleProjectCreate.
+    Plain version of RoleOrganizationCreate.
     """
 
     name: Required[str]

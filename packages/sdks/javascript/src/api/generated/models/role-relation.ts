@@ -12,6 +12,8 @@
  */
 
 
+import { OrganizationRelation } from './organization-relation';
+import { UserRelation } from './user-relation';
 
 /**
  * 
@@ -38,13 +40,7 @@ export interface RoleRelation {
      */
     description: string;
     /**
-     * The ID of the project this role belongs to
-     * @type {number}
-     * @memberof RoleRelation
-     */
-    project_id: number | null;
-    /**
-     * Defines if the role is predefined or a custom role for specific project
+     * Defines if the role is predefined or a custom role for specific organization
      * @type {boolean}
      * @memberof RoleRelation
      */
@@ -55,6 +51,18 @@ export interface RoleRelation {
      * @memberof RoleRelation
      */
     permissions: Array<string>;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof RoleRelation
+     */
+    organization?: OrganizationRelation | null;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof RoleRelation
+     */
+    created_by_user?: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

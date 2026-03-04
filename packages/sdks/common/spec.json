@@ -3711,12 +3711,69 @@
         }
       }
     },
+    "/environments/{environment_id}/subnets": {
+      "get": {
+        "summary": "Return a list of all subnets belonging to an environment",
+        "operationId": "listEnvironmentSubnets",
+        "tags": [
+          "Subnets"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubnetList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
     "/environments/{environment_id}/team-memberships": {
       "get": {
         "summary": "Return a list of teams with access to an environment",
         "operationId": "listEnvironmentTeamMemberships",
         "tags": [
-          "Environments - Team Memberships"
+          "Teams"
         ],
         "parameters": [
           {
@@ -3770,10 +3827,10 @@
     },
     "/environments/{environment_id}/teams/{team_id}/link": {
       "post": {
-        "summary": "Link team to a given environment",
+        "summary": "Link the given team to an environment with a specific role",
         "operationId": "linkTeamToEnvironment",
         "tags": [
-          "Environments - Teams"
+          "Teams"
         ],
         "parameters": [
           {
@@ -3848,10 +3905,10 @@
     },
     "/environments/{environment_id}/teams/{team_id}/unlink": {
       "delete": {
-        "summary": "Unlink team from the environment",
+        "summary": "Unlink the given team from an environment",
         "operationId": "unlinkTeamFromEnvironment",
         "tags": [
-          "Environments - Teams"
+          "Teams"
         ],
         "parameters": [
           {
@@ -5586,6 +5643,459 @@
         }
       }
     },
+    "/organizations/{organization_id}/roles": {
+      "get": {
+        "summary": "List all roles from a organization",
+        "operationId": "listOrganizationRoles",
+        "tags": [
+          "Roles"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a role to a given organization",
+        "operationId": "addOrganizationRole",
+        "tags": [
+          "Roles"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Role"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleOrganizationCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/team-memberships": {
+      "get": {
+        "summary": "Return a list of teams with access to an organization",
+        "operationId": "listOrganizationTeamMemberships",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The ID of the organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMembershipList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/teams": {
+      "get": {
+        "summary": "Return a list of all teams belonging to an organization",
+        "operationId": "listOrganizationTeams",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a team to the given organization",
+        "operationId": "addOrganizationTeam",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamOrganizationCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/teams/{team_id}/link": {
+      "post": {
+        "summary": "Link the given team to an organization with a specific role",
+        "operationId": "linkTeamToOrganization",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The ID of the organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "description": "The ID of the team.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TeamOrganizationLink"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/teams/{team_id}/unlink": {
+      "delete": {
+        "summary": "Unlink the given team from an organization",
+        "operationId": "unlinkTeamFromOrganization",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The ID of the organization.",
+            "example": "2ab973e1-9528-4d67-aff0-209d74975830",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "description": "The ID of the team.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/pipelines/{pipeline_id}": {
       "delete": {
         "summary": "Delete a given Pipeline",
@@ -6559,17 +7069,7 @@
             }
           }
         },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectCreate"
-              }
-            }
-          }
-        }
+        "deprecated": true
       }
     },
     "/projects/{project_id}": {
@@ -6997,12 +7497,12 @@
         }
       }
     },
-    "/projects/{project_id}/roles": {
+    "/projects/{project_id}/team-memberships": {
       "get": {
-        "summary": "List all roles from a project",
-        "operationId": "listProjectRoles",
+        "summary": "Return a list of teams with access to a project",
+        "operationId": "listProjectTeamMemberships",
         "tags": [
-          "Projects - Roles"
+          "Teams"
         ],
         "parameters": [
           {
@@ -7038,7 +7538,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoleList"
+                  "$ref": "#/components/schemas/TeamMembershipList"
                 }
               }
             },
@@ -7048,145 +7548,18 @@
                   "type": "string"
                 },
                 "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a role to a given project",
-        "operationId": "addProjectRole",
-        "tags": [
-          "Projects - Roles"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "description": "The ID of the project.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Role"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden/Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity/Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleProjectCreate"
               }
             }
           }
         }
       }
     },
-    "/projects/{project_id}/teams": {
-      "get": {
-        "summary": "Return a list of all teams belonging to a project",
-        "operationId": "listProjectTeams",
-        "tags": [
-          "Projects - Teams"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/acceptHeader"
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          },
-          {
-            "$ref": "#/components/parameters/contentTypeHeader"
-          },
-          {
-            "$ref": "#/components/parameters/pageNumber"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "in": "path",
-            "name": "project_id",
-            "description": "The ID of the project.",
-            "example": 123,
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TeamList"
-                }
-              }
-            },
-            "headers": {
-              "Link": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
-              }
-            }
-          }
-        }
-      },
+    "/projects/{project_id}/teams/{team_id}/link": {
       "post": {
-        "summary": "Create a team to the given project",
-        "operationId": "addProjectTeam",
+        "summary": "Link the given team to a project with a specific role",
+        "operationId": "linkTeamToProject",
         "tags": [
-          "Projects - Teams"
+          "Teams"
         ],
         "parameters": [
           {
@@ -7208,18 +7581,22 @@
               "type": "integer",
               "minimum": 1
             }
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "description": "The ID of the team.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Team"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7248,7 +7625,74 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TeamProjectCreate"
+                "$ref": "#/components/schemas/TeamProjectLink"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/teams/{team_id}/unlink": {
+      "delete": {
+        "summary": "Unlink the given team from a project",
+        "operationId": "unlinkTeamFromProject",
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "project_id",
+            "description": "The ID of the project.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "team_id",
+            "description": "The ID of the team.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
@@ -7904,7 +8348,7 @@
           {
             "in": "path",
             "name": "role_id",
-            "description": "The ID of the role.",
+            "description": "The ID of a role.",
             "example": 123,
             "required": true,
             "schema": {
@@ -7916,6 +8360,16 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
           },
           "404": {
             "description": "The specified resource was not found"
@@ -7941,7 +8395,7 @@
           {
             "in": "path",
             "name": "role_id",
-            "description": "The ID of the role.",
+            "description": "The ID of a role.",
             "example": 123,
             "required": true,
             "schema": {
@@ -7957,6 +8411,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Role"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -7985,7 +8449,7 @@
           {
             "in": "path",
             "name": "role_id",
-            "description": "The ID of the role.",
+            "description": "The ID of a role.",
             "example": 123,
             "required": true,
             "schema": {
@@ -8007,6 +8471,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         },
         "requestBody": {
@@ -10889,6 +11356,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -10927,6 +11397,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -11298,7 +11778,7 @@
         "summary": "Return a list of all memberships of a team",
         "operationId": "listTeamMemberships",
         "tags": [
-          "Teams - Memberships"
+          "Teams"
         ],
         "parameters": [
           {
@@ -11315,6 +11795,16 @@
           },
           {
             "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "query",
+            "name": "filter_by",
+            "description": "Returns only memberships associated with the given link type.",
+            "example": "environment",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "in": "path",
@@ -13147,12 +13637,6 @@
       "name": "Environments - Actions"
     },
     {
-      "name": "Environments - Teams"
-    },
-    {
-      "name": "Environments - Team Memberships"
-    },
-    {
       "name": "Credentials"
     },
     {
@@ -13206,12 +13690,6 @@
       "name": "Projects - Environments"
     },
     {
-      "name": "Projects - Roles"
-    },
-    {
-      "name": "Projects - Teams"
-    },
-    {
       "name": "Resource Events"
     },
     {
@@ -13254,9 +13732,6 @@
     },
     {
       "name": "Teams - Members"
-    },
-    {
-      "name": "Teams - Memberships"
     },
     {
       "name": "Users"
@@ -13401,8 +13876,7 @@
     {
       "name": "Roles",
       "tags": [
-        "Roles",
-        "Projects - Roles"
+        "Roles"
       ]
     },
     {
@@ -13446,14 +13920,10 @@
     {
       "name": "Teams",
       "tags": [
-        "Projects - Teams",
         "Teams",
-        "Teams - Memberships",
         "Teams - Invitations",
         "Team Invitations",
-        "Teams - Members",
-        "Environments - Teams",
-        "Environments - Team Memberships"
+        "Teams - Members"
       ]
     },
     {
@@ -17536,11 +18006,11 @@
           "teams": {
             "$ref": "#/components/schemas/TeamList"
           },
-          "created_by_user": {
-            "$ref": "#/components/schemas/UserRelation"
-          },
           "current_user_permissions": {
             "$ref": "#/components/schemas/RolePermissions"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17561,8 +18031,8 @@
           "description",
           "is_archived",
           "teams",
-          "created_by_user",
           "current_user_permissions",
+          "created_by_user",
           "created_at",
           "updated_at"
         ]
@@ -18692,8 +19162,8 @@
           "team": {
             "$ref": "#/components/schemas/TeamRelation"
           },
-          "project": {
-            "$ref": "#/components/schemas/ProjectRelation"
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
           },
           "accepted_at": {
             "description": "The date and time when the invitation was accepted",
@@ -18727,7 +19197,7 @@
           "accepted_from_ip",
           "created_by_user",
           "team",
-          "project",
+          "organization",
           "accepted_at",
           "expires_at",
           "created_at",
@@ -19066,11 +19536,20 @@
       "MembershipRelation": {
         "type": "object",
         "properties": {
-          "environment": {
-            "$ref": "#/components/schemas/EnvironmentRelation"
+          "team": {
+            "$ref": "#/components/schemas/TeamRelation"
           },
           "role": {
             "$ref": "#/components/schemas/RoleRelation"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -19084,8 +19563,11 @@
           }
         },
         "required": [
-          "environment",
+          "team",
           "role",
+          "organization",
+          "project",
+          "environment",
           "created_at",
           "updated_at"
         ],
@@ -19794,6 +20276,9 @@
           "resource_summary": {
             "$ref": "#/components/schemas/ResourceSummaryList"
           },
+          "current_user_permissions": {
+            "$ref": "#/components/schemas/RolePermissions"
+          },
           "owner": {
             "$ref": "#/components/schemas/UserRelation"
           },
@@ -19812,6 +20297,7 @@
           "id",
           "name",
           "url_slug",
+          "current_user_permissions",
           "owner",
           "created_at",
           "updated_at"
@@ -20620,11 +21106,11 @@
           "os_users": {
             "$ref": "#/components/schemas/OsUsers"
           },
-          "owner": {
-            "$ref": "#/components/schemas/ProjectOwnerRelation"
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
           },
-          "owner_type": {
-            "$ref": "#/components/schemas/ProjectOwnerType"
+          "current_user_permissions": {
+            "$ref": "#/components/schemas/RolePermissions"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -20646,34 +21132,11 @@
           "name",
           "logo_url",
           "os_users",
-          "owner",
-          "owner_type",
+          "organization",
+          "current_user_permissions",
           "created_by_user",
           "created_at",
           "updated_at"
-        ]
-      },
-      "ProjectCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the project. Must not be greater than 60 characters.",
-            "example": "my project",
-            "type": "string"
-          },
-          "logo_image": {
-            "description": "A base64 string representation of the logo image.",
-            "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII=",
-            "type": "string"
-          },
-          "logo_url": {
-            "description": "A URL path to the project's logo image. Must be a valid URL.",
-            "example": "https://example.com/projects-beautiful-logo.png",
-            "type": "string"
-          }
-        },
-        "required": [
-          "name"
         ]
       },
       "ProjectList": {
@@ -20705,26 +21168,6 @@
           "name"
         ]
       },
-      "ProjectOwnerRelation": {
-        "description": "The owner of the project (user or organization)",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/UserRelation"
-          },
-          {
-            "$ref": "#/components/schemas/OrganizationRelation"
-          }
-        ]
-      },
-      "ProjectOwnerType": {
-        "type": "string",
-        "description": "The possible types of users.",
-        "enum": [
-          "user",
-          "org"
-        ],
-        "example": "user"
-      },
       "ProjectRelation": {
         "type": "object",
         "properties": {
@@ -20735,7 +21178,7 @@
           },
           "user_id": {
             "description": "The id of the user that own the project",
-            "example": 45678,
+            "example": 984123,
             "type": "integer"
           },
           "name": {
@@ -20755,11 +21198,8 @@
           "os_users": {
             "$ref": "#/components/schemas/OsUsers"
           },
-          "owner": {
-            "$ref": "#/components/schemas/ProjectOwnerRelation"
-          },
-          "owner_type": {
-            "$ref": "#/components/schemas/ProjectOwnerType"
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
           },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
@@ -20786,8 +21226,7 @@
           "name",
           "logo_url",
           "os_users",
-          "owner",
-          "owner_type",
+          "organization",
           "created_by_user",
           "created_at",
           "updated_at"
@@ -21668,14 +22107,8 @@
             "example": "Has total access to resources",
             "type": "string"
           },
-          "project_id": {
-            "description": "The ID of the project this role belongs to",
-            "example": 984123,
-            "type": "integer",
-            "nullable": true
-          },
           "is_predefined": {
-            "description": "Defines if the role is predefined or custom",
+            "description": "Defines if the role is predefined or a custom role for specific organization",
             "example": false,
             "type": "boolean"
           },
@@ -21684,6 +22117,12 @@
           },
           "parent": {
             "$ref": "#/components/schemas/RoleRelation"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -21700,7 +22139,6 @@
           "id",
           "name",
           "description",
-          "project_id",
           "is_predefined",
           "permissions",
           "parent",
@@ -21714,18 +22152,7 @@
           "$ref": "#/components/schemas/RoleRelation"
         }
       },
-      "RolePermissions": {
-        "description": "The list of permissions granted for this role",
-        "items": {
-          "type": "string"
-        },
-        "example": [
-          "application:read",
-          "application:create",
-          "server:read"
-        ]
-      },
-      "RoleProjectCreate": {
+      "RoleOrganizationCreate": {
         "type": "object",
         "properties": {
           "name": {
@@ -21747,6 +22174,17 @@
           "permissions"
         ]
       },
+      "RolePermissions": {
+        "description": "The list of permissions granted for this role",
+        "items": {
+          "type": "string"
+        },
+        "example": [
+          "application:read",
+          "application:create",
+          "server:read"
+        ]
+      },
       "RoleRelation": {
         "type": "object",
         "properties": {
@@ -21765,19 +22203,19 @@
             "example": "Has total access to resources",
             "type": "string"
           },
-          "project_id": {
-            "description": "The ID of the project this role belongs to",
-            "example": 984123,
-            "type": "integer",
-            "nullable": true
-          },
           "is_predefined": {
-            "description": "Defines if the role is predefined or a custom role for specific project",
+            "description": "Defines if the role is predefined or a custom role for specific organization",
             "example": false,
             "type": "boolean"
           },
           "permissions": {
             "$ref": "#/components/schemas/RolePermissions"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -21794,7 +22232,6 @@
           "id",
           "name",
           "description",
-          "project_id",
           "is_predefined",
           "permissions",
           "created_at",
@@ -23930,10 +24367,8 @@
             "example": 789,
             "type": "integer"
           },
-          "network_id": {
-            "description": "Numeric ID of the network to which the subnet belongs to",
-            "example": 6721,
-            "type": "integer"
+          "network": {
+            "$ref": "#/components/schemas/NetworkRelation"
           },
           "name": {
             "description": "The subnet's name",
@@ -23967,7 +24402,7 @@
           "project_id",
           "environment_id",
           "created_by",
-          "network_id",
+          "network",
           "name",
           "type",
           "is_auto_generated",
@@ -24154,11 +24589,14 @@
             "type": "string",
             "nullable": true
           },
-          "project": {
-            "$ref": "#/components/schemas/ProjectRelation"
-          },
           "users": {
             "$ref": "#/components/schemas/UserList"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -24175,8 +24613,9 @@
           "id",
           "name",
           "photo_url",
-          "project",
           "users",
+          "organization",
+          "created_by_user",
           "created_at",
           "updated_at"
         ]
@@ -24185,7 +24624,7 @@
         "type": "object",
         "properties": {
           "role_id": {
-            "description": "The role's ID to use for this team on environment.",
+            "description": "The role's ID to link to the team.",
             "example": 430,
             "type": "integer"
           }
@@ -24243,8 +24682,8 @@
           "team": {
             "$ref": "#/components/schemas/TeamRelation"
           },
-          "project": {
-            "$ref": "#/components/schemas/ProjectRelation"
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
           },
           "accepted_at": {
             "description": "The date and time when the invitation was accepted",
@@ -24278,7 +24717,7 @@
           "accepted_from_ip",
           "created_by_user",
           "team",
-          "project",
+          "organization",
           "accepted_at",
           "expires_at",
           "created_at",
@@ -24322,23 +24761,20 @@
       "TeamMembershipRelation": {
         "type": "object",
         "properties": {
-          "id": {
-            "description": "The unique ID of the given team",
-            "example": 626,
-            "type": "integer"
-          },
-          "name": {
-            "description": "The name of the given team",
-            "example": "Team Rocket",
-            "type": "string"
-          },
-          "photo_url": {
-            "description": "The URL to team's image",
-            "example": "https://example.com/images/team_rocket.png",
-            "type": "string"
+          "team": {
+            "$ref": "#/components/schemas/TeamRelation"
           },
           "role": {
             "$ref": "#/components/schemas/RoleRelation"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -24352,16 +24788,17 @@
           }
         },
         "required": [
-          "id",
-          "name",
-          "photo_url",
+          "team",
           "role",
+          "organization",
+          "project",
+          "environment",
           "created_at",
           "updated_at"
         ],
         "nullable": true
       },
-      "TeamProjectCreate": {
+      "TeamOrganizationCreate": {
         "type": "object",
         "properties": {
           "name": {
@@ -24377,6 +24814,32 @@
         },
         "required": [
           "name"
+        ]
+      },
+      "TeamOrganizationLink": {
+        "type": "object",
+        "properties": {
+          "role_id": {
+            "description": "The role's ID to link to the team.",
+            "example": 430,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "role_id"
+        ]
+      },
+      "TeamProjectLink": {
+        "type": "object",
+        "properties": {
+          "role_id": {
+            "description": "The role's ID to link to the team.",
+            "example": 430,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "role_id"
         ]
       },
       "TeamRelation": {
@@ -24398,6 +24861,12 @@
             "type": "string",
             "nullable": true
           },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "example": "2019-09-25T13:22:37.000000Z",
@@ -24413,6 +24882,8 @@
           "id",
           "name",
           "photo_url",
+          "organization",
+          "created_by_user",
           "created_at",
           "updated_at"
         ],
@@ -24886,7 +25357,8 @@
           "email",
           "name",
           "url_slug"
-        ]
+        ],
+        "nullable": true
       },
       "UserResendVerification": {
         "type": "object",

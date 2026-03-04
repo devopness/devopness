@@ -15,7 +15,7 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .project_relation import ProjectRelation, ProjectRelationPlain
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .user_relation import UserRelation, UserRelationPlain
 
 
@@ -27,8 +27,9 @@ class Team(DevopnessBaseModel):
         id (int): The unique ID of the given team
         name (str): The name of the given team
         photo_url (str, optional, nullable): The URL to team&#39;s image
-        project (ProjectRelation, optional, nullable):
         users (List[UserRelation]): The list of users
+        organization (OrganizationRelation, optional, nullable):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -36,8 +37,9 @@ class Team(DevopnessBaseModel):
     id: StrictInt = Field(description="The unique ID of the given team")
     name: StrictStr = Field(description="The name of the given team")
     photo_url: StrictStr | None = Field(description="The URL to team's image")
-    project: ProjectRelation | None
-    users: list[UserRelation] = Field(description="The list of users")
+    users: list[UserRelation | None] = Field(description="The list of users")
+    organization: OrganizationRelation | None
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -54,7 +56,6 @@ class TeamPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     photo_url: str | None
-    project: Union[ProjectRelation, ProjectRelationPlain] | None
     users: Required[
         list[
             Union[
@@ -63,5 +64,7 @@ class TeamPlain(TypedDict, total=False):
             ]
         ]
     ]
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

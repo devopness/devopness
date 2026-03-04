@@ -38,7 +38,7 @@ class Service(DevopnessBaseModel):
         initial_state (ServiceInitialState):
         description (str, optional, nullable): A text describing the service, provided by the service author
         environment (EnvironmentRelation, optional, nullable):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
         servers (List[ServerRelation]):
         last_action (ActionRelation, optional, nullable):
@@ -66,7 +66,7 @@ class Service(DevopnessBaseModel):
         description="A text describing the service, provided by the service author"
     )
     environment: EnvironmentRelation | None
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     project: ProjectRelation | None
     servers: list[ServerRelation | None]
     last_action: ActionRelation | None
@@ -98,12 +98,7 @@ class ServicePlain(TypedDict, total=False):
     ]
     description: str | None
     environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     project: Union[ProjectRelation, ProjectRelationPlain] | None
     servers: Required[
         list[

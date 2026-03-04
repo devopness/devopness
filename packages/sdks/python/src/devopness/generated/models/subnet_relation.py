@@ -15,6 +15,7 @@ from typing import (
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
+from .network_relation import NetworkRelation, NetworkRelationPlain
 from .subnet_provision_input import SubnetProvisionInput, SubnetProvisionInputPlain
 from .subnet_type import SubnetType, SubnetTypePlain
 
@@ -28,7 +29,7 @@ class SubnetRelation(DevopnessBaseModel):
         project_id (int): Numeric ID of the project to which the subnet belongs to
         environment_id (int): Numeric ID of the environment to which the subnet belongs to
         created_by (int): The id of the user who created the subnet
-        network_id (int): Numeric ID of the network to which the subnet belongs to
+        network (NetworkRelation, optional, nullable):
         name (str): The subnet&#39;s name
         type (SubnetType):
         is_auto_generated (bool): True if this subnet is auto-generated or false if this was created by the user
@@ -47,9 +48,7 @@ class SubnetRelation(DevopnessBaseModel):
     created_by: StrictInt = Field(
         description="The id of the user who created the subnet"
     )
-    network_id: StrictInt = Field(
-        description="Numeric ID of the network to which the subnet belongs to"
-    )
+    network: NetworkRelation | None
     name: StrictStr = Field(description="The subnet's name")
     type: SubnetType
     is_auto_generated: StrictBool = Field(
@@ -73,7 +72,7 @@ class SubnetRelationPlain(TypedDict, total=False):
     project_id: Required[int]
     environment_id: Required[int]
     created_by: Required[int]
-    network_id: Required[int]
+    network: Union[NetworkRelation, NetworkRelationPlain] | None
     name: Required[str]
     type: Required[
         Union[

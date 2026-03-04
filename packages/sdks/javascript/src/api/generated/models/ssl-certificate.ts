@@ -65,7 +65,7 @@ export interface SslCertificate {
      * @type {UserRelation}
      * @memberof SslCertificate
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {ActionRelation}

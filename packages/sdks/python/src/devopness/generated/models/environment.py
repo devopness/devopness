@@ -34,8 +34,8 @@ class Environment(DevopnessBaseModel):
         is_archived (bool): Indicates whether the record was archived
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         teams (List[TeamRelation]):
-        created_by_user (UserRelation):
         current_user_permissions (List[str]): The list of permissions granted for this role
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -54,10 +54,10 @@ class Environment(DevopnessBaseModel):
         default=None, description="Summary of the resource"
     )
     teams: list[TeamRelation | None]
-    created_by_user: UserRelation
     current_user_permissions: list[StrictStr] = Field(
         description="The list of permissions granted for this role"
     )
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -91,12 +91,7 @@ class EnvironmentPlain(TypedDict, total=False):
             ]
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
     current_user_permissions: Required[list[str]]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

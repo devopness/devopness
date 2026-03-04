@@ -12,8 +12,7 @@
  */
 
 
-import { ProjectOwnerRelation } from './project-owner-relation';
-import { ProjectOwnerType } from './project-owner-type';
+import { OrganizationRelation } from './organization-relation';
 import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
@@ -61,22 +60,22 @@ export interface Project {
     os_users: Array<object>;
     /**
      * 
-     * @type {ProjectOwnerRelation}
+     * @type {OrganizationRelation}
      * @memberof Project
      */
-    owner: ProjectOwnerRelation;
+    organization: OrganizationRelation | null;
     /**
-     * 
-     * @type {ProjectOwnerType}
+     * The list of permissions granted for this role
+     * @type {Array<string>}
      * @memberof Project
      */
-    owner_type: ProjectOwnerType;
+    current_user_permissions: Array<string>;
     /**
      * 
      * @type {UserRelation}
      * @memberof Project
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
