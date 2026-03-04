@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#2749](https://github.com/devopness/devopness/pull/2749) [`894e01d`](https://github.com/devopness/devopness/commit/894e01d7d66c2131e473caa769cca8f8f7da467a) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Migrate team and role management to organization-based architecture
+- [#2749](https://github.com/devopness/devopness/pull/2749) [`894e01d`](https://github.com/devopness/devopness/commit/894e01d7d66c2131e473caa769cca8f8f7da467a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Migrate team and role management to organization-based architecture
 
   ## ⚠️ Breaking Changes
 
