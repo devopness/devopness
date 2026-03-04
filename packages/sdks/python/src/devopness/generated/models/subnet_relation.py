@@ -48,7 +48,7 @@ class SubnetRelation(DevopnessBaseModel):
     created_by: StrictInt = Field(
         description="The id of the user who created the subnet"
     )
-    network: NetworkRelation | None
+    network: NetworkRelation | None = None
     name: StrictStr = Field(description="The subnet's name")
     type: SubnetType
     is_auto_generated: StrictBool = Field(
