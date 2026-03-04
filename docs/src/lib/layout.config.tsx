@@ -23,7 +23,7 @@ export function baseOptions(): BaseLayoutProps {
       },
       {
         text: 'MCP',
-        url: 'https://devopness.com/mcp/',
+        url: `${siteConfig.url}/mcp/`,
         external: true,
       },
       {
