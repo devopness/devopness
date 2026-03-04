@@ -17,8 +17,7 @@ export function baseOptions(): BaseLayoutProps {
     links: [
       {
         text: 'Documentation',
-        // Internal link - Next.js basePath (/docs) will be prepended
-        url: '/',
+        url: siteConfig.docsUrl,
         active: 'nested-url',
       },
       {
@@ -28,17 +27,17 @@ export function baseOptions(): BaseLayoutProps {
       },
       {
         text: 'Blog',
-        url: '/blog',
+        url: `${siteConfig.url}/blog`,
         external: true,
       },
       {
         text: 'Pricing',
-        url: '/pricing',
+        url: `${siteConfig.url}/pricing`,
         external: true,
       },
       {
         text: 'Careers',
-        url: '/careers',
+        url: `${siteConfig.url}/careers`,
         external: true,
       },
       {

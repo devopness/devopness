@@ -5,13 +5,13 @@ export function SiteFooter() {
     <footer className="border-t py-8 text-sm text-fd-muted-foreground">
       <div className="mx-auto flex max-w-screen-xl flex-col gap-6 px-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-x-6 gap-y-2">
-          <a href="/docs" className="hover:text-fd-foreground transition-colors">
+          <a href={siteConfig.docsUrl} className="hover:text-fd-foreground transition-colors">
             Documentation
           </a>
-          <a href="/pricing" className="hover:text-fd-foreground transition-colors">
+          <a href={`${siteConfig.url}/pricing`} className="hover:text-fd-foreground transition-colors">
             Pricing
           </a>
-          <a href="/careers" className="hover:text-fd-foreground transition-colors">
+          <a href={`${siteConfig.url}/careers`} className="hover:text-fd-foreground transition-colors">
             Careers
           </a>
         </div>
