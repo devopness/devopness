@@ -16,7 +16,6 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Project } from '../../generated/models';
-import { ProjectCreate } from '../../generated/models';
 import { ProjectOrganizationCreate } from '../../generated/models';
 import { ProjectRelation } from '../../generated/models';
 import { ProjectUpdate } from '../../generated/models';
@@ -49,19 +48,16 @@ export class ProjectsApiService extends ApiBaseService {
 
     /**
      * 
+     * @deprecated
      * @summary Create a project for the authenticated user
-     * @param {ProjectCreate} projectCreate A JSON object containing the resource data
      */
-    public async addProject(projectCreate: ProjectCreate): Promise<ApiResponse<Project>> {
-        if (projectCreate === null || projectCreate === undefined) {
-            throw new ArgumentNullException('projectCreate', 'addProject');
-        }
+    public async addProject(): Promise<ApiResponse<Project>> {
 
         let queryString = '';
 
         const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Project, ProjectCreate>(requestUrl, projectCreate);
+        const response = await this.post <Project>(requestUrl);
         return new ApiResponse(response);
     }
 

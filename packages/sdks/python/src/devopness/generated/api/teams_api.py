@@ -9,13 +9,54 @@ Note:
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import Team, TeamUpdate, TeamUpdatePlain
+from ..models import (
+    MembershipRelation,
+    Team,
+    TeamEnvironmentLink,
+    TeamEnvironmentLinkPlain,
+    TeamMembershipRelation,
+    TeamOrganizationCreate,
+    TeamOrganizationCreatePlain,
+    TeamOrganizationLink,
+    TeamOrganizationLinkPlain,
+    TeamProjectLink,
+    TeamProjectLinkPlain,
+    TeamRelation,
+    TeamUpdate,
+    TeamUpdatePlain,
+)
+from ..utils import parse_query_string
 
 
 class TeamsApiService(DevopnessBaseService):
     """
     TeamsApiService - Auto Generated
     """
+
+    def add_organization_team(
+        self,
+        organization_id: str,
+        team_organization_create: Union[
+            TeamOrganizationCreate,
+            TeamOrganizationCreatePlain,
+        ],
+    ) -> DevopnessResponse[Team]:
+        """
+        Add a team to the given organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/teams",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, team_organization_create)
+
+        return DevopnessResponse(response, Team)
 
     def delete_team(
         self,
@@ -59,6 +100,307 @@ class TeamsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Team)
 
+    def link_team_to_environment(
+        self,
+        environment_id: int,
+        team_id: int,
+        team_environment_link: Union[
+            TeamEnvironmentLink,
+            TeamEnvironmentLinkPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Link the given team to an environment with a specific role
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/teams/{team_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, team_environment_link)
+
+        return DevopnessResponse(response, None)
+
+    def link_team_to_organization(
+        self,
+        organization_id: str,
+        team_id: int,
+        team_organization_link: Union[
+            TeamOrganizationLink,
+            TeamOrganizationLinkPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Link the given team to an organization with a specific role
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/teams/{team_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, team_organization_link)
+
+        return DevopnessResponse(response, None)
+
+    def link_team_to_project(
+        self,
+        project_id: int,
+        team_id: int,
+        team_project_link: Union[
+            TeamProjectLink,
+            TeamProjectLinkPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Link the given team to a project with a specific role
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}/teams/{team_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, team_project_link)
+
+        return DevopnessResponse(response, None)
+
+    def list_environment_team_memberships(
+        self,
+        environment_id: int,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamMembershipRelation]]:
+        """
+        Return a list of teams with access to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/team-memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, list[TeamMembershipRelation])
+
+    def list_organization_team_memberships(
+        self,
+        organization_id: str,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamMembershipRelation]]:
+        """
+        Return a list of teams with access to an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/team-memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, list[TeamMembershipRelation])
+
+    def list_organization_teams(
+        self,
+        organization_id: str,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamRelation]]:
+        """
+        Return a list of all teams belonging to an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/teams",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, list[TeamRelation])
+
+    def list_project_team_memberships(
+        self,
+        project_id: int,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamMembershipRelation]]:
+        """
+        Return a list of teams with access to a project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/projects/{project_id}/team-memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, list[TeamMembershipRelation])
+
+    def list_team_memberships(
+        self,
+        team_id: int,
+        page: int | None = None,
+        per_page: int | None = None,
+        filter_by: str | None = None,
+    ) -> DevopnessResponse[list[MembershipRelation]]:
+        """
+        Return a list of all memberships of a team
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+                "filter_by": filter_by,
+            }
+        )
+
+        endpoint_parts = [
+            f"/teams/{team_id}/memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, list[MembershipRelation])
+
+    def unlink_team_from_environment(
+        self,
+        environment_id: int,
+        team_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink the given team from an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/teams/{team_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def unlink_team_from_organization(
+        self,
+        organization_id: str,
+        team_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink the given team from an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/teams/{team_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
+    def unlink_team_from_project(
+        self,
+        project_id: int,
+        team_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink the given team from a project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}/teams/{team_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
     def update_team(
         self,
         team_id: int,
@@ -89,6 +431,31 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
     """
     TeamsApiServiceAsync - Auto Generated
     """
+
+    async def add_organization_team(
+        self,
+        organization_id: str,
+        team_organization_create: Union[
+            TeamOrganizationCreate,
+            TeamOrganizationCreatePlain,
+        ],
+    ) -> DevopnessResponse[Team]:
+        """
+        Add a team to the given organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/teams",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, team_organization_create)
+
+        return await DevopnessResponse.from_async(response, Team)
 
     async def delete_team(
         self,
@@ -131,6 +498,313 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(response, Team)
+
+    async def link_team_to_environment(
+        self,
+        environment_id: int,
+        team_id: int,
+        team_environment_link: Union[
+            TeamEnvironmentLink,
+            TeamEnvironmentLinkPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Link the given team to an environment with a specific role
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/teams/{team_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, team_environment_link)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def link_team_to_organization(
+        self,
+        organization_id: str,
+        team_id: int,
+        team_organization_link: Union[
+            TeamOrganizationLink,
+            TeamOrganizationLinkPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Link the given team to an organization with a specific role
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/teams/{team_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, team_organization_link)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def link_team_to_project(
+        self,
+        project_id: int,
+        team_id: int,
+        team_project_link: Union[
+            TeamProjectLink,
+            TeamProjectLinkPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Link the given team to a project with a specific role
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}/teams/{team_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, team_project_link)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def list_environment_team_memberships(
+        self,
+        environment_id: int,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamMembershipRelation]]:
+        """
+        Return a list of teams with access to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/team-memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(
+            response, list[TeamMembershipRelation]
+        )
+
+    async def list_organization_team_memberships(
+        self,
+        organization_id: str,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamMembershipRelation]]:
+        """
+        Return a list of teams with access to an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/team-memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(
+            response, list[TeamMembershipRelation]
+        )
+
+    async def list_organization_teams(
+        self,
+        organization_id: str,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamRelation]]:
+        """
+        Return a list of all teams belonging to an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/teams",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(response, list[TeamRelation])
+
+    async def list_project_team_memberships(
+        self,
+        project_id: int,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[TeamMembershipRelation]]:
+        """
+        Return a list of teams with access to a project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/projects/{project_id}/team-memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(
+            response, list[TeamMembershipRelation]
+        )
+
+    async def list_team_memberships(
+        self,
+        team_id: int,
+        page: int | None = None,
+        per_page: int | None = None,
+        filter_by: str | None = None,
+    ) -> DevopnessResponse[list[MembershipRelation]]:
+        """
+        Return a list of all memberships of a team
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+                "filter_by": filter_by,
+            }
+        )
+
+        endpoint_parts = [
+            f"/teams/{team_id}/memberships",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(response, list[MembershipRelation])
+
+    async def unlink_team_from_environment(
+        self,
+        environment_id: int,
+        team_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink the given team from an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/teams/{team_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def unlink_team_from_organization(
+        self,
+        organization_id: str,
+        team_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink the given team from an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/teams/{team_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def unlink_team_from_project(
+        self,
+        project_id: int,
+        team_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink the given team from a project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}/teams/{team_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
 
     async def update_team(
         self,

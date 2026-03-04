@@ -64,7 +64,7 @@ export interface SshKey {
      * @type {UserRelation}
      * @memberof SshKey
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {EnvironmentRelation}

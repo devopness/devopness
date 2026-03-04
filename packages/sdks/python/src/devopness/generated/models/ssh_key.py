@@ -32,7 +32,7 @@ class SshKey(DevopnessBaseModel):
         environment_id (int): The environment id to which the SSH public key belongs to
         name (str): The name entered by the user to uniquely identify the public SSH key
         fingerprint (str): The hashed fingerprint of the public key
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         environment (EnvironmentRelation, optional, nullable):
         servers (List[ServerRelation]):
         last_action (ActionRelation, optional, nullable):
@@ -57,7 +57,7 @@ class SshKey(DevopnessBaseModel):
     fingerprint: StrictStr = Field(
         description="The hashed fingerprint of the public key"
     )
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     environment: EnvironmentRelation | None
     servers: list[ServerRelation | None]
     last_action: ActionRelation | None
@@ -80,12 +80,7 @@ class SshKeyPlain(TypedDict, total=False):
     environment_id: Required[int]
     name: Required[str]
     fingerprint: Required[str]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
     servers: Required[
         list[

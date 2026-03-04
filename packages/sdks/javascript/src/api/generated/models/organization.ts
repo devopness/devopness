@@ -46,11 +46,17 @@ export interface Organization {
      */
     resource_summary?: Array<ResourceSummaryItem>;
     /**
+     * The list of permissions granted for this role
+     * @type {Array<string>}
+     * @memberof Organization
+     */
+    current_user_permissions: Array<string>;
+    /**
      * 
      * @type {UserRelation}
      * @memberof Organization
      */
-    owner: UserRelation;
+    owner: UserRelation | null;
     /**
      * The date and time when the organization was created
      * @type {string}

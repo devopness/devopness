@@ -24,13 +24,13 @@ class Member(DevopnessBaseModel):
     Member
 
     Attributes:
-        user (UserRelation):
+        user (UserRelation, optional, nullable):
         team (TeamRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
 
-    user: UserRelation
+    user: UserRelation | None
     team: TeamRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
@@ -45,12 +45,7 @@ class MemberPlain(TypedDict, total=False):
     Plain version of Member.
     """
 
-    user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    user: Union[UserRelation, UserRelationPlain] | None
     team: Union[TeamRelation, TeamRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

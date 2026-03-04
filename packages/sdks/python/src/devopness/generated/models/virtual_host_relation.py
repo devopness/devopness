@@ -39,7 +39,7 @@ class VirtualHostRelation(DevopnessBaseModel):
         application_listen_address (str, optional, nullable): The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has &#x60;http&#x60; or &#x60;https&#x60; protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using &#x60;unix:&#x60; protocol. Examples: &#x60;http://127.0.0.1:8080&#x60; (for applications exposing port &#x60;8080&#x60;, for example running in a Docker container), &#x60;http://127.0.0.1:3000&#x60; (for applications kept alive by a daemon/background process that listens on port &#x60;3000&#x60;), &#x60;unix:/var/run/example.sock&#x60; (for applications listening on a custom socket)
         ssl_certificate (SslCertificateRelation, optional, nullable):
         last_action (ActionRelationShallow, optional, nullable):
-        created_by_user (UserRelation, optional):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str, optional): The date and time when the record was created
         updated_at (str, optional): The date and time when the record was updated
     """

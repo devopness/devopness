@@ -40,7 +40,7 @@ class Daemon(DevopnessBaseModel):
         application (ApplicationRelation, optional, nullable):
         environment (EnvironmentRelation, optional, nullable):
         servers (List[ServerRelation]):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -69,7 +69,7 @@ class Daemon(DevopnessBaseModel):
     application: ApplicationRelation | None
     environment: EnvironmentRelation | None
     servers: list[ServerRelation | None]
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -102,11 +102,6 @@ class DaemonPlain(TypedDict, total=False):
             ]
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

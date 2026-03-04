@@ -70,7 +70,7 @@ export interface Invitation {
      * @type {UserRelation}
      * @memberof Invitation
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {TeamRelation}

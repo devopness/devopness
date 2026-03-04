@@ -63,7 +63,7 @@ export interface CredentialRelation {
      * @type {UserRelation}
      * @memberof CredentialRelation
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

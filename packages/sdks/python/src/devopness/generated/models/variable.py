@@ -35,7 +35,7 @@ class Variable(DevopnessBaseModel):
         resource_id (int, optional, nullable): The ID of the resource this variable is linked to
         resource_type (str): The name of the resource this variable is linked to
         hidden (bool): Indicates if the variable value should be visible or not in the deployment logs
-        created_by_user (UserRelation, optional):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """

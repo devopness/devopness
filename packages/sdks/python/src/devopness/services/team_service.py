@@ -2,18 +2,6 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from ..generated.api.environments_team_memberships_api import (
-    EnvironmentsTeamMembershipsApiService,
-    EnvironmentsTeamMembershipsApiServiceAsync,
-)
-from ..generated.api.environments_teams_api import (
-    EnvironmentsTeamsApiService,
-    EnvironmentsTeamsApiServiceAsync,
-)
-from ..generated.api.projects_teams_api import (
-    ProjectsTeamsApiService,
-    ProjectsTeamsApiServiceAsync,
-)
 from ..generated.api.team_invitations_api import (
     TeamInvitationsApiService,
     TeamInvitationsApiServiceAsync,
@@ -29,10 +17,6 @@ from ..generated.api.teams_invitations_api import (
 from ..generated.api.teams_members_api import (
     TeamsMembersApiService,
     TeamsMembersApiServiceAsync,
-)
-from ..generated.api.teams_memberships_api import (
-    TeamsMembershipsApiService,
-    TeamsMembershipsApiServiceAsync,
 )
 from ..generated.api.users_team_invitations_api import (
     UsersTeamInvitationsApiService,
@@ -60,10 +44,6 @@ class TeamInvitationServiceAsync(
 
 class TeamService(
     TeamsApiService,
-    EnvironmentsTeamsApiService,
-    EnvironmentsTeamMembershipsApiService,
-    TeamsMembershipsApiService,
-    ProjectsTeamsApiService,
 ):
     """Service for teams in the Devopness API."""
 
@@ -79,10 +59,6 @@ class TeamService(
 
 class TeamServiceAsync(
     TeamsApiServiceAsync,
-    EnvironmentsTeamsApiServiceAsync,
-    EnvironmentsTeamMembershipsApiServiceAsync,
-    TeamsMembershipsApiServiceAsync,
-    ProjectsTeamsApiServiceAsync,
 ):
     """Async service for teams in the Devopness API."""
 

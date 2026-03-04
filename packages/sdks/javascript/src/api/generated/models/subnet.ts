@@ -62,7 +62,7 @@ export interface Subnet {
      * @type {UserRelation}
      * @memberof Subnet
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {ProjectRelation}

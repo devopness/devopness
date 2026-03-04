@@ -9,13 +9,46 @@ Note:
 from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import Role, RoleUpdate, RoleUpdatePlain
+from ..models import (
+    Role,
+    RoleOrganizationCreate,
+    RoleOrganizationCreatePlain,
+    RoleRelation,
+    RoleUpdate,
+    RoleUpdatePlain,
+)
+from ..utils import parse_query_string
 
 
 class RolesApiService(DevopnessBaseService):
     """
     RolesApiService - Auto Generated
     """
+
+    def add_organization_role(
+        self,
+        organization_id: str,
+        role_organization_create: Union[
+            RoleOrganizationCreate,
+            RoleOrganizationCreatePlain,
+        ],
+    ) -> DevopnessResponse[Role]:
+        """
+        Create a role to a given organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/roles",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, role_organization_create)
+
+        return DevopnessResponse(response, Role)
 
     def delete_role(
         self,
@@ -59,6 +92,37 @@ class RolesApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, Role)
 
+    def list_organization_roles(
+        self,
+        organization_id: str,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[RoleRelation]]:
+        """
+        List all roles from a organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/roles",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, list[RoleRelation])
+
     def update_role(
         self,
         role_id: int,
@@ -89,6 +153,31 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
     """
     RolesApiServiceAsync - Auto Generated
     """
+
+    async def add_organization_role(
+        self,
+        organization_id: str,
+        role_organization_create: Union[
+            RoleOrganizationCreate,
+            RoleOrganizationCreatePlain,
+        ],
+    ) -> DevopnessResponse[Role]:
+        """
+        Create a role to a given organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/roles",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, role_organization_create)
+
+        return await DevopnessResponse.from_async(response, Role)
 
     async def delete_role(
         self,
@@ -131,6 +220,37 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(response, Role)
+
+    async def list_organization_roles(
+        self,
+        organization_id: str,
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[RoleRelation]]:
+        """
+        List all roles from a organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/roles",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(response, list[RoleRelation])
 
     async def update_role(
         self,

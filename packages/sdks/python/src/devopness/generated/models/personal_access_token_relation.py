@@ -29,7 +29,7 @@ class PersonalAccessTokenRelation(DevopnessBaseModel):
         name (str): Name of the Token
         type (ApiTokenType):
         status (ApiTokenStatus):
-        user (UserRelation):
+        user (UserRelation, optional, nullable):
         last_used_at (str, optional, nullable): Last time the Token was used
         expires_at (str): Expiration date of the Token
         revoked_at (str, optional, nullable): Revocation date of the Token
@@ -41,7 +41,7 @@ class PersonalAccessTokenRelation(DevopnessBaseModel):
     name: StrictStr = Field(description="Name of the Token")
     type: ApiTokenType
     status: ApiTokenStatus
-    user: UserRelation
+    user: UserRelation | None
     last_used_at: StrictStr | None = Field(description="Last time the Token was used")
     expires_at: StrictStr = Field(description="Expiration date of the Token")
     revoked_at: StrictStr | None = Field(description="Revocation date of the Token")
@@ -68,12 +68,7 @@ class PersonalAccessTokenRelationPlain(TypedDict, total=False):
             ApiTokenStatusPlain,
         ]
     ]
-    user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    user: Union[UserRelation, UserRelationPlain] | None
     last_used_at: str | None
     expires_at: Required[str]
     revoked_at: str | None

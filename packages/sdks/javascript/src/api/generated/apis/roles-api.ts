@@ -16,6 +16,8 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Role } from '../../generated/models';
+import { RoleOrganizationCreate } from '../../generated/models';
+import { RoleRelation } from '../../generated/models';
 import { RoleUpdate } from '../../generated/models';
 
 /**
@@ -24,8 +26,30 @@ import { RoleUpdate } from '../../generated/models';
 export class RolesApiService extends ApiBaseService {
     /**
      * 
+     * @summary Create a role to a given organization
+     * @param {string} organizationId The numeric ID or URL Slug of an organization.
+     * @param {RoleOrganizationCreate} roleOrganizationCreate A JSON object containing the resource data
+     */
+    public async addOrganizationRole(organizationId: string, roleOrganizationCreate: RoleOrganizationCreate): Promise<ApiResponse<Role>> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new ArgumentNullException('organizationId', 'addOrganizationRole');
+        }
+        if (roleOrganizationCreate === null || roleOrganizationCreate === undefined) {
+            throw new ArgumentNullException('roleOrganizationCreate', 'addOrganizationRole');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/organizations/{organization_id}/roles' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <Role, RoleOrganizationCreate>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))), roleOrganizationCreate);
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Delete a given role
-     * @param {number} roleId The ID of the role.
+     * @param {number} roleId The ID of a role.
      */
     public async deleteRole(roleId: number): Promise<ApiResponse<void>> {
         if (roleId === null || roleId === undefined) {
@@ -43,7 +67,7 @@ export class RolesApiService extends ApiBaseService {
     /**
      * 
      * @summary Get a role by ID
-     * @param {number} roleId The ID of the role.
+     * @param {number} roleId The ID of a role.
      */
     public async getRole(roleId: number): Promise<ApiResponse<Role>> {
         if (roleId === null || roleId === undefined) {
@@ -60,8 +84,36 @@ export class RolesApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary List all roles from a organization
+     * @param {string} organizationId The numeric ID or URL Slug of an organization.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listOrganizationRoles(organizationId: string, page?: number, perPage?: number): Promise<ApiResponse<Array<RoleRelation>>> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new ArgumentNullException('organizationId', 'listOrganizationRoles');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/organizations/{organization_id}/roles' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<RoleRelation>>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Update an existing role
-     * @param {number} roleId The ID of the role.
+     * @param {number} roleId The ID of a role.
      * @param {RoleUpdate} roleUpdate A JSON object containing the resource data
      */
     public async updateRole(roleId: number, roleUpdate: RoleUpdate): Promise<ApiResponse<void>> {

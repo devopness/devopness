@@ -12,7 +12,7 @@
  */
 
 
-import { ProjectRelation } from './project-relation';
+import { OrganizationRelation } from './organization-relation';
 import { UserRelation } from './user-relation';
 
 /**
@@ -40,17 +40,23 @@ export interface Team {
      */
     photo_url: string | null;
     /**
-     * 
-     * @type {ProjectRelation}
-     * @memberof Team
-     */
-    project: ProjectRelation | null;
-    /**
      * The list of users
      * @type {Array<UserRelation>}
      * @memberof Team
      */
     users: Array<UserRelation>;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof Team
+     */
+    organization: OrganizationRelation | null;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Team
+     */
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}

@@ -33,7 +33,7 @@ class Network(DevopnessBaseModel):
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
         name (str): The networks&#39;s name
         provision_input (NetworkProvisionInput):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
         environment (EnvironmentRelation, optional, nullable):
         credential (CredentialRelation, optional, nullable):
@@ -49,7 +49,7 @@ class Network(DevopnessBaseModel):
     )
     name: StrictStr = Field(description="The networks's name")
     provision_input: NetworkProvisionInput
-    created_by_user: UserRelation
+    created_by_user: UserRelation | None
     project: ProjectRelation | None
     environment: EnvironmentRelation | None
     credential: CredentialRelation | None
@@ -77,12 +77,7 @@ class NetworkPlain(TypedDict, total=False):
             NetworkProvisionInputPlain,
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     project: Union[ProjectRelation, ProjectRelationPlain] | None
     environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
     credential: Union[CredentialRelation, CredentialRelationPlain] | None
