@@ -24402,7 +24402,6 @@
           "project_id",
           "environment_id",
           "created_by",
-          "network",
           "name",
           "type",
           "is_auto_generated",
