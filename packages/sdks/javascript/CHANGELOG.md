@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#2761](https://github.com/devopness/devopness/pull/2761) [`4843293`](https://github.com/devopness/devopness/commit/4843293e0cadd659cb05a55c49ef9eceba58e874) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the property type **network** in the **SubnetRelation** model
+- [#2761](https://github.com/devopness/devopness/pull/2761) [`4843293`](https://github.com/devopness/devopness/commit/4843293e0cadd659cb05a55c49ef9eceba58e874) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the property type **network** in the **SubnetRelation** model
 
 ## 3.3.0
 
