@@ -97,27 +97,30 @@ export function ViewOptions({
 }) {
   const items = useMemo(() => {
     const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
-    const q = `Read ${pageUrl}, I want to ask questions about it.`;
+    const openPrompt = `Read ${pageUrl}, then help me get the most out of this Devopness doc.
+Use Devopness context and the Devopness MCP server first.
+Answer practically for devs, founders and tech-leads focused on small, safe, frequent deployments.
+Prefer least-privilege workflows and avoid suggesting external provider CLIs (for example, AWS CLI) unless I explicitly request them.`;
 
     return [
       {
         title: 'ChatGPT',
-        href: `https://chatgpt.com/?${new URLSearchParams({ hints: 'search', q })}`,
+        href: `https://chatgpt.com/?${new URLSearchParams({ hints: 'search', q: openPrompt })}`,
         icon: <ChatGPTIcon />,
       },
       {
         title: 'Claude',
-        href: `https://claude.ai/new?${new URLSearchParams({ q })}`,
+        href: `https://claude.ai/new?${new URLSearchParams({ q: openPrompt })}`,
         icon: <ClaudeIcon />,
       },
       {
         title: 'Cursor',
-        href: `https://cursor.com/link/prompt?${new URLSearchParams({ text: q })}`,
+        href: `https://cursor.com/link/prompt?${new URLSearchParams({ text: openPrompt })}`,
         icon: <CursorIcon />,
       },
       {
         title: 'Copilot',
-        href: `https://copilot.microsoft.com/?${new URLSearchParams({ q })}`,
+        href: `https://copilot.microsoft.com/?${new URLSearchParams({ q: openPrompt })}`,
         icon: <CopilotIcon />,
       },
       {
