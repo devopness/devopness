@@ -105,7 +105,7 @@ describe('Card', () => {
     })
 
     it('with custom header border bottom color', () => {
-      const { container } = render(
+      render(
         <Card
           {...defaultProps}
           headerProps={{
@@ -123,11 +123,13 @@ describe('Card', () => {
 
       const header = screen.getByTestId('card-header')
       expect(header).toBeInTheDocument()
-      expect(container.firstChild).toMatchSnapshot()
+      expect(header).toHaveStyle({
+        'border-bottom-color': getColor('blue.100'),
+      })
     })
 
     it('with both header background and border colors', () => {
-      const { container } = render(
+      render(
         <Card
           {...defaultProps}
           headerProps={{
@@ -146,7 +148,10 @@ describe('Card', () => {
 
       const header = screen.getByTestId('card-header')
       expect(header).toBeInTheDocument()
-      expect(container.firstChild).toMatchSnapshot()
+      expect(header).toHaveStyle({
+        'background-color': getColor('blue.100'),
+        'border-bottom-color': getColor('purple.800'),
+      })
     })
 
     it('with children content', () => {
