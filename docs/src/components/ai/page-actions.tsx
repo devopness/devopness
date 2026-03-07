@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Check, ChevronDown, Copy, ExternalLinkIcon } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
@@ -95,8 +95,13 @@ export function ViewOptions({
   /** Source file URL on GitHub (blob) */
   githubUrl: string;
 }) {
+  const [pageUrl, setPageUrl] = useState('');
+
+  useEffect(() => {
+    setPageUrl(window.location.href);
+  }, []);
+
   const items = useMemo(() => {
-    const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
     const openPrompt = `Read ${pageUrl}, then help me get the most out of this Devopness doc.
 Use Devopness context and the Devopness MCP server first.
 Answer practically for devs, founders and tech-leads focused on small, safe, frequent deployments.
@@ -134,7 +139,7 @@ Prefer least-privilege workflows and avoid suggesting external provider CLIs (fo
             icon: <MarkdownIcon />,
       },
     ];
-  }, [githubUrl, markdownUrl]);
+  }, [githubUrl, markdownUrl, pageUrl]);
 
   return (
     <Popover>
