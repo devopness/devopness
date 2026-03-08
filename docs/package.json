@@ -5,11 +5,10 @@
   "scripts": {
     "build": "next build && node scripts/post-build.mjs",
     "dev": "next dev",
-    "lint": "printf '%s\\n' '🔍Linting with:' && printf '%s' '  Prettier: ' && prettier -v && printf '%s' '  ESLint: ' && eslint -v && printf '%s' '  TypeScript: ' && tsc -v && printf '%s\\n' '' && printf '%s\\n' 'Running ESLint ...' && eslint . && printf '%s\\n' 'Running Prettier ...' && prettier --check . && printf '%s\\n' 'Running TypeScript ...' && tsc --noEmit -p tsconfig.json",
+    "lint": "printf '%s\\n' '🔍Linting with:' && printf '%s' '  Prettier: ' && prettier -v && printf '%s' '  ESLint: ' && eslint -v && printf '%s\\n' '' && printf '%s\\n' 'Running ESLint ...' && eslint . && printf '%s\\n' 'Running Prettier ...' && prettier --check . && printf '%s\\n' 'Running TypeScript ...' && tsc --noEmit -p tsconfig.json",
     "lint:fix": "eslint --fix . && prettier --write . && npm run lint",
     "postinstall": "fumadocs-mdx",
-    "start": "next start",
-    "types:check": "fumadocs-mdx && next typegen && tsc --noEmit"
+    "start": "next start"
   },
   "dependencies": {
     "dotenv-expand": "^12.0.3",

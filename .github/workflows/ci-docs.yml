@@ -55,7 +55,13 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: install
+        # CI uses --ignore-scripts to keep dependency installation deterministic.
+        # We run required postinstall work explicitly in the next step.
         run: npm ci --ignore-scripts
+
+      - name: generate docs metadata
+        # Fumadocs generated files are required for docs type resolution in CI.
+        run: npm run postinstall
 
       - name: lint
         run: npm run lint
