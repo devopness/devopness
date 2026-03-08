@@ -1,6 +1,9 @@
 import { resolve } from 'path';
+
 import 'dotenv-expand/config';
+
 import { createMDX } from 'fumadocs-mdx/next';
+
 import { validateEnv } from './src/lib/env.mjs';
 
 validateEnv();
