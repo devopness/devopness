@@ -4,6 +4,9 @@ on:
     types:
       - opened
       - synchronize
+    paths:
+      - docs/**
+      - .github/workflows/ci-docs.yml
 
 defaults:
   run:
