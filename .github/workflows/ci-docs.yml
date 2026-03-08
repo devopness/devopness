@@ -57,6 +57,9 @@ jobs:
       - name: install
         run: npm ci --ignore-scripts
 
+      - name: lint
+        run: npm run lint
+
       - name: build
         run: npm run build
 
