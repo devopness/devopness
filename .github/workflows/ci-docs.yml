@@ -4,10 +4,8 @@ on:
     types:
       - opened
       - synchronize
-    # Run workflow only for docs changes and docs CI workflow edits.
-    paths:
-      - "docs/**"
-      - ".github/workflows/ci-docs.yml"
+    # Run on all PR updates.
+    # "detect-changes" below decides if the docs build should execute.
 
 defaults:
   run:
