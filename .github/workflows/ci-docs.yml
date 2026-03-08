@@ -4,9 +4,6 @@ on:
     types:
       - opened
       - synchronize
-    paths:
-      - docs/**
-      - .github/workflows/ci-docs.yml
 
 defaults:
   run:
@@ -28,8 +25,7 @@ jobs:
             changes:
               - 'docs/**'
               - '.github/workflows/ci-docs.yml'
-          # Evaluate against the full PR diff, not just the latest pushed commit.
-          # Evaluate against the full PR diff, from base -> head.
+          # Evaluate against the full PR diff, not just the latest pushed commit (base -> head).
           base: ${{ github.event.pull_request.base.sha }}
           ref: ${{ github.event.pull_request.head.sha }}
 
