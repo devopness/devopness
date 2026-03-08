@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { LLMCopyButton } from '@/components/ai/page-actions';
+import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
+import { getGithubDocsEditUrl, getGithubDocsRawUrl } from '@/lib/constants';
 import { RequiredPermissions } from '@/components/required-permissions';
 import { RelatedLinks } from '@/components/related-links';
 
@@ -24,6 +25,10 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
       </DocsDescription>
       <div className="flex flex-row gap-2 items-center border-b pb-6">
         <LLMCopyButton markdown={markdown} />
+        <ViewOptions
+          markdownUrl={getGithubDocsRawUrl(page.path)}
+          githubUrl={getGithubDocsEditUrl(page.path)}
+        />
       </div>
       <DocsBody>
         {page.data.intro && <p>{page.data.intro}</p>}
@@ -40,14 +45,38 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
         )}
       </DocsBody>
       <EditOnGitHub
-        href={`https://github.com/devopness/devopness/blob/main/docs/docs/${page.path}`}
+        href={getGithubDocsEditUrl(page.path)}
       />
     </DocsPage>
   );
 }
 
 export async function generateStaticParams() {
-  return source.generateParams();
+  // Build the docs URL list for static export:
+  // each docs page becomes a slug array that this catch-all route can pre-render (for example, `[]`, `['actions']`, `['users', 'api']`).
+  // As we use Next.js static export, each route must return `{ slug: string[] }`.
+  // Here we normalize and add `slug: []` only when index is missing.
+  const params = source.generateParams();
+  const normalized = params.map((entry: string[] | { slug?: string[] }) => {
+    // `entry` can be either:
+    // - `string[]`: already a ready-to-use slug list (for example `['actions']`, `['users','api']`).
+    // - `{ slug?: string[] }`: object wrapper variant like `{ slug: ['actions'] }`
+    // We normalize both so the rest of the function has a single deterministic shape.
+    if (Array.isArray(entry)) {
+      return { slug: entry };
+    }
+
+    return { slug: entry?.slug ?? [] };
+  });
+  const dynamicParams = normalized as { slug: string[] }[];
+  const hasIndex = dynamicParams.some(
+    (entry) => entry.slug.length === 0,
+  );
+
+  // If `source.generateParams()` already emitted the docs home route (`[]`), keep list as-is
+  // to avoid duplicates.
+  // Otherwise add `{ slug: [] }` so `/docs` gets a static path during export as well.
+  return hasIndex ? dynamicParams : [{ slug: [] }, ...dynamicParams];
 }
 
 export async function generateMetadata(props: PageProps<'/[[...slug]]'>): Promise<Metadata> {
