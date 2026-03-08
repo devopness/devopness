@@ -1,6 +1,6 @@
 ---
 title: Actions
-intro: Devopness creates an “action” every time you need to run a pipeline to perform single-step or multi-step operations on resources in your project environments.
+intro: Devopness creates an “action” to run a pipeline to perform single-step or multi-step operations on resources in your project environments.
 links:
   overview:
   quickstart:
