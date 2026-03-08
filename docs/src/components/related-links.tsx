@@ -1,5 +1,6 @@
-import { source } from '@/lib/source';
 import Link from 'next/link';
+
+import { source } from '@/lib/source';
 
 interface RelatedLinksProps {
   links: string[];

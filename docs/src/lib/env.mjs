@@ -1,9 +1,12 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const envSchema = z
   .object({
     // Environment settings
-    DEVOPNESS_ENVIRONMENT: z.enum(["dev", "PROD"]),
+    DEVOPNESS_ENVIRONMENT: z.enum([
+      'dev',
+      'PROD',
+    ]),
 
     // Contact and support information
     DEVOPNESS_COMMUNITY_SUPPORT: z.string().url(),
@@ -20,16 +23,18 @@ export const envSchema = z
     DEVOPNESS_URL_YOUTUBE: z.string().url(),
 
     // Google Tag Manager
-    GOOGLE_TAG_MANAGER_ID: z.string().min(1).startsWith("GTM-").optional(),
+    GOOGLE_TAG_MANAGER_ID: z.string().min(1).startsWith('GTM-').optional(),
   })
   .refine(
     ({ DEVOPNESS_ENVIRONMENT, GOOGLE_TAG_MANAGER_ID }) => {
-      const isProd = DEVOPNESS_ENVIRONMENT === "PROD";
+      const isProd = DEVOPNESS_ENVIRONMENT === 'PROD';
       return !isProd || (isProd && GOOGLE_TAG_MANAGER_ID);
     },
     {
-      message: "Required in production environment",
-      path: ["GOOGLE_TAG_MANAGER_ID"],
+      message: 'Required in production environment',
+      path: [
+        'GOOGLE_TAG_MANAGER_ID',
+      ],
     }
   );
 
@@ -37,17 +42,25 @@ export const envSchema = z
  * Maps DEVOPNESS_* and GOOGLE_* environment variables to NEXT_PUBLIC_* equivalents
  */
 function mapToPublicEnvVars() {
-  Object.entries(process.env).forEach(([key, value]) => {
-    if (
-      ["DEVOPNESS_", "GOOGLE_"].some((prefix) => key.startsWith(prefix)) &&
-      value
-    ) {
-      const publicKey = `NEXT_PUBLIC_${key}`;
-      if (!(publicKey in process.env)) {
-        process.env[publicKey] = value;
+  Object.entries(process.env).forEach(
+    ([
+      key,
+      value,
+    ]) => {
+      if (
+        [
+          'DEVOPNESS_',
+          'GOOGLE_',
+        ].some((prefix) => key.startsWith(prefix)) &&
+        value
+      ) {
+        const publicKey = `NEXT_PUBLIC_${key}`;
+        if (!(publicKey in process.env)) {
+          process.env[publicKey] = value;
+        }
       }
     }
-  });
+  );
 }
 
 /**
@@ -61,10 +74,8 @@ export function validateEnv() {
   const parsed = envSchema.safeParse(process.env);
 
   if (!parsed.success) {
-    console.error(
-      "❌ Invalid environment variables:",
-      parsed.error.flatten().fieldErrors
+    throw new Error(
+      `❌ Invalid environment variables: ${parsed.error.flatten().fieldErrors}`
     );
-    throw new Error("Invalid environment variables");
   }
 }

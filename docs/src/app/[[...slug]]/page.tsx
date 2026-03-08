@@ -1,15 +1,24 @@
-import { getPageImage, getLLMText, source } from '@/lib/source';
-import { DocsBody, DocsDescription, DocsPage, DocsTitle, EditOnGitHub } from 'fumadocs-ui/layouts/notebook/page';
-import { notFound } from 'next/navigation';
-import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import {
+  DocsBody,
+  DocsDescription,
+  DocsPage,
+  DocsTitle,
+  EditOnGitHub,
+} from 'fumadocs-ui/layouts/notebook/page';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
-import { getGithubDocsEditUrl, getGithubDocsRawUrl } from '@/lib/constants';
-import { RequiredPermissions } from '@/components/required-permissions';
-import { RelatedLinks } from '@/components/related-links';
 
-export default async function Page(props: PageProps<'/[[...slug]]'>) {
+import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
+import { RelatedLinks } from '@/components/related-links';
+import { RequiredPermissions } from '@/components/required-permissions';
+import { getGithubDocsEditUrl, getGithubDocsRawUrl } from '@/lib/constants';
+import { getLLMText, getPageImage, source } from '@/lib/source';
+import { getMDXComponents } from '@/mdx-components';
+
+export default async function Page(props: {
+  params: Promise<{ slug: string[] }>;
+}) {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
@@ -18,7 +27,10 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
   const markdown = await getLLMText(page);
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
+    <DocsPage
+      toc={page.data.toc}
+      full={page.data.full}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription className="mb-0">
         {!page.data.intro ? page.data.description : undefined}
@@ -37,18 +49,33 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
             a: createRelativeLink(source, page),
           })}
         />
-        {page.data.required_permissions && page.data.required_permissions.length > 0 && (
-          <RequiredPermissions permissions={page.data.required_permissions} />
-        )}
+        {page.data.required_permissions &&
+          page.data.required_permissions.length > 0 && (
+            <RequiredPermissions permissions={page.data.required_permissions} />
+          )}
         {page.data.links?.related && page.data.links.related.length > 0 && (
           <RelatedLinks links={page.data.links.related} />
         )}
       </DocsBody>
-      <EditOnGitHub
-        href={getGithubDocsEditUrl(page.path)}
-      />
+      <EditOnGitHub href={getGithubDocsEditUrl(page.path)} />
     </DocsPage>
   );
+}
+
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
+  const params = await props.params;
+  const page = source.getPage(params.slug);
+  if (!page) notFound();
+
+  return {
+    title: page.data.title,
+    description: page.data.description,
+    openGraph: {
+      images: getPageImage(page).url,
+    },
+  };
 }
 
 export async function generateStaticParams() {
@@ -69,26 +96,15 @@ export async function generateStaticParams() {
     return { slug: entry?.slug ?? [] };
   });
   const dynamicParams = normalized as { slug: string[] }[];
-  const hasIndex = dynamicParams.some(
-    (entry) => entry.slug.length === 0,
-  );
+  const hasIndex = dynamicParams.some((entry) => entry.slug.length === 0);
 
   // If `source.generateParams()` already emitted the docs home route (`[]`), keep list as-is
   // to avoid duplicates.
   // Otherwise add `{ slug: [] }` so `/docs` gets a static path during export as well.
-  return hasIndex ? dynamicParams : [{ slug: [] }, ...dynamicParams];
-}
-
-export async function generateMetadata(props: PageProps<'/[[...slug]]'>): Promise<Metadata> {
-  const params = await props.params;
-  const page = source.getPage(params.slug);
-  if (!page) notFound();
-
-  return {
-    title: page.data.title,
-    description: page.data.description,
-    openGraph: {
-      images: getPageImage(page).url,
-    },
-  };
+  return hasIndex
+    ? dynamicParams
+    : [
+        { slug: [] },
+        ...dynamicParams,
+      ];
 }
