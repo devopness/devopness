@@ -4,8 +4,6 @@ on:
     types:
       - opened
       - synchronize
-    # Run on all PR updates.
-    # "detect-changes" below decides if the docs build should execute.
 
 defaults:
   run:
@@ -27,6 +25,10 @@ jobs:
             changes:
               - 'docs/**'
               - '.github/workflows/ci-docs.yml'
+          # Evaluate against the full PR diff, not just the latest pushed commit.
+          # Evaluate against the full PR diff, from base -> head.
+          base: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
   build:
     name: Build Docs web app
