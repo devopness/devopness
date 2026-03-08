@@ -4,6 +4,10 @@ on:
     types:
       - opened
       - synchronize
+    # Run workflow only for docs changes and docs CI workflow edits.
+    paths:
+      - "docs/**"
+      - ".github/workflows/ci-docs.yml"
 
 defaults:
   run:
@@ -24,6 +28,7 @@ jobs:
           filters: |
             changes:
               - 'docs/**'
+              - '.github/workflows/ci-docs.yml'
 
   build:
     name: Build Docs web app
