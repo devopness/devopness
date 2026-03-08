@@ -2,7 +2,7 @@
 title: Edit a Variable
 pagination_prev: variables/add-variable
 required_permissions:
-    - application:update
+  - application:update
 ---
 
 You can edit variables directly on Devopness every time you need to update the value of an existing variable used by your deployment pipelines.
@@ -15,5 +15,5 @@ You can edit variables directly on Devopness every time you need to update the v
 1. In the list of variables, find the variable you want to edit and click the `NAME` of the variable
 1. On the upper-right corner of the variable details view, click `EDIT`
 1. Follow the instructions in the variable edit form then click `CONFIRM`
-    > A new deployment is required for your changes to take effect.
-      - Follow the guide [/docs/applications/deploy-application]
+   > A new deployment is required for your changes to take effect.
+   - Follow the guide [/docs/applications/deploy-application]

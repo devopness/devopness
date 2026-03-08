@@ -2,16 +2,16 @@
 title: Team Memberships
 intro: Team Memberships are the primary way to link a Team to a specific Environment, granting permissions based on an assigned Role.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:        
-      - teams/index
-      - environments/index
-      - roles/index
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+    - teams/index
+    - environments/index
+    - roles/index
+  featured:
 ---
 
 Each membership acts as a link between three key components:

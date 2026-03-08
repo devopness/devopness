@@ -2,16 +2,16 @@
 title: Remove an SSH Key
 intro: Learn how to remove an SSH Key when it's no longer needed
 links:
-    overview:
-    quickstart:
-    previous: servers/ssh-into-server
-    next:
-    guides:
-    related:
-        - ssh-keys/add-ssh-key
-    featured:
+  overview:
+  quickstart:
+  previous: servers/ssh-into-server
+  next:
+  guides:
+  related:
+    - ssh-keys/add-ssh-key
+  featured:
 required_permissions:
-    - ssh-key:delete
+  - ssh-key:delete
 ---
 
 1. On Devopness, navigate to a project then select an environment

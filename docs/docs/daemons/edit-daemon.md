@@ -2,15 +2,15 @@
 title: Edit a Daemon
 intro: Edit a Daemon to update the application, settings, command, or other configurations of an existing Daemon.
 links:
-    overview:
-    quickstart:
-    previous: daemons/add-daemon
-    next: daemons/remove-daemon
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: daemons/add-daemon
+  next: daemons/remove-daemon
+  guides:
+  related:
+  featured:
 required_permissions:
-    - daemon:update
+  - daemon:update
 ---
 
 1. On Devopness, navigate to a project, then select an environment

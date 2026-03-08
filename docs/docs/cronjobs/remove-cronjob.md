@@ -2,15 +2,15 @@
 title: Remove a Cron Job
 intro: Remove a Cron Job when it is no longer needed.
 links:
-    overview:
-    quickstart:
-    previous: cronjobs/edit-cronjob
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: cronjobs/edit-cronjob
+  next:
+  guides:
+  related:
+  featured:
 required_permissions:
-    - cronjob:delete
+  - cronjob:delete
 ---
 
 1. On Devopness, navigate to a project, then select an environment

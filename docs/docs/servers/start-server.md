@@ -19,4 +19,4 @@ links:
 1. Use the drop-down menu to choose `Start`
 1. Wait for the `server:start` action to be completed
 1. Follow the guide [/docs/servers/get-server-status]
-    > The server status will be "running"
+   > The server status will be "running"

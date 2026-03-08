@@ -2,15 +2,15 @@
 title: Add a service
 intro: Often applications rely on background processes, such as web servers or databases, to deliver results. Add a Service to manage linux services, such as web servers or databases to all servers and applications that depend on them.
 links:
-    overview:
-    quickstart:
-    previous:
-    next: services/remove-service
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next: services/remove-service
+  guides:
+  related:
+  featured:
 required_permissions:
-    - service:create
+  - service:create
 ---
 
 1. On Devopness, navigate to a project then select an environment

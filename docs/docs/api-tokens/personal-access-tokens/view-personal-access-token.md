@@ -2,12 +2,12 @@
 title: View Personal Access Token
 intro: Learn how to access and review the details of a Personal Access Token you have created.
 links:
-    overview:
-    quickstart:
-    previous: api-tokens/personal-access-tokens/list-personal-access-tokens
-    next: api-tokens/personal-access-tokens/revoke-personal-access-token
-    guides:
-    featured:
+  overview:
+  quickstart:
+  previous: api-tokens/personal-access-tokens/list-personal-access-tokens
+  next: api-tokens/personal-access-tokens/revoke-personal-access-token
+  guides:
+  featured:
 ---
 
 Follow these steps to view a Personal Access Token:

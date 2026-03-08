@@ -20,8 +20,8 @@ Devopness provides a remote MCP server that AntiGravity connects to through its 
 3. Select **MCP Servers** to open the MCP Store
 4. Click **Manage MCP Servers**, then select **View raw config**
 5. This opens the configuration file located at:
-    - **macOS/Linux:** `~/.gemini/antigravity/mcp_config.json`
-    - **Windows:** `C:\Users\<USERNAME>\.gemini\antigravity\mcp_config.json`
+   - **macOS/Linux:** `~/.gemini/antigravity/mcp_config.json`
+   - **Windows:** `C:\Users\<USERNAME>\.gemini\antigravity\mcp_config.json`
 
 6. Add the following configuration, replacing `YOUR_PERSONAL_ACCESS_TOKEN` with your Devopness Personal Access Token:
 

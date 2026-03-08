@@ -2,17 +2,17 @@
 title: View Environment
 intro: Learn how to view and manage the details of an environment, including its resources, settings, and team memberships.
 links:
-    overview:
-    quickstart:
-    previous: environments/list-environments
-    next: environments/add-environment
-    guides:
-    related:
-        - environments/list-environments
-        - environments/add-environment
-        - environments/archive-environment
-        - environments/find-archived-environment
-    featured:
+  overview:
+  quickstart:
+  previous: environments/list-environments
+  next: environments/add-environment
+  guides:
+  related:
+    - environments/list-environments
+    - environments/add-environment
+    - environments/archive-environment
+    - environments/find-archived-environment
+  featured:
 ---
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
@@ -28,9 +28,8 @@ links:
    - Settings and configuration options
 
 You can perform various actions from the environment view page:
+
 - Add new resources (servers, applications, etc.)
 - Manage team memberships
 - Archive/unarchive the environment
 - View and manage environment settings
-
-

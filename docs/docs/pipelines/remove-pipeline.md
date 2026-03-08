@@ -2,15 +2,15 @@
 title: Remove a Pipeline
 intro: Learn how to remove a pipeline when it's no longer needed
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 required_permissions:
-    - application:update
+  - application:update
 ---
 
 1. On Devopness, navigate to a project then select an environment

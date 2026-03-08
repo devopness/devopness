@@ -2,14 +2,14 @@
 title: Remove a Credential
 intro: Learn how to remove a credential when it's no longer needed
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-        - credentials/add-credential
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+    - credentials/add-credential
+  featured:
 ---
 
 :::note

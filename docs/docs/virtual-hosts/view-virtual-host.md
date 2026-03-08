@@ -2,15 +2,15 @@
 title: View Virtual Host
 intro: View detailed information about a specific virtual host and manage its configuration.
 links:
-    overview:
-    quickstart:
-    previous: virtual-hosts/list-virtual-hosts
-    next: virtual-hosts/edit-virtual-host
-    guides:
-    related:
-        - virtual-hosts/list-virtual-hosts
-        - virtual-hosts/edit-virtual-host
-    featured:
+  overview:
+  quickstart:
+  previous: virtual-hosts/list-virtual-hosts
+  next: virtual-hosts/edit-virtual-host
+  guides:
+  related:
+    - virtual-hosts/list-virtual-hosts
+    - virtual-hosts/edit-virtual-host
+  featured:
 ---
 
 1. On Devopness, navigate to a project then select an environment

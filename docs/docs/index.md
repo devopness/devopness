@@ -4,13 +4,13 @@ sidebar_position: 1
 title: Welcome to Devopness Documentation
 intro: Devopness aims to drastically change the way software developers manage applications and cloud infrastructure in a secure and performant fashion. By streamlining essential DevOps practices, we're making first class software deployment and cloud infrastructure management tools accessible and affordable to every developer in the world.
 links:
-    overview:
-    quickstart:
-    previous:
-    next: projects/add-project
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next: projects/add-project
+  guides:
+  related:
+  featured:
 ---
 
 ## Getting Started

@@ -2,21 +2,21 @@
 title: API
 intro:
 links:
-    overview:
-    quickstart:
-    previous:
-    next: api-tokens/index
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next: api-tokens/index
+  guides:
+  related:
+  featured:
 ---
 
 At Devopness we treat our `API-as-a-Product`, meaning that every feature in our product is first designed with the API usage in mind, resulting in an API that is easy to use, well documented and actively maintained and supported.
 
 This `API-first` development approach makes it possible that every piece of functionality available to users of our web app can also be automated and integrated with external systems.
 
-
 ## Usage
+
 The base URL for Devopness API is https://api.devopness.com/
 
 Before submitting your first request, make sure to obtain a token following the instructions in [/docs/api-tokens/index].
@@ -40,7 +40,8 @@ To send your first API request using `curl`:
 2. Make a copy of the `curl` request below
 3. Replace `<your_api_token>` with the value of your API Token
 4. Replace `{project_id}` with the ID of your Devopness project (you can get ir from the project URL in https://app.devopness.com/)
-4. Hit the ENTER key in the terminal to submit the request
+5. Hit the ENTER key in the terminal to submit the request
+
 ```bash
 curl --request GET \
     --url https://api.devopness.com/projects/{project_id} \
@@ -48,4 +49,5 @@ curl --request GET \
     --header 'Authorization: Bearer <your_api_token>' \
     --header 'Content-Type: application/json'
 ```
+
 5. If your token is valid and there are no syntax errors with your command, we should see a JSON response with details of your project

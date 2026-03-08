@@ -2,13 +2,13 @@
 title: Add a Project API Token
 intro: Learn how to generate a new Project API Token to enable secure, project-scoped access for automation, integrations, or scripts.
 links:
-    overview:
-    quickstart:
-    previous: api-tokens/project-api-tokens/list-project-api-tokens
-    next: api-tokens/project-api-tokens/view-project-api-token
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: api-tokens/project-api-tokens/list-project-api-tokens
+  next: api-tokens/project-api-tokens/view-project-api-token
+  guides:
+  related:
+  featured:
 ---
 
 Follow these steps to create a new Project API Token:

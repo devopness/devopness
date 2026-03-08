@@ -2,13 +2,13 @@
 title: Check a Role's Permissions
 intro: Check a role's permissions to understand the role's access level on the associated project.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 ---
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects

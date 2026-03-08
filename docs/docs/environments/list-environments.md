@@ -2,15 +2,15 @@
 title: List Environments
 intro: Find and view details of project environments you have access to.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-      - environments/add-environment
-      - environments/find-archived-environment
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+    - environments/add-environment
+    - environments/find-archived-environment
+  featured:
 ---
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects

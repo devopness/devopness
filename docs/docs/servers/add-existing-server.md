@@ -2,15 +2,15 @@
 title: Add an Existing Server
 intro: If you have servers provisioned outside of your desired environment on Devopness, you can still connect them to your Devopness account and take the most of the Devopness infrastructure management features.
 links:
-    overview:
-    quickstart:
-    previous: servers/add-server
-    next: servers/check-server-provision-logs
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: servers/add-server
+  next: servers/check-server-provision-logs
+  guides:
+  related:
+  featured:
 required_permissions:
-    - server:create
+  - server:create
 ---
 
 1. On Devopness, navigate to a project then select an environment
@@ -22,16 +22,16 @@ required_permissions:
 1. Provide the `Public IP address` of your existing server
 1. Enter the `SSH Port` to be used to connect to the server
 
-    :::note
+   :::note
 
-    We do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
+   We do not recommend connecting servers that are already being used in production. Server's existing configuration will be lost and replaced by Devopness during the server setup process
 
-    :::
+   :::
 
 1. Click `NEXT`
 1. Follow the prompts to complete the configuration of the new `Server`
 1. Click `CONFIRM`
-    - If you see a message saying `Error establishing a SSH connection to server`, please verify if the IP address and SSH port used are correct and if external SSH connections are allowed on this server
+   - If you see a message saying `Error establishing a SSH connection to server`, please verify if the IP address and SSH port used are correct and if external SSH connections are allowed on this server
 1. After the `Server` is added you will be redirected to the `Connect` page
 1. Find the `Command to connect` field and click `Copy to clipboard`
 1. Log into your server as the `root` user
