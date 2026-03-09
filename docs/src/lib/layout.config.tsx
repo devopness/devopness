@@ -1,17 +1,23 @@
+import type { ComponentProps } from 'react';
+import Link from 'next/link';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { siteConfig } from '@/lib/constants';
 
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: (
-        <img
-          src={siteConfig.assets.logo}
-          alt="Devopness Logo"
-          style={{ height: 28 }}
-        />
+      title: (props: ComponentProps<'a'>) => (
+        <Link
+          {...props}
+          href={siteConfig.url}>
+          <img
+            src={siteConfig.assets.logo}
+            alt="Devopness Logo"
+            style={{ height: 28 }}
+          />
+        </Link>
       ),
-      url: siteConfig.url,
+      url: '/',
     },
     githubUrl: siteConfig.links.github,
     links: [
