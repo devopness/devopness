@@ -2,15 +2,15 @@
 title: Run a Pipeline
 intro: Run a deploy pipeline to apply a network rule to a server.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 required_permissions:
-    - network-rule:deploy
+  - network-rule:deploy
 ---
 
 :::note
@@ -26,14 +26,14 @@ A network rule and deploy pipeline were chosen as examples, the steps are the sa
 1. Click the `PIPELINES` tab
 1. In the list of pipelines, find the deploy pipeline you want to run and click `DEPLOY`
 1. Follow the prompts then click `DEPLOY`
-    - The form confirm button will be labeled according to the pipeline operation
+   - The form confirm button will be labeled according to the pipeline operation
 
-    :::note
+   :::note
 
-    To run a deploy pipeline at least one server must be linked to the resource.
+   To run a deploy pipeline at least one server must be linked to the resource.
 
-    If there are no servers linked to the network rule, follow the guide [/docs/applications/link-server-to-application]
+   If there are no servers linked to the network rule, follow the guide [/docs/applications/link-server-to-application]
 
-    :::
+   :::
 
 1. Wait for the action `network-rule:deploy` to be completed

@@ -2,15 +2,15 @@
 title: Edit a Credential
 intro: Sometimes you may need to update a credential name or rotate keys and secrets. Edit a credential to update its name and settings.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 required_permissions:
-    - application:update
+  - application:update
 ---
 
 1. On Devopness, navigate to a project then select an environment

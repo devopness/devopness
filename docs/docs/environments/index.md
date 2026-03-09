@@ -2,13 +2,13 @@
 title: Environments
 intro: Use environments to organize the infrastructure on which your application will run, provision new cloud resources, manage operating system resources, network configuration and have fine grained control of your application deployments.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 ---
 
 ## How environments are used
@@ -16,6 +16,7 @@ links:
 An environment is where your infrastructure, deployments, and configuration live. It can include multiple servers, applications, and virtual hosts.
 
 You can connect multiple repositories to the same environment by creating one application per repository. This is common when a product has:
+
 - A marketing site
 - A demo app
 - A production app

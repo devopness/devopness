@@ -2,13 +2,13 @@
 title: Integrate Application deployments with your Continuous Integration (CI) workflows
 intro: Learn how to create outgoing webhooks to integrate the application deployment with your existing CI workflow.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 ---
 
 :::note
@@ -25,9 +25,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
    - [Gitlab](https://docs.gitlab.com/ee/api/commits.html#set-the-pipeline-status-of-a-commit)
 
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.started` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
-
    - For further instructions, follow the guide [/docs/webhooks/create-outgoing-webhook]
-
 
    ```bash
    curl --request POST \
@@ -65,9 +63,7 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
      }'
    ```
 
-
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.failed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
-
 
    ```bash
    curl --request POST \
@@ -105,11 +101,9 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
      }'
    ```
 
-
    - NOTE: the field `request_body.context` needs to be the same for all the action status; this way the same commit status will be updated, instead of creating a new entry for every state.
 
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.completed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
-
 
    ```bash
    curl --request POST \
@@ -146,7 +140,6 @@ Webhooks, for now, are an API only feature; so this post will guide you through 
        }
      }'
    ```
-
 
 1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
 

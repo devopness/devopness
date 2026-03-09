@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { formatPermissionHumanReadable } from '@/utils/permissions';
 
 interface RequiredPermissionsProps {
@@ -10,7 +12,9 @@ interface RequiredPermissionsProps {
  * each permission in a human-readable format using the static permissions data.
  */
 export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
-  const valid = permissions.filter((p) => typeof p === 'string' && p.trim() !== '');
+  const valid = permissions.filter(
+    (p) => typeof p === 'string' && p.trim() !== ''
+  );
   if (valid.length === 0) return null;
 
   const formatted = valid.map((p) => formatPermissionHumanReadable(p));
@@ -19,8 +23,8 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
     <div className="mt-4">
       <h2 className="text-lg font-semibold mb-2">Required Permissions</h2>
       <p className="text-sm text-fd-muted-foreground mb-4">
-        To complete the steps in this guide, the user needs the following permissions in the
-        environment:
+        To complete the steps in this guide, the user needs the following
+        permissions in the environment:
       </p>
       <table className="w-full text-sm">
         <thead>
@@ -31,7 +35,10 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
         </thead>
         <tbody>
           {formatted.map((fp) => (
-            <tr key={`${fp.resource_type}-${fp.permission}`} className="border-b">
+            <tr
+              key={`${fp.resource_type}-${fp.permission}`}
+              className="border-b"
+            >
               <td className="py-2">{fp.resource_type}</td>
               <td className="py-2">{fp.permission}</td>
             </tr>
@@ -40,9 +47,12 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
       </table>
       <p className="text-sm text-fd-muted-foreground mt-4">
         For instructions on how to grant user permissions in an environment, see{' '}
-        <a href="/docs/environments/team-memberships/add-team-membership" className="underline">
+        <Link
+          href="/docs/environments/team-memberships/add-team-membership"
+          className="underline"
+        >
           Add team to an Environment
-        </a>
+        </Link>
       </p>
     </div>
   );

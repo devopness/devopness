@@ -22,11 +22,11 @@ Before creating an incoming webhook to trigger an `application:deploy`, we need 
 1. In the list of applications, find the application with the pipeline you want to manage and click the `NAME` of the application
 1. Click the `Pipelines` tab
 1. In the list of pipelines, find the pipeline you want to manage and click the `NAME` of the pipeline
-    > If you haven't created a pipeline yet, follow the [/docs/pipelines/add-pipeline] guide
+   > If you haven't created a pipeline yet, follow the [/docs/pipelines/add-pipeline] guide
 1. Copy the `<pipeline_id>` from the pipeline details URL, considering the following URL format:
-    ```bash
-    https://app.devopness.com/projects/<project_id>/environments/<environment_id>/applications/<application_id>/pipelines/<pipeline_id>
-    ```
+   ```bash
+   https://app.devopness.com/projects/<project_id>/environments/<environment_id>/applications/<application_id>/pipelines/<pipeline_id>
+   ```
 
 </details>
 
@@ -35,14 +35,14 @@ Once you have your `<pipeline_id>`, please follow the instructions below to add 
 1. Follow the steps on [/docs/webhooks/create-incoming-webhook] guide
 1. Once your web hook is created, copy the hook's unique URL (`url` field)
 1. Take note of the hook's secret signature key (`secret` field)
-    > If the hook was created without a `secret` (non recommended), you can skip this step
+   > If the hook was created without a `secret` (non recommended), you can skip this step
 1. Add your webhook to the source provider where each application's source code is hosted, by following the source provider's instructions on the links below:
-    - Bitbucket: [Manage webhooks: create webhooks](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks)
-    - Github: [Webhooks: setting up a webhook](https://docs.github.com/en/webhooks-and-events/webhooks/creating-webhooks#setting-up-a-webhook)
-    - Gitlab: [Webhooks: configure a webhook in GitLab](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html#configure-a-webhook-in-gitlab)
+   - Bitbucket: [Manage webhooks: create webhooks](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks)
+   - Github: [Webhooks: setting up a webhook](https://docs.github.com/en/webhooks-and-events/webhooks/creating-webhooks#setting-up-a-webhook)
+   - Gitlab: [Webhooks: configure a webhook in GitLab](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html#configure-a-webhook-in-gitlab)
 1. Trigger the webhook, using the configured source provider event trigger options
 1. On the chosen Devopness environment, click `View` in the `Applications` card to see a list of existing `Applications`
 1. In the list of applications, find the application you triggered the pipeline and click the `NAME` of the application
 1. On the upper-right corner click `DEPLOYMENTS`
 1. Click `LOGS` on the action triggered by incoming hook
-    > In `START TIME` column, the name of the subject, user or incoming hook, that triggered the action will be visible, e.g: run pipeline 'deploy' on application 'website' using main branch
+   > In `START TIME` column, the name of the subject, user or incoming hook, that triggered the action will be visible, e.g: run pipeline 'deploy' on application 'website' using main branch

@@ -2,14 +2,14 @@
 title: List Projects
 intro: View your list of projects
 links:
-    overview:
-    quickstart:
-    previous: projects/view-project
-    next: environments/add-environment
-    guides:
-    related:
-        - projects/add-project
-    featured:
+  overview:
+  quickstart:
+  previous: projects/view-project
+  next: environments/add-environment
+  guides:
+  related:
+    - projects/add-project
+  featured:
 ---
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects

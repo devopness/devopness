@@ -2,15 +2,15 @@
 title: Remove a Service
 intro: Remove a Service when it is no longer needed.
 links:
-    overview:
-    quickstart:
-    previous: services/add-service
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: services/add-service
+  next:
+  guides:
+  related:
+  featured:
 required_permissions:
-    - service:delete
+  - service:delete
 ---
 
 1. On Devopness, navigate to a project then select an environment

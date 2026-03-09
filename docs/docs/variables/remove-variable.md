@@ -3,7 +3,7 @@ title: Remove a Variable
 pagination_prev: applications/add-application
 pagination_next: variables/add-variable
 required_permissions:
-    - application:update
+  - application:update
 ---
 
 Learn how to remove a variable when it's no longer needed.
@@ -16,5 +16,5 @@ Learn how to remove a variable when it's no longer needed.
 1. In the list of variables, find the variable you want to remove and click `REMOVE`
 1. Follow the prompts then click `REMOVE VARIABLE`
 1. In the list of variables, the recently removed `Variable` will be gone
-    > A new deployment is required for your changes to take effect.
-      - Follow the guide [/docs/applications/deploy-application]
+   > A new deployment is required for your changes to take effect.
+   - Follow the guide [/docs/applications/deploy-application]

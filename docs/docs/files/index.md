@@ -1,13 +1,13 @@
 ---
 title: Files
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 ---
 
 Configuration files are used to store configuration settings and environment variables that are used by application and infrastructure resources.

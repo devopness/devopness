@@ -2,15 +2,15 @@
 title: Deploy SSH Key
 intro: Deploy your SSH Keys to each of the servers you want to give access to using those keys.
 links:
-    overview:
-    quickstart:
-    previous: ssh-keys/link-ssh-key
-    next: servers/ssh-into-server
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: ssh-keys/link-ssh-key
+  next: servers/ssh-into-server
+  guides:
+  related:
+  featured:
 required_permissions:
-    - ssh-key:deploy
+  - ssh-key:deploy
 ---
 
 1. On Devopness, navigate to a project then select an environment

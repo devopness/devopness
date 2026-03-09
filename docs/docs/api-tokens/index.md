@@ -2,15 +2,15 @@
 title: API Tokens
 intro: API Tokens are the primary way to authenticate when interacting with the Devopness API.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-      - api-tokens/personal-access-tokens/index
-      - api-tokens/project-api-tokens/index
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+    - api-tokens/personal-access-tokens/index
+    - api-tokens/project-api-tokens/index
+  featured:
 ---
 
 ## Types of API Tokens
@@ -22,6 +22,7 @@ Whenever possible, Devopness recommends the usage of `Project API Tokens` for fi
 ### Personal Access Tokens
 
 A token has the same capabilities to access resources and perform actions on those resources that the owner of the token has, allowing a user to perform any operation using Devopness API, including:
+
 1. Create and manage Projects
 2. Create and manage Environments in a project
 3. Accept user Team Invitations

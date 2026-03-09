@@ -2,15 +2,15 @@
 title: Remove Step from Pipeline
 intro: Learn how to remove a step from a pipeline when it's no longer needed
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 required_permissions:
-    - application:update
+  - application:update
 ---
 
 1. On Devopness, navigate to a project then select an environment
@@ -23,5 +23,5 @@ required_permissions:
 1. In the list of pipeline steps, find the pipeline step you want to remove and click `REMOVE`
 1. Follow the prompts then click `REMOVE`
 1. In the list of pipeline steps, the recently removed `Step` will be gone
-    > A new deployment is required for your changes to take effect.
-      - Follow the guide [/docs/applications/deploy-application]
+   > A new deployment is required for your changes to take effect.
+   - Follow the guide [/docs/applications/deploy-application]

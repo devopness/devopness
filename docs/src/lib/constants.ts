@@ -1,5 +1,6 @@
 const githubDocsRepo = 'https://github.com/devopness/devopness';
-const githubDocsRawHost = 'https://raw.githubusercontent.com/devopness/devopness';
+const githubDocsRawHost =
+  'https://raw.githubusercontent.com/devopness/devopness';
 const githubDocsBranch = 'main';
 const githubDocsContentPath = 'docs/docs';
 const githubDocsEditPathPrefix = `${githubDocsRepo}/blob/${githubDocsBranch}/${githubDocsContentPath}`;

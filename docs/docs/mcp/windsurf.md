@@ -16,14 +16,14 @@ Devopness provides a remote MCP server that Windsurf connects to through its nat
 ## Configure the MCP server
 
 1. Open the MCP configuration file at:
-    - **macOS/Linux:** `~/.codeium/windsurf/mcp_config.json`
-    - **Windows:** `%USERPROFILE%\.codeium\windsurf\mcp_config.json`
+   - **macOS/Linux:** `~/.codeium/windsurf/mcp_config.json`
+   - **Windows:** `%USERPROFILE%\.codeium\windsurf\mcp_config.json`
 
-    :::tip
+   :::tip
 
-    You can also access this file from Windsurf by clicking the **MCP icon** in the top-right of the Cascade panel, then selecting **View raw config (JSON)**.
+   You can also access this file from Windsurf by clicking the **MCP icon** in the top-right of the Cascade panel, then selecting **View raw config (JSON)**.
 
-    :::
+   :::
 
 2. Add the following configuration, replacing `YOUR_PERSONAL_ACCESS_TOKEN` with your Devopness Personal Access Token:
 

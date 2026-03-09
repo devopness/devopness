@@ -2,13 +2,13 @@
 title: View Project API Token
 intro: Learn how to access and review the details of a Project API Token within a specific project.
 links:
-    overview:
-    quickstart:
-    previous: api-tokens/project-api-tokens/list-project-api-tokens
-    next: api-tokens/project-api-tokens/revoke-project-api-token
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: api-tokens/project-api-tokens/list-project-api-tokens
+  next: api-tokens/project-api-tokens/revoke-project-api-token
+  guides:
+  related:
+  featured:
 ---
 
 Follow these steps to view a Project API Token:

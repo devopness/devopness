@@ -2,13 +2,13 @@
 title: Link a server to an application
 intro: Link a server to an application to select which servers an application can be deployed.
 links:
-    overview:
-    quickstart:
-    previous: files/add-file
-    next: applications/deploy-application
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: files/add-file
+  next: applications/deploy-application
+  guides:
+  related:
+  featured:
 ---
 
 :::note

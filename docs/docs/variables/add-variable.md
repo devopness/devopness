@@ -3,7 +3,7 @@ title: Add a Variable
 pagination_prev: pipelines/steps/add-step
 pagination_next: applications/link-server-to-application
 required_permissions:
-    - application:update
+  - application:update
 ---
 
 Variables are key/value pairs accessible by Pipeline Step commands. Use environment Variables to store configuration data used by commands in your Pipeline steps (such as compiler flags, environment specific configuration, credentials and secrets).
@@ -21,5 +21,5 @@ If a resource requires multiple Variables to be written to a custom file (e.g. a
 1. Click the `VARIABLES` tab
 1. On the right corner of the variables tab click `ADD VARIABLE`
 1. Follow the instructions in the add variable step form then click `CONFIRM`
-    > A new deployment is required for your changes to take effect.
-      - Follow the guide [/docs/applications/deploy-application]
+   > A new deployment is required for your changes to take effect.
+   - Follow the guide [/docs/applications/deploy-application]

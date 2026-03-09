@@ -24,6 +24,10 @@ jobs:
           filters: |
             changes:
               - 'docs/**'
+              - '.github/workflows/ci-docs.yml'
+          # Evaluate against the full PR diff, not just the latest pushed commit (base -> head).
+          base: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
   build:
     name: Build Docs web app
@@ -55,7 +59,16 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: install
+        # CI uses --ignore-scripts to keep dependency installation deterministic.
+        # We run required postinstall work explicitly in the next step.
         run: npm ci --ignore-scripts
+
+      - name: generate docs metadata
+        # Fumadocs generated files are required for docs type resolution in CI.
+        run: npm run postinstall
+
+      - name: lint
+        run: npm run lint
 
       - name: build
         run: npm run build

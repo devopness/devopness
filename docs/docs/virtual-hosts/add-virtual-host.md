@@ -2,17 +2,17 @@
 title: Add a Virtual host
 intro: Add a Virtual Host to make an application accessible on the internet, by server IP address or a domain name
 links:
-    overview:
-    quickstart:
-    previous: applications/deploy-application
-    next: ssl-certificates/add-ssl-certificate
-    guides:
-    related:
-        - virtual-hosts/list-virtual-hosts
-        - virtual-hosts/view-virtual-host
-    featured:
+  overview:
+  quickstart:
+  previous: applications/deploy-application
+  next: ssl-certificates/add-ssl-certificate
+  guides:
+  related:
+    - virtual-hosts/list-virtual-hosts
+    - virtual-hosts/view-virtual-host
+  featured:
 required_permissions:
-    - virtual-host:create
+  - virtual-host:create
 ---
 
 1. On Devopness, navigate to a project then select an environment
@@ -21,10 +21,11 @@ required_permissions:
 1. On the upper-right corner of the list click `ADD VIRTUAL HOST`
 1. Follow the prompts then click `CONFIRM`
 1. In the `Virtual hosts` list, the recently created virtual host can be seen
-    - A new deployment is required for your changes to take effect
-        - Follow the guide [/docs/pipelines/run-pipeline]
+   - A new deployment is required for your changes to take effect
+     - Follow the guide [/docs/pipelines/run-pipeline]
 
 Tips:
+
 - Add one virtual host per domain you want to use (for example `www.my-product.ai`, `demo.my-product.ai`, `api.my-product.ai`).
 - You can add multiple virtual hosts for the same application when you need multiple domains.
 
@@ -47,13 +48,13 @@ For virtual hosts of type `Domain name` ("name-based virtual host") please make 
 Follow the steps below to configure a DNS record pointing to your server:
 
 1. Copy the IP Address of the server to which the virtual host has been deployed
-    - Follow the guide [/docs/servers/find-server-ip-address]
+   - Follow the guide [/docs/servers/find-server-ip-address]
 1. Access your DNS service management panel
-    - If you don't have your own domains configured with a DNS service, you can use free services such as [FreeDNS](https://freedns.afraid.org/) or hire paid managed DNS services such as [AWS Route53](https://aws.amazon.com/route53/), [Cloudflare DNS](https://www.cloudflare.com/dns/), or any [notable managed DNS service provider](https://en.wikipedia.org/wiki/List_of_managed_DNS_providers) that suits your needs
+   - If you don't have your own domains configured with a DNS service, you can use free services such as [FreeDNS](https://freedns.afraid.org/) or hire paid managed DNS services such as [AWS Route53](https://aws.amazon.com/route53/), [Cloudflare DNS](https://www.cloudflare.com/dns/), or any [notable managed DNS service provider](https://en.wikipedia.org/wiki/List_of_managed_DNS_providers) that suits your needs
 1. Configure a DNS record for your virtual host domain
-    - Follow the specific instructions on your chosen DNS service documentation
+   - Follow the specific instructions on your chosen DNS service documentation
 1. Verify your DNS record is pointing to your Devopness managed server
-    - This can be verified using a DNS propagation checker such as [whatsmydns](https://www.whatsmydns.net/) or [DNS Checker](https://dnschecker.org/)
+   - This can be verified using a DNS propagation checker such as [whatsmydns](https://www.whatsmydns.net/) or [DNS Checker](https://dnschecker.org/)
 
 :::
 

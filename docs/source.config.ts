@@ -1,8 +1,14 @@
-import { defineConfig, defineDocs, frontmatterSchema, metaSchema } from 'fumadocs-mdx/config';
 import { remarkDirectiveAdmonition } from 'fumadocs-core/mdx-plugins';
+import {
+  defineConfig,
+  defineDocs,
+  frontmatterSchema,
+  metaSchema,
+} from 'fumadocs-mdx/config';
 import remarkDirective from 'remark-directive';
-import { remarkMentionLink } from './src/plugins/remark-mention-link';
 import { z } from 'zod';
+
+import { remarkMentionLink } from './src/plugins/remark-mention-link';
 
 // Extended frontmatter schema with custom fields used in the existing markdown files.
 // These fields (intro, slug, sidebar_position, links, required_permissions) are
@@ -30,7 +36,11 @@ const docsSchema = frontmatterSchema.extend({
 export const docs = defineDocs({
   dir: 'docs',
   docs: {
-    files: ['**/*.md', '**/*.mdx', '!**/README.md'],
+    files: [
+      '**/*.md',
+      '**/*.mdx',
+      '!**/README.md',
+    ],
     schema: docsSchema,
     postprocess: {
       includeProcessedMarkdown: true,
@@ -45,12 +55,18 @@ export default defineConfig({
   mdxOptions: {
     remarkPlugins: [
       // Required by remarkDirectiveAdmonition
-      [remarkDirective],
+      [
+        remarkDirective,
+      ],
       // Supports :::note, :::warning, :::danger admonition syntax used in the existing markdown files
       // @see https://fumadocs.dev/docs/mdx/admonition
-      [remarkDirectiveAdmonition],
+      [
+        remarkDirectiveAdmonition,
+      ],
       // Converts [/docs/path/to/page] mention syntax to standard markdown links
-      [remarkMentionLink],
+      [
+        remarkMentionLink,
+      ],
     ],
   },
   plugins: [

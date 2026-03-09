@@ -2,13 +2,13 @@
 title: Invite Team Member
 intro: Invite members to a team so people can collaborate to all project environments on which the team has permissions.
 links:
-    overview: Project owners can add members to multiple teams and invite non-members to join a project team.
-    quickstart:
-    previous: teams/add-team
-    next: environments/team-memberships/add-team-membership
-    guides:
-    related:
-    featured:
+  overview: Project owners can add members to multiple teams and invite non-members to join a project team.
+  quickstart:
+  previous: teams/add-team
+  next: environments/team-memberships/add-team-membership
+  guides:
+  related:
+  featured:
 ---
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
@@ -19,4 +19,4 @@ links:
 1. On the upper-right corner of the `Invitations` list, click `INVITE MEMBER`
 1. Provide the email of the member to be invited
 1. Click `CONFIRM`
-    - In the `Invitations` list, the recently created `Invitation` can be seen
+   - In the `Invitations` list, the recently created `Invitation` can be seen

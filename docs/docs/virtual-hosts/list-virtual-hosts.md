@@ -2,15 +2,15 @@
 title: List Virtual Hosts
 intro: View and manage all virtual hosts associated with your project.
 links:
-    overview:
-    quickstart:
-    previous: virtual-hosts/add-virtual-host
-    next: virtual-hosts/view-virtual-host
-    guides:
-    related:
-        - virtual-hosts/add-virtual-host
-        - virtual-hosts/view-virtual-host
-    featured:
+  overview:
+  quickstart:
+  previous: virtual-hosts/add-virtual-host
+  next: virtual-hosts/view-virtual-host
+  guides:
+  related:
+    - virtual-hosts/add-virtual-host
+    - virtual-hosts/view-virtual-host
+  featured:
 ---
 
 1. On Devopness, navigate to a project then select an environment
