@@ -46,9 +46,9 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
         </tbody>
       </table>
       <p className="text-sm text-fd-muted-foreground mt-4">
-        For instructions on how to grant user permissions in an environment, see{' '}
+        For instructions on how to grant user permissions to an environment, please follow the guide{' '}
         <Link
-          href="/docs/environments/team-memberships/add-team-membership"
+          href="/environments/team-memberships/add-team-membership"
           className="underline"
         >
           Add team to an Environment
