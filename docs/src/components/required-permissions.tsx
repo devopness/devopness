@@ -21,16 +21,15 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
 
   return (
     <div className="mt-4">
-      <h2 className="text-lg font-semibold mb-2">Required Permissions</h2>
+      <h2 className="text-lg font-semibold mb-2">Required permissions</h2>
       <p className="text-sm text-fd-muted-foreground mb-4">
-        To complete the steps in this guide, the user needs the following
-        permissions in the environment:
+        To follow this guide, you need the following permissions in the target environment.
       </p>
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b">
             <th className="text-left py-2 font-medium">Resource Type</th>
-            <th className="text-left py-2 font-medium">Permission</th>
+            <th className="text-left py-2 font-medium">Required Permission</th>
           </tr>
         </thead>
         <tbody>
@@ -51,8 +50,9 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
           href="/environments/team-memberships/add-team-membership"
           className="underline"
         >
-          Add team to an Environment
+          Add a team to an environment
         </Link>
+        .
       </p>
     </div>
   );
