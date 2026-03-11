@@ -6,9 +6,8 @@ links:
   previous: organizations/index
   next: projects/add-project
   guides:
-    related:
-      - organizations/index
-      - environments/index
+    - organizations/index
+    - environments/index
   featured:
 ---
 

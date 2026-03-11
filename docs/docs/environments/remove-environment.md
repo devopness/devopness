@@ -18,7 +18,10 @@ Delete an environment when you no longer need that deployment stage.
 
 Clean up old stages and stop working from it after deployment flow changes.
 
-Warning:
+:::warning
+Removing this environment is permanent. Confirm this stage is no longer needed before you continue.
+:::
+
 Removed environments no longer keep an active deployment target.
 
 ## Who should use this

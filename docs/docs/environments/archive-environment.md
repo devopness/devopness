@@ -5,8 +5,7 @@ links:
   quickstart:
   previous:
   next:
-  guides:
-    related:
+  guides: []
   featured:
 ---
 

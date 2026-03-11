@@ -5,8 +5,7 @@ links:
   quickstart:
   previous: cronjobs/edit-cronjob
   next:
-  guides:
-    related:
+  guides: []
   featured:
 required_permissions:
   - cronjob:delete

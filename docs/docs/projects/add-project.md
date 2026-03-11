@@ -6,8 +6,7 @@ links:
   previous: projects/index
   next: projects/view-project
   guides:
-    related:
-      - projects/list-projects
+    - projects/list-projects
   featured:
 ---
 

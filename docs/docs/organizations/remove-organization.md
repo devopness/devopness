@@ -5,8 +5,7 @@ links:
   quickstart:
   previous: organizations/edit-organization
   next: organizations/index
-  guides:
-    related:
+  guides: []
   featured:
 ---
 
@@ -16,8 +15,11 @@ Delete an organization when you no longer want to keep that workspace.
 
 Stop all team, project, and token activity under this workspace in one action.
 
-Warning:
-This action is permanent and removes the organization, its projects, and memberships.
+:::warning
+Removing an organization is permanent. This action cannot be undone.
+:::
+
+Confirm this organization is no longer needed before you continue.
 
 ## Who should use this
 

@@ -16,6 +16,10 @@ Revoke a Personal Access Token immediately.
 
 Stop a token from being used after it is no longer needed or has been exposed.
 
+:::warning
+Revoking a token is permanent. A revoked token cannot be restored.
+:::
+
 ## Steps
 
 1. Open `Personal Access Tokens`

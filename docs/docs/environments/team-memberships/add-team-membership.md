@@ -5,8 +5,7 @@ links:
   quickstart:
   previous: environments/team-memberships/index
   next: environments/team-memberships/list-team-memberships
-  guides:
-    related:
+  guides: []
   featured:
 ---
 

@@ -5,8 +5,7 @@ links:
   quickstart:
   previous: organizations/index
   next: organizations/edit-organization
-  guides:
-    related:
+  guides: []
   featured:
 ---
 

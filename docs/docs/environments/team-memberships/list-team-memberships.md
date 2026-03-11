@@ -5,8 +5,7 @@ links:
   quickstart:
   previous: environments/index
   next: environments/team-memberships/add-team-membership
-  guides:
-    related:
+  guides: []
   featured:
 ---
 

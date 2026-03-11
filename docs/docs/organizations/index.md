@@ -6,10 +6,9 @@ links:
   previous:
   next: projects/index
   guides:
-    related:
-      - projects/index
-      - teams/index
-      - roles/index
+    - projects/index
+    - teams/index
+    - roles/index
   featured:
 ---
 

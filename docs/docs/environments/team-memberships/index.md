@@ -6,10 +6,9 @@ links:
   previous:
   next:
   guides:
-    related:
-      - teams/index
-      - environments/index
-      - roles/index
+    - teams/index
+    - environments/index
+    - roles/index
   featured:
 ---
 

@@ -35,10 +35,12 @@ Project API Tokens are scoped to one project and safer for shared automation.
 ## Which token should I use
 
 Use Personal Access Tokens when:
+
 - You need one-off user-like access
 - A task is personal and temporary
 
 Use Project API Tokens when:
+
 - A service needs recurring access to one project
 - Multiple people share the automation
 - You want least-privilege production-safe access

@@ -16,6 +16,10 @@ Revoke a project token you no longer trust or need.
 
 Stop token authentication for that project immediately.
 
+:::warning
+Revoking a token is permanent. A revoked token cannot be restored.
+:::
+
 ## Steps
 
 1. Open the target project

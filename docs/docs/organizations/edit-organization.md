@@ -5,8 +5,7 @@ links:
   quickstart:
   previous: organizations/add-organization
   next: organizations/remove-organization
-  guides:
-    related:
+  guides: []
   featured:
 ---
 

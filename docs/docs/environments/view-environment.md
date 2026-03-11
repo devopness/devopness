@@ -6,11 +6,10 @@ links:
   previous: environments/list-environments
   next: environments/add-environment
   guides:
-    related:
-      - environments/list-environments
-      - environments/add-environment
-      - environments/archive-environment
-      - environments/find-archived-environment
+    - environments/list-environments
+    - environments/add-environment
+    - environments/archive-environment
+    - environments/find-archived-environment
   featured:
 ---
 

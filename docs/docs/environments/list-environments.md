@@ -6,9 +6,8 @@ links:
   previous:
   next: environments/view-environment
   guides:
-    related:
-      - environments/add-environment
-      - environments/find-archived-environment
+    - environments/add-environment
+    - environments/find-archived-environment
   featured:
 ---
 

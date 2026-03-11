@@ -18,8 +18,11 @@ Delete a project when it is no longer needed.
 
 Stop managing a project and remove it from the workspace.
 
-Warning:
-This action is permanent and removes project-level resources.
+:::warning
+Removing a project is permanent. This action cannot be undone.
+:::
+
+This action removes project-level resources.
 
 Removing a project deletes its resources and cannot be undone.
 

@@ -6,8 +6,7 @@ links:
   previous: projects/view-project
   next: environments/add-environment
   guides:
-    related:
-      - projects/add-project
+    - projects/add-project
   featured:
 ---
 

@@ -6,9 +6,8 @@ links:
   previous: projects/add-project
   next: environments/list-environments
   guides:
-    related:
-      - environments/list-environments
-      - environments/remove-environment
+    - environments/list-environments
+    - environments/remove-environment
   featured:
 ---
 
