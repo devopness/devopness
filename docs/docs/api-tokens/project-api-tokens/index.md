@@ -6,8 +6,7 @@ links:
   previous: api-tokens/index
   next: api-tokens/project-api-tokens/list-project-api-tokens
   guides:
-    related:
-      - api-tokens/personal-access-tokens/index
+    - api-tokens/personal-access-tokens/index
   featured:
 ---
 

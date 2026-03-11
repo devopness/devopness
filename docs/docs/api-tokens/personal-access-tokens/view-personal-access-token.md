@@ -6,8 +6,7 @@ links:
   previous: api-tokens/personal-access-tokens/list-personal-access-tokens
   next: api-tokens/personal-access-tokens/revoke-personal-access-token
   guides:
-    related:
-      - api-tokens/personal-access-tokens/list-personal-access-tokens
+    - api-tokens/personal-access-tokens/list-personal-access-tokens
   featured:
 ---
 

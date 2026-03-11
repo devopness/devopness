@@ -5,8 +5,6 @@ links:
   quickstart:
   previous: api-tokens/personal-access-tokens/list-personal-access-tokens
   next: api-tokens/personal-access-tokens/view-personal-access-token
-  guides:
-    related:
   featured:
 ---
 
