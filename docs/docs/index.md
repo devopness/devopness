@@ -1,15 +1,17 @@
 ---
+
 slug: /
 sidebar_position: 1
 title: Get started with Devopness
 links:
-  overview:
-  quickstart:
-  previous:
-  next: organizations/index
-  guides:
-  related:
-  featured:
+overview:
+quickstart:
+previous:
+next: organizations/index
+guides:
+related:
+featured:
+
 ## About:
 
 Devopness is an API-first, AI-assisted platform for provisioning infrastructure and deploying applications.

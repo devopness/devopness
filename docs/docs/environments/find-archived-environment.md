@@ -7,7 +7,7 @@ links:
   next:
   guides:
     related:
-    - environments/list-environments
+      - environments/list-environments
   featured:
 ---
 

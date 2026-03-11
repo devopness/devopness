@@ -7,7 +7,7 @@ links:
   next: api-tokens/personal-access-tokens/add-personal-access-token
   guides:
     related:
-    - api-tokens/personal-access-tokens/view-personal-access-token
+      - api-tokens/personal-access-tokens/view-personal-access-token
   featured:
 ---
 

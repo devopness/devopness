@@ -7,8 +7,8 @@ links:
   next: projects/list-projects
   guides:
     related:
-    - projects/list-projects
-    - projects/add-project
+      - projects/list-projects
+      - projects/add-project
   featured:
 ---
 

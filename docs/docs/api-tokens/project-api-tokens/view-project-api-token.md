@@ -7,7 +7,7 @@ links:
   next: api-tokens/project-api-tokens/revoke-project-api-token
   guides:
     related:
-    - api-tokens/project-api-tokens/list-project-api-tokens
+      - api-tokens/project-api-tokens/list-project-api-tokens
   featured:
 ---
 

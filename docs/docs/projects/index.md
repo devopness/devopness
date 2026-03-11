@@ -7,8 +7,8 @@ links:
   next: projects/add-project
   guides:
     related:
-    - organizations/index
-    - environments/index
+      - organizations/index
+      - environments/index
   featured:
 ---
 
@@ -29,6 +29,7 @@ You can start with one project and add another later as your team grows.
 
 Think of a project as one product or one client delivery.
 A startup can start one project that includes:
+
 - one API
 - one frontend
 - one worker or queue process
@@ -53,6 +54,7 @@ Add `Development` and `Staging` when your release flow grows.
 ## Quick decision rule
 
 Start with one project until one of these is true
+
 - You run separate unrelated products
 - You need client-specific teams, permissions, or ownership boundaries
 - You need independent release schedules for different stacks or clients

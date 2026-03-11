@@ -7,7 +7,7 @@ links:
   next: api-tokens/project-api-tokens/add-project-api-token
   guides:
     related:
-    - api-tokens/project-api-tokens/add-project-api-token
+      - api-tokens/project-api-tokens/add-project-api-token
   featured:
 ---
 
