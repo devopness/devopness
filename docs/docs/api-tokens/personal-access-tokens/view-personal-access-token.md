@@ -1,23 +1,34 @@
 ---
 title: View Personal Access Token
-intro: Learn how to access and review the details of a Personal Access Token you have created.
 links:
   overview:
   quickstart:
   previous: api-tokens/personal-access-tokens/list-personal-access-tokens
   next: api-tokens/personal-access-tokens/revoke-personal-access-token
   guides:
+    related:
+    - api-tokens/personal-access-tokens/list-personal-access-tokens
   featured:
 ---
 
-Follow these steps to view a Personal Access Token:
+Review one token's key details before using it.
 
-1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Personal Access Tokens`
-2. The `Personal Access Tokens` list will be displayed
-3. Find the token you want to view and click on the `Name` of the token
-4. The token details page will show information such as:
-   - **Name**
-   - **Status**
-   - **Expiration date**
-   - **Last used date**
-   - and other relevant details.
+## Goal
+
+Confirm token identity, state, and intended usage.
+
+## Steps
+
+1. Open `Personal Access Tokens`
+2. Find the token you want to review
+3. Open it by name
+4. Confirm name, status, expiry, and last used date
+
+## Expected result
+
+- You know whether the token is valid and currently usable
+- You can decide if it should be updated or revoked
+
+## Common issues
+
+- You cannot open the token: confirm token permissions and ownership

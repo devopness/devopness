@@ -1,28 +1,35 @@
 ---
 title: Revoke a Personal Access Token
-intro: Revoke a Personal Access Token to immediately prevent it from being used for future requests.
 links:
   overview:
   quickstart:
   previous: api-tokens/personal-access-tokens/list-personal-access-tokens
   next: api-tokens/personal-access-tokens/add-personal-access-token
   guides:
-  related:
+    related:
+    - api-tokens/personal-access-tokens/view-personal-access-token
   featured:
 ---
 
-You should revoke a personal access token if it is no longer needed or was exposed to unauthorised access.
+Revoke a Personal Access Token immediately.
 
-:::warning
-Once revoked, a Personal Access Token **cannot be restored**.
-A revoked token will no longer work for authentication in any future requests.
-:::
+## Goal
 
-Follow these steps to revoke a Personal Access Token:
+Stop a token from being used after it is no longer needed or has been exposed.
 
-1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Personal Access Tokens`
-2. The `Personal Access Tokens` list will be displayed
-3. Find the `Personal Access Token` you want to revoke and click on `Name` of the token
-4. On the upper-right corner click `REVOKE`
-5. Follow the prompts then click `REVOKE TOKEN`
-6. The revoked token will appear in the list of `Personal Access Tokens` with the status **Revoked**
+## Steps
+
+1. Open `Personal Access Tokens`
+2. Select the token you want to revoke
+3. Click `REVOKE`
+4. Confirm `REVOKE TOKEN`
+
+## Result
+
+- The token can no longer authenticate requests
+- Its status changes to revoked
+
+## Common issues
+
+- You cannot revoke it: confirm you have permission to manage the token
+- Revoked token still appears active: refresh the list
