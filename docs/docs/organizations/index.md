@@ -17,10 +17,10 @@ links:
 ## About
 
 - An organization is the top-level workspace in Devopness.
-- It is a shared workspace for one company or legal entity
-- Each organizations gets a unique readable URL slug (for example `acme` in `/@acme`).
-- Personal accounts own organizations or can be invited to collaborate to organizations created by other users
-- Organizations to group projects, teams and roles
+- It is a shared workspace for one company or legal entity.
+- Each organization gets a unique readable URL slug (for example `acme` in `/@acme`).
+- Personal accounts can own organizations or be invited to collaborate in organizations created by other users.
+- Organizations group projects, teams, and roles.
 
 ## Who should use this
 

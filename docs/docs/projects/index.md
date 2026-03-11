@@ -40,7 +40,7 @@ Later, add `Development`, `Staging`, and custom environments when you are ready.
 
 - Confirm the organization.
 - Create your first project.
-- Start with one project unless your have different unrelated products or client-specific environments
+- Start with one project unless you have different unrelated products or client-specific environments
 - Add `Development` or `Staging` environments when the release flow grows.
 
 ## When to create a new project
@@ -57,18 +57,12 @@ Later, add `Development`, `Staging`, and custom environments when you are ready.
 
 ## Quick decision rule
 
-Start with one project and expand when one of these becomes true:
+Start with one project unless one of these is true:
 
-- Teams, release ownership, or credentials should be separated.
-- You need dedicated client-level boundaries.
-- You need stronger project-level control than one workspace can provide.
-
-Start with one project until one of these is true:
-
-- Different products need separate ownership in practice.
-- Credentials, permissions, or release ownership should be split.
-- Teams should not all use the same project by default.
-- You have special reasons to keep visibily, ownership and permissions management separated.
+- You run separate products, clients, or operational domains.
+- Teams need different access, release ownership, or visibility boundaries.
+- Credentials, permissions, or release ownership must be split across groups.
+- You need dedicated client-level control outside a shared project setup.
 
 You can add more projects later without changing your current setup.
 
