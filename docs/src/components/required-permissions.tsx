@@ -23,7 +23,8 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
     <div className="mt-4">
       <h2 className="text-lg font-semibold mb-2">Required permissions</h2>
       <p className="text-sm text-fd-muted-foreground mb-4">
-        To follow this guide, you need the following permissions in the target environment.
+        To follow this guide, you need the following permissions in the target
+        environment.
       </p>
       <table className="w-full text-sm">
         <thead>
@@ -45,7 +46,8 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
         </tbody>
       </table>
       <p className="text-sm text-fd-muted-foreground mt-4">
-        For instructions on how to grant user permissions to an environment, please follow the guide{' '}
+        For instructions on how to grant user permissions to an environment,
+        please follow the guide{' '}
         <Link
           href="/environments/team-memberships/add-team-membership"
           className="underline"
