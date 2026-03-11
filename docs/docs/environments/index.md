@@ -1,31 +1,52 @@
 ---
 title: Environments
-intro: Use environments to organize the infrastructure on which your application will run, provision new cloud resources, manage operating system resources, network configuration and have fine grained control of your application deployments.
+intro: Environments define the stages inside a project.
 links:
   overview:
   quickstart:
-  previous:
-  next:
+  previous: projects/index
+  next: environments/add-environment
   guides:
+    - environments/list-environments
   related:
+    - projects/index
   featured:
 ---
 
-## How environments are used
+## About
+Environments are named work areas inside one project.
+They are usually `Development`, `Staging`, and `Production`.
+Each environment holds apps, servers, and settings used in that stage.
 
-An environment is where your infrastructure, deployments, and configuration live. It can include multiple servers, applications, and virtual hosts.
-
-You can connect multiple repositories to the same environment by creating one application per repository. This is common when a product has:
-
-- A marketing site
-- A demo app
-- A production app
-- An API
-- AI agents
-- MCP servers
+## Start here
+- Confirm you are in the right project.
+- Create a first `Production` environment.
+- Add `Development` and `Staging` when you need separate stages.
+- Add client or hotfix environments only when needed.
 
 ## When to split environments
+Start with one `Production` environment while validating the first release.
+Add more environments when isolation is needed for one of these reasons:
+- separate release flow (`Development`, `Staging`, `Production`)
+- different credentials, web domains, deployment permissions;
+- temporary client-specific work (or hotfix) that should not affect ongoing production releases.
 
-Start with a single environment if you want to move fast and your teams, permissions, and release schedule are the same. Create another environment when you need separate domains, versions, data, or access rules (for example `Demo` and `Production`).
+## Examples
+### Product company / Startup
+- Start with one project in `Production` if you are validating a first version.
+- Add `Development`, `Staging`, or custom environments as the team grows.
 
-You can always add more environments later as your needs grow.
+### Agency or client specific custom software
+- Start with your organization and one project per client.
+- One project per client can include `Production`, `Staging`, and custom environments.
+- Keep each client’s workflow separate from the others.
+
+## Why this matters
+- It reduces accidental changes across stages.
+- It makes it easier to decide what to test and deploy next.
+- It lets teams set safer access per stage.
+
+## Common issues
+- You added too many environments too soon.
+- You can no longer tell which environment is used for what.
+- A production-safe path should use separate stages for risky changes.
