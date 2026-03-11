@@ -1,34 +1,54 @@
 ---
 title: Archive an Environment
-intro: You can archive an environment to make it read-only for all users as a way to indicate that it's no longer actively maintained. When an environment is archived all its data is preserved, including the environment settings, team memberships and environment resources. Archived environments can be unarchived at any time.
 links:
   overview:
   quickstart:
   previous:
   next:
   guides:
-  related:
+    related:
   featured:
 ---
 
+Pause an environment and keep all setup and history.
+
+## Goal
+
+Keep historical environments visible while preventing active changes.
+
+## Who should use this
+
+- Project owners with many environments
+- Teams freezing old release flows
+
+## You need
+
+- Permission to archive environments
+- The target environment to archive
+
+## Steps
+
+1. Go to the project and choose the environment to pause
+2. Open environment settings
+3. Go to `Archived environments`
+4. Confirm archive
+
+## Expected result
+
+- The environment becomes read-only
+- Settings, history, and team memberships remain preserved
+
+## Common issues
+
+- You cannot archive: check for resources that still need manual cleanup
+- You do not have permission to archive this environment
+
 :::note
-
-Archiving an environment does not remove its cloud resources from the corresponding cloud providers where they were provisioned. For cost savings, if an environment has cloud resources that are no longer needed, it's recommended that you remove the resources using Devopness **before** archiving an environment.
-
+Archiving does not remove cloud resources.
+Remove unused resources before archive to avoid extra cost.
 :::
 
 :::note
-
-Archived environments can only be accessible, in read-only mode, by the user who owns the project to which the environment belongs to.
-
-The project owner can unarchive an archived environment, making it active and accessible to other team members. For more information, see [/docs/environments/unarchive-environment]
-
+Archived environments are read-only.
+Only project owners can restore them.
 :::
-
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. In the list of `Projects` find the Project with the Team you want to manage and click View
-1. Click `View` in the `Environments` card to see a list of existing `Environments`
-1. Find the `Environment` you want to archive and click `View`
-1. On the upper-right corner of the `Environment` resources list, click `SETTINGS`
-1. Select the option `Archived environments`
-1. Follow the instructions in the form then click `Archive`

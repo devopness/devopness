@@ -1,27 +1,49 @@
 ---
 title: Add an Environment
-intro: Add environments to manage the different stages of your application lifecycle or control infrastructure resources and software versions for individual customers.
 links:
   overview:
   quickstart:
   previous: projects/add-project
-  next: servers/add-server
+  next: environments/list-environments
   guides:
-  related:
+    related:
+    - environments/list-environments
+    - environments/remove-environment
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. Select a `Project`
-1. Find the `Environments` card
-1. Click `View` in the `Environments` card to see a list of existing `Environments`
-1. On the upper-right corner click `ADD ENVIRONMENT`
-1. Provide a name to the `Environment`
-1. Choose the `Environment Type`
-1. Click `CONFIRM`
+Create a new environment to separate release flow and resources.
 
-Notes:
+## Goal
 
-- Use `Production` for live customer traffic.
-- If you started with a single environment (for example `Demo`) and do not need separation yet, you can keep using it while you get started.
-- When you are ready to separate production, add a new `Production` environment and deploy your applications there.
+Prepare one stage for test, staging, production, or custom deployment flow.
+
+## Who should use this
+
+- Developers creating initial project structure
+- Team leads separating release flows
+
+## You need
+
+- Permission to add environments in the target project
+- A project selected in the correct organization
+
+## Steps
+
+1. Go to the project where the environment should live
+2. Go to `Environments`
+3. Select `Add Environment`
+4. Set a clear environment name
+5. Set the environment type
+6. Save
+
+## Expected result
+
+- The environment appears in the environments list
+- You can manage resources and deployments under that environment
+
+## Common issues
+
+- You do not see `Add Environment`: check your project permissions
+- Environment name is already used in this project
+- You do not have enough permissions to save changes

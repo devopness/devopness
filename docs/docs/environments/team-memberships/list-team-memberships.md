@@ -1,18 +1,37 @@
 ---
 title: List Team Memberships
-intro: View the list of team memberships linked to a project environment and check which teams have access and their assigned roles.
 links:
   overview:
   quickstart:
   previous: environments/index
   next: environments/team-memberships/add-team-membership
   guides:
-  related:
+    related:
   featured:
 ---
 
-1. Select a `Project` from the Devopness dashboard
-1. Select an `Environment` linked to the chosen project
-1. On the `Environment` page, click the **TEAM MEMBERSHIPS** button located at the top-right corner of the screen
+Review which teams can access one environment.
 
-- The list of existing team memberships will be displayed, showing teams and their assigned roles
+## Goal
+
+Validate access setup before deploying or changing roles.
+
+## Who should use this
+
+- Team leads checking environment permissions
+
+## Steps
+
+1. Select a project
+2. Select an environment in that project
+3. Open the `TEAM MEMBERSHIPS` section
+
+## Expected result
+
+- You can see teams and roles for the selected environment
+- You can confirm who has what access
+
+## Common issues
+
+- List is empty: confirm there are memberships configured
+- You cannot open the list: check your environment permissions

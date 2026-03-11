@@ -1,18 +1,44 @@
 ---
 title: Unarchive an Environment
-intro: Some environments may need to be unarchived to manage a service included in the environment. Unarchive an Environment to view its linked resources.
 links:
   overview:
   quickstart:
   previous:
   next:
   guides:
-  related:
+    related:
+    - environments/find-archived-environment
   featured:
 ---
 
-1. On Devopness, access the `Environment` resources list of the archived `Environment` you want to unarchive
-   > Follow the [/docs/environments/find-archived-environment] guide
-1. On the upper-right corner of the `Environment` resources list, click `SETTINGS`
-1. Select the option `Archived environments`
-1. Follow the instructions in the form then click `Unarchive`
+Bring a paused environment back to active use.
+
+## Goal
+
+Restore access and allow deployment operations again.
+
+## Who should use this
+
+- Project owners after incident windows are over
+
+## You need
+
+- Permission to unarchive environments
+- An environment currently in archived state
+
+## Steps
+
+1. Go to the archived environment you want to restore
+2. Open environment settings
+3. Select `Archived environments`
+4. Confirm unarchive
+
+## Expected result
+
+- The environment becomes active again
+- Team members can access it based on current roles
+
+## Common issues
+
+- Unarchive is disabled: confirm the environment is truly archived
+- You do not have permission to unarchive this environment
