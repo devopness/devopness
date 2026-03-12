@@ -34,4 +34,3 @@ const alwaysVisible: Story = {
 
 export default meta
 export { alwaysVisible, Default }
-

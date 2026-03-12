@@ -50,4 +50,3 @@ const CopyAction = styled.div`
 `
 
 export { ContentChildren, ContentCopyAction, ContentMain, CopyAction }
-
