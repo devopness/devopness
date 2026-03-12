@@ -1,5 +1,5 @@
 ---
-"@devopness/ui-react": minor
+"@devopness/ui-react": patch
 ---
 
 Add `allwaysVisible` prop to `CopyToClipboard` component to allow the copy icon to remain permanently visible with full opacity.
