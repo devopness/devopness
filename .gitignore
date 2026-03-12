@@ -118,4 +118,3 @@ __pycache__
 # misc
 .DS_Store
 _pull-requests/*
-.agents/*
