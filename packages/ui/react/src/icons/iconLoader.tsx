@@ -268,7 +268,7 @@ const deprecatedToNewIconMap = iconList
       // @ts-expect-error - Remove this comment when there are deprecated icons/images
       [icon.name]: icon.newName,
     }),
-    // eslint-disable-next-line @typescript-eslint/prefer-reduce-type-parameter
+
     {} as DeprecatedToNewIconMap
   )
 

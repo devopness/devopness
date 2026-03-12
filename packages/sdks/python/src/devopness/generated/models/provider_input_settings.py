@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -39,7 +38,7 @@ class ProviderInputSettings(DevopnessBaseModel):
         description="The human readable version of the input field name"
     )
     validation: ProviderInputSettingsValidation
-    default_value: Optional[StrictStr] = Field(
+    default_value: StrictStr | None = Field(
         description="The default value of the input field"
     )
     sensitive: StrictBool = Field(
@@ -60,5 +59,5 @@ class ProviderInputSettingsPlain(TypedDict, total=False):
             ProviderInputSettingsValidationPlain,
         ]
     ]
-    default_value: Optional[str]
+    default_value: str | None
     sensitive: Required[bool]

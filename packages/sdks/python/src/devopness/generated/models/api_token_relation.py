@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -42,12 +41,10 @@ class ApiTokenRelation(DevopnessBaseModel):
     name: StrictStr = Field(description="Name of the Token")
     type: ApiTokenType
     status: ApiTokenStatus
-    role: Optional[RoleRelation]
-    last_used_at: Optional[StrictStr] = Field(
-        description="Last time the Token was used"
-    )
+    role: RoleRelation | None
+    last_used_at: StrictStr | None = Field(description="Last time the Token was used")
     expires_at: StrictStr = Field(description="Expiration date of the Token")
-    revoked_at: Optional[StrictStr] = Field(description="Revocation date of the Token")
+    revoked_at: StrictStr | None = Field(description="Revocation date of the Token")
     updated_at: StrictStr = Field(description="Last time the Token was updated")
     created_at: StrictStr = Field(description="Creation date of the Token")
 
@@ -71,14 +68,9 @@ class ApiTokenRelationPlain(TypedDict, total=False):
             ApiTokenStatusPlain,
         ]
     ]
-    role: Optional[
-        Union[
-            RoleRelation,
-            RoleRelationPlain,
-        ]
-    ]
-    last_used_at: Optional[str]
+    role: Union[RoleRelation, RoleRelationPlain] | None
+    last_used_at: str | None
     expires_at: Required[str]
-    revoked_at: Optional[str]
+    revoked_at: str | None
     updated_at: Required[str]
     created_at: Required[str]

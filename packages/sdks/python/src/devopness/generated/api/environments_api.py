@@ -38,6 +38,27 @@ class EnvironmentsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
+    def delete_environment(
+        self,
+        environment_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
+
     def get_environment(
         self,
         environment_id: int,
@@ -129,6 +150,27 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint: str = "".join(endpoint_parts)
         response = await self._post(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
+    async def delete_environment(
+        self,
+        environment_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._delete(endpoint)
 
         return await DevopnessResponse.from_async(response, None)
 

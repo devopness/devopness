@@ -50,7 +50,7 @@ export interface OrganizationRelation {
      * @type {UserRelation}
      * @memberof OrganizationRelation
      */
-    owner?: UserRelation;
+    owner?: UserRelation | null;
     /**
      * The date and time when the organization was created
      * @type {string}

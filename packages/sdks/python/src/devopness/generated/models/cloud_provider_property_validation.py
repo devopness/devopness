@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -42,7 +41,7 @@ class CloudProviderPropertyValidation(DevopnessBaseModel):
     max: StrictInt = Field(
         description="The maximum allowed property value. For properties of type `string` the validation checks the length of the property value"
     )
-    allowed_values: List[StrictStr] = Field(
+    allowed_values: list[StrictStr] = Field(
         description="List of allowed values for the property. If empty, any value is allowed"
     )
 
@@ -61,4 +60,4 @@ class CloudProviderPropertyValidationPlain(TypedDict, total=False):
     ]
     min: Required[int]
     max: Required[int]
-    allowed_values: Required[List[str]]
+    allowed_values: Required[list[str]]

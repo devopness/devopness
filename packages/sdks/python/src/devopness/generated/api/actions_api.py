@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import Action, ActionRelation, ActionRetryResponse
 from ..utils import parse_query_string
@@ -41,9 +39,9 @@ class ActionsApiService(DevopnessBaseService):
 
     def list_actions(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         Return a list of all actions belonging to current user
 
@@ -67,15 +65,15 @@ class ActionsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return DevopnessResponse(response, list[ActionRelation])
 
     def list_actions_by_resource_type(
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List resource actions of an action type
 
@@ -99,15 +97,15 @@ class ActionsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return DevopnessResponse(response, list[ActionRelation])
 
     def list_actions_by_target_resource_type(
         self,
         target_resource_id: int,
         target_resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List actions triggered to a given action target resource
 
@@ -131,7 +129,7 @@ class ActionsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return DevopnessResponse(response, list[ActionRelation])
 
     def retry_action(
         self,
@@ -183,9 +181,9 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def list_actions(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         Return a list of all actions belonging to current user
 
@@ -209,15 +207,15 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, list[ActionRelation])
 
     async def list_actions_by_resource_type(
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List resource actions of an action type
 
@@ -241,15 +239,15 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, list[ActionRelation])
 
     async def list_actions_by_target_resource_type(
         self,
         target_resource_id: int,
         target_resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List actions triggered to a given action target resource
 
@@ -273,7 +271,7 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, list[ActionRelation])
 
     async def retry_action(
         self,

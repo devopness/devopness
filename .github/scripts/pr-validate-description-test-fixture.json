@@ -1,0 +1,34 @@
+{
+  "Description_of_changes": {
+    "bodies": [
+      {
+        "type": "list",
+        "raw": "- [x] Add `basePath: '/docs'` to config",
+        "items": [{ "checked": true, "raw": "Add `basePath: '/docs'` to config" }]
+      }
+    ]
+  },
+  "GitHub_issues_resolved_by_this_PR": {
+    "bodies": [
+      {
+        "type": "list",
+        "raw": "- [x] N/A",
+        "items": [{ "checked": true, "raw": "N/A" }]
+      }
+    ]
+  },
+  "Quality_Assurance": {
+    "bodies": [
+      {
+        "type": "list",
+        "raw": "- Once the changes in this PR are merged and deployed, success criteria is: `/docs` works, `/` returns 404 (search via `/docs/api/search`).",
+        "items": [
+          {
+            "checked": false,
+            "raw": "Once the changes in this PR are merged and deployed, success criteria is: `/docs` works, `/` returns 404 (search via `/docs/api/search`)."
+          }
+        ]
+      }
+    ]
+  }
+}

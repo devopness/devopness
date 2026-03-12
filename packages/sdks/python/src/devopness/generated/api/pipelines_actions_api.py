@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -51,9 +51,9 @@ class PipelinesActionsApiService(DevopnessBaseService):
     def list_pipeline_actions(
         self,
         pipeline_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         Return a list of pipeline's actions
 
@@ -77,7 +77,7 @@ class PipelinesActionsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return DevopnessResponse(response, list[ActionRelation])
 
 
 class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -113,9 +113,9 @@ class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_pipeline_actions(
         self,
         pipeline_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         Return a list of pipeline's actions
 
@@ -139,4 +139,4 @@ class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, list[ActionRelation])

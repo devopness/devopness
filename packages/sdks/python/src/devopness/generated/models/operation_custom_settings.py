@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
 )
 
@@ -26,15 +25,15 @@ class OperationCustomSettings(DevopnessBaseModel):
         triggers_action (bool, optional): Whether the &#x60;server:remove&#x60; operation will trigger an action or not
     """
 
-    operation: Optional[StrictStr] = Field(
+    operation: StrictStr | None = Field(
         default=None,
         description="The resource's custom operation that are CSP specific",
     )
-    operation_human_readable: Optional[StrictStr] = Field(
+    operation_human_readable: StrictStr | None = Field(
         default=None,
         description="Human redable version of the resource's custom operation",
     )
-    triggers_action: Optional[StrictBool] = Field(
+    triggers_action: StrictBool | None = Field(
         default=None,
         description="Whether the `server:remove` operation will trigger an action or not",
     )
@@ -45,6 +44,6 @@ class OperationCustomSettingsPlain(TypedDict, total=False):
     Plain version of OperationCustomSettings.
     """
 
-    operation: Optional[str]
-    operation_human_readable: Optional[str]
-    triggers_action: Optional[bool]
+    operation: str | None
+    operation_human_readable: str | None
+    triggers_action: bool | None

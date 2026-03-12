@@ -17,11 +17,11 @@
  * ```yaml
  * - name: Validate PR Description Fields
  *   run: |-
- *     PR_DESCRIPTION_JSON=$(cat .github/scripts/tmp-pr-description-data.json | base64) node .github/scripts/pr-validate-description.js
+ *     node .github/scripts/pr-validate-description.js
  * ```
  *
  * Local testing:
- * PR_DESCRIPTION_JSON=$(cat ./pr-validate-description-test-data.json | base64) node pr-validate-description.js
+ * node pr-validate-description.js  # reads from tmp-pr-description-data.json
  */
 
 /**
@@ -37,10 +37,12 @@
  * @see {@link https://github.com/kkurno/action-markdown-reader#example-usage markdown-reader action output format}
  */
 
-let inputData = Buffer.from(process.env.PR_DESCRIPTION_JSON, "base64").toString(
-  "utf8",
-);
-let prDescription = JSON.parse(inputData);
+const fs = require("fs");
+const path = require("path");
+
+const inputFilePath = path.join(__dirname, "tmp-pr-description-data.json");
+
+let prDescription = JSON.parse(fs.readFileSync(inputFilePath, "utf8"));
 
 validateDescriptionOfChanges(prDescription.Description_of_changes);
 validateResolvedIssuesSection(prDescription.GitHub_issues_resolved_by_this_PR);

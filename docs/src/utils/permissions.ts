@@ -1,5 +1,5 @@
 // response from https://api-docs.devopness.com/#tag/Static-Data-Permissions/operation/listStaticPermissions
-import staticPermissions from "../_data/static_permissions.json";
+import staticPermissions from '../_data/static_permissions.json';
 
 /**
  * Formats Devopness API permission to human readable
@@ -10,16 +10,19 @@ export const formatPermissionHumanReadable = (
   unformattedPermission: string
 ) => {
   const trimmedPermission = unformattedPermission.trim();
-  const [resource_type, permission] = trimmedPermission.split(":");
+  const [
+    resource_type,
+    permission,
+  ] = trimmedPermission.split(':');
   const defaultValue = {
     resource_type: resource_type
-      .split("-")
+      .split('-')
       .map((word) => word[0].toUpperCase() + word.substring(1))
-      .join(" "),
+      .join(' '),
     permission: permission
-      .split("_")
+      .split('_')
       .map((word) => word[0].toUpperCase() + word.substring(1))
-      .join(" "),
+      .join(' '),
   };
 
   const validPermissionFormat = /^([a-z\-]+:[a-z\_]+)$/;

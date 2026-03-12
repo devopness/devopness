@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
 )
 
@@ -28,14 +27,14 @@ class PipelineSettingsVariable(DevopnessBaseModel):
         required (bool, optional):
     """
 
-    name: Optional[StrictStr] = None
-    human_readable: Optional[StrictStr] = None
-    hint: Optional[StrictStr] = Field(
+    name: StrictStr | None = None
+    human_readable: StrictStr | None = None
+    hint: StrictStr | None = Field(
         default=None,
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
     )
-    type: Optional[StrictStr] = None
-    required: Optional[StrictBool] = None
+    type: StrictStr | None = None
+    required: StrictBool | None = None
 
 
 class PipelineSettingsVariablePlain(TypedDict, total=False):
@@ -43,8 +42,8 @@ class PipelineSettingsVariablePlain(TypedDict, total=False):
     Plain version of PipelineSettingsVariable.
     """
 
-    name: Optional[str]
-    human_readable: Optional[str]
-    hint: Optional[str]
-    type: Optional[str]
-    required: Optional[bool]
+    name: str | None
+    human_readable: str | None
+    hint: str | None
+    type: str | None
+    required: bool | None

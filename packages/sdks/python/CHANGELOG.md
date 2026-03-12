@@ -1,5 +1,157 @@
 # @devopness/sdk-python
 
+## 2.3.1
+
+### Patch Changes
+
+- [#2761](https://github.com/devopness/devopness/pull/2761) [`4843293`](https://github.com/devopness/devopness/commit/4843293e0cadd659cb05a55c49ef9eceba58e874) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the property type **network** in the **SubnetRelation** model
+
+## 2.3.0
+
+### Minor Changes
+
+- [#2749](https://github.com/devopness/devopness/pull/2749) [`894e01d`](https://github.com/devopness/devopness/commit/894e01d7d66c2131e473caa769cca8f8f7da467a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Migrate team and role management to organization-based architecture
+
+  ## New Features
+
+  ### Organization-level team management
+  - `add_organization_team(organization_id, data)` - Create team at organization level
+  - `list_organization_teams(organization_id)` - List all teams in an organization
+  - `list_organization_team_memberships(organization_id)` - List team memberships in organization
+  - `link_team_to_organization(organization_id, team_id, data)` - Link team to organization with role
+  - `unlink_team_from_organization(organization_id, team_id)` - Remove team from organization
+
+  ### Enhanced team linking
+  - `link_team_to_project(project_id, team_id, data)` - Link team to project with role
+  - `unlink_team_from_project(project_id, team_id)` - Remove team from project
+  - `list_project_team_memberships(project_id)` - List team memberships in project
+  - `list_team_memberships(team_id)` - List all memberships of a specific team
+
+  ### Organization-level role management
+  - `add_organization_role(organization_id, data)` - Create custom role at organization level
+  - `list_organization_roles(organization_id)` - List all roles in an organization
+
+## 2.2.1
+
+### Patch Changes
+
+- [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  - Added a method to list all subnets belonging to an environment:
+
+    ```python
+    devopness.subnets.list_environment_subnets(environment_id)
+    ```
+
+## 2.2.0
+
+### Minor Changes
+
+- [#2717](https://github.com/devopness/devopness/pull/2717) [`633041c`](https://github.com/devopness/devopness/commit/633041cc95c0951868be9e47df79943a680fe5df) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
+
+  ### Simplified deployment workflow for multiple resource types
+
+  Previously, deploying resources required a multi-step process: listing pipelines, finding the deploy pipeline, and triggering an action. Now, dedicated `deploy()` methods provide direct deployment capabilities.
+
+  **Affected resources:**
+  - Cron Jobs
+  - Daemons
+  - Network Rules
+  - Servers
+  - Services
+  - SSH Keys
+  - SSL Certificates
+  - Virtual Hosts
+
+  ### What Changed
+
+  The deploy pipeline is no longer visible or accessible through the pipelines API for these resources. Instead, use the new dedicated deployment methods.
+
+  ### Migration Example
+
+  **Before:**
+
+  ```python
+  from devopness import DevopnessClient
+
+  devopness = DevopnessClient()
+
+  # Old multi-step approach
+  pipelines = devopness.pipelines.list_resource_pipelines(
+      environment_id,
+      resource_type,
+      resource_id
+  )
+
+  deploy_pipeline = next(p for p in pipelines.data if p.type == "deploy")
+
+  devopness.actions.trigger_pipeline_action(deploy_pipeline.id, {
+      "servers": [server_id]
+  })
+  ```
+
+  **After:**
+
+  ```python
+  from devopness import DevopnessClient
+
+  devopness = DevopnessClient()
+
+  # New simplified approach
+  devopness.cron_jobs.deploy_cron_job(cron_job_id, {
+      "servers": [server_id]
+  })
+
+  # Other examples:
+  devopness.daemons.deploy_daemon(daemon_id, {"servers": [server_id]})
+  devopness.services.deploy_service(service_id, {"servers": [server_id]})
+  devopness.ssh_keys.deploy_ssh_key(ssh_key_id, {"servers": [server_id]})
+  ```
+
+  ### Impact
+
+  If you were programmatically listing or managing deploy pipelines for these resources, you must migrate to the new deployment methods.
+
+  The deploy pipeline will no longer appear in pipeline listings for these resource types.
+
+### Patch Changes
+
+- [#2710](https://github.com/devopness/devopness/pull/2710) [`9717960`](https://github.com/devopness/devopness/commit/97179603f7a873000fe899b69f557a0692b60ee5) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  - Change `auto_refresh_token` default from `True` to `False` and mark as deprecated
+  - Token-based authentication (api_token) is now the primary method and incompatible with auto-refresh
+    - Update documentation to guide users to use token-based authentication (Personal Access Tokens and Project API Tokens) instead of deprecated email/password method
+
+## 2.1.11
+
+### Patch Changes
+
+- [#2660](https://github.com/devopness/devopness/pull/2660) [`2ac061b`](https://github.com/devopness/devopness/commit/2ac061ba08629ee8093f68eb5150241779e5aae4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix `CronJobPattern` Enum to include `Custom` option.
+
+## 2.1.10
+
+### Patch Changes
+
+- [#2581](https://github.com/devopness/devopness/pull/2581) [`75c81ab`](https://github.com/devopness/devopness/commit/75c81ab40beedb394c36f0bb74ac1837e5147e45) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose the `addOrganizationProject` method to create a project under an organization.
+
+## 2.1.9
+
+### Patch Changes
+
+- [#2578](https://github.com/devopness/devopness/pull/2578) [`75ae202`](https://github.com/devopness/devopness/commit/75ae202fc3224d339c67ea673e2c9228eb4f9506) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add methods to `delete` **environments**, **projects** and **organizations**.
+
+## 2.1.8
+
+### Patch Changes
+
+- [#2544](https://github.com/devopness/devopness/pull/2544) [`5a31613`](https://github.com/devopness/devopness/commit/5a31613a8711bd5398aefda3d3cadf160c1c39e8) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the `ActionTargetCredentialData::provider_code` type to include `Source Providers` (ProviderCode::Enum)
+
+## 2.1.7
+
+### Patch Changes
+
+- [#2532](https://github.com/devopness/devopness/pull/2532) [`8052719`](https://github.com/devopness/devopness/commit/80527194b5711abaabcf430fb4e5a1b9e5e62dfa) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix runtime errors when invoking devopness.hooks.delete_hook and devopness.hooks.get_hook.
+
 ## 2.1.6
 
 ### Patch Changes

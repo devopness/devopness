@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -42,12 +40,12 @@ class UserMe(DevopnessBaseModel):
     email: StrictStr = Field(
         description="The e-mail that will uniquely identify the user on the system and become its login credential"
     )
-    url_slug: Optional[StrictStr] = Field(
+    url_slug: StrictStr | None = Field(
         default=None, description="The URL Slug of the user"
     )
-    language: Optional[Language]
+    language: Language | None
     active: StrictBool = Field(description="Tells if the user is active or not")
-    social_accounts: List[Optional[SocialAccountRelation]]
+    social_accounts: list[SocialAccountRelation | None]
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -64,16 +62,11 @@ class UserMePlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     email: Required[str]
-    url_slug: Optional[str]
-    language: Optional[
-        Union[
-            Language,
-            LanguagePlain,
-        ]
-    ]
+    url_slug: str | None
+    language: Union[Language, LanguagePlain] | None
     active: Required[bool]
     social_accounts: Required[
-        List[
+        list[
             Union[
                 SocialAccountRelation,
                 SocialAccountRelationPlain,

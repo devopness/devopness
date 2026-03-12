@@ -6,11 +6,13 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     VirtualHost,
+    VirtualHostDeploy,
+    VirtualHostDeployPlain,
     VirtualHostEnvironmentCreate,
     VirtualHostEnvironmentCreatePlain,
     VirtualHostGetStatus,
@@ -73,6 +75,31 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
+    def deploy_virtual_host(
+        self,
+        virtual_host_id: int,
+        virtual_host_deploy: Union[
+            VirtualHostDeploy,
+            VirtualHostDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Virtual Host
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/virtual-hosts/{virtual_host_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, virtual_host_deploy)
+
+        return DevopnessResponse(response, None)
+
     def get_status_virtual_host(
         self,
         virtual_host_id: int,
@@ -122,9 +149,9 @@ class VirtualHostsApiService(DevopnessBaseService):
     def list_environment_virtual_hosts(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VirtualHostRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[VirtualHostRelation]]:
         """
         Return a list of all Virtual Hosts belonging to an environment
 
@@ -148,7 +175,7 @@ class VirtualHostsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[VirtualHostRelation])
+        return DevopnessResponse(response, list[VirtualHostRelation])
 
     def update_virtual_host(
         self,
@@ -227,6 +254,31 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
 
         return await DevopnessResponse.from_async(response, None)
 
+    async def deploy_virtual_host(
+        self,
+        virtual_host_id: int,
+        virtual_host_deploy: Union[
+            VirtualHostDeploy,
+            VirtualHostDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Virtual Host
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/virtual-hosts/{virtual_host_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, virtual_host_deploy)
+
+        return await DevopnessResponse.from_async(response, None)
+
     async def get_status_virtual_host(
         self,
         virtual_host_id: int,
@@ -276,9 +328,9 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_virtual_hosts(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VirtualHostRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[VirtualHostRelation]]:
         """
         Return a list of all Virtual Hosts belonging to an environment
 
@@ -302,7 +354,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[VirtualHostRelation])
+        return await DevopnessResponse.from_async(response, list[VirtualHostRelation])
 
     async def update_virtual_host(
         self,

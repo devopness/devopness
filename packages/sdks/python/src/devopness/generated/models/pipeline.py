@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -40,7 +38,7 @@ class Pipeline(DevopnessBaseModel):
         max_parallel_actions (int): Maximum number of actions that can run in parallel for this pipeline. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run this pipeline.
         trigger_when (PipelineTriggerWhen, optional, nullable):
         steps (List[Step]):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -67,9 +65,9 @@ class Pipeline(DevopnessBaseModel):
     max_parallel_actions: StrictInt = Field(
         description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline."
     )
-    trigger_when: Optional[PipelineTriggerWhen]
-    steps: List[Step]
-    created_by_user: UserRelation
+    trigger_when: PipelineTriggerWhen | None
+    steps: list[Step]
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -98,25 +96,15 @@ class PipelinePlain(TypedDict, total=False):
     operation: Required[str]
     operation_human_readable: Required[str]
     max_parallel_actions: Required[int]
-    trigger_when: Optional[
-        Union[
-            PipelineTriggerWhen,
-            PipelineTriggerWhenPlain,
-        ]
-    ]
+    trigger_when: Union[PipelineTriggerWhen, PipelineTriggerWhenPlain] | None
     steps: Required[
-        List[
+        list[
             Union[
                 Step,
                 StepPlain,
             ]
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

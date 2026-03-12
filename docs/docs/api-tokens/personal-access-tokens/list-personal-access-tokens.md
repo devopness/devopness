@@ -2,13 +2,13 @@
 title: List Personal Access Tokens
 intro: Find and view all Personal Access Tokens you have created for your account.
 links:
-    overview:
-    quickstart:
-    previous: api-tokens/personal-access-tokens/index
-    next: api-tokens/personal-access-tokens/add-personal-access-token
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: api-tokens/personal-access-tokens/index
+  next: api-tokens/personal-access-tokens/add-personal-access-token
+  guides:
+  related:
+  featured:
 ---
 
 Follow these steps to list all Personal Access Tokens:

@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
 )
 
@@ -26,9 +25,9 @@ class PipelineSettingsStage(DevopnessBaseModel):
         hint (str, optional): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: Optional[StrictStr] = None
-    human_readable: Optional[StrictStr] = None
-    hint: Optional[StrictStr] = Field(
+    value: StrictStr | None = None
+    human_readable: StrictStr | None = None
+    hint: StrictStr | None = Field(
         default=None,
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
     )
@@ -39,6 +38,6 @@ class PipelineSettingsStagePlain(TypedDict, total=False):
     Plain version of PipelineSettingsStage.
     """
 
-    value: Optional[str]
-    human_readable: Optional[str]
-    hint: Optional[str]
+    value: str | None
+    human_readable: str | None
+    hint: str | None

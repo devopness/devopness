@@ -6,11 +6,13 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Service,
+    ServiceDeploy,
+    ServiceDeployPlain,
     ServiceEnvironmentCreate,
     ServiceEnvironmentCreatePlain,
     ServiceGetStatus,
@@ -81,6 +83,31 @@ class ServicesApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
+    def deploy_service(
+        self,
+        service_id: int,
+        service_deploy: Union[
+            ServiceDeploy,
+            ServiceDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, service_deploy)
+
+        return DevopnessResponse(response, None)
+
     def get_service(
         self,
         service_id: int,
@@ -130,9 +157,9 @@ class ServicesApiService(DevopnessBaseService):
     def list_environment_services(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ServiceRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ServiceRelation]]:
         """
         Return a list of all services belonging to a environment
 
@@ -156,7 +183,7 @@ class ServicesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ServiceRelation])
+        return DevopnessResponse(response, list[ServiceRelation])
 
     def reload_service(
         self,
@@ -335,6 +362,31 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
 
         return await DevopnessResponse.from_async(response, None)
 
+    async def deploy_service(
+        self,
+        service_id: int,
+        service_deploy: Union[
+            ServiceDeploy,
+            ServiceDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Service
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/services/{service_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, service_deploy)
+
+        return await DevopnessResponse.from_async(response, None)
+
     async def get_service(
         self,
         service_id: int,
@@ -384,9 +436,9 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_services(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ServiceRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ServiceRelation]]:
         """
         Return a list of all services belonging to a environment
 
@@ -410,7 +462,7 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ServiceRelation])
+        return await DevopnessResponse.from_async(response, list[ServiceRelation])
 
     async def reload_service(
         self,

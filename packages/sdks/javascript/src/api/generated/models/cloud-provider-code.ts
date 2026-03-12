@@ -14,7 +14,7 @@
 
 
 /**
- * The code of the cloud service provider
+ * The code of the cloud service provider.
  * @export
  * @enum {string}
  */

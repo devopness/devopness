@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -31,7 +30,7 @@ class TeamUpdate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The name of the team. Must not be greater than 255 characters."
     )
-    photo_url: Optional[StrictStr] = Field(
+    photo_url: StrictStr | None = Field(
         default=None, description="The URL to team's image. Must be a valid URL."
     )
 
@@ -43,4 +42,4 @@ class TeamUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    photo_url: Optional[str]
+    photo_url: str | None

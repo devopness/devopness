@@ -2,15 +2,15 @@
 title: Edit an Application
 intro: Learn how to edit an application to keep its configuration up to date, specially the settings that define how the application is deployed, such as source provider, repository, dependencies to be installed, directories and the application entrypoint.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 required_permissions:
-    - application:update
+  - application:update
 ---
 
 1. On Devopness, navigate to a project then select an environment
@@ -20,4 +20,4 @@ required_permissions:
 1. On the upper right corner of the application details view, click `EDIT`
 1. Follow the prompts then click `CONFIRM`
 1. Check the applications details view to see the applications's current settings
-    - On the repository section, the new repository information can be seen
+   - On the repository section, the new repository information can be seen

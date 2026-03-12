@@ -2,16 +2,17 @@
 title: Privacy Policy
 intro:
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 ---
 
 Last updated January 26, 2023
+
 ## 1. Introduction
 
 Welcome to **Devopness Tecnologia LTDA**.
@@ -57,8 +58,8 @@ We collect several different types of information for various purposes to provid
 1. Phone number
 1. Address, State, Province, ZIP/Postal code, City
 1. Cookies and Usage Data
-‍
-We may use your Personal Data to contact you with newsletters, marketing or promotional materials and other information that may be of interest to you. You may opt out of receiving any, or all, of these promotional emails from us by following the unsubscribe link.
+   ‍
+   We may use your Personal Data to contact you with newsletters, marketing or promotional materials and other information that may be of interest to you. You may opt out of receiving any, or all, of these promotional emails from us by following the unsubscribe link.
 
 **Usage Data**
 
@@ -126,13 +127,13 @@ We may disclose personal information that we collect, or you provide:
 1. **Disclosure for Law Enforcement** - Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities.
 1. **Business Transaction** - If we or our subsidiaries are involved in a merger, acquisition or asset sale, your Personal Data may be transferred.
 1. **Other cases. We may disclose your information also:**
-    1. to our subsidiaries and affiliates;
-    1. to contractors, service providers, and other third parties we use to support our business;
-    1. to fulfill the purpose for which you provide it;
-    1. for the purpose of including your company’s logo on our website;
-    1. for any other purpose disclosed by us when you provide the information;
-    1. if we believe disclosure is necessary or appropriate to protect the rights, property, or safety of the Company, our customers, or others.
-    1. with your consent in any other cases;
+   1. to our subsidiaries and affiliates;
+   1. to contractors, service providers, and other third parties we use to support our business;
+   1. to fulfill the purpose for which you provide it;
+   1. for the purpose of including your company’s logo on our website;
+   1. for any other purpose disclosed by us when you provide the information;
+   1. if we believe disclosure is necessary or appropriate to protect the rights, property, or safety of the Company, our customers, or others.
+   1. with your consent in any other cases;
 
 ## 9. Security of Data
 
@@ -162,6 +163,7 @@ Please note that we may ask you to verify your identity before responding to suc
 You have the right to complain to a Data Protection Authority about our collection and use of your Personal Data. For more information, please contact your local data protection authority in the European Economic Area (EEA).
 
 ## 11. Your Data Protection Rights under the California Privacy Protection Act (CalOPPA)
+
 CalOPPA is the first state law in the nation to require commercial websites and online services to post a privacy policy. The law’s reach stretches well beyond California to require a person or company in the United States (and conceivable the world) that operates websites collecting personally identifiable information from California consumers to post a conspicuous privacy policy on its website stating exactly the information being collected and those individuals with whom it is being shared, and to comply with this policy. – See more at: https://consumercal.org/about-cfc/cfc-education-foundation/california-online-privacy-protection-act-caloppa-3/
 
 According to CalOPPA we agree to the following:
@@ -182,13 +184,13 @@ You can enable or disable Do Not Track by visiting the Preferences or Settings p
 If you are a California resident, you are entitled to learn what data we collect about you, ask to delete your data and not to sell (share) it. To exercise your data protection rights, you can make certain requests and ask us:
 
 1. **What personal information we have about you.** If you make this request, we will return to you:
-    1. The categories of personal information we have collected about you.
-    1. The categories of sources from which we collect your personal information.
-    1. The business or commercial purpose for collecting or selling your personal information.
-    1. The categories of third parties with whom we share personal information.
-    1. The specific pieces of personal information we have collected about you.
-    1. A list of categories of personal information that we have sold, along with the category of any other company we sold it to. If we have not sold your personal information, we will inform you of that fact.
-    1. A list of categories of personal information that we have disclosed for a business purpose, along with the category of any other company we shared it with.
+   1. The categories of personal information we have collected about you.
+   1. The categories of sources from which we collect your personal information.
+   1. The business or commercial purpose for collecting or selling your personal information.
+   1. The categories of third parties with whom we share personal information.
+   1. The specific pieces of personal information we have collected about you.
+   1. A list of categories of personal information that we have sold, along with the category of any other company we sold it to. If we have not sold your personal information, we will inform you of that fact.
+   1. A list of categories of personal information that we have disclosed for a business purpose, along with the category of any other company we shared it with.
 1. **To delete your personal information.** If you make this request, we will delete the personal information we hold about you as of the date of your request from our records and direct any service providers to do the same. In some cases, deletion may be accomplished through de-identification of the information. If you choose to delete your personal information, you may not be able to use certain functions that require your personal information to operate.
 1. **To stop selling your personal information.** We do not sell your personal information for monetary consideration. However, under some circumstances, a transfer of personal information to a third party, or within our family of companies, without monetary consideration may be considered a “sale” under California law.
 
@@ -243,6 +245,7 @@ For more information on what type of information Mixpanel collects, please visit
 https://mixpanel.com/terms/
 
 ## 15. Behavioral Remarketing
+
 Devopness uses remarketing services to advertise on third party websites to you after you visited our Service. We and our third-party vendors use cookies to inform, optimise and serve ads based on your past visits to our Service.
 
 **Google Ads (AdWords)**
@@ -272,6 +275,7 @@ You can opt-out from Twitter's interest-based ads by following their instruction
 You can learn more about the privacy practices and policies of Twitter by visiting their Privacy Policy page: https://twitter.com/privacy
 
 ## 16. Payments
+
 We may provide paid products and/or services within Service. In that case, we use third-party services for payment processing (e.g. payment processors).
 
 We will not store or collect your payment card details. That information is provided directly to our third-party payment processors whose use of your personal information is governed by their Privacy Policy. These payment processors adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, Mastercard, American Express and Discover. PCI-DSS requirements help ensure the secure handling of payment information.
@@ -287,6 +291,7 @@ Paddle has a privacy policy (https://www.paddle.com/legal-buyers/) that describe
 Paddle provides us with certain non-personal information relating to purchases made by visitors to the Website. The non-personal information may include details of the purchase such as the date, amount paid, and product purchased. The non-personal purchase information may be linked to the Personal Information you provide to us (typically limited to your email address, as stated above). Paddle does not supply us with any of your other Personal Information such as your name, street address, or credit card information.
 
 ## 17. Links to Other Sites
+
 Our Service may contain links to other sites that are not operated by us. If you click a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
 
 We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.

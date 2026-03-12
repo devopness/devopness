@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -17,7 +16,10 @@ from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .environment_relation import EnvironmentRelation, EnvironmentRelationPlain
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
+from .project_relation import ProjectRelation, ProjectRelationPlain
 from .role_relation import RoleRelation, RoleRelationPlain
+from .team_relation import TeamRelation, TeamRelationPlain
 
 
 class MembershipRelation(DevopnessBaseModel):
@@ -25,14 +27,20 @@ class MembershipRelation(DevopnessBaseModel):
     MembershipRelation
 
     Attributes:
-        environment (EnvironmentRelation, optional, nullable):
+        team (TeamRelation, optional, nullable):
         role (RoleRelation, optional, nullable):
+        organization (OrganizationRelation, optional, nullable):
+        project (ProjectRelation, optional, nullable):
+        environment (EnvironmentRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
 
-    environment: Optional[EnvironmentRelation]
-    role: Optional[RoleRelation]
+    team: TeamRelation | None
+    role: RoleRelation | None
+    organization: OrganizationRelation | None
+    project: ProjectRelation | None
+    environment: EnvironmentRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -46,17 +54,10 @@ class MembershipRelationPlain(TypedDict, total=False):
     Plain version of MembershipRelation.
     """
 
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    role: Optional[
-        Union[
-            RoleRelation,
-            RoleRelationPlain,
-        ]
-    ]
+    team: Union[TeamRelation, TeamRelationPlain] | None
+    role: Union[RoleRelation, RoleRelationPlain] | None
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

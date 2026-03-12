@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..utils import parse_query_string
 
@@ -20,7 +18,7 @@ class TeamInvitationsApiService(DevopnessBaseService):
     def accept_team_invitation(
         self,
         team_invitation_id: str,
-        token: Optional[str] = None,
+        token: str | None = None,
     ) -> DevopnessResponse[None]:
         """
         Accept a team invitation
@@ -97,7 +95,7 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def accept_team_invitation(
         self,
         team_invitation_id: str,
-        token: Optional[str] = None,
+        token: str | None = None,
     ) -> DevopnessResponse[None]:
         """
         Accept a team invitation

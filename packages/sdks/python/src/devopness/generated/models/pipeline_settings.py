@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
     Union,
 )
@@ -34,15 +32,15 @@ class PipelineSettings(DevopnessBaseModel):
         variables (List[PipelineSettingsVariable], optional, nullable): The list of pipeline setting variable
     """
 
-    max_pipelines_per_resource: Optional[StrictInt] = None
-    is_user_managed: Optional[StrictBool] = Field(
+    max_pipelines_per_resource: StrictInt | None = None
+    is_user_managed: StrictBool | None = Field(
         default=None,
         description="Indicates whether the user has permission to manage the pipeline for the resource operation",
     )
-    stages: Optional[List[PipelineSettingsStage]] = Field(
+    stages: list[PipelineSettingsStage] | None = Field(
         default=None, description="The list of pipeline setting stage"
     )
-    variables: Optional[List[PipelineSettingsVariable]] = Field(
+    variables: list[PipelineSettingsVariable] | None = Field(
         default=None, description="The list of pipeline setting variable"
     )
 
@@ -52,21 +50,9 @@ class PipelineSettingsPlain(TypedDict, total=False):
     Plain version of PipelineSettings.
     """
 
-    max_pipelines_per_resource: Optional[int]
-    is_user_managed: Optional[bool]
-    stages: Optional[
-        List[
-            Union[
-                PipelineSettingsStage,
-                PipelineSettingsStagePlain,
-            ]
-        ]
-    ]
-    variables: Optional[
-        List[
-            Union[
-                PipelineSettingsVariable,
-                PipelineSettingsVariablePlain,
-            ]
-        ]
-    ]
+    max_pipelines_per_resource: int | None
+    is_user_managed: bool | None
+    stages: list[Union[PipelineSettingsStage, PipelineSettingsStagePlain]] | None
+    variables: (
+        list[Union[PipelineSettingsVariable, PipelineSettingsVariablePlain]] | None
+    )

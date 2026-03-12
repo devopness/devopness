@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
 )
@@ -29,8 +27,8 @@ class EnvironmentLink(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="Environment's unique id")
-    name: Optional[StrictStr] = Field(default=None, description="Environment's name")
-    servers: List[StrictInt] = Field(
+    name: StrictStr | None = Field(default=None, description="Environment's name")
+    servers: list[StrictInt] = Field(
         description="A list of server IDs to which the item link/unlink operations must be performed"
     )
 
@@ -41,5 +39,5 @@ class EnvironmentLinkPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    name: Optional[str]
-    servers: Required[List[int]]
+    name: str | None
+    servers: Required[list[int]]

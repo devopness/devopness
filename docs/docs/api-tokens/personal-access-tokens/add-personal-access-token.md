@@ -2,13 +2,13 @@
 title: Add a Personal Access Token
 intro: Learn how to create a Personal Access Token to authenticate with the Devopness API using your account's permissions.
 links:
-    overview:
-    quickstart:
-    previous: api-tokens/personal-access-tokens/list-personal-access-tokens
-    next: api-tokens/personal-access-tokens/view-personal-access-token
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: api-tokens/personal-access-tokens/list-personal-access-tokens
+  next: api-tokens/personal-access-tokens/view-personal-access-token
+  guides:
+  related:
+  featured:
 ---
 
 Follow these steps to generate a new Personal Access Token:

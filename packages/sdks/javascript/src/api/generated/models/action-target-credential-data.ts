@@ -12,7 +12,7 @@
  */
 
 
-import { CloudProviderCode } from './cloud-provider-code';
+import { ProviderCode } from './provider-code';
 import { ProviderType } from './provider-type';
 
 /**
@@ -41,10 +41,10 @@ export interface ActionTargetCredentialData {
     provider_type: ProviderType;
     /**
      * 
-     * @type {CloudProviderCode}
+     * @type {ProviderCode}
      * @memberof ActionTargetCredentialData
      */
-    provider_code: CloudProviderCode;
+    provider_code: ProviderCode;
     /**
      * The name of the cloud provider of the credential
      * @type {string}

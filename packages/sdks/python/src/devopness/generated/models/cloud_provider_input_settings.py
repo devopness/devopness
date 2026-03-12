@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -42,7 +41,7 @@ class CloudProviderInputSettings(DevopnessBaseModel):
     name_human_readable: StrictStr = Field(
         description="Human readable version of the property's name"
     )
-    default_value: Optional[CloudProviderInputSettingsDefaultValue]
+    default_value: CloudProviderInputSettingsDefaultValue | None
     sensitive: StrictBool = Field(
         description="Defines if the property data is a sensitive content"
     )
@@ -56,12 +55,13 @@ class CloudProviderInputSettingsPlain(TypedDict, total=False):
 
     name: Required[str]
     name_human_readable: Required[str]
-    default_value: Optional[
+    default_value: (
         Union[
             CloudProviderInputSettingsDefaultValue,
             CloudProviderInputSettingsDefaultValuePlain,
         ]
-    ]
+        | None
+    )
     sensitive: Required[bool]
     validation: Required[
         Union[

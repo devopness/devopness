@@ -1,6 +1,7 @@
 import json
+import math
 import unittest
-from typing import Any, Optional, Self
+from typing import Any, Self
 from unittest.mock import AsyncMock, Mock, patch
 
 import httpx
@@ -13,16 +14,16 @@ class DummyModel(DevopnessBaseModel):
     id: int
 
     @classmethod
-    def from_json(cls, raw_data: str) -> Self:
-        data = json.loads(raw_data)
+    def from_json(cls, data: str) -> Self:
+        json_data = json.loads(data)
 
-        return cls(**data)
+        return cls(**json_data)
 
 
 def build_response(
     content: Any = b"",
     status_code: int = 200,
-    headers: Optional[dict[str, Any]] = None,
+    headers: dict[str, Any] | None = None,
 ) -> Mock:
     response = Mock(spec=httpx.Response)
 
@@ -39,7 +40,7 @@ def build_response(
 def build_async_response(
     content: Any = b"",
     status_code: int = 200,
-    headers: Optional[dict[str, Any]] = None,
+    headers: dict[str, Any] | None = None,
 ) -> Mock:
     response = Mock(spec=httpx.Response)
     response.aread = AsyncMock()
@@ -100,7 +101,7 @@ class TestDevopnessResponse(unittest.TestCase):
         )
 
         assert isinstance(response.data, float)
-        assert response.data == 3.14
+        assert math.isclose(response.data, 3.14)
 
     def test_devopness_response_with_empty_body(self) -> None:
         response: DevopnessResponse[None] = DevopnessResponse(

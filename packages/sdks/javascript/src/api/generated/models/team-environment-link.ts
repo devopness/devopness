@@ -20,7 +20,7 @@
  */
 export interface TeamEnvironmentLink {
     /**
-     * The role\'s ID to use for this team on environment.
+     * The role\'s ID to link to the team.
      * @type {number}
      * @memberof TeamEnvironmentLink
      */

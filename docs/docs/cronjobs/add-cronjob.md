@@ -2,15 +2,15 @@
 title: Add a Cron Job
 intro: Add a Cron Job to automate your server and application management routine with scheduled tasks running automatically at a specified frequency.
 links:
-    overview:
-    quickstart:
-    previous:
-    next: cronjobs/edit-cronjob
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next: cronjobs/edit-cronjob
+  guides:
+  related:
+  featured:
 required_permissions:
-    - cronjob:create
+  - cronjob:create
 ---
 
 1. On Devopness, navigate to a project, then select an environment

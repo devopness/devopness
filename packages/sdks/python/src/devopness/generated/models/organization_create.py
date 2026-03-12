@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -29,7 +28,7 @@ class OrganizationCreate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The Name of the organization. Must not be greater than 255 characters."
     )
-    url_slug: Optional[StrictStr] = Field(
+    url_slug: StrictStr | None = Field(
         default=None,
         description="The URL Slug of the organization. Must not be greater than 255 characters.",
     )
@@ -41,4 +40,4 @@ class OrganizationCreatePlain(TypedDict, total=False):
     """
 
     name: Required[str]
-    url_slug: Optional[str]
+    url_slug: str | None

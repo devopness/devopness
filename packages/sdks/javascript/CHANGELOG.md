@@ -1,5 +1,194 @@
 # @devopness/sdk-js
 
+## 3.3.1
+
+### Patch Changes
+
+- [#2761](https://github.com/devopness/devopness/pull/2761) [`4843293`](https://github.com/devopness/devopness/commit/4843293e0cadd659cb05a55c49ef9eceba58e874) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the property type **network** in the **SubnetRelation** model
+
+## 3.3.0
+
+### Minor Changes
+
+- [#2749](https://github.com/devopness/devopness/pull/2749) [`894e01d`](https://github.com/devopness/devopness/commit/894e01d7d66c2131e473caa769cca8f8f7da467a) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Migrate team and role management to organization-based architecture
+
+  ## ⚠️ Breaking Changes
+
+  ### Removed nested service APIs
+
+  Team and role management methods have been moved from nested service paths to the main `teams` and `roles` services:
+
+  **Removed:**
+  - `devopness.projects.roles.*` → Use `devopness.roles.*`
+  - `devopness.projects.teams.*` → Use `devopness.teams.*`
+  - `devopness.environments.teams.*` → Use `devopness.teams.*`
+  - `devopness.environments.teamMemberships.*` → Use `devopness.teams.*`
+  - `devopness.teams.memberships.*` → Use `devopness.teams.*`
+
+  ### Migration Examples
+
+  **Before:**
+
+  ```javascript
+  // Linking team to environment
+  await devopness.environments.teams.linkTeamToEnvironment(envId, teamId, data);
+
+  // Listing environment team memberships
+  await devopness.environments.teamMemberships.listEnvironmentTeamMemberships(
+    envId,
+  );
+
+  // Managing project roles
+  await devopness.projects.roles.addProjectRole(projectId, roleData);
+  ```
+
+  **After:**
+
+  ```javascript
+  // All team operations now in teams service
+  await devopness.teams.linkTeamToEnvironment(envId, teamId, data);
+
+  await devopness.teams.listEnvironmentTeamMemberships(envId);
+
+  // Roles now organization-based
+  await devopness.roles.addOrganizationRole(organizationId, roleData);
+  ```
+
+  ## New Features
+
+  ### Organization-level team management
+  - `addOrganizationTeam(organizationId, data)` - Create team at organization level
+  - `listOrganizationTeams(organizationId)` - List all teams in an organization
+  - `listOrganizationTeamMemberships(organizationId)` - List team memberships in organization
+  - `linkTeamToOrganization(organizationId, teamId, data)` - Link team to organization with role
+  - `unlinkTeamFromOrganization(organizationId, teamId)` - Remove team from organization
+
+  ### Enhanced team linking
+  - `linkTeamToProject(projectId, teamId, data)` - Link team to project with role
+  - `unlinkTeamFromProject(projectId, teamId)` - Remove team from project
+  - `listProjectTeamMemberships(projectId)` - List team memberships in project
+  - `listTeamMemberships(teamId)` - List all memberships of a specific team
+
+  ### Organization-level role management
+  - `addOrganizationRole(organizationId, data)` - Create custom role at organization level
+  - `listOrganizationRoles(organizationId)` - List all roles in an organization
+
+  ## Impact
+
+  If you were using nested service paths for team or role management, you must update your code to use the new flat service structure. All team operations are now consolidated under `devopness.teams.*` and roles under `devopness.roles.*`.
+
+## 3.2.1
+
+### Patch Changes
+
+- [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  - Added a method to list all subnets belonging to an environment:
+
+    ```javascript
+    devopness.subnets.listEnvironmentSubnets(environmentId);
+    ```
+
+## 3.2.0
+
+### Minor Changes
+
+- [#2717](https://github.com/devopness/devopness/pull/2717) [`633041c`](https://github.com/devopness/devopness/commit/633041cc95c0951868be9e47df79943a680fe5df) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
+  ## ⚠️ Breaking Change
+
+  ### Simplified deployment workflow for multiple resource types
+
+  Previously, deploying resources required a multi-step process: listing pipelines, finding the deploy pipeline, and triggering an action. Now, dedicated `deploy()` methods provide direct deployment capabilities.
+
+  **Affected resources:**
+  - Cron Jobs
+  - Daemons
+  - Network Rules
+  - Servers
+  - Services
+  - SSH Keys
+  - SSL Certificates
+  - Virtual Hosts
+
+  ### What Changed
+
+  The deploy pipeline is no longer visible or accessible through the pipelines API for these resources. Instead, use the new dedicated deployment methods.
+
+  ### Migration Example
+
+  **Before:**
+
+  ```javascript
+  import { DevopnessApiClient } from "@devopness/sdk-js";
+
+  const devopness = new DevopnessApiClient();
+
+  // Old multi-step approach
+  const pipelines = await devopness.pipelines.listResourcePipelines(
+    environmentId,
+    resourceType,
+    resourceId,
+  );
+
+  const deployPipeline = pipelines.data.find((p) => p.type === "deploy");
+
+  await devopness.actions.triggerPipelineAction(deployPipeline.id, {
+    servers: [serverId],
+  });
+  ```
+
+  **After:**
+
+  ```javascript
+  import { DevopnessApiClient } from "@devopness/sdk-js";
+
+  const devopness = new DevopnessApiClient();
+
+  // New simplified approach
+  await devopness.cronJobs.deployCronJob(cronJobId, {
+    servers: [serverId],
+  });
+
+  // Other examples:
+  await devopness.daemons.deployDaemon(daemonId, { servers: [serverId] });
+  await devopness.services.deployService(serviceId, { servers: [serverId] });
+  await devopness.sshKeys.deploySshKey(sshKeyId, { servers: [serverId] });
+  ```
+
+  ### Impact
+
+  If you were programmatically listing or managing deploy pipelines for these resources, you must migrate to the new deployment methods.
+
+  The deploy pipeline will no longer appear in pipeline listings for these resource types.
+
+### Patch Changes
+
+- [#2710](https://github.com/devopness/devopness/pull/2710) [`9717960`](https://github.com/devopness/devopness/commit/97179603f7a873000fe899b69f557a0692b60ee5) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Update documentation to guide users to use token-based authentication (Personal Access Tokens and Project API Tokens) instead of deprecated email/password method
+
+## 3.1.10
+
+### Patch Changes
+
+- [#2660](https://github.com/devopness/devopness/pull/2660) [`2ac061b`](https://github.com/devopness/devopness/commit/2ac061ba08629ee8093f68eb5150241779e5aae4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix `CronJobPattern` Enum to include `Custom` option.
+
+## 3.1.9
+
+### Patch Changes
+
+- [#2581](https://github.com/devopness/devopness/pull/2581) [`75c81ab`](https://github.com/devopness/devopness/commit/75c81ab40beedb394c36f0bb74ac1837e5147e45) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose the `addOrganizationProject` method to create a project under an organization.
+
+## 3.1.8
+
+### Patch Changes
+
+- [#2578](https://github.com/devopness/devopness/pull/2578) [`75ae202`](https://github.com/devopness/devopness/commit/75ae202fc3224d339c67ea673e2c9228eb4f9506) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add methods to `delete` **environments**, **projects** and **organizations**.
+
+## 3.1.7
+
+### Patch Changes
+
+- [#2544](https://github.com/devopness/devopness/pull/2544) [`5a31613`](https://github.com/devopness/devopness/commit/5a31613a8711bd5398aefda3d3cadf160c1c39e8) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the `ActionTargetCredentialData::provider_code` type to include `Source Providers` (ProviderCode::Enum)
+
 ## 3.1.6
 
 ### Patch Changes

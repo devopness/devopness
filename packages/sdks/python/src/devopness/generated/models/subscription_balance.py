@@ -8,7 +8,6 @@ Note:
 
 from datetime import datetime
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -32,20 +31,20 @@ class SubscriptionBalance(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
-    credits: Optional[Credits] = None
-    unit: Optional[StrictStr] = Field(
+    credits: Credits | None = None
+    unit: StrictStr | None = Field(
         default=None, description="The unit of measurement to count credits"
     )
-    billing_period_started_at: Optional[datetime] = Field(
+    billing_period_started_at: datetime | None = Field(
         default=None, description="The date and time the subscription plan starts"
     )
-    billing_period_ends_at: Optional[datetime] = Field(
+    billing_period_ends_at: datetime | None = Field(
         default=None, description="The date and time the subscription plan ends"
     )
-    created_at: Optional[datetime] = Field(
+    created_at: datetime | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[datetime] = Field(
+    updated_at: datetime | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -55,14 +54,9 @@ class SubscriptionBalancePlain(TypedDict, total=False):
     Plain version of SubscriptionBalance.
     """
 
-    credits: Optional[
-        Union[
-            Credits,
-            CreditsPlain,
-        ]
-    ]
-    unit: Optional[str]
-    billing_period_started_at: Optional[datetime]
-    billing_period_ends_at: Optional[datetime]
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    credits: Union[Credits, CreditsPlain] | None
+    unit: str | None
+    billing_period_started_at: datetime | None
+    billing_period_ends_at: datetime | None
+    created_at: datetime | None
+    updated_at: datetime | None

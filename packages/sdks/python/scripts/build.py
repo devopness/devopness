@@ -94,8 +94,7 @@ def export_sdk_models() -> None:
     lines.append("__all__ = [")
 
     names.sort()
-    for name in names:
-        lines.append(f'    "{name}",')
+    lines.extend(f'    "{name}",' for name in names)
 
     lines.append("]\n")
 

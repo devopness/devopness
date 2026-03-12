@@ -2,13 +2,13 @@
 title: List Project API Tokens
 intro: Find and view all Project API Tokens you have access to within a specific project.
 links:
-    overview:
-    quickstart:
-    previous: api-tokens/project-api-tokens/index
-    next: api-tokens/project-api-tokens/add-project-api-token
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: api-tokens/project-api-tokens/index
+  next: api-tokens/project-api-tokens/add-project-api-token
+  guides:
+  related:
+  featured:
 ---
 
 Follow these steps to list all Project API Tokens:

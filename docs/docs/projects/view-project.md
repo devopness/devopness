@@ -2,14 +2,14 @@
 title: View a Project
 intro: In this section you will learn how to manage your project.
 links:
-    overview:
-    quickstart:
-    previous: projects/add-project
-    next: projects/list-projects
-    guides:
-    related:
-        - projects/list-projects
-        - projects/add-project
+  overview:
+  quickstart:
+  previous: projects/add-project
+  next: projects/list-projects
+  guides:
+  related:
+    - projects/list-projects
+    - projects/add-project
 ---
 
 1. In your selected project page, you will see 3 sections: Environments, Teams and Roles. If you don't have any projects created, see the Add Project documentation page.

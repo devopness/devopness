@@ -57,7 +57,7 @@ export interface PersonalAccessTokenRotateResponse {
      * @type {UserRelation}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    user: UserRelation;
+    user: UserRelation | null;
     /**
      * Last time the Token was used
      * @type {string}

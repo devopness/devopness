@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
     Union,
 )
@@ -29,11 +27,11 @@ class ActionPipelineCreate(DevopnessBaseModel):
         source_ref (str, optional): A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.
     """
 
-    servers: Optional[List[StrictInt]] = Field(
+    servers: list[StrictInt] | None = Field(
         default=None, description="List of valid resource IDs"
     )
-    source_type: Optional[SourceType] = None
-    source_ref: Optional[StrictStr] = Field(
+    source_type: SourceType | None = None
+    source_ref: StrictStr | None = Field(
         default=None,
         description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.",
     )
@@ -44,11 +42,6 @@ class ActionPipelineCreatePlain(TypedDict, total=False):
     Plain version of ActionPipelineCreate.
     """
 
-    servers: Optional[List[int]]
-    source_type: Optional[
-        Union[
-            SourceType,
-            SourceTypePlain,
-        ]
-    ]
-    source_ref: Optional[str]
+    servers: list[int] | None
+    source_type: Union[SourceType, SourceTypePlain] | None
+    source_ref: str | None

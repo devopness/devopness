@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import HookRelation
 from ..utils import parse_query_string
@@ -21,9 +19,9 @@ class ApplicationsHooksApiService(DevopnessBaseService):
     def list_application_hooks(
         self,
         application_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[HookRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[HookRelation]]:
         """
         List all hooks in an application
 
@@ -47,7 +45,7 @@ class ApplicationsHooksApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[HookRelation])
+        return DevopnessResponse(response, list[HookRelation])
 
 
 class ApplicationsHooksApiServiceAsync(DevopnessBaseServiceAsync):
@@ -58,9 +56,9 @@ class ApplicationsHooksApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_application_hooks(
         self,
         application_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[HookRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[HookRelation]]:
         """
         List all hooks in an application
 
@@ -84,4 +82,4 @@ class ApplicationsHooksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[HookRelation])
+        return await DevopnessResponse.from_async(response, list[HookRelation])

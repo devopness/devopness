@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -36,8 +34,8 @@ class Environment(DevopnessBaseModel):
         is_archived (bool): Indicates whether the record was archived
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         teams (List[TeamRelation]):
-        created_by_user (UserRelation):
         current_user_permissions (List[str]): The list of permissions granted for this role
+        created_by_user (UserRelation, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -48,18 +46,18 @@ class Environment(DevopnessBaseModel):
         description="The human readable version of the type"
     )
     name: StrictStr = Field(description="Environment's name")
-    description: Optional[StrictStr] = Field(description="Environment's description")
+    description: StrictStr | None = Field(description="Environment's description")
     is_archived: StrictBool = Field(
         description="Indicates whether the record was archived"
     )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+    resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
-    teams: List[Optional[TeamRelation]]
-    created_by_user: UserRelation
-    current_user_permissions: List[StrictStr] = Field(
+    teams: list[TeamRelation | None]
+    current_user_permissions: list[StrictStr] = Field(
         description="The list of permissions granted for this role"
     )
+    created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -82,30 +80,18 @@ class EnvironmentPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     name: Required[str]
-    description: Optional[str]
+    description: str | None
     is_archived: Required[bool]
-    resource_summary: Optional[
-        List[
-            Union[
-                ResourceSummaryItem,
-                ResourceSummaryItemPlain,
-            ]
-        ]
-    ]
+    resource_summary: list[Union[ResourceSummaryItem, ResourceSummaryItemPlain]] | None
     teams: Required[
-        List[
+        list[
             Union[
                 TeamRelation,
                 TeamRelationPlain,
             ]
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    current_user_permissions: Required[List[str]]
+    current_user_permissions: Required[list[str]]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

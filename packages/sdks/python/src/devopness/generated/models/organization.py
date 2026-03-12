@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -30,7 +28,8 @@ class Organization(DevopnessBaseModel):
         name (str): The name of the organization
         url_slug (str): The URL Slug of the organization
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
-        owner (UserRelation):
+        current_user_permissions (List[str]): The list of permissions granted for this role
+        owner (UserRelation, optional, nullable):
         created_at (str): The date and time when the organization was created
         updated_at (str): The date and time when the organization was last updated
     """
@@ -38,10 +37,13 @@ class Organization(DevopnessBaseModel):
     id: StrictInt = Field(description="The unique identifier for the organization")
     name: StrictStr = Field(description="The name of the organization")
     url_slug: StrictStr = Field(description="The URL Slug of the organization")
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+    resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
-    owner: UserRelation
+    current_user_permissions: list[StrictStr] = Field(
+        description="The list of permissions granted for this role"
+    )
+    owner: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the organization was created"
     )
@@ -58,19 +60,8 @@ class OrganizationPlain(TypedDict, total=False):
     id: Required[int]
     name: Required[str]
     url_slug: Required[str]
-    resource_summary: Optional[
-        List[
-            Union[
-                ResourceSummaryItem,
-                ResourceSummaryItemPlain,
-            ]
-        ]
-    ]
-    owner: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
+    resource_summary: list[Union[ResourceSummaryItem, ResourceSummaryItemPlain]] | None
+    current_user_permissions: Required[list[str]]
+    owner: Union[UserRelation, UserRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

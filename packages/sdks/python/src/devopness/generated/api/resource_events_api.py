@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ResourceEvent, ResourceEventRelation
 from ..utils import parse_query_string
@@ -44,9 +42,9 @@ class ResourceEventsApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceEventRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ResourceEventRelation]]:
         """
         List events of a resource type
 
@@ -70,7 +68,7 @@ class ResourceEventsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ResourceEventRelation])
+        return DevopnessResponse(response, list[ResourceEventRelation])
 
 
 class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -104,9 +102,9 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceEventRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ResourceEventRelation]]:
         """
         List events of a resource type
 
@@ -130,4 +128,4 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ResourceEventRelation])
+        return await DevopnessResponse.from_async(response, list[ResourceEventRelation])

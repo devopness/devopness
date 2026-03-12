@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -27,7 +26,7 @@ class ServiceOptions(DevopnessBaseModel):
         types (List[StaticServiceType]): List of service types
     """
 
-    types: List[StaticServiceType] = Field(description="List of service types")
+    types: list[StaticServiceType] = Field(description="List of service types")
 
 
 class ServiceOptionsPlain(TypedDict, total=False):
@@ -36,7 +35,7 @@ class ServiceOptionsPlain(TypedDict, total=False):
     """
 
     types: Required[
-        List[
+        list[
             Union[
                 StaticServiceType,
                 StaticServiceTypePlain,

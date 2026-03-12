@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -56,7 +55,7 @@ class Server(DevopnessBaseModel):
         max_parallel_actions (int): Maximum number of actions that can run in parallel on this server. &#x60;0&#x60; means no limit of simultaneous actions. &#x60;1&#x60; means just a single action will be started at a time to run on this server,
         blueprint (ServerBlueprint):
         provision_input (ServerProvisionInput):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
         last_action (ActionRelation, optional, nullable):
         environment (EnvironmentRelation, optional, nullable):
@@ -76,14 +75,14 @@ class Server(DevopnessBaseModel):
         description="The human readable version of the provider's name"
     )
     cloud_service_code: ServerCloudServiceCode
-    ip_address: Optional[StrictStr] = Field(
+    ip_address: StrictStr | None = Field(
         default=None, description="Public ipv4 address for server access"
     )
     ssh_port: StrictInt = Field(
         description="The network port to which the SSH daemon is listening to SSH connections on the server"
     )
     os: OperatingSystemVersion
-    os_version_code: Optional[CloudOsVersionCode]
+    os_version_code: CloudOsVersionCode | None
     active: StrictBool = Field(description="Tells if the server is active or not")
     status: ServerStatus
     max_parallel_actions: StrictInt = Field(
@@ -91,11 +90,11 @@ class Server(DevopnessBaseModel):
     )
     blueprint: ServerBlueprint
     provision_input: ServerProvisionInput
-    created_by_user: UserRelation
-    project: Optional[ProjectRelation]
-    last_action: Optional[ActionRelation]
-    environment: Optional[EnvironmentRelation]
-    credential: Optional[CredentialRelation]
+    created_by_user: UserRelation | None
+    project: ProjectRelation | None
+    last_action: ActionRelation | None
+    environment: EnvironmentRelation | None
+    credential: CredentialRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -121,7 +120,7 @@ class ServerPlain(TypedDict, total=False):
             ServerCloudServiceCodePlain,
         ]
     ]
-    ip_address: Optional[str]
+    ip_address: str | None
     ssh_port: Required[int]
     os: Required[
         Union[
@@ -129,12 +128,7 @@ class ServerPlain(TypedDict, total=False):
             OperatingSystemVersionPlain,
         ]
     ]
-    os_version_code: Optional[
-        Union[
-            CloudOsVersionCode,
-            CloudOsVersionCodePlain,
-        ]
-    ]
+    os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None
     active: Required[bool]
     status: Required[
         Union[
@@ -155,35 +149,10 @@ class ServerPlain(TypedDict, total=False):
             ServerProvisionInputPlain,
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
-        ]
-    ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

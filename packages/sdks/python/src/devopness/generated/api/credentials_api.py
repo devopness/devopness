@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -139,11 +139,11 @@ class CredentialsApiService(DevopnessBaseService):
     def list_environment_credentials(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        provider_code: Optional[str] = None,
-        provider_type: Optional[str] = None,
-    ) -> DevopnessResponse[List[CredentialRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        provider_code: str | None = None,
+        provider_type: str | None = None,
+    ) -> DevopnessResponse[list[CredentialRelation]]:
         """
         Return a list of all Credentials belonging to an environment
 
@@ -169,7 +169,7 @@ class CredentialsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[CredentialRelation])
+        return DevopnessResponse(response, list[CredentialRelation])
 
     def update_credential(
         self,
@@ -315,11 +315,11 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_credentials(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        provider_code: Optional[str] = None,
-        provider_type: Optional[str] = None,
-    ) -> DevopnessResponse[List[CredentialRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        provider_code: str | None = None,
+        provider_type: str | None = None,
+    ) -> DevopnessResponse[list[CredentialRelation]]:
         """
         Return a list of all Credentials belonging to an environment
 
@@ -345,7 +345,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[CredentialRelation])
+        return await DevopnessResponse.from_async(response, list[CredentialRelation])
 
     async def update_credential(
         self,

@@ -13,7 +13,7 @@ from typing import Literal, Self
 
 class ProviderType(str, Enum):
     """
-    Type of provider.
+    The possible types of providers.
     """
 
     CLOUD_PROVIDER = "cloud_provider"

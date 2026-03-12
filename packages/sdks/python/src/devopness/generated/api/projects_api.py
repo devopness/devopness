@@ -6,13 +6,14 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+import warnings
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Project,
-    ProjectCreate,
-    ProjectCreatePlain,
+    ProjectOrganizationCreate,
+    ProjectOrganizationCreatePlain,
     ProjectRelation,
     ProjectUpdate,
     ProjectUpdatePlain,
@@ -25,15 +26,16 @@ class ProjectsApiService(DevopnessBaseService):
     ProjectsApiService - Auto Generated
     """
 
-    def add_project(
+    def add_organization_project(
         self,
-        project_create: Union[
-            ProjectCreate,
-            ProjectCreatePlain,
+        organization_id: str,
+        project_organization_create: Union[
+            ProjectOrganizationCreate,
+            ProjectOrganizationCreatePlain,
         ],
     ) -> DevopnessResponse[Project]:
         """
-        Create a project for the authenticated user
+        Create a project to a given organization
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -41,13 +43,62 @@ class ProjectsApiService(DevopnessBaseService):
         """
 
         endpoint_parts = [
+            f"/organizations/{organization_id}/projects",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, project_organization_create)
+
+        return DevopnessResponse(response, Project)
+
+    def add_project(
+        self,
+    ) -> DevopnessResponse[Project]:
+        """
+        Create a project for the authenticated user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
+        """
+        warnings.warn(
+            "`add_project` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
+        endpoint_parts = [
             "/projects",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, project_create)
+        response = self._post(endpoint)
 
         return DevopnessResponse(response, Project)
+
+    def delete_project(
+        self,
+        project_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
 
     def get_project(
         self,
@@ -72,10 +123,10 @@ class ProjectsApiService(DevopnessBaseService):
 
     def list_projects(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        owner: Optional[str] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        owner: str | None = None,
+    ) -> DevopnessResponse[list[ProjectRelation]]:
         """
         Return a list of projects
 
@@ -100,7 +151,7 @@ class ProjectsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ProjectRelation])
+        return DevopnessResponse(response, list[ProjectRelation])
 
     def update_project(
         self,
@@ -133,15 +184,16 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     ProjectsApiServiceAsync - Auto Generated
     """
 
-    async def add_project(
+    async def add_organization_project(
         self,
-        project_create: Union[
-            ProjectCreate,
-            ProjectCreatePlain,
+        organization_id: str,
+        project_organization_create: Union[
+            ProjectOrganizationCreate,
+            ProjectOrganizationCreatePlain,
         ],
     ) -> DevopnessResponse[Project]:
         """
-        Create a project for the authenticated user
+        Create a project to a given organization
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -149,13 +201,62 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         """
 
         endpoint_parts = [
+            f"/organizations/{organization_id}/projects",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, project_organization_create)
+
+        return await DevopnessResponse.from_async(response, Project)
+
+    async def add_project(
+        self,
+    ) -> DevopnessResponse[Project]:
+        """
+        Create a project for the authenticated user
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+
+        ## Deprecated
+            This method is deprecated and may be removed in future releases.
+        """
+        warnings.warn(
+            "`add_project` is deprecated and may be removed in future releases.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
+        endpoint_parts = [
             "/projects",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, project_create)
+        response = await self._post(endpoint)
 
         return await DevopnessResponse.from_async(response, Project)
+
+    async def delete_project(
+        self,
+        project_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Delete a given project
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/projects/{project_id}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
 
     async def get_project(
         self,
@@ -180,10 +281,10 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
 
     async def list_projects(
         self,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        owner: Optional[str] = None,
-    ) -> DevopnessResponse[List[ProjectRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        owner: str | None = None,
+    ) -> DevopnessResponse[list[ProjectRelation]]:
         """
         Return a list of projects
 
@@ -208,7 +309,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ProjectRelation])
+        return await DevopnessResponse.from_async(response, list[ProjectRelation])
 
     async def update_project(
         self,

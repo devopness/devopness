@@ -7,12 +7,12 @@ Note:
 """
 
 from typing import (
+    Annotated,
     Required,
     TypedDict,
 )
 
 from pydantic import Field
-from typing_extensions import Annotated
 
 from .. import DevopnessBaseModel
 

@@ -12,6 +12,7 @@
  */
 
 
+import { NetworkRelation } from './network-relation';
 import { SubnetProvisionInput } from './subnet-provision-input';
 import { SubnetType } from './subnet-type';
 
@@ -46,11 +47,11 @@ export interface SubnetRelation {
      */
     created_by: number;
     /**
-     * Numeric ID of the network to which the subnet belongs to
-     * @type {number}
+     * 
+     * @type {NetworkRelation}
      * @memberof SubnetRelation
      */
-    network_id: number;
+    network?: NetworkRelation | null;
     /**
      * The subnet\'s name
      * @type {string}

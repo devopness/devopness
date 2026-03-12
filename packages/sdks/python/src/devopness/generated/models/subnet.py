@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -36,7 +35,7 @@ class Subnet(DevopnessBaseModel):
         type (SubnetType):
         is_auto_generated (bool): True if this subnet is auto-generated or false if this was created by the user
         provision_input (SubnetProvisionInput):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
         environment (EnvironmentRelation, optional, nullable):
         network (NetworkRelation, optional, nullable):
@@ -53,12 +52,12 @@ class Subnet(DevopnessBaseModel):
         description="True if this subnet is auto-generated or false if this was created by the user"
     )
     provision_input: SubnetProvisionInput
-    created_by_user: UserRelation
-    project: Optional[ProjectRelation]
-    environment: Optional[EnvironmentRelation]
-    network: Optional[NetworkRelation]
-    credential: Optional[CredentialRelation]
-    last_action: Optional[ActionRelation]
+    created_by_user: UserRelation | None
+    project: ProjectRelation | None
+    environment: EnvironmentRelation | None
+    network: NetworkRelation | None
+    credential: CredentialRelation | None
+    last_action: ActionRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -87,41 +86,11 @@ class SubnetPlain(TypedDict, total=False):
             SubnetProvisionInputPlain,
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    network: Optional[
-        Union[
-            NetworkRelation,
-            NetworkRelationPlain,
-        ]
-    ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    network: Union[NetworkRelation, NetworkRelationPlain] | None
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { NetworkRule } from '../../generated/models';
+import { NetworkRuleDeploy } from '../../generated/models';
 import { NetworkRuleEnvironmentCreate } from '../../generated/models';
 import { NetworkRuleRelation } from '../../generated/models';
 import { NetworkRuleUpdate } from '../../generated/models';
@@ -61,6 +62,28 @@ export class NetworkRulesApiService extends ApiBaseService {
         const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Deploy a Network Rule
+     * @param {number} networkRuleId The ID of the network rule.
+     * @param {NetworkRuleDeploy} networkRuleDeploy A JSON object containing the resource data
+     */
+    public async deployNetworkRule(networkRuleId: number, networkRuleDeploy: NetworkRuleDeploy): Promise<ApiResponse<void>> {
+        if (networkRuleId === null || networkRuleId === undefined) {
+            throw new ArgumentNullException('networkRuleId', 'deployNetworkRule');
+        }
+        if (networkRuleDeploy === null || networkRuleDeploy === undefined) {
+            throw new ArgumentNullException('networkRuleDeploy', 'deployNetworkRule');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/network-rules/{network_rule_id}/deploy' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, NetworkRuleDeploy>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))), networkRuleDeploy);
         return new ApiResponse(response);
     }
 

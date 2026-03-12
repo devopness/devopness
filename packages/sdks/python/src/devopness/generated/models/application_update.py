@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -40,7 +39,7 @@ class ApplicationUpdate(DevopnessBaseModel):
     name: StrictStr = Field(
         description="The application's unique name. Must not be greater than 60 characters."
     )
-    build_command: Optional[StrictStr] = Field(
+    build_command: StrictStr | None = Field(
         default=None,
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
     )
@@ -53,26 +52,26 @@ class ApplicationUpdate(DevopnessBaseModel):
     programming_language: StrictStr = Field(
         description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters."
     )
-    repository: Optional[StrictStr] = Field(
+    repository: StrictStr | None = Field(
         default=None,
         description="The full name of a repository (`repository_owner/repository_name`) containing the application source code. Must not be greater than 100 characters.",
     )
-    credential_id: Optional[StrictInt] = Field(
+    credential_id: StrictInt | None = Field(
         default=None,
         description="Numeric ID of the credential to source provider where the repository is hosted. This field is required when <code>repository</code> is present.",
     )
-    root_directory: Optional[StrictStr] = Field(
+    root_directory: StrictStr | None = Field(
         default=None,
         description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
     )
     default_branch: StrictStr = Field(
         description="The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters."
     )
-    deployments_keep: Optional[StrictInt] = Field(
+    deployments_keep: StrictInt | None = Field(
         default=None,
         description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.",
     )
-    install_dependencies_command: Optional[StrictStr] = Field(
+    install_dependencies_command: StrictStr | None = Field(
         default=None,
         description="Indicates command that Devopness must execute to install application dependencies.",
     )
@@ -85,13 +84,13 @@ class ApplicationUpdatePlain(TypedDict, total=False):
 
     id: Required[int]
     name: Required[str]
-    build_command: Optional[str]
+    build_command: str | None
     engine_version: Required[str]
     framework: Required[str]
     programming_language: Required[str]
-    repository: Optional[str]
-    credential_id: Optional[int]
-    root_directory: Optional[str]
+    repository: str | None
+    credential_id: int | None
+    root_directory: str | None
     default_branch: Required[str]
-    deployments_keep: Optional[int]
-    install_dependencies_command: Optional[str]
+    deployments_keep: int | None
+    install_dependencies_command: str | None

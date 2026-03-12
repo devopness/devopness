@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -51,11 +51,11 @@ class NetworksSubnetsApiService(DevopnessBaseService):
     def list_network_subnets(
         self,
         network_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        region: Optional[str] = None,
-        zone: Optional[str] = None,
-    ) -> DevopnessResponse[List[SubnetRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        region: str | None = None,
+        zone: str | None = None,
+    ) -> DevopnessResponse[list[SubnetRelation]]:
         """
         Return a list of all subnets belonging to a network
 
@@ -81,7 +81,7 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[SubnetRelation])
+        return DevopnessResponse(response, list[SubnetRelation])
 
 
 class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -117,11 +117,11 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_network_subnets(
         self,
         network_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        region: Optional[str] = None,
-        zone: Optional[str] = None,
-    ) -> DevopnessResponse[List[SubnetRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        region: str | None = None,
+        zone: str | None = None,
+    ) -> DevopnessResponse[list[SubnetRelation]]:
         """
         Return a list of all subnets belonging to a network
 
@@ -147,4 +147,4 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[SubnetRelation])
+        return await DevopnessResponse.from_async(response, list[SubnetRelation])

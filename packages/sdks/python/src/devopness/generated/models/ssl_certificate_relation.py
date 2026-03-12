@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -51,17 +50,17 @@ class SslCertificateRelation(DevopnessBaseModel):
     active: StrictBool = Field(
         description="Tells if the certificate is active for all linked servers and applications"
     )
-    last_action: Optional[ActionRelationShallow] = None
-    expires_at: Optional[StrictStr] = Field(
+    last_action: ActionRelationShallow | None = None
+    expires_at: StrictStr | None = Field(
         description="The date and time when this certificate will no longer be valid, down to minute precision"
     )
-    last_renewed_at: Optional[StrictStr] = Field(
+    last_renewed_at: StrictStr | None = Field(
         description="The date and time when this certificate was renewed for the last time"
     )
-    created_at: Optional[StrictStr] = Field(
+    created_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was created"
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: StrictStr | None = Field(
         default=None, description="The date and time when the record was last updated"
     )
 
@@ -92,13 +91,8 @@ class SslCertificateRelationPlain(TypedDict, total=False):
         ]
     ]
     active: Required[bool]
-    last_action: Optional[
-        Union[
-            ActionRelationShallow,
-            ActionRelationShallowPlain,
-        ]
-    ]
-    expires_at: Optional[str]
-    last_renewed_at: Optional[str]
-    created_at: Optional[str]
-    updated_at: Optional[str]
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
+    expires_at: str | None
+    last_renewed_at: str | None
+    created_at: str | None
+    updated_at: str | None

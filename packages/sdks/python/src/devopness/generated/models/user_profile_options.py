@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -30,8 +29,8 @@ class UserProfileOptions(DevopnessBaseModel):
     """
 
     billing: StaticBillingInfo
-    languages: List[StrictStr] = Field(description="Supported languages")
-    timezones: List[StrictStr] = Field(description="Supported time zones")
+    languages: list[StrictStr] = Field(description="Supported languages")
+    timezones: list[StrictStr] = Field(description="Supported time zones")
 
 
 class UserProfileOptionsPlain(TypedDict, total=False):
@@ -45,5 +44,5 @@ class UserProfileOptionsPlain(TypedDict, total=False):
             StaticBillingInfoPlain,
         ]
     ]
-    languages: Required[List[str]]
-    timezones: Required[List[str]]
+    languages: Required[list[str]]
+    timezones: Required[list[str]]

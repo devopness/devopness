@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ActionRelation
 from ..utils import parse_query_string
@@ -22,9 +20,9 @@ class ProjectsActionsApiService(DevopnessBaseService):
         self,
         project_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List project actions of a resource type
 
@@ -48,7 +46,7 @@ class ProjectsActionsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ActionRelation])
+        return DevopnessResponse(response, list[ActionRelation])
 
 
 class ProjectsActionsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -60,9 +58,9 @@ class ProjectsActionsApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         project_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ActionRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List project actions of a resource type
 
@@ -86,4 +84,4 @@ class ProjectsActionsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ActionRelation])
+        return await DevopnessResponse.from_async(response, list[ActionRelation])

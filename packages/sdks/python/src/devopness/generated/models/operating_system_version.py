@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -39,8 +38,8 @@ class OperatingSystemVersion(DevopnessBaseModel):
         description="The name given to the OS version while it is under development. For some OS it can be seen as a version nickname that is used to refer to that version even after official release."
     )
     version: StrictStr = Field(description="Version number")
-    os_version_code: Optional[CloudOsVersionCode]
-    os_version_code_human_readable: Optional[StrictStr] = Field(
+    os_version_code: CloudOsVersionCode | None
+    os_version_code_human_readable: StrictStr | None = Field(
         default=None,
         description="Human readable version of the operating system version",
     )
@@ -61,13 +60,8 @@ class OperatingSystemVersionPlain(TypedDict, total=False):
     name: Required[str]
     code_name: Required[str]
     version: Required[str]
-    os_version_code: Optional[
-        Union[
-            CloudOsVersionCode,
-            CloudOsVersionCodePlain,
-        ]
-    ]
-    os_version_code_human_readable: Optional[str]
+    os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None
+    os_version_code_human_readable: str | None
     released_at: Required[str]
     end_standard_support_at: Required[str]
     end_of_life_at: Required[str]

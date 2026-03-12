@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -51,9 +51,9 @@ class TeamsInvitationsApiService(DevopnessBaseService):
     def list_team_invitations(
         self,
         team_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[InvitationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[InvitationRelation]]:
         """
         Return a list of invitations belonging to a team
 
@@ -77,7 +77,7 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[InvitationRelation])
+        return DevopnessResponse(response, list[InvitationRelation])
 
 
 class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -113,9 +113,9 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_team_invitations(
         self,
         team_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[InvitationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[InvitationRelation]]:
         """
         Return a list of invitations belonging to a team
 
@@ -139,4 +139,4 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[InvitationRelation])
+        return await DevopnessResponse.from_async(response, list[InvitationRelation])

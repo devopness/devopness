@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -31,14 +29,14 @@ class ProviderSettings(DevopnessBaseModel):
         cloud_services (List[CloudProviderService], optional):
     """
 
-    connect_url: Optional[StrictStr] = Field(
+    connect_url: StrictStr | None = Field(
         default=None,
         description="The URL used to connect Devopness to a credential provider of type `source_provider`",
     )
-    input_settings: List[ProviderInputSettings] = Field(
+    input_settings: list[ProviderInputSettings] = Field(
         description="The list of input settings for credentials of specific provider"
     )
-    cloud_services: Optional[List[CloudProviderService]] = None
+    cloud_services: list[CloudProviderService] | None = None
 
 
 class ProviderSettingsPlain(TypedDict, total=False):
@@ -46,20 +44,13 @@ class ProviderSettingsPlain(TypedDict, total=False):
     Plain version of ProviderSettings.
     """
 
-    connect_url: Optional[str]
+    connect_url: str | None
     input_settings: Required[
-        List[
+        list[
             Union[
                 ProviderInputSettings,
                 ProviderInputSettingsPlain,
             ]
         ]
     ]
-    cloud_services: Optional[
-        List[
-            Union[
-                CloudProviderService,
-                CloudProviderServicePlain,
-            ]
-        ]
-    ]
+    cloud_services: list[Union[CloudProviderService, CloudProviderServicePlain]] | None

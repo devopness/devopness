@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Union
+from typing import Union
 
 from .hook_variable_default_value_one_of_inner import (
     HookVariableDefaultValueOneOfInner,
@@ -15,7 +15,7 @@ from .hook_variable_default_value_one_of_inner import (
 #: OneOf Type
 #: Optional variable assumes the default value if it's not given on the request to trigger the hook
 HookVariableDefaultValue = Union[
-    List[HookVariableDefaultValueOneOfInner],
+    list[HookVariableDefaultValueOneOfInner],
     bool,
     float,
     str,

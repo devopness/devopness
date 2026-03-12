@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -28,11 +27,11 @@ class SubnetProvisionInputSettingsAws(DevopnessBaseModel):
         cidr_block (str): The IP CIDR range of the subnet
     """
 
-    region: Optional[StrictStr] = Field(
+    region: StrictStr | None = Field(
         default=None,
         description="The cloud provider region where the subnet will be created",
     )
-    region_human_readable: Optional[StrictStr] = Field(
+    region_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the subnet region"
     )
     zone: StrictStr = Field(
@@ -46,7 +45,7 @@ class SubnetProvisionInputSettingsAwsPlain(TypedDict, total=False):
     Plain version of SubnetProvisionInputSettingsAws.
     """
 
-    region: Optional[str]
-    region_human_readable: Optional[str]
+    region: str | None
+    region_human_readable: str | None
     zone: Required[str]
     cidr_block: Required[str]

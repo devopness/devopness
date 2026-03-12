@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -36,8 +35,8 @@ class ResourceEventRelation(DevopnessBaseModel):
     event_type: StrictStr = Field(description="The type of resource event")
     resource_type: StrictStr = Field(description="The event's resource type")
     resource_id: StrictInt = Field(description="The event's resource ID")
-    message: Optional[StrictStr]
-    triggered_by: Optional[StrictInt]
+    message: StrictStr | None
+    triggered_by: StrictInt | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -55,7 +54,7 @@ class ResourceEventRelationPlain(TypedDict, total=False):
     event_type: Required[str]
     resource_type: Required[str]
     resource_id: Required[int]
-    message: Optional[str]
-    triggered_by: Optional[int]
+    message: str | None
+    triggered_by: int | None
     created_at: Required[str]
     updated_at: Required[str]

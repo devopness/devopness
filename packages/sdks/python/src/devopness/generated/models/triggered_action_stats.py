@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -33,17 +32,17 @@ class TriggeredActionStats(DevopnessBaseModel):
         summary (TriggeredActionSummary, optional):
     """
 
-    resource_type: Optional[StrictStr] = Field(
+    resource_type: StrictStr | None = Field(
         default=None, description="Type of resource used in the action"
     )
-    action_type: Optional[StrictStr] = Field(default=None, description="Type of action")
-    resource_type_human_readable: Optional[StrictStr] = Field(
+    action_type: StrictStr | None = Field(default=None, description="Type of action")
+    resource_type_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the resource type"
     )
-    action_type_human_readable: Optional[StrictStr] = Field(
+    action_type_human_readable: StrictStr | None = Field(
         default=None, description="Type of action human readable"
     )
-    summary: Optional[TriggeredActionSummary] = None
+    summary: TriggeredActionSummary | None = None
 
 
 class TriggeredActionStatsPlain(TypedDict, total=False):
@@ -51,13 +50,8 @@ class TriggeredActionStatsPlain(TypedDict, total=False):
     Plain version of TriggeredActionStats.
     """
 
-    resource_type: Optional[str]
-    action_type: Optional[str]
-    resource_type_human_readable: Optional[str]
-    action_type_human_readable: Optional[str]
-    summary: Optional[
-        Union[
-            TriggeredActionSummary,
-            TriggeredActionSummaryPlain,
-        ]
-    ]
+    resource_type: str | None
+    action_type: str | None
+    resource_type_human_readable: str | None
+    action_type_human_readable: str | None
+    summary: Union[TriggeredActionSummary, TriggeredActionSummaryPlain] | None

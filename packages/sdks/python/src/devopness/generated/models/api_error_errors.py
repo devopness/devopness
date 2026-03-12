@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
     Union,
 )
@@ -30,7 +28,7 @@ class ApiErrorErrors(DevopnessBaseModel):
         field_name (List[ApiErrorErrorsFieldNameInner], optional): Error message specific to each field included in the errors object
     """
 
-    field_name: Optional[List[ApiErrorErrorsFieldNameInner]] = Field(
+    field_name: list[ApiErrorErrorsFieldNameInner] | None = Field(
         default=None,
         description="Error message specific to each field included in the errors object",
     )
@@ -41,11 +39,7 @@ class ApiErrorErrorsPlain(TypedDict, total=False):
     Plain version of ApiErrorErrors.
     """
 
-    field_name: Optional[
-        List[
-            Union[
-                ApiErrorErrorsFieldNameInner,
-                ApiErrorErrorsFieldNameInnerPlain,
-            ]
-        ]
-    ]
+    field_name: (
+        list[Union[ApiErrorErrorsFieldNameInner, ApiErrorErrorsFieldNameInnerPlain]]
+        | None
+    )

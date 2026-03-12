@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -43,10 +42,10 @@ class LanguageRuntime(DevopnessBaseModel):
     name_human_readable: StrictStr = Field(
         description="The formatted name to be displayed in user interfaces"
     )
-    engine_versions: List[LanguageRuntimeEngineVersionsInner] = Field(
+    engine_versions: list[LanguageRuntimeEngineVersionsInner] = Field(
         description="The list of the supported versions of the runtime engine"
     )
-    frameworks: List[LanguageRuntimeFramework] = Field(
+    frameworks: list[LanguageRuntimeFramework] = Field(
         description="The list of supported frameworks built on top of the runtime engine"
     )
 
@@ -59,7 +58,7 @@ class LanguageRuntimePlain(TypedDict, total=False):
     name: Required[str]
     name_human_readable: Required[str]
     engine_versions: Required[
-        List[
+        list[
             Union[
                 LanguageRuntimeEngineVersionsInner,
                 LanguageRuntimeEngineVersionsInnerPlain,
@@ -67,7 +66,7 @@ class LanguageRuntimePlain(TypedDict, total=False):
         ]
     ]
     frameworks: Required[
-        List[
+        list[
             Union[
                 LanguageRuntimeFramework,
                 LanguageRuntimeFrameworkPlain,

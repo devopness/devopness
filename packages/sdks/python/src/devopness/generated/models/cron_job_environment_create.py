@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -33,7 +31,7 @@ class CronJobEnvironmentCreate(DevopnessBaseModel):
         application_id (int, optional): Numeric ID of the application to which the cron job belongs to.
     """
 
-    linked_resources: Optional[List[ResourceToBeLinked]] = Field(
+    linked_resources: list[ResourceToBeLinked] | None = Field(
         default=None, description="The resources to be linked with this resource"
     )
     name: StrictStr = Field(
@@ -48,7 +46,7 @@ class CronJobEnvironmentCreate(DevopnessBaseModel):
     run_as_user: StrictStr = Field(
         description="The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters."
     )
-    application_id: Optional[StrictInt] = Field(
+    application_id: StrictInt | None = Field(
         default=None,
         description="Numeric ID of the application to which the cron job belongs to.",
     )
@@ -59,16 +57,9 @@ class CronJobEnvironmentCreatePlain(TypedDict, total=False):
     Plain version of CronJobEnvironmentCreate.
     """
 
-    linked_resources: Optional[
-        List[
-            Union[
-                ResourceToBeLinked,
-                ResourceToBeLinkedPlain,
-            ]
-        ]
-    ]
+    linked_resources: list[Union[ResourceToBeLinked, ResourceToBeLinkedPlain]] | None
     name: Required[str]
     command: Required[str]
     pattern: Required[str]
     run_as_user: Required[str]
-    application_id: Optional[int]
+    application_id: int | None

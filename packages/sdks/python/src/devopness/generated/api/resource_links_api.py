@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import ResourceLinkRelation
 from ..utils import parse_query_string
@@ -46,9 +44,9 @@ class ResourceLinksApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceLinkRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ResourceLinkRelation]]:
         """
         List linked resources of the given resource
 
@@ -72,16 +70,16 @@ class ResourceLinksApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ResourceLinkRelation])
+        return DevopnessResponse(response, list[ResourceLinkRelation])
 
     def list_resource_links_by_resource_type_and_link_type(
         self,
         link_type: str,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceLinkRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ResourceLinkRelation]]:
         """
         List linked resources of specified link type
 
@@ -105,7 +103,7 @@ class ResourceLinksApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ResourceLinkRelation])
+        return DevopnessResponse(response, list[ResourceLinkRelation])
 
     def unlink_resource_link_from_resource_link(
         self,
@@ -165,9 +163,9 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceLinkRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ResourceLinkRelation]]:
         """
         List linked resources of the given resource
 
@@ -191,16 +189,16 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ResourceLinkRelation])
+        return await DevopnessResponse.from_async(response, list[ResourceLinkRelation])
 
     async def list_resource_links_by_resource_type_and_link_type(
         self,
         link_type: str,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ResourceLinkRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ResourceLinkRelation]]:
         """
         List linked resources of specified link type
 
@@ -224,7 +222,7 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ResourceLinkRelation])
+        return await DevopnessResponse.from_async(response, list[ResourceLinkRelation])
 
     async def unlink_resource_link_from_resource_link(
         self,

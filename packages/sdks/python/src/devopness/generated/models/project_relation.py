@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -17,9 +15,8 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .os_users_inner import OsUsersInner, OsUsersInnerPlain
-from .project_owner_relation import ProjectOwnerRelation, ProjectOwnerRelationPlain
-from .project_owner_type import ProjectOwnerType, ProjectOwnerTypePlain
 from .resource_summary_item import ResourceSummaryItem, ResourceSummaryItemPlain
 from .user_relation import UserRelation, UserRelationPlain
 
@@ -35,9 +32,8 @@ class ProjectRelation(DevopnessBaseModel):
         logo_url (str, optional, nullable): A URL path to the project&#39;s logo image
         resource_summary (List[ResourceSummaryItem], optional): Summary of the resource
         os_users (List[OsUsersInner]): The list of the operating system users found in all the servers linked to a project
-        owner (ProjectOwnerRelation):
-        owner_type (ProjectOwnerType):
-        created_by_user (UserRelation):
+        organization (OrganizationRelation, optional, nullable):
+        created_by_user (UserRelation, optional, nullable):
         used_credits (int, optional): Number of credits used in the current monthly billing cycle by actions of resources in the project.
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
@@ -46,19 +42,18 @@ class ProjectRelation(DevopnessBaseModel):
     id: StrictInt = Field(description="The Id of the project")
     user_id: StrictInt = Field(description="The id of the user that own the project")
     name: StrictStr = Field(description="The project's name")
-    logo_url: Optional[StrictStr] = Field(
+    logo_url: StrictStr | None = Field(
         description="A URL path to the project's logo image"
     )
-    resource_summary: Optional[List[ResourceSummaryItem]] = Field(
+    resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
-    os_users: List[OsUsersInner] = Field(
+    os_users: list[OsUsersInner] = Field(
         description="The list of the operating system users found in all the servers linked to a project"
     )
-    owner: ProjectOwnerRelation
-    owner_type: ProjectOwnerType
-    created_by_user: UserRelation
-    used_credits: Optional[StrictInt] = Field(
+    organization: OrganizationRelation | None
+    created_by_user: UserRelation | None
+    used_credits: StrictInt | None = Field(
         default=None,
         description="Number of credits used in the current monthly billing cycle by actions of resources in the project.",
     )
@@ -78,41 +73,18 @@ class ProjectRelationPlain(TypedDict, total=False):
     id: Required[int]
     user_id: Required[int]
     name: Required[str]
-    logo_url: Optional[str]
-    resource_summary: Optional[
-        List[
-            Union[
-                ResourceSummaryItem,
-                ResourceSummaryItemPlain,
-            ]
-        ]
-    ]
+    logo_url: str | None
+    resource_summary: list[Union[ResourceSummaryItem, ResourceSummaryItemPlain]] | None
     os_users: Required[
-        List[
+        list[
             Union[
                 OsUsersInner,
                 OsUsersInnerPlain,
             ]
         ]
     ]
-    owner: Required[
-        Union[
-            ProjectOwnerRelation,
-            ProjectOwnerRelationPlain,
-        ]
-    ]
-    owner_type: Required[
-        Union[
-            ProjectOwnerType,
-            ProjectOwnerTypePlain,
-        ]
-    ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    used_credits: Optional[int]
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
+    used_credits: int | None
     created_at: Required[str]
     updated_at: Required[str]

@@ -8,19 +8,28 @@ This SDK provides predefined classes to access Devopness platform resources. It'
 
 ## 📌 Table of Contents
 
-- [Usage](#usage)
-  - [Install](#install)
-  - [Initializing](#initializing)
-  - [Custom Configuration](#custom-configuration)
-  - [Authenticating](#authenticating)
-    - [Asynchronous usage](#asynchronous-usage)
-    - [Synchronous usage](#synchronous-usage)
-  - [Invoking authentication-protected endpoints](#invoking-authentication-protected-endpoints)
-    - [Asynchronous usage](#asynchronous-usage-1)
-    - [Synchronous usage](#synchronous-usage-1)
-  - [Error Handling](#error-handling)
-- [Development](#development)
-  - [With Docker](#with-docker)
+- [Devopness SDK - Python](#devopness-sdk---python)
+  - [📌 Table of Contents](#-table-of-contents)
+  - [Usage](#usage)
+    - [Install](#install)
+    - [Initializing](#initializing)
+    - [Custom Configuration](#custom-configuration)
+    - [Authentication](#authentication)
+      - [Authentication with Personal Access Token](#authentication-with-personal-access-token)
+        - [Asynchronous usage](#asynchronous-usage)
+        - [Synchronous usage](#synchronous-usage)
+      - [Authentication with Project API Token](#authentication-with-project-api-token)
+        - [Asynchronous usage](#asynchronous-usage-1)
+        - [Synchronous usage](#synchronous-usage-1)
+      - [Authentication with Login (Deprecated)](#authentication-with-login-deprecated)
+    - [Invoking authentication-protected endpoints](#invoking-authentication-protected-endpoints)
+      - [Asynchronous usage](#asynchronous-usage-2)
+      - [Synchronous usage](#synchronous-usage-2)
+    - [Error Handling](#error-handling)
+  - [Development](#development)
+    - [With Docker](#with-docker)
+      - [Prerequisites](#prerequisites)
+      - [Steps](#steps)
 
 ## Usage
 
@@ -69,79 +78,123 @@ Configuration options:
 
 | Parameter            | Default                     | Description                                         |
 | -------------------- | --------------------------- | --------------------------------------------------- |
-| `auto_refresh_token` | `True`                      | Whether the access token is automatically refreshed |
 | `base_url`           | `https://api.devopness.com` | Base URL for all API requests                       |
 | `timeout`            | `30`                        | Timeout for HTTP requests (in seconds)              |
 | `default_encoding`   | `utf-8`                     | Encoding for response content                       |
 
-### Authenticating
+### Authentication
 
-To authenticate, invoke the `login_user` method on the `users` service.
+#### Authentication with Personal Access Token
 
-#### Asynchronous usage
+Ensure you have a Personal Access Token from Devopness. If you don't have one, see [Add a Personal Access Token](https://www.devopness.com/docs/api-tokens/personal-access-tokens/add-personal-access-token).
+
+##### Asynchronous usage
 
 ```python
 import asyncio
+from devopness import DevopnessClientAsync, DevopnessClientConfig
 
-from devopness import DevopnessClientAsync
-from devopness.models import UserLogin
+# Option 1: Pass token during initialization
+config = DevopnessClientConfig(api_token='your-personal-access-token-here')
+devopness = DevopnessClientAsync(config)
 
-devopness = DevopnessClientAsync({'auto_refresh_token': False})
+# Option 2: Set token after initialization
+devopness = DevopnessClientAsync()
+devopness.api_token = 'your-personal-access-token-here'
 
-async def authenticate(user_email, user_pass):
-    user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = await devopness.users.login_user(user_data)
-
-    # The `access_token` must be set every time a token is obtained or refreshed,
-    # if the `auto_refresh_token` option is set to `False`.
-    devopness.access_token = user_tokens.data.access_token
+async def main():
+    current_user = await devopness.users.get_user_me()
+    print(f'User ID: {current_user.data.id}')
 
 if __name__ == "__main__":
-    asyncio.run(authenticate('user@email.com', 'secret-password'))
+    asyncio.run(main())
 ```
 
-#### Synchronous usage
+##### Synchronous usage
+
+```python
+from devopness import DevopnessClient, DevopnessClientConfig
+
+# Option 1: Pass token during initialization
+config = DevopnessClientConfig(api_token='your-personal-access-token-here')
+devopness = DevopnessClient(config)
+
+# Option 2: Set token after initialization
+devopness = DevopnessClient()
+devopness.api_token = 'your-personal-access-token-here'
+
+def main():
+    current_user = devopness.users.get_user_me()
+    print(f'User ID: {current_user.data.id}')
+
+if __name__ == "__main__":
+    main()
+```
+
+#### Authentication with Project API Token
+
+Ensure you have a Project API Token from Devopness. If you don't have one, see [Add a Project API Token](https://www.devopness.com/docs/api-tokens/project-api-tokens/add-project-api-token).
+
+##### Asynchronous usage
+
+```python
+import asyncio
+from devopness import DevopnessClientAsync
+
+devopness = DevopnessClientAsync()
+devopness.api_token = 'your-project-api-token-here'
+
+async def main():
+    project = await devopness.projects.get_project(project_id=123)
+    print(f'Project name: {project.data.name}')
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+##### Synchronous usage
 
 ```python
 from devopness import DevopnessClient
-from devopness.models import UserLogin
 
-devopness = DevopnessClient({'auto_refresh_token': False})
+devopness = DevopnessClient()
+devopness.api_token = 'your-project-api-token-here'
 
-def authenticate(user_email, user_pass):
-    user_data = UserLogin(email=user_email, password=user_pass)
-    user_tokens = devopness.users.login_user(user_data)
-
-    # The `access_token` must be set every time a token is obtained or refreshed,
-    # if the `auto_refresh_token` option is set to `False`.
-    devopness.access_token = user_tokens.data.access_token
+def main():
+    project = devopness.projects.get_project(project_id=123)
+    print(f'Project name: {project.data.name}')
 
 if __name__ == "__main__":
-    authenticate('user@email.com', 'secret-password')
+    main()
 ```
+
+#### Authentication with Login (Deprecated)
+
+> **Warning:** Email/password authentication is no longer supported. API requests using this method return 4xx errors.
 
 ### Invoking authentication-protected endpoints
 
-Once authenticated, you can invoke protected endpoints like retrieving user details.
+Once authenticated, you can invoke protected endpoints. Here's an example of retrieving user details and listing projects:
 
 #### Asynchronous usage
 
 ```python
 import asyncio
+import os
+from devopness import DevopnessClientAsync, DevopnessClientConfig
+from devopness.core import DevopnessSdkError
 
-from devopness import DevopnessClientAsync
-from devopness.models import UserLogin
-
-devopness = DevopnessClientAsync()
-
-async def authenticate(user_email, user_pass):
-    user_data = UserLogin(email=user_email, password=user_pass)
-    await devopness.users.login_user(user_data)
+config = DevopnessClientConfig(api_token=os.getenv('DEVOPNESS_API_TOKEN'))
+devopness = DevopnessClientAsync(config)
 
 async def get_user_profile():
-    await authenticate('user@email.com', 'secret-password')
-    current_user = await devopness.users.get_user_me()
-    print(f'User ID: {current_user.data.id}')
+    try:
+        # Retrieve current user details
+        current_user = await devopness.users.get_user_me()
+        print(f'User ID: {current_user.data.id}')
+
+    except DevopnessSdkError as error:
+        print(f'Error: {error}')
 
 if __name__ == "__main__":
     asyncio.run(get_user_profile())
@@ -150,19 +203,21 @@ if __name__ == "__main__":
 #### Synchronous usage
 
 ```python
-from devopness import DevopnessClient
-from devopness.models import UserLogin
+import os
+from devopness import DevopnessClient, DevopnessClientConfig
+from devopness.core import DevopnessSdkError
 
-devopness = DevopnessClient()
-
-def authenticate(user_email, user_pass):
-    user_data = UserLogin(email=user_email, password=user_pass)
-    devopness.users.login_user(user_data)
+config = DevopnessClientConfig(api_token=os.getenv('DEVOPNESS_API_TOKEN'))
+devopness = DevopnessClient(config)
 
 def get_user_profile():
-    authenticate('user@email.com', 'secret-password')
-    current_user = devopness.users.get_user_me()
-    print(f'User ID: {current_user.data.id}')
+    try:
+        # Retrieve current user details
+        current_user = devopness.users.get_user_me()
+        print(f'User ID: {current_user.data.id}')
+
+    except DevopnessSdkError as error:
+        print(f'Error: {error}')
 
 if __name__ == "__main__":
     get_user_profile()

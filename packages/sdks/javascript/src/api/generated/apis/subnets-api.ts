@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Subnet } from '../../generated/models';
+import { SubnetRelation } from '../../generated/models';
 
 /**
  * SubnetsApiService - Auto-generated
@@ -54,6 +55,34 @@ export class SubnetsApiService extends ApiBaseService {
         const requestUrl = '/subnets/{subnet_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Subnet>(requestUrl.replace(`{${"subnet_id"}}`, encodeURIComponent(String(subnetId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all subnets belonging to an environment
+     * @param {number} environmentId The ID of the environment.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     */
+    public async listEnvironmentSubnets(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<SubnetRelation>>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'listEnvironmentSubnets');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/environments/{environment_id}/subnets' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<SubnetRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 }

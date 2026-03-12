@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -41,7 +40,7 @@ class VariableUpdate(DevopnessBaseModel):
     value: StrictStr = Field(
         description="The value to be assigned to this variable when deployed to its target.                     When variable is of type `file`, this is the file content. Must not be greater than 21504 characters."
     )
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         default=None,
         description="A text describing the variable, provided by the end user. Must not be greater than 255 characters.",
     )
@@ -60,7 +59,7 @@ class VariableUpdatePlain(TypedDict, total=False):
     id: Required[int]
     key: Required[str]
     value: Required[str]
-    description: Optional[str]
+    description: str | None
     target: Required[
         Union[
             VariableTarget,

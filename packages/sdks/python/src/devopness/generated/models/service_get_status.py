@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
 )
 
@@ -25,7 +23,7 @@ class ServiceGetStatus(DevopnessBaseModel):
         servers (List[int], optional): List of valid resource IDs
     """
 
-    servers: Optional[List[StrictInt]] = Field(
+    servers: list[StrictInt] | None = Field(
         default=None, description="List of valid resource IDs"
     )
 
@@ -35,4 +33,4 @@ class ServiceGetStatusPlain(TypedDict, total=False):
     Plain version of ServiceGetStatus.
     """
 
-    servers: Optional[List[int]]
+    servers: list[int] | None

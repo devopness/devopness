@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+.prose :where(p, li, td) a {
+  color: #786efd;
+  text-decoration: none;
+}
+
+.prose :where(p, li, td) a:hover {
+  text-decoration: underline;
+}

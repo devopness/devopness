@@ -42,6 +42,24 @@ export class EnvironmentsApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Delete a given environment
+     * @param {number} environmentId The ID of the environment.
+     */
+    public async deleteEnvironment(environmentId: number): Promise<ApiResponse<void>> {
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'deleteEnvironment');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get an environment by ID
      * @param {number} environmentId The ID of the environment.
      */

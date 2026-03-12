@@ -1,7 +1,8 @@
 import time
 import unittest
-from datetime import datetime, timedelta, timezone
-from typing import AsyncGenerator, Generator, Optional, Required, TypedDict
+from collections.abc import AsyncGenerator, Iterator
+from datetime import UTC, datetime, timedelta
+from typing import Required, TypedDict
 from unittest.mock import Mock, patch
 
 import httpx
@@ -18,25 +19,25 @@ from devopness.base import (
 
 
 class DummyModel(DevopnessBaseModel):
-    id: Optional[StrictInt] = Field(
+    id: StrictInt | None = Field(
         default=None,
         description="The unique ID of the given Dummy.",
     )
     name: StrictStr = Field(description="The name of the dummy.")
-    description: Optional[StrictStr] = Field(
+    description: StrictStr | None = Field(
         default=None,
         description="The description of the dummy.",
     )
 
 
 class DummyModelPlain(TypedDict, total=False):
-    id: Optional[int]
+    id: int | None
     name: Required[str]
-    description: Optional[str]
+    description: str | None
 
 
 class DummySyncStream(SyncByteStream):
-    def __iter__(self) -> Generator[bytes, None, None]:
+    def __iter__(self) -> Iterator[bytes]:
         yield b'{"access_token": "abc", "refresh_token": "def", "expires_in": 3600}'
 
     def close(self) -> None:
@@ -244,7 +245,7 @@ class TestDevopnessBaseService(unittest.TestCase):
 
         response.stream._response = response  # type: ignore
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         self.service._save_access_token(response)
 
         self.assertEqual(DevopnessBaseService._access_token, "abc")
@@ -478,7 +479,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
 
         response.stream._response = response  # type: ignore
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         await self.service._save_access_token(response)
 
         self.assertEqual(DevopnessBaseServiceAsync._access_token, "abc")

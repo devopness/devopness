@@ -16,6 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { SslCertificate } from '../../generated/models';
+import { SslCertificateDeploy } from '../../generated/models';
 import { SslCertificateEnvironmentCreate } from '../../generated/models';
 import { SslCertificateRelation } from '../../generated/models';
 
@@ -60,6 +61,28 @@ export class SSLCertificatesApiService extends ApiBaseService {
         const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Deploy a SSL Certificate
+     * @param {number} sslCertificateId The ID of the ssl certificate.
+     * @param {SslCertificateDeploy} sslCertificateDeploy A JSON object containing the resource data
+     */
+    public async deploySslCertificate(sslCertificateId: number, sslCertificateDeploy: SslCertificateDeploy): Promise<ApiResponse<void>> {
+        if (sslCertificateId === null || sslCertificateId === undefined) {
+            throw new ArgumentNullException('sslCertificateId', 'deploySslCertificate');
+        }
+        if (sslCertificateDeploy === null || sslCertificateDeploy === undefined) {
+            throw new ArgumentNullException('sslCertificateDeploy', 'deploySslCertificate');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/ssl-certificates/{ssl_certificate_id}/deploy' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void, SslCertificateDeploy>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))), sslCertificateDeploy);
         return new ApiResponse(response);
     }
 

@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import HookTypeParam, HookTypeParamPlain, RequestRelation
@@ -25,9 +25,9 @@ class HooksRequestsApiService(DevopnessBaseService):
             HookTypeParam,
             HookTypeParamPlain,
         ],
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RequestRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[RequestRelation]]:
         """
         Returns a list of all hook requests belonging to a hook
 
@@ -51,7 +51,7 @@ class HooksRequestsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[RequestRelation])
+        return DevopnessResponse(response, list[RequestRelation])
 
 
 class HooksRequestsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -66,9 +66,9 @@ class HooksRequestsApiServiceAsync(DevopnessBaseServiceAsync):
             HookTypeParam,
             HookTypeParamPlain,
         ],
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[RequestRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[RequestRelation]]:
         """
         Returns a list of all hook requests belonging to a hook
 
@@ -92,4 +92,4 @@ class HooksRequestsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[RequestRelation])
+        return await DevopnessResponse.from_async(response, list[RequestRelation])

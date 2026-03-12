@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -30,7 +29,7 @@ class SubnetProvisionInputSettingsDigitalOcean(DevopnessBaseModel):
     region: StrictStr = Field(
         description="The cloud provider region where the subnet will be created"
     )
-    region_human_readable: Optional[StrictStr] = Field(
+    region_human_readable: StrictStr | None = Field(
         default=None, description="Human readable version of the subnet region"
     )
     cidr_block: StrictStr = Field(description="The IP CIDR range of the subnet")
@@ -42,5 +41,5 @@ class SubnetProvisionInputSettingsDigitalOceanPlain(TypedDict, total=False):
     """
 
     region: Required[str]
-    region_human_readable: Optional[str]
+    region_human_readable: str | None
     cidr_block: Required[str]

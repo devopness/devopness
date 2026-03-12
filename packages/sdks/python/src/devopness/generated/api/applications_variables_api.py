@@ -7,7 +7,7 @@ Note:
 """
 
 import warnings
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -60,9 +60,9 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
     def list_application_variables(
         self,
         application_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VariableRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[VariableRelation]]:
         """
         Return a list of variables belonging to an application
 
@@ -94,7 +94,7 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[VariableRelation])
+        return DevopnessResponse(response, list[VariableRelation])
 
 
 class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
@@ -138,9 +138,9 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_application_variables(
         self,
         application_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[VariableRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[VariableRelation]]:
         """
         Return a list of variables belonging to an application
 
@@ -172,4 +172,4 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[VariableRelation])
+        return await DevopnessResponse.from_async(response, list[VariableRelation])

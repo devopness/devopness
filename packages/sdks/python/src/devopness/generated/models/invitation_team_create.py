@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -29,7 +28,7 @@ class InvitationTeamCreate(DevopnessBaseModel):
     """
 
     type: TeamInvitationType
-    email: Optional[StrictStr] = Field(
+    email: StrictStr | None = Field(
         default=None,
         description="The user email to send the invitation. Must be a valid email address. This field is required when <code>type</code> is <code>private</code>.",
     )
@@ -46,4 +45,4 @@ class InvitationTeamCreatePlain(TypedDict, total=False):
             TeamInvitationTypePlain,
         ]
     ]
-    email: Optional[str]
+    email: str | None

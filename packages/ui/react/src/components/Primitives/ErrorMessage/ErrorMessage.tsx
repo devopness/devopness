@@ -58,13 +58,13 @@ function handleErrorMessage(error: ErrorMessageProps['error']) {
 
   if ('message' in error) {
     // Handle potential non-string messages from custom error types
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
     return error.message
   }
 
   if ('errors' in error) {
     // Handle nested message access from custom error types
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+
     return error.errors.message
   }
 

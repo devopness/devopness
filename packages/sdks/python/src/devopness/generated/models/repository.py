@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
     Required,
     TypedDict,
     Union,
@@ -43,8 +42,8 @@ class Repository(DevopnessBaseModel):
     html_url: StrictStr = Field(
         description="The URL for viewing repository details on the provider's web application"
     )
-    branches: List[RepositoryBranch] = Field(description="List of repository branches")
-    tags: List[RepositoryTag] = Field(description="List of repository tags")
+    branches: list[RepositoryBranch] = Field(description="List of repository branches")
+    tags: list[RepositoryTag] = Field(description="List of repository tags")
 
 
 class RepositoryPlain(TypedDict, total=False):
@@ -57,7 +56,7 @@ class RepositoryPlain(TypedDict, total=False):
     full_name: Required[str]
     html_url: Required[str]
     branches: Required[
-        List[
+        list[
             Union[
                 RepositoryBranch,
                 RepositoryBranchPlain,
@@ -65,7 +64,7 @@ class RepositoryPlain(TypedDict, total=False):
         ]
     ]
     tags: Required[
-        List[
+        list[
             Union[
                 RepositoryTag,
                 RepositoryTagPlain,

@@ -6,8 +6,6 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional
-
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import EnvironmentRelation
 from ..utils import parse_query_string
@@ -21,10 +19,10 @@ class UsersEnvironmentsApiService(DevopnessBaseService):
     def list_user_environments(
         self,
         user_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        subscription_id: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        subscription_id: int | None = None,
+    ) -> DevopnessResponse[list[EnvironmentRelation]]:
         """
         Return a list of all environments owned by a user
 
@@ -49,7 +47,7 @@ class UsersEnvironmentsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[EnvironmentRelation])
+        return DevopnessResponse(response, list[EnvironmentRelation])
 
 
 class UsersEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
@@ -60,10 +58,10 @@ class UsersEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_user_environments(
         self,
         user_id: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-        subscription_id: Optional[int] = None,
-    ) -> DevopnessResponse[List[EnvironmentRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+        subscription_id: int | None = None,
+    ) -> DevopnessResponse[list[EnvironmentRelation]]:
         """
         Return a list of all environments owned by a user
 
@@ -88,4 +86,4 @@ class UsersEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[EnvironmentRelation])
+        return await DevopnessResponse.from_async(response, list[EnvironmentRelation])

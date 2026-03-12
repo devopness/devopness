@@ -6,11 +6,13 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     SshKey,
+    SshKeyDeploy,
+    SshKeyDeployPlain,
     SshKeyEnvironmentCreate,
     SshKeyEnvironmentCreatePlain,
     SshKeyRelation,
@@ -71,6 +73,31 @@ class SSHKeysApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
+    def deploy_ssh_key(
+        self,
+        ssh_key_id: int,
+        ssh_key_deploy: Union[
+            SshKeyDeploy,
+            SshKeyDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a SSH Key
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssh-keys/{ssh_key_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, ssh_key_deploy)
+
+        return DevopnessResponse(response, None)
+
     def get_ssh_key(
         self,
         ssh_key_id: int,
@@ -95,9 +122,9 @@ class SSHKeysApiService(DevopnessBaseService):
     def list_environment_ssh_keys(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SshKeyRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SshKeyRelation]]:
         """
         Return a list of all SSH keys added to an environment
 
@@ -121,7 +148,7 @@ class SSHKeysApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[SshKeyRelation])
+        return DevopnessResponse(response, list[SshKeyRelation])
 
     def update_ssh_key(
         self,
@@ -200,6 +227,31 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
 
         return await DevopnessResponse.from_async(response, None)
 
+    async def deploy_ssh_key(
+        self,
+        ssh_key_id: int,
+        ssh_key_deploy: Union[
+            SshKeyDeploy,
+            SshKeyDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a SSH Key
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/ssh-keys/{ssh_key_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, ssh_key_deploy)
+
+        return await DevopnessResponse.from_async(response, None)
+
     async def get_ssh_key(
         self,
         ssh_key_id: int,
@@ -224,9 +276,9 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_ssh_keys(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[SshKeyRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[SshKeyRelation]]:
         """
         Return a list of all SSH keys added to an environment
 
@@ -250,7 +302,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[SshKeyRelation])
+        return await DevopnessResponse.from_async(response, list[SshKeyRelation])
 
     async def update_ssh_key(
         self,

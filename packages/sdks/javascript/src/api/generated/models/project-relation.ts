@@ -12,8 +12,7 @@
  */
 
 
-import { ProjectOwnerRelation } from './project-owner-relation';
-import { ProjectOwnerType } from './project-owner-type';
+import { OrganizationRelation } from './organization-relation';
 import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
@@ -61,22 +60,16 @@ export interface ProjectRelation {
     os_users: Array<object>;
     /**
      * 
-     * @type {ProjectOwnerRelation}
+     * @type {OrganizationRelation}
      * @memberof ProjectRelation
      */
-    owner: ProjectOwnerRelation;
-    /**
-     * 
-     * @type {ProjectOwnerType}
-     * @memberof ProjectRelation
-     */
-    owner_type: ProjectOwnerType;
+    organization: OrganizationRelation | null;
     /**
      * 
      * @type {UserRelation}
      * @memberof ProjectRelation
      */
-    created_by_user: UserRelation;
+    created_by_user: UserRelation | null;
     /**
      * Number of credits used in the current monthly billing cycle by actions of resources in the project.
      * @type {number}

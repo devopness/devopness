@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
 )
 
@@ -29,11 +27,11 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
         allowed_values (List[str], optional):
     """
 
-    required: Optional[StrictBool] = None
-    type: Optional[StrictStr] = None
-    min: Optional[StrictInt] = None
-    max: Optional[StrictInt] = None
-    allowed_values: Optional[List[StrictStr]] = None
+    required: StrictBool | None = None
+    type: StrictStr | None = None
+    min: StrictInt | None = None
+    max: StrictInt | None = None
+    allowed_values: list[StrictStr] | None = None
 
 
 class ProviderInputSettingsValidationPlain(TypedDict, total=False):
@@ -41,8 +39,8 @@ class ProviderInputSettingsValidationPlain(TypedDict, total=False):
     Plain version of ProviderInputSettingsValidation.
     """
 
-    required: Optional[bool]
-    type: Optional[str]
-    min: Optional[int]
-    max: Optional[int]
-    allowed_values: Optional[List[str]]
+    required: bool | None
+    type: str | None
+    min: int | None
+    max: int | None
+    allowed_values: list[str] | None

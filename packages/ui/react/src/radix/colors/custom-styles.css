@@ -1,0 +1,94 @@
+/* Devopness brand color scale for Radix Themes */
+
+/* Light mode palette */
+:where(.radix-themes) {
+  --devopness-1: #f9f8ff;
+  --devopness-2: #f4f2ff;
+  --devopness-3: #eeedff;
+  --devopness-4: #e7e6ff;
+  --devopness-5: #d9d7ff;
+  --devopness-6: #ccc9ff;
+  --devopness-7: #bebbf8;
+  --devopness-8: #a9a7e6;
+  --devopness-9: #786efd; /* Solid */
+  --devopness-10: #6558e6;
+  --devopness-11: #4d43c0;
+  --devopness-12: #1f1b4d; /* Accessible text */
+
+  --devopness-a1: #786efd0d;
+  --devopness-a2: #786efd1a;
+  --devopness-a3: #786efd26;
+  --devopness-a4: #786efd33;
+  --devopness-a5: #786efd4d;
+  --devopness-a6: #786efd66;
+  --devopness-a7: #786efd80;
+  --devopness-a8: #786efd99;
+  --devopness-a9: #786efdb3;
+  --devopness-a10: #6558e6cc;
+  --devopness-a11: #4d43c0e5;
+  --devopness-a12: #1f1b4dff;
+}
+
+/* Dark mode palette */
+:where(.radix-themes)[data-theme='dark'] {
+  --devopness-1: #090924;
+  --devopness-2: #0c0d2f;
+  --devopness-3: #0f1039;
+  --devopness-4: #15184a;
+  --devopness-5: #191d53;
+  --devopness-6: #1f245f;
+  --devopness-7: #23296a;
+  --devopness-8: #2c347d;
+  --devopness-9: #7367ff; /* Solid */
+  --devopness-10: #8a7bff;
+  --devopness-11: #b3abff;
+  --devopness-12: #e8e6ff; /* Accessible text */
+
+  --devopness-a1: #7367ff12;
+  --devopness-a2: #7367ff1f;
+  --devopness-a3: #7367ff2b;
+  --devopness-a4: #7367ff38;
+  --devopness-a5: #7367ff52;
+  --devopness-a6: #7367ff6b;
+  --devopness-a7: #7367ff85;
+  --devopness-a8: #7367ffa1;
+  --devopness-a9: #7367ffbf;
+  --devopness-a10: #8a7bffd9;
+  --devopness-a11: #b3abffeb;
+  --devopness-a12: #e8e6ffff;
+}
+
+/* Wire the brand palette to Radix Themes as an accent option */
+:where(.radix-themes)[data-accent-color='devopness'],
+:where(.radix-themes) :where([data-accent-color='devopness']) {
+  --accent-1: var(--devopness-1);
+  --accent-2: var(--devopness-2);
+  --accent-3: var(--devopness-3);
+  --accent-4: var(--devopness-4);
+  --accent-5: var(--devopness-5);
+  --accent-6: var(--devopness-6);
+  --accent-7: var(--devopness-7);
+  --accent-8: var(--devopness-8);
+  --accent-9: var(--devopness-9);
+  --accent-10: var(--devopness-10);
+  --accent-11: var(--devopness-11);
+  --accent-12: var(--devopness-12);
+
+  --accent-a1: var(--devopness-a1);
+  --accent-a2: var(--devopness-a2);
+  --accent-a3: var(--devopness-a3);
+  --accent-a4: var(--devopness-a4);
+  --accent-a5: var(--devopness-a5);
+  --accent-a6: var(--devopness-a6);
+  --accent-a7: var(--devopness-a7);
+  --accent-a8: var(--devopness-a8);
+  --accent-a9: var(--devopness-a9);
+  --accent-a10: var(--devopness-a10);
+  --accent-a11: var(--devopness-a11);
+  --accent-a12: var(--devopness-a12);
+
+  --accent-contrast: white;
+  --accent-surface: var(--devopness-3);
+  --accent-indicator: var(--devopness-9);
+  --accent-track: var(--devopness-4);
+}

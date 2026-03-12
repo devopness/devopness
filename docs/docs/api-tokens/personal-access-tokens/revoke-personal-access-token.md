@@ -2,13 +2,13 @@
 title: Revoke a Personal Access Token
 intro: Revoke a Personal Access Token to immediately prevent it from being used for future requests.
 links:
-    overview:
-    quickstart:
-    previous: api-tokens/personal-access-tokens/list-personal-access-tokens
-    next: api-tokens/personal-access-tokens/add-personal-access-token
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: api-tokens/personal-access-tokens/list-personal-access-tokens
+  next: api-tokens/personal-access-tokens/add-personal-access-token
+  guides:
+  related:
+  featured:
 ---
 
 You should revoke a personal access token if it is no longer needed or was exposed to unauthorised access.

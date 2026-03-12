@@ -7,14 +7,13 @@ Note:
 """
 
 from typing import (
-    List,
     Union,
 )
 
 #: AnyOf Type
 #: The request body that should be send to target URL
 HookOutgoingSettingsRequestBody = Union[
-    List[object],
+    list[object],
     object,
     str,
 ]

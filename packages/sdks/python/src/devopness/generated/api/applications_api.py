@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -122,9 +122,9 @@ class ApplicationsApiService(DevopnessBaseService):
     def list_environment_applications(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApplicationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ApplicationRelation]]:
         """
         Return a list of all Applications belonging to an environment
 
@@ -148,7 +148,7 @@ class ApplicationsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[ApplicationRelation])
+        return DevopnessResponse(response, list[ApplicationRelation])
 
     def update_application(
         self,
@@ -276,9 +276,9 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_applications(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[ApplicationRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[ApplicationRelation]]:
         """
         Return a list of all Applications belonging to an environment
 
@@ -302,7 +302,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[ApplicationRelation])
+        return await DevopnessResponse.from_async(response, list[ApplicationRelation])
 
     async def update_application(
         self,

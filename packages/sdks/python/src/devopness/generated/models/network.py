@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -34,7 +33,7 @@ class Network(DevopnessBaseModel):
         provider_name_human_readable (str): The human readable version of the provider&#39;s name
         name (str): The networks&#39;s name
         provision_input (NetworkProvisionInput):
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
         environment (EnvironmentRelation, optional, nullable):
         credential (CredentialRelation, optional, nullable):
@@ -50,11 +49,11 @@ class Network(DevopnessBaseModel):
     )
     name: StrictStr = Field(description="The networks's name")
     provision_input: NetworkProvisionInput
-    created_by_user: UserRelation
-    project: Optional[ProjectRelation]
-    environment: Optional[EnvironmentRelation]
-    credential: Optional[CredentialRelation]
-    last_action: Optional[ActionRelation]
+    created_by_user: UserRelation | None
+    project: ProjectRelation | None
+    environment: EnvironmentRelation | None
+    credential: CredentialRelation | None
+    last_action: ActionRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -78,35 +77,10 @@ class NetworkPlain(TypedDict, total=False):
             NetworkProvisionInputPlain,
         ]
     ]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    project: Optional[
-        Union[
-            ProjectRelation,
-            ProjectRelationPlain,
-        ]
-    ]
-    environment: Optional[
-        Union[
-            EnvironmentRelation,
-            EnvironmentRelationPlain,
-        ]
-    ]
-    credential: Optional[
-        Union[
-            CredentialRelation,
-            CredentialRelationPlain,
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
-        ]
-    ]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
+    credential: Union[CredentialRelation, CredentialRelationPlain] | None
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

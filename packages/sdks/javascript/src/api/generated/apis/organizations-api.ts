@@ -44,6 +44,24 @@ export class OrganizationsApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Delete a given organization
+     * @param {string} organizationId The numeric ID or URL Slug of an organization.
+     */
+    public async deleteOrganization(organizationId: string): Promise<ApiResponse<void>> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new ArgumentNullException('organizationId', 'deleteOrganization');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/organizations/{organization_id}' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get an organization by ID or URL Slug
      * @param {string} organizationId The numeric ID or URL Slug of an organization.
      */

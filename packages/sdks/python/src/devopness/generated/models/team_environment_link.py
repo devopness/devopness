@@ -21,12 +21,10 @@ class TeamEnvironmentLink(DevopnessBaseModel):
     TeamEnvironmentLink
 
     Attributes:
-        role_id (int): The role&#39;s ID to use for this team on environment.
+        role_id (int): The role&#39;s ID to link to the team.
     """
 
-    role_id: StrictInt = Field(
-        description="The role's ID to use for this team on environment."
-    )
+    role_id: StrictInt = Field(description="The role's ID to link to the team.")
 
 
 class TeamEnvironmentLinkPlain(TypedDict, total=False):

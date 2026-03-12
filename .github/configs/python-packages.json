@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Devopness SDK - Python",
+    "path": "packages/sdks/python",
+    "pypi_name": "devopness",
+    "post_version_sync_commands": ""
+  }
+]

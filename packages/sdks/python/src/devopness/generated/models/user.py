@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -30,7 +29,7 @@ class User(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="The unique ID of the user")
-    url_slug: Optional[StrictStr] = Field(
+    url_slug: StrictStr | None = Field(
         default=None, description="The URL Slug of the user"
     )
     type: UserType
@@ -42,7 +41,7 @@ class UserPlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    url_slug: Optional[str]
+    url_slug: str | None
     type: Required[
         Union[
             UserType,

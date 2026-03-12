@@ -2,15 +2,15 @@
 title: Edit a Cron Job
 intro: Edit a Cron Job to modify the schedule, command, or other settings of an existing Cron Job.
 links:
-    overview:
-    quickstart:
-    previous: cronjobs/add-cronjob
-    next: cronjobs/remove-cronjob
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous: cronjobs/add-cronjob
+  next: cronjobs/remove-cronjob
+  guides:
+  related:
+  featured:
 required_permissions:
-    - cronjob:update
+  - cronjob:update
 ---
 
 1. On Devopness, navigate to a project, then select an environment

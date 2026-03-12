@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -37,7 +36,7 @@ class SslCertificate(DevopnessBaseModel):
         issuer (SslCertificateIssuer):
         validation_level (SslCertificateValidationLevel):
         active (bool): Tells if the certificate is active for all linked servers and applications
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         last_action (ActionRelation, optional, nullable):
         expires_at (str, optional, nullable): The date and time when this certificate will no longer be valid, down to minute precision
         last_renewed_at (str, optional, nullable): The date and time when this certificate was renewed for the last time
@@ -53,12 +52,12 @@ class SslCertificate(DevopnessBaseModel):
     active: StrictBool = Field(
         description="Tells if the certificate is active for all linked servers and applications"
     )
-    created_by_user: UserRelation
-    last_action: Optional[ActionRelation]
-    expires_at: Optional[StrictStr] = Field(
+    created_by_user: UserRelation | None
+    last_action: ActionRelation | None
+    expires_at: StrictStr | None = Field(
         description="The date and time when this certificate will no longer be valid, down to minute precision"
     )
-    last_renewed_at: Optional[StrictStr] = Field(
+    last_renewed_at: StrictStr | None = Field(
         description="The date and time when this certificate was renewed for the last time"
     )
     created_at: StrictStr = Field(
@@ -95,19 +94,9 @@ class SslCertificatePlain(TypedDict, total=False):
         ]
     ]
     active: Required[bool]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    last_action: Optional[
-        Union[
-            ActionRelation,
-            ActionRelationPlain,
-        ]
-    ]
-    expires_at: Optional[str]
-    last_renewed_at: Optional[str]
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
+    last_action: Union[ActionRelation, ActionRelationPlain] | None
+    expires_at: str | None
+    last_renewed_at: str | None
     created_at: Required[str]
     updated_at: Required[str]

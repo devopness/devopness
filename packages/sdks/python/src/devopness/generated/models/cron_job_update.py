@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -43,7 +42,7 @@ class CronJobUpdate(DevopnessBaseModel):
     run_as_user: StrictStr = Field(
         description="The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters."
     )
-    application_id: Optional[StrictInt] = Field(
+    application_id: StrictInt | None = Field(
         default=None,
         description="Numeric ID of the application to which the cron job belongs to.",
     )
@@ -59,4 +58,4 @@ class CronJobUpdatePlain(TypedDict, total=False):
     name: Required[str]
     command: Required[str]
     run_as_user: Required[str]
-    application_id: Optional[int]
+    application_id: int | None

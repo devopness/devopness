@@ -2,13 +2,13 @@
 title: Rotate the server's machine credential key
 intro: The server's machine credential is the key used by Devopness to connect to your server.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 ---
 
 1. On Devopness, navigate to a project then select an environment

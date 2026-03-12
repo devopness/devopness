@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
 )
@@ -30,18 +29,18 @@ class ServerUpdate(DevopnessBaseModel):
     """
 
     id: StrictInt = Field(description="The unique ID of the given Server.")
-    ip_address: Optional[StrictStr] = Field(
+    ip_address: StrictStr | None = Field(
         default=None, description="Public ipv4 address for server access."
     )
-    ssh_port: Optional[StrictInt] = Field(
+    ssh_port: StrictInt | None = Field(
         default=None,
         description="The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 22 and 65535.",
     )
-    max_parallel_actions: Optional[StrictInt] = Field(
+    max_parallel_actions: StrictInt | None = Field(
         default=None,
         description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.",
     )
-    credential_id: Optional[StrictStr] = Field(
+    credential_id: StrictStr | None = Field(
         default=None, description="The ID of the cloud credential."
     )
 
@@ -52,7 +51,7 @@ class ServerUpdatePlain(TypedDict, total=False):
     """
 
     id: Required[int]
-    ip_address: Optional[str]
-    ssh_port: Optional[int]
-    max_parallel_actions: Optional[int]
-    credential_id: Optional[str]
+    ip_address: str | None
+    ssh_port: int | None
+    max_parallel_actions: int | None
+    credential_id: str | None

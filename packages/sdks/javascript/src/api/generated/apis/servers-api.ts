@@ -98,6 +98,24 @@ export class ServersApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Deploy a Server
+     * @param {number} serverId The ID of the server.
+     */
+    public async deployServer(serverId: number): Promise<ApiResponse<void>> {
+        if (serverId === null || serverId === undefined) {
+            throw new ArgumentNullException('serverId', 'deployServer');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/servers/{server_id}/deploy' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get a server by ID
      * @param {number} serverId The ID of the server.
      */

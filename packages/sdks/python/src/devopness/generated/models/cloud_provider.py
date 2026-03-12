@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -39,13 +37,13 @@ class CloudProvider(DevopnessBaseModel):
 
     code: StrictStr = Field(description="Cloud provider code")
     name: StrictStr = Field(description="Cloud provider name")
-    hint: Optional[StrictStr] = Field(
+    hint: StrictStr | None = Field(
         default=None,
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
     )
     logo_url: StrictStr = Field(description="The provider's logo URL.")
-    cloud_services: Optional[List[CloudProviderService]] = None
-    settings: Optional[CloudProviderSettingsList] = None
+    cloud_services: list[CloudProviderService] | None = None
+    settings: CloudProviderSettingsList | None = None
 
 
 class CloudProviderPlain(TypedDict, total=False):
@@ -55,19 +53,7 @@ class CloudProviderPlain(TypedDict, total=False):
 
     code: Required[str]
     name: Required[str]
-    hint: Optional[str]
+    hint: str | None
     logo_url: Required[str]
-    cloud_services: Optional[
-        List[
-            Union[
-                CloudProviderService,
-                CloudProviderServicePlain,
-            ]
-        ]
-    ]
-    settings: Optional[
-        Union[
-            CloudProviderSettingsList,
-            CloudProviderSettingsListPlain,
-        ]
-    ]
+    cloud_services: list[Union[CloudProviderService, CloudProviderServicePlain]] | None
+    settings: Union[CloudProviderSettingsList, CloudProviderSettingsListPlain] | None

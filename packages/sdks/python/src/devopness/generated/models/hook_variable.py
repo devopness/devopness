@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -34,18 +33,16 @@ class HookVariable(DevopnessBaseModel):
         default_value (HookVariableDefaultValue, optional, nullable):
     """
 
-    name: Optional[StrictStr] = Field(
-        default=None, description="The name of the variable"
-    )
-    path: Optional[StrictStr] = Field(
+    name: StrictStr | None = Field(default=None, description="The name of the variable")
+    path: StrictStr | None = Field(
         default=None,
         description="A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the `name` will be used instead.",
     )
-    type: Optional[HookVariableType] = None
-    required: Optional[StrictBool] = Field(
+    type: HookVariableType | None = None
+    required: StrictBool | None = Field(
         default=None, description="Defines if the variable is required"
     )
-    default_value: Optional[HookVariableDefaultValue] = None
+    default_value: HookVariableDefaultValue | None = None
 
 
 class HookVariablePlain(TypedDict, total=False):
@@ -53,18 +50,8 @@ class HookVariablePlain(TypedDict, total=False):
     Plain version of HookVariable.
     """
 
-    name: Optional[str]
-    path: Optional[str]
-    type: Optional[
-        Union[
-            HookVariableType,
-            HookVariableTypePlain,
-        ]
-    ]
-    required: Optional[bool]
-    default_value: Optional[
-        Union[
-            HookVariableDefaultValue,
-            HookVariableDefaultValuePlain,
-        ]
-    ]
+    name: str | None
+    path: str | None
+    type: Union[HookVariableType, HookVariableTypePlain] | None
+    required: bool | None
+    default_value: Union[HookVariableDefaultValue, HookVariableDefaultValuePlain] | None

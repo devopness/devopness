@@ -2,13 +2,13 @@
 title: List Team Invitations
 intro: View all pending and completed invitations for a team to track team member onboarding status.
 links:
-    overview: Project owners and team administrators can view all invitations sent to potential team members.
-    quickstart:
-    previous: teams/invitations/add-invitation
-    # next: teams/members/add-team-member
-    guides:
-    related:
-    featured:
+  overview: Project owners and team administrators can view all invitations sent to potential team members.
+  quickstart:
+  previous: teams/invitations/add-invitation
+  # next: teams/members/add-team-member
+  guides:
+  related:
+  featured:
 ---
 
 1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects

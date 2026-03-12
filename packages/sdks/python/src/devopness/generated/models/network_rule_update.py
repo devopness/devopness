@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -37,7 +36,7 @@ class NetworkRuleUpdate(DevopnessBaseModel):
         description="The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters."
     )
     direction: NetworkRuleDirection
-    protocol: Optional[NetworkRuleProtocol] = None
+    protocol: NetworkRuleProtocol | None = None
     cidr_block: StrictStr = Field(
         description="IP address range this rule applies for, defined using CIDR notation."
     )
@@ -56,10 +55,5 @@ class NetworkRuleUpdatePlain(TypedDict, total=False):
             NetworkRuleDirectionPlain,
         ]
     ]
-    protocol: Optional[
-        Union[
-            NetworkRuleProtocol,
-            NetworkRuleProtocolPlain,
-        ]
-    ]
+    protocol: Union[NetworkRuleProtocol, NetworkRuleProtocolPlain] | None
     cidr_block: Required[str]

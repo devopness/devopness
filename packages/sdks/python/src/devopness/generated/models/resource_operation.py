@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     TypedDict,
     Union,
 )
@@ -28,9 +27,9 @@ class ResourceOperation(DevopnessBaseModel):
         pipeline_settings (PipelineSettings, optional):
     """
 
-    operation: Optional[StrictStr] = None
-    operation_human_readable: Optional[StrictStr] = None
-    pipeline_settings: Optional[PipelineSettings] = None
+    operation: StrictStr | None = None
+    operation_human_readable: StrictStr | None = None
+    pipeline_settings: PipelineSettings | None = None
 
 
 class ResourceOperationPlain(TypedDict, total=False):
@@ -38,11 +37,6 @@ class ResourceOperationPlain(TypedDict, total=False):
     Plain version of ResourceOperation.
     """
 
-    operation: Optional[str]
-    operation_human_readable: Optional[str]
-    pipeline_settings: Optional[
-        Union[
-            PipelineSettings,
-            PipelineSettingsPlain,
-        ]
-    ]
+    operation: str | None
+    operation_human_readable: str | None
+    pipeline_settings: Union[PipelineSettings, PipelineSettingsPlain] | None

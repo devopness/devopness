@@ -6,7 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
@@ -97,9 +97,9 @@ class PipelinesApiService(DevopnessBaseService):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PipelineRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[PipelineRelation]]:
         """
         Return a list of pipelines to a resource
 
@@ -123,7 +123,7 @@ class PipelinesApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[PipelineRelation])
+        return DevopnessResponse(response, list[PipelineRelation])
 
     def update_pipeline(
         self,
@@ -228,9 +228,9 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         resource_id: int,
         resource_type: str,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[PipelineRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[PipelineRelation]]:
         """
         Return a list of pipelines to a resource
 
@@ -254,7 +254,7 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[PipelineRelation])
+        return await DevopnessResponse.from_async(response, list[PipelineRelation])
 
     async def update_pipeline(
         self,

@@ -7,7 +7,6 @@ Note:
 """
 
 from typing import (
-    Optional,
     Required,
     TypedDict,
     Union,
@@ -34,7 +33,7 @@ class Invitation(DevopnessBaseModel):
         status_human_readable (str): Human readable version of the invitation status
         public_accept_url (str, optional, nullable): The URL to accept the public invitation
         accepted_from_ip (str, optional, nullable): The IP of the user who accepted the invitation
-        created_by_user (UserRelation):
+        created_by_user (UserRelation, optional, nullable):
         team (TeamRelation, optional, nullable):
         accepted_at (str, optional, nullable): The date and time when the invitation was accepted
         expires_at (str): The date and time when the invitation will expire
@@ -44,22 +43,22 @@ class Invitation(DevopnessBaseModel):
 
     id: StrictStr = Field(description="The unique UUID of the given invitation")
     type: TeamInvitationType
-    email: Optional[StrictStr] = Field(
+    email: StrictStr | None = Field(
         description="The email of the user that has been invited to team"
     )
     status: TeamInvitationStatus
     status_human_readable: StrictStr = Field(
         description="Human readable version of the invitation status"
     )
-    public_accept_url: Optional[StrictStr] = Field(
+    public_accept_url: StrictStr | None = Field(
         description="The URL to accept the public invitation"
     )
-    accepted_from_ip: Optional[StrictStr] = Field(
+    accepted_from_ip: StrictStr | None = Field(
         description="The IP of the user who accepted the invitation"
     )
-    created_by_user: UserRelation
-    team: Optional[TeamRelation]
-    accepted_at: Optional[StrictStr] = Field(
+    created_by_user: UserRelation | None
+    team: TeamRelation | None
+    accepted_at: StrictStr | None = Field(
         description="The date and time when the invitation was accepted"
     )
     expires_at: StrictStr = Field(
@@ -85,7 +84,7 @@ class InvitationPlain(TypedDict, total=False):
             TeamInvitationTypePlain,
         ]
     ]
-    email: Optional[str]
+    email: str | None
     status: Required[
         Union[
             TeamInvitationStatus,
@@ -93,21 +92,11 @@ class InvitationPlain(TypedDict, total=False):
         ]
     ]
     status_human_readable: Required[str]
-    public_accept_url: Optional[str]
-    accepted_from_ip: Optional[str]
-    created_by_user: Required[
-        Union[
-            UserRelation,
-            UserRelationPlain,
-        ]
-    ]
-    team: Optional[
-        Union[
-            TeamRelation,
-            TeamRelationPlain,
-        ]
-    ]
-    accepted_at: Optional[str]
+    public_accept_url: str | None
+    accepted_from_ip: str | None
+    created_by_user: Union[UserRelation, UserRelationPlain] | None
+    team: Union[TeamRelation, TeamRelationPlain] | None
+    accepted_at: str | None
     expires_at: Required[str]
     created_at: Required[str]
     updated_at: Required[str]

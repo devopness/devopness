@@ -11,7 +11,7 @@ name: Sync - Package Versions
 # versions of these packages are also synchronized in the root package-lock.json file.
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize
@@ -38,31 +38,54 @@ jobs:
         with:
           filters: |
             changes:
+              - 'package.json'
+              - 'package-lock.json'
               - 'packages/**/package.json'
+
+  load-pypi-projects:
+    name: Load Python packages matrix
+    needs: detect-changes
+    if: >
+      github.event.pull_request.user.login != 'dependabot[bot]' &&
+      needs.detect-changes.outputs.changes == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Load matrix of Pypi projects
+        id: set-matrix
+        run: |
+          MATRIX=$(cat .github/configs/python-packages.json | jq -c .)
+          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
 
   sync-pypi-package-versions:
     name: Sync pyproject.toml
-    needs: detect-changes
-    if: > 
+    needs: [detect-changes, load-pypi-projects]
+    if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      ${{ needs.detect-changes.outputs.changes == 'true' }}
+      needs.detect-changes.outputs.changes == 'true'
     runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJSON(vars.DEVOPNESS_PYPI_PACKAGES) }}
+        include: ${{ fromJSON(needs.load-pypi-projects.outputs.matrix) }}
 
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.13'
+          python-version: "3.13"
 
       - name: Sync '${{ matrix.name }}' version
         run: |
@@ -70,65 +93,78 @@ jobs:
           sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
 
       - name: Run post-version-sync commands for '${{ matrix.name }}'
-        if: ${{ matrix.post_version_sync_commands }} != ''
+        if: matrix.post_version_sync_commands != ''
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
+
+      - name: Ensure branch is up-to-date
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git fetch origin ${{ github.head_ref }} || true
+          # Try to rebase local changes onto the latest remote to avoid non-fast-forward push errors
+          git pull --rebase origin ${{ github.head_ref }} || true
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
-          file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
+          file_pattern: "${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock"
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   sync-main-lockfile:
     name: Sync the package-lock.json
     needs: detect-changes
-    if: > 
+    if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      ${{ needs.detect-changes.outputs.changes == 'true' }}
+      needs.detect-changes.outputs.changes == 'true'
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: '24.x'
+          node-version: "24.x"
 
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
 
+      - name: Ensure branch is up-to-date
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git fetch origin ${{ github.head_ref }} || true
+          git pull --rebase origin ${{ github.head_ref }} || true
+
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'chore: update package-lock.json'
-          file_pattern: 'package-lock.json'
+          commit_message: "chore: update package-lock.json"
+          file_pattern: "package-lock.json"
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   verify-sync:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
-    if: > 
+    if: >
       github.event.pull_request.user.login != 'dependabot[bot]'
       && always()
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail if sync-pypi-package-versions did not succeed
         run: |
-          if [ "${{ needs.sync-pypi-package-versions.result }}" != "success" ]; then
-            exit 1
-          fi
           if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
             echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
             exit 1

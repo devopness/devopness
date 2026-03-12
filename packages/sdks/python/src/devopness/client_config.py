@@ -6,7 +6,7 @@ import re
 import warnings
 from importlib.metadata import version
 from platform import python_version, system
-from typing import Any, Optional, TypedDict
+from typing import Any, TypedDict
 
 from pydantic import ValidationInfo, field_validator, model_validator
 
@@ -37,8 +37,8 @@ class DevopnessClientConfig(DevopnessBaseModel):
 
     Attributes:
         api_token (str): API Token for authentication.
-        auto_refresh_token (bool): Controls whether the access token is
-                                   automatically refreshed.
+        auto_refresh_token (bool): Deprecated. The 'auto_refresh_token' option is
+                                   no longer necessary with token-based auth.
         base_url (str): Base URL for API requests.
         debug (bool): Controls whether debug information is printed to the console.
         default_encoding (str): Default encoding for response content.
@@ -46,8 +46,12 @@ class DevopnessClientConfig(DevopnessBaseModel):
         timeout (int): Request timeout in seconds.
     """
 
-    api_token: Optional[str] = None
-    auto_refresh_token: bool = True
+    api_token: str | None = None
+    auto_refresh_token: bool = False
+    """
+    Deprecated.
+    The 'auto_refresh_token' option is no longer necessary with token-based auth.
+    """
     base_url: str = "https://api.devopness.com"
     debug: bool = False
     default_encoding: str = "utf-8"

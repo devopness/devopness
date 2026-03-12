@@ -2,16 +2,16 @@
 title: Invitations
 intro: Manage team invitations to control who can join your project teams and collaborate on your infrastructure.
 links:
-    overview: Team invitations allow project owners to invite new members to join their teams and collaborate on project environments.
-    quickstart: teams/invitations/add-invitation
-    previous: teams/add-team
-    # next: teams/members/add-team-member
-    guides:
-        - teams/invitations/add-invitation
-        - teams/invitations/list-invitations
-    related:
-        - teams/view-team
-    featured:
+  overview: Team invitations allow project owners to invite new members to join their teams and collaborate on project environments.
+  quickstart: teams/invitations/add-invitation
+  previous: teams/add-team
+  # next: teams/members/add-team-member
+  guides:
+    - teams/invitations/add-invitation
+    - teams/invitations/list-invitations
+  related:
+    - teams/view-team
+  featured:
 ---
 
 ## Team Invitations

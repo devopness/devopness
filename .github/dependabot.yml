@@ -5,6 +5,12 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 10
+  groups:
+    storybook:
+      patterns:
+        - "storybook"
+        - "@storybook/*"
+        - "eslint-plugin-storybook"
   ignore:
   - dependency-name: eslint
     versions:
@@ -38,3 +44,13 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 10
+  
+- package-ecosystem: npm
+  directory: "/docs"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  groups:
+    fumadocs:
+      patterns:
+        - "fumadocs-*"

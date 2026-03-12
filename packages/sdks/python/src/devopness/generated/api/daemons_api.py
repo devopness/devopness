@@ -6,11 +6,13 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import List, Optional, Union
+from typing import Union
 
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Daemon,
+    DaemonDeploy,
+    DaemonDeployPlain,
     DaemonEnvironmentCreate,
     DaemonEnvironmentCreatePlain,
     DaemonGetStatus,
@@ -79,6 +81,31 @@ class DaemonsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
+    def deploy_daemon(
+        self,
+        daemon_id: int,
+        daemon_deploy: Union[
+            DaemonDeploy,
+            DaemonDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Daemon
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, daemon_deploy)
+
+        return DevopnessResponse(response, None)
+
     def get_daemon(
         self,
         daemon_id: int,
@@ -128,9 +155,9 @@ class DaemonsApiService(DevopnessBaseService):
     def list_environment_daemons(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[DaemonRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[DaemonRelation]]:
         """
         Return a list of all Daemons belonging to an environment
 
@@ -154,7 +181,7 @@ class DaemonsApiService(DevopnessBaseService):
         endpoint: str = "".join(endpoint_parts)
         response = self._get(endpoint)
 
-        return DevopnessResponse(response, List[DaemonRelation])
+        return DevopnessResponse(response, list[DaemonRelation])
 
     def restart_daemon(
         self,
@@ -308,6 +335,31 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
 
         return await DevopnessResponse.from_async(response, None)
 
+    async def deploy_daemon(
+        self,
+        daemon_id: int,
+        daemon_deploy: Union[
+            DaemonDeploy,
+            DaemonDeployPlain,
+        ],
+    ) -> DevopnessResponse[None]:
+        """
+        Deploy a Daemon
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/daemons/{daemon_id}/deploy",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, daemon_deploy)
+
+        return await DevopnessResponse.from_async(response, None)
+
     async def get_daemon(
         self,
         daemon_id: int,
@@ -357,9 +409,9 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     async def list_environment_daemons(
         self,
         environment_id: int,
-        page: Optional[int] = None,
-        per_page: Optional[int] = None,
-    ) -> DevopnessResponse[List[DaemonRelation]]:
+        page: int | None = None,
+        per_page: int | None = None,
+    ) -> DevopnessResponse[list[DaemonRelation]]:
         """
         Return a list of all Daemons belonging to an environment
 
@@ -383,7 +435,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         endpoint: str = "".join(endpoint_parts)
         response = await self._get(endpoint)
 
-        return await DevopnessResponse.from_async(response, List[DaemonRelation])
+        return await DevopnessResponse.from_async(response, list[DaemonRelation])
 
     async def restart_daemon(
         self,

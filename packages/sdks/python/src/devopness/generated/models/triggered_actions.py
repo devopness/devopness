@@ -7,8 +7,6 @@ Note:
 """
 
 from typing import (
-    List,
-    Optional,
     TypedDict,
     Union,
 )
@@ -30,8 +28,8 @@ class TriggeredActions(DevopnessBaseModel):
         operations (List[TriggeredActionStats], optional):
     """
 
-    summary: Optional[TriggeredActionSummary] = None
-    operations: Optional[List[TriggeredActionStats]] = None
+    summary: TriggeredActionSummary | None = None
+    operations: list[TriggeredActionStats] | None = None
 
 
 class TriggeredActionsPlain(TypedDict, total=False):
@@ -39,17 +37,5 @@ class TriggeredActionsPlain(TypedDict, total=False):
     Plain version of TriggeredActions.
     """
 
-    summary: Optional[
-        Union[
-            TriggeredActionSummary,
-            TriggeredActionSummaryPlain,
-        ]
-    ]
-    operations: Optional[
-        List[
-            Union[
-                TriggeredActionStats,
-                TriggeredActionStatsPlain,
-            ]
-        ]
-    ]
+    summary: Union[TriggeredActionSummary, TriggeredActionSummaryPlain] | None
+    operations: list[Union[TriggeredActionStats, TriggeredActionStatsPlain]] | None
