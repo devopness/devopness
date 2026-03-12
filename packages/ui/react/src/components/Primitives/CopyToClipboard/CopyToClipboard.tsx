@@ -2,14 +2,14 @@
 
 import { ReactNode, useState } from 'react'
 
+import { Tooltip } from 'src/components/Primitives/Tooltip'
+import { iconLoader } from 'src/icons'
 import {
   ContentChildren,
   ContentCopyAction,
   ContentMain,
   CopyAction,
 } from './CopyToClipboard.styled'
-import { Tooltip } from 'src/components/Primitives/Tooltip'
-import { iconLoader } from 'src/icons'
 
 const ICON_SIZE = 12
 
@@ -24,6 +24,11 @@ type CopyToClipboardProps = {
   id: string
   /** Element or content to be copied */
   children: ReactNode
+  /**
+   * If true, the copy icon is always visible and hover effects are disabled.
+   * @default false
+   */
+  allwaysVisible?: boolean
 }
 
 /**
@@ -37,7 +42,11 @@ type CopyToClipboardProps = {
  * </CopyToClipboard>
  * ```
  */
-const CopyToClipboard = ({ id, children }: CopyToClipboardProps) => {
+const CopyToClipboard = ({
+  id,
+  children,
+  allwaysVisible = false,
+}: CopyToClipboardProps) => {
   const contentId = `copy_${id}`
   const [
     tooltipMessage,
@@ -74,8 +83,13 @@ const CopyToClipboard = ({ id, children }: CopyToClipboardProps) => {
 
   return (
     <ContentMain>
-      <ContentChildren id={contentId}>{children}</ContentChildren>
-      <ContentCopyAction>
+      <ContentChildren
+        id={contentId}
+        $allwaysVisible={allwaysVisible}
+      >
+        {children}
+      </ContentChildren>
+      <ContentCopyAction $allwaysVisible={allwaysVisible}>
         <Tooltip
           title={tooltipMessage}
           placement="top-start"
