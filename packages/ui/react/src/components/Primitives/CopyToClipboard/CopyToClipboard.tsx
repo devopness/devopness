@@ -65,7 +65,7 @@ const CopyToClipboard = ({
   }
 
   const handleCopyToClipboard = () => {
-    const textToCopy = document.getElementById(contentId)?.innerText ?? ''
+    const textToCopy = document.getElementById(contentId)?.textContent ?? ''
 
     navigator.clipboard
       .writeText(textToCopy)

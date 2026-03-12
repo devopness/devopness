@@ -93,13 +93,13 @@ describe('CopyToClipboard', () => {
     expect(copyButton).toBeInTheDocument()
   })
 
-  it('copies empty string if content is not found', async () => {
-    render(<CopyToClipboard id="non-existent">Content</CopyToClipboard>)
+  it('copies the text content successfully', async () => {
+    render(<CopyToClipboard id="copy-test">Content</CopyToClipboard>)
     const copyButton = screen.getByRole('button')
     fireEvent.click(copyButton)
 
     await waitFor(() => {
-      expect(writeTextSpy).toHaveBeenCalledWith('')
+      expect(writeTextSpy).toHaveBeenCalledWith('Content')
     })
   })
 })

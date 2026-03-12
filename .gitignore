@@ -118,6 +118,4 @@ __pycache__
 # misc
 .DS_Store
 _pull-requests/*
-
-# Antigravity - personal settings only
 .agents/*
