@@ -9,15 +9,15 @@ const ContentMain = styled.div`
   align-items: center;
 `
 
-const ContentCopyAction = styled.div<{ $allwaysVisible?: boolean }>`
+const ContentCopyAction = styled.div<{ $alwaysVisible?: boolean }>`
   width: 12px;
   height: 12px;
   padding: 0 15px;
   color: ${getColor('gray.615')};
-  opacity: ${({ $allwaysVisible }) => ($allwaysVisible ? 1 : 0)};
+  opacity: ${({ $alwaysVisible }) => ($alwaysVisible ? 1 : 0)};
 
-  ${({ $allwaysVisible }) =>
-    !$allwaysVisible &&
+  ${({ $alwaysVisible }) =>
+    !$alwaysVisible &&
     `
     &:hover {
       opacity: 1;
@@ -29,15 +29,15 @@ const ContentCopyAction = styled.div<{ $allwaysVisible?: boolean }>`
   }
 `
 
-const ContentChildren = styled.span<{ $allwaysVisible?: boolean }>`
+const ContentChildren = styled.span<{ $alwaysVisible?: boolean }>`
   user-select: all;
   max-width: calc(100% - 42px);
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: ${getFont('roboto')};
 
-  ${({ $allwaysVisible }) =>
-    !$allwaysVisible &&
+  ${({ $alwaysVisible }) =>
+    !$alwaysVisible &&
     `
     &:hover ~ ${ContentCopyAction} {
       opacity: 1;
@@ -49,4 +49,5 @@ const CopyAction = styled.div`
   cursor: pointer;
 `
 
-export { ContentMain, ContentChildren, ContentCopyAction, CopyAction }
+export { ContentChildren, ContentCopyAction, ContentMain, CopyAction }
+

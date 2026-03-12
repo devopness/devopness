@@ -28,7 +28,7 @@ type CopyToClipboardProps = {
    * If true, the copy icon is always visible and hover effects are disabled.
    * @default false
    */
-  allwaysVisible?: boolean
+  alwaysVisible?: boolean
 }
 
 /**
@@ -45,7 +45,7 @@ type CopyToClipboardProps = {
 const CopyToClipboard = ({
   id,
   children,
-  allwaysVisible = false,
+  alwaysVisible = false,
 }: CopyToClipboardProps) => {
   const contentId = `copy_${id}`
   const [
@@ -85,11 +85,11 @@ const CopyToClipboard = ({
     <ContentMain>
       <ContentChildren
         id={contentId}
-        $allwaysVisible={allwaysVisible}
+        $alwaysVisible={alwaysVisible}
       >
         {children}
       </ContentChildren>
-      <ContentCopyAction $allwaysVisible={allwaysVisible}>
+      <ContentCopyAction $alwaysVisible={alwaysVisible}>
         <Tooltip
           title={tooltipMessage}
           placement="top-start"

@@ -80,11 +80,11 @@ describe('CopyToClipboard', () => {
     })
   })
 
-  it('renders correctly with allwaysVisible prop', () => {
+  it('renders correctly with alwaysVisible prop', () => {
     render(
       <CopyToClipboard
         id="test"
-        allwaysVisible
+        alwaysVisible
       >
         Always visible
       </CopyToClipboard>

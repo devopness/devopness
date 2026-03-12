@@ -8,7 +8,7 @@ const meta: Meta<typeof CopyToClipboard> = {
   argTypes: {
     id: { control: 'text', description: 'Unique identifier for content' },
     children: { control: 'text', description: 'Content to be copied' },
-    allwaysVisible: {
+    alwaysVisible: {
       control: 'boolean',
       description: 'If true, the copy icon is always visible',
     },
@@ -24,13 +24,14 @@ const Default: Story = {
   },
 }
 
-const AllwaysVisible: Story = {
+const alwaysVisible: Story = {
   args: {
     id: 'always-visible',
     children: 'This icon is always visible',
-    allwaysVisible: true,
+    alwaysVisible: true,
   },
 }
 
 export default meta
-export { Default, AllwaysVisible }
+export { alwaysVisible, Default }
+
