@@ -11,11 +11,11 @@ guides:
 featured:
 ---
 
-Review which teams can access an environment and at what permission level.
+Review which teams currently have shared access in an environment.
 
 ## Goal
 
-Validate current team access before deploying or changing roles.
+Confirm current team access and role assignments before you add or change anything.
 
 ## Who should use this
 
@@ -36,8 +36,8 @@ Validate current team access before deploying or changing roles.
 
 ## Expected result
 
-- You can see each team and its assigned role for the environment
-- You can confirm whether current access matches expectations
+- You can confirm each team's assigned role and shared access
+- You can verify current permissions are what you expect
 
 ## Common issues
 

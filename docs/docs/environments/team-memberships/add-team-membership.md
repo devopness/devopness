@@ -9,11 +9,11 @@ links:
   featured:
 ---
 
-Add a team to an environment with a role.
+Add a team to an environment with a role so team members can collaborate with shared access.
 
 ## Goal
 
-Grant a team access to an environment using a role.
+Grant all members of the team the same access to that environment through one role assignment.
 
 ## Who should use this
 
