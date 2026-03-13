@@ -9,16 +9,16 @@ links:
   featured:
 ---
 
-Update an existing organization without replacing it.
+Update an existing organization without creating a new one.
 
 ## Goal
 
-Keep workspace details current after ownership or team changes.
+Keep organization details current after ownership, team, or permissions changes.
 
 ## Who should use this
 
 - Organization owners
-- Team leads managing shared setups for long-running products
+- Team leads managing shared setups across multiple products
 
 ## You need
 
@@ -44,4 +44,4 @@ Keep workspace details current after ownership or team changes.
 
 ## Next
 
-- Use [`Projects`](/docs/projects/) to keep product setup aligned with your updated organization
+- Use [`Projects`](/docs/projects/) to keep product setup aligned with the updated organization

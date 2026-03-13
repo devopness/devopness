@@ -1,36 +1,49 @@
 ---
 title: List Team Memberships
 links:
-  overview:
+  overview: environments/team-memberships/index
   quickstart:
-  previous: environments/index
+  previous: environments/team-memberships/index
   next: environments/team-memberships/add-team-membership
-  guides: []
-  featured:
+guides:
+  - environments/team-memberships/add-team-membership
+  - environments/team-memberships/index
+featured:
 ---
 
-Review which teams can access one environment.
+Review which teams can access an environment and at what permission level.
 
 ## Goal
 
-Validate access setup before deploying or changing roles.
+Validate current team access before deploying or changing roles.
 
 ## Who should use this
 
-- Team leads checking environment permissions
+- Environment admins checking team access
+- Project admins checking team grants
+
+## You need
+
+- Access to the target environment
+- Permission to view environment memberships
 
 ## Steps
 
-1. Select a project
-2. Select an environment in that project
-3. Open the `TEAM MEMBERSHIPS` section
+1. Open the target environment
+2. Open `TEAM MEMBERSHIPS`
+3. Review all listed teams and roles
+4. Open a membership when you need to verify details
 
 ## Expected result
 
-- You can see teams and roles for the selected environment
-- You can confirm who has what access
+- You can see each team and its assigned role for the environment
+- You can confirm whether current access matches expectations
 
 ## Common issues
 
-- List is empty: confirm there are memberships configured
-- You cannot open the list: check your environment permissions
+- List is empty: confirm teams and roles exist in the organization
+- You cannot open the list: check environment permissions
+
+## Next
+
+- Assign more access in [Add a Team Membership](/docs/environments/team-memberships/add-team-membership)

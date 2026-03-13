@@ -11,11 +11,11 @@ links:
   featured:
 ---
 
-Update an existing project when details changed.
+Update an existing project without creating a new one.
 
 ## Goal
 
-Update the project name, metadata, or settings without creating a new one.
+Update the project name, metadata, or settings after team requirements change.
 
 ## Who should use this
 
@@ -32,7 +32,7 @@ Update the project name, metadata, or settings without creating a new one.
 
 1. Go to the project you want to update
 2. Go to project settings
-3. Change the fields you need, for example name or metadata
+3. Change the fields you need, such as name or metadata
 4. Save the updates
 
 ## Result

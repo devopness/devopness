@@ -12,19 +12,17 @@ links:
   featured:
 ---
 
-Delete a project when it is no longer needed.
+Delete a project when you no longer need it.
 
 ## Goal
 
-Stop managing a project and remove it from the workspace.
+Stop managing a project and remove it from your setup.
 
 :::warning
 Removing a project is permanent. This action cannot be undone.
 :::
 
-This action removes project-level resources.
-
-Removing a project deletes its resources and cannot be undone.
+Deleting a project removes project resources (including all its environments) and cannot be undone.
 
 ## Who should use this
 

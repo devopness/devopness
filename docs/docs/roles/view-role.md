@@ -1,19 +1,48 @@
 ---
 title: Check a Role's Permissions
-intro: Check a role's permissions to understand the role's access level on the associated project.
 links:
-  overview:
+  overview: roles/index
   quickstart:
-  previous:
+  previous: roles/list-roles
   next:
   guides:
-  related:
+    - roles/list-roles
+    - roles/add-role
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. Select a `Project`
-1. Find the `Roles` card
-1. Click `View` in the `Roles` card to see a list of existing `Roles`
-1. In the list of roles, find the role you want to check the permissions and click the `NAME` of the role
-1. In the role details view, you will see the list of permissions granted by this role
+Inspect what a role can do before assigning it to a team.
+
+## Goal
+
+Understand the exact permissions a role grants in an environment.
+
+## Who should use this
+
+- Team owners reviewing security impact
+- Environment admins choosing a safe access level
+
+## You need
+
+- Permission to view role definitions
+
+## Steps
+
+1. Open the organization and go to `Roles`
+2. Select the role you want to verify
+3. Review each permission group and action in the role details
+4. Confirm it matches the access you expect before using it in memberships
+
+## Expected result
+
+- You can decide whether the role is safe for the target environment
+- You can avoid giving teams more access than needed
+
+## Common issues
+
+- You cannot see permissions: confirm organization-level read access
+- Permission list is unclear: reopen from list to view the latest definition
+
+## Next
+
+- Update access by assigning roles through [Team Memberships](/docs/environments/team-memberships)

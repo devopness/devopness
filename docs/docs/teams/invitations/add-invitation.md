@@ -1,22 +1,60 @@
 ---
 title: Invite Team Member
-intro: Invite members to a team so people can collaborate to all project environments on which the team has permissions.
 links:
-  overview: Project owners can add members to multiple teams and invite non-members to join a project team.
+  overview: teams/invitations/index
   quickstart:
-  previous: teams/add-team
+  previous: teams/invitations/list-invitations
   next: environments/team-memberships/add-team-membership
   guides:
-  related:
+    - teams/invitations/list-invitations
+    - teams/list-teams
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. In the list of `Projects` find the `Project` with the `Team` you want to manage and click `View`
-1. In the list of Project resources find the `Teams` card and click `View`
-1. In the list of `Teams` find the `Team` you want to add a member and click `View`
-1. On the upper-right corner of the team details view, click `INVITATIONS`
-1. On the upper-right corner of the `Invitations` list, click `INVITE MEMBER`
-1. Provide the email of the member to be invited
-1. Click `CONFIRM`
-   - In the `Invitations` list, the recently created `Invitation` can be seen
+Invite one person to a team, or create a public link to share with a group.
+
+## Goal
+
+Add one person through a private invite, or generate a public link for a wider audience.
+
+## Who should use this
+
+- Team admins adding new collaborators
+- Owners managing team setup
+
+## You need
+
+- Team admin access in the target organization
+- Permission to send team invitations
+
+## Steps
+
+1. Open the organization that owns the team
+2. Open `Teams` and select the target team
+3. Open `Invitations`
+4. Choose one path:
+   - Private invite: enter one email address
+   - Public invite: open the public invite flow
+5. For private: enter the person's email address
+6. For public: generate the invitation link and copy it
+7. Confirm to create the invitation
+
+## Expected result
+
+- A new private invite or public link is created
+- The recipient can accept and join the team
+
+### Security note
+
+Use private invites by default.
+Use a public link only when you want to add many people from a known group at once.
+
+## Common issues
+
+- Invite is rejected: confirm the email is valid for private invitations
+- Public link is missing or expired: generate a new link and share it again
+- Invite is blocked: verify sender permissions for team invitations
+
+## Next
+
+- Grant team access to environments in [Team Memberships](/docs/environments/team-memberships)

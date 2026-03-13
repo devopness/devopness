@@ -11,7 +11,7 @@ links:
   featured:
 ---
 
-Review one project setup quickly in Devopness.
+Review one project setup in Devopness.
 
 ## About
 
@@ -20,14 +20,14 @@ Use this page to confirm environments, teams, roles, and API tokens for one proj
 ## Who should use this
 
 - Project owners checking if setup is ready
-- Team members validating access before deployment
+- Team members validating access before deploy
 
 ## Steps
 
 1. Go to the project you want to review
-2. Open **Environments** to check deployment stages
+2. Open **Environments** to check each environment
 3. Open **Teams** to see who can work there
-4. Open **Roles** to verify permissions
+4. Open **Roles** to verify access
 5. Open **API Tokens** when you need token-level checks
 
 ## Expected result

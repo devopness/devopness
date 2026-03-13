@@ -9,11 +9,11 @@ links:
   featured:
 ---
 
-Delete an organization when you no longer want to keep that workspace.
+Delete an organization when you no longer want to keep it.
 
 ## Goal
 
-Stop all team, project, and token activity under this workspace in one action.
+Stop all team, project, and token activity under this organization in one action.
 
 :::warning
 Removing an organization is permanent. This action cannot be undone.
@@ -24,7 +24,7 @@ Confirm this organization is no longer needed before you continue.
 ## Who should use this
 
 - Organization owners
-- Admins closing a client workspace
+- Admins closing a client organization
 
 ## You need
 
@@ -41,7 +41,7 @@ Confirm this organization is no longer needed before you continue.
 
 ## Result
 
-- The organization no longer appears in your workspace list
+- The organization no longer appears in your organization list
 - Teams and projects inside the organization are no longer accessible
 
 ## Common issues
@@ -52,4 +52,4 @@ Confirm this organization is no longer needed before you continue.
 
 ## Next
 
-- Return to [`Organizations`](/docs/organizations/) for your next workspace
+- Return to [`Organizations`](/docs/organizations/) for your next organization

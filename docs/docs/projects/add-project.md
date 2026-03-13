@@ -10,16 +10,16 @@ links:
   featured:
 ---
 
-Create a new project inside an organization for each product or client-specific setup.
+Create a new project inside an organization for one product or client.
 
 ## Goal
 
-Set up a workspace before adding environments, teams, and roles.
+Set up the project before adding environments, teams, and roles.
 
 ## Who should use this
 
-- Developers creating a new workspace for one product or client
-- Team leads splitting work by delivery area
+- Developers creating a new project for one product or client
+- Project leads separating work by product area
 
 ## You need
 
@@ -41,7 +41,7 @@ Set up a workspace before adding environments, teams, and roles.
 ## Why this page
 
 - Keep related products or clients in separate projects when needed
-- Separate ownership boundaries with clean project scopes
+- Keep project owners and permissions separate per project scope
 
 ## Common issues
 

@@ -12,20 +12,21 @@ links:
   featured:
 ---
 
-Organizations are the top-level workspace where you group teams, roles, and projects in Devopness.
+Organizations are the top level workspace in Devopness.
+They group teams, roles, and projects in one place.
 
 ## About
 
-- An organization is a dedicated workspace for one company, legal entity, or client portfolio
+- An organization is a dedicated space for one company, legal entity, or client portfolio
 - Every organization has a readable URL slug, like `acme` in `/@acme`
-- Members join through ownership, invitation, or team membership
-- It is the first place where team access and project ownership are set
+- People join through invitation, or team membership
+- It is where team access and project setup are set
 
 ## Who should use this
 
-- Developers who want one clean workspace for shared projects
+- Developers who want one simple place for shared projects
 - Team leads managing multiple products, clients, or teams
-- Founders who want a predictable setup before adding many environments
+- Founders who want a clear setup before adding many environments
 
 ## Organization vs Project
 
@@ -35,15 +36,15 @@ Organizations are the top-level workspace where you group teams, roles, and proj
 
 Think of it like this:
 
-- **Organization:** the shared folder for everyone in one workspace, like `/@acme`
-- **Project:** one product or client inside that workspace
+- **Organization:** the shared home for everyone in one company, like `/@acme`
+- **Project:** one product or client inside that organization
 - **Environment:** one stage inside that project, like `Development`, `Staging`, `Production`
 
 ## Why organizations exist
 
 - They keep teams, roles, and projects in one place
 - They give founders one place to control who can see and change what
-- They let the workspace grow from one project to many without redesigning structure
+- They let you grow from one project to many without redesigning structure
 
 ## Start here
 
@@ -51,7 +52,7 @@ Think of it like this:
 - Confirm it is the one where the project should live
 - Create your first project
 - Use `Teams` and invite members to collaborate in the organization
-- Add `Roles` to manage delegated access permissions
+- Add `Roles` to control access
 
 ## Who can manage an organization
 
@@ -73,5 +74,5 @@ Think of it like this:
 
 ## Next
 
-- Use [`Projects`](/docs/projects/) to create your first workspace
+- Use [`Projects`](/docs/projects/) to create your first project
 - Use [`Teams`](/docs/teams/) and [`Roles`](/docs/roles/) to define access
