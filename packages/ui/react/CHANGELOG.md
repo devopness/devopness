@@ -5,7 +5,6 @@
 ### Patch Changes
 
 - [#2792](https://github.com/devopness/devopness/pull/2792) [`0b25d34`](https://github.com/devopness/devopness/commit/0b25d343cd28443b3dacb8dc46a2ddd5e2203c38) Thanks [@AladinoBorges](https://github.com/AladinoBorges)!
-
   - Add `alwaysVisible` prop to `CopyToClipboard` component to allow the copy icon to remain permanently visible with full opacity.
   - Pass optional `alwaysVisible` prop through the component to styled elements;
   - Update `CopyToClipboard` styled components to conditionally disable hover effects and set initial opacity;
