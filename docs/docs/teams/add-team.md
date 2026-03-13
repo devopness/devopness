@@ -1,21 +1,49 @@
 ---
 title: Add a Team
-intro: Add teams to organize groups of people in any way that makes it more convenient to grant and revoke project permissions.
 links:
-  overview: Project owners can create teams as a initial step to manage permissions and collaboration on environment resources.
+  overview:
   quickstart:
-  previous: ssl-certificates/add-ssl-certificate
+  previous: teams/list-teams
   next: teams/invitations/add-invitation
   guides:
-  related:
+    - teams/list-teams
+    - teams/members/index
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. Select a `Project`
-1. Find the `Teams` card
-1. Click `View` in the `Teams` card to see a list of existing `Teams`
-1. On the upper-right corner of the list click `ADD TEAM`
-1. Provide a name to the `Team` being added. Example: "Backend Developers"
-1. Click `CONFIRM`
-   - In the `Teams` list, the recently created `Team` can be seen
+Create a new team inside an organization so many people can share access settings.
+
+## Goal
+
+Set up a team to reuse the same role setup for project and environment access.
+
+## Who should use this
+
+- Organization admins creating reusable access setup
+- Project owners assigning teams to environments and projects
+
+## You need
+
+- Permission to create teams in the organization
+
+## Steps
+
+1. Open the organization that owns the new team
+2. Open `Teams`
+3. Click `ADD TEAM`
+4. Enter a clear team name
+5. Click `CONFIRM`
+
+## Expected result
+
+- The new team appears in the team list
+- You can invite people to it and later assign it to environments
+
+## Common issues
+
+- You cannot save: confirm team creation permission
+- Name is rejected: choose a unique and readable team name
+
+## Next
+
+- Add members with [Invite Team Member](/docs/teams/invitations/add-invitation)

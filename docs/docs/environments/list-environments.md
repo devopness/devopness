@@ -1,20 +1,44 @@
 ---
 title: List Environments
-intro: Find and view details of project environments you have access to.
 links:
   overview:
   quickstart:
   previous:
-  next:
+  next: environments/view-environment
   guides:
-  related:
     - environments/add-environment
     - environments/find-archived-environment
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. Select a `Project`
-1. Find the `Environments` card
-1. Click `View` in the `Environments` card to see a list of existing `Environments`
-1. The `Environments` list will be displayed, containing all environments you have access to.
+Find and review environments you can use for deployments and management.
+
+## Goal
+
+Select the right environment before adding resources or making changes.
+
+## Who should use this
+
+- Engineers checking current environment setup
+- Teams managing multi-stage release flows
+
+## Steps
+
+1. Select the project you want to work with
+2. Open `Environments`
+3. Review the environment list and their types
+4. Select one environment to continue
+
+## Expected result
+
+- You can see available environments with names and roles
+- You can open the chosen environment for details
+
+## Common issues
+
+- Empty list: confirm your role allows environment visibility
+- Wrong project selected: switch to the intended project
+
+## Next
+
+- Open [`View Environment`](/docs/environments/view-environment)

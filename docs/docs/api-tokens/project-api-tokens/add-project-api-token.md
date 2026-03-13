@@ -1,29 +1,40 @@
 ---
 title: Add a Project API Token
-intro: Learn how to generate a new Project API Token to enable secure, project-scoped access for automation, integrations, or scripts.
 links:
   overview:
   quickstart:
   previous: api-tokens/project-api-tokens/list-project-api-tokens
   next: api-tokens/project-api-tokens/view-project-api-token
   guides:
-  related:
+    - api-tokens/project-api-tokens/list-project-api-tokens
   featured:
 ---
 
-Follow these steps to create a new Project API Token:
+Generate a new project-scoped token for tools and automations.
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-2. Select a `Project`
-3. Find the `API Tokens` card
-4. Click `VIEW ALL` in the `API Tokens` card to see a list of existing `API Tokens`
-5. On the upper-right corner click `ADD API TOKEN`
-6. Follow the prompts and click `CONFIRM`
-7. In the `API Tokens` details, the recently created `API Token` can be seen
+## Goal
 
-:::warning
+Create a token that can only access one project.
 
-For security reasons, tokens are only shown once at creation time.
-Be sure to copy and store the token securely, as it cannot be retrieved again.
+## Steps
+
+1. Open the target project
+2. Open `API Tokens`
+3. Click `VIEW ALL`
+4. Click `ADD API TOKEN`
+5. Follow prompts and confirm
+
+## Result
+
+- A new project API token is created
+- It can be used by automation with project-limited scope
+
+## Common issues
+
+- You cannot add token: confirm your role in the project
+- You cannot copy token now: token is shown once at creation time
+
+:::note
+Copy and store the token immediately; it cannot be retrieved later.
 
 :::

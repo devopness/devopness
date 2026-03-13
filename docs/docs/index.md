@@ -2,14 +2,12 @@
 slug: /
 sidebar_position: 1
 title: Get started with Devopness
-intro: Devopness helps growing teams ship software safely and reduce complexity on cloud, CI/CD and DevOps workflows
 links:
   overview:
   quickstart:
   previous:
   next: organizations/index
-  guides:
-  related:
+  guides: []
   featured:
 ---
 
@@ -20,22 +18,22 @@ Use it with major cloud providers, self-hosted servers, and serverless services.
 
 ## What Devopness gives you
 
-- You can deploy apps and infrastructure for any stack from one platform.
-- You can work with multiple cloud providers without learning each one in depth.
-- You can use RBAC to give teams the exact access they need.
-- You can keep visibility across teams without requiring everyone to connect directly to cloud provider accounts.
+- Deploy apps and infrastructure for any stack from one platform
+- Work with multiple cloud providers without becoming expert in each one
+- Use RBAC to give teams the exact access they need
+- Keep visibility across teams without forcing everyone to connect directly to cloud provider accounts
 
-## In 3 moves
+## In 3 steps
 
-- Connect your cloud provider.
-- Link your code source.
-- Ship your first app and scale.
+1. Connect your cloud provider
+2. Link your code source
+3. Deploy your first app and scale 🚀
 
 ## How it is organized
 
-- **Organization**: the workspace for ownership, teams, and long-term collaboration.
-- **Project**: where related applications and infrastructure are grouped.
-- **Environment**: where release stages live (`Development`, `Staging`, `Production`).
+- **Organization**: the workspace for teams, projects, and long-term collaboration
+- **Project**: where related applications and infrastructure are grouped
+- **Environment**: where release stages live (`Development`, `Staging`, `Production`)
 
 This page is the fastest route into the full setup flow.
 
@@ -66,4 +64,4 @@ If you need help, contact us on [GitHub](https://github.com/devopness/devopness/
 
 ## Report a vulnerability
 
-If you found a vulnerability in our products, follow the guide [/docs/security/reporting-a-security-vulnerability]
+If you found a vulnerability in our products, follow the guide [/docs/security/reporting-a-security-vulnerability].

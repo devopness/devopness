@@ -1,26 +1,44 @@
 ---
-title: Add team membership
-intro: Set team memberships to give team members permissions to access and manage an environment and its resources based on the assigned role.
+title: Add a Team Membership
 links:
-  overview: Project owners can establish team memberships, granting access to team members based on the assigned role.
+  overview:
   quickstart:
-  previous: environments/team-memberships/index
-  next:
-  guides:
-  related:
+  previous: environments/team-memberships/list-team-memberships
+  next: environments/team-memberships/list-team-memberships
+  guides: []
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. Select a `Project`
-1. Find the `Environments` card
-1. Click `View` in the `Environments` card to see a list of existing `Environments`
-1. Find the `Environment` you want to add a team and click `View`
-1. On the upper-right corner of the `Environment` resources list, click `TEAM MEMBERSHIPS`
-1. On the upper-right corner of the `Team memberships` list, click `ADD TEAM MEMBERSHIP`
-1. Select a `Team`
-1. Assign a `Role` to the team to grant team members permissions on the environment
-   - To check a role's details, please follow the guide [/docs/roles/view-role]
-   - If no role listed satisfies the permissions needed for the team, please follow the guide [/docs/roles/add-role]
-1. Click `CONFIRM`
-   - In the `Team memberships` list, the recently created `Team membership` can be seen
+Add a team to an environment with a role so team members can collaborate with shared access.
+
+## Goal
+
+Grant all members of the team the same access to that environment through one role assignment.
+
+## Who should use this
+
+- Project owners configuring environment access
+
+## You need
+
+- Team and role created in the organization
+- Permission to manage team memberships
+
+## Steps
+
+1. Go to the environment that needs access
+2. Open `TEAM MEMBERSHIPS` (project admins can find it from the project tab; environment admins in environment details)
+3. Select `ADD TEAM MEMBERSHIP`
+4. Choose a team
+5. Choose a role
+6. Save
+
+## Expected result
+
+- The team can access the environment based on role
+- The new membership appears in the list
+
+## Common issues
+
+- Role not sufficient: check role details and permissions
+- Team not listed: verify team is created in the organization

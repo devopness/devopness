@@ -1,23 +1,37 @@
 ---
 title: Find an Archived Environment
-intro: Sometimes you may need to access the details of an archived environment or see a list of environments in a project that have been archived. You can access details of all archived environments in a project owned by you.
 links:
   overview:
   quickstart:
   previous:
   next:
   guides:
-  related:
+    - environments/list-environments
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. Select a `Project`
-1. Find the `Environments` card
-1. On the upper-left corner click `Active environments` to view a list of options
-1. Select the option `Archived environments`
+Find environments that are not currently active.
 
-- A list of archived environments will be displayed
+## Goal
 
-1. Find the archived environment you want to inspect and click `View`
-1. The `Environment` resources list will be displayed containing all the environment's resources
+Locate archived environments and review their resources when needed.
+
+## Who should use this
+
+- Teams needing context on past environments
+
+## Steps
+
+1. Go to the project you want to inspect
+2. Open **Environments**
+3. Switch to `Archived environments`
+
+## Expected result
+
+- Archived environments are listed separately
+- You can review one archived environment before restoring or deleting
+
+## Common issues
+
+- The archived list is empty: confirm the environment is archived first
+- You cannot view details: confirm your role and permission set

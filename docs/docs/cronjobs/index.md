@@ -1,6 +1,5 @@
 ---
 title: Cron Jobs
-intro: Many applications rely on scheduled tasks to perform recurring actions, such as sending notifications or cleaning up data. Devopness simplifies the management of these tasks by providing a centralized platform, allowing you to configure, monitor, and maintain all scheduled jobs in one place.
 links:
   overview:
   quickstart:
@@ -10,3 +9,11 @@ links:
   related:
   featured:
 ---
+
+## About
+
+Cron jobs let you automate recurring actions for both applications and servers.
+
+Use cron jobs in Devopness to schedule routine work like sending notifications, running maintenance scripts, cleaning up old files, and refreshing app or server resources.
+
+You can configure, monitor, and maintain all your scheduled jobs from one place.

@@ -1,20 +1,29 @@
 ---
 title: List Project API Tokens
-intro: Find and view all Project API Tokens you have access to within a specific project.
 links:
   overview:
   quickstart:
   previous: api-tokens/project-api-tokens/index
   next: api-tokens/project-api-tokens/add-project-api-token
   guides:
-  related:
+    - api-tokens/project-api-tokens/add-project-api-token
   featured:
 ---
 
-Follow these steps to list all Project API Tokens:
+Find all project-scoped API Tokens for one project.
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-2. Select a `Project`
-3. Find the `API Tokens` card
-4. Click `VIEW ALL` in the `API Tokens` card to see a list of existing `API Tokens`
-5. The `API Tokens` list will be displayed, containing all API tokens you have access to.
+## Goal
+
+Pick the right token for a given automation run or service.
+
+## Steps
+
+1. Open the target project
+2. Open `API Tokens`
+3. Click `VIEW ALL`
+4. Review the token list
+
+## Result
+
+- You can see token status, scope, and usage per token
+- You can open one token for details

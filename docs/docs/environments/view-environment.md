@@ -1,13 +1,11 @@
 ---
 title: View Environment
-intro: Learn how to view and manage the details of an environment, including its resources, settings, and team memberships.
 links:
   overview:
   quickstart:
   previous: environments/list-environments
   next: environments/add-environment
   guides:
-  related:
     - environments/list-environments
     - environments/add-environment
     - environments/archive-environment
@@ -15,21 +13,36 @@ links:
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. Select a `Project`
-1. Find the `Environments` card
-1. Click `View all` in the `Environments` card to see a list of existing `Environments`
-1. Find the `Environment` you want to view and click `View`
-1. The `Environment` page will be displayed, showing:
-   - Environment name and type
-   - Resource summary (servers, applications, etc.)
-   - Team memberships
-   - Actions history
-   - Settings and configuration options
+Inspect one environment and confirm resources, settings, and access.
 
-You can perform various actions from the environment view page:
+## About
 
-- Add new resources (servers, applications, etc.)
-- Manage team memberships
-- Archive/unarchive the environment
-- View and manage environment settings
+Use this page to check what is active and what still needs setup.
+
+## Who should use this
+
+- Operators preparing deployments
+- Team members validating resource and access configuration
+
+## Steps
+
+1. Go to the environments list for the project
+2. Select the environment you want to inspect
+3. Review resource summary, team memberships, and settings
+
+## What you can do from here
+
+- Add resources to this environment
+- Add or change team memberships
+- Archive or unarchive the environment
+- Update environment settings
+
+## Expected result
+
+- You can see a complete snapshot of the environment state
+- You can continue with one of the available environment actions
+
+## Common issues
+
+- Missing resources on the page: configure resources first
+- You cannot edit settings: your role may be read-only for this environment

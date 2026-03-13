@@ -1,23 +1,43 @@
 ---
 title: Team Memberships
-intro: Team Memberships are the primary way to link a Team to a specific Environment, granting permissions based on an assigned Role.
 links:
   overview:
   quickstart:
   previous:
-  next:
+  next: environments/team-memberships/list-team-memberships
   guides:
-  related:
     - teams/index
-    - environments/index
     - roles/index
+    - environments/team-memberships/list-team-memberships
   featured:
 ---
 
-Each membership acts as a link between three key components:
+Team memberships connect a team to an environment with a role.
 
-1.  **Team:** The group of users receiving access.
-2.  **Environment:** The resource being accessed.
-3.  **Role:** The set of permissions the team will have within that specific environment.
+## About
 
-Before you can create a team membership, you must ensure your project has the necessary teams and roles already configured.
+- Memberships are configured per environment
+- Teams and roles are managed at the organization level
+- The role controls what the team can do in that environment
+
+## Who should use this
+
+- Project admins controlling project-wide collaboration
+- Environment admins setting per-environment access
+
+## Why this exists
+
+- It is how you invite a team to contribute in an environment
+- It gives that team a clear role so people can collaborate safely
+
+## Relationship to other concepts
+
+- Teams group people
+- Roles define actions
+- Memberships attach a team and role to a specific environment
+
+## Start here
+
+- Review existing team links in [List Team Memberships](/docs/environments/team-memberships/list-team-memberships)
+- Add a new access link with [Add a Team Membership](/docs/environments/team-memberships/add-team-membership)
+- Manage teams and roles first in [Teams](/docs/teams) and [Roles](/docs/roles)

@@ -1,26 +1,54 @@
 ---
 title: Add a Project
-intro: Add one or multiple projects to group your infrastructure resources in a logical and organized way.
 links:
   overview:
   quickstart:
   previous: projects/index
   next: projects/view-project
   guides:
-  related:
+    - projects/list-projects
   featured:
 ---
 
-1. On Devopness upper-left corner, click the Devopness logo to see a list of existing projects
-1. On the upper-right corner of the list click `ADD PROJECT`
-1. Provide a name to the `Project` being added. For example, "My Product"
-1. Click `CONFIRM`
+Create a new project inside an organization for one product or client.
 
-- You will be redirected to the `Project resources` page, with details of your newly created project
-- You can now manage `Environments`, `Teams` and `Roles` in your new project
+## Goal
 
-Tips:
+Set up the project before adding environments, teams, and roles.
 
-- Create a new project for each product when teams and permissions should be kept separate.
-- Use a new project if you need different Git or cloud provider credentials.
-- Keep multiple applications in the same project when they belong to the same product and are managed by the same teams.
+## Who should use this
+
+- Developers creating a new project for one product or client
+- Project leads separating work by product area
+
+## You need
+
+- Permission to create projects in the selected organization
+- Organization selected where the project should live
+
+## Steps
+
+1. Go to the organization where the project will live
+2. Select `Add Project`
+3. Set a clear project name
+4. Save
+
+## Expected result
+
+- Your new project appears in the project list
+- You can create environments, teams, and roles inside the project
+
+## Why this page
+
+- Keep related products or clients in separate projects when needed
+- Keep project owners and permissions separate per project scope
+
+## Common issues
+
+- You cannot see `Add Project`: confirm your organization-level permissions
+- The organization you selected is not the one you intended
+- The project name is already taken or invalid
+
+## Next
+
+- Use [`List Projects`](/docs/projects/list-projects) to verify it appears
