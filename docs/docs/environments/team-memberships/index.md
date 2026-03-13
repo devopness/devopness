@@ -5,11 +5,11 @@ links:
   quickstart:
   previous:
   next: environments/team-memberships/list-team-memberships
-guides:
-  - teams/index
-  - roles/index
-  - environments/team-memberships/list-team-memberships
-featured:
+  guides:
+    - teams/index
+    - roles/index
+    - environments/team-memberships/list-team-memberships
+  featured:
 ---
 
 Team memberships connect a team to an environment with a role.

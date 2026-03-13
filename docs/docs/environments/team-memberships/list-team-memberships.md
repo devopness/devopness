@@ -5,10 +5,10 @@ links:
   quickstart:
   previous: environments/team-memberships/index
   next: environments/team-memberships/add-team-membership
-guides:
-  - environments/team-memberships/add-team-membership
-  - environments/team-memberships/index
-featured:
+  guides:
+    - environments/team-memberships/add-team-membership
+    - environments/team-memberships/index
+  featured:
 ---
 
 Review which teams currently have shared access in an environment.

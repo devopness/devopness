@@ -30,6 +30,9 @@ If you want the tighter security default, use private invitations. Use public li
 
 ## Who this is for
 
+- Team admins adding collaborators
+- Organization owners onboarding users in bulk or in groups
+
 ## Why this exists
 
 - It keeps invite flow clear as organizations grow

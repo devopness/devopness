@@ -5,10 +5,10 @@ links:
   quickstart:
   previous: teams/list-teams
   next: teams/invitations/add-invitation
-guides:
-  - teams/invitations/list-invitations
-  - teams/add-team
-featured:
+  guides:
+    - teams/invitations/list-invitations
+    - teams/add-team
+  featured:
 ---
 
 Review one team and understand who is attached before changing membership or access.
