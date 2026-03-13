@@ -1,5 +1,5 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { CopyToClipboard } from './CopyToClipboard'
 
@@ -29,6 +29,77 @@ describe('CopyToClipboard', () => {
     fireEvent.click(copyButton)
     await waitFor(() => {
       expect(screen.getByLabelText('Copied!')).toBeInTheDocument()
+    })
+  })
+
+  it('resets the tooltip message on mouse out', async () => {
+    render(<CopyToClipboard id="test">Copiar isso</CopyToClipboard>)
+    const copyButton = screen.getByRole('button')
+
+    fireEvent.click(copyButton)
+    await waitFor(() => {
+      expect(screen.getByLabelText('Copied!')).toBeInTheDocument()
+    })
+
+    fireEvent.mouseOut(copyButton)
+
+    await waitFor(
+      () => {
+        expect(screen.getByLabelText('Copy to clipboard')).toBeInTheDocument()
+      },
+      { timeout: 1000 }
+    )
+  })
+
+  it('displays Error! when copying fails', async () => {
+    /*
+      We mock the writeText method to return a custom "fake promise".
+      This allows us to trigger the `.catch` block in the component
+      and synchronously swallow the `throw new Error(...)` it generates,
+      preventing Vitest from failing due to an Unhandled Promise Rejection.
+    */
+    const fakePromise = {
+      then: () => fakePromise,
+      catch: (errorCallback: (err: Error) => void) => {
+        try {
+          errorCallback(new Error('Clipboard error'))
+        } catch {
+          // Swallow the error thrown by the component
+        }
+      },
+    }
+    writeTextSpy.mockReturnValueOnce(fakePromise as unknown as Promise<void>)
+
+    render(<CopyToClipboard id="test">Copiar isso</CopyToClipboard>)
+    const copyButton = screen.getByRole('button')
+
+    fireEvent.click(copyButton)
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Error!')).toBeInTheDocument()
+    })
+  })
+
+  it('renders correctly with alwaysVisible prop', () => {
+    render(
+      <CopyToClipboard
+        id="test"
+        alwaysVisible
+      >
+        Always visible
+      </CopyToClipboard>
+    )
+    const copyButton = screen.getByRole('button')
+    expect(copyButton).toBeInTheDocument()
+  })
+
+  it('copies the text content successfully', async () => {
+    render(<CopyToClipboard id="copy-test">Content</CopyToClipboard>)
+    const copyButton = screen.getByRole('button')
+    fireEvent.click(copyButton)
+
+    await waitFor(() => {
+      expect(writeTextSpy).toHaveBeenCalledWith('Content')
     })
   })
 })
