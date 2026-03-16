@@ -113,6 +113,15 @@ Here are some **bad examples** of pull request titles we're trying to avoid:
 
 **Remember:** Even if your PR is a work in progress (DRAFT), a good description helps maintainers understand your direction and provide early feedback!
 
+### Documentation contributors
+
+If you are changing docs under `docs/docs/*`, follow:
+
+- `docs/docs/authoring-guidelines.md` for writing style and structure
+- `docs/docs/README.md` for frontmatter and markdown metadata rules
+
+When you update text only, use the docs guidelines section as your source of truth.
+
 ### Feature Work
 
 **When to open an issue first:**

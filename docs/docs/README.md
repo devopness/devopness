@@ -13,6 +13,8 @@ Make sure all files created in this folder adhere to the following basic rules:
 
 # Documentation authoring guidelines
 
+Use `docs/docs/authoring-guidelines.md` for writing structure, voice, and operational-vs-concept page conventions.
+
 ## What to document?
 
 We should document use cases that will help our users successfully achieve their goals while using Devopness platform.

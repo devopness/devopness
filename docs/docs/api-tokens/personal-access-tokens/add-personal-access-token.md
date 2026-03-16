@@ -1,26 +1,37 @@
 ---
 title: Add a Personal Access Token
-intro: Learn how to create a Personal Access Token to authenticate with the Devopness API using your account's permissions.
 links:
   overview:
   quickstart:
   previous: api-tokens/personal-access-tokens/list-personal-access-tokens
   next: api-tokens/personal-access-tokens/view-personal-access-token
-  guides:
-  related:
   featured:
 ---
 
-Follow these steps to generate a new Personal Access Token:
+Create a Personal Access Token for user-level automations.
 
-1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Personal Access Tokens`
-2. On the upper-right corner of the list click `ADD PERSONAL ACCESS TOKEN`
-3. Follow the prompts and click `CONFIRM`
-4. In the `Personal Access Tokens` details, the recently created `Personal Access Token` can be seen
+## Goal
 
-:::warning
+Generate a token that can do actions your user account can perform.
 
-For security reasons, tokens are only shown once at creation time.
-Be sure to copy and store the token securely, as it cannot be retrieved again.
+## Steps
+
+1. Open your user profile menu
+2. Select `Personal Access Tokens`
+3. Click `ADD PERSONAL ACCESS TOKEN`
+4. Follow the prompts and confirm
+
+## Result
+
+- A new token is created for your account
+- You can use it according to your user permissions
+
+## Common issues
+
+- You cannot see the token menu: confirm you are logged in and authorized
+- Token is not created: confirm required fields and retry
+
+:::note
+For security reasons, tokens are only shown once. Copy and store it securely.
 
 :::

@@ -1,19 +1,51 @@
 ---
 title: List Teams
-intro: View your list of teams
 links:
-  overview:
+  overview: teams/index
   quickstart:
-  previous: teams/add-team
+  previous: teams/index
   next: teams/view-team
   guides:
-  related:
     - teams/add-team
+    - teams/view-team
+  related:
   featured:
 ---
 
-1. When accessing Devopness, existing projects are automatically listed on the home screen. To navigate between projects, click the Devopness logo in the top-left corner.
-2. Select a project.
-3. Find the Teams card.
-4. Click view all on the Teams card to see a list of existing teams.
-5. All teams you have created will be displayed.
+View all teams in an organization and confirm who is available for access.
+
+## Goal
+
+Use this page to verify team structure before you use them for access.
+
+## Who should use this
+
+- Organization owners planning role-based access
+- Project admins checking team availability
+- Environment admins setting up environment grants
+
+## You need
+
+- Access to the target organization
+- Permission to view teams
+
+## Steps
+
+1. Open the target organization
+2. Open `Teams`
+3. Open the full team list
+4. Confirm each team name and status
+
+## Expected result
+
+- You can see all teams in the organization
+- You can open a team to assign members or invitations
+
+## Common issues
+
+- No teams appear: verify you are in the right organization
+- Missing actions: confirm team read permissions
+
+## Next
+
+- Open a team in [View a Team](/docs/teams/view-team) to manage its members and settings

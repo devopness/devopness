@@ -1,17 +1,33 @@
 ---
 title: List Personal Access Tokens
-intro: Find and view all Personal Access Tokens you have created for your account.
 links:
   overview:
   quickstart:
   previous: api-tokens/personal-access-tokens/index
   next: api-tokens/personal-access-tokens/add-personal-access-token
   guides:
-  related:
+    - api-tokens/personal-access-tokens/view-personal-access-token
   featured:
 ---
 
-Follow these steps to list all Personal Access Tokens:
+Review all Personal Access Tokens for your account.
 
-1. On Devopness, in the upper-right corner of any page, click your profile icon then click `Personal Access Tokens`
-2. The `Personal Access Tokens` list will be displayed, containing all tokens you have created.
+## Goal
+
+Find active tokens and verify which one is being used.
+
+## Steps
+
+1. Open your user profile menu
+2. Select `Personal Access Tokens`
+3. Review the token list and status
+
+## Result
+
+- You can see all personal access tokens you own
+- You can jump to view or revoke a token
+
+## Common issues
+
+- The list is empty: create a token first
+- Missing expected token: confirm you are using the right account

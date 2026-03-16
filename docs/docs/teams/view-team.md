@@ -1,23 +1,48 @@
 ---
 title: View a Team
-intro: In this section, you will learn how to manage your team.
 links:
-  overview:
+  overview: teams/index
   quickstart:
   previous: teams/list-teams
   next: teams/invitations/add-invitation
   guides:
-  related:
+    - teams/invitations/list-invitations
     - teams/add-team
-    - teams/list-teams
+  featured:
 ---
 
-1. On the selected project's page, locate the Teams card.
-2. Click View all on the Teams card to see the list of existing teams.
-   > If there are no teams yet, create one by clicking the Add team button.
-3. Select the team you want to manage.
-4. For each team, you can:
-   - Invite new members
-   - View existing members
-   - Edit team information
-   - Delete the team, if needed
+Review one team and understand who is attached before changing membership or access.
+
+## Goal
+
+Check team state before you invite members or reuse the team in environments.
+
+## Who should use this
+
+- Organization owners validating team health
+- Project admins connecting teams to project workflows
+
+## You need
+
+- Permission to view team details in the organization
+
+## Steps
+
+1. Open the organization that owns the team
+2. Open `Teams`
+3. Select the team you want to review
+4. Open related sections for members or invitations
+
+## Expected result
+
+- You can confirm current members and invite activity
+- You can open invites or team access actions from there
+
+## Common issues
+
+- Team details are hidden: check your organization role
+- Member list looks stale: refresh the team view
+
+## Next
+
+- Invite people with [Invite Team Member](/docs/teams/invitations/add-invitation)

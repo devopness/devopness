@@ -1,11 +1,10 @@
 ---
-title: Invitations
-intro: Manage team invitations to control who can join your project teams and collaborate on your infrastructure.
+title: Team invitations
 links:
-  overview: Team invitations allow project owners to invite new members to join their teams and collaborate on project environments.
+  overview:
   quickstart: teams/invitations/add-invitation
-  previous: teams/add-team
-  # next: teams/members/add-team-member
+  previous: teams/index
+  # next: teams/members
   guides:
     - teams/invitations/add-invitation
     - teams/invitations/list-invitations
@@ -14,22 +13,37 @@ links:
   featured:
 ---
 
-## Team Invitations
+Team invitations are how you add people to a team so the team can access resources in one organization, project, or environment.
+You can use two invitation types:
 
-Team invitations are a way to invite new members to join your project teams. When you invite someone to a team, they receive an email invitation that allows them to join the project and collaborate on the environments that the team has access to.
+- Public invitation: Devopness creates a join link you can share with many people. This is useful for communities or team channels where you want fast onboarding.
+- Private invitation: you enter one email address, and the invite is sent only to that person.
 
-### Available Actions
+If you want the tighter security default, use private invitations. Use public links only when you are intentionally opening team access to a wider audience.
 
-- **[Add Team Member](add-invitation.md)**: Send an invitation to a new team member
-- **[List Team Invitations](list-invitations.md)**: View all pending and completed invitations
+## About
 
-### Invitation Process
+- Invitations are sent to people not yet in the team
+- Private invites go to one email address, while public invites use a shared link
+- Once accepted, the member joins the team and gets that team’s access
+- Team access still depends on roles assigned at organization, project, or environment scope
 
-1. **Send Invitation**: Project owners can invite new members by providing their email address
-2. **Email Notification**: The invited member receives an email with a link to accept the invitation
-3. **Accept Invitation**: The member clicks the link and creates their Devopness account
-4. **Team Access**: Once accepted, the member gains access to all environments the team has permissions for
+## Who this is for
 
-### Managing Invitations
+- Team admins adding collaborators
+- Organization owners onboarding users in bulk or in groups
 
-You can view all invitations for a team, including their status (Pending, Accepted, Expired) and take actions like resending or canceling invitations as needed.
+## Why this exists
+
+- It keeps invite flow clear as organizations grow
+- It helps avoid giving people direct environment access before the team role is set
+
+## Relationship to other concepts
+
+- Invitations apply to teams in an organization
+- Team memberships apply role-based permissions at organization, project, or environment level
+
+## Start here
+
+- Send one invitation in [Invite Team Member](/docs/teams/invitations/add-invitation)
+- Review invite status in [List Team Invitations](/docs/teams/invitations/list-invitations)
