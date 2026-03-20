@@ -5,9 +5,9 @@ title: Get started with Devopness
 links:
   overview:
   quickstart:
-  previous:
+  previous: organizations/add-organization
   next: organizations/index
-  guides: []
+  guides:
   featured:
 ---
 
@@ -45,7 +45,7 @@ This page is the fastest route into the full setup flow.
 
 ## Start here
 
-1. Create your organization in [`Organizations`](/docs/organizations/) (or select the one you already use).
+1. Create your organization in [/docs/organizations] (or select the one you already use).
 2. Confirm it is the organization you want to use.
 3. Create your first project.
 4. Add a first `Production` environment.
