@@ -3,11 +3,22 @@ title: Devopness documentation authoring guidelines
 ---
 
 Devopness docs are used by people deploying infrastructure and apps, and by AI agents that support that work.
-This guide is for human contributors, including:
+This guide is for human contributors and LLMs, including:
 
 - developers
 - team leads
 - founders
+
+## For LLMs
+
+- Use this document as the source of truth for style and structure before suggesting edits.
+- Keep edits minimal and local: one section at a time and only what the task asks for.
+- Preserve headings and section order so downstream pages keep stable structure.
+- Use the docs mention-link syntax for internal documentation links so titles are resolved by Fumadocs:
+  - `[/docs/organizations/index]`
+  - `[/docs/projects/add-project]`
+- Use normal markdown links only for external URLs.
+- Prefer human-friendly language: clear, short sentences with practical meaning, not only machine-parseability.
 
 Use this guide for writing style, structure, and clarity across `docs/docs/*`.
 It helps keep docs clear for readers and easy to process by documentation tools and AI agents.

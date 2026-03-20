@@ -10,3 +10,5 @@ links:
   related:
   featured:
 ---
+
+If you found a vulnerability in our products, see [Reporting a security vulnerability](/docs/security/reporting-a-security-vulnerability).

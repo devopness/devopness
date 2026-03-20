@@ -1,67 +1,39 @@
 ---
 slug: /
 sidebar_position: 1
-title: Get started with Devopness
+title: Introduction to Devopness
 links:
   overview:
   quickstart:
-  previous:
+  previous: organizations/add-organization
   next: organizations/index
-  guides: []
+  guides:
   featured:
 ---
 
-## About
+Managing cloud infrastructure is harder than it should be. Most teams juggle multiple provider consoles, each with its own concepts, permissions model, and learning curve. As teams grow and projects multiply, deployments get bottlenecked, access control breaks down, and visibility disappears.
 
-Devopness is an API-first, AI-assisted platform for provisioning infrastructure and deploying applications.
-Use it with major cloud providers, self-hosted servers, and serverless services.
+Devopness removes that friction. It connects to your existing cloud accounts on AWS, GCP, Azure, DigitalOcean, Hetzner, and others, giving you a single platform to provision infrastructure, deploy applications, and run CI/CD pipelines for any stack. You bring your own cloud (BYOC): your accounts, your costs, your data. Devopness provides the control plane.
 
-## What Devopness gives you
+For teams adopting AI, Devopness ships an MCP Server that lets AI agents provision infrastructure and deploy applications in natural language, subject to the same role-based permissions and audit trails that apply to your human team.
 
-- Deploy apps and infrastructure for any stack from one platform
-- Work with multiple cloud providers without becoming expert in each one
-- Use RBAC to give teams the exact access they need
-- Keep visibility across teams without forcing everyone to connect directly to cloud provider accounts
+## How Devopness is organized
 
-## In 3 steps
+Devopness uses a three-level hierarchy: organizations contain projects, and projects contain environments. An organization is your company or team. A project is a product or system. An environment is a deployment target, such as Production, Staging, or Development.
 
-1. Connect your cloud provider
-2. Link your code source
-3. Deploy your first app and scale 🚀
+Each environment holds all the resources needed to run your application: servers, networks, applications, pipelines, SSL certificates, cron jobs, SSH keys, and more. Teams and roles are scoped per environment, so you control exactly who can do what.
 
-## How it is organized
-
-- **Organization**: the workspace for teams, projects, and long-term collaboration
-- **Project**: where related applications and infrastructure are grouped
-- **Environment**: where release stages live (`Development`, `Staging`, `Production`)
-
-This page is the fastest route into the full setup flow.
-
-## Who this is for
-
-- Developers shipping apps and infrastructure with small teams.
-- Team leads moving from single to multi-environment operations.
-- Founders who want predictable deployment structure early.
+Everything in Devopness is also available through a REST API. You can authenticate with personal access tokens tied to your account, or project-scoped API tokens for CI/CD pipelines and automation scripts.
 
 ## Start here
 
-1. Create your organization in [`Organizations`](/docs/organizations/) (or select the one you already use).
-2. Confirm it is the organization you want to use.
-3. Create your first project.
-4. Add a first `Production` environment.
-5. Connect your cloud and Git credentials.
-6. Deploy your first app and check it is live 🚀
+1. [Sign up](https://app.devopness.com).
+2. Follow the onboarding wizard to create your first organization.
+3. Create a project inside your organization.
+4. Add an environment (`Development`, `Staging`, `Production`).
+5. Connect your cloud provider credentials and Git repository.
+6. Deploy your first app.
 
-## Common issues
+## Community
 
-- You are in the wrong organization and only see a subset of resources.
-- You cannot edit or add items because your role does not include all required permissions.
-- You need faster, safer onboarding before release: start with one project and one production environment.
-
-## Get help
-
-If you need help, contact us on [GitHub](https://github.com/devopness/devopness/discussions) or join our [Discord](https://devopness.com/discord/).
-
-## Report a vulnerability
-
-If you found a vulnerability in our products, follow the guide [/docs/security/reporting-a-security-vulnerability].
+If you need help, contact us on [GitHub](https://github.com/devopness/devopness/discussions) or join our [Discord community](https://devopness.com/discord/).
