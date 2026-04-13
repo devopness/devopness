@@ -1,0 +1,136 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "devopness-slack-bot"
+version = "0.0.0"
+description = "Devopness Slack Bot for managing infrastructure and deployments"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Devopness (https://www.devopness.com)" }]
+keywords = [
+  "Devopness",
+  "DevOps",
+  "Slack",
+  "Slack Bot",
+  "ChatOps",
+  "Infrastructure Management",
+  "Deployment Automation",
+  "Utilities",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Communications :: Chat",
+  "Topic :: Software Development",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Utilities",
+]
+dependencies = [
+  "aiohttp>=3.11.11",
+  "cryptography>=44.0.0",
+  "devopness>=2.3.1",
+  "python-dotenv>=1.2.2",
+  "slack-bolt>=1.28.0",
+  "slack-cli-hooks<=0.3.0",
+  "slack-sdk>=3.41.0",
+  "tortoise-orm>=1.1.7",
+]
+
+[project.urls]
+homepage = "https://www.devopness.com"
+repository = "https://github.com/devopness/devopness/tree/main/packages/bots/slack"
+
+[project.scripts]
+bot = "devopness_slack_bot.main:run"
+
+[dependency-groups]
+dev = [
+  "mypy>=1.19.1",
+  "ruff>=0.15.5",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/devopness_slack_bot"]
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+preview = true
+
+extend-select = [
+  "A",   # flake8-builtins (avoid shadowing built-ins)
+  "ANN", # flake8-annotations (type hints for public APIs)
+  "B",   # flake8-bugbear (common bugs and best practices)
+  "E",   # pycodestyle (error)
+  "F",   # pyflakes (basic errors)
+  "I",   # isort (import sorting)
+  "N",   # pep8-naming
+  "PIE", # flake8-pie (extra cleanups)
+  "PLC", # pylint conventions
+  "PLE", # pylint errors
+  "PLW", # pylint warnings
+  "Q",   # flake8-quotes (quote consistency)
+  "RET", # flake8-return (return statement rules)
+  "RUF", # Ruff-specific rules
+  "S",   # flake8-bandit (security rules)
+  "SIM", # flake8-simplify
+  "W",   # pycodestyle (warning)
+]
+
+ignore = [
+  "BLE001", # Do not catch blind exception: `Exception`
+  "RUF067", # `__init__` module should only contain docstrings and re-exports
+  "TRY300", # Consider moving this statement to an `else` block
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["devopness_slack_bot"]
+case-sensitive = true
+
+[tool.mypy]
+python_version = "3.12"
+
+strict = true
+disallow_any_unimported = true
+strict_optional = true
+warn_no_return = true
+warn_unreachable = true
+
+sqlite_cache = true
+cache_fine_grained = true
+
+enable_error_code = [
+  "comparison-overlap",
+  "exhaustive-match",
+  "explicit-override",
+  "ignore-without-code",
+  "mutable-override",
+  "no-any-return",
+  "no-any-unimported",
+  "no-untyped-call",
+  "no-untyped-def",
+  "possibly-undefined",
+  "redundant-cast",
+  "redundant-expr",
+  "truthy-bool",
+  "truthy-iterable",
+  "type-arg",
+  "unused-awaitable",
+  "unused-ignore",
+]
+
