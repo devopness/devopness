@@ -44,7 +44,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-multiline-arrays": "^4.1.7",
     "prettier-plugin-sort-json": "^4.1.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
+    "prettier-plugin-tailwindcss": "^0.7.3",
     "tailwindcss": "^4.2.4",
     "typescript": "^5.9.3"
   }
