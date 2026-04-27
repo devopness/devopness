@@ -22,7 +22,7 @@ class OrganizationCreate(DevopnessBaseModel):
 
     Attributes:
         name (str): The Name of the organization. Must not be greater than 255 characters.
-        url_slug (str, optional): The URL Slug of the organization. Must not be greater than 255 characters.
+        url_slug (str, optional): The URL Slug of the organization. Must not be greater than 30 characters.
     """
 
     name: StrictStr = Field(
@@ -30,7 +30,7 @@ class OrganizationCreate(DevopnessBaseModel):
     )
     url_slug: StrictStr | None = Field(
         default=None,
-        description="The URL Slug of the organization. Must not be greater than 255 characters.",
+        description="The URL Slug of the organization. Must not be greater than 30 characters.",
     )
 
 
