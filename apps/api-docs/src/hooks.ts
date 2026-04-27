@@ -317,7 +317,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     })
 
     before('addOrganization201', utils.rewriteTransactionRequestBody((body: any) => {
-        body['name'] = `API Docs Test Organization ${new Date().getTime()}`;
+        const timestamp = new Date().getTime();
+        const orgName = `API Org ${timestamp}`;
+        // Ensure name is max 30 chars for url_slug generation
+        body['name'] = orgName.substring(0, 30);
         delete body['url_slug'];
     }));
 
