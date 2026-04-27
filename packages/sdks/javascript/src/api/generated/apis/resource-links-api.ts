@@ -85,14 +85,15 @@ export class ResourceLinksApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary List linked resources of specified link type
-     * @param {string} linkType The link type (&#x60;child&#x60; or &#x60;parent&#x60;).
-     * @param {number} resourceId The resource ID.
-     * @param {string} resourceType The resource type to get linked resources.
+     * @summary List resources linked to a base resource.
+     * @param {string} linkType The link type of resources to be retrieved: &#x60;child&#x60; or &#x60;parent&#x60;.
+     * @param {number} resourceId The ID of the base resource
+     * @param {string} resourceType The base resource type used from which linked resources will be retrieved.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {string} [linkedResourceType] Filter only linked resources of this resource type.
      */
-    public async listResourceLinksByResourceTypeAndLinkType(linkType: string, resourceId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ResourceLinkRelation>>> {
+    public async listResourceLinksByResourceTypeAndLinkType(linkType: string, resourceId: number, resourceType: string, page?: number, perPage?: number, linkedResourceType?: string): Promise<ApiResponse<Array<ResourceLinkRelation>>> {
         if (linkType === null || linkType === undefined) {
             throw new ArgumentNullException('linkType', 'listResourceLinksByResourceTypeAndLinkType');
         }
@@ -104,7 +105,7 @@ export class ResourceLinksApiService extends ApiBaseService {
         }
 
         let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        const queryParams = { page: page, per_page: perPage, linked_resource_type: linkedResourceType, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;
