@@ -79,9 +79,10 @@ class ResourceLinksApiService(DevopnessBaseService):
         resource_type: str,
         page: int | None = None,
         per_page: int | None = None,
+        linked_resource_type: str | None = None,
     ) -> DevopnessResponse[list[ResourceLinkRelation]]:
         """
-        List linked resources of specified link type
+        List resources linked to a base resource.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -92,6 +93,7 @@ class ResourceLinksApiService(DevopnessBaseService):
             {
                 "page": page,
                 "per_page": per_page,
+                "linked_resource_type": linked_resource_type,
             }
         )
 
@@ -198,9 +200,10 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         resource_type: str,
         page: int | None = None,
         per_page: int | None = None,
+        linked_resource_type: str | None = None,
     ) -> DevopnessResponse[list[ResourceLinkRelation]]:
         """
-        List linked resources of specified link type
+        List resources linked to a base resource.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -211,6 +214,7 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
             {
                 "page": page,
                 "per_page": per_page,
+                "linked_resource_type": linked_resource_type,
             }
         )
 

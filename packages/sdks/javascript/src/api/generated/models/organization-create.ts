@@ -26,7 +26,7 @@ export interface OrganizationCreate {
      */
     name: string;
     /**
-     * The URL Slug of the organization. Must not be greater than 255 characters.
+     * The URL Slug of the organization. Must not be greater than 30 characters.
      * @type {string}
      * @memberof OrganizationCreate
      */

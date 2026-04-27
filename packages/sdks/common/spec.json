@@ -8253,7 +8253,7 @@
     },
     "/resource-links/{resource_type}/{resource_id}/{link_type}": {
       "get": {
-        "summary": "List linked resources of specified link type",
+        "summary": "List resources linked to a base resource.",
         "operationId": "listResourceLinksByResourceTypeAndLinkType",
         "tags": [
           "Resource Links"
@@ -8277,7 +8277,7 @@
           {
             "in": "path",
             "name": "link_type",
-            "description": "The link type (`child` or `parent`).",
+            "description": "The link type of resources to be retrieved: `child` or `parent`.",
             "example": "parent",
             "required": true,
             "schema": {
@@ -8285,9 +8285,19 @@
             }
           },
           {
+            "in": "query",
+            "name": "linked_resource_type",
+            "description": "Filter only linked resources of this resource type.",
+            "example": "ssh-key",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "in": "path",
             "name": "resource_id",
-            "description": "The resource ID.",
+            "description": "The ID of the base resource",
             "example": 123,
             "required": true,
             "schema": {
@@ -8298,7 +8308,7 @@
           {
             "in": "path",
             "name": "resource_type",
-            "description": "The resource type to get linked resources.",
+            "description": "The base resource type used from which linked resources will be retrieved.",
             "example": "application",
             "required": true,
             "schema": {
@@ -20312,7 +20322,7 @@
             "type": "string"
           },
           "url_slug": {
-            "description": "The URL Slug of the organization. Must not be greater than 255 characters.",
+            "description": "The URL Slug of the organization. Must not be greater than 30 characters.",
             "example": "MyOrg",
             "type": "string"
           }
@@ -20385,7 +20395,7 @@
             "type": "string"
           },
           "url_slug": {
-            "description": "The URL Slug of the organization.",
+            "description": "The URL Slug of the organization. Must not be greater than 30 characters.",
             "example": "MyOrg",
             "type": "string"
           }
