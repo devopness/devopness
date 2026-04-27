@@ -1,5 +1,14 @@
 # @devopness/sdk-python
 
+## 2.3.2
+
+### Patch Changes
+
+- [#2955](https://github.com/devopness/devopness/pull/2955) [`224ab07`](https://github.com/devopness/devopness/commit/224ab078e72d8b3c1f31f8aa2a8d50962714ae21) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add support for filtering linked resources by type in `GET /resource-links/{resource_type}/{resource_id}/{link_type}` endpoint.
+
+  > When listing resources linked to a base resource (either parent or child relationships), you can now filter the results to return
+  > only linked resources of a specific type using the new `linkedResourceType` query parameter.
+
 ## 2.3.1
 
 ### Patch Changes
