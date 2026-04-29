@@ -1,6 +1,5 @@
 ---
 title: Edit a Daemon
-intro: Edit a Daemon to update the application, settings, command, or other configurations of an existing Daemon.
 links:
   overview:
   quickstart:
@@ -12,6 +11,8 @@ links:
 required_permissions:
   - daemon:update
 ---
+
+Edit a Daemon to update the application, settings, command, or other configurations of an existing Daemon.
 
 1. On Devopness, navigate to a project, then select an environment
 1. Find the `Daemons` card
