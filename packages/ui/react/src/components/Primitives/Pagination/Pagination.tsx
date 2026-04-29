@@ -56,6 +56,7 @@ const Pagination = ({
         noMargin
         onClick={firstPaginateAction}
         disabled={disableAllActions || disablePreviousActions}
+        aria-label="Go to first page"
       >
         First
       </Button>
@@ -67,6 +68,7 @@ const Pagination = ({
         noMargin
         onClick={previousPaginateAction}
         disabled={disableAllActions || disablePreviousActions}
+        aria-label="Go to previous page"
       >
         Previous
       </Button>
@@ -79,6 +81,7 @@ const Pagination = ({
         noMargin
         onClick={nextPaginateAction}
         disabled={disableAllActions || disableNextActions}
+        aria-label="Go to next page"
       >
         Next
       </Button>
@@ -89,6 +92,7 @@ const Pagination = ({
         noMargin
         onClick={lastPaginateAction}
         disabled={disableAllActions || disableNextActions}
+        aria-label="Go to last page"
       >
         Last
       </Button>
