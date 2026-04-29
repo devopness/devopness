@@ -1,6 +1,5 @@
 ---
 title: Remove a Daemon
-intro: Remove a Daemon when it is no longer needed.
 links:
   overview:
   quickstart:
@@ -12,6 +11,8 @@ links:
 required_permissions:
   - daemon:delete
 ---
+
+Remove a Daemon when it is no longer needed.
 
 1. On Devopness, navigate to a project, then select an environment
 1. Find the `Daemons` card

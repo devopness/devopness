@@ -1,6 +1,5 @@
 ---
 title: Add a Daemon
-intro: Add a Daemon to keep a program alive, always running with the number of configured processes. A daemon run as a background process and can restart the program when it fails or its code/command line is modified.
 links:
   overview:
   quickstart:
@@ -12,6 +11,8 @@ links:
 required_permissions:
   - daemon:create
 ---
+
+Add a Daemon to keep a program alive, always running with the number of configured processes. A daemon run as a background process and can restart the program when it fails or its code/command line is modified.
 
 1. On Devopness, navigate to a project, then select an environment
 1. Find the `Daemons` card
