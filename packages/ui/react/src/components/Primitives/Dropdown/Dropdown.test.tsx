@@ -312,6 +312,31 @@ describe('Dropdown', () => {
       expect(link).toHaveAttribute('target', '_blank')
       expect(screen.queryByLabelText('openInNewWindow')).not.toBeInTheDocument()
     })
+
+    it('renders external URL icon inside the option row so hover covers it', async () => {
+      render(
+        <Dropdown
+          id="test-dropdown"
+          anchorType="button"
+          label="Menu"
+          options={[
+            {
+              label: 'Go to External',
+              url: 'https://example.com',
+            },
+          ]}
+        />
+      )
+
+      await user.click(screen.getByText('Menu'))
+
+      const externalIcon = screen.getByLabelText('openInNewWindow')
+      expect(externalIcon).toBeInTheDocument()
+
+      const optionRow = screen.getByText('Go to External').closest('#option_0')
+      expect(optionRow).not.toBeNull()
+      expect(optionRow).toContainElement(externalIcon)
+    })
   })
 
   describe('renders correctly', () => {

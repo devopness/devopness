@@ -11,6 +11,7 @@ import {
   Text,
   ClickableContainer,
   ContentBadge,
+  ExternalUrlIcon,
 } from './Dropdown.styled'
 import type { Color } from 'src/colors'
 import type { ButtonProps } from 'src/components/Buttons'
@@ -355,6 +356,7 @@ const Dropdown = ({
                           to={option.url}
                           hideUnderline
                           {...option.linkProps}
+                          hideExternalUrlIcon
                           style={{
                             display: 'block',
                             marginRight: 'auto',
@@ -370,6 +372,9 @@ const Dropdown = ({
                               option.activeBackgroundColor
                             }
                             $brokenSequence={option.brokenSequence}
+                            $hasExternalIcon={
+                              !option.linkProps?.hideExternalUrlIcon
+                            }
                             onClick={(event) => {
                               if (option.onClick || onSelect) {
                                 event.preventDefault()
@@ -406,6 +411,14 @@ const Dropdown = ({
                                   {option.label}
                                 </Text>
                               </Tooltip>
+                            )}
+                            {!option.linkProps?.hideExternalUrlIcon && (
+                              <ExternalUrlIcon>
+                                <Icon
+                                  name="openInNewWindow"
+                                  {...option.linkProps?.iconProps}
+                                />
+                              </ExternalUrlIcon>
                             )}
                           </MenuOption>
                         </Link>
