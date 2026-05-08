@@ -376,9 +376,17 @@ const Dropdown = ({
                               !option.linkProps?.hideExternalUrlIcon
                             }
                             onClick={(event) => {
-                              if (option.onClick || onSelect) {
+                              if (option.isDisabled) {
                                 event.preventDefault()
                                 event.stopPropagation()
+                                return
+                              }
+                              const hasHandler = !!option.onClick || !!onSelect
+                              if (hasHandler && !option.url) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                              }
+                              if (hasHandler) {
                                 void handleDropdownOptionClick(
                                   option,
                                   onSelect,
