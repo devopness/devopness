@@ -17,6 +17,10 @@ properties:
     description: 'ID of the project this pipeline belongs to'
     example: 97063242
     type: integer
+  organization_id:
+    description: 'ID of the organization this pipeline belongs to'
+    example: 5324234
+    type: integer
   resource_type:
     $ref: '#/components/schemas/ResourceType'
   resource_type_human_readable:
@@ -58,6 +62,7 @@ required:
   - name
   - environment_id
   - project_id
+  - organization_id
   - resource_type
   - resource_type_human_readable
   - resource_id

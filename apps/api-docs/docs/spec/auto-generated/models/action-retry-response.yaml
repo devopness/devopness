@@ -55,6 +55,8 @@ properties:
     $ref: '#/components/schemas/EnvironmentRelation'
   project:
     $ref: '#/components/schemas/ProjectRelation'
+  organization:
+    $ref: '#/components/schemas/OrganizationRelation'
   targets:
     $ref: '#/components/schemas/ActionTargetList'
   hook_requests:
@@ -96,6 +98,7 @@ required:
   - summary
   - environment
   - project
+  - organization
   - started_at
   - completed_at
   - created_at
