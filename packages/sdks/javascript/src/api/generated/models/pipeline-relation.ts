@@ -46,6 +46,12 @@ export interface PipelineRelation {
      */
     project_id: number;
     /**
+     * ID of the organization this pipeline belongs to
+     * @type {number}
+     * @memberof PipelineRelation
+     */
+    organization_id: number;
+    /**
      * The pipeline\'s resource type
      * @type {string}
      * @memberof PipelineRelation

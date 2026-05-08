@@ -28,6 +28,7 @@ class PipelineRelation(DevopnessBaseModel):
         name (str): The pipeline&#39;s name
         environment_id (int): ID of the environment this pipeline belongs to
         project_id (int): ID of the project this pipeline belongs to
+        organization_id (int): ID of the organization this pipeline belongs to
         resource_type (str): The pipeline&#39;s resource type
         resource_type_human_readable (str): Human readable version of the resource type
         resource_id (int): The pipeline&#39;s resource ID
@@ -47,6 +48,9 @@ class PipelineRelation(DevopnessBaseModel):
     )
     project_id: StrictInt = Field(
         description="ID of the project this pipeline belongs to"
+    )
+    organization_id: StrictInt = Field(
+        description="ID of the organization this pipeline belongs to"
     )
     resource_type: StrictStr = Field(description="The pipeline's resource type")
     resource_type_human_readable: StrictStr = Field(
@@ -81,6 +85,7 @@ class PipelineRelationPlain(TypedDict, total=False):
     name: Required[str]
     environment_id: Required[int]
     project_id: Required[int]
+    organization_id: Required[int]
     resource_type: Required[str]
     resource_type_human_readable: Required[str]
     resource_id: Required[int]

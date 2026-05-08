@@ -14097,6 +14097,9 @@
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
           },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
           "targets": {
             "$ref": "#/components/schemas/ActionTargetList"
           },
@@ -14145,6 +14148,7 @@
           "summary",
           "environment",
           "project",
+          "organization",
           "started_at",
           "completed_at",
           "created_at",
@@ -14644,6 +14648,9 @@
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
           },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
           "targets": {
             "$ref": "#/components/schemas/ActionTargetList"
           },
@@ -14692,6 +14699,7 @@
           "summary",
           "environment",
           "project",
+          "organization",
           "started_at",
           "completed_at",
           "created_at",
@@ -20768,6 +20776,11 @@
             "example": 97063242,
             "type": "integer"
           },
+          "organization_id": {
+            "description": "ID of the organization this pipeline belongs to",
+            "example": 5324234,
+            "type": "integer"
+          },
           "resource_type": {
             "$ref": "#/components/schemas/ResourceType"
           },
@@ -20821,6 +20834,7 @@
           "name",
           "environment_id",
           "project_id",
+          "organization_id",
           "resource_type",
           "resource_type_human_readable",
           "resource_id",
@@ -20890,6 +20904,11 @@
             "example": 97063242,
             "type": "integer"
           },
+          "organization_id": {
+            "description": "ID of the organization this pipeline belongs to",
+            "example": 5324234,
+            "type": "integer"
+          },
           "resource_type": {
             "description": "The pipeline's resource type",
             "example": "application",
@@ -20942,6 +20961,7 @@
           "name",
           "environment_id",
           "project_id",
+          "organization_id",
           "resource_type",
           "resource_type_human_readable",
           "resource_id",

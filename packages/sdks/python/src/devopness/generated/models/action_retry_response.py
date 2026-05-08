@@ -28,6 +28,7 @@ from .action_target import ActionTarget, ActionTargetPlain
 from .action_triggered_from import ActionTriggeredFrom, ActionTriggeredFromPlain
 from .action_type import ActionType, ActionTypePlain
 from .environment_relation import EnvironmentRelation, EnvironmentRelationPlain
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .related_action import RelatedAction, RelatedActionPlain
 from .user_relation import UserRelation, UserRelationPlain
@@ -57,6 +58,7 @@ class ActionRetryResponse(DevopnessBaseModel):
         summary (ActionSummary):
         environment (EnvironmentRelation, optional, nullable):
         project (ProjectRelation, optional, nullable):
+        organization (OrganizationRelation, optional, nullable):
         targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
         hook_requests (ActionHookRequest, optional):
         started_at (str, optional, nullable): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
@@ -96,6 +98,7 @@ class ActionRetryResponse(DevopnessBaseModel):
     summary: ActionSummary
     environment: EnvironmentRelation | None
     project: ProjectRelation | None
+    organization: OrganizationRelation | None
     targets: list[ActionTarget] | None = Field(
         default=None, description="List of actions dispatched to cloud resource targets"
     )
@@ -175,6 +178,7 @@ class ActionRetryResponsePlain(TypedDict, total=False):
     ]
     environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
     project: Union[ProjectRelation, ProjectRelationPlain] | None
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
     targets: list[Union[ActionTarget, ActionTargetPlain]] | None
     hook_requests: Union[ActionHookRequest, ActionHookRequestPlain] | None
     started_at: str | None
