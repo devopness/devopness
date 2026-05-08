@@ -22,6 +22,7 @@ import { ActionTarget } from './action-target';
 import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
 import { EnvironmentRelation } from './environment-relation';
+import { OrganizationRelation } from './organization-relation';
 import { ProjectRelation } from './project-relation';
 import { RelatedAction } from './related-action';
 import { UserRelation } from './user-relation';
@@ -146,6 +147,12 @@ export interface Action {
      * @memberof Action
      */
     project: ProjectRelation | null;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof Action
+     */
+    organization: OrganizationRelation | null;
     /**
      * List of actions dispatched to cloud resource targets
      * @type {Array<ActionTarget>}

@@ -48,6 +48,12 @@ export interface Pipeline {
      */
     project_id: number;
     /**
+     * ID of the organization this pipeline belongs to
+     * @type {number}
+     * @memberof Pipeline
+     */
+    organization_id: number;
+    /**
      * 
      * @type {ResourceType}
      * @memberof Pipeline
