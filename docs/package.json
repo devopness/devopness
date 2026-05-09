@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.0",
+    "@next/eslint-plugin-next": "^16.2.6",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
     "@types/node": "^25.6.2",
     "@types/react": "^19.2.14",
@@ -34,9 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^8.59.2",
     "@typescript-eslint/parser": "^8.59.0",
     "eslint": "^10.3.0",
-    "eslint-config-next": "^16.2.6",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.6.0",
