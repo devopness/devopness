@@ -20,10 +20,3 @@ From `packages/sdks/python`, run:
 ## Additional notes
 
 - Follow `packages/sdks/common/AGENTS.md` for shared artifact rules.
-
-## PR instructions
-- Root AGENTS provides repository-wide behavior; use it first.
-- For PR mechanics and validation, follow:
-  - `.github/PULL_REQUEST_TEMPLATE.md`
-  - `.github/workflows/pr-lint.yml`
-  - `.github/scripts/pr-validate-description.js`

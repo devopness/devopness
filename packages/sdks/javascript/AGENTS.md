@@ -21,10 +21,3 @@ From `packages/sdks/javascript`, use these package scripts:
 ## Additional notes
 
 - For non-docker local workflows, prefer package-level scripts and CI examples in CI workflows.
-
-## PR instructions
-- Root AGENTS provides repository-wide behavior; use it first.
-- For PR mechanics and validation, follow:
-  - `.github/PULL_REQUEST_TEMPLATE.md`
-  - `.github/workflows/pr-lint.yml`
-  - `.github/scripts/pr-validate-description.js`
