@@ -21,3 +21,4 @@ From `packages/sdks/javascript`, use these package scripts:
 ## Additional notes
 
 - For non-docker local workflows, prefer package-level scripts and CI examples in CI workflows.
+- Follow the root [AGENTS.md](../../../AGENTS.md) for repository-wide git workflow and PR guidance.
