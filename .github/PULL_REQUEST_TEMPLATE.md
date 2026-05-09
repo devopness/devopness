@@ -4,6 +4,8 @@ Short description of how this PR's makes the world a better place for Devopness 
 * Example: Click on element <X> on page/route <Y> will <some new behavior> [instead of <some old behavior>]
 
 If the PR is still in draft state, please add a **Why draft?** section clarifying what's the help or feedback you need, or mention what needs to be done before the PR is ready to be reviewed.
+
+- Keep PRs single-purpose and minimal; avoid unrelated cleanup.
 -->
 - [ ] <add one check list item here for each meaningful change on this PR>
 
@@ -20,6 +22,8 @@ Use `N/A` if this PR is not fixing any existing issue.
 <!-- Please complete this checklist before requesting a review of your pull request. -->
 
 - Once the changes in this PR are merged and deployed, success criteria is: 
+
+<!-- Use a concrete, verifiable, success criteria. Keep it short -->
 
 ## More info
 <!-- 
