@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.184.7
+
+### Patch Changes
+
+- [#2966](https://github.com/devopness/devopness/pull/2966) [`b772de8`](https://github.com/devopness/devopness/commit/b772de8ac0a153ed92e633ee54efba6972ff0945) Thanks [@fernandes-vinicius](https://github.com/fernandes-vinicius)! - Add explicit aria-labels to Pagination component for screen reader accessibility
+
 ## 2.184.6
 
 ### Patch Changes
