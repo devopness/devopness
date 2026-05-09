@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.3.3
+
+### Patch Changes
+
+- [#3018](https://github.com/devopness/devopness/pull/3018) [`80e666a`](https://github.com/devopness/devopness/commit/80e666afeb03afac75a2b745a598475e838e9c40) Thanks [@devopness-automations](https://github.com/devopness-automations)! - This update exposes the **Organization** that the action belongs to. The same applies to **Pipelines**.
+
 ## 2.3.2
 
 ### Patch Changes
