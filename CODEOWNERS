@@ -1,0 +1,14 @@
+* @jfoliveira @Diegiwg
+
+/AGENTS.md @jfoliveira
+/.github @jfoliveira
+/CONTRIBUTING.md @jfoliveira
+/CODEOWNERS @jfoliveira
+/CODE_OF_CONDUCT.md @jfoliveira
+/README.md @jfoliveira
+
+/docs/ @jfoliveira @Diegiwg
+/packages/sdks/javascript/ @devopness-automations
+/packages/sdks/python/ @devopness-social
+/packages/ui/react/ @Diegiwg
+/.changeset/ @devopness-automations

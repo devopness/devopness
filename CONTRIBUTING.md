@@ -113,6 +113,19 @@ Here are some **bad examples** of pull request titles we're trying to avoid:
 
 **Remember:** Even if your PR is a work in progress (DRAFT), a good description helps maintainers understand your direction and provide early feedback!
 
+### Pull requests from AI assistants and bots
+
+- Before editing, read and follow:
+  - `CONTRIBUTING.md`
+  - `.github/PULL_REQUEST_TEMPLATE.md`
+  - `.github/workflows/pr-lint.yml`
+  - `.github/scripts/pr-validate-description.js`
+- Keep PRs single-purpose and minimal; avoid unrelated cleanup.
+- In `GitHub issues resolved by this PR`, include issue references (for example `#123`) or `N/A`.
+- Use a concrete `Quality Assurance` checklist with runnable commands and outcomes, not placeholders.
+- If your change affects package versions or releases, include a `.changeset/` file.
+- Leave `AGENTS.md` unchanged unless process instructions need to evolve.
+
 ### Documentation contributors
 
 If you are changing docs under `docs/docs/*`, follow:
