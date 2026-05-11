@@ -312,6 +312,106 @@ describe('Dropdown', () => {
       expect(link).toHaveAttribute('target', '_blank')
       expect(screen.queryByLabelText('openInNewWindow')).not.toBeInTheDocument()
     })
+
+    it('allows navigation and still calls onSelect when option with url is clicked', async () => {
+      const onSelect = vi.fn()
+      const events: Event[] = []
+      const captureClick = (event: Event) => {
+        events.push(event)
+      }
+      document.addEventListener('click', captureClick)
+
+      try {
+        render(
+          <Dropdown
+            id="test-dropdown"
+            anchorType="button"
+            label="Menu"
+            options={[
+              {
+                label: 'Go to Link',
+                url: '/test',
+                linkProps: { hideExternalUrlIcon: true },
+              },
+            ]}
+            onSelect={onSelect}
+          />
+        )
+
+        await user.click(screen.getByText('Menu'))
+        const eventsBeforeOptionClick = events.length
+        await user.click(screen.getByText('Go to Link'))
+
+        expect(onSelect).toHaveBeenCalled()
+        const optionClickEvents = events.slice(eventsBeforeOptionClick)
+        expect(optionClickEvents.length).toBeGreaterThan(0)
+        expect(optionClickEvents[0].defaultPrevented).toBe(false)
+      } finally {
+        document.removeEventListener('click', captureClick)
+      }
+    })
+
+    it('blocks navigation when option with url is disabled', async () => {
+      const onSelect = vi.fn()
+      const events: Event[] = []
+      const captureClick = (event: Event) => {
+        events.push(event)
+      }
+      document.addEventListener('click', captureClick)
+
+      try {
+        render(
+          <Dropdown
+            id="test-dropdown"
+            anchorType="button"
+            label="Menu"
+            options={[
+              {
+                label: 'Go to Link',
+                url: '/test',
+                isDisabled: true,
+                linkProps: { hideExternalUrlIcon: true },
+              },
+            ]}
+            onSelect={onSelect}
+          />
+        )
+
+        await user.click(screen.getByText('Menu'))
+        const eventsBeforeOptionClick = events.length
+        await user.click(screen.getByText('Go to Link'))
+
+        expect(onSelect).not.toHaveBeenCalled()
+        expect(events.length).toBe(eventsBeforeOptionClick)
+      } finally {
+        document.removeEventListener('click', captureClick)
+      }
+    })
+
+    it('renders external URL icon inside the option row so hover covers it', async () => {
+      render(
+        <Dropdown
+          id="test-dropdown"
+          anchorType="button"
+          label="Menu"
+          options={[
+            {
+              label: 'Go to External',
+              url: 'https://example.com',
+            },
+          ]}
+        />
+      )
+
+      await user.click(screen.getByText('Menu'))
+
+      const externalIcon = screen.getByLabelText('openInNewWindow')
+      expect(externalIcon).toBeInTheDocument()
+
+      const optionRow = screen.getByText('Go to External').closest('#option_0')
+      expect(optionRow).not.toBeNull()
+      expect(optionRow).toContainElement(externalIcon)
+    })
   })
 
   describe('renders correctly', () => {
