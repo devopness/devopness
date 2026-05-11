@@ -2,7 +2,6 @@ import pluginNext from '@next/eslint-plugin-next';
 import eslintTypescript from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import eslintImport from 'eslint-plugin-import';
 import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-plugin-prettier/recommended'; // Import Prettier config
 
@@ -59,7 +58,6 @@ const eslintConfig = defineConfig([
     plugins: {
       '@next/next': pluginNext,
       'react-hooks': reactHooks,
-      import: eslintImport,
       prettier,
       '@typescript-eslint': eslintTypescript,
     },
