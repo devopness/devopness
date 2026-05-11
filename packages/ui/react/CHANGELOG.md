@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.184.8
+
+### Patch Changes
+
+- [#2996](https://github.com/devopness/devopness/pull/2996) [`f83dab4`](https://github.com/devopness/devopness/commit/f83dab4249ede55923dc2849b7b64ce9c2e82a60) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Fix broken layout in Dropdown options whose `url` prop is set: render the external URL icon inline with the badge and label (instead of falling onto a new line below), make the `:hover` background cover the full row including the icon area, and let the link navigate when `onSelect` is also defined on the Dropdown
+
 ## 2.184.7
 
 ### Patch Changes
