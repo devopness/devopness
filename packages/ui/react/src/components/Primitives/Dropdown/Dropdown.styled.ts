@@ -41,11 +41,13 @@ const MenuOption = styled.div<
   Pick<
     StyledProps,
     '$activeBackgroundColor' | '$brokenSequence' | '$isActive' | 'disabled'
-  >
+  > & { $hasExternalIcon?: boolean }
 >`
   display: grid;
-  grid-template-areas: 'badge text';
-  grid-template-columns: auto auto;
+  grid-template-areas: ${({ $hasExternalIcon }) =>
+    $hasExternalIcon ? `'badge text icon'` : `'badge text'`};
+  grid-template-columns: ${({ $hasExternalIcon }) =>
+    $hasExternalIcon ? 'auto 1fr auto' : 'auto auto'};
   grid-column-gap: 10px;
   justify-content: start;
   align-items: center;
@@ -63,6 +65,12 @@ const MenuOption = styled.div<
     border-radius: 0;
     background-color: ${getColor('purple.250')};
   }
+`
+
+const ExternalUrlIcon = styled.span`
+  grid-area: icon;
+  display: flex;
+  align-items: center;
 `
 
 const Text = styled.span<Pick<StyledProps, '$color'>>`
@@ -137,6 +145,7 @@ export {
   Text,
   ContentBadge,
   ClickableContainer,
+  ExternalUrlIcon,
   Grid,
   Wrapper,
 }
