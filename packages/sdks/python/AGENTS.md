@@ -19,5 +19,5 @@ From `packages/sdks/python`, run:
 
 ## Additional notes
 
-- Follow `packages/sdks/common/AGENTS.md` for shared artifact rules.
+- Follow [`packages/sdks/common/AGENTS.md`](../common/AGENTS.md) for shared artifact rules.
 - Follow the root [AGENTS.md](../../../AGENTS.md) for repository-wide git workflow and PR guidance.
