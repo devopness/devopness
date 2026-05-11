@@ -81,11 +81,11 @@ describe('Input', () => {
       render(
         <Input
           type="text"
-          publicStyle={{ fontStyleValue: 'bold' }}
+          publicStyle={{ fontStyleValue: 'italic' }}
         />
       )
       const input = screen.getByRole('textbox')
-      expect(input).toHaveStyle({ 'font-style': 'bold' })
+      expect(input).toHaveStyle({ 'font-style': 'italic' })
     })
 
     it('with number type and removed arrows', () => {

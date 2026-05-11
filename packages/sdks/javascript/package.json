@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/sdk-js",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "publishConfig": {
     "access": "public"
   },
@@ -59,14 +59,14 @@
     "eslint": "^10.3.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.24.0",
+    "eslint-plugin-n": "^18.0.1",
     "eslint-plugin-promise": "^7.3.0",
     "husky": "9.1.7",
-    "jest": "^30.3.0",
+    "jest": "^30.4.2",
     "ts-jest": "^29.4.9",
     "typedoc": "^0.28.19",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.59.1"
+    "typescript-eslint": "^8.59.2"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
