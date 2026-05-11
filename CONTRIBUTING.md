@@ -114,6 +114,7 @@ Here are some **bad examples** of pull request titles we're trying to avoid:
 **Remember:** Even if your PR is a work in progress (DRAFT), a good description helps maintainers understand your direction and provide early feedback!
 
 ### Pull requests from AI assistants and bots
+
 If you use AI tools to edit this repository, start in `AGENTS.md` for execution-focused instructions, then follow this CONTRIBUTING guide for process context.
 - Leave `AGENTS.md` unchanged unless process instructions need to evolve.
 - For PR mechanics, description format, and validation, follow:
