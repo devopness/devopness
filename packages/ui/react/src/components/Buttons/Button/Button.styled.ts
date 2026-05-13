@@ -215,7 +215,8 @@ const BaseButton = styled.button<
       text-transform: uppercase;
       transition:
         background-color 0.15s ease,
-        border-color 0.15s ease;
+        border-color 0.15s ease,
+        filter 0.3s ease;
 
       /** Border */
       border-color: ${resolvedBorderColor};
@@ -224,8 +225,15 @@ const BaseButton = styled.button<
       border-width: ${resolvedBorderWidth}px;
 
       &:hover:enabled {
-        background-color: ${resolvedHoverBackgroundColor};
-        border-color: ${resolvedHoverBorderColor};
+        filter: brightness(75%);
+      }
+
+      @supports (background-color: color-mix(in srgb, red 50%, blue)) {
+        &:hover:enabled {
+          filter: none;
+          background-color: ${resolvedHoverBackgroundColor};
+          border-color: ${resolvedHoverBorderColor};
+        }
       }
 
       &:disabled {
