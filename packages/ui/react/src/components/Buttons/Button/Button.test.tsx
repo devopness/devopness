@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Button } from '.'
+import { getHoverBackgroundColor, getHoverBorderColor } from './Button.styled'
 import { getColor } from 'src/colors'
 
 describe('Button', () => {
@@ -260,6 +261,74 @@ describe('Button', () => {
       const button = screen.getByTestId('button')
       expect(button).toHaveStyle({
         height: 'auto',
+      })
+    })
+  })
+
+  describe('hover color helpers', () => {
+    const bg = '#123456'
+    const text = '#abcdef'
+    const border = '#fedcba'
+
+    describe('getHoverBackgroundColor', () => {
+      it('mixes text color with white for borderless', () => {
+        expect(getHoverBackgroundColor('borderless', bg, text)).toBe(
+          `color-mix(in srgb, ${text} 12%, white)`
+        )
+      })
+
+      it('mixes text color with white for outlinedSecondary', () => {
+        expect(getHoverBackgroundColor('outlinedSecondary', bg, text)).toBe(
+          `color-mix(in srgb, ${text} 12%, white)`
+        )
+      })
+
+      it('mixes text color with white for outlinedAuxiliary', () => {
+        expect(getHoverBackgroundColor('outlinedAuxiliary', bg, text)).toBe(
+          `color-mix(in srgb, ${text} 12%, white)`
+        )
+      })
+
+      it('darkens background for default buttonType', () => {
+        expect(getHoverBackgroundColor('Default', bg, text)).toBe(
+          `color-mix(in srgb, ${bg} 90%, #000)`
+        )
+      })
+
+      it('darkens background when buttonType is undefined', () => {
+        expect(getHoverBackgroundColor(undefined, bg, text)).toBe(
+          `color-mix(in srgb, ${bg} 90%, #000)`
+        )
+      })
+    })
+
+    describe('getHoverBorderColor', () => {
+      it('returns transparent for borderless', () => {
+        expect(getHoverBorderColor('borderless', border)).toBe('transparent')
+      })
+
+      it('darkens border for outlinedSecondary', () => {
+        expect(getHoverBorderColor('outlinedSecondary', border)).toBe(
+          `color-mix(in srgb, ${border} 88%, #000)`
+        )
+      })
+
+      it('darkens border for outlinedAuxiliary', () => {
+        expect(getHoverBorderColor('outlinedAuxiliary', border)).toBe(
+          `color-mix(in srgb, ${border} 88%, #000)`
+        )
+      })
+
+      it('darkens border for default buttonType', () => {
+        expect(getHoverBorderColor('Default', border)).toBe(
+          `color-mix(in srgb, ${border} 88%, #000)`
+        )
+      })
+
+      it('darkens border when buttonType is undefined', () => {
+        expect(getHoverBorderColor(undefined, border)).toBe(
+          `color-mix(in srgb, ${border} 88%, #000)`
+        )
       })
     })
   })
