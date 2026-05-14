@@ -88,7 +88,7 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.2",
     "@types/lodash": "^4.17.24",
-    "@types/node": "^25.6.2",
+    "@types/node": "^25.7.0",
     "@types/path-browserify": "^1.0.3",
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.0",
@@ -113,7 +113,7 @@
     "vite": "^8.0.12",
     "vite-plugin-dts": "^5.0.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.6"
   },
   "peerDependencies": {
     "react": "^18.3.1",
