@@ -2,7 +2,7 @@
 "@devopness/sdk-python": minor
 ---
 
-Credentials now live at the organization level instead of being tied to individual environments. This means you can create a credential once and reuse it across multiple environments - perfect for managing the same AWS account across dev, staging, and production environments without duplicating credential configurations.
+Credentials now live at the organization level instead of being tied to individual environments. This means you can create a credential once and reuse it across multiple environments.
 
 ## ⚠️ Breaking Changes
 
