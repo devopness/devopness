@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#3042](https://github.com/devopness/devopness/pull/3042) [`2fadc1a`](https://github.com/devopness/devopness/commit/2fadc1a158e22f8789134a6102c6906486f0eaa3) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Credentials now live at the organization level instead of being tied to individual environments. This means you can create a credential once and reuse it across multiple environments.
+- [#3042](https://github.com/devopness/devopness/pull/3042) [`2fadc1a`](https://github.com/devopness/devopness/commit/2fadc1a158e22f8789134a6102c6906486f0eaa3) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Credentials now live at the organization level instead of being tied to individual environments. This means you can create a credential once and reuse it across multiple environments.
 
   ## ⚠️ Breaking Changes
 
