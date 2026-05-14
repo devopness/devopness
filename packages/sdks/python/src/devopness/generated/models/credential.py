@@ -15,6 +15,8 @@ from typing import (
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
+from .action_relation_shallow import ActionRelationShallow, ActionRelationShallowPlain
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
 from .provider_relation import ProviderRelation, ProviderRelationPlain
 from .user_relation import UserRelation, UserRelationPlain
 
@@ -30,7 +32,9 @@ class Credential(DevopnessBaseModel):
         provider_type (str): The type of the credential
         provider_type_human_readable (str): The human readable version of the type of the credential
         active (bool): If this credential is active or not
+        organization (OrganizationRelation, optional, nullable):
         created_by_user (UserRelation, optional, nullable):
+        last_action (ActionRelationShallow, optional, nullable):
         created_at (str): The date and time when the record was created
         updated_at (str): The date and time when the record was last updated
     """
@@ -43,7 +47,9 @@ class Credential(DevopnessBaseModel):
         description="The human readable version of the type of the credential"
     )
     active: StrictBool = Field(description="If this credential is active or not")
+    organization: OrganizationRelation | None = None
     created_by_user: UserRelation | None
+    last_action: ActionRelationShallow | None = None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"
     )
@@ -68,6 +74,8 @@ class CredentialPlain(TypedDict, total=False):
     provider_type: Required[str]
     provider_type_human_readable: Required[str]
     active: Required[bool]
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
     created_by_user: Union[UserRelation, UserRelationPlain] | None
+    last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None
     created_at: Required[str]
     updated_at: Required[str]

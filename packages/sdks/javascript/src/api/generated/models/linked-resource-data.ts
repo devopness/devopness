@@ -39,6 +39,30 @@ export interface LinkedResourceData {
      */
     summary_fields?: Array<LinkedResourceSummaryField>;
     /**
+     * The ID of the environment this resource belongs to
+     * @type {number}
+     * @memberof LinkedResourceData
+     */
+    environment_id?: number | null;
+    /**
+     * The name of the environment this resource belongs to
+     * @type {string}
+     * @memberof LinkedResourceData
+     */
+    environment_name?: string | null;
+    /**
+     * The ID of the project this resource belongs to
+     * @type {number}
+     * @memberof LinkedResourceData
+     */
+    project_id?: number | null;
+    /**
+     * The name of the project this resource belongs to
+     * @type {string}
+     * @memberof LinkedResourceData
+     */
+    project_name?: string | null;
+    /**
      * The date and time when the record was created
      * @type {string}
      * @memberof LinkedResourceData

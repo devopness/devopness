@@ -6,6 +6,7 @@ Note:
     https://openapi-generator.tech
 """
 
+from datetime import datetime
 from typing import (
     Required,
     TypedDict,
@@ -29,6 +30,8 @@ class ResourceLinkChild(DevopnessBaseModel):
         resource_type_human_readable (str): Human readable resource type
         can_be_unlinked (bool): If false, the link cannot be manually removed
         linked_resource_data (LinkedResourceData):
+        created_at (datetime): The date and time when the resource link was created
+        updated_at (datetime): The date and time when the resource link was last updated
     """
 
     link_type: StrictStr = Field(
@@ -43,6 +46,12 @@ class ResourceLinkChild(DevopnessBaseModel):
         description="If false, the link cannot be manually removed"
     )
     linked_resource_data: LinkedResourceData
+    created_at: datetime = Field(
+        description="The date and time when the resource link was created"
+    )
+    updated_at: datetime = Field(
+        description="The date and time when the resource link was last updated"
+    )
 
 
 class ResourceLinkChildPlain(TypedDict, total=False):
@@ -61,3 +70,5 @@ class ResourceLinkChildPlain(TypedDict, total=False):
             LinkedResourceDataPlain,
         ]
     ]
+    created_at: Required[datetime]
+    updated_at: Required[datetime]

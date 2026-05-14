@@ -31,6 +31,8 @@ class ResourceLinkRelation(DevopnessBaseModel):
         can_be_unlinked (bool): If false, the link cannot be manually removed
         linked_resource_data (LinkedResourceData):
         children (List[ResourceLinkChild], optional):
+        created_at (str): The date and time when the resource link was created
+        updated_at (str): The date and time when the resource link was last updated
     """
 
     link_type: StrictStr = Field(
@@ -46,6 +48,12 @@ class ResourceLinkRelation(DevopnessBaseModel):
     )
     linked_resource_data: LinkedResourceData
     children: list[ResourceLinkChild] | None = None
+    created_at: StrictStr = Field(
+        description="The date and time when the resource link was created"
+    )
+    updated_at: StrictStr = Field(
+        description="The date and time when the resource link was last updated"
+    )
 
 
 class ResourceLinkRelationPlain(TypedDict, total=False):
@@ -65,3 +73,5 @@ class ResourceLinkRelationPlain(TypedDict, total=False):
         ]
     ]
     children: list[Union[ResourceLinkChild, ResourceLinkChildPlain]] | None
+    created_at: Required[str]
+    updated_at: Required[str]

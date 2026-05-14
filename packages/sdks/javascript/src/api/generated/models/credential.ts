@@ -12,6 +12,8 @@
  */
 
 
+import { ActionRelationShallow } from './action-relation-shallow';
+import { OrganizationRelation } from './organization-relation';
 import { ProviderRelation } from './provider-relation';
 import { UserRelation } from './user-relation';
 
@@ -59,10 +61,22 @@ export interface Credential {
     active: boolean;
     /**
      * 
+     * @type {OrganizationRelation}
+     * @memberof Credential
+     */
+    organization?: OrganizationRelation | null;
+    /**
+     * 
      * @type {UserRelation}
      * @memberof Credential
      */
     created_by_user: UserRelation | null;
+    /**
+     * 
+     * @type {ActionRelationShallow}
+     * @memberof Credential
+     */
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}

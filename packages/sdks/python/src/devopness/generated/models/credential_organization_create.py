@@ -23,9 +23,9 @@ from .provider_code import ProviderCode, ProviderCodePlain
 from .provider_type import ProviderType, ProviderTypePlain
 
 
-class CredentialEnvironmentCreate(DevopnessBaseModel):
+class CredentialOrganizationCreate(DevopnessBaseModel):
     """
-    CredentialEnvironmentCreate
+    CredentialOrganizationCreate
 
     Attributes:
         name (str): The name of the credential. Must not be greater than 60 characters.
@@ -44,9 +44,9 @@ class CredentialEnvironmentCreate(DevopnessBaseModel):
     settings: CredentialInputSettings
 
 
-class CredentialEnvironmentCreatePlain(TypedDict, total=False):
+class CredentialOrganizationCreatePlain(TypedDict, total=False):
     """
-    Plain version of CredentialEnvironmentCreate.
+    Plain version of CredentialOrganizationCreate.
     """
 
     name: Required[str]
