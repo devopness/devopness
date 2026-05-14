@@ -23,6 +23,16 @@ properties:
     example: true
   linked_resource_data:
     $ref: '#/components/schemas/LinkedResourceData'
+  created_at:
+    type: string
+    format: date-time
+    description: 'The date and time when the resource link was created'
+    example: '2019-09-25T15:50:48.000000Z'
+  updated_at:
+    type: string
+    format: date-time
+    description: 'The date and time when the resource link was last updated'
+    example: '2019-09-25T13:52:04.000000Z'
 required:
   - link_type
   - resource_id
@@ -30,3 +40,5 @@ required:
   - resource_type_human_readable
   - can_be_unlinked
   - linked_resource_data
+  - created_at
+  - updated_at

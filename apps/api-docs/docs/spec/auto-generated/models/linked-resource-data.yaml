@@ -12,6 +12,26 @@ properties:
     example: my-server
   summary_fields:
     $ref: '#/components/schemas/LinkedResourceSummaryFieldList'
+  environment_id:
+    type: integer
+    nullable: true
+    description: 'The ID of the environment this resource belongs to'
+    example: 12345
+  environment_name:
+    type: string
+    nullable: true
+    description: 'The name of the environment this resource belongs to'
+    example: production
+  project_id:
+    type: integer
+    nullable: true
+    description: 'The ID of the project this resource belongs to'
+    example: 12345
+  project_name:
+    type: string
+    nullable: true
+    description: 'The name of the project this resource belongs to'
+    example: my-project
   created_at:
     type: string
     format: date-time

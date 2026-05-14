@@ -25,6 +25,14 @@ properties:
     $ref: '#/components/schemas/LinkedResourceData'
   children:
     $ref: '#/components/schemas/ResourceLinkChildList'
+  created_at:
+    description: 'The date and time when the resource link was created'
+    example: '2019-09-25T15:50:48.000000Z'
+    type: string
+  updated_at:
+    description: 'The date and time when the resource link was last updated'
+    example: '2019-09-25T15:50:48.000000Z'
+    type: string
 required:
   - link_type
   - resource_type_human_readable
@@ -32,4 +40,6 @@ required:
   - resource_id
   - can_be_unlinked
   - linked_resource_data
+  - created_at
+  - updated_at
 nullable: true

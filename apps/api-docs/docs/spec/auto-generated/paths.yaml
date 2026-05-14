@@ -107,8 +107,12 @@
 '/environments/{environment_id}/credentials':
   get:
     $ref: ./auto-generated/endpoints/list-environment-credentials.yaml
+'/environments/{environment_id}/credentials/{credential_id}/link':
   post:
-    $ref: ./auto-generated/endpoints/add-environment-credential.yaml
+    $ref: ./auto-generated/endpoints/link-credential-to-environment.yaml
+'/environments/{environment_id}/credentials/{credential_id}/unlink':
+  delete:
+    $ref: ./auto-generated/endpoints/unlink-credential-from-environment.yaml
 '/environments/{environment_id}/credentials/{provider_code}/settings':
   get:
     $ref: ./auto-generated/endpoints/get-environment-credential-settings.yaml
@@ -230,6 +234,14 @@
     $ref: ./auto-generated/endpoints/get-organization.yaml
   put:
     $ref: ./auto-generated/endpoints/update-organization.yaml
+'/organizations/{organization_id}/credentials':
+  get:
+    $ref: ./auto-generated/endpoints/list-organization-credentials.yaml
+  post:
+    $ref: ./auto-generated/endpoints/add-organization-credential.yaml
+'/organizations/{organization_id}/credentials/{provider_code}/settings':
+  get:
+    $ref: ./auto-generated/endpoints/get-organization-credential-settings.yaml
 '/organizations/{organization_id}/projects':
   post:
     $ref: ./auto-generated/endpoints/add-organization-project.yaml

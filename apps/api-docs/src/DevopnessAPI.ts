@@ -68,4 +68,20 @@ export default class DevopnessAPI {
         return false;
     }
 
+    /**
+     * Links a credential to an environment.
+     * @param environmentId ID of the environment
+     * @param credentialId ID of the credential to be linked
+     */
+    linkCredentialToEnvironment(environmentId: string | number, credentialId: string | number): boolean {
+        const tag = '[linkCredentialToEnvironment]';
+        const res = this.apiRequest('POST', `/environments/${environmentId}/credentials/${credentialId}/link`, tag);
+        if (res.statusCode == 204) {
+            return true;
+        }
+        const body = res.getBody('utf8');
+        this.log(`${tag} ${body}`);
+        return false;
+    }
+
 }

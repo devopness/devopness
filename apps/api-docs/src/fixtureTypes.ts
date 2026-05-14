@@ -88,6 +88,9 @@ const fixtureKeys: { [str: string]: FixtureDependency[] } = {
         { path: 'environments[0].id', fixture: 'environment', field: 'id' },
     ],
     'credential': [],
+    'credential_organization_create': [
+        { path: 'organization_id', fixture: 'organization', field: 'id' },
+    ],
     'credential_update': [
         { path: 'id', fixture: 'credential', field: 'id' },
     ],

@@ -30,7 +30,6 @@ required:
   - id
   - name
   - photo_url
-  - organization
   - created_by_user
   - created_at
   - updated_at

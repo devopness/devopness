@@ -96,6 +96,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         'deleteOrganization204',
         'deleteProject204',
         'deleteEnvironment204',
+
+        // For unlink some credential, needs to delete all resources linked to it, but some
+        'unlinkCredentialFromEnvironment204',
     ];
 
     // transactions listed here are skipped with a `before` hook
@@ -123,10 +126,12 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             'server': ['addEnvironmentApplication201'],
             // a `login` transaction requires user credentials
             'user_login': ['loginUser200'],
+            'organization': ['addOrganizationCredential201'],
         },
         fixtureTransactionOutputs: {
-            'credential_cloud_provider': ['addEnvironmentNetwork201'],
-            'credential_source_provider': ['addEnvironmentApplication201'],
+            'credential_cloud_provider': ['addEnvironmentNetwork201', 'linkCredentialToEnvironment204'],
+            'credential_source_provider': ['addEnvironmentApplication201', 'linkCredentialToEnvironment204'],
+            'credential': ['addOrganizationCredential201'],
 
             'organization': ['addOrganization201'],
             'personal_access_token': ['addUserPersonalAccessToken201'],
@@ -162,6 +167,12 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const initialAdjacencyList = new Set<TransactionGraphEdge>([
         ['addUserPersonalAccessToken201', 'listUserPersonalAccessTokens200'],
         ['addUserPersonalAccessToken201', 'getUserPersonalAccessToken200'],
+        // credentials must be created before linking to environment
+        ['addOrganizationCredential201', 'linkCredentialToEnvironment204'],
+        // credentials must be linked before resources can use them
+        ['linkCredentialToEnvironment204', 'addEnvironmentApplication201'],
+        ['linkCredentialToEnvironment204', 'addEnvironmentNetwork201'],
+        ['linkCredentialToEnvironment204', 'addEnvironmentServer201'],
         // variable tests should run before deleteApplication
         ['deleteHook204', 'deletePipeline204'],
         ['deleteHook204', 'deleteApplication204'],
@@ -176,6 +187,9 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['deleteService204', 'unlinkServerFromEnvironment204'],
         ['deleteCronJob204', 'unlinkServerFromEnvironment204'],
         ['deleteApplication204', 'unlinkServerFromEnvironment204'],
+        // unlinkCredentialFromEnvironment requires deleting resources that use the credential
+        ['deleteApplication204', 'unlinkCredentialFromEnvironment204'],
+        ['deleteNetwork204', 'unlinkCredentialFromEnvironment204'],
         // deleteEnvironment requires an environment without linked servers
         ['unlinkServerFromEnvironment204', 'deleteEnvironment204'],
         ['deletePipeline204', 'deleteEnvironment204'],
@@ -403,16 +417,16 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     const beforeCreateCredential = (transaction: Transaction) => {
         const tag = `[fake-credentials]`
 
-        const environment = fixtures.get<Identifiable>('environment');
-        if (!environment) {
-          hooks.log(`${tag} transaction '${transaction.id}' requires 'environment' fixture`);
+        const organization = fixtures.get<Identifiable>('organization');
+        if (!organization) {
+          hooks.log(`${tag} transaction '${transaction.id}' requires 'organization' fixture`);
           return;
         }
 
         transaction.expected.body = "";
         transaction.expected.bodySchema = {};
 
-        transaction.fullPath = `/dev-tests/fake-credentials/${environment.id}`;
+        transaction.fullPath = `/dev-tests/fake-credentials/organization/${organization.id}`;
 
         transaction.request.body = JSON.stringify({
           cloud: {
@@ -446,8 +460,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         hooks.log(`:: ${tag} saved credentials...`);
     }
 
-    before('addEnvironmentCredential201', beforeCreateCredential)
-    after('addEnvironmentCredential201', afterCreateCredential)
+    before('addOrganizationCredential201', beforeCreateCredential)
+    after('addOrganizationCredential201', afterCreateCredential)
 
     // //// repositories
     before('getCredentialRepository200', (transaction: Transaction) => {
@@ -499,6 +513,39 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         // Removed the `settings` field so that only the credential name is updated
         delete body.settings
     }))
+
+    // Link BOTH credentials (cloud + source) to the environment
+    // The linkCredentialToEnvironment204 transaction only accepts one credential_id at a time,
+    // but we need both credentials linked before addEnvironmentApplication201 can succeed
+    after('linkCredentialToEnvironment204', (transaction: Transaction) => {
+        const tag = `[link-both-credentials]`;
+        const authToken = fixtures.get<PersonalAccessToken>('user_token');
+        const environment = fixtures.get<Identifiable>('environment');
+        const credentialCloud = fixtures.get<Identifiable>('credential_cloud_provider');
+        const credentialSource = fixtures.get<Identifiable>('credential_source_provider');
+
+        if (!authToken || !authToken.token || !environment || !credentialCloud || !credentialSource) {
+            hooks.log(`${tag} missing required fixtures`);
+            return;
+        }
+
+        const host = transaction.host;
+        const api = new DevopnessAPI(host, authToken.token, hooks.log);
+
+        // Link the second credential (the transaction already linked the first one)
+        // Since linkCredentialToEnvironment204 uses credential fixture by default,
+        // we need to link the other credential type manually
+        const firstCredentialId = transaction.fullPath.match(/\/credentials\/(\d+)\//)?.[1];
+        const secondCredentialId = firstCredentialId === credentialCloud.id.toString()
+            ? credentialSource.id
+            : credentialCloud.id;
+
+        hooks.log(`${tag} linking second credential ${secondCredentialId} to environment ${environment.id}`);
+        const success = api.linkCredentialToEnvironment(environment.id, secondCredentialId);
+        if (!success) {
+            hooks.log(`${tag} failed to link second credential`);
+        }
+    })
 
     before('listPipelinesByResourceType200', utils.rewriteTransactionRequestUriResourceId(['application']));
     before('addPipeline201', utils.rewriteTransactionRequestUriResourceId(['application']));

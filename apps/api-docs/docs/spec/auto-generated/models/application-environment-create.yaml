@@ -47,8 +47,6 @@ properties:
     description: 'Indicates command that Devopness must execute to install application dependencies.'
     example: 'npm install'
     type: string
-  environments:
-    $ref: '#/components/schemas/EnvironmentLinkList'
 required:
   - name
   - engine_version
