@@ -19,37 +19,37 @@ import { ProviderType } from './provider-type';
 /**
  * 
  * @export
- * @interface CredentialEnvironmentCreate
+ * @interface CredentialOrganizationCreate
  */
-export interface CredentialEnvironmentCreate {
+export interface CredentialOrganizationCreate {
     /**
      * The name of the credential. Must not be greater than 60 characters.
      * @type {string}
-     * @memberof CredentialEnvironmentCreate
+     * @memberof CredentialOrganizationCreate
      */
     name: string;
     /**
      * 
      * @type {ProviderCode}
-     * @memberof CredentialEnvironmentCreate
+     * @memberof CredentialOrganizationCreate
      */
     provider_code: ProviderCode;
     /**
      * 
      * @type {ProviderType}
-     * @memberof CredentialEnvironmentCreate
+     * @memberof CredentialOrganizationCreate
      */
     provider_type: ProviderType;
     /**
      * If this credential is active or not.
      * @type {boolean}
-     * @memberof CredentialEnvironmentCreate
+     * @memberof CredentialOrganizationCreate
      */
     active: boolean;
     /**
      * 
      * @type {CredentialInputSettings}
-     * @memberof CredentialEnvironmentCreate
+     * @memberof CredentialOrganizationCreate
      */
     settings: CredentialInputSettings;
 }

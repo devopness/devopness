@@ -44,7 +44,7 @@ export interface TeamRelation {
      * @type {OrganizationRelation}
      * @memberof TeamRelation
      */
-    organization: OrganizationRelation | null;
+    organization?: OrganizationRelation | null;
     /**
      * 
      * @type {UserRelation}

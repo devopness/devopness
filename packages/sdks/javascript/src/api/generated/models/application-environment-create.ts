@@ -12,7 +12,6 @@
  */
 
 
-import { EnvironmentLink } from './environment-link';
 import { ResourceToBeLinked } from './resource-to-be-linked';
 
 /**
@@ -93,11 +92,5 @@ export interface ApplicationEnvironmentCreate {
      * @memberof ApplicationEnvironmentCreate
      */
     install_dependencies_command?: string;
-    /**
-     * 
-     * @type {Array<EnvironmentLink>}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    environments?: Array<EnvironmentLink>;
 }
 

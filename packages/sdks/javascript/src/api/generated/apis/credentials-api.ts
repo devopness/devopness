@@ -16,7 +16,7 @@ import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ApiError } from '../../generated/models';
 import { Credential } from '../../generated/models';
-import { CredentialEnvironmentCreate } from '../../generated/models';
+import { CredentialOrganizationCreate } from '../../generated/models';
 import { CredentialRelation } from '../../generated/models';
 import { CredentialSetting } from '../../generated/models';
 import { CredentialUpdate } from '../../generated/models';
@@ -27,23 +27,23 @@ import { CredentialUpdate } from '../../generated/models';
 export class CredentialsApiService extends ApiBaseService {
     /**
      * 
-     * @summary Add a Credential to the given environment
-     * @param {number} environmentId The ID of the environment.
-     * @param {CredentialEnvironmentCreate} credentialEnvironmentCreate A JSON object containing the resource data
+     * @summary Add a Credential to the given organization
+     * @param {string} organizationId The numeric ID or URL Slug of an organization.
+     * @param {CredentialOrganizationCreate} credentialOrganizationCreate A JSON object containing the resource data
      */
-    public async addEnvironmentCredential(environmentId: number, credentialEnvironmentCreate: CredentialEnvironmentCreate): Promise<ApiResponse<Credential>> {
-        if (environmentId === null || environmentId === undefined) {
-            throw new ArgumentNullException('environmentId', 'addEnvironmentCredential');
+    public async addOrganizationCredential(organizationId: string, credentialOrganizationCreate: CredentialOrganizationCreate): Promise<ApiResponse<Credential>> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new ArgumentNullException('organizationId', 'addOrganizationCredential');
         }
-        if (credentialEnvironmentCreate === null || credentialEnvironmentCreate === undefined) {
-            throw new ArgumentNullException('credentialEnvironmentCreate', 'addEnvironmentCredential');
+        if (credentialOrganizationCreate === null || credentialOrganizationCreate === undefined) {
+            throw new ArgumentNullException('credentialOrganizationCreate', 'addOrganizationCredential');
         }
 
         let queryString = '';
 
-        const requestUrl = '/environments/{environment_id}/credentials' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/credentials' + (queryString? `?${queryString}` : '');
 
-        const response = await this.post <Credential, CredentialEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), credentialEnvironmentCreate);
+        const response = await this.post <Credential, CredentialOrganizationCreate>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))), credentialOrganizationCreate);
         return new ApiResponse(response);
     }
 
@@ -107,6 +107,28 @@ export class CredentialsApiService extends ApiBaseService {
 
     /**
      * 
+     * @summary Return provider settings
+     * @param {string} organizationId The ID or slug of the organization.
+     * @param {string} providerCode The code of the provider.
+     */
+    public async getOrganizationCredentialSettings(organizationId: string, providerCode: string): Promise<ApiResponse<CredentialSetting>> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new ArgumentNullException('organizationId', 'getOrganizationCredentialSettings');
+        }
+        if (providerCode === null || providerCode === undefined) {
+            throw new ArgumentNullException('providerCode', 'getOrganizationCredentialSettings');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/organizations/{organization_id}/credentials/{provider_code}/settings' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <CredentialSetting>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))).replace(`{${"provider_code"}}`, encodeURIComponent(String(providerCode))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
      * @summary Get current status of a credential on its provider
      * @param {number} credentialId The ID of the credential.
      */
@@ -125,7 +147,29 @@ export class CredentialsApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Return a list of all Credentials belonging to an environment
+     * @summary Link a credential to an environment
+     * @param {number} credentialId The credential ID.
+     * @param {number} environmentId The environment ID.
+     */
+    public async linkCredentialToEnvironment(credentialId: number, environmentId: number): Promise<ApiResponse<void>> {
+        if (credentialId === null || credentialId === undefined) {
+            throw new ArgumentNullException('credentialId', 'linkCredentialToEnvironment');
+        }
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'linkCredentialToEnvironment');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/credentials/{credential_id}/link' + (queryString? `?${queryString}` : '');
+
+        const response = await this.post <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))).replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all Credentials linked to an environment
      * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
@@ -150,6 +194,58 @@ export class CredentialsApiService extends ApiBaseService {
         const requestUrl = '/environments/{environment_id}/credentials' + (queryString? `?${queryString}` : '');
 
         const response = await this.get <Array<CredentialRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Return a list of all Credentials belonging to an organization
+     * @param {string} organizationId The numeric ID or URL Slug of an organization.
+     * @param {number} [page] Number of the page to be retrieved
+     * @param {number} [perPage] Number of items returned per page
+     * @param {string} [providerCode] Filter credentials by provider code.
+     * @param {string} [providerType] Filter credentials by provider type.
+     */
+    public async listOrganizationCredentials(organizationId: string, page?: number, perPage?: number, providerCode?: string, providerType?: string): Promise<ApiResponse<Array<CredentialRelation>>> {
+        if (organizationId === null || organizationId === undefined) {
+            throw new ArgumentNullException('organizationId', 'listOrganizationCredentials');
+        }
+
+        let queryString = '';
+        const queryParams = { page: page, per_page: perPage, provider_code: providerCode, provider_type: providerType, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
+
+        const requestUrl = '/organizations/{organization_id}/credentials' + (queryString? `?${queryString}` : '');
+
+        const response = await this.get <Array<CredentialRelation>>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
+        return new ApiResponse(response);
+    }
+
+    /**
+     * 
+     * @summary Unlink a credential from an environment
+     * @param {number} credentialId The credential ID.
+     * @param {number} environmentId The environment ID.
+     */
+    public async unlinkCredentialFromEnvironment(credentialId: number, environmentId: number): Promise<ApiResponse<void>> {
+        if (credentialId === null || credentialId === undefined) {
+            throw new ArgumentNullException('credentialId', 'unlinkCredentialFromEnvironment');
+        }
+        if (environmentId === null || environmentId === undefined) {
+            throw new ArgumentNullException('environmentId', 'unlinkCredentialFromEnvironment');
+        }
+
+        let queryString = '';
+
+        const requestUrl = '/environments/{environment_id}/credentials/{credential_id}/unlink' + (queryString? `?${queryString}` : '');
+
+        const response = await this.delete <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))).replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 

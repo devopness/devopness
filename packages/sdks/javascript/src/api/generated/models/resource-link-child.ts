@@ -56,5 +56,17 @@ export interface ResourceLinkChild {
      * @memberof ResourceLinkChild
      */
     linked_resource_data: LinkedResourceData;
+    /**
+     * The date and time when the resource link was created
+     * @type {string}
+     * @memberof ResourceLinkChild
+     */
+    created_at: string;
+    /**
+     * The date and time when the resource link was last updated
+     * @type {string}
+     * @memberof ResourceLinkChild
+     */
+    updated_at: string;
 }
 

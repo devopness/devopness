@@ -12,6 +12,7 @@
  */
 
 
+import { ActionRelationShallow } from './action-relation-shallow';
 import { ProviderRelation } from './provider-relation';
 import { ProviderType } from './provider-type';
 import { UserRelation } from './user-relation';
@@ -64,6 +65,12 @@ export interface CredentialRelation {
      * @memberof CredentialRelation
      */
     created_by_user: UserRelation | null;
+    /**
+     * 
+     * @type {ActionRelationShallow}
+     * @memberof CredentialRelation
+     */
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}

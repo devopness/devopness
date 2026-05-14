@@ -28,11 +28,11 @@ export interface CredentialSetting {
      */
     provider: CredentialProviderType;
     /**
-     * Numeric ID of the environment to which the network belongs to
+     * Numeric ID of the organization to which the credential belongs to
      * @type {number}
      * @memberof CredentialSetting
      */
-    environment_id: number;
+    organization_id: number;
     /**
      * 
      * @type {ProviderSettings}
