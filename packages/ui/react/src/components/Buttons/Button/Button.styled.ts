@@ -103,6 +103,33 @@ const getHeight = (typeSize: StyledProps['$typeSize']) => {
   }
 }
 
+const getHoverBackgroundColor = (
+  buttonType: StyledProps['$buttonType'],
+  resolvedBackgroundColor: string,
+  resolvedTextColor: string
+) => {
+  switch (buttonType) {
+    case 'borderless':
+    case 'outlinedSecondary':
+    case 'outlinedAuxiliary':
+      return `color-mix(in srgb, ${resolvedTextColor} 12%, white)`
+    default:
+      return `color-mix(in srgb, ${resolvedBackgroundColor} 90%, #000)`
+  }
+}
+
+const getHoverBorderColor = (
+  buttonType: StyledProps['$buttonType'],
+  resolvedBorderColor: string
+) => {
+  switch (buttonType) {
+    case 'borderless':
+      return 'transparent'
+    default:
+      return `color-mix(in srgb, ${resolvedBorderColor} 88%, #000)`
+  }
+}
+
 const ContentIcon = styled.div<Pick<StyledProps, '$iconSize'>>`
   ${({ $iconSize }) => css`
     /** Base */
@@ -143,46 +170,85 @@ const BaseButton = styled.button<
     $noPointerEvents,
     $revertOrientation,
     $typeSize,
-  }) => css`
-    /** Base */
-    cursor: pointer;
-    display: flex;
-    background-color: ${getBackgroundColor($buttonType, $backgroundColor)};
-    height: ${getHeight($typeSize)};
-    margin: ${$noMargin ? '0' : '0 15px'};
-    padding: ${$noPadding ? '0' : '5px 15px'};
-    user-select: none;
+  }) => {
+    const resolvedBackgroundColor = getBackgroundColor(
+      $buttonType,
+      $backgroundColor
+    )
+    const resolvedBorderColor = getBorderColor($buttonType, $borderColor)
+    const resolvedTextColor = getTextColor($buttonType, $color)
+    const resolvedHeight = getHeight($typeSize)
+    const resolvedFontFamily = getFont('roboto')
+    const resolvedBorderStyle = getBorderStyle($buttonType)
+    const resolvedBorderWidth = getBorderWidth($typeSize)
+    const resolvedHoverBackgroundColor = getHoverBackgroundColor(
+      $buttonType,
+      resolvedBackgroundColor,
+      resolvedTextColor
+    )
+    const resolvedHoverBorderColor = getHoverBorderColor(
+      $buttonType,
+      resolvedBorderColor
+    )
 
-    /** Flex Layout */
-    gap: ${$noIconMargin ? '0' : '10px'};
-    align-items: center;
-    flex-direction: ${$revertOrientation ? 'row-reverse' : 'row'};
-    justify-content: center;
+    return css`
+      /** Base */
+      cursor: pointer;
+      display: flex;
+      background-color: ${resolvedBackgroundColor};
+      height: ${resolvedHeight};
+      margin: ${$noMargin ? '0' : '0 15px'};
+      padding: ${$noPadding ? '0' : '5px 15px'};
+      user-select: none;
 
-    /** Text */
-    color: ${getTextColor($buttonType, $color)};
-    font-family: ${getFont('roboto')};
-    font-size: 13px;
-    line-height: 1;
-    text-transform: uppercase;
-    transition: filter 0.3s;
+      /** Flex Layout */
+      gap: ${$noIconMargin ? '0' : '10px'};
+      align-items: center;
+      flex-direction: ${$revertOrientation ? 'row-reverse' : 'row'};
+      justify-content: center;
 
-    /** Border */
-    border-color: ${getBorderColor($buttonType, $borderColor)};
-    border-radius: 25px;
-    border-style: ${getBorderStyle($buttonType)};
-    border-width: ${getBorderWidth($typeSize)}px;
+      /** Text */
+      color: ${resolvedTextColor};
+      font-family: ${resolvedFontFamily};
+      font-size: 13px;
+      line-height: 1;
+      text-transform: uppercase;
+      transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        filter 0.3s ease;
 
-    &:hover:enabled {
-      filter: brightness(75%);
-    }
+      /** Border */
+      border-color: ${resolvedBorderColor};
+      border-radius: 25px;
+      border-style: ${resolvedBorderStyle};
+      border-width: ${resolvedBorderWidth}px;
 
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.5;
-      pointer-events: ${$noPointerEvents ? 'none' : 'auto'};
-    }
-  `}
+      &:hover:enabled {
+        filter: brightness(75%);
+      }
+
+      @supports (background-color: color-mix(in srgb, red 50%, blue)) {
+        &:hover:enabled {
+          filter: none;
+          background-color: ${resolvedHoverBackgroundColor};
+          border-color: ${resolvedHoverBorderColor};
+        }
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        pointer-events: ${$noPointerEvents ? 'none' : 'auto'};
+      }
+    `
+  }}
 `
 
-export { BaseButton, ContentIcon, Label }
+export {
+  BaseButton,
+  ContentIcon,
+  Label,
+  getHoverBackgroundColor,
+  getHoverBorderColor,
+}
