@@ -2410,7 +2410,7 @@
     },
     "/environments/{environment_id}/credentials": {
       "get": {
-        "summary": "Return a list of all Credentials belonging to an environment",
+        "summary": "Return a list of all Credentials linked to an environment",
         "operationId": "listEnvironmentCredentials",
         "tags": [
           "Credentials"
@@ -2483,10 +2483,12 @@
             }
           }
         }
-      },
+      }
+    },
+    "/environments/{environment_id}/credentials/{credential_id}/link": {
       "post": {
-        "summary": "Add a Credential to the given environment",
-        "operationId": "addEnvironmentCredential",
+        "summary": "Link a credential to an environment",
+        "operationId": "linkCredentialToEnvironment",
         "tags": [
           "Credentials"
         ],
@@ -2502,9 +2504,20 @@
           },
           {
             "in": "path",
+            "name": "credential_id",
+            "description": "The credential ID.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
             "name": "environment_id",
-            "description": "The ID of the environment.",
-            "example": 123,
+            "description": "The environment ID.",
+            "example": 1,
             "required": true,
             "schema": {
               "type": "integer",
@@ -2513,15 +2526,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Credential"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -2543,14 +2549,60 @@
               }
             }
           }
-        },
-        "requestBody": {
-          "description": "A JSON object containing the resource data",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CredentialEnvironmentCreate"
+        }
+      }
+    },
+    "/environments/{environment_id}/credentials/{credential_id}/unlink": {
+      "delete": {
+        "summary": "Unlink a credential from an environment",
+        "operationId": "unlinkCredentialFromEnvironment",
+        "tags": [
+          "Credentials"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "credential_id",
+            "description": "The credential ID.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The environment ID.",
+            "example": 1,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
               }
             }
           }
@@ -5566,6 +5618,218 @@
                 "$ref": "#/components/schemas/OrganizationUpdate"
               }
             }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/credentials": {
+      "get": {
+        "summary": "Return a list of all Credentials belonging to an organization",
+        "operationId": "listOrganizationCredentials",
+        "tags": [
+          "Credentials"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "$ref": "#/components/parameters/pageNumber"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_code",
+            "description": "Filter credentials by provider code.",
+            "example": "aws",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_type",
+            "description": "Filter credentials by provider type.",
+            "example": "cloud_provider",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialList"
+                }
+              }
+            },
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Link header with `first`, `last`, `previous` and `next` page's links"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a Credential to the given organization",
+        "operationId": "addOrganizationCredential",
+        "tags": [
+          "Credentials"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The numeric ID or URL Slug of an organization.",
+            "example": "johndoe",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Credential"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity/Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialOrganizationCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/credentials/{provider_code}/settings": {
+      "get": {
+        "summary": "Return provider settings",
+        "operationId": "getOrganizationCredentialSettings",
+        "tags": [
+          "Credentials"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "description": "The ID or slug of the organization.",
+            "example": "my-org",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "provider_code",
+            "description": "The code of the provider.",
+            "example": "aws",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialSetting"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       }
@@ -15791,9 +16055,6 @@
             "description": "Indicates command that Devopness must execute to install application dependencies.",
             "example": "npm install",
             "type": "string"
-          },
-          "environments": {
-            "$ref": "#/components/schemas/EnvironmentLinkList"
           }
         },
         "required": [
@@ -16937,8 +17198,14 @@
             "example": true,
             "type": "boolean"
           },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
+          },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelationShallow"
           },
           "created_at": {
             "description": "The date and time when the record was created",
@@ -17026,37 +17293,6 @@
           "api_token"
         ]
       },
-      "CredentialEnvironmentCreate": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the credential. Must not be greater than 60 characters.",
-            "example": "My cool credential",
-            "type": "string"
-          },
-          "provider_code": {
-            "$ref": "#/components/schemas/ProviderCode"
-          },
-          "provider_type": {
-            "$ref": "#/components/schemas/ProviderType"
-          },
-          "active": {
-            "description": "If this credential is active or not.",
-            "example": false,
-            "type": "boolean"
-          },
-          "settings": {
-            "$ref": "#/components/schemas/CredentialInputSettings"
-          }
-        },
-        "required": [
-          "name",
-          "provider_code",
-          "provider_type",
-          "active",
-          "settings"
-        ]
-      },
       "CredentialGoogleCloud": {
         "type": "object",
         "properties": {
@@ -17133,6 +17369,37 @@
         "required": [
           "provider_types",
           "supported_providers"
+        ]
+      },
+      "CredentialOrganizationCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the credential. Must not be greater than 60 characters.",
+            "example": "My cool credential",
+            "type": "string"
+          },
+          "provider_code": {
+            "$ref": "#/components/schemas/ProviderCode"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ProviderType"
+          },
+          "active": {
+            "description": "If this credential is active or not.",
+            "example": false,
+            "type": "boolean"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/CredentialInputSettings"
+          }
+        },
+        "required": [
+          "name",
+          "provider_code",
+          "provider_type",
+          "active",
+          "settings"
         ]
       },
       "CredentialProvider": {
@@ -17245,6 +17512,9 @@
           "created_by_user": {
             "$ref": "#/components/schemas/UserRelation"
           },
+          "last_action": {
+            "$ref": "#/components/schemas/ActionRelationShallow"
+          },
           "created_at": {
             "description": "The date and time when the record was created",
             "example": "2019-09-25T15:50:48.000000Z",
@@ -17273,9 +17543,9 @@
           "provider": {
             "$ref": "#/components/schemas/CredentialProviderType"
           },
-          "environment_id": {
-            "description": "Numeric ID of the environment to which the network belongs to",
-            "example": 123,
+          "organization_id": {
+            "description": "Numeric ID of the organization to which the credential belongs to",
+            "example": 456,
             "type": "integer"
           },
           "settings": {
@@ -17284,7 +17554,7 @@
         },
         "required": [
           "provider",
-          "environment_id",
+          "organization_id",
           "settings"
         ]
       },
@@ -19415,6 +19685,30 @@
           },
           "summary_fields": {
             "$ref": "#/components/schemas/LinkedResourceSummaryFieldList"
+          },
+          "environment_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The ID of the environment this resource belongs to",
+            "example": 12345
+          },
+          "environment_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "The name of the environment this resource belongs to",
+            "example": "production"
+          },
+          "project_id": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The ID of the project this resource belongs to",
+            "example": 12345
+          },
+          "project_name": {
+            "type": "string",
+            "nullable": true,
+            "description": "The name of the project this resource belongs to",
+            "example": "my-project"
           },
           "created_at": {
             "type": "string",
@@ -21855,6 +22149,18 @@
           },
           "linked_resource_data": {
             "$ref": "#/components/schemas/LinkedResourceData"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the resource link was created",
+            "example": "2019-09-25T15:50:48.000000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the resource link was last updated",
+            "example": "2019-09-25T13:52:04.000000Z"
           }
         },
         "required": [
@@ -21863,7 +22169,9 @@
           "resource_type",
           "resource_type_human_readable",
           "can_be_unlinked",
-          "linked_resource_data"
+          "linked_resource_data",
+          "created_at",
+          "updated_at"
         ]
       },
       "ResourceLinkChildList": {
@@ -21911,6 +22219,16 @@
           },
           "children": {
             "$ref": "#/components/schemas/ResourceLinkChildList"
+          },
+          "created_at": {
+            "description": "The date and time when the resource link was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "The date and time when the resource link was last updated",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
           }
         },
         "required": [
@@ -21919,7 +22237,9 @@
           "resource_type",
           "resource_id",
           "can_be_unlinked",
-          "linked_resource_data"
+          "linked_resource_data",
+          "created_at",
+          "updated_at"
         ],
         "nullable": true
       },
@@ -24911,7 +25231,6 @@
           "id",
           "name",
           "photo_url",
-          "organization",
           "created_by_user",
           "created_at",
           "updated_at"
