@@ -165,10 +165,6 @@ from .credential_digital_ocean import (
     CredentialDigitalOcean,
     CredentialDigitalOceanPlain,
 )
-from .credential_environment_create import (
-    CredentialEnvironmentCreate,
-    CredentialEnvironmentCreatePlain,
-)
 from .credential_google_cloud import CredentialGoogleCloud, CredentialGoogleCloudPlain
 from .credential_hetzner import CredentialHetzner, CredentialHetznerPlain
 from .credential_input_settings import (
@@ -180,6 +176,10 @@ from .credential_input_settings_credential import (
     CredentialInputSettingsCredentialPlain,
 )
 from .credential_options import CredentialOptions, CredentialOptionsPlain
+from .credential_organization_create import (
+    CredentialOrganizationCreate,
+    CredentialOrganizationCreatePlain,
+)
 from .credential_provider import CredentialProvider, CredentialProviderPlain
 from .credential_provider_type import (
     CredentialProviderType,
@@ -805,8 +805,6 @@ __all__ = [
     "CredentialAzurePlain",
     "CredentialDigitalOcean",
     "CredentialDigitalOceanPlain",
-    "CredentialEnvironmentCreate",
-    "CredentialEnvironmentCreatePlain",
     "CredentialGoogleCloud",
     "CredentialGoogleCloudPlain",
     "CredentialHetzner",
@@ -817,6 +815,8 @@ __all__ = [
     "CredentialInputSettingsPlain",
     "CredentialOptions",
     "CredentialOptionsPlain",
+    "CredentialOrganizationCreate",
+    "CredentialOrganizationCreatePlain",
     "CredentialPlain",
     "CredentialProvider",
     "CredentialProviderPlain",

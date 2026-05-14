@@ -15,7 +15,6 @@ from typing import (
 from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
-from .environment_link import EnvironmentLink, EnvironmentLinkPlain
 from .resource_to_be_linked import ResourceToBeLinked, ResourceToBeLinkedPlain
 
 
@@ -36,7 +35,6 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
         default_branch (str): The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.
         deployments_keep (int, optional): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers. OR The number of deployment artifacts to be retained in the user&#39;s servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.
         install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies.
-        environments (List[EnvironmentLink], optional):
     """
 
     linked_resources: list[ResourceToBeLinked] | None = Field(
@@ -79,7 +77,6 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
         default=None,
         description="Indicates command that Devopness must execute to install application dependencies.",
     )
-    environments: list[EnvironmentLink] | None = None
 
 
 class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
@@ -99,4 +96,3 @@ class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
     default_branch: Required[str]
     deployments_keep: int | None
     install_dependencies_command: str | None
-    environments: list[Union[EnvironmentLink, EnvironmentLinkPlain]] | None

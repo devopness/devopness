@@ -36,7 +36,7 @@ class TeamRelation(DevopnessBaseModel):
     id: StrictInt = Field(description="The unique ID of the given team")
     name: StrictStr = Field(description="The name of the given team")
     photo_url: StrictStr | None = Field(description="The URL to team's image")
-    organization: OrganizationRelation | None
+    organization: OrganizationRelation | None = None
     created_by_user: UserRelation | None
     created_at: StrictStr = Field(
         description="The date and time when the record was created"

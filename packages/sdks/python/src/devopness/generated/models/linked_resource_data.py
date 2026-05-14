@@ -30,6 +30,10 @@ class LinkedResourceData(DevopnessBaseModel):
         id (int): The unique ID of the resource
         name (str): Resource name
         summary_fields (List[LinkedResourceSummaryField], optional): The summary of linked resource fields
+        environment_id (int, optional, nullable): The ID of the environment this resource belongs to
+        environment_name (str, optional, nullable): The name of the environment this resource belongs to
+        project_id (int, optional, nullable): The ID of the project this resource belongs to
+        project_name (str, optional, nullable): The name of the project this resource belongs to
         created_at (datetime, optional): The date and time when the record was created
         updated_at (datetime, optional): The date and time when the record was last updated
     """
@@ -38,6 +42,18 @@ class LinkedResourceData(DevopnessBaseModel):
     name: StrictStr = Field(description="Resource name")
     summary_fields: list[LinkedResourceSummaryField] | None = Field(
         default=None, description="The summary of linked resource fields"
+    )
+    environment_id: StrictInt | None = Field(
+        default=None, description="The ID of the environment this resource belongs to"
+    )
+    environment_name: StrictStr | None = Field(
+        default=None, description="The name of the environment this resource belongs to"
+    )
+    project_id: StrictInt | None = Field(
+        default=None, description="The ID of the project this resource belongs to"
+    )
+    project_name: StrictStr | None = Field(
+        default=None, description="The name of the project this resource belongs to"
     )
     created_at: datetime | None = Field(
         default=None, description="The date and time when the record was created"
@@ -57,5 +73,9 @@ class LinkedResourceDataPlain(TypedDict, total=False):
     summary_fields: (
         list[Union[LinkedResourceSummaryField, LinkedResourceSummaryFieldPlain]] | None
     )
+    environment_id: int | None
+    environment_name: str | None
+    project_id: int | None
+    project_name: str | None
     created_at: datetime | None
     updated_at: datetime | None

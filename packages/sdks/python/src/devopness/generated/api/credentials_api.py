@@ -11,8 +11,8 @@ from typing import Union
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Credential,
-    CredentialEnvironmentCreate,
-    CredentialEnvironmentCreatePlain,
+    CredentialOrganizationCreate,
+    CredentialOrganizationCreatePlain,
     CredentialRelation,
     CredentialSetting,
     CredentialUpdate,
@@ -26,16 +26,16 @@ class CredentialsApiService(DevopnessBaseService):
     CredentialsApiService - Auto Generated
     """
 
-    def add_environment_credential(
+    def add_organization_credential(
         self,
-        environment_id: int,
-        credential_environment_create: Union[
-            CredentialEnvironmentCreate,
-            CredentialEnvironmentCreatePlain,
+        organization_id: str,
+        credential_organization_create: Union[
+            CredentialOrganizationCreate,
+            CredentialOrganizationCreatePlain,
         ],
     ) -> DevopnessResponse[Credential]:
         """
-        Add a Credential to the given environment
+        Add a Credential to the given organization
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -43,11 +43,11 @@ class CredentialsApiService(DevopnessBaseService):
         """
 
         endpoint_parts = [
-            f"/environments/{environment_id}/credentials",
+            f"/organizations/{organization_id}/credentials",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint, credential_environment_create)
+        response = self._post(endpoint, credential_organization_create)
 
         return DevopnessResponse(response, Credential)
 
@@ -115,6 +115,28 @@ class CredentialsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, CredentialSetting)
 
+    def get_organization_credential_settings(
+        self,
+        organization_id: str,
+        provider_code: str,
+    ) -> DevopnessResponse[CredentialSetting]:
+        """
+        Return provider settings
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/credentials/{provider_code}/settings",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, CredentialSetting)
+
     def get_status_credential(
         self,
         credential_id: int,
@@ -136,6 +158,28 @@ class CredentialsApiService(DevopnessBaseService):
 
         return DevopnessResponse(response, None)
 
+    def link_credential_to_environment(
+        self,
+        credential_id: int,
+        environment_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Link a credential to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/credentials/{credential_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint)
+
+        return DevopnessResponse(response, None)
+
     def list_environment_credentials(
         self,
         environment_id: int,
@@ -145,7 +189,7 @@ class CredentialsApiService(DevopnessBaseService):
         provider_type: str | None = None,
     ) -> DevopnessResponse[list[CredentialRelation]]:
         """
-        Return a list of all Credentials belonging to an environment
+        Return a list of all Credentials linked to an environment
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -170,6 +214,63 @@ class CredentialsApiService(DevopnessBaseService):
         response = self._get(endpoint)
 
         return DevopnessResponse(response, list[CredentialRelation])
+
+    def list_organization_credentials(
+        self,
+        organization_id: str,
+        page: int | None = None,
+        per_page: int | None = None,
+        provider_code: str | None = None,
+        provider_type: str | None = None,
+    ) -> DevopnessResponse[list[CredentialRelation]]:
+        """
+        Return a list of all Credentials belonging to an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+                "provider_code": provider_code,
+                "provider_type": provider_type,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/credentials",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._get(endpoint)
+
+        return DevopnessResponse(response, list[CredentialRelation])
+
+    def unlink_credential_from_environment(
+        self,
+        credential_id: int,
+        environment_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink a credential from an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/credentials/{credential_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._delete(endpoint)
+
+        return DevopnessResponse(response, None)
 
     def update_credential(
         self,
@@ -202,16 +303,16 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     CredentialsApiServiceAsync - Auto Generated
     """
 
-    async def add_environment_credential(
+    async def add_organization_credential(
         self,
-        environment_id: int,
-        credential_environment_create: Union[
-            CredentialEnvironmentCreate,
-            CredentialEnvironmentCreatePlain,
+        organization_id: str,
+        credential_organization_create: Union[
+            CredentialOrganizationCreate,
+            CredentialOrganizationCreatePlain,
         ],
     ) -> DevopnessResponse[Credential]:
         """
-        Add a Credential to the given environment
+        Add a Credential to the given organization
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -219,11 +320,11 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         """
 
         endpoint_parts = [
-            f"/environments/{environment_id}/credentials",
+            f"/organizations/{organization_id}/credentials",
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint, credential_environment_create)
+        response = await self._post(endpoint, credential_organization_create)
 
         return await DevopnessResponse.from_async(response, Credential)
 
@@ -291,6 +392,28 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
 
         return await DevopnessResponse.from_async(response, CredentialSetting)
 
+    async def get_organization_credential_settings(
+        self,
+        organization_id: str,
+        provider_code: str,
+    ) -> DevopnessResponse[CredentialSetting]:
+        """
+        Return provider settings
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/credentials/{provider_code}/settings",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(response, CredentialSetting)
+
     async def get_status_credential(
         self,
         credential_id: int,
@@ -312,6 +435,28 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
 
         return await DevopnessResponse.from_async(response, None)
 
+    async def link_credential_to_environment(
+        self,
+        credential_id: int,
+        environment_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Link a credential to an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/credentials/{credential_id}/link",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
+
     async def list_environment_credentials(
         self,
         environment_id: int,
@@ -321,7 +466,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         provider_type: str | None = None,
     ) -> DevopnessResponse[list[CredentialRelation]]:
         """
-        Return a list of all Credentials belonging to an environment
+        Return a list of all Credentials linked to an environment
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -346,6 +491,63 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._get(endpoint)
 
         return await DevopnessResponse.from_async(response, list[CredentialRelation])
+
+    async def list_organization_credentials(
+        self,
+        organization_id: str,
+        page: int | None = None,
+        per_page: int | None = None,
+        provider_code: str | None = None,
+        provider_type: str | None = None,
+    ) -> DevopnessResponse[list[CredentialRelation]]:
+        """
+        Return a list of all Credentials belonging to an organization
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        query_string = parse_query_string(
+            {
+                "page": page,
+                "per_page": per_page,
+                "provider_code": provider_code,
+                "provider_type": provider_type,
+            }
+        )
+
+        endpoint_parts = [
+            f"/organizations/{organization_id}/credentials",
+            f"?{query_string}",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._get(endpoint)
+
+        return await DevopnessResponse.from_async(response, list[CredentialRelation])
+
+    async def unlink_credential_from_environment(
+        self,
+        credential_id: int,
+        environment_id: int,
+    ) -> DevopnessResponse[None]:
+        """
+        Unlink a credential from an environment
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/credentials/{credential_id}/unlink",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._delete(endpoint)
+
+        return await DevopnessResponse.from_async(response, None)
 
     async def update_credential(
         self,

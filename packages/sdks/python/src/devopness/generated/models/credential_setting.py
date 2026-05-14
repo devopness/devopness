@@ -28,13 +28,13 @@ class CredentialSetting(DevopnessBaseModel):
 
     Attributes:
         provider (CredentialProviderType):
-        environment_id (int): Numeric ID of the environment to which the network belongs to
+        organization_id (int): Numeric ID of the organization to which the credential belongs to
         settings (ProviderSettings):
     """
 
     provider: CredentialProviderType
-    environment_id: StrictInt = Field(
-        description="Numeric ID of the environment to which the network belongs to"
+    organization_id: StrictInt = Field(
+        description="Numeric ID of the organization to which the credential belongs to"
     )
     settings: ProviderSettings
 
@@ -50,7 +50,7 @@ class CredentialSettingPlain(TypedDict, total=False):
             CredentialProviderTypePlain,
         ]
     ]
-    environment_id: Required[int]
+    organization_id: Required[int]
     settings: Required[
         Union[
             ProviderSettings,
