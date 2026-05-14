@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.184.9
+
+### Patch Changes
+
+- [#3038](https://github.com/devopness/devopness/pull/3038) [`5b12cf8`](https://github.com/devopness/devopness/commit/5b12cf8c7741629d35993f2aa476d1f981ece4ce) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Refine Button hover state: replace the global `filter: brightness(75%)` with `color-mix`-based background and border colors so each `buttonType` darkens (or lightens for outlined/borderless variants) in a way that respects its base color, and transition `background-color` and `border-color` instead of `filter` for a smoother hover
+
 ## 2.184.8
 
 ### Patch Changes
