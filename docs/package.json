@@ -28,7 +28,7 @@
     "@next/eslint-plugin-next": "^16.2.6",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
     "@types/node": "^25.8.0",
-    "@types/react": "^19.2.14",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/mdx": "^2.0.13",
