@@ -39,7 +39,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.6.0",
-    "postcss": "^8.5.14",
+    "postcss": "^8.5.15",
     "prettier": "^3.8.3",
     "prettier-plugin-multiline-arrays": "^4.1.8",
     "prettier-plugin-sort-json": "^4.1.1",
