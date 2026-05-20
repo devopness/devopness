@@ -113,7 +113,7 @@
     "vite": "^8.0.13",
     "vite-plugin-dts": "^5.0.1",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.7"
   },
   "peerDependencies": {
     "react": "^18.3.1",
