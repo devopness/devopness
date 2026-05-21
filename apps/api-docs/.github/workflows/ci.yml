@@ -9,9 +9,33 @@ on:
       - main
 
 jobs:
+  detect-changes:
+    name: Detect code changes
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'docs/spec/**'
+              - 'src/**'
+              - 'tests/**'
+              - 'package.json'
+              - 'package-lock.json'
+              - 'dredd.yml'
+              - 'tsconfig.json'
+              - '.env.example'
+              - '.github/workflows/ci.yml'
+
   build:
     name: Build and test
-
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -69,3 +93,23 @@ jobs:
 
       - name: Build API Docs
         run: npm run build
+
+  verify-build:
+    name: Verify build
+    needs: [build, detect-changes]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Fail if build did not succeed
+        run: |
+          if [ "${{ needs.build.result }}" = "failure" ] || [ "${{ needs.build.result }}" = "cancelled" ]; then
+            echo "❌ Build job failed or was cancelled"
+            exit 1
+          fi
+
+          echo "✅ Build job succeeded or was skipped"

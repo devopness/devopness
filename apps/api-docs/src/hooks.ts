@@ -17,6 +17,26 @@ const fixtures = new FixtureStore();
 const logger = new Logger(hooks.log);
 const utils = new TransactionUtils(fixtures, logger);
 
+// Add delay between requests to prevent rate limiting (429 Too Many Requests)
+const DELAY_BETWEEN_REQUESTS_MS = 100;
+let lastRequestTime = 0;
+
+hooks.beforeEach((transaction: Transaction): void => {
+    const now = Date.now();
+    const timeSinceLastRequest = now - lastRequestTime;
+
+    if (timeSinceLastRequest < DELAY_BETWEEN_REQUESTS_MS) {
+        const sleepTime = DELAY_BETWEEN_REQUESTS_MS - timeSinceLastRequest;
+        // Synchronous sleep using busy-wait (not ideal but works for small delays)
+        const start = Date.now();
+        while (Date.now() - start < sleepTime) {
+            // busy wait
+        }
+    }
+
+    lastRequestTime = Date.now();
+});
+
 // all setup code for the tests run inside this beforeAll hook
 hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     // transactions listed here aren't included in the execution plan
