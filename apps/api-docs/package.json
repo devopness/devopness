@@ -59,7 +59,7 @@
     "toposort": "^2.0.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.3",
-    "uuid": "^9.0.1",
+    "uuid": "^14.0.0",
     "yaml-convert": "^1.0.1"
   }
 }
