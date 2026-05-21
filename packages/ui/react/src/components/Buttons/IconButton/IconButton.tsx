@@ -39,12 +39,23 @@ type IconButtonProps = Omit<
    * default.
    */
   color?: Color
-  /** Icon name from the Devopness icon set */
+  /**
+   * Icon name from the Devopness icon set.
+   *
+   * SVG-backed icons honor the `color` prop (and the variant default). A few
+   * names in the icon set — brand and technology logos — are rendered as
+   * `<img>` by the underlying `<Icon>` primitive and therefore ignore
+   * `color`; those names will keep their original artwork regardless of the
+   * variant.
+   */
   name: IconName
   /**
    * Padding around the icon, in pixels.
    *
-   * Final button size is `size + 2 * padding`.
+   * Final button size is `size + 2 * padding` for `primary` and `ghost`, and
+   * `size + 2 * padding + 2` for `outlined` (to account for the 1px border
+   * while keeping the visible padding around the icon consistent across
+   * variants).
    *
    * @default 6
    */

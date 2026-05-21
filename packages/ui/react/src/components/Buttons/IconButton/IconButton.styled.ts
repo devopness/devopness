@@ -78,20 +78,24 @@ const IconContent = styled.span`
   justify-content: center;
 `
 
+const BORDER_WIDTH = 1
+
 const BaseIconButton = styled.button<StyledProps>`
   ${({ $backgroundColor, $borderColor, $color, $padding, $size, $variant }) => {
     const iconSize = $size ?? DEFAULT_ICON_SIZE
     const padding = $padding ?? DEFAULT_PADDING
-    const totalSize = iconSize + padding * 2
+    const hasBorder = $variant === 'outlined'
+    // Outer size grows by the border width so every variant keeps the same
+    // visible padding around the icon (`box-sizing: border-box` would
+    // otherwise eat 2px of content space on `outlined`).
+    const borderOffset = hasBorder ? BORDER_WIDTH * 2 : 0
+    const outerSize = iconSize + padding * 2 + borderOffset
 
     const resolved = resolveVariantStyle($variant, {
       backgroundColor: $backgroundColor,
       borderColor: $borderColor,
       color: $color,
     })
-
-    const hasBorder = $variant === 'outlined'
-    const supportsBackgroundHover = $variant !== 'ghost'
 
     return css`
       /** Base */
@@ -100,16 +104,16 @@ const BaseIconButton = styled.button<StyledProps>`
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: ${totalSize}px;
-      height: ${totalSize}px;
+      width: ${outerSize}px;
+      height: ${outerSize}px;
       padding: ${padding}px;
       margin: 0;
       background-color: ${resolved.backgroundColor};
       color: ${resolved.iconColor};
       border-color: ${resolved.borderColor};
       border-style: ${hasBorder ? 'solid' : 'none'};
-      border-width: ${hasBorder ? '1px' : '0'};
-      border-radius: ${totalSize}px;
+      border-width: ${hasBorder ? `${BORDER_WIDTH}px` : '0'};
+      border-radius: ${outerSize}px;
       transition:
         background-color 0.15s ease,
         border-color 0.15s ease,
@@ -119,19 +123,16 @@ const BaseIconButton = styled.button<StyledProps>`
         filter: brightness(75%);
       }
 
-      ${supportsBackgroundHover &&
-      css`
-        @supports (background-color: color-mix(in srgb, red 50%, blue)) {
-          &:hover:enabled {
-            filter: none;
-            background-color: ${resolved.hoverBackgroundColor};
-            ${hasBorder &&
-            css`
-              border-color: ${resolved.hoverBorderColor};
-            `}
-          }
+      @supports (background-color: color-mix(in srgb, red 50%, blue)) {
+        &:hover:enabled {
+          filter: none;
+          background-color: ${resolved.hoverBackgroundColor};
+          ${hasBorder &&
+          css`
+            border-color: ${resolved.hoverBorderColor};
+          `}
         }
-      `}
+      }
 
       &:focus-visible {
         outline: 2px solid ${resolved.focusRingColor};

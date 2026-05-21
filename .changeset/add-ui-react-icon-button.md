@@ -25,3 +25,12 @@ consumer color override.
 
 `aria-label` is required so screen readers always announce a meaningful
 name, and the inner icon is `aria-hidden` to avoid double-announcement.
+
+The `outlined` variant grows the outer size by `2px` to keep the visible
+padding around the icon consistent with `primary` and `ghost`, so the
+1px border does not eat into the content box.
+
+Note: a few entries in the Devopness icon set (brand and technology
+logos) are rendered as `<img>` by the underlying `<Icon>` primitive and
+therefore ignore the `color` prop; this is a limitation of the icon
+primitive itself, not the button.

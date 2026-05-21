@@ -84,6 +84,19 @@ describe('IconButton', () => {
       })
     })
 
+    it('outlined grows by 2px so the visible padding matches other variants', () => {
+      renderIconButton({ variant: 'outlined', size: 20, padding: 4 })
+
+      const button = screen.getByTestId('icon-button')
+      const outerSize = 20 + 4 * 2 + 2
+      expect(button).toHaveStyle({
+        width: `${outerSize}px`,
+        height: `${outerSize}px`,
+        borderRadius: `${outerSize}px`,
+        borderWidth: '1px',
+      })
+    })
+
     it('hides the inner icon from assistive tech', () => {
       renderIconButton()
 
@@ -190,6 +203,17 @@ describe('IconButton', () => {
       })
       expect(outlined.hoverBackgroundColor).toBe(
         `color-mix(in srgb, ${outlined.iconColor} 12%, white)`
+      )
+    })
+
+    it('ghost gets a light icon-tinted hover background, not the filter fallback', () => {
+      const ghost = resolveVariantStyle('ghost', {
+        backgroundColor: undefined,
+        borderColor: undefined,
+        color: undefined,
+      })
+      expect(ghost.hoverBackgroundColor).toBe(
+        `color-mix(in srgb, ${ghost.iconColor} 12%, white)`
       )
     })
   })
