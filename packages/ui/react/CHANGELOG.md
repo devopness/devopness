@@ -32,6 +32,7 @@
   - `outlined` — circular border with a purple icon, for secondary actions
     that still need a visible affordance.
 
+
   Each variant supports per-instance `color`, `backgroundColor` and
   `borderColor` overrides, plus `size` (icon size in px) and `padding`
   (around the icon — final button size is `size + 2 * padding`). Hover uses
