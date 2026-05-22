@@ -2,6 +2,7 @@ import { styled } from 'styled-components'
 
 import type { CardProps } from './Card'
 import { getColor } from 'src/colors'
+import { Link } from 'src/components/Primitives/Link'
 import type { TransientProps } from 'src/components/types'
 import { getFont } from 'src/fonts'
 
@@ -18,6 +19,7 @@ const StyledContainer = styled.div<StyledContainerProps>`
   display: flex;
   min-height: ${({ $disableMinHeight }) =>
     $disableMinHeight ? 'auto' : '105px'};
+  position: relative;
   width: relative;
   border-radius: 10px;
   border: 1px solid ${getColor('slate.300')};
@@ -27,6 +29,36 @@ const StyledContainer = styled.div<StyledContainerProps>`
   overflow: hidden;
   flex-direction: column;
   align-items: center;
+`
+
+const StyledAddCta = styled.div`
+  align-items: center;
+  display: flex;
+  grid-area: addCta;
+  justify-content: center;
+`
+
+const StyledAddCtaLink = styled(Link)`
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 6px;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: ${getColor('purple.50')};
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  & > svg {
+    padding-left: 0;
+  }
 `
 
 const StyledAvatar = styled.div<TransientProps<CardProps['avatarProps']>>`
@@ -76,6 +108,12 @@ type StyledHeaderProps = TransientProps<CardProps['headerProps']> & {
    * @default false
    */
   $hideBorder?: boolean
+  /**
+   * Whether the add CTA is present — controls the grid layout
+   *
+   * @default false
+   */
+  $hasAddCta?: boolean
 }
 
 const StyledHeader = styled.div<StyledHeaderProps>`
@@ -90,8 +128,10 @@ const StyledHeader = styled.div<StyledHeaderProps>`
   color: ${getColor('gray.615')};
   display: grid;
   grid-gap: 0 15px;
-  grid-template-areas: 'icon title indicator';
-  grid-template-columns: 36px calc(100% - 85px) 20px;
+  grid-template-areas: ${({ $hasAddCta }) =>
+    $hasAddCta ? "'icon title indicator addCta'" : "'icon title indicator'"};
+  grid-template-columns: ${({ $hasAddCta }) =>
+    $hasAddCta ? '36px 1fr 24px 32px' : '36px 1fr 20px'};
   grid-template-rows: 36px;
   height: 63px;
   padding: 14px 15px 0 15px;
@@ -169,6 +209,8 @@ const StyledLetterAvatar = styled.span`
 `
 
 export {
+  StyledAddCta,
+  StyledAddCtaLink,
   StyledAvatar,
   StyledContainer,
   StyledFooter,
