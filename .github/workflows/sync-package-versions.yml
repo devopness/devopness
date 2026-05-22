@@ -31,23 +31,29 @@ jobs:
     permissions:
       pull-requests: read
     outputs:
-      changes: ${{ steps.filter.outputs.changes }}
+      has_package_changes: ${{ steps.filter.outputs.has_package_changes }}
+      should_sync_lockfile: ${{ steps.filter.outputs.should_sync_lockfile }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
-            changes:
+            has_package_changes:
               - 'package.json'
               - 'package-lock.json'
               - 'packages/**/package.json'
+            should_sync_lockfile:
+              - 'package.json'
+              - 'package-lock.json'
+              - 'packages/**/package.json'
+              - 'packages/**/CHANGELOG.md'
 
   load-pypi-projects:
     name: Load Python packages matrix
     needs: detect-changes
     if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
+      needs.detect-changes.outputs.has_package_changes == 'true'
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -67,7 +73,7 @@ jobs:
     needs: [detect-changes, load-pypi-projects]
     if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
+      needs.detect-changes.outputs.has_package_changes == 'true'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -117,7 +123,7 @@ jobs:
     needs: detect-changes
     if: >
       github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
+      needs.detect-changes.outputs.should_sync_lockfile == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -154,6 +160,7 @@ jobs:
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
     if: >
       github.event.pull_request.user.login != 'dependabot[bot]'
+      && (needs.detect-changes.outputs.has_package_changes == 'true' || needs.detect-changes.outputs.should_sync_lockfile == 'true')
       && always()
     runs-on: ubuntu-latest
     steps:
