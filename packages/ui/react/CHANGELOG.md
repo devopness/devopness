@@ -42,7 +42,7 @@
   Note: a few entries in the Devopness icon set (brand and technology
   logos) are rendered as `<img>` by the underlying `<Icon>` primitive and
   therefore ignore the `color` prop; this is a limitation of the icon
-  primitive itself, not the button.
+  primitive itself - not the button.
 
 ## 2.184.9
 
