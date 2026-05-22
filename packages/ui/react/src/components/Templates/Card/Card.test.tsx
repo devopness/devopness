@@ -54,8 +54,10 @@ describe('Card', () => {
 
       // Letter avatar should not be present when icon is provided
       expect(screen.queryByText('T')).not.toBeInTheDocument()
-      // Find SVG element
-      expect(document.querySelector('a[href="/test"] svg')).toBeInTheDocument()
+      // Icon SVG is rendered in the avatar area
+      expect(
+        screen.getByTestId('card-header').querySelector('svg')
+      ).toBeInTheDocument()
     })
 
     it('with indicator', () => {
@@ -174,7 +176,7 @@ describe('Card', () => {
         />
       )
 
-      const svg = document.querySelector('a[href="/test"] svg')
+      const svg = screen.getByTestId('card-header').querySelector('svg')
       expect(svg).toBeInTheDocument()
       expect(svg).toHaveAttribute('width', '23') // Default size if not specified
     })
@@ -191,7 +193,7 @@ describe('Card', () => {
         />
       )
 
-      const svg = document.querySelector('a[href="/test"] svg')
+      const svg = screen.getByTestId('card-header').querySelector('svg')
       expect(svg).toBeInTheDocument()
       expect(svg).toHaveAttribute('width', '24')
     })

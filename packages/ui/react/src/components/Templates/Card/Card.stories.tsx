@@ -78,5 +78,17 @@ const WithFooter: Story = {
   },
 }
 
+/**
+ * Story demonstrating card with indicator and add CTA button
+ */
+const WithAddCta: Story = {
+  args: {
+    ...Default.args,
+    indicator: 8,
+    title: 'Card with add CTA',
+    addUrl: '/add',
+  },
+}
+
 export default meta
-export { Default, WithIcon, WithIndicator, WithFooter }
+export { Default, WithAddCta, WithFooter, WithIcon, WithIndicator }
