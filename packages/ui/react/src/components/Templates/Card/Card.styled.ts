@@ -127,6 +127,7 @@ const StyledHeader = styled.div<StyledHeaderProps>`
   box-sizing: border-box;
   color: ${getColor('gray.615')};
   display: grid;
+  flex-shrink: 0;
   grid-gap: 0 15px;
   grid-template-areas: ${({ $hasAddCta }) =>
     $hasAddCta ? "'icon title indicator addCta'" : "'icon title indicator'"};
