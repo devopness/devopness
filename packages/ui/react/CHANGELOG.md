@@ -1,5 +1,14 @@
 # @devopness/ui-react
 
+## 2.186.1
+
+### Patch Changes
+
+- [#3078](https://github.com/devopness/devopness/pull/3078) [`c83bf7f`](https://github.com/devopness/devopness/commit/c83bf7fcec78a057f2929c8419995abd26626e4b) Thanks [@fernandes-vinicius](https://github.com/fernandes-vinicius)! - Fix Card header shrinking when children with `height: 100%` are passed
+
+  Added `flex-shrink: 0` to `StyledHeader` so the header always keeps its
+  defined height regardless of sibling flex items inside the card.
+
 ## 2.186.0
 
 ### Minor Changes
