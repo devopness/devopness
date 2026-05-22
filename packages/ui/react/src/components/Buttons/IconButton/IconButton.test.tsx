@@ -115,6 +115,72 @@ describe('IconButton', () => {
     })
   })
 
+  describe('asChild', () => {
+    it('renders the child element instead of a button', () => {
+      render(
+        <IconButton
+          asChild
+          name="add"
+          aria-label="Add item"
+        >
+          <a href="/items/new" />
+        </IconButton>
+      )
+
+      const link = screen.getByTestId('icon-button')
+      expect(link.tagName).toBe('A')
+      expect(link).toHaveAttribute('href', '/items/new')
+    })
+
+    it('merges aria-label onto the child element', () => {
+      render(
+        <IconButton
+          asChild
+          name="add"
+          aria-label="Add item"
+        >
+          <a href="/items/new" />
+        </IconButton>
+      )
+
+      expect(screen.getByTestId('icon-button')).toHaveAttribute(
+        'aria-label',
+        'Add item'
+      )
+    })
+
+    it('renders the icon inside the child element', () => {
+      render(
+        <IconButton
+          asChild
+          name="add"
+          aria-label="Add item"
+        >
+          <a href="/items/new" />
+        </IconButton>
+      )
+
+      const hiddenWrapper = screen
+        .getByTestId('icon-button')
+        .querySelector('[aria-hidden="true"]')
+      expect(hiddenWrapper).toBeInTheDocument()
+    })
+
+    it('does not forward type="button" to the child element', () => {
+      render(
+        <IconButton
+          asChild
+          name="add"
+          aria-label="Add item"
+        >
+          <a href="/items/new" />
+        </IconButton>
+      )
+
+      expect(screen.getByTestId('icon-button')).not.toHaveAttribute('type')
+    })
+  })
+
   describe('interactions', () => {
     it('handles click events', () => {
       const handleClick = vi.fn()

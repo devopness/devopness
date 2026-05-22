@@ -1,6 +1,7 @@
 'use client'
 
 import type { ButtonHTMLAttributes } from 'react'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 
 import { BaseIconButton, IconContent } from './IconButton.styled'
 import type { IconButtonVariant } from './IconButton.variants'
@@ -13,7 +14,7 @@ import type { Color } from 'src/colors'
 import { Icon } from 'src/components/Primitives/Icon'
 import type { Icon as IconName } from 'src/icons'
 
-type IconButtonProps = Omit<
+type IconButtonBaseProps = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'color'
 > & {
@@ -88,9 +89,30 @@ type IconButtonProps = Omit<
   'aria-label': string
 }
 
+/**
+ * When `asChild` is false (default), the component renders a `<button>`.
+ * When `asChild` is true, it merges its styles and props onto the single
+ * child element — useful for rendering the button as a router link or `<a>`.
+ *
+ * @example
+ * // Default: renders a <button>
+ * <IconButton name="add" aria-label="Add" />
+ *
+ * @example
+ * // asChild: renders an <a> with button styles
+ * <IconButton asChild name="add" aria-label="Add item">
+ *   <a href="/items/new" />
+ * </IconButton>
+ */
+type IconButtonProps =
+  | (IconButtonBaseProps & { asChild?: false; children?: never })
+  | (IconButtonBaseProps & { asChild: true; children: React.ReactElement })
+
 const IconButton = ({
+  asChild = false,
   backgroundColor,
   borderColor,
+  children,
   color,
   name,
   padding,
@@ -100,6 +122,38 @@ const IconButton = ({
   ...props
 }: IconButtonProps) => {
   const resolvedIconColor = color ?? VARIANT_DEFAULTS[variant].iconColor
+
+  const iconContent = (
+    <IconContent
+      data-testid="icon-button-content"
+      aria-hidden="true"
+    >
+      <Icon
+        name={name}
+        size={size}
+        color={resolvedIconColor}
+      />
+    </IconContent>
+  )
+
+  if (asChild) {
+    return (
+      <BaseIconButton
+        as={Slot}
+        data-testid="icon-button"
+        $backgroundColor={backgroundColor}
+        $borderColor={borderColor}
+        $color={color}
+        $padding={padding}
+        $size={size}
+        $variant={variant}
+        {...props}
+      >
+        <Slottable>{children}</Slottable>
+        {iconContent}
+      </BaseIconButton>
+    )
+  }
 
   return (
     <BaseIconButton
@@ -113,16 +167,7 @@ const IconButton = ({
       type={type}
       {...props}
     >
-      <IconContent
-        data-testid="icon-button-content"
-        aria-hidden="true"
-      >
-        <Icon
-          name={name}
-          size={size}
-          color={resolvedIconColor}
-        />
-      </IconContent>
+      {iconContent}
     </BaseIconButton>
   )
 }
