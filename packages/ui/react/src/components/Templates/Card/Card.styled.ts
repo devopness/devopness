@@ -2,6 +2,7 @@ import { styled } from 'styled-components'
 
 import type { CardProps } from './Card'
 import { getColor } from 'src/colors'
+import { Link } from 'src/components/Primitives/Link'
 import type { TransientProps } from 'src/components/types'
 import { getFont } from 'src/fonts'
 
@@ -35,6 +36,29 @@ const StyledAddCta = styled.div`
   display: flex;
   grid-area: addCta;
   justify-content: center;
+`
+
+const StyledAddCtaLink = styled(Link)`
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 6px;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: ${getColor('purple.50')};
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  & > svg {
+    padding-left: 0;
+  }
 `
 
 const StyledAvatar = styled.div<TransientProps<CardProps['avatarProps']>>`
@@ -107,7 +131,7 @@ const StyledHeader = styled.div<StyledHeaderProps>`
   grid-template-areas: ${({ $hasAddCta }) =>
     $hasAddCta ? "'icon title indicator addCta'" : "'icon title indicator'"};
   grid-template-columns: ${({ $hasAddCta }) =>
-    $hasAddCta ? '36px 1fr 24px 20px' : '36px 1fr 20px'};
+    $hasAddCta ? '36px 1fr 24px 32px' : '36px 1fr 20px'};
   grid-template-rows: 36px;
   height: 63px;
   padding: 14px 15px 0 15px;
@@ -186,6 +210,7 @@ const StyledLetterAvatar = styled.span`
 
 export {
   StyledAddCta,
+  StyledAddCtaLink,
   StyledAvatar,
   StyledContainer,
   StyledFooter,

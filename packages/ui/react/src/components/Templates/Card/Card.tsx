@@ -1,5 +1,6 @@
 import {
   StyledAddCta,
+  StyledAddCtaLink,
   StyledAvatar,
   StyledContainer,
   StyledFooter,
@@ -174,24 +175,34 @@ const Card = ({ children, ...props }: CardProps) => (
           title={props.title}
           enableOnlyWithEllipsisPoints
         >
-          <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
+          {props.url ? (
+            <Link
+              hideExternalUrlIcon
+              hideUnderline
+              {...(typeof props.url === 'object' ? props.url : undefined)}
+              to={typeof props.url === 'object' ? props.url.to : props.url}
+            >
+              <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
+            </Link>
+          ) : (
+            <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
+          )}
         </Tooltip>
         {props.subtitle && <StyledSubtitle>{props.subtitle}</StyledSubtitle>}
       </div>
       <Indicator indicator={props.indicator} />
       {props.addUrl && (
         <StyledAddCta>
-          <Link
+          <StyledAddCtaLink
             hideExternalUrlIcon
             hideUnderline
             to={props.addUrl}
           >
             <Icon
               name="add"
-              size={16}
-              color={props.avatarProps.backgroundColor}
+              size={24}
             />
-          </Link>
+          </StyledAddCtaLink>
         </StyledAddCta>
       )}
     </StyledHeader>
