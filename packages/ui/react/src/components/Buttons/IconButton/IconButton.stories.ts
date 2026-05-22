@@ -58,25 +58,5 @@ const Disabled: Story = {
   },
 }
 
-/**
- * When `asChild` is true, the button styles are merged onto the child element.
- * Here the child is an `<a>` tag, so the result is a circular icon link.
- */
-const WithAsChild: Story = {
-  args: {
-    name: 'add',
-    'aria-label': 'Add item',
-    variant: 'ghost',
-  },
-  render: (args) => (
-    <IconButton
-      {...args}
-      asChild
-    >
-      <a href="/items/new" />
-    </IconButton>
-  ),
-}
-
 export default meta
-export { Primary, Ghost, Outlined, Disabled, WithAsChild }
+export { Primary, Ghost, Outlined, Disabled }
