@@ -1,4 +1,5 @@
 import {
+  StyledAddCta,
   StyledAvatar,
   StyledContainer,
   StyledFooter,
@@ -71,6 +72,10 @@ type CardProps = React.PropsWithChildren<{
    */
   indicator?: React.ReactNode
   /**
+   * Path to navigate to when the add CTA is clicked
+   */
+  addUrl?: string
+  /**
    * Subtitle to display in the card
    */
   subtitle?: string
@@ -136,57 +141,60 @@ const Card = ({ children, ...props }: CardProps) => (
     $disableMinHeight={!props.footer && !children}
     id={props.id}
   >
-    <Link
-      hideExternalUrlIcon
-      hideUnderline
-      hideUnderlineOnHover
-      style={{
-        display: 'block',
-        marginRight: 'auto',
-        width: '100%',
-      }}
-      {...(typeof props.url === 'object' ? props.url : undefined)}
-      to={typeof props.url === 'object' ? props.url.to : props.url}
+    <StyledHeader
+      data-testid="card-header"
+      $backgroundColor={props.headerProps?.backgroundColor}
+      $borderBottomColor={props.headerProps?.borderBottomColor}
+      $hasAddCta={!!props.addUrl}
+      $hideBorder={!props.footer && !children}
     >
-      <StyledHeader
-        data-testid="card-header"
-        $backgroundColor={props.headerProps?.backgroundColor}
-        $borderBottomColor={props.headerProps?.borderBottomColor}
-        $hideBorder={!props.footer && !children}
-      >
-        <StyledAvatar $backgroundColor={props.avatarProps.backgroundColor}>
-          {typeof props.icon === 'object' && (
-            <Icon
-              {...props.icon}
-              color={props.icon.color ?? DEFAULT_ICON_COLOR}
-              size={props.icon.size ?? DEFAULT_ICON_SIZE}
-            />
-          )}
-          {typeof props.icon === 'string' && (
-            <Icon
-              name={props.icon}
-              color={DEFAULT_ICON_COLOR}
-              size={DEFAULT_ICON_SIZE}
-            />
-          )}
-          {!props.icon && (
-            <StyledLetterAvatar>
-              {props.title.charAt(0).toUpperCase()}
-            </StyledLetterAvatar>
-          )}
-        </StyledAvatar>
-        <div>
-          <Tooltip
-            title={props.title}
-            enableOnlyWithEllipsisPoints
+      <StyledAvatar $backgroundColor={props.avatarProps.backgroundColor}>
+        {typeof props.icon === 'object' && (
+          <Icon
+            {...props.icon}
+            color={props.icon.color ?? DEFAULT_ICON_COLOR}
+            size={props.icon.size ?? DEFAULT_ICON_SIZE}
+          />
+        )}
+        {typeof props.icon === 'string' && (
+          <Icon
+            name={props.icon}
+            color={DEFAULT_ICON_COLOR}
+            size={DEFAULT_ICON_SIZE}
+          />
+        )}
+        {!props.icon && (
+          <StyledLetterAvatar>
+            {props.title.charAt(0).toUpperCase()}
+          </StyledLetterAvatar>
+        )}
+      </StyledAvatar>
+      <div style={{ gridArea: 'title', minWidth: 0 }}>
+        <Tooltip
+          title={props.title}
+          enableOnlyWithEllipsisPoints
+        >
+          <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
+        </Tooltip>
+        {props.subtitle && <StyledSubtitle>{props.subtitle}</StyledSubtitle>}
+      </div>
+      <Indicator indicator={props.indicator} />
+      {props.addUrl && (
+        <StyledAddCta>
+          <Link
+            hideExternalUrlIcon
+            hideUnderline
+            to={props.addUrl}
           >
-            <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
-          </Tooltip>
-          {props.subtitle && <StyledSubtitle>{props.subtitle}</StyledSubtitle>}
-        </div>
-        <Indicator indicator={props.indicator} />
-      </StyledHeader>
-    </Link>
+            <Icon
+              name="add"
+              size={16}
+              color={props.avatarProps.backgroundColor}
+            />
+          </Link>
+        </StyledAddCta>
+      )}
+    </StyledHeader>
     {children}
     {props.footer && (
       <StyledFooter
