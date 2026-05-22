@@ -3,9 +3,8 @@ import { ReactNode } from 'react'
 import type { PopoverProps as MaterialPopoverProps } from '@mui/material'
 
 import { Container, Footer, Header, Title } from './Popover.styled'
-import { Button } from 'src/components/Buttons'
+import { IconButton } from 'src/components/Buttons'
 import { ConditionalWrapper } from 'src/components/helpers'
-import { iconLoader } from 'src/icons'
 
 type PopoverProps = {
   /** Optional header title */
@@ -47,14 +46,13 @@ const Popover = ({ title, footer, children, ...props }: PopoverProps) => (
       $justifyContent={title ? 'space-between' : 'end'}
     >
       {title && <Title data-testid="popover-title">{title}</Title>}
-      <Button
-        noPadding
-        noMargin
-        buttonType="borderless"
+      <IconButton
+        variant="ghost"
+        name="close"
+        size={14}
+        aria-label="Close"
         onClick={() => props.onClose?.({}, 'backdropClick')}
-      >
-        {iconLoader('close', 14)}
-      </Button>
+      />
     </Header>
 
     {children}
