@@ -196,6 +196,7 @@ const Card = ({ children, ...props }: CardProps) => (
           <StyledAddCtaLink
             hideExternalUrlIcon
             hideUnderline
+            target="_self"
             to={props.addUrl}
           >
             <Icon
