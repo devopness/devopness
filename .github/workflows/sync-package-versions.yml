@@ -41,6 +41,7 @@ jobs:
               - 'package.json'
               - 'package-lock.json'
               - 'packages/**/package.json'
+              - 'packages/**/CHANGELOG.md'
 
   load-pypi-projects:
     name: Load Python packages matrix
