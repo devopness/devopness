@@ -188,6 +188,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail if sync-pypi-package-versions did not succeed
+        if: needs.detect-changes.outputs.has_package_changes == 'true'
         run: |
           if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
             echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
