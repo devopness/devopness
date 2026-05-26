@@ -15,10 +15,6 @@ on:
     types:
       - opened
       - synchronize
-    paths:
-      - '**/package*.json'
-      - 'packages/**/CHANGELOG.md'
-      - '.changeset/**'
   push:
     paths:
       - '**/package*.json'
@@ -31,7 +27,7 @@ permissions:
   contents: write
   pull-requests: write
 
-concurrency: ${{ github.workflow }}-${{ github.head_ref }}
+concurrency: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
 
 jobs:
   detect-changes:
@@ -52,12 +48,9 @@ jobs:
           filters: |
             has_package_changes:
               - 'package.json'
-              - 'package-lock.json'
               - 'packages/**/package.json'
             should_sync_lockfile:
-              - 'package.json'
-              - 'package-lock.json'
-              - 'packages/**/package.json'
+              - '**/package*.json'
               - 'packages/**/CHANGELOG.md'
               - '.changeset/**'
 
@@ -175,7 +168,7 @@ jobs:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
     if: >
-      (github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' ||
+      ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
        github.event_name == 'push')
       && (needs.detect-changes.outputs.has_package_changes == 'true' || needs.detect-changes.outputs.should_sync_lockfile == 'true')
       && always()
