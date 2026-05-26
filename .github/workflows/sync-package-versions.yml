@@ -47,7 +47,8 @@ jobs:
         with:
           filters: |
             has_package_changes:
-              - '**/package*.json'
+              - 'package.json'
+              - 'packages/**/package.json'
             should_sync_lockfile:
               - '**/package*.json'
               - 'packages/**/CHANGELOG.md'
