@@ -1,5 +1,6 @@
 import {
   StyledAddCta,
+  StyledAddCtaButton,
   StyledAddCtaLink,
   StyledAvatar,
   StyledContainer,
@@ -73,9 +74,17 @@ type CardProps = React.PropsWithChildren<{
    */
   indicator?: React.ReactNode
   /**
-   * Path to navigate to when the add CTA is clicked
+   * Path (or config object) for the add CTA button.
+   * When an object is provided, supports the same props as `url` plus:
+   * - `disabled`: renders the button as disabled instead of navigating
+   * - `disabledTooltip`: tooltip message shown when disabled
    */
-  addUrl?: string
+  addUrl?:
+    | string
+    | (Omit<LinkProps, 'style'> & {
+        disabled?: boolean
+        disabledTooltip?: string
+      })
   /**
    * Subtitle to display in the card
    */
@@ -191,21 +200,61 @@ const Card = ({ children, ...props }: CardProps) => (
         {props.subtitle && <StyledSubtitle>{props.subtitle}</StyledSubtitle>}
       </div>
       <Indicator indicator={props.indicator} />
-      {props.addUrl && (
-        <StyledAddCta>
-          <StyledAddCtaLink
-            hideExternalUrlIcon
-            hideUnderline
-            target="_self"
-            to={props.addUrl}
-          >
-            <Icon
-              name="add"
-              size={24}
-            />
-          </StyledAddCtaLink>
-        </StyledAddCta>
-      )}
+      {props.addUrl &&
+        (() => {
+          const addUrl = props.addUrl!
+
+          if (typeof addUrl === 'string') {
+            return (
+              <StyledAddCta>
+                <StyledAddCtaLink
+                  hideExternalUrlIcon
+                  hideUnderline
+                  target="_self"
+                  to={addUrl}
+                >
+                  <Icon
+                    name="add"
+                    size={24}
+                  />
+                </StyledAddCtaLink>
+              </StyledAddCta>
+            )
+          }
+
+          const { disabled, disabledTooltip, ...linkProps } = addUrl
+
+          return (
+            <StyledAddCta>
+              <Tooltip title={disabled ? (disabledTooltip ?? '') : ''}>
+                {disabled ? (
+                  <StyledAddCtaButton
+                    aria-label="add"
+                    disabled
+                    type="button"
+                  >
+                    <Icon
+                      name="add"
+                      size={24}
+                    />
+                  </StyledAddCtaButton>
+                ) : (
+                  <StyledAddCtaLink
+                    hideExternalUrlIcon
+                    hideUnderline
+                    target="_self"
+                    {...linkProps}
+                  >
+                    <Icon
+                      name="add"
+                      size={24}
+                    />
+                  </StyledAddCtaLink>
+                )}
+              </Tooltip>
+            </StyledAddCta>
+          )
+        })()}
     </StyledHeader>
     {children}
     {props.footer && (
