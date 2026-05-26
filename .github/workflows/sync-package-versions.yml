@@ -15,6 +15,15 @@ on:
     types:
       - opened
       - synchronize
+  push:
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'packages/**/package.json'
+      - 'packages/**/CHANGELOG.md'
+    branches:
+      # Trigger when commits are pushed to the changesets branch, to sync the root lock file
+      - 'changeset-release/*'
 
 permissions:
   contents: write
@@ -26,28 +35,36 @@ jobs:
   detect-changes:
     name: Detect changes in package.json files
     if: >
-      github.event.pull_request.user.login != 'dependabot[bot]'
+      (github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
+      github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
     outputs:
-      changes: ${{ steps.filter.outputs.changes }}
+      has_package_changes: ${{ steps.filter.outputs.has_package_changes }}
+      should_sync_lockfile: ${{ steps.filter.outputs.should_sync_lockfile }}
     steps:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
-            changes:
+            has_package_changes:
               - 'package.json'
               - 'package-lock.json'
               - 'packages/**/package.json'
+            should_sync_lockfile:
+              - 'package.json'
+              - 'package-lock.json'
+              - 'packages/**/package.json'
+              - 'packages/**/CHANGELOG.md'
 
   load-pypi-projects:
     name: Load Python packages matrix
     needs: detect-changes
     if: >
-      github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
+      needs.detect-changes.outputs.has_package_changes == 'true' &&
+      ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
+       github.event_name == 'push')
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -66,8 +83,9 @@ jobs:
     name: Sync pyproject.toml
     needs: [detect-changes, load-pypi-projects]
     if: >
-      github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
+      needs.detect-changes.outputs.has_package_changes == 'true' &&
+      ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
+       github.event_name == 'push')
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -77,15 +95,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ github.head_ref || github.ref_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.13"
+          python-version: '3.13'
 
       - name: Sync '${{ matrix.name }}' version
         run: |
@@ -101,14 +119,14 @@ jobs:
         run: |
           git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
           git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git fetch origin ${{ github.head_ref }} || true
+          git fetch origin ${{ github.head_ref || github.ref_name }} || true
           # Try to rebase local changes onto the latest remote to avoid non-fast-forward push errors
-          git pull --rebase origin ${{ github.head_ref }} || true
+          git pull --rebase origin ${{ github.head_ref || github.ref_name }} || true
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
-          file_pattern: "${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock"
+          file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
@@ -116,21 +134,22 @@ jobs:
     name: Sync the package-lock.json
     needs: detect-changes
     if: >
-      github.event.pull_request.user.login != 'dependabot[bot]' &&
-      needs.detect-changes.outputs.changes == 'true'
+      needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
+      ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
+       github.event_name == 'push')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ github.head_ref || github.ref_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: "24.x"
+          node-version: '24.x'
 
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
@@ -139,13 +158,13 @@ jobs:
         run: |
           git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
           git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git fetch origin ${{ github.head_ref }} || true
-          git pull --rebase origin ${{ github.head_ref }} || true
+          git fetch origin ${{ github.head_ref || github.ref_name }} || true
+          git pull --rebase origin ${{ github.head_ref || github.ref_name }} || true
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: "chore: update package-lock.json"
-          file_pattern: "package-lock.json"
+          commit_message: 'chore: update package-lock.json'
+          file_pattern: 'package-lock.json'
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
@@ -153,14 +172,16 @@ jobs:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
     if: >
-      github.event.pull_request.user.login != 'dependabot[bot]'
+      (github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' ||
+       github.event_name == 'push')
+      && (needs.detect-changes.outputs.has_package_changes == 'true' || needs.detect-changes.outputs.should_sync_lockfile == 'true')
       && always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ github.head_ref || github.ref_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail if sync-pypi-package-versions did not succeed

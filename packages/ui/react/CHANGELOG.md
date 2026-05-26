@@ -1,5 +1,22 @@
 # @devopness/ui-react
 
+## 2.186.1
+
+### Patch Changes
+
+- [#3078](https://github.com/devopness/devopness/pull/3078) [`c83bf7f`](https://github.com/devopness/devopness/commit/c83bf7fcec78a057f2929c8419995abd26626e4b) Thanks [@fernandes-vinicius](https://github.com/fernandes-vinicius)! - Fix Card header shrinking when children with `height: 100%` are passed
+
+  Added `flex-shrink: 0` to `StyledHeader` so the header always keeps its
+  defined height regardless of sibling flex items inside the card.
+
+## 2.186.0
+
+### Minor Changes
+
+- [#3076](https://github.com/devopness/devopness/pull/3076) [`e4674f5`](https://github.com/devopness/devopness/commit/e4674f5d9a304fb7e986cb2ce35efbc9c91e7cff) Thanks [@fernandes-vinicius](https://github.com/fernandes-vinicius)! - Add `addUrl` and implement `url` props on `Card` component
+  - `addUrl`: renders a ghost-style add CTA button in the card header that navigates to the given URL
+  - `url`: when provided, the card title is rendered as a navigation link; supports both string URLs and object form (e.g. `{ to, target }`)
+
 ## 2.185.0
 
 ### Minor Changes
@@ -34,7 +51,7 @@
   Note: a few entries in the Devopness icon set (brand and technology
   logos) are rendered as `<img>` by the underlying `<Icon>` primitive and
   therefore ignore the `color` prop; this is a limitation of the icon
-  primitive itself, not the button.
+  primitive itself - not the button.
 
 ## 2.184.9
 
