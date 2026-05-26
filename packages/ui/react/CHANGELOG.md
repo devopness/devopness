@@ -1,5 +1,16 @@
 # @devopness/ui-react
 
+## 2.187.1
+
+### Patch Changes
+
+- [#3090](https://github.com/devopness/devopness/pull/3090) [`eb667e5`](https://github.com/devopness/devopness/commit/eb667e57ca69c6e0d137ddc9245046dad1e8d4ce) Thanks [@fernandes-vinicius](https://github.com/fernandes-vinicius)! - Fix Card add CTA button hover circle being clipped on the right
+
+  Increased the `addCta` grid column from `32px` to `40px` to give enough
+  room for the button's hover background circle (24px icon + 6px padding
+  on each side), preventing it from being cut off by the container's
+  `overflow: hidden`.
+
 ## 2.187.0
 
 ### Minor Changes
