@@ -15,11 +15,13 @@ on:
     types:
       - opened
       - synchronize
+    paths:
+      - '**/package*.json'
+      - 'packages/**/CHANGELOG.md'
+      - '.changeset/**'
   push:
     paths:
-      - 'package.json'
-      - 'package-lock.json'
-      - 'packages/**/package.json'
+      - '**/package*.json'
       - 'packages/**/CHANGELOG.md'
     branches:
       # Trigger when commits are pushed to the changesets branch, to sync the root lock file
@@ -57,6 +59,7 @@ jobs:
               - 'package-lock.json'
               - 'packages/**/package.json'
               - 'packages/**/CHANGELOG.md'
+              - '.changeset/**'
 
   load-pypi-projects:
     name: Load Python packages matrix
@@ -185,6 +188,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fail if sync-pypi-package-versions did not succeed
+        if: needs.detect-changes.outputs.has_package_changes == 'true'
         run: |
           if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
             echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
