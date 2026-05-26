@@ -146,7 +146,7 @@ const StyledHeader = styled.div<StyledHeaderProps>`
   grid-template-areas: ${({ $hasAddCta }) =>
     $hasAddCta ? "'icon title indicator addCta'" : "'icon title indicator'"};
   grid-template-columns: ${({ $hasAddCta }) =>
-    $hasAddCta ? '36px 1fr 24px 32px' : '36px 1fr 20px'};
+    $hasAddCta ? '36px 1fr 24px 40px' : '36px 1fr 20px'};
   grid-template-rows: 36px;
   height: 63px;
   padding: 14px 15px 0 15px;
