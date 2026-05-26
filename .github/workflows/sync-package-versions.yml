@@ -15,11 +15,13 @@ on:
     types:
       - opened
       - synchronize
+    paths:
+      - '**/package*.json'
+      - 'packages/**/CHANGELOG.md'
+      - '.changeset/**'
   push:
     paths:
-      - 'package.json'
-      - 'package-lock.json'
-      - 'packages/**/package.json'
+      - '**/package*.json'
       - 'packages/**/CHANGELOG.md'
     branches:
       # Trigger when commits are pushed to the changesets branch, to sync the root lock file
