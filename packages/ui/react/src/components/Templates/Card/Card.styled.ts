@@ -61,6 +61,20 @@ const StyledAddCtaLink = styled(Link)`
   }
 `
 
+const StyledAddCtaButton = styled.button`
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 6px;
+  color: inherit;
+  cursor: not-allowed;
+  opacity: 0.4;
+`
+
 const StyledAvatar = styled.div<TransientProps<CardProps['avatarProps']>>`
   align-items: center;
   background-color: ${({ $backgroundColor }) => getColor($backgroundColor)};
@@ -211,6 +225,7 @@ const StyledLetterAvatar = styled.span`
 
 export {
   StyledAddCta,
+  StyledAddCtaButton,
   StyledAddCtaLink,
   StyledAvatar,
   StyledContainer,
