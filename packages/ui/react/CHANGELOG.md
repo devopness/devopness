@@ -1,5 +1,25 @@
 # @devopness/ui-react
 
+## 2.187.0
+
+### Minor Changes
+
+- [#3083](https://github.com/devopness/devopness/pull/3083) [`eb577c2`](https://github.com/devopness/devopness/commit/eb577c2a61c50cb7b691893d03b0fac0361a30a1) Thanks [@fernandes-vinicius](https://github.com/fernandes-vinicius)! - Support disabled state on Card add CTA button
+
+  The `addUrl` prop now accepts an object in addition to a plain string,
+  following the same pattern as the existing `url` prop. The object form
+  supports all `LinkProps` fields plus `disabled` and `disabledTooltip`:
+  when `disabled: true`, the add button renders as a non-interactive element
+  with `cursor: not-allowed` and an optional tooltip message instead of
+  navigating to the URL.
+
+### Patch Changes
+
+- [#3083](https://github.com/devopness/devopness/pull/3083) [`eb577c2`](https://github.com/devopness/devopness/commit/eb577c2a61c50cb7b691893d03b0fac0361a30a1) Thanks [@fernandes-vinicius](https://github.com/fernandes-vinicius)! - Fix Card header shrinking when children with `height: 100%` are passed
+
+  Added `flex-shrink: 0` to `StyledHeader` so the header always keeps its
+  defined height regardless of sibling flex items inside the card.
+
 ## 2.186.1
 
 ### Patch Changes
