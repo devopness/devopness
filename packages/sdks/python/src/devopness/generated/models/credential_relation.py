@@ -31,6 +31,8 @@ class CredentialRelation(DevopnessBaseModel):
         provider (ProviderRelation):
         provider_type (ProviderType):
         provider_type_human_readable (str): The human readable version of the type of the credential
+        provider_auth_type (str): The authentication type of the credential
+        provider_auth_type_human_readable (str): The human readable version of the authentication type
         active (bool): If this credential is active or not
         created_by_user (UserRelation, optional, nullable):
         last_action (ActionRelationShallow, optional, nullable):
@@ -44,6 +46,12 @@ class CredentialRelation(DevopnessBaseModel):
     provider_type: ProviderType
     provider_type_human_readable: StrictStr = Field(
         description="The human readable version of the type of the credential"
+    )
+    provider_auth_type: StrictStr = Field(
+        description="The authentication type of the credential"
+    )
+    provider_auth_type_human_readable: StrictStr = Field(
+        description="The human readable version of the authentication type"
     )
     active: StrictBool = Field(description="If this credential is active or not")
     created_by_user: UserRelation | None
@@ -76,6 +84,8 @@ class CredentialRelationPlain(TypedDict, total=False):
         ]
     ]
     provider_type_human_readable: Required[str]
+    provider_auth_type: Required[str]
+    provider_auth_type_human_readable: Required[str]
     active: Required[bool]
     created_by_user: Union[UserRelation, UserRelationPlain] | None
     last_action: Union[ActionRelationShallow, ActionRelationShallowPlain] | None

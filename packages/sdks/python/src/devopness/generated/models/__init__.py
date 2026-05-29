@@ -128,6 +128,7 @@ from .cloud_provider_service_resource_type_scope import (
     CloudProviderServiceResourceTypeScope,
     CloudProviderServiceResourceTypeScopePlain,
 )
+from .cloud_provider_settings import CloudProviderSettings, CloudProviderSettingsPlain
 from .cloud_provider_settings_list import (
     CloudProviderSettingsList,
     CloudProviderSettingsListPlain,
@@ -399,6 +400,11 @@ from .project_organization_create import (
 )
 from .project_relation import ProjectRelation, ProjectRelationPlain
 from .project_update import ProjectUpdate, ProjectUpdatePlain
+from .provider_auth_type import ProviderAuthType, ProviderAuthTypePlain
+from .provider_callback_config import (
+    ProviderCallbackConfig,
+    ProviderCallbackConfigPlain,
+)
 from .provider_code import ProviderCode, ProviderCodePlain
 from .provider_input_settings import ProviderInputSettings, ProviderInputSettingsPlain
 from .provider_input_settings_validation import (
@@ -484,11 +490,19 @@ from .social_account_displayable_name import (
 from .social_account_provider import SocialAccountProvider, SocialAccountProviderPlain
 from .social_account_relation import SocialAccountRelation, SocialAccountRelationPlain
 from .social_account_status import SocialAccountStatus, SocialAccountStatusPlain
+from .source_provider_auth_method_settings import (
+    SourceProviderAuthMethodSettings,
+    SourceProviderAuthMethodSettingsPlain,
+)
 from .source_provider_displayable_name import (
     SourceProviderDisplayableName,
     SourceProviderDisplayableNamePlain,
 )
 from .source_provider_name import SourceProviderName, SourceProviderNamePlain
+from .source_provider_settings import (
+    SourceProviderSettings,
+    SourceProviderSettingsPlain,
+)
 from .source_type import SourceType, SourceTypePlain
 from .ssh_key import SshKey, SshKeyPlain
 from .ssh_key_deploy import SshKeyDeploy, SshKeyDeployPlain
@@ -780,8 +794,10 @@ __all__ = [
     "CloudProviderServiceResourceTypePlain",
     "CloudProviderServiceResourceTypeScope",
     "CloudProviderServiceResourceTypeScopePlain",
+    "CloudProviderSettings",
     "CloudProviderSettingsList",
     "CloudProviderSettingsListPlain",
+    "CloudProviderSettingsPlain",
     "CloudResourceType",
     "CloudResourceTypePlain",
     "CloudServiceSettingsAwsEc2",
@@ -1052,6 +1068,10 @@ __all__ = [
     "ProjectRelationPlain",
     "ProjectUpdate",
     "ProjectUpdatePlain",
+    "ProviderAuthType",
+    "ProviderAuthTypePlain",
+    "ProviderCallbackConfig",
+    "ProviderCallbackConfigPlain",
     "ProviderCode",
     "ProviderCodePlain",
     "ProviderInputSettings",
@@ -1174,10 +1194,14 @@ __all__ = [
     "SocialAccountRelationPlain",
     "SocialAccountStatus",
     "SocialAccountStatusPlain",
+    "SourceProviderAuthMethodSettings",
+    "SourceProviderAuthMethodSettingsPlain",
     "SourceProviderDisplayableName",
     "SourceProviderDisplayableNamePlain",
     "SourceProviderName",
     "SourceProviderNamePlain",
+    "SourceProviderSettings",
+    "SourceProviderSettingsPlain",
     "SourceType",
     "SourceTypePlain",
     "SshKey",

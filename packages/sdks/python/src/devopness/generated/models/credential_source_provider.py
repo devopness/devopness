@@ -9,11 +9,13 @@ Note:
 from typing import (
     Required,
     TypedDict,
+    Union,
 )
 
 from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
+from .provider_auth_type import ProviderAuthType, ProviderAuthTypePlain
 
 
 class CredentialSourceProvider(DevopnessBaseModel):
@@ -21,11 +23,24 @@ class CredentialSourceProvider(DevopnessBaseModel):
     CredentialSourceProvider
 
     Attributes:
-        callback_code (str): The temporary code forwarded by the OAuth provider as a parameter to our callback URL
+        auth_type (ProviderAuthType):
+        callback_code (str, optional): The temporary code forwarded by the OAuth provider as a parameter to our callback URL
+        installation_id (str, optional): The installation ID of the source provider integration installation.
+        setup_action (str, optional): The action to be performed with the provided callback code.
     """
 
-    callback_code: StrictStr = Field(
-        description="The temporary code forwarded by the OAuth provider as a parameter to our callback URL"
+    auth_type: ProviderAuthType
+    callback_code: StrictStr | None = Field(
+        default=None,
+        description="The temporary code forwarded by the OAuth provider as a parameter to our callback URL",
+    )
+    installation_id: StrictStr | None = Field(
+        default=None,
+        description="The installation ID of the source provider integration installation.",
+    )
+    setup_action: StrictStr | None = Field(
+        default=None,
+        description="The action to be performed with the provided callback code.",
     )
 
 
@@ -34,4 +49,12 @@ class CredentialSourceProviderPlain(TypedDict, total=False):
     Plain version of CredentialSourceProvider.
     """
 
-    callback_code: Required[str]
+    auth_type: Required[
+        Union[
+            ProviderAuthType,
+            ProviderAuthTypePlain,
+        ]
+    ]
+    callback_code: str | None
+    installation_id: str | None
+    setup_action: str | None
