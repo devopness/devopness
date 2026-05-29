@@ -42,6 +42,8 @@ jobs:
       has_package_changes: ${{ steps.filter.outputs.has_package_changes }}
       should_sync_lockfile: ${{ steps.filter.outputs.should_sync_lockfile }}
     steps:
+      - uses: actions/checkout@v6
+
       - uses: dorny/paths-filter@v3
         id: filter
         with:
