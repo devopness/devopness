@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.4.1
+
+### Patch Changes
+
+- [#3097](https://github.com/devopness/devopness/pull/3097) [`6511661`](https://github.com/devopness/devopness/commit/6511661f3649867c1f1b4ece5ac3ad4f98a376df) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Added support for Source Providers with more than one connection type. e.g. Github Application
+
 ## 3.4.0
 
 ### Minor Changes
