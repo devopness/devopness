@@ -2646,6 +2646,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "description": "Optional base64-encoded JSON state to be included in connect URLs.",
+            "example": "eyJyZXR1cm5fdG8iOiIvY3JlZGVudGlhbHMifQ==",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5802,6 +5812,16 @@
             "description": "The code of the provider.",
             "example": "aws",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "description": "Optional base64-encoded JSON state to be included in connect URLs.",
+            "example": "eyJyZXR1cm5fdG8iOiIvY3JlZGVudGlhbHMifQ==",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -16919,6 +16939,22 @@
         ],
         "example": "region"
       },
+      "CloudProviderSettings": {
+        "type": "object",
+        "description": "Settings for cloud providers",
+        "properties": {
+          "input_settings": {
+            "$ref": "#/components/schemas/ProviderInputSettingsList"
+          },
+          "cloud_services": {
+            "$ref": "#/components/schemas/CloudProviderServiceList"
+          }
+        },
+        "required": [
+          "input_settings",
+          "cloud_services"
+        ]
+      },
       "CloudProviderSettingsList": {
         "type": "object",
         "description": "Settings of the cloud provider",
@@ -17193,6 +17229,16 @@
             "example": "Cloud Provider",
             "type": "string"
           },
+          "provider_auth_type": {
+            "description": "The authentication type of the credential",
+            "example": "api_credentials",
+            "type": "string"
+          },
+          "provider_auth_type_human_readable": {
+            "description": "The human readable version of the authentication type",
+            "example": "API Credentials",
+            "type": "string"
+          },
           "active": {
             "description": "If this credential is active or not",
             "example": true,
@@ -17224,6 +17270,8 @@
           "provider",
           "provider_type",
           "provider_type_human_readable",
+          "provider_auth_type",
+          "provider_auth_type_human_readable",
           "active",
           "created_by_user",
           "created_at",
@@ -17504,6 +17552,16 @@
             "example": "Cloud Provider",
             "type": "string"
           },
+          "provider_auth_type": {
+            "description": "The authentication type of the credential",
+            "example": "api_credentials",
+            "type": "string"
+          },
+          "provider_auth_type_human_readable": {
+            "description": "The human readable version of the authentication type",
+            "example": "API Credentials",
+            "type": "string"
+          },
           "active": {
             "description": "If this credential is active or not",
             "example": true,
@@ -17532,6 +17590,8 @@
           "provider",
           "provider_type",
           "provider_type_human_readable",
+          "provider_auth_type",
+          "provider_auth_type_human_readable",
           "active",
           "created_by_user"
         ],
@@ -17561,14 +17621,27 @@
       "CredentialSourceProvider": {
         "type": "object",
         "properties": {
+          "auth_type": {
+            "$ref": "#/components/schemas/ProviderAuthType"
+          },
           "callback_code": {
             "type": "string",
             "description": "The temporary code forwarded by the OAuth provider as a parameter to our callback URL",
             "example": "a606964974b5fb082971"
+          },
+          "installation_id": {
+            "type": "string",
+            "description": "The installation ID of the source provider integration installation.",
+            "example": "123456"
+          },
+          "setup_action": {
+            "type": "string",
+            "description": "The action to be performed with the provided callback code.",
+            "example": "update"
           }
         },
         "required": [
-          "callback_code"
+          "auth_type"
         ]
       },
       "CredentialUpdate": {
@@ -21586,6 +21659,69 @@
           "name"
         ]
       },
+      "ProviderAuthType": {
+        "type": "string",
+        "description": "Authentication method for provider credentials.",
+        "enum": [
+          "oauth",
+          "application",
+          "api_credentials"
+        ],
+        "example": "oauth"
+      },
+      "ProviderCallbackConfig": {
+        "type": "object",
+        "description": "Configuration for a single callback parameter",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The credential field name that this parameter maps to",
+            "example": "callback_code"
+          },
+          "query_string": {
+            "type": "string",
+            "description": "The query parameter name in the callback URL",
+            "example": "code"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether this parameter is required in the callback",
+            "example": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The expected data type of the parameter value",
+            "example": "string"
+          }
+        },
+        "required": [
+          "field",
+          "query_string",
+          "required",
+          "type"
+        ]
+      },
+      "ProviderCallbackConfigList": {
+        "type": "array",
+        "description": "Configuration mapping for extracting authentication parameters from OAuth/provider callback URLs.",
+        "items": {
+          "$ref": "#/components/schemas/ProviderCallbackConfig"
+        },
+        "example": [
+          {
+            "field": "callback_code",
+            "query_string": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "field": "installation_id",
+            "query_string": "installation_id",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
       "ProviderCode": {
         "type": "string",
         "description": "The code of the service provider.",
@@ -21641,6 +21777,11 @@
                   "type": "string",
                   "example": ""
                 }
+              },
+              "hidden": {
+                "type": "boolean",
+                "description": "If true, this field should not be shown to the user (system-provided, like OAuth callback_code)",
+                "example": false
               }
             }
           },
@@ -21703,23 +21844,14 @@
         ]
       },
       "ProviderSettings": {
-        "type": "object",
         "description": "Settings related to a supported provider",
-        "properties": {
-          "connect_url": {
-            "type": "string",
-            "description": "The URL used to connect Devopness to a credential provider of type `source_provider`",
-            "example": "https://gitlab.com/oauth/authorize?client_id=%3CSET-DEVOPNESS-GITLAB-CLIENT-ID-HERE%3E&redirect_uri=http%3A%2F%2Flocalhost%3A9000%2Fprofile%2Fsource-providers%2Fadd%3Fprovider%3Dgitlab&scope=read_user+email+api&response_type=code"
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CloudProviderSettings"
           },
-          "input_settings": {
-            "$ref": "#/components/schemas/ProviderInputSettingsList"
-          },
-          "cloud_services": {
-            "$ref": "#/components/schemas/CloudProviderServiceList"
+          {
+            "$ref": "#/components/schemas/SourceProviderSettings"
           }
-        },
-        "required": [
-          "input_settings"
         ]
       },
       "ProviderType": {
@@ -23570,6 +23702,47 @@
           "connect_url"
         ]
       },
+      "SourceProviderAuthMethodSettings": {
+        "type": "object",
+        "description": "Authentication method settings for source providers",
+        "properties": {
+          "auth_type": {
+            "type": "string",
+            "description": "The authentication type identifier",
+            "example": "oauth"
+          },
+          "auth_type_human_readable": {
+            "type": "string",
+            "description": "Human-readable name for the authentication method",
+            "example": "GitHub OAuth"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Hint text explaining the authentication flow",
+            "example": "Authorize Devopness to access your repositories using OAuth."
+          },
+          "recommended": {
+            "type": "boolean",
+            "description": "Whether this authentication method is recommended for this provider",
+            "example": true
+          },
+          "connect_url": {
+            "type": "string",
+            "description": "The URL to redirect the user for authentication. For OAuth methods, this is the authorization URL. For application installation methods (e.g., GitHub App), this is the installation URL.",
+            "example": "https://github.com/login/oauth/authorize?client_id=xxx&redirect_uri=https://app.devopness.com/callback&scope=repo,read:org"
+          },
+          "input_settings": {
+            "$ref": "#/components/schemas/ProviderInputSettingsList"
+          },
+          "provider_config": {
+            "$ref": "#/components/schemas/ProviderCallbackConfigList"
+          }
+        },
+        "required": [
+          "auth_type",
+          "input_settings"
+        ]
+      },
       "SourceProviderDisplayableName": {
         "type": "string",
         "description": "A formatted version of the `provider` field value, aligned with the provider's name branding",
@@ -23589,6 +23762,22 @@
           "gitlab"
         ],
         "example": "bitbucket"
+      },
+      "SourceProviderSettings": {
+        "type": "object",
+        "description": "Settings for source providers",
+        "properties": {
+          "auth_methods": {
+            "type": "array",
+            "description": "Available authentication methods for this source provider",
+            "items": {
+              "$ref": "#/components/schemas/SourceProviderAuthMethodSettings"
+            }
+          }
+        },
+        "required": [
+          "auth_methods"
+        ]
       },
       "SourceType": {
         "type": "string",
