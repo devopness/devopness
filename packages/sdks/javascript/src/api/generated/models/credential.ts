@@ -54,6 +54,18 @@ export interface Credential {
      */
     provider_type_human_readable: string;
     /**
+     * The authentication type of the credential
+     * @type {string}
+     * @memberof Credential
+     */
+    provider_auth_type: string;
+    /**
+     * The human readable version of the authentication type
+     * @type {string}
+     * @memberof Credential
+     */
+    provider_auth_type_human_readable: string;
+    /**
      * If this credential is active or not
      * @type {boolean}
      * @memberof Credential

@@ -88,8 +88,9 @@ export class CredentialsApiService extends ApiBaseService {
      * @summary Return provider settings
      * @param {number} environmentId The ID of the environment.
      * @param {string} providerCode The code of the provider.
+     * @param {string} [state] Optional base64-encoded JSON state to be included in connect URLs.
      */
-    public async getEnvironmentCredentialSettings(environmentId: number, providerCode: string): Promise<ApiResponse<CredentialSetting>> {
+    public async getEnvironmentCredentialSettings(environmentId: number, providerCode: string, state?: string): Promise<ApiResponse<CredentialSetting>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'getEnvironmentCredentialSettings');
         }
@@ -98,6 +99,14 @@ export class CredentialsApiService extends ApiBaseService {
         }
 
         let queryString = '';
+        const queryParams = { state: state, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
 
         const requestUrl = '/environments/{environment_id}/credentials/{provider_code}/settings' + (queryString? `?${queryString}` : '');
 
@@ -110,8 +119,9 @@ export class CredentialsApiService extends ApiBaseService {
      * @summary Return provider settings
      * @param {string} organizationId The ID or slug of the organization.
      * @param {string} providerCode The code of the provider.
+     * @param {string} [state] Optional base64-encoded JSON state to be included in connect URLs.
      */
-    public async getOrganizationCredentialSettings(organizationId: string, providerCode: string): Promise<ApiResponse<CredentialSetting>> {
+    public async getOrganizationCredentialSettings(organizationId: string, providerCode: string, state?: string): Promise<ApiResponse<CredentialSetting>> {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'getOrganizationCredentialSettings');
         }
@@ -120,6 +130,14 @@ export class CredentialsApiService extends ApiBaseService {
         }
 
         let queryString = '';
+        const queryParams = { state: state, } as { [key: string]: any };
+        for (const key in queryParams) {
+            if (queryParams[key] === undefined || queryParams[key] === null) {
+                continue;
+            }
+
+            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
+        }
 
         const requestUrl = '/organizations/{organization_id}/credentials/{provider_code}/settings' + (queryString? `?${queryString}` : '');
 

@@ -49,5 +49,11 @@ export interface ProviderInputSettingsValidation {
      * @memberof ProviderInputSettingsValidation
      */
     allowed_values?: Array<string>;
+    /**
+     * If true, this field should not be shown to the user (system-provided, like OAuth callback_code)
+     * @type {boolean}
+     * @memberof ProviderInputSettingsValidation
+     */
+    hidden?: boolean;
 }
 
