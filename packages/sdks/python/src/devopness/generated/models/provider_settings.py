@@ -6,51 +6,23 @@ Note:
     https://openapi-generator.tech
 """
 
-from typing import (
-    Required,
-    TypedDict,
-    Union,
+from typing import Union
+
+from .cloud_provider_settings import CloudProviderSettings, CloudProviderSettingsPlain
+from .source_provider_settings import (
+    SourceProviderSettings,
+    SourceProviderSettingsPlain,
 )
 
-from pydantic import Field, StrictStr
+#: OneOf Type
+#: Settings related to a supported provider
+ProviderSettings = Union[
+    CloudProviderSettings,
+    SourceProviderSettings,
+]
 
-from .. import DevopnessBaseModel
-from .cloud_provider_service import CloudProviderService, CloudProviderServicePlain
-from .provider_input_settings import ProviderInputSettings, ProviderInputSettingsPlain
-
-
-class ProviderSettings(DevopnessBaseModel):
-    """
-    ProviderSettings
-
-    Attributes:
-        connect_url (str, optional): The URL used to connect Devopness to a credential provider of type &#x60;source_provider&#x60;
-        input_settings (List[ProviderInputSettings]): The list of input settings for credentials of specific provider
-        cloud_services (List[CloudProviderService], optional):
-    """
-
-    connect_url: StrictStr | None = Field(
-        default=None,
-        description="The URL used to connect Devopness to a credential provider of type `source_provider`",
-    )
-    input_settings: list[ProviderInputSettings] = Field(
-        description="The list of input settings for credentials of specific provider"
-    )
-    cloud_services: list[CloudProviderService] | None = None
-
-
-class ProviderSettingsPlain(TypedDict, total=False):
-    """
-    Plain version of ProviderSettings.
-    """
-
-    connect_url: str | None
-    input_settings: Required[
-        list[
-            Union[
-                ProviderInputSettings,
-                ProviderInputSettingsPlain,
-            ]
-        ]
-    ]
-    cloud_services: list[Union[CloudProviderService, CloudProviderServicePlain]] | None
+#: The plain version of ProviderSettings
+ProviderSettingsPlain = Union[
+    CloudProviderSettingsPlain,
+    SourceProviderSettingsPlain,
+]

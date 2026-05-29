@@ -97,6 +97,7 @@ class CredentialsApiService(DevopnessBaseService):
         self,
         environment_id: int,
         provider_code: str,
+        state: str | None = None,
     ) -> DevopnessResponse[CredentialSetting]:
         """
         Return provider settings
@@ -106,8 +107,15 @@ class CredentialsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
+        query_string = parse_query_string(
+            {
+                "state": state,
+            }
+        )
+
         endpoint_parts = [
             f"/environments/{environment_id}/credentials/{provider_code}/settings",
+            f"?{query_string}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -119,6 +127,7 @@ class CredentialsApiService(DevopnessBaseService):
         self,
         organization_id: str,
         provider_code: str,
+        state: str | None = None,
     ) -> DevopnessResponse[CredentialSetting]:
         """
         Return provider settings
@@ -128,8 +137,15 @@ class CredentialsApiService(DevopnessBaseService):
             DevopnessNetworkError: If a network error occurs.
         """
 
+        query_string = parse_query_string(
+            {
+                "state": state,
+            }
+        )
+
         endpoint_parts = [
             f"/organizations/{organization_id}/credentials/{provider_code}/settings",
+            f"?{query_string}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -374,6 +390,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         environment_id: int,
         provider_code: str,
+        state: str | None = None,
     ) -> DevopnessResponse[CredentialSetting]:
         """
         Return provider settings
@@ -383,8 +400,15 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
+        query_string = parse_query_string(
+            {
+                "state": state,
+            }
+        )
+
         endpoint_parts = [
             f"/environments/{environment_id}/credentials/{provider_code}/settings",
+            f"?{query_string}",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -396,6 +420,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         organization_id: str,
         provider_code: str,
+        state: str | None = None,
     ) -> DevopnessResponse[CredentialSetting]:
         """
         Return provider settings
@@ -405,8 +430,15 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
             DevopnessNetworkError: If a network error occurs.
         """
 
+        query_string = parse_query_string(
+            {
+                "state": state,
+            }
+        )
+
         endpoint_parts = [
             f"/organizations/{organization_id}/credentials/{provider_code}/settings",
+            f"?{query_string}",
         ]
 
         endpoint: str = "".join(endpoint_parts)

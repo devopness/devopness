@@ -12,17 +12,19 @@
  */
 
 
-import { CloudProviderService } from './cloud-provider-service';
-import { CloudProviderSettings } from './cloud-provider-settings';
-import { ProviderInputSettings } from './provider-input-settings';
 import { SourceProviderAuthMethodSettings } from './source-provider-auth-method-settings';
-import { SourceProviderSettings } from './source-provider-settings';
 
 /**
- * @type ProviderSettings
- * Settings related to a supported provider
+ * Settings for source providers
  * @export
+ * @interface SourceProviderSettings
  */
-export type ProviderSettings = CloudProviderSettings | SourceProviderSettings;
-
+export interface SourceProviderSettings {
+    /**
+     * Available authentication methods for this source provider
+     * @type {Array<SourceProviderAuthMethodSettings>}
+     * @memberof SourceProviderSettings
+     */
+    auth_methods: Array<SourceProviderAuthMethodSettings>;
+}
 

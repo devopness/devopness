@@ -10,7 +10,7 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import StrictBool, StrictInt, StrictStr
+from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -25,6 +25,7 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
         min (int, optional):
         max (int, optional):
         allowed_values (List[str], optional):
+        hidden (bool, optional): If true, this field should not be shown to the user (system-provided, like OAuth callback_code)
     """
 
     required: StrictBool | None = None
@@ -32,6 +33,10 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
     min: StrictInt | None = None
     max: StrictInt | None = None
     allowed_values: list[StrictStr] | None = None
+    hidden: StrictBool | None = Field(
+        default=None,
+        description="If true, this field should not be shown to the user (system-provided, like OAuth callback_code)",
+    )
 
 
 class ProviderInputSettingsValidationPlain(TypedDict, total=False):
@@ -44,3 +49,4 @@ class ProviderInputSettingsValidationPlain(TypedDict, total=False):
     min: int | None
     max: int | None
     allowed_values: list[str] | None
+    hidden: bool | None

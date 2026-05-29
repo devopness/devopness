@@ -12,6 +12,7 @@
  */
 
 
+import { ProviderAuthType } from './provider-auth-type';
 
 /**
  * 
@@ -20,10 +21,28 @@
  */
 export interface CredentialSourceProvider {
     /**
+     * 
+     * @type {ProviderAuthType}
+     * @memberof CredentialSourceProvider
+     */
+    auth_type: ProviderAuthType;
+    /**
      * The temporary code forwarded by the OAuth provider as a parameter to our callback URL
      * @type {string}
      * @memberof CredentialSourceProvider
      */
-    callback_code: string;
+    callback_code?: string;
+    /**
+     * The installation ID of the source provider integration installation.
+     * @type {string}
+     * @memberof CredentialSourceProvider
+     */
+    installation_id?: string;
+    /**
+     * The action to be performed with the provided callback code.
+     * @type {string}
+     * @memberof CredentialSourceProvider
+     */
+    setup_action?: string;
 }
 
