@@ -145,6 +145,8 @@ CloudProviderServiceResourceTypeList:
   $ref: ./auto-generated/models/cloud-provider-service-resource-type-list.yaml
 CloudProviderServiceResourceTypeScope:
   $ref: ./auto-generated/models/cloud-provider-service-resource-type-scope.yaml
+CloudProviderSettings:
+  $ref: ./auto-generated/models/cloud-provider-settings.yaml
 CloudProviderSettingsList:
   $ref: ./auto-generated/models/cloud-provider-settings-list.yaml
 CloudResourceType:
@@ -467,6 +469,12 @@ ProjectRelation:
   $ref: ./auto-generated/models/project-relation.yaml
 ProjectUpdate:
   $ref: ./auto-generated/models/project-update.yaml
+ProviderAuthType:
+  $ref: ./auto-generated/models/provider-auth-type.yaml
+ProviderCallbackConfig:
+  $ref: ./auto-generated/models/provider-callback-config.yaml
+ProviderCallbackConfigList:
+  $ref: ./auto-generated/models/provider-callback-config-list.yaml
 ProviderCode:
   $ref: ./auto-generated/models/provider-code.yaml
 ProviderInputSettings:
@@ -623,10 +631,14 @@ SocialAccountRelation:
   $ref: ./auto-generated/models/social-account-relation.yaml
 SocialAccountStatus:
   $ref: ./auto-generated/models/social-account-status.yaml
+SourceProviderAuthMethodSettings:
+  $ref: ./auto-generated/models/source-provider-auth-method-settings.yaml
 SourceProviderDisplayableName:
   $ref: ./auto-generated/models/source-provider-displayable-name.yaml
 SourceProviderName:
   $ref: ./auto-generated/models/source-provider-name.yaml
+SourceProviderSettings:
+  $ref: ./auto-generated/models/source-provider-settings.yaml
 SourceType:
   $ref: ./auto-generated/models/source-type.yaml
 SshKey:

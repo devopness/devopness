@@ -31,6 +31,10 @@ properties:
         items:
           type: string
           example: ''
+      hidden:
+        type: boolean
+        description: 'If true, this field should not be shown to the user (system-provided, like OAuth callback_code)'
+        example: false
   default_value:
     type: string
     description: 'The default value of the input field'
