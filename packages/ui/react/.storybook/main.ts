@@ -35,6 +35,20 @@ const config: StorybookConfig = {
   typescript: {
     check: false,
     reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => {
+        if (prop.parent) {
+          return !prop.parent.fileName.includes('node_modules')
+        }
+        return true
+      },
+      // Only process component files in src/ - config files (.storybook/*) don't export
+      // React components and don't need documentation generation
+      include: [
+        '**/src/**/*',
+      ],
+    },
   },
 
   docs: {},
