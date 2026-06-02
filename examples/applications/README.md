@@ -21,7 +21,7 @@ Feel free to create new issues, report bugs, or request new example applications
 
 Improvements and contributions are highly encouraged! 🙏👊
 
-See the [contributing guide](../../../CONTRIBUTING.md) for details on how to participate.
+See the [contributing guide](../../CONTRIBUTING.md) for details on how to participate.
 
 All communication and contributions to Devopness projects are subject to the [Devopness Code of Conduct](../../CODE_OF_CONDUCT.md).
 
