@@ -143,7 +143,6 @@ const Button = ({
   ...props
 }: ButtonProps) => (
   <BaseButton
-    aria-label={props['aria-label'] ?? (typeof children === 'string' ? children : undefined)}
     data-testid="button"
     $backgroundColor={backgroundColor}
     $borderColor={borderColor}
