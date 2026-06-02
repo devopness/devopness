@@ -14,12 +14,19 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   backgroundColor?: string
   /** Customize border color */
   borderColor?: string
-  /** Predefined style variations for the button */
+  /**
+    * Predefined style variations for the button.
+    *
+    * - `Default`: Filled button with primary brand color (purple background, white text)
+    * - `borderless`: No background or border; text-only button for low-emphasis actions
+    * - `outlinedSecondary`: Outlined button with brand color border and text, white background
+    * - `outlinedAuxiliary`: Outlined button with neutral gray border, used for secondary actions
+    */
   buttonType?:
-    | 'borderless'
-    | 'outlinedSecondary'
-    | 'outlinedAuxiliary'
-    | 'Default'
+  | 'borderless'
+  | 'outlinedSecondary'
+  | 'outlinedAuxiliary'
+  | 'Default'
   /** `Warning`: This property overrides the style defined by the `buttonType` property!
    *
    * Customize elements color
@@ -59,8 +66,10 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
    */
   revertOrientation?: boolean
   /**
-   * By default the button component is 34px high, the "typeSize" property contains
-   * the "medium" variation that changes to 27px
+   * Defines the height of the button:
+   * - `default`: 34px high with 2px border
+   * - `medium`: 27px high with 1px border
+   * - `auto`: height adapts to content, useful inside flex or grid containers
    */
   typeSize?: 'default' | 'medium' | 'auto'
 }
@@ -134,6 +143,7 @@ const Button = ({
   ...props
 }: ButtonProps) => (
   <BaseButton
+    aria-label={props['aria-label'] ?? (typeof children === 'string' ? children : undefined)}
     data-testid="button"
     $backgroundColor={backgroundColor}
     $borderColor={borderColor}
