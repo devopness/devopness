@@ -15,18 +15,18 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Customize border color */
   borderColor?: string
   /**
-    * Predefined style variations for the button.
-    *
-    * - `Default`: Filled button with primary brand color (purple background, white text)
-    * - `borderless`: No background or border; text-only button for low-emphasis actions
-    * - `outlinedSecondary`: Outlined button with brand color border and text, white background
-    * - `outlinedAuxiliary`: Outlined button with neutral gray border, used for secondary actions
-    */
+   * Predefined style variations for the button.
+   *
+   * - `Default`: Filled button with primary brand color (purple background, white text)
+   * - `borderless`: No background or border; text-only button for low-emphasis actions
+   * - `outlinedSecondary`: Outlined button with brand color border and text, white background
+   * - `outlinedAuxiliary`: Outlined button with neutral gray border, used for secondary actions
+   */
   buttonType?:
-  | 'borderless'
-  | 'outlinedSecondary'
-  | 'outlinedAuxiliary'
-  | 'Default'
+    | 'borderless'
+    | 'outlinedSecondary'
+    | 'outlinedAuxiliary'
+    | 'Default'
   /** `Warning`: This property overrides the style defined by the `buttonType` property!
    *
    * Customize elements color
