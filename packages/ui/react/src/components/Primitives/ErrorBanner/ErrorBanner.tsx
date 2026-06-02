@@ -13,6 +13,7 @@
  */
 import { getColor } from '../../../colors'
 import { getFont } from '../../../fonts'
+import { Link } from '../Link'
 
 type ErrorBannerProps = {
   title: string
@@ -29,6 +30,8 @@ const ErrorBanner = ({
 }: ErrorBannerProps) => {
   return (
     <div
+      role="alert"
+      aria-live="assertive"
       style={{
         display: 'flex',
         justifyContent: 'center',
@@ -73,15 +76,17 @@ const ErrorBanner = ({
           </span>
         )}
         {action && (
-          <a
-            href={action.href}
+          <Link
+            to={action.href}
+            target="_self"
+            hideExternalUrlIcon
             style={{
               color: getColor('purple.800'),
               fontWeight: 500,
             }}
           >
             {action.label}
-          </a>
+          </Link>
         )}
       </div>
     </div>
