@@ -1,5 +1,25 @@
 # @devopness/ui-react
 
+## 2.188.0
+
+### Minor Changes
+
+- [#3115](https://github.com/devopness/devopness/pull/3115) [`864ca5b`](https://github.com/devopness/devopness/commit/864ca5b5133a7d4cc453c48d584c3655fbd16858) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Add ErrorBanner primitive for route-level error states
+
+  New `ErrorBanner` component for displaying generic, content-driven error
+  states in routes (e.g., OAuth failures, missing parameters, API errors).
+
+  Features:
+  - Title and description for error context
+  - Optional `errorDetail` field for technical information
+  - Optional `action` prop with label and href for user recovery paths
+  - Uses shared `Link` primitive for consistent navigation behavior
+  - Includes accessibility semantics (`role="alert"`, `aria-live="assertive"`)
+  - Full test coverage and Storybook stories
+
+  Typical use cases: OAuth authorization errors, API callback failures,
+  missing or invalid request parameters.
+
 ## 2.187.1
 
 ### Patch Changes
