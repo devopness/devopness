@@ -22,6 +22,8 @@ class VariableService(
         environment_id: int,
         page: int | None = None,
         per_page: int | None = None,
+        include_virtual_variables: bool | None = None,
+        variable_target: str | None = None,
     ) -> DevopnessResponse[list[VariableRelation]]:
         """Return a list of all variables belonging to an environment."""
         return self.list_variables_by_resource_type(
@@ -29,6 +31,8 @@ class VariableService(
             "environment",
             page=page,
             per_page=per_page,
+            include_virtual_variables=include_virtual_variables,
+            variable_target=variable_target,
         )
 
 
@@ -42,6 +46,8 @@ class VariableServiceAsync(
         environment_id: int,
         page: int | None = None,
         per_page: int | None = None,
+        include_virtual_variables: bool | None = None,
+        variable_target: str | None = None,
     ) -> DevopnessResponse[list[VariableRelation]]:
         """Return a list of all variables belonging to an environment."""
         return await self.list_variables_by_resource_type(
@@ -49,4 +55,6 @@ class VariableServiceAsync(
             "environment",
             page=page,
             per_page=per_page,
+            include_virtual_variables=include_virtual_variables,
+            variable_target=variable_target,
         )
