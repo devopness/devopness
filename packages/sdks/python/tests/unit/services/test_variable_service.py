@@ -62,7 +62,9 @@ class TestVariableServiceListEnvironmentVariables(unittest.TestCase):
             )
 
 
-class TestVariableServiceAsyncListEnvironmentVariables(unittest.IsolatedAsyncioTestCase):
+class TestVariableServiceAsyncListEnvironmentVariables(
+    unittest.IsolatedAsyncioTestCase
+):
     def setUp(self) -> None:
         config = DevopnessClientConfig(base_url="https://test.local")
         self.client = DevopnessClientAsync(config)
@@ -89,7 +91,9 @@ class TestVariableServiceAsyncListEnvironmentVariables(unittest.IsolatedAsyncioT
             "list_variables_by_resource_type",
             new_callable=AsyncMock,
         ) as mock:
-            await self.client.variables.list_environment_variables(1097, page=2, per_page=10)
+            await self.client.variables.list_environment_variables(
+                1097, page=2, per_page=10
+            )
             mock.assert_called_once_with(
                 1097,
                 "environment",
