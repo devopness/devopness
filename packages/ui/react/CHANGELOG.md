@@ -1,5 +1,20 @@
 # @devopness/ui-react
 
+## 2.189.0
+
+### Minor Changes
+
+- [#3122](https://github.com/devopness/devopness/pull/3122) [`96fdbc8`](https://github.com/devopness/devopness/commit/96fdbc8062151351fe61fe8ba2abea4c48cc0014) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Add PermissionCheckboxChip primitive for toggling permissions in forms
+
+  New `PermissionCheckboxChip` component — a selectable chip designed for
+  toggling permissions in forms (e.g. role permissions). It exposes the
+  `checkbox` ARIA role with full keyboard support (Space and Enter) and
+  supports states for unchecked, checked, error, disabled, and an optional
+  tooltip via the `hint` prop.
+
+  Migrated from `devopness-web-app`'s local component so the same UI can be
+  reused across Devopness products.
+
 ## 2.188.0
 
 ### Minor Changes
