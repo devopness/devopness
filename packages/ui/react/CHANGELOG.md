@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#3122](https://github.com/devopness/devopness/pull/3122) [`96fdbc8`](https://github.com/devopness/devopness/commit/96fdbc8062151351fe61fe8ba2abea4c48cc0014) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Add PermissionCheckboxChip primitive for toggling permissions in forms
+- [#3122](https://github.com/devopness/devopness/pull/3122) [`96fdbc8`](https://github.com/devopness/devopness/commit/96fdbc8062151351fe61fe8ba2abea4c48cc0014) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Add PermissionCheckboxChip primitive for toggling permissions in  forms
 
   New `PermissionCheckboxChip` component — a selectable chip designed for
   toggling permissions in forms (e.g. role permissions). It exposes the
