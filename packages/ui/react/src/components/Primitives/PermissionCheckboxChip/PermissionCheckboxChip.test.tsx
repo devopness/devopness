@@ -64,4 +64,39 @@ describe('PermissionCheckboxChip', () => {
     const chip = screen.getByRole('checkbox')
     expect(chip).toBeInTheDocument()
   })
+
+  it('toggles when Space is pressed', () => {
+    render(<PermissionCheckboxChip {...defaultProps} />)
+    const chip = screen.getByRole('checkbox')
+    fireEvent.keyDown(chip, { key: ' ' })
+    expect(defaultProps.onChange).toHaveBeenCalledTimes(1)
+    expect(defaultProps.onChange).toHaveBeenCalledWith(true)
+  })
+
+  it('does not toggle on Space when disabled', () => {
+    render(
+      <PermissionCheckboxChip
+        {...defaultProps}
+        disabled={true}
+      />
+    )
+    const chip = screen.getByRole('checkbox')
+    fireEvent.keyDown(chip, { key: ' ' })
+    expect(defaultProps.onChange).not.toHaveBeenCalled()
+  })
+
+  it('exposes tabIndex 0 when interactive', () => {
+    render(<PermissionCheckboxChip {...defaultProps} />)
+    expect(screen.getByRole('checkbox')).toHaveAttribute('tabindex', '0')
+  })
+
+  it('exposes tabIndex -1 when disabled', () => {
+    render(
+      <PermissionCheckboxChip
+        {...defaultProps}
+        disabled={true}
+      />
+    )
+    expect(screen.getByRole('checkbox')).toHaveAttribute('tabindex', '-1')
+  })
 })

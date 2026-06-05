@@ -1,3 +1,5 @@
+import type React from 'react'
+
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import Chip from '@mui/material/Chip'
@@ -59,13 +61,27 @@ export const PermissionCheckboxChip = ({
     iconColor = getColor('red.500')
   }
 
+  // The Chip exposes itself as role="checkbox", so it must support keyboard
+  // toggling. Space is the WAI-ARIA standard for checkbox; Enter already
+  // triggers an implicit click on MUI Chip, so we only need to handle Space
+  // here to avoid double-firing onChange.
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (disabled) return
+    if (event.key === ' ') {
+      event.preventDefault()
+      onChange(!isChecked)
+    }
+  }
+
   const chipElement = (
     <Chip
       role="checkbox"
       aria-checked={isChecked}
+      tabIndex={disabled ? -1 : 0}
       label={label}
       size="small"
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       disabled={disabled}
       icon={
         isChecked ? (
