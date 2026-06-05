@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 
 import FormControl from '@mui/material/FormControl'
 import RadioMUI from '@mui/material/Radio'
@@ -8,6 +8,12 @@ import { ErrorMessage, Group, Label, RadioItem } from './Radio.styled'
 type RootProps = {
   /** Group label rendered above the radios */
   label: string
+  /**
+   * Form field name forwarded to the underlying `RadioGroup`. Required for
+   * native FormData submission and for form libraries that wire `field.name`
+   * to the rendered radios.
+   */
+  name?: string
   /** Currently selected value (controlled) */
   value?: string
   /** Called with the new value whenever the selection changes */
@@ -38,35 +44,46 @@ type RootProps = {
  */
 const Root = ({
   label,
+  name,
   value,
   onChange,
   error,
   direction = 'row',
   children,
 }: RootProps) => {
+  const reactId = useId()
+  const labelId = `${reactId}-label`
+  const errorId = `${reactId}-error`
+  const hasError = Boolean(error)
+
   return (
     <FormControl
       component="fieldset"
-      error={Boolean(error)}
+      error={hasError}
     >
-      <Label>{label}</Label>
+      <Label id={labelId}>{label}</Label>
       <Group
+        name={name}
         value={value ?? ''}
         onChange={(_event, next) => onChange?.(next)}
-        direction={direction}
+        $direction={direction}
+        aria-labelledby={labelId}
+        aria-invalid={hasError}
+        aria-errormessage={hasError ? errorId : undefined}
+        aria-describedby={hasError ? errorId : undefined}
       >
         {React.Children.map(children, (child) =>
           React.isValidElement(child)
             ? React.cloneElement(
                 child as React.ReactElement<{ error?: boolean }>,
                 {
-                  error: Boolean(error),
+                  error: hasError,
                 }
               )
             : child
         )}
       </Group>
-      {error ? <ErrorMessage>{error}</ErrorMessage> : null}
+      {hasError ? <ErrorMessage id={errorId}>{error}</ErrorMessage> : null}
     </FormControl>
   )
 }

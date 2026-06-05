@@ -106,4 +106,60 @@ describe('Radio', () => {
     )
     expect(screen.queryByText('Required')).not.toBeInTheDocument()
   })
+
+  it('exposes the group as a radiogroup labeled by the visible label', () => {
+    render(
+      <Radio.Root
+        label="Pick one"
+        value=""
+        onChange={vi.fn()}
+      >
+        <Radio.Item
+          value="a"
+          label="Option A"
+        />
+      </Radio.Root>
+    )
+    expect(
+      screen.getByRole('radiogroup', { name: /Pick one/ })
+    ).toBeInTheDocument()
+  })
+
+  it('forwards the name prop to the underlying RadioGroup', () => {
+    render(
+      <Radio.Root
+        label="Pick one"
+        name="myField"
+        value=""
+        onChange={vi.fn()}
+      >
+        <Radio.Item
+          value="a"
+          label="Option A"
+        />
+      </Radio.Root>
+    )
+    expect(screen.getByLabelText('Option A')).toHaveAttribute('name', 'myField')
+  })
+
+  it('wires aria-invalid and aria-describedby when error is set', () => {
+    render(
+      <Radio.Root
+        label="Pick one"
+        value=""
+        onChange={vi.fn()}
+        error="Required"
+      >
+        <Radio.Item
+          value="a"
+          label="Option A"
+        />
+      </Radio.Root>
+    )
+    const group = screen.getByRole('radiogroup', { name: /Pick one/ })
+    expect(group).toHaveAttribute('aria-invalid', 'true')
+    const describedBy = group.getAttribute('aria-describedby')
+    expect(describedBy).toBeTruthy()
+    expect(screen.getByText('Required')).toHaveAttribute('id', describedBy)
+  })
 })

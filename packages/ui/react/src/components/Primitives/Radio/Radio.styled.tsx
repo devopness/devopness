@@ -27,11 +27,13 @@ const Label = styled(FormLabel)`
 `
 
 type GroupProps = {
-  direction: CSSProperties['flexDirection']
+  $direction: CSSProperties['flexDirection']
 }
-const Group = styled(RadioGroup)`
+const Group = styled(RadioGroup, {
+  shouldForwardProp: (prop) => prop !== '$direction',
+})`
   display: flex;
-  flex-direction: ${(props: GroupProps) => props.direction};
+  flex-direction: ${(props: GroupProps) => props.$direction};
 `
 
 type RadioItemProps = {
