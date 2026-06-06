@@ -32,9 +32,9 @@ Now that your application has been deployed, it can be accessed over the interne
 
 ## Common issues
 
-- Deploy fails at `Get source from Git repository` but `~/$APP_NAME/releases/` shows release directories on disk: the clone succeeded; SSH into the server and inspect the release to identify the failing post-clone sub-step
-- Deploy keeps failing after retries with the same step marked Failed: confirm the source provider credential is active and that the server's deploy SSH key is listed in the repository's Deploy Keys
-- The "Configured by Devopness! 🚀" landing page is still served after a deploy: verify the application's `Root Directory` matches the application path inside the cloned repository
+- Deploy fails at `Get source from Git repository` but a new release directory for the current deploy appears in `~/$APP_NAME/releases/`: SSH into the server and inspect that release to identify the failing post-clone sub-step
+- Deploy keeps failing after retries with the same step marked Failed: confirm the source provider credential is active; for SSH credentials, verify the deploy key is authorized for the repository, and for token or app credentials, verify repository access and permissions
+- The "Configured by Devopness! 🚀" landing page is still served after a deploy: verify the virtual host is linked to the application, its document root points to the public files, and the virtual host changes were deployed
 
 ## Next
 
