@@ -29,3 +29,13 @@ Now that your application has been deployed, it can be accessed over the interne
 - For details on how to make an application public, follow the instructions in [/docs/virtual-hosts/add-virtual-host].
 
 :::
+
+## Common issues
+
+- Deploy fails at `Get source from Git repository` but `~/$APP_NAME/releases/` shows release directories on disk: the clone succeeded; SSH into the server and inspect the release to identify the failing post-clone sub-step
+- Deploy keeps failing after retries with the same step marked Failed: confirm the source provider credential is active and that the server's deploy SSH key is listed in the repository's Deploy Keys
+- The "Configured by Devopness! 🚀" landing page is still served after a deploy: verify the application's `Root Directory` matches the application path inside the cloned repository
+
+## Next
+
+- Configure how your app is reached over the network: [Add Virtual Host](/docs/virtual-hosts/add-virtual-host)
