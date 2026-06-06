@@ -10,6 +10,7 @@ Each subfolder provides a sample implementation using different technologies and
 
 | Subpath                                | Description                                      |
 |----------------------------------------|--------------------------------------------------|
+| [/laravel](laravel/)                   | Example application using Laravel                |
 | [/ruby-rails](ruby-rails/)             | Example application using Ruby on Rails         |
 
 ## 🙋 Issues
