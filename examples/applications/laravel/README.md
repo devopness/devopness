@@ -46,7 +46,14 @@ The Laravel framework serves all HTTP traffic through the `public/` directory; s
 
 ## 🚢 Deploying the Application
 
-Follow the guide [Deploy Application](https://www.devopness.com/docs/applications/deploy-application) to deploy your application.
+The shipped Laravel defaults use SQLite plus database-backed `cache`, `session`, and `queue` stores. Before the first deploy, create the database file and run migrations so those services have the tables they need:
+
+```sh
+php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
+php artisan migrate --force
+```
+
+Follow the guide [Deploy Application](https://www.devopness.com/docs/applications/deploy-application) to deploy your application. If you switch the `DB_CONNECTION` env variable to MySQL or PostgreSQL, point those services at a database your application can reach and run `php artisan migrate --force` against it instead.
 
 ## ✍️ Contributing
 
