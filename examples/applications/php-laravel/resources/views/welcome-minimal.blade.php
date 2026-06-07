@@ -40,18 +40,26 @@
 
         .logo:hover { transform: scale(1.15); }
         .logo-devopness { width: 16rem; padding-top: 1rem; }
-        .logo-laravel { width: 13rem; }
+        .logo-laravel { width: 6rem; }
 
-        .heart { font-size: 80px; color: #e63946; }
+        .heart { font-size: 80px; color: #e63946; animation: pulse 1.5s infinite; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); }
+            50% { transform: scale(1.25); }
+        }
 
         .description {
             max-width: 52rem;
-            margin-top: 2rem;
-            line-height: 1.6;
-            color: #e2e8f0;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.35rem;
         }
 
         .description p { margin-bottom: 1rem; }
+        .description p:last-child { margin-bottom: 0; }
 
         .meta {
             margin-top: 2rem;
@@ -67,7 +75,7 @@
     <div class="container">
         <img src="https://assets.devopness.com/images/logo-devopness-primary.svg" alt="Devopness Logo" class="logo logo-devopness">
         <div class="heart">❤️</div>
-        <img src="https://assets.devopness.com/images/icons_svgs/laravel.svg" alt="Laravel Logo" class="logo logo-laravel">
+        <img src="https://assets.devopness.com/images/icons_svgs/php-laravel.svg" alt="Laravel Logo" class="logo logo-laravel">
     </div>
 
     <div class="description">
