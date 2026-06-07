@@ -32,10 +32,24 @@ Now that your application has been deployed, it can be accessed over the interne
 
 ## Common issues
 
-- Deploy fails at `Get source from Git repository` but a new release directory for the current deploy appears in `~/$APP_NAME/releases/`: SSH into the server and inspect that release to identify the failing post-clone sub-step
-- Deploy keeps failing after retries with the same step marked Failed: confirm the source provider credential is active; for SSH credentials, verify the deploy key is authorized for the repository, and for token or app credentials, verify repository access and permissions
-- The "Configured by Devopness! 🚀" landing page is still served after a deploy: verify the virtual host is linked to the application, its document root points to the public files, and the virtual host changes were deployed
+### Deploy fails at `Get source from Git repository`
+
+1. Open the application configuration and double-check the "Root directory" setting; it must point to the folder that contains the application's manifest file (`composer.json` for Laravel, `package.json` for Node, `Gemfile` for Rails, etc.)
+2. Confirm the source provider credential used by the application is still active and has access to the repository
+3. Read the logs of the failed action step for details
+
+### Deploy keeps failing after retries with the same step marked Failed
+
+1. Read the logs of the failed action step
+2. Check if the errors require updating your application `build command` or `install dependencies` command
+3. Make sure the source provider credential used by the application is still active, and has valid permissions to read the application repository
+
+### App was deployed, but I still see "Configured by Devopness! 🚀" landing page
+
+1. Make sure the application has a virtual host linked to it, to make your application publicly accessible via IP address or your own subdomain
+2. Ensure the virtual host document root directory points to the application public files, e.g. `public` or `build` folders
+3. Deploy the virtual host or simply deploy the application again after your changes
 
 ## Next
 
-- Configure how your app is reached over the network: [Add Virtual Host](/docs/virtual-hosts/add-virtual-host)
+- Configure how your app is reached over the internet: [Add Virtual Host](/docs/virtual-hosts/add-virtual-host)
