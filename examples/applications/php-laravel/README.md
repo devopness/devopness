@@ -16,7 +16,7 @@ Using the configuration below, follow the guide [Add an Application](https://www
 | Stack           | `PHP`                            |
 | Engine Version  | `8.3`                            |
 | Framework       | `Laravel`                        |
-| Root Directory  | `/examples/applications/laravel` |
+| Root Directory  | `/examples/applications/php-laravel` |
 
 ## ⚙️ Configuring Environment Variables
 
