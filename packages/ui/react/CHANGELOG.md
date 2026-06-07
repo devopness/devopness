@@ -1,5 +1,21 @@
 # @devopness/ui-react
 
+## 2.190.0
+
+### Minor Changes
+
+- [#3127](https://github.com/devopness/devopness/pull/3127) [`057ad96`](https://github.com/devopness/devopness/commit/057ad96421a2aa12b98e7b256b65b0b2dd7714d4) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Add Radio primitive for grouped radio inputs
+
+  New `Radio` namespace export with `Radio.Root` and `Radio.Item`. `Root` is
+  a controlled component (`value` + `onChange`) that can be paired with any
+  form library (e.g. react-hook-form's `Controller`). Supports row/column
+  direction, an error message, and disabled items.
+
+  Migrated from `devopness-web-app`'s local component so the same UI can be
+  reused across Devopness products. The form-library integration was
+  removed from the primitive itself to keep it library-agnostic — callers
+  are now responsible for wiring it into their form state.
+
 ## 2.189.0
 
 ### Minor Changes
