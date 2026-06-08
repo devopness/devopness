@@ -80,8 +80,14 @@ const TimerCounter = ({
       return
     }
 
-    if (shouldStopTimer || !shouldStartTimer) {
+    if (shouldStopTimer) {
       tick()
+      return
+    }
+
+    if (!shouldStartTimer) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setTimerState('00:00')
       return
     }
 

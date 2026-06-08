@@ -48,6 +48,19 @@ describe('TimerCounter', () => {
     expect(screen.getByText('final-duration')).toBeInTheDocument()
   })
 
+  it('renders 00:00 when shouldStartTimer is false and shouldStopTimer is not set, even with a valid start date', () => {
+    render(
+      <TimerCounter
+        timerStartDate="2025-09-16T12:00:00Z"
+        shouldStartTimer={false}
+        formatDurationTime={mockFormatDurationTime}
+        formatDateTime={mockFormatDateTime}
+      />
+    )
+    expect(screen.getByText('00:00')).toBeInTheDocument()
+    expect(screen.queryByText('live-duration')).not.toBeInTheDocument()
+  })
+
   it('shows the final duration when shouldStartTimer is false and shouldStopTimer is true', () => {
     render(
       <TimerCounter
