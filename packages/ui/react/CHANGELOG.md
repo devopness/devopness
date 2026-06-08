@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#3137](https://github.com/devopness/devopness/pull/3137) [`681e807`](https://github.com/devopness/devopness/commit/681e8070b9892315edcab74cbbb969a57287f78c) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Fix `TimerCounter`  showing stale values and leaking intervals on prop transitions
+- [#3137](https://github.com/devopness/devopness/pull/3137) [`681e807`](https://github.com/devopness/devopness/commit/681e8070b9892315edcab74cbbb969a57287f78c) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Fix `TimerCounter` showing stale values and leaking intervals on prop transitions
 
   Two problems were fixed:
   1. The component was early-returning to `00:00` whenever `shouldStartTimer`
