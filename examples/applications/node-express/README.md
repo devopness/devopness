@@ -15,7 +15,7 @@ Using the configuration below, follow the guide [Add an Application](https://www
 | Repository     | `devopness/devopness`                  |
 | Stack          | `Node.js`                              |
 | Engine Version | `22`                                   |
-| Framework      | `Express`                              |
+| Framework      | `Node.js (No Framework)`               |
 | Root Directory | `/examples/applications/node-express`  |
 
 ## ⚙️ Configuring Environment Variables
