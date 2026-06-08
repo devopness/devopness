@@ -52,32 +52,48 @@ const TimerCounter = ({
   timerFinalDate,
   shouldResetTimer,
   shouldStopTimer,
-  shouldStartTimer,
+  shouldStartTimer = true,
   formatDurationTime,
   formatDateTime,
 }: TimerCounterProps) => {
-  const [
-    intervalEventCounter,
-    setIntervalEventCounter,
-  ] = useState<number>(0)
   const [
     timerState,
     setTimerState,
   ] = useState<string>('—')
 
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const formatDurationRef = useRef(formatDurationTime)
 
-  const handleStopTimer = useCallback((): void => {
-    if (intervalRef.current !== null) {
-      clearInterval(intervalRef.current)
-      intervalRef.current = null
+  useEffect(() => {
+    formatDurationRef.current = formatDurationTime
+  })
+
+  useEffect(() => {
+    const tick = () => {
+      setTimerState((prev) => {
+        const next = formatDurationRef.current(timerStartDate, timerFinalDate)
+        return next === prev ? prev : next
+      })
     }
-  }, [])
 
-  const handleTimerState = useCallback((): void => {
-    setTimerState(formatDurationTime(timerStartDate, timerFinalDate))
+    if (shouldResetTimer || timerStartDate == null) {
+      setTimerState('00:00')
+      return
+    }
+
+    if (shouldStopTimer || !shouldStartTimer) {
+      tick()
+      return
+    }
+
+    tick()
+    const intervalId = setInterval(tick, 1000)
+    return () => {
+      clearInterval(intervalId)
+    }
   }, [
-    formatDurationTime,
+    shouldStartTimer,
+    shouldStopTimer,
+    shouldResetTimer,
     timerStartDate,
     timerFinalDate,
   ])
@@ -95,43 +111,6 @@ const TimerCounter = ({
       formatDateTime,
     ]
   )
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    handleTimerState()
-  }, [
-    intervalEventCounter,
-    timerFinalDate,
-    shouldResetTimer,
-    shouldStopTimer,
-    handleTimerState,
-  ])
-
-  useEffect(() => {
-    /* eslint-disable react-hooks/set-state-in-effect */
-    if (!shouldStartTimer) setTimerState('00:00')
-    if (shouldResetTimer || timerStartDate == null) {
-      setTimerState('00:00')
-      handleStopTimer()
-    } else if (shouldStopTimer) {
-      handleStopTimer()
-      handleTimerState()
-    } else {
-      const intervalIndex = setInterval(() => {
-        handleTimerState()
-      }, 1000)
-      intervalRef.current = intervalIndex
-      setIntervalEventCounter((prev) => prev + 1)
-    }
-    /* eslint-enable react-hooks/set-state-in-effect */
-
-    return () => {
-      handleStopTimer()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    shouldStartTimer,
-  ])
 
   return (
     <Container>
