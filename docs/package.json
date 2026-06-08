@@ -41,7 +41,7 @@
     "globals": "^17.6.0",
     "postcss": "^8.5.15",
     "prettier": "^3.8.3",
-    "prettier-plugin-multiline-arrays": "^4.1.8",
+    "prettier-plugin-multiline-arrays": "^4.1.9",
     "prettier-plugin-sort-json": "^4.1.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.2.4",
