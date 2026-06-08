@@ -10,6 +10,7 @@ Each subfolder provides a sample implementation using different technologies and
 
 | Subpath                                | Description                                      |
 |----------------------------------------|--------------------------------------------------|
+| [/node-express](node-express/)         | Example application using Node.js (Express)     |
 | [/php-laravel](php-laravel/)           | Example application using Laravel (PHP)          |
 | [/ruby-rails](ruby-rails/)             | Example application using Ruby on Rails         |
 
