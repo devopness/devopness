@@ -17,12 +17,14 @@ body {
 }
 
 .container {
-  width: 52rem;
+  width: min(52rem, calc(100vw - 2rem));
   display: flex;
   align-items: center;
-  gap: 56px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(24px, 6vw, 56px);
   background: white;
-  padding: 40px 80px;
+  padding: clamp(24px, 6vw, 40px);
   border-radius: 20px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
@@ -61,7 +63,7 @@ body {
 }
 
 .description {
-  width: 52rem;
+  width: min(52rem, calc(100vw - 2rem));
   max-width: 900px;
   margin-top: 30px;
   background: rgba(255, 255, 255, 0.1);
