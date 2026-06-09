@@ -23,6 +23,9 @@ const tileStyle: React.CSSProperties = {
   justifyContent: 'center',
   color: '#3730a3',
   fontFamily: 'system-ui, sans-serif',
+  height: '100%',
+  width: '100%',
+  boxSizing: 'border-box',
 }
 
 const renderTiles = (count: number) =>
