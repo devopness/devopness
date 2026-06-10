@@ -104,7 +104,6 @@ jobs:
           # A PAT is required so the commit pushed back triggers downstream CI workflows;
           # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops
           token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
-          fetch-depth: 0
 
       - name: Set up git identity
         run: |
@@ -153,7 +152,6 @@ jobs:
           # A PAT is required so the commit pushed back triggers downstream CI workflows;
           # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops
           token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
-          fetch-depth: 0
 
       - name: Set up git identity
         run: |
