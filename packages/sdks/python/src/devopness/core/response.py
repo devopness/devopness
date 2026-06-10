@@ -3,6 +3,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import json
+import sys
 from typing import Any, Generic, TypeVar, cast, get_args, get_origin
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
@@ -15,6 +16,19 @@ from devopness.base import DevopnessBaseModel
 __all__ = ["DevopnessResponse"]
 
 T = TypeVar("T")
+
+
+class _OpaqueResponseData(dict[str, Any]):
+    """Opaque wrapper for response payloads that fail model validation."""
+
+    def __getattr__(self, key: str) -> Any:  # noqa: ANN401
+        try:
+            return self[key]
+        except KeyError as e:
+            raise AttributeError(key) from e
+
+    def to_dict(self) -> dict[str, Any]:
+        return dict(self)
 
 
 class DevopnessResponse(Generic[T]):
@@ -50,6 +64,7 @@ class DevopnessResponse(Generic[T]):
                                                       deserialize the response
                                                       body into.
         """
+        self._is_async_response = False
         self.status = response.status_code
         self.data = cast(T, self._parse_data(response, model_cls))
         self.page_count = self._extract_last_page_number(response)
@@ -73,6 +88,7 @@ class DevopnessResponse(Generic[T]):
         """
         result = cls.__new__(cls)
 
+        result._is_async_response = True
         result.status = response.status_code
         result.data = cast(T, await result._async_parse_data(response, model_cls))
         result.page_count = result._extract_last_page_number(response)
@@ -146,7 +162,7 @@ class DevopnessResponse(Generic[T]):
             model_cls: The target model class to convert the data into
 
         Returns:
-            Parsed data in the requested format or raw string on failure
+            Parsed data in the requested format or opaque data in non-strict mode
         """
         raw_data: bytes = response.read()
 
@@ -173,7 +189,7 @@ class DevopnessResponse(Generic[T]):
             model_cls: The target model class to convert the data into
 
         Returns:
-            Parsed data in the requested format or raw string on failure
+            Parsed data in the requested format or opaque data in non-strict mode
         """
         raw_data: bytes = await response.aread()
 
@@ -229,8 +245,23 @@ class DevopnessResponse(Generic[T]):
                 dict_data: dict[str, Any] = json.loads(raw_data.decode("utf-8"))
                 return model_cls.from_dict(dict_data)
 
-        except (json.JSONDecodeError, ValidationError) as e:
-            model_name = model_cls.__name__ if model_cls else "None"
+        except ValidationError as e:
+            if self._is_strict_validation_mode():
+                raise
+
+            if self._is_debug_mode():
+                model_name = self._model_name(model_cls)
+                msg = (
+                    f"Failed to deserialize response body into {model_name}. "
+                    "Returning opaque response data instead.\n\n"
+                    f"Error: {e}"
+                )
+                warn(msg, stacklevel=3)
+
+            return self._opaque_data_from_raw_data(raw_data)
+
+        except json.JSONDecodeError as e:
+            model_name = self._model_name(model_cls)
             msg = (
                 f"Failed to deserialize response body into {model_name}. "
                 "Returning raw response data instead.\n\n"
@@ -240,3 +271,45 @@ class DevopnessResponse(Generic[T]):
 
         # Fallback to raw string data
         return raw_data.decode("utf-8")
+
+    @staticmethod
+    def _model_name(model_cls: type[DevopnessBaseModel] | type | None) -> str:
+        return getattr(model_cls, "__name__", repr(model_cls)) if model_cls else "None"
+
+    def _config(self) -> object | None:
+        base_service_module = sys.modules.get("devopness.base.base_service")
+        service_name = (
+            "DevopnessBaseServiceAsync"
+            if self._is_async_response
+            else "DevopnessBaseService"
+        )
+        service = getattr(base_service_module, service_name, None)
+
+        return getattr(service, "_config", None)
+
+    def _is_strict_validation_mode(self) -> bool:
+        return getattr(self._config(), "strict_validation_mode", True)
+
+    def _is_debug_mode(self) -> bool:
+        return getattr(self._config(), "debug", False)
+
+    def _opaque_data_from_raw_data(
+        self, raw_data: bytes
+    ) -> str | int | float | bool | dict[str, Any] | list[Any] | None:
+        try:
+            return self._wrap_opaque_data(json.loads(raw_data.decode("utf-8")))
+        except json.JSONDecodeError:
+            return raw_data.decode("utf-8")
+
+    def _wrap_opaque_data(
+        self, data: object
+    ) -> str | int | float | bool | dict[str, Any] | list[Any] | None:
+        if isinstance(data, dict):
+            return _OpaqueResponseData(
+                {key: self._wrap_opaque_data(value) for key, value in data.items()}
+            )
+
+        if isinstance(data, list):
+            return [self._wrap_opaque_data(item) for item in data]
+
+        return cast(str | int | float | bool | None, data)

@@ -1,12 +1,19 @@
 import json
 import math
 import unittest
-from typing import Any, Self
+import warnings
+from typing import Any, Self, cast
 from unittest.mock import AsyncMock, Mock, patch
 
 import httpx
+from pydantic import ValidationError
 
-from devopness.base import DevopnessBaseModel
+from devopness import DevopnessClientConfig
+from devopness.base import (
+    DevopnessBaseModel,
+    DevopnessBaseService,
+    DevopnessBaseServiceAsync,
+)
 from devopness.core import DevopnessResponse
 
 
@@ -56,6 +63,10 @@ def build_async_response(
 
 
 class TestDevopnessResponse(unittest.TestCase):
+    def setUp(self) -> None:
+        DevopnessBaseService._config = DevopnessClientConfig()
+        DevopnessBaseServiceAsync._config = DevopnessClientConfig()
+
     def test_devopness_response_with_dict(self) -> None:
         response: DevopnessResponse[DummyModel] = DevopnessResponse(
             build_response({"id": 123}),
@@ -146,8 +157,71 @@ class TestDevopnessResponse(unittest.TestCase):
 
         assert response.page_count == 1
 
+    def test_devopness_response_strict_validation_raises(self) -> None:
+        DevopnessBaseService._config = DevopnessClientConfig(
+            strict_validation_mode=True,
+        )
+
+        with self.assertRaises(ValidationError):
+            DevopnessResponse(build_response({"id": "not-an-int"}), DummyModel)
+
+    def test_devopness_response_non_strict_validation_returns_opaque_data(
+        self,
+    ) -> None:
+        DevopnessBaseService._config = DevopnessClientConfig(
+            strict_validation_mode=False,
+        )
+
+        with warnings.catch_warnings(record=True) as recorded_warnings:
+            response: DevopnessResponse[DummyModel] = DevopnessResponse(
+                build_response(
+                    {
+                        "id": "not-an-int",
+                        "name": "Sample user",
+                        "profile": {"slug": "sample-user"},
+                    }
+                ),
+                DummyModel,
+            )
+
+        data = cast(Any, response.data)
+
+        assert data.id == "not-an-int"
+        assert data.name == "Sample user"
+        assert data["id"] == "not-an-int"
+        assert data.profile.slug == "sample-user"
+        assert len(recorded_warnings) == 0
+
+    def test_devopness_response_non_strict_validation_warns_in_debug_mode(
+        self,
+    ) -> None:
+        DevopnessBaseService._config = DevopnessClientConfig(
+            debug=True,
+            strict_validation_mode=False,
+        )
+
+        with warnings.catch_warnings(record=True) as recorded_warnings:
+            warnings.simplefilter("always")
+            response: DevopnessResponse[DummyModel] = DevopnessResponse(
+                build_response({"id": "not-an-int", "name": "Sample user"}),
+                DummyModel,
+            )
+
+        data = cast(Any, response.data)
+
+        assert data.name == "Sample user"
+        assert len(recorded_warnings) == 1
+        warning_message = str(recorded_warnings[0].message)
+        assert "Failed to deserialize response body into DummyModel" in warning_message
+        assert "Returning opaque response data instead" in warning_message
+        assert "Input should be a valid integer" in warning_message
+
 
 class TestDevopnessResponseAsync(unittest.IsolatedAsyncioTestCase):
+    def setUp(self) -> None:
+        DevopnessBaseService._config = DevopnessClientConfig()
+        DevopnessBaseServiceAsync._config = DevopnessClientConfig()
+
     @patch("httpx.AsyncClient.get")
     async def test_devopness_response_async(
         self,
@@ -165,3 +239,21 @@ class TestDevopnessResponseAsync(unittest.IsolatedAsyncioTestCase):
 
         assert isinstance(response.data, DummyModel)
         assert response.data.id == 123
+
+    async def test_devopness_response_async_non_strict_validation_returns_opaque_data(
+        self,
+    ) -> None:
+        DevopnessBaseServiceAsync._config = DevopnessClientConfig(
+            strict_validation_mode=False,
+        )
+
+        response: DevopnessResponse[DummyModel] = await DevopnessResponse.from_async(
+            build_async_response({"id": "not-an-int", "name": "Sample user"}),
+            DummyModel,
+        )
+
+        data = cast(Any, response.data)
+
+        assert data.id == "not-an-int"
+        assert data.name == "Sample user"
+        assert data["name"] == "Sample user"

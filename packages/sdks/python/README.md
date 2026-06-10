@@ -81,6 +81,31 @@ Configuration options:
 | `base_url`           | `https://api.devopness.com` | Base URL for all API requests                       |
 | `timeout`            | `30`                        | Timeout for HTTP requests (in seconds)              |
 | `default_encoding`   | `utf-8`                     | Encoding for response content                       |
+| `debug`              | `False`                     | Prints HTTP debug output and validation warnings    |
+| `strict_validation_mode` | `True`                  | Raises Pydantic validation errors for API responses |
+
+
+#### Response validation mode
+
+The SDK validates API responses against generated Pydantic models by default. This
+strict behavior helps surface mismatches between the API response and the documented
+contract. Consumers that must keep running when a response does not match the model
+can opt out by setting `strict_validation_mode=False`:
+
+```python
+from devopness import DevopnessClient, DevopnessClientConfig
+
+config = DevopnessClientConfig(
+    strict_validation_mode=False,
+    debug=True,
+)
+devopness = DevopnessClient(config)
+```
+
+When strict validation is disabled, response payloads that fail Pydantic validation
+are returned as opaque data that still supports field access, such as
+`response.data.id` or `response.data["id"]`. If `debug=True`, the SDK emits a
+warning with details about the validation error; otherwise, it continues quietly.
 
 ### Authentication
 
