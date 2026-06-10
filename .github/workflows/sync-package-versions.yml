@@ -101,8 +101,15 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # A PAT is required so the commit pushed back triggers downstream CI workflows;
+          # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops
+          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
           fetch-depth: 0
+
+      - name: Set up git identity
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -118,14 +125,6 @@ jobs:
         if: matrix.post_version_sync_commands != ''
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
-
-      - name: Ensure branch is up-to-date
-        run: |
-          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
-          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git fetch origin ${{ github.head_ref || github.ref_name }} || true
-          # Try to rebase local changes onto the latest remote to avoid non-fast-forward push errors
-          git pull --rebase origin ${{ github.head_ref || github.ref_name }} || true
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
@@ -151,8 +150,15 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # A PAT is required so the commit pushed back triggers downstream CI workflows;
+          # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops
+          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
           fetch-depth: 0
+
+      - name: Set up git identity
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -161,13 +167,6 @@ jobs:
 
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
-
-      - name: Ensure branch is up-to-date
-        run: |
-          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
-          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git fetch origin ${{ github.head_ref || github.ref_name }} || true
-          git pull --rebase origin ${{ github.head_ref || github.ref_name }} || true
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
