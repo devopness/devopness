@@ -175,9 +175,7 @@ jobs:
   verify-sync:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
-    # Skip fork PRs: sync jobs are skipped for forks (can't push back), so there's nothing to verify
     if: >
-      (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) &&
       ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
        github.event_name == 'push')
       && (needs.detect-changes.outputs.has_package_changes == 'true' || needs.detect-changes.outputs.should_sync_lockfile == 'true')
@@ -190,17 +188,61 @@ jobs:
           ref: ${{ github.head_ref || github.ref_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # For non-fork PRs and pushes: the sync jobs ran — fail if they did not succeed
       - name: Fail if sync-pypi-package-versions did not succeed
-        if: needs.detect-changes.outputs.has_package_changes == 'true'
+        if: >
+          needs.detect-changes.outputs.has_package_changes == 'true' &&
+          (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
         run: |
           if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
-            echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
+            echo "❌ Job 'sync-pypi-package-versions' failed or was cancelled"
             exit 1
           fi
 
       - name: Fail if sync-main-lockfile did not succeed
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
         run: |
           if [ "${{ needs.sync-main-lockfile.result }}" = "failure" ] || [ "${{ needs.sync-main-lockfile.result }}" = "cancelled" ]; then
-            echo "❌ Job `sync-main-lockfile` failed or was cancelled"
+            echo "❌ Job 'sync-main-lockfile' failed or was cancelled"
             exit 1
           fi
+
+      # For fork PRs: the sync jobs were skipped (can't push to a fork), so validate read-only instead
+      - name: Set up Node (fork PR lockfile check)
+        if: >
+          needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+
+      - name: Fail if package-lock.json is out of sync (fork PR)
+        if: >
+          needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          npm install --workspaces
+          if ! git diff --exit-code package-lock.json; then
+            echo "❌ package-lock.json is out of sync — run 'npm install --workspaces' locally and commit the result"
+            exit 1
+          fi
+
+      - name: Fail if pyproject.toml versions are out of sync (fork PR)
+        if: >
+          needs.detect-changes.outputs.has_package_changes == 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          PACKAGES=$(cat .github/configs/python-packages.json | jq -r '.[].path')
+          FAILED=false
+          for PKG_PATH in $PACKAGES; do
+            EXPECTED=$(jq -r .version "$PKG_PATH/package.json")
+            ACTUAL=$(grep -m1 '^version = ' "$PKG_PATH/pyproject.toml" | sed 's/version = "\(.*\)"/\1/')
+            if [ "$ACTUAL" != "$EXPECTED" ]; then
+              echo "❌ $PKG_PATH/pyproject.toml version ('$ACTUAL') does not match package.json ('$EXPECTED')"
+              FAILED=true
+            fi
+          done
+          if [ "$FAILED" = "true" ]; then exit 1; fi
