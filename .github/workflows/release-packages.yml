@@ -6,6 +6,7 @@ on:
     paths:
       - packages/**/src/**
       - packages/**/package.json
+      - .changeset/**
     branches:
       - main
       - "*.x" # maintenance releases
