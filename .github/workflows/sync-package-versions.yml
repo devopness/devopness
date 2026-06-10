@@ -178,9 +178,14 @@ jobs:
 
       - name: Rebase onto latest remote to avoid non-fast-forward push
         run: |
-          git stash --include-untracked
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            git stash --include-untracked
+            STASHED=true
+          fi
           git pull --rebase origin ${{ github.head_ref || github.ref_name }}
-          git stash pop
+          if [ "$STASHED" = "true" ]; then
+            git stash pop
+          fi
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
