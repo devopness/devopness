@@ -19,8 +19,10 @@ on:
     paths:
       - '**/package*.json'
       - 'packages/**/CHANGELOG.md'
+      - '.changeset/**'
     branches:
-      # Trigger when commits are pushed to the changesets branch, to sync the root lock file
+      # Triggered by pushes from the changesets bot (GITHUB_TOKEN suppresses pull_request events,
+      # so the push trigger on this branch is the only way to catch changeset-driven updates)
       - 'changeset-release/*'
 
 permissions:
