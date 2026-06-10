@@ -31,7 +31,6 @@ def build_response(
     content: Any = b"",
     status_code: int = 200,
     headers: dict[str, Any] | None = None,
-    config: DevopnessClientConfig | None = None,
 ) -> Mock:
     response = Mock(spec=httpx.Response)
 
@@ -41,9 +40,6 @@ def build_response(
         response.read.return_value = content
     response.status_code = status_code
     response.headers = headers or {}
-    response.extensions = {}
-    if config:
-        response.extensions["devopness_config"] = config
 
     return response
 
@@ -52,7 +48,6 @@ def build_async_response(
     content: Any = b"",
     status_code: int = 200,
     headers: dict[str, Any] | None = None,
-    config: DevopnessClientConfig | None = None,
 ) -> Mock:
     response = Mock(spec=httpx.Response)
     response.aread = AsyncMock()
@@ -63,9 +58,6 @@ def build_async_response(
         response.aread.return_value = content
     response.status_code = status_code
     response.headers = headers or {}
-    response.extensions = {}
-    if config:
-        response.extensions["devopness_config"] = config
 
     return response
 
@@ -166,19 +158,17 @@ class TestDevopnessResponse(unittest.TestCase):
         assert response.page_count == 1
 
     def test_devopness_response_strict_validation_raises(self) -> None:
-        config = DevopnessClientConfig(
+        DevopnessBaseService._config = DevopnessClientConfig(
             strict_validation_mode=True,
         )
 
         with self.assertRaises(ValidationError):
-            DevopnessResponse(
-                build_response({"id": "not-an-int"}, config=config), DummyModel
-            )
+            DevopnessResponse(build_response({"id": "not-an-int"}), DummyModel)
 
     def test_devopness_response_non_strict_validation_returns_opaque_data(
         self,
     ) -> None:
-        config = DevopnessClientConfig(
+        DevopnessBaseService._config = DevopnessClientConfig(
             strict_validation_mode=False,
         )
 
@@ -189,8 +179,7 @@ class TestDevopnessResponse(unittest.TestCase):
                         "id": "not-an-int",
                         "name": "Sample user",
                         "profile": {"slug": "sample-user"},
-                    },
-                    config=config,
+                    }
                 ),
                 DummyModel,
             )
@@ -206,7 +195,7 @@ class TestDevopnessResponse(unittest.TestCase):
     def test_devopness_response_non_strict_validation_warns_in_debug_mode(
         self,
     ) -> None:
-        config = DevopnessClientConfig(
+        DevopnessBaseService._config = DevopnessClientConfig(
             debug=True,
             strict_validation_mode=False,
         )
@@ -220,8 +209,7 @@ class TestDevopnessResponse(unittest.TestCase):
                         "name": "Sample user",
                         "access_token": "secret-access-token",
                         "refresh_token": "secret-refresh-token",
-                    },
-                    config=config,
+                    }
                 ),
                 DummyModel,
             )
@@ -237,23 +225,6 @@ class TestDevopnessResponse(unittest.TestCase):
         assert "not-an-int" not in warning_message
         assert "secret-access-token" not in warning_message
         assert "secret-refresh-token" not in warning_message
-
-    def test_devopness_response_uses_response_config_when_global_config_changes(
-        self,
-    ) -> None:
-        response_config = DevopnessClientConfig(strict_validation_mode=False)
-        DevopnessBaseService._config = DevopnessClientConfig(
-            strict_validation_mode=True
-        )
-
-        response: DevopnessResponse[DummyModel] = DevopnessResponse(
-            build_response({"id": "not-an-int"}, config=response_config),
-            DummyModel,
-        )
-
-        data = cast(Any, response.data)
-
-        assert data.id == "not-an-int"
 
 
 class TestDevopnessResponseAsync(unittest.IsolatedAsyncioTestCase):
@@ -282,15 +253,12 @@ class TestDevopnessResponseAsync(unittest.IsolatedAsyncioTestCase):
     async def test_devopness_response_async_non_strict_validation_returns_opaque_data(
         self,
     ) -> None:
-        config = DevopnessClientConfig(
+        DevopnessBaseServiceAsync._config = DevopnessClientConfig(
             strict_validation_mode=False,
         )
 
         response: DevopnessResponse[DummyModel] = await DevopnessResponse.from_async(
-            build_async_response(
-                {"id": "not-an-int", "name": "Sample user"},
-                config=config,
-            ),
+            build_async_response({"id": "not-an-int", "name": "Sample user"}),
             DummyModel,
         )
 

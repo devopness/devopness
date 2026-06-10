@@ -46,7 +46,6 @@ class DevopnessBaseService:
         if DevopnessBaseService._config is None:
             raise DevopnessSdkError("DevopnessBaseService is not initialized")
 
-        self._config = DevopnessBaseService._config
         self._client = httpx.Client(
             base_url=self._config.base_url,
             timeout=self._config.timeout,
@@ -69,7 +68,7 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The HTTP response object.
         """
-        return self._attach_config(self._client.get(endpoint))
+        return self._client.get(endpoint)
 
     @handle_network_errors_sync
     def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
@@ -84,7 +83,7 @@ class DevopnessBaseService:
             httpx.Response: The HTTP response object.
         """
         payload = parse_payload(data)
-        return self._attach_config(self._client.post(endpoint, json=payload))
+        return self._client.post(endpoint, json=payload)
 
     @handle_network_errors_sync
     def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
@@ -99,7 +98,7 @@ class DevopnessBaseService:
             httpx.Response: The HTTP response object.
         """
         payload = parse_payload(data)
-        return self._attach_config(self._client.put(endpoint, json=payload))
+        return self._client.put(endpoint, json=payload)
 
     @handle_network_errors_sync
     def _delete(self, endpoint: str) -> httpx.Response:
@@ -112,11 +111,7 @@ class DevopnessBaseService:
         Returns:
             httpx.Response: The HTTP response object.
         """
-        return self._attach_config(self._client.delete(endpoint))
-
-    def _attach_config(self, response: httpx.Response) -> httpx.Response:
-        response.extensions["devopness_config"] = self._config
-        return response
+        return self._client.delete(endpoint)
 
     def _refresh_access_token(self) -> None:
         """
@@ -225,7 +220,6 @@ class DevopnessBaseServiceAsync:
         if DevopnessBaseServiceAsync._config is None:
             raise DevopnessSdkError("DevopnessBaseServiceAsync is not initialized")
 
-        self._config = DevopnessBaseServiceAsync._config
         self._client = httpx.AsyncClient(
             base_url=self._config.base_url,
             timeout=self._config.timeout,
@@ -248,7 +242,7 @@ class DevopnessBaseServiceAsync:
         Returns:
             httpx.Response: The HTTP response object.
         """
-        return self._attach_config(await self._client.get(endpoint))
+        return await self._client.get(endpoint)
 
     @handle_network_errors
     async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
@@ -263,7 +257,7 @@ class DevopnessBaseServiceAsync:
             httpx.Response: The HTTP response object.
         """
         payload = parse_payload(data)
-        return self._attach_config(await self._client.post(endpoint, json=payload))
+        return await self._client.post(endpoint, json=payload)
 
     @handle_network_errors
     async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
@@ -278,7 +272,7 @@ class DevopnessBaseServiceAsync:
             httpx.Response: The HTTP response object.
         """
         payload = parse_payload(data)
-        return self._attach_config(await self._client.put(endpoint, json=payload))
+        return await self._client.put(endpoint, json=payload)
 
     @handle_network_errors
     async def _delete(self, endpoint: str) -> httpx.Response:
@@ -291,11 +285,7 @@ class DevopnessBaseServiceAsync:
         Returns:
             httpx.Response: The HTTP response object.
         """
-        return self._attach_config(await self._client.delete(endpoint))
-
-    def _attach_config(self, response: httpx.Response) -> httpx.Response:
-        response.extensions["devopness_config"] = self._config
-        return response
+        return await self._client.delete(endpoint)
 
     async def _refresh_access_token(self) -> None:
         """

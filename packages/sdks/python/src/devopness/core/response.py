@@ -3,6 +3,7 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import json
+import sys
 from typing import Any, Generic, TypeVar, cast, get_args, get_origin
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
@@ -47,7 +48,6 @@ class DevopnessResponse(Generic[T]):
     data: T
     page_count: int
     action_id: int | None
-    _config: object | None
 
     def __init__(
         self,
@@ -64,7 +64,7 @@ class DevopnessResponse(Generic[T]):
                                                       deserialize the response
                                                       body into.
         """
-        self._config = response.extensions.get("devopness_config")
+        self._is_async_response = False
         self.status = response.status_code
         self.data = cast(T, self._parse_data(response, model_cls))
         self.page_count = self._extract_last_page_number(response)
@@ -88,7 +88,7 @@ class DevopnessResponse(Generic[T]):
         """
         result = cls.__new__(cls)
 
-        result._config = response.extensions.get("devopness_config")
+        result._is_async_response = True
         result.status = response.status_code
         result.data = cast(T, await result._async_parse_data(response, model_cls))
         result.page_count = result._extract_last_page_number(response)
@@ -276,11 +276,22 @@ class DevopnessResponse(Generic[T]):
     def _model_name(model_cls: type[DevopnessBaseModel] | type | None) -> str:
         return getattr(model_cls, "__name__", repr(model_cls)) if model_cls else "None"
 
+    def _config(self) -> object | None:
+        base_service_module = sys.modules.get("devopness.base.base_service")
+        service_name = (
+            "DevopnessBaseServiceAsync"
+            if self._is_async_response
+            else "DevopnessBaseService"
+        )
+        service = getattr(base_service_module, service_name, None)
+
+        return getattr(service, "_config", None)
+
     def _is_strict_validation_mode(self) -> bool:
-        return getattr(self._config, "strict_validation_mode", True)
+        return getattr(self._config(), "strict_validation_mode", True)
 
     def _is_debug_mode(self) -> bool:
-        return getattr(self._config, "debug", False)
+        return getattr(self._config(), "debug", False)
 
     @staticmethod
     def _safe_validation_error_details(error: ValidationError) -> str:
