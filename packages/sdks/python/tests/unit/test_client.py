@@ -5,13 +5,17 @@ Tests for the DevopnessClient class
 import unittest
 from pathlib import Path
 from typing import Any, cast
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 import httpx
 from pydantic import ValidationError
 
 from devopness import DevopnessClient, DevopnessClientAsync, DevopnessClientConfig
-from devopness.base import DevopnessBaseModel, DevopnessBaseService, DevopnessBaseServiceAsync
+from devopness.base import (
+    DevopnessBaseModel,
+    DevopnessBaseService,
+    DevopnessBaseServiceAsync,
+)
 from devopness.core import DevopnessResponse
 
 
@@ -111,14 +115,10 @@ class TestDevopnessClient(unittest.TestCase):
             id: int
 
         # Create client 1 with STRICT validation
-        client1 = DevopnessClient(
-            DevopnessClientConfig(strict_validation_mode=True)
-        )
+        DevopnessClient(DevopnessClientConfig(strict_validation_mode=True))
 
         # Create client 2 with LENIENT validation
-        client2 = DevopnessClient(
-            DevopnessClientConfig(strict_validation_mode=False)
-        )
+        DevopnessClient(DevopnessClientConfig(strict_validation_mode=False))
 
         # Mock an HTTP response with invalid data
         mock_response = Mock(spec=httpx.Response)

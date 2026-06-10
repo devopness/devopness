@@ -54,6 +54,7 @@ dependencies = [
   "httpcore (>=1.0.9)",
   "httpx (>=0.28.1,<0.29.0)",
   "pydantic (>=2.13.4,<3.0.0)",
+  "ruff (>=0.15.16,<0.16.0)",
 ]
 
 [project.urls]

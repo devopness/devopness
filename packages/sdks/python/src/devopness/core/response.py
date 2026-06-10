@@ -215,7 +215,7 @@ class DevopnessResponse(Generic[T]):
         if raw_data == b"" or model_cls is None:
             return None
 
-        try:
+        try:  # noqa: PLW0717
             # Handle primitive types
             if model_cls is str:
                 return raw_data.decode("utf-8")
