@@ -54,7 +54,6 @@ dependencies = [
   "httpcore (>=1.0.9)",
   "httpx (>=0.28.1,<0.29.0)",
   "pydantic (>=2.13.4,<3.0.0)",
-  "ruff (>=0.15.16,<0.16.0)",
 ]
 
 [project.urls]
@@ -69,7 +68,7 @@ exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = { version = "7.22.0", markers = "python_version < '4.0'" }
-ruff = "^0.15.13"
+ruff = "^0.15.16"
 mypy = "2.1.0"
 
 [tool.ruff]
