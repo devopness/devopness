@@ -54,7 +54,10 @@ jobs:
           title: "chore: version packages"
           publish: npx changeset publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # A PAT is required here instead of GITHUB_TOKEN: pushes made with GITHUB_TOKEN do not
+          # trigger downstream workflows (GitHub suppresses them to prevent loops), so
+          # sync-package-versions.yml would never fire when changesets updates the release branch
+          GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
   release-pypi-packages:
     name: Release PyPI Packages
