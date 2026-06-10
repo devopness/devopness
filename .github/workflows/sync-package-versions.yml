@@ -175,7 +175,9 @@ jobs:
   verify-sync:
     name: Verify sync of package versions
     needs: [detect-changes, sync-pypi-package-versions, sync-main-lockfile]
+    # Skip fork PRs: sync jobs are skipped for forks (can't push back), so there's nothing to verify
     if: >
+      (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) &&
       ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
        github.event_name == 'push')
       && (needs.detect-changes.outputs.has_package_changes == 'true' || needs.detect-changes.outputs.should_sync_lockfile == 'true')
