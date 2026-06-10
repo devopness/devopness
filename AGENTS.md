@@ -25,6 +25,17 @@ This file is for fast, action-oriented instructions for AI agents.
 
 ## PR instructions
 - PR titles should be written in active imperative form, not end with a period, and read naturally, using Conventional Commits (`feat:`, `fix:`, `refactor:`, `chore:`, etc.)
+- **CRITICAL: All PRs MUST pass CI validation before submission**
+  - Read `.github/PULL_REQUEST_TEMPLATE.md` to understand required sections
+  - Read `.github/workflows/pr-lint.yml` to understand validation workflow
+  - Read `.github/scripts/pr-validate-description.js` to understand validation rules
+  - Required sections in PR description:
+    - `## Description of changes` - checklist with `- [x]` items (cannot be placeholder text like `<add item here>`)
+    - `## GitHub issues resolved by this PR` - must contain issue numbers (`#123`) or explicitly state `N/A`
+    - `## Quality Assurance` - must contain success criteria (not just the placeholder template text)
+    - `## More info` - optional additional context
+  - Verify PR format matches template BEFORE creating/updating the PR
+  - After creating/updating a PR, monitor CI checks and fix any validation failures immediately
 - Keep PR mechanics and validation in:
   - `.github/PULL_REQUEST_TEMPLATE.md`
   - `.github/workflows/pr-lint.yml`

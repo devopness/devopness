@@ -50,7 +50,7 @@ class DevopnessApiError(DevopnessSdkError):
         self.errors = None
         self.message = str(err)
 
-        try:
+        try:  # noqa: PLW0717
             res_data = e_res.json()
 
             if isinstance(res_data, dict):
