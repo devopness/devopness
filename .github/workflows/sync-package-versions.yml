@@ -136,13 +136,15 @@ jobs:
 
   sync-main-lockfile:
     name: Sync the package-lock.json
-    needs: detect-changes
+    # Runs after sync-pypi-package-versions to avoid parallel push races on the same branch
+    needs: [detect-changes, sync-pypi-package-versions]
     # Skip fork PRs: GITHUB_TOKEN cannot push to a fork's branch, so these sync jobs would always fail
     if: >
       needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
       (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) &&
       ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
-       github.event_name == 'push')
+       github.event_name == 'push') &&
+      always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
