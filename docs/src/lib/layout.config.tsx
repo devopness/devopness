@@ -1,4 +1,3 @@
-import type { ComponentProps } from 'react';
 import Link from 'next/link';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 
@@ -7,11 +6,8 @@ import { siteConfig } from '@/lib/constants';
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: (props: ComponentProps<'a'>) => (
-        <Link
-          {...props}
-          href={siteConfig.url}
-        >
+      title: (
+        <Link href={siteConfig.url}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={siteConfig.assets.logo}
