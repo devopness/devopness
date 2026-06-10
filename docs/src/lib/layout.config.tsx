@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Image from 'next/image';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 
 import { siteConfig } from '@/lib/constants';
@@ -7,14 +7,13 @@ export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
       title: (
-        <Link href={siteConfig.url}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={siteConfig.assets.logo}
-            alt="Devopness Logo"
-            style={{ height: 28 }}
-          />
-        </Link>
+        <Image
+          src={siteConfig.assets.logo}
+          alt="Devopness Logo"
+          width={0}
+          height={0}
+          style={{ width: 'auto', height: '28px' }}
+        />
       ),
       url: '/',
     },
