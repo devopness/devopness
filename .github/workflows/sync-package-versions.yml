@@ -101,10 +101,13 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
+          # Prevent checkout from persisting its GITHUB_TOKEN credential so the PAT set
+          # below is the only credential used when git-auto-commit-action pushes
+          persist-credentials: false
 
       - name: Set up git identity
-        # Reconfigure the remote to use a PAT so the pushed commit triggers downstream CI;
-        # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
+        # Reconfigure the remote with a PAT so the pushed commit triggers downstream CI.
+        # Commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
         # The PAT is set via remote URL rather than actions/checkout's token: input due to
         # a bug in actions/checkout@v6 where custom tokens are not applied correctly.
         run: |
@@ -151,10 +154,13 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
+          # Prevent checkout from persisting its GITHUB_TOKEN credential so the PAT set
+          # below is the only credential used when git-auto-commit-action pushes
+          persist-credentials: false
 
       - name: Set up git identity
-        # Reconfigure the remote to use a PAT so the pushed commit triggers downstream CI;
-        # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
+        # Reconfigure the remote with a PAT so the pushed commit triggers downstream CI.
+        # Commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
         # The PAT is set via remote URL rather than actions/checkout's token: input due to
         # a bug in actions/checkout@v6 where custom tokens are not applied correctly.
         run: |
@@ -169,6 +175,17 @@ jobs:
 
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
+
+      - name: Rebase onto latest remote to avoid non-fast-forward push
+        run: |
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            git stash --include-untracked
+            STASHED=true
+          fi
+          git pull --rebase origin ${{ github.head_ref || github.ref_name }}
+          if [ "$STASHED" = "true" ]; then
+            git stash pop
+          fi
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
