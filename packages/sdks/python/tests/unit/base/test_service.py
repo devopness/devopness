@@ -262,6 +262,21 @@ class TestDevopnessBaseService(unittest.TestCase):
             f"Invalid token expiration date. Expected: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
         )
 
+    @patch("httpx.Client._send_single_request")
+    def test_response_keeps_service_config_when_global_config_changes(
+        self,
+        mock: Mock,
+    ) -> None:
+        response = httpx.Response(200, request=self.dummy_request)
+        mock.return_value = response
+        DevopnessBaseService._config = DevopnessClientConfig(
+            strict_validation_mode=True
+        )
+
+        result = self.service._get("/resource")
+
+        self.assertIs(result.extensions["devopness_config"], self.service._config)
+
     @patch("httpx.Client.send")
     def test_request_includes_expected_user_agent_header(
         self,
@@ -495,6 +510,21 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
             1,
             f"Invalid token expiration date. Expected: {expected.isoformat()}. Actual: {actual.isoformat()}.",  # type: ignore
         )
+
+    @patch("httpx.AsyncClient._send_single_request")
+    async def test_response_keeps_service_config_when_global_config_changes(
+        self,
+        mock: Mock,
+    ) -> None:
+        response = httpx.Response(200, request=self.dummy_request)
+        mock.return_value = response
+        DevopnessBaseServiceAsync._config = DevopnessClientConfig(
+            strict_validation_mode=True
+        )
+
+        result = await self.service._get("/resource")
+
+        self.assertIs(result.extensions["devopness_config"], self.service._config)
 
     @patch("httpx.AsyncClient.send")
     async def test_request_includes_expected_user_agent_header(
