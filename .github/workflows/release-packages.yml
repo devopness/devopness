@@ -40,6 +40,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          # Prevent the default credential helper from shadowing the PAT set in the next step.
+          # changesets/action pushes commits and tags via git — those must use the PAT so that
+          # the push triggers downstream workflows (GITHUB_TOKEN pushes are suppressed by GitHub).
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -49,16 +54,21 @@ jobs:
       - name: Install SDK dependencies
         run: npm ci --ignore-scripts
 
+      - name: Configure git remote to use PAT
+        # Pushes made with GITHUB_TOKEN do not trigger downstream workflows (GitHub suppresses them
+        # to prevent loops), so sync-package-versions.yml would never fire when changesets updates
+        # the release branch. Embedding the PAT in the remote URL takes precedence over the
+        # credential helper that changesets/action sets up, so git pushes use the PAT while the
+        # changesets/action Octokit calls use the always-valid GITHUB_TOKEN below.
+        run: git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
+
       - name: Create Release Pull Request or Publish Packages
         uses: changesets/action@v1
         with:
           title: "chore: version packages"
           publish: npx changeset publish
         env:
-          # A PAT is required here instead of GITHUB_TOKEN: pushes made with GITHUB_TOKEN do not
-          # trigger downstream workflows (GitHub suppresses them to prevent loops), so
-          # sync-package-versions.yml would never fire when changesets updates the release branch
-          GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release-pypi-packages:
     name: Release PyPI Packages
