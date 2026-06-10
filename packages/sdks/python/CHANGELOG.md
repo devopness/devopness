@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.5.0
+
+### Minor Changes
+
+- [#3162](https://github.com/devopness/devopness/pull/3162) [`e620a14`](https://github.com/devopness/devopness/commit/e620a14d7a7be92ca409cbb8af5b8123320d8a30) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Adds `strict_validation_mode` configuration option to allow graceful handling of response validation errors. When disabled, returns opaque field-accessible data instead of raising exceptions on validation failures.
+
 ## 2.4.1
 
 ### Patch Changes
