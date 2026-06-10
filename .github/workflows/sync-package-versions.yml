@@ -101,14 +101,16 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
-          # A PAT is required so the commit pushed back triggers downstream CI workflows;
-          # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops
-          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
       - name: Set up git identity
+        # Reconfigure the remote to use a PAT so the pushed commit triggers downstream CI;
+        # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
+        # The PAT is set via remote URL rather than actions/checkout's token: input due to
+        # a bug in actions/checkout@v6 where custom tokens are not applied correctly.
         run: |
           git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
           git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -149,14 +151,16 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
-          # A PAT is required so the commit pushed back triggers downstream CI workflows;
-          # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops
-          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
       - name: Set up git identity
+        # Reconfigure the remote to use a PAT so the pushed commit triggers downstream CI;
+        # commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
+        # The PAT is set via remote URL rather than actions/checkout's token: input due to
+        # a bug in actions/checkout@v6 where custom tokens are not applied correctly.
         run: |
           git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
           git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Set up Node
         uses: actions/setup-node@v6
