@@ -101,8 +101,19 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+          # Prevent checkout from persisting its GITHUB_TOKEN credential so the PAT set
+          # below is the only credential used when git-auto-commit-action pushes
+          persist-credentials: false
+
+      - name: Set up git identity
+        # Reconfigure the remote with a PAT so the pushed commit triggers downstream CI.
+        # Commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
+        # The PAT is set via remote URL rather than actions/checkout's token: input due to
+        # a bug in actions/checkout@v6 where custom tokens are not applied correctly.
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -119,14 +130,6 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
-      - name: Ensure branch is up-to-date
-        run: |
-          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
-          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git fetch origin ${{ github.head_ref || github.ref_name }} || true
-          # Try to rebase local changes onto the latest remote to avoid non-fast-forward push errors
-          git pull --rebase origin ${{ github.head_ref || github.ref_name }} || true
-
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
@@ -136,21 +139,34 @@ jobs:
 
   sync-main-lockfile:
     name: Sync the package-lock.json
-    needs: detect-changes
+    # Runs after sync-pypi-package-versions to avoid parallel push races on the same branch
+    needs: [detect-changes, sync-pypi-package-versions]
     # Skip fork PRs: GITHUB_TOKEN cannot push to a fork's branch, so these sync jobs would always fail
     if: >
       needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
       (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) &&
       ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
-       github.event_name == 'push')
+       github.event_name == 'push') &&
+      always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+          # Prevent checkout from persisting its GITHUB_TOKEN credential so the PAT set
+          # below is the only credential used when git-auto-commit-action pushes
+          persist-credentials: false
+
+      - name: Set up git identity
+        # Reconfigure the remote with a PAT so the pushed commit triggers downstream CI.
+        # Commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
+        # The PAT is set via remote URL rather than actions/checkout's token: input due to
+        # a bug in actions/checkout@v6 where custom tokens are not applied correctly.
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -160,12 +176,16 @@ jobs:
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
 
-      - name: Ensure branch is up-to-date
+      - name: Rebase onto latest remote to avoid non-fast-forward push
         run: |
-          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
-          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git fetch origin ${{ github.head_ref || github.ref_name }} || true
-          git pull --rebase origin ${{ github.head_ref || github.ref_name }} || true
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            git stash --include-untracked
+            STASHED=true
+          fi
+          git pull --rebase origin ${{ github.head_ref || github.ref_name }}
+          if [ "$STASHED" = "true" ]; then
+            git stash pop
+          fi
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
