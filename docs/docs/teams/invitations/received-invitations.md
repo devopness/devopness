@@ -29,7 +29,7 @@ Know where to find and manage your received invitations.
 1. In any page whitin the Devopness app, click your profile button at the top right
 2. Select [`Teams Invitations`](https://app.devopness.com/profile/teams/invitations)
 
-*OR*
+_OR_
 
 1. Check your e-mail for a new mail from Devopness
 2. There should be a brief summary of who invited you, to which organization and which team
