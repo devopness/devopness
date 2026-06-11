@@ -6,6 +6,7 @@ links:
   previous: teams/invitations/list-invitations
   guides:
     - teams/invitations/add-invitation
+    - teams/invitations/list-invitations
     - teams/invitations/index
   featured:
 ---
@@ -28,12 +29,14 @@ Know where to find and manage your received invitations.
 
 1. In any page whitin the Devopness app, click your profile button at the top right
 2. Select [`Teams Invitations`](https://app.devopness.com/profile/teams/invitations)
+3. Now in the invitations view either accept or decline an invite
 
 _OR_
 
 1. Check your e-mail for a new mail from Devopness
 2. There should be a brief summary of who invited you, to which organization and which team
 3. Click the `VIEW INVITATION` button, you will be redirected to the `Teams Invitations` page
+4. Now in the invitations view either accept or decline an invite
 
 ## Expected result
 
