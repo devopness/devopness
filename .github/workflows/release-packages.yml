@@ -57,16 +57,18 @@ jobs:
         uses: changesets/action@v1
         with:
           title: 'chore: version packages'
-          # changesets/action forwards GITHUB_TOKEN to the publish subprocess, which means the
-          # long-lived PAT would be inherited by `npx changeset publish` and every npm lifecycle
-          # script it spawns (prepare, prepack, postpublish, etc.) — creating a leak surface for
-          # the automation PAT. Shadowing it back to the short-lived workflow token here limits
-          # the PAT's exposure to git operations only (the insteadOf rewrite set up by the action).
-          publish: env GITHUB_TOKEN=$WORKFLOW_GITHUB_TOKEN npx changeset publish
+          # changesets/action explicitly sets GITHUB_TOKEN in the env of every subprocess it
+          # spawns (version and publish), so the long-lived PAT would be inherited by
+          # `npx changeset version/publish` and every npm lifecycle script they spawn
+          # (prepare, prepack, postpublish, etc.) — a leak surface for the automation PAT.
+          # Shadowing GITHUB_TOKEN back to the short-lived workflow token in both commands limits
+          # the PAT's exposure to the action's own git credential setup (.netrc) only.
+          version: sh -c 'GITHUB_TOKEN="$WORKFLOW_GITHUB_TOKEN" npx changeset version'
+          publish: sh -c 'GITHUB_TOKEN="$WORKFLOW_GITHUB_TOKEN" npx changeset publish'
         env:
-          # changesets/action sets up a git `insteadOf` rewrite using GITHUB_TOKEN, so the PAT
-          # must be here for git pushes to use it (GITHUB_TOKEN pushes are suppressed by GitHub
-          # to prevent loops and would never trigger sync-package-versions.yml).
+          # changesets/action writes ~/.netrc with GITHUB_TOKEN for git push authentication, so
+          # the PAT must be here — GITHUB_TOKEN pushes are suppressed by GitHub to prevent loops
+          # and would never trigger sync-package-versions.yml on the changeset-release/* branch.
           GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
           WORKFLOW_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
