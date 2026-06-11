@@ -65,7 +65,7 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
-    "@mui/icons-material": "^9.0.1",
+    "@mui/icons-material": "^9.1.1",
     "@mui/material": "^9.0.1",
     "@mui/styled-engine-sc": "^9.1.1",
     "@radix-ui/react-slot": "^1.2.5",
