@@ -24,6 +24,8 @@ This file is for fast, action-oriented instructions for AI agents.
 - Avoid `--amend` unless the user asks for it
 
 ## PR instructions
+
+- Before creating PR, make sure branch has no merge conflicts with base branch
 - PR titles should be written in active imperative form, not end with a period, and read naturally, using Conventional Commits (`feat:`, `fix:`, `refactor:`, `chore:`, etc.)
 - **CRITICAL: All PRs MUST pass CI validation before submission**
   - Read `.github/PULL_REQUEST_TEMPLATE.md` to understand required sections
