@@ -41,6 +41,8 @@ class DevopnessClientConfig(DevopnessBaseModel):
                                    no longer necessary with token-based auth.
         base_url (str): Base URL for API requests.
         debug (bool): Controls whether debug information is printed to the console.
+        strict_validation_mode (bool): Controls whether response validation errors
+                                       raise.
         default_encoding (str): Default encoding for response content.
         headers (dict[str, str]): Default headers for API requests.
         timeout (int): Request timeout in seconds.
@@ -54,6 +56,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
     """
     base_url: str = "https://api.devopness.com"
     debug: bool = False
+    strict_validation_mode: bool = True
     default_encoding: str = "utf-8"
     headers: dict[str, str] = {  # noqa: RUF012
         "Accept": "application/json",
@@ -105,6 +108,7 @@ class DevopnessClientConfigDict(TypedDict, total=False):
     auto_refresh_token: bool
     base_url: str
     debug: bool
+    strict_validation_mode: bool
     default_encoding: str
     headers: dict[str, str]
     timeout: int
