@@ -17,7 +17,9 @@ export default mergeConfig(
           // imports and react-transition-group has no exports map for this entry. Inlining forces
           // Vite to process MUI through its own resolver (which handles directory imports), instead
           // of handing the .mjs file directly to Node's native ESM loader.
-          inline: ['@mui/material'],
+          inline: [
+            '@mui/material',
+          ],
         },
       },
     },
