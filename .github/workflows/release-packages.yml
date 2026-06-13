@@ -53,18 +53,33 @@ jobs:
       - name: Install SDK dependencies
         run: npm ci --ignore-scripts
 
+      - name: Write changeset wrapper scripts
+        # changesets/action passes GITHUB_TOKEN (set to the PAT below) into every subprocess it
+        # spawns, leaking the long-lived PAT to `npx changeset version/publish` and all npm
+        # lifecycle scripts they invoke. Wrapper scripts shadow GITHUB_TOKEN back to the
+        # short-lived workflow token so the PAT is only used by the action's git credential setup.
+        # Scripts are used instead of inline shell expressions because changesets/action invokes
+        # the version/publish commands via exec("sh", ["-c", cmd]), which double-wraps any sh -c
+        # construct and causes "Unterminated quoted string" parse errors.
+        env:
+          WORKFLOW_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat > /tmp/cs-version.sh << 'EOF'
+          #!/bin/sh
+          exec env GITHUB_TOKEN="$WORKFLOW_GITHUB_TOKEN" npx changeset version
+          EOF
+          cat > /tmp/cs-publish.sh << 'EOF'
+          #!/bin/sh
+          exec env GITHUB_TOKEN="$WORKFLOW_GITHUB_TOKEN" npx changeset publish
+          EOF
+          chmod +x /tmp/cs-version.sh /tmp/cs-publish.sh
+
       - name: Create Release Pull Request or Publish Packages
         uses: changesets/action@v1
         with:
           title: 'chore: version packages'
-          # changesets/action explicitly sets GITHUB_TOKEN in the env of every subprocess it
-          # spawns (version and publish), so the long-lived PAT would be inherited by
-          # `npx changeset version/publish` and every npm lifecycle script they spawn
-          # (prepare, prepack, postpublish, etc.) — a leak surface for the automation PAT.
-          # Shadowing GITHUB_TOKEN back to the short-lived workflow token in both commands limits
-          # the PAT's exposure to the action's own git credential setup (.netrc) only.
-          version: GITHUB_TOKEN=$WORKFLOW_GITHUB_TOKEN npx changeset version
-          publish: GITHUB_TOKEN=$WORKFLOW_GITHUB_TOKEN npx changeset publish
+          version: /tmp/cs-version.sh
+          publish: /tmp/cs-publish.sh
         env:
           # changesets/action writes ~/.netrc with GITHUB_TOKEN for git push authentication, so
           # the PAT must be here — GITHUB_TOKEN pushes are suppressed by GitHub to prevent loops
