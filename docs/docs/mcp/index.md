@@ -16,3 +16,4 @@ Choose your editor or AI tool below for step-by-step installation instructions:
 - [Warp](/docs/mcp/warp)
 - [Windsurf](/docs/mcp/windsurf)
 - [Zed](/docs/mcp/zed)
+- [OpenCode](/docs/mcp/opencode)
