@@ -60,9 +60,8 @@ You can check if your MCP server is configured correctly by running `opencode mc
 ```bash
 MCP servers
 
-✔ Devopness connected (OAuth)
+✓ devopness connected (OAuth)
     https://mcp.devopness.com/mcp/
-```
 
 :::
 
