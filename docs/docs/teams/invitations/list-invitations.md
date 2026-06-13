@@ -4,10 +4,9 @@ links:
   overview: teams/invitations/index
   quickstart:
   previous: teams/invitations/add-invitation
-  next: teams/invitations/received-invitations
   guides:
     - teams/invitations/add-invitation
-    - teams/invitations/received-invitations
+    - users/teams/invitations/list-invitations
     - teams/invitations/index
   featured:
 ---

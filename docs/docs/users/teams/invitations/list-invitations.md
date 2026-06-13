@@ -1,12 +1,14 @@
 ---
 title: Received Invitations
 links:
-  overview: teams/invitations/index
+  overview: users/index
   quickstart:
-  previous: teams/invitations/list-invitations
+  previous: users/index
   guides:
     - teams/invitations/add-invitation
     - teams/invitations/list-invitations
+    - teams/invitations/index
+  related:
     - teams/invitations/index
   featured:
 ---
@@ -19,15 +21,15 @@ Know where to find and manage your received invitations.
 
 ## Who should use this
 
-- Team collaborators who are joining a organization/environment
+- Team collaborators who are joining an organization/environment
 
 ## You need
 
-- A valid Devopness account with a existing e-mail
+- A valid Devopness account with an existing email
 
 ## Steps
 
-1. In any page whitin the Devopness app, click your profile button at the top right
+1. In any page within the Devopness app, click your profile button at the top right
 2. Select [`Teams Invitations`](https://app.devopness.com/profile/teams/invitations)
 3. Now in the invitations view either accept or decline an invite
 
@@ -50,7 +52,7 @@ _OR_
 
 ## Next
 
-- After accepting an invite, check wether you now have access to that organization
+- After accepting an invite, check whether you now have access to that organization
 
 1. On the upper-left corner, click the Devopness logo to [see all available organizations to you](https://app.devopness.com/organizations)
 2. Select the organization of the recent accepted invite

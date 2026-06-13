@@ -8,9 +8,9 @@ links:
   guides:
     - teams/invitations/add-invitation
     - teams/invitations/list-invitations
-    - teams/invitations/received-invitations
   related:
     - teams/view-team
+    - users/teams/invitations/list-invitations
   featured:
 ---
 
@@ -48,4 +48,4 @@ If you want the tighter security default, use private invitations. Use public li
 
 - Send one invitation in [Invite Team Member](/docs/teams/invitations/add-invitation)
 - Review invite status in [List Team Invitations](/docs/teams/invitations/list-invitations)
-- Manage invites sent to you in [Received Invitations](/docs/teams/invitations/received-invitations)
+- Manage invites sent to you in [Received Invitations](/docs/users/teams/invitations/list-invitations)
