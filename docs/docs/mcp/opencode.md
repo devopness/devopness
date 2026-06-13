@@ -7,7 +7,7 @@ This guide walks you through installing and configuring the Devopness MCP server
 ## Prerequisites
 
 1. [OpenCode](https://www.opencode.ai/) installed on your machine
-2. A Devopness account with a Personal Access Token
+2. An active Devopness account
 
 ## How Devopness integrates with OpenCode
 
