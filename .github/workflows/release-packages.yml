@@ -63,8 +63,8 @@ jobs:
           # (prepare, prepack, postpublish, etc.) — a leak surface for the automation PAT.
           # Shadowing GITHUB_TOKEN back to the short-lived workflow token in both commands limits
           # the PAT's exposure to the action's own git credential setup (.netrc) only.
-          version: sh -c 'GITHUB_TOKEN="$WORKFLOW_GITHUB_TOKEN" npx changeset version'
-          publish: sh -c 'GITHUB_TOKEN="$WORKFLOW_GITHUB_TOKEN" npx changeset publish'
+          version: "sh -c 'GITHUB_TOKEN=$WORKFLOW_GITHUB_TOKEN npx changeset version'"
+          publish: "sh -c 'GITHUB_TOKEN=$WORKFLOW_GITHUB_TOKEN npx changeset publish'"
         env:
           # changesets/action writes ~/.netrc with GITHUB_TOKEN for git push authentication, so
           # the PAT must be here — GITHUB_TOKEN pushes are suppressed by GitHub to prevent loops
