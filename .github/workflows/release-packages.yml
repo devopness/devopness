@@ -9,7 +9,7 @@ on:
       - .changeset/**
     branches:
       - main
-      - "*.x" # maintenance releases
+      - '*.x' # maintenance releases
 
 permissions:
   contents: write
@@ -41,34 +41,36 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          # Prevent the default credential helper from shadowing the PAT set in the next step.
-          # changesets/action pushes commits and tags via git — those must use the PAT so that
-          # the push triggers downstream workflows (GITHUB_TOKEN pushes are suppressed by GitHub).
+          # Disable the default credential helper so changesets/action's own insteadOf rewrite
+          # (based on the PAT in GITHUB_TOKEN below) is the sole credential in effect.
           persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: "24.x"
+          node-version: '24.x'
 
       - name: Install SDK dependencies
         run: npm ci --ignore-scripts
 
-      - name: Configure git remote to use PAT
-        # Pushes made with GITHUB_TOKEN do not trigger downstream workflows (GitHub suppresses them
-        # to prevent loops), so sync-package-versions.yml would never fire when changesets updates
-        # the release branch. Embedding the PAT in the remote URL takes precedence over the
-        # credential helper that changesets/action sets up, so git pushes use the PAT while the
-        # changesets/action Octokit calls use the always-valid GITHUB_TOKEN below.
-        run: git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
-
       - name: Create Release Pull Request or Publish Packages
         uses: changesets/action@v1
         with:
-          title: "chore: version packages"
-          publish: npx changeset publish
+          title: 'chore: version packages'
+          # changesets/action explicitly sets GITHUB_TOKEN in the env of every subprocess it
+          # spawns (version and publish), so the long-lived PAT would be inherited by
+          # `npx changeset version/publish` and every npm lifecycle script they spawn
+          # (prepare, prepack, postpublish, etc.) — a leak surface for the automation PAT.
+          # Shadowing GITHUB_TOKEN back to the short-lived workflow token in both commands limits
+          # the PAT's exposure to the action's own git credential setup (.netrc) only.
+          version: sh -c 'GITHUB_TOKEN="$WORKFLOW_GITHUB_TOKEN" npx changeset version'
+          publish: sh -c 'GITHUB_TOKEN="$WORKFLOW_GITHUB_TOKEN" npx changeset publish'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # changesets/action writes ~/.netrc with GITHUB_TOKEN for git push authentication, so
+          # the PAT must be here — GITHUB_TOKEN pushes are suppressed by GitHub to prevent loops
+          # and would never trigger sync-package-versions.yml on the changeset-release/* branch.
+          GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          WORKFLOW_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release-pypi-packages:
     name: Release PyPI Packages
