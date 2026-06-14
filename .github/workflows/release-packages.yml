@@ -53,20 +53,22 @@ jobs:
       - name: Install SDK dependencies
         run: npm ci --ignore-scripts
 
-      - name: Configure git remote to use PAT
-        # Pushes made with GITHUB_TOKEN do not trigger downstream workflows (GitHub suppresses them
-        # to prevent loops), so sync-package-versions.yml would never fire when changesets updates
-        # the release branch. Embedding the PAT in the remote URL takes precedence over the action's
-        # credential helper, so git pushes use the PAT while changesets/action's API calls use the
-        # workflow token passed via the github-token input below.
-        run: git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
-
       - name: Create Release Pull Request or Publish Packages
         uses: changesets/action@v1
         with:
           title: 'chore: version packages'
-          publish: npx changeset publish
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # changesets/action runs these via exec("sh",["-c",cmd]), so shell variable assignment
+          # syntax works here. Shadowing GITHUB_TOKEN back to the short-lived workflow token
+          # prevents the long-lived PAT from being inherited by changeset scripts or npm lifecycle
+          # hooks (changesets/action explicitly sets GITHUB_TOKEN in every subprocess it spawns).
+          version: GITHUB_TOKEN=$WORKFLOW_GITHUB_TOKEN npx changeset version
+          publish: GITHUB_TOKEN=$WORKFLOW_GITHUB_TOKEN npx changeset publish
+        env:
+          # changesets/action writes ~/.netrc with GITHUB_TOKEN for git authentication. The PAT
+          # must be used here so the push triggers downstream workflows — GITHUB_TOKEN pushes are
+          # suppressed by GitHub to prevent loops and would never fire sync-package-versions.yml.
+          GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          WORKFLOW_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release-pypi-packages:
     name: Release PyPI Packages
