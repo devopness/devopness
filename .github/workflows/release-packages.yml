@@ -61,6 +61,18 @@ jobs:
         # workflow token passed via the github-token input below.
         run: git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
+      - name: Debug release credentials
+        env:
+          PAT: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          WORKFLOW_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "PAT present: ${PAT:+yes}"
+          echo "PAT prefix: ${PAT:0:5}"
+          echo "Workflow token present: ${WORKFLOW_TOKEN:+yes}"
+          echo "Workflow token prefix: ${WORKFLOW_TOKEN:0:5}"
+          echo "Redacted origin: $(git remote get-url origin | sed -E 's#(https://x-access-token:)[^@]+@#\1***@#')"
+          git ls-remote origin HEAD | sed -E 's#(https://x-access-token:)[^@]+@#\1***@#'
+
       - name: Create Release Pull Request or Publish Packages
         uses: changesets/action@v1
         with:
