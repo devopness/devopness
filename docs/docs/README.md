@@ -24,7 +24,7 @@ We should document use cases that will help our users successfully achieve their
 1. Adopt a **Step by step** approach, making it super easy for readers to follow along:
    - Each step should be clear, with a short sentence.
    - If a process is long, break it down into multiple small steps.
-   - That will help the reader to understand each step without pressure, then breath, then move on to the next step.
+   - That will help the reader to understand each step without pressure, then breathe, then move on to the next step.
 2. **Be brief**: Use short sentences and paragraphs
    - Stick to the principle of one main idea per sentence, plus one additional point if needed.
    - Each paragraph should address one main idea.
