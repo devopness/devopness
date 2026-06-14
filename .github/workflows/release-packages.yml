@@ -73,6 +73,10 @@ jobs:
           echo "Redacted origin: $(git remote get-url origin | sed -E 's#(https://x-access-token:)[^@]+@#\1***@#')"
           git ls-remote origin HEAD | sed -E 's#(https://x-access-token:)[^@]+@#\1***@#'
 
+      - name: Debug PAT push access
+        run: git push --dry-run origin HEAD:refs/heads/pat-debug --force
+        continue-on-error: true
+
       - name: Create Release Pull Request or Publish Packages
         uses: changesets/action@v1
         with:
