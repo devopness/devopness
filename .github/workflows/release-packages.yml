@@ -53,6 +53,19 @@ jobs:
       - name: Install SDK dependencies
         run: npm ci --ignore-scripts
 
+      - name: Prepare changeset version hook
+        # `changesets/action` executes the version command before it stages the release PR.
+        # We wrap it so generated CHANGELOG files are normalized before commit creation.
+        run: |
+          cat > /tmp/cs-version.sh << 'EOF'
+          #!/bin/sh
+          # Keep the version step strict so the formatter failure surfaces immediately.
+          set -e
+          npx changeset version
+          npm run format:changelogs
+          EOF
+          chmod +x /tmp/cs-version.sh
+
       - name: Configure git remote to use PAT
         # Pushes made with GITHUB_TOKEN do not trigger downstream workflows (GitHub suppresses them
         # to prevent loops), so sync-package-versions.yml would never fire when changesets updates
@@ -65,6 +78,7 @@ jobs:
         uses: changesets/action@v1
         with:
           title: 'chore: version packages'
+          version: /tmp/cs-version.sh
           publish: npx changeset publish
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
