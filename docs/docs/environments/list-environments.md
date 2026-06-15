@@ -20,7 +20,7 @@ Select the right environment before adding resources or making changes.
 ## Who should use this
 
 - Engineers checking current environment setup
-- Teams managing multi-stage release flows
+- Teams managing multiple isolated environments in one project
 
 ## Steps
 

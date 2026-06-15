@@ -12,14 +12,14 @@ links:
   featured:
 ---
 
-Delete an environment when you no longer need that deployment stage.
+Delete an environment when you no longer need that separate infrastructure setup.
 
 ## Goal
 
-Clean up old stages and stop working from it after deployment flow changes.
+Clean up an unused environment after your release flow changes.
 
 :::warning
-Removing this environment is permanent. Confirm this stage is no longer needed before you continue.
+Removing this environment is permanent. Confirm this environment is no longer needed before you continue.
 :::
 
 Removed environments no longer keep an active deployment target.
@@ -54,4 +54,4 @@ Removed environments no longer keep an active deployment target.
 
 ## Next
 
-- Use [`List Environments`](/docs/environments/list-environments) to continue with the remaining stages
+- Use [`List Environments`](/docs/environments/list-environments) to continue with the remaining environments

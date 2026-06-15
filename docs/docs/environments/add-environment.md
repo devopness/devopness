@@ -15,7 +15,7 @@ Create a new environment to separate release flow and resources.
 
 ## Goal
 
-Prepare one stage for test, staging, production, or custom deployment flow.
+Prepare a separate infrastructure setup for development, staging, production, or a custom release flow.
 
 ## Who should use this
 
