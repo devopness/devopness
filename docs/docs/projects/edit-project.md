@@ -3,7 +3,7 @@ title: Edit a Project
 links:
   overview:
   quickstart:
-  previous: projects/add-project
+  previous: projects/view-project
   next: projects/remove-project
   guides:
     - projects/view-project
@@ -11,41 +11,53 @@ links:
   featured:
 ---
 
-Update an existing project without creating a new one.
+Change a project's name or settings when the product, client, or team details change.
 
 ## Goal
 
-Update the project name, metadata, or settings after team requirements change.
+Update project details without creating a new project.
 
-## Who should use this
+## Prerequisites
 
-- Project owners
-- Team leads managing multiple active products
-- Developers with project edit permissions
+- You can edit project settings in the selected organization
+- The target project exists and you can open it
 
-## You need
+## What you need
 
-- Permission to edit project settings in the selected organization
-- Access to the target project
+### Name
 
-## Steps
+The name for this product or client inside the organization.
+Use a name your team will recognize in lists and navigation.
 
-1. Go to the project you want to update
-2. Go to project settings
-3. Change the fields you need, such as name or metadata
-4. Save the updates
+### Metadata and settings
 
-## Result
+Update the other project fields shown in the form when your team needs a change.
 
-- The project reflects the updated details
-- Existing environments, teams, and roles remain linked to the same project
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Rename project `acme-old` to `acme-platform` in organization `acme`"
+- "Update the project settings for `northwind`"
+- "Show project `design-studio` and update its name"
+
+## After you save
+
+- The project stays the same in Devopness; only the updated fields change
+- Existing environments, teams, roles, and applications stay linked to this project
+
+## Verify
+
+- The project details show the updated name and settings
+- Environments and applications inside the project are unchanged unless you edited them separately
 
 ## Common issues
 
-- You do not see edit actions: confirm your project role allows updates
-- A new project name conflicts with existing naming rules: use a unique name
-- Changes are not visible yet: refresh the project view
+- You do not see edit actions: confirm your role allows project updates
+- A new project name conflicts with naming rules: choose a unique name in the organization
+- Changes are not visible yet: reopen the project view after saving
 
-## Next
+## What to do next
 
-- Use [`View a Project`](/docs/projects/view-project) to verify the updated setup
+- [View the project](/docs/projects/view-project) to confirm the updated setup
+- [Deploy applications](/docs/applications/deploy-application) when you are ready to release again

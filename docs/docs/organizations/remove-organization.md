@@ -9,47 +9,48 @@ links:
   featured:
 ---
 
-Delete an organization when you no longer want to keep it.
-
-## Goal
-
-Stop all team, project, and token activity under this organization in one action.
+Delete an organization when you no longer need its projects, teams, or resources.
 
 :::warning
 Removing an organization is permanent. This action cannot be undone.
 :::
 
-Confirm this organization is no longer needed before you continue.
+## Goal
 
-## Who should use this
+Delete the organization and remove its data from Devopness.
 
-- Organization owners
-- Admins closing a client organization
-
-## You need
+## Prerequisites
 
 - Permission to delete organizations
-- Confirmation that all required project data is migrated or backed up
+- Required data is backed up or migrated
+- No active resources still depend on it
 
-## Steps
+## What you need
 
-1. Go to the organization to remove
-2. Go to `Organization Settings`
-3. Select `Remove Organization`
-4. Confirm deletion as required by the UI
-5. Confirm final deletion
+- The organization you want to remove
+- Confirmation that deletion is intentional
 
-## Result
+## Using Devopness MCP
 
-- The organization no longer appears in your organization list
-- Teams and projects inside the organization are no longer accessible
+Try these prompts in Devopness MCP:
+
+- "Remove the organization `acme-old` after migrating its projects"
+- "Delete the client organization `northwind`"
+
+Check the organization name before you confirm deletion.
+
+## Verify
+
+- The organization is gone from the organization list
+- No active project or team still points to it
 
 ## Common issues
 
-- You cannot remove the organization: confirm all required project data is archived first
-- Deletion is blocked: confirm you have global delete permission for this organization
+- You cannot remove the organization: confirm required data is archived first
+- Deletion is blocked: confirm you have delete permission for this organization
 - You need to delete dependent resources first: check for active projects, tokens, or integrations
 
-## Next
+## What to do next
 
-- Return to [`Organizations`](/docs/organizations/) for your next organization
+- [Organizations](/docs/organizations/) overview
+- [Add an organization](/docs/organizations/add-organization) when you need a new one

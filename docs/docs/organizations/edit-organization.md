@@ -9,39 +9,51 @@ links:
   featured:
 ---
 
-Update an existing organization without creating a new one.
+Change an organization's name or settings without moving projects or members.
 
 ## Goal
 
-Keep organization details current after ownership, team, or permissions changes.
+Update organization details when ownership, team, or permissions change.
 
-## Who should use this
+## Prerequisites
 
-- Organization owners
-- Team leads managing shared setups across multiple products
-
-## You need
-
+- Access to the organization you want to change
 - Permission to edit organization settings
-- Access to the target organization
 
-## Steps
+## What you need
 
-1. Go to the organization you want to update
-2. Go to `Organization Settings`
-3. Update name or editable details
-4. Save
+### Name
 
-## Result
+The updated organization name, if it changed.
+
+### Other settings
+
+Update the other organization fields shown in the form.
+
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Rename the organization `acme-labs` to `acme-platform`"
+- "Update the organization details for `northwind`"
+- "Change the settings for my current organization"
+
+## After you save
 
 - The organization shows the updated details
-- Existing projects and members remain linked to the same organization
+- Existing projects and members stay in the same organization
+
+## Verify
+
+- The organization page shows the new details
+- Projects and members remain in the same organization
 
 ## Common issues
 
 - You cannot save changes: confirm you still have edit permission
 - Updated fields do not save: check required fields and try again
 
-## Next
+## What to do next
 
-- Use [`Projects`](/docs/projects/) to keep product setup aligned with the updated organization
+- [Projects](/docs/projects/) overview
+- [Roles](/docs/roles/)

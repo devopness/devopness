@@ -1,48 +1,79 @@
 ---
 title: Deploy Application using an Incoming Hook
-intro: As project users base grow, there's a need to rely more on processes and automation; Devopness helps by providing, among other tools, customizable CI/CD pipelines, empowering our users to automate common and repetitive tasks to improve code quality and their code review processes. Create an incoming webhook to trigger an application deploy programmatically.
 links:
-    overview:
-    quickstart:
-    previous:
-    next:
-    guides:
-    related:
-    featured:
+  overview:
+  quickstart:
+  previous:
+  next:
+  guides:
+  related:
+  featured:
 ---
 
-Before creating an incoming webhook to trigger an `application:deploy`, we need the ID of a pipeline that runs the `deploy` operation for an application. The ID (`<pipeline_id>`) will be used as input parameter in the requests to be sent to Devopness API.
+Use an incoming hook when you want a git event or other external event to trigger an application deploy.
 
-<details open>
-  <summary>Steps to find the <code>&lt;pipeline_id&gt;</code> of an <code>application:deploy</code> pipeline</summary>
+This page is API-only today. Use the [Devopness API reference](/docs/api/index) and the webhook guide to create the hook that triggers a deploy pipeline.
 
-1. On Devopness, navigate to a project then select an environment
-1. Find the `Applications` card
-1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications, find the application with the pipeline you want to manage and click the `NAME` of the application
-1. Click the `Pipelines` tab
-1. In the list of pipelines, find the pipeline you want to manage and click the `NAME` of the pipeline
-   > If you haven't created a pipeline yet, follow the [/docs/pipelines/add-pipeline] guide
-1. Copy the `<pipeline_id>` from the pipeline details URL, considering the following URL format:
-   ```bash
-   https://app.devopness.com/projects/<project_id>/environments/<environment_id>/applications/<application_id>/pipelines/<pipeline_id>
-   ```
+## Goal
 
-</details>
+Trigger an application deploy when an external event reaches Devopness.
 
-Once you have your `<pipeline_id>`, please follow the instructions below to add an incoming webhook to your application that triggers the deploy pipeline:
+## Prerequisites
 
-1. Follow the steps on [/docs/webhooks/create-incoming-webhook] guide
-1. Once your web hook is created, copy the hook's unique URL (`url` field)
-1. Take note of the hook's secret signature key (`secret` field)
-   > If the hook was created without a `secret` (non recommended), you can skip this step
-1. Add your webhook to the source provider where each application's source code is hosted, by following the source provider's instructions on the links below:
-   - Bitbucket: [Manage webhooks: create webhooks](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks)
-   - Github: [Webhooks: setting up a webhook](https://docs.github.com/en/webhooks-and-events/webhooks/creating-webhooks#setting-up-a-webhook)
-   - Gitlab: [Webhooks: configure a webhook in GitLab](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html#configure-a-webhook-in-gitlab)
-1. Trigger the webhook, using the configured source provider event trigger options
-1. On the chosen Devopness environment, click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications, find the application you triggered the pipeline and click the `NAME` of the application
-1. On the upper-right corner click `DEPLOYMENTS`
-1. Click `LOGS` on the action triggered by incoming hook
-   > In `START TIME` column, the name of the subject, user or incoming hook, that triggered the action will be visible, e.g: run pipeline 'deploy' on application 'website' using main branch
+- The application already exists
+- The deploy pipeline already exists
+- You know the pipeline ID
+- You have API access for webhook creation
+
+## What you need
+
+- The pipeline ID for the deploy pipeline
+- The incoming webhook URL and secret from Devopness
+- The event in your source provider that should call the webhook
+- Access to your source provider's webhook settings
+
+## How it works
+
+- Create the incoming webhook in Devopness
+- Copy the webhook URL and secret
+- Add the webhook to your source provider
+- Trigger the event
+- Verify the deploy action appears in Devopness
+
+## Using Devopness MCP
+
+MCP is not available for creating incoming hooks.
+Use the [create incoming webhook](/docs/webhooks/create-incoming-webhook) guide instead.
+
+## Find the pipeline ID
+
+Use the pipeline ID for the deploy pipeline that should run when the event arrives.
+
+- Open the application pipeline details page and copy the ID from the URL, or use the API response if you already know the pipeline
+- If you have not created the pipeline yet, add one first from the application pipeline pages
+
+## Provider setup
+
+Add the webhook in your git provider or automation tool.
+The provider must send the event to the incoming hook URL that Devopness gives you.
+
+## After you save
+
+- The external source provider can call the incoming hook URL
+- The deploy pipeline can start from the incoming webhook event
+
+## Verify
+
+- A trigger event creates a new deploy action in the application history
+- The action log shows the incoming hook as the trigger source
+
+## Common issues
+
+- The webhook does not trigger anything: confirm the pipeline ID is correct
+- The hook request fails: check the webhook URL, secret, and source provider settings
+- The deploy starts but fails later: inspect the pipeline step logs
+
+## What to do next
+
+- Review the [Deploy Application](/docs/applications/deploy-application) page
+- Configure an outgoing webhook if you want commit status updates back in your source provider

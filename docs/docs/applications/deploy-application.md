@@ -1,10 +1,9 @@
 ---
 title: Deploy Application
-intro: Deploy your code changes in smaller chunks to make it easier to validate the code through build and testing pipelines, reducing the feedback loop on error detection. Learn how to use Devopness to deploy application changes confidently, with zero downtime, using your own custom build pipelines and make sure your users can benefit from your application as soon as possible. The more often you deploy your application, the better it tends to improve.
 links:
   overview:
   quickstart:
-  previous: applications/link-server-to-application
+  previous: files/add-file
   next: virtual-hosts/add-virtual-host
   guides:
   related:
@@ -13,43 +12,118 @@ required_permissions:
   - application:deploy
 ---
 
-1. On Devopness, navigate to a project then select an environment
-1. Find the `Applications` card
-1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. Click `DEPLOY` on the application you want to deploy
-1. Follow the prompts, then click `Next`
-1. Review deploy information then click `Confirm`
-   > A notification popup will be displayed, confirming that the deployment has been triggered
-1. Wait for the `Application:Deploy` action to be completed
+Run the deploy pipeline to build your code and release it to your servers.
 
-:::note
+On first deploy, Devopness links a server automatically when one is needed.
+Each deploy creates a new timestamped release folder on the server, for example `~/acme-api/releases/2026-06-15 13:45:10`, and updates `~/acme-api/current` to point to the latest successful release.
 
-Now that your application has been deployed, it can be accessed over the internet by setting up a DNS record, or testing access to the application via server IP address.
+## Goal
 
-- For details on how to make an application public, follow the instructions in [/docs/virtual-hosts/add-virtual-host].
+Run the deploy pipeline for an application branch, tag, or commit.
 
-:::
+## Prerequisites
+
+- You can deploy applications in this environment (`application:deploy`)
+- The application already exists in the selected environment
+- Your [credential](/docs/credentials/add-credential) can still read the repository
+- **Root directory** and build settings match your repository layout
+- Configuration files such as `.env` are in place if your app needs them. See [Add a file](/docs/files/add-file)
+
+## Before you deploy
+
+- Confirm your configuration files are in place if your app needs them. Example: a `.env` file
+
+## Deploy options
+
+Use these fields when confirming a deploy in the web app.
+
+### Branch, tag, or commit
+
+The git ref to deploy.
+If you leave this blank, Devopness uses the application's **default branch**.
+
+### Pipeline
+
+The deploy pipeline to run.
+Use the default pipeline unless you maintain multiple pipelines for the same application.
+
+### Target servers
+
+Which servers receive this deploy.
+When omitted, Devopness uses the application's servers, including any linked automatically on a previous deploy.
+
+### Deployment type
+
+How the release is applied, such as a standard deploy or rollback.
+Available values depend on your pipeline configuration.
+
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Deploy the `acme-api` application in Production using branch `main`."
+- "Deploy `acme-web` to Staging and tell me when the deploy action completes."
+- "List recent deploy actions for `acme-worker` in Production and redeploy the last successful branch."
+
+## Verify
+
+- The deploy action reaches `completed`, not `failed` or stuck `pending`
+- The server has a new timestamped release folder under `~/application-name/releases/`
+- `~/application-name/current` points to the latest successful release
+- For a **public** app: it responds on a [virtual host](/docs/virtual-hosts/add-virtual-host) or server IP, not the default **Configured by Devopness! 🚀** landing page
+- For a **private** worker: the process is running via your [daemon](/docs/daemons/add-daemon) or [cron job](/docs/cronjobs/add-cronjob) if you set one up
+- The deployment appears in history with the expected branch or commit
+
+## After you deploy
+
+**Public API or web app**
+
+- [Add or update a virtual host](/docs/virtual-hosts/add-virtual-host) and point DNS to your server
+- Test over the internet via your domain or server IP
+
+**Private worker or background job**
+
+- Add a [daemon](/docs/daemons/add-daemon) to keep the process running and restart it on failure
+- Add a [cron job](/docs/cronjobs/add-cronjob) for scheduled tasks from your application code
+- No virtual host is required
+
+**Any application**
+
+- If you changed `.env` or other config files, deploy again so servers pick up the update
+- [Set up deploy on git push](/docs/applications/deploy-application-using-incoming-hook) when you want automatic releases
+
+## What this looks like on your server
+
+Devopness keeps each deploy as a separate release folder, so you can roll forward or roll back without overwriting the previous release.
+
+- `~/application-name/releases/<YYYY-MM-DD HH:MM:SS>` contains each deploy release
+- `~/application-name/current` points to the live release of the application
+- The current release is the last successful build that Devopness activated on the server
 
 ## Common issues
 
 ### Deploy fails at `Get source from Git repository`
 
-1. Open the application configuration and double-check the "Root directory" setting; it must point to the folder that contains the application's manifest file (`composer.json` for Laravel, `package.json` for Node, `Gemfile` for Rails, etc.)
-2. Confirm the source provider credential used by the application is still active and has access to the repository
-3. Read the logs of the failed action step for details
+- Confirm **Root directory** points to the folder with your package manager file (`package.json`, `composer.json`, `Gemfile`, `pom.xml`, etc.)
+- Confirm the credential is active and can read the repository
+- Read the failed action step logs
 
-### Deploy keeps failing after retries with the same step marked Failed
+### Deploy keeps failing on the same step
 
-1. Read the logs of the failed action step
-2. Check if the errors require updating your application `build command` or `install dependencies` command
-3. Make sure the source provider credential used by the application is still active, and has valid permissions to read the application repository
+- Read the logs for that pipeline step
+- Update the install dependencies or build command if your stack changed
+- Confirm repository access on the git host
 
-### App was deployed, but I still see "Configured by Devopness! 🚀" landing page
+### Deploy succeeds but the site shows "Configured by Devopness! 🚀"
 
-1. Make sure the application has a virtual host linked to it, to make your application publicly accessible via IP address or your own subdomain
-2. Ensure the virtual host document root directory points to the application public files, e.g. `public` or `build` folders
-3. Deploy the virtual host or simply deploy the application again after your changes
+This usually applies to **public** apps that still need routing:
 
-## Next
+- [Add or update a virtual host](/docs/virtual-hosts/add-virtual-host)
+- Set the virtual host document root to your public output folder (`public`, `build`, `dist`, etc.)
+- Redeploy the virtual host or deploy the application again
 
-- Configure how your app is reached over the internet: [Add Virtual Host](/docs/virtual-hosts/add-virtual-host)
+## What to do next
+
+- [Add a Virtual Host](/docs/virtual-hosts/add-virtual-host): for public APIs and web apps
+- [Add a daemon](/docs/daemons/add-daemon): for long-running background processes
+- [Deploy using an Incoming Hook](/docs/applications/deploy-application-using-incoming-hook): trigger deploys from git events

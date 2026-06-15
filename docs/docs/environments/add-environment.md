@@ -11,38 +11,52 @@ links:
   featured:
 ---
 
-Create a new environment to separate release flow and resources.
+Create an environment to separate infrastructure and release flow inside one project.
 
 ## Goal
 
-Prepare one stage for test, staging, production, or custom deployment flow.
+Add a separate infrastructure setup for development, staging, production, or a custom release flow.
 
-## Who should use this
-
-- Developers creating initial project structure
-- Team leads separating release flows
-
-## You need
+## Prerequisites
 
 - Permission to add environments in the target project
-- A project selected in the correct organization
+- The correct project selected in the organization
 
-## Steps
+## What you need
 
-1. Go to the project where the environment should live
-2. Go to `Environments`
-3. Select `Add Environment`
-4. Set a clear environment name
-5. Set the environment type
-6. Save
+### Name
 
-## Expected result
+A clear environment name, such as `Production`, `Staging`, or `Development`.
+
+### Environment type
+
+The type that matches how you plan to use this environment.
+
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Add a Production environment to the `acme-platform` project"
+- "Create a Staging environment in my current project"
+- "Add a Development environment named `dev`"
+
+## After you save
 
 - The environment appears in the environments list
-- You can manage resources and deployments under that environment
+- You can add servers, applications, and other resources in it
+
+## Verify
+
+- The environment appears with the name and type you set
+- You can open it and start adding resources
 
 ## Common issues
 
 - You do not see `Add Environment`: check your project permissions
-- Environment name is already used in this project
-- You do not have enough permissions to save changes
+- Environment name is already used in this project: choose a different name
+- You cannot save: confirm you have permission to add environments
+
+## What to do next
+
+- [List environments](/docs/environments/list-environments)
+- [Add applications](/docs/applications/add-application) in the new environment

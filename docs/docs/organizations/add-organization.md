@@ -9,40 +9,47 @@ links:
   featured:
 ---
 
-Create a new organization for one company, team, or client.
+Create an organization to group projects, members, and permissions.
 
 ## Goal
 
-Set up the organization before creating projects and inviting your team.
+Add the organization before you create projects or invite members.
 
-## Who should use this
+## What you need
 
-- Founders setting up a first company workspace
-- Teams moving from multiple old setups
-- Consultants managing more than one client organization
+### Name
 
-## You need
+A unique organization name.
+This becomes part of your URL slug, like `/@acme`.
 
-- Permission to create organizations
-- A valid organization name
+### Organization role (optional)
 
-## Steps
+Assign a role if other team members should help manage the organization.
 
-1. Open the organization selector
-2. Select `Add Organization`
-3. Enter a unique organization name
-4. Save
+## Using Devopness MCP
 
-## Result
+Try these prompts in Devopness MCP:
 
-- A new organization appears in your organization list
-- You can create projects, invite members, and manage roles there
+- "Create an organization named `acme-platform`"
+- "Add a new client organization called `northwind`"
+- "Create an organization for the `design-studio` team"
+
+## After you save
+
+- The organization appears in your organization list
+- You can create projects, invite members, and assign roles in it
+
+## Verify
+
+- The organization appears with the expected name
+- You can open it and add projects or members
 
 ## Common issues
 
-- You do not see `Add Organization`: confirm you have enough account permissions
+- You do not see `Add Organization`: confirm you have permission to create organizations
 - The organization name is already taken: choose a unique name
 
-## Next
+## What to do next
 
-- Use [`Organizations`](/docs/organizations/) to review the new setup
+- [Organizations](/docs/organizations/) overview
+- [Add a project](/docs/projects/add-project)

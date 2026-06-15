@@ -14,44 +14,49 @@ links:
 
 Delete a project when you no longer need it.
 
-## Goal
-
-Stop managing a project and remove it from your setup.
-
 :::warning
 Removing a project is permanent. This action cannot be undone.
 :::
 
-Deleting a project removes project resources (including all its environments) and cannot be undone.
+This also removes all environments, applications, and related resources inside the project.
 
-## Who should use this
+## Goal
 
-- Project owners
-- Organization owners with permission to delete project resources
+Delete the project and stop managing it in Devopness.
 
-## You need
+## Prerequisites
 
-- Permission to remove projects
-- Confirmation that team members are aware of the deletion
+- You can delete projects in the selected organization
+- Team members who use this project know it will be deleted
+- You saved or moved any data you still need outside Devopness
 
-## Steps
+## What you need
 
-1. Go to the project you want to remove
-2. Go to `Project Settings`
-3. Select `Remove Project`
-4. Confirm the removal in the final dialog
+- The project you want to remove
+- Confirmation that deletion is intentional
 
-## Result
+## Using Devopness MCP
 
-- The project disappears from the project list
-- Team access to that project is revoked
+Try these prompts in Devopness MCP:
+
+- "Remove project `old-demo` from organization `acme`"
+- "Delete the `northwind-staging` project after confirming it is unused"
+
+Check the project name carefully before you confirm deletion.
+
+## Verify
+
+- The project no longer appears in the [project list](/docs/projects/list-projects)
+- Team access to that project is removed
+- Environments and applications in that project are no longer available in Devopness
 
 ## Common issues
 
-- You cannot remove the project: check if you have delete permission for the project
-- Environments are still active: remove or archive them first
-- You do not have permission to remove resources in this organization
+- You cannot remove the project: confirm you have delete permission for the project
+- Deletion is blocked: remove or archive dependent resources first if required
+- You deleted the wrong project: this cannot be undone; restore from backups outside Devopness if needed
 
-## Next
+## What to do next
 
-- Check remaining projects in [`List Projects`](/docs/projects/list-projects)
+- [List projects](/docs/projects/list-projects) to see remaining projects
+- [Add a project](/docs/projects/add-project) when you need a new one

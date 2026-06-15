@@ -1,27 +1,57 @@
 ---
 title: Link a server to an application
-intro: Link a server to an application to select which servers an application can be deployed.
 links:
   overview:
   quickstart:
-  previous: files/add-file
-  next: applications/deploy-application
+  previous: applications/deploy-application
+  next: virtual-hosts/add-virtual-host
   guides:
   related:
   featured:
+required_permissions:
+  - application:update
 ---
 
-:::note
+Choose which servers receive deploys for an application.
 
-Here `server` and `application` were used as examples of resource types. However, the steps to link two resources are the same for any environment's resources that can be linked. Clicking the `LINK TO` dropdown will list all available options of resource types to be linked to the selected resource.
+On first deploy, Devopness usually links a server automatically. Use this page when you need to add servers, change targets, or set the destination explicitly.
 
-:::
+## Goal
 
-1. On Devopness, navigate to a project then select an environment
-1. Find the `Applications` card
-1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. In the list of applications, find the application you want to link to a server and click the `NAME` of the application
-1. Click the `Servers` tab
-1. On the upper-right corner of the servers tab click `LINK SERVER`
-1. Follow the prompts then click `CONFIRM`
-1. In the `Servers` list, the recently linked server can be seen
+Update the server list for an application.
+
+## What you need
+
+- Permission to update the application
+- The application selected in the correct environment
+- The server or servers that should receive deploys
+
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Link the `web-1` server to `acme-web`"
+- "Attach the production servers to `acme-api`"
+- "Link the staging server to the `acme-api` application"
+
+## After you save
+
+- The linked server appears in the application server list
+- Future deploys can target the linked servers
+
+## Verify
+
+- The server appears in the linked servers list
+- A deploy uses the servers you expect
+
+## Common issues
+
+- The server does not appear in the list: confirm it belongs to the selected environment
+- You cannot link the server: confirm you have update permission for the application
+- The link disappears after refresh: confirm the save completed
+
+## What to do next
+
+- [Deploy the application](/docs/applications/deploy-application)
+- [Add a virtual host](/docs/virtual-hosts/add-virtual-host) when the app needs a public URL
+- [Add a daemon](/docs/daemons/add-daemon) or [cron job](/docs/cronjobs/add-cronjob) for private or scheduled workloads

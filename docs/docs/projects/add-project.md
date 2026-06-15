@@ -4,51 +4,65 @@ links:
   overview:
   quickstart:
   previous: projects/index
-  next: projects/view-project
+  next: environments/add-environment
   guides:
     - projects/list-projects
   featured:
 ---
 
-Create a new project inside an organization for one product or client.
+Create a project inside your organization for one product or client.
 
 ## Goal
 
-Set up the project before adding environments, teams, and roles.
+Add the project before you create environments, teams, or applications.
 
-## Who should use this
+## Prerequisites
 
-- Developers creating a new project for one product or client
-- Project leads separating work by product area
+- You can create projects in the selected organization
+- The correct organization is selected
 
-## You need
+## What you need
 
-- Permission to create projects in the selected organization
-- Organization selected where the project should live
+### Name
 
-## Steps
+A name your team will recognize, such as the product or client name.
+This is how the project appears in lists and navigation.
 
-1. Go to the organization where the project will live
-2. Select `Add Project`
-3. Set a clear project name
-4. Save
+Examples: `acme-platform`, `northwind-portal`, `design-studio`
 
-## Expected result
+## Using Devopness MCP
 
-- Your new project appears in the project list
-- You can create environments, teams, and roles inside the project
+Try these prompts in Devopness MCP:
 
-## Why this page
+- "In organization `acme`, create a project named `acme-platform`"
+- "Add a new project called `northwind` for my client"
+- "List projects in `/@acme`, then create a project for internal tooling"
 
-- Keep related products or clients in separate projects when needed
-- Keep project owners and permissions separate per project scope
+## After you save
+
+- The project appears in your project list for that organization
+- You can add environments, teams, roles, and applications inside it
+
+## Verify
+
+- The project appears with the expected name in the correct organization
+- You can open it and continue with environments or team setup
+
+## What to consider
+
+### One project per product or client
+
+Use separate projects when products or clients need separate owners, permissions, or release schedules.
+
+Use separate **environments** inside one project when you need dev, staging, and production infrastructure for the same product.
 
 ## Common issues
 
-- You cannot see `Add Project`: confirm your organization-level permissions
-- The organization you selected is not the one you intended
-- The project name is already taken or invalid
+- You do not see `Add Project`: confirm you have permission to create projects in this organization
+- The organization selected is not the one you intended: switch organization before you save
+- The project name is already taken or invalid: choose a unique name
 
-## Next
+## What to do next
 
-- Use [`List Projects`](/docs/projects/list-projects) to verify it appears
+- [Add an environment](/docs/environments/add-environment)
+- [List projects](/docs/projects/list-projects) to confirm it appears
