@@ -150,7 +150,8 @@ Optional machine-parseable frontmatter:
 - Use **Think of it like this** or a short analogy when a concept is new
 - Show stack variety in examples (Node, Python, PHP, Java, Ruby, Go, C#, React, Laravel, etc.) so readers see Devopness is not limited to one PaaS-style runtime
 - Separate **Using Devopness MCP** from form guidance so humans on the `?` icon do not feel the page is only for agents
-- Prefer encouraging, direct phrasing: "You are done when…" instead of only checklist bullets
+- Prefer encouraging, direct phrasing in **Verify**, such as "You are done when…"
+- Do not use filler openers such as "You are in the right place if…". State the outcome in one plain sentence instead
 
 ### Typical application flow
 

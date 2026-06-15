@@ -11,39 +11,39 @@ links:
   featured:
 ---
 
-Review which teams currently have shared access in an environment.
+List teams that have access to one environment and the role each team has.
 
 ## Goal
 
-Confirm current team access and role assignments before you add or change anything.
+Check current team access before you add or change memberships.
 
-## Who should use this
-
-- Environment admins checking team access
-- Project admins checking team grants
-
-## You need
+## What you need
 
 - Access to the target environment
 - Permission to view environment memberships
 
-## Steps
+## Using Devopness MCP
 
-1. Open the target environment
-2. Open `TEAM MEMBERSHIPS`
-3. Review all listed teams and roles
-4. Open a membership when you need to verify details
+Try these prompts in Devopness MCP:
 
-## Expected result
+- "List team memberships in the Production environment"
+- "Show which teams have access to Staging in `acme-platform`"
 
-- You can confirm each team's assigned role and shared access
-- You can verify current permissions are what you expect
+## What you see
+
+- Each team linked to the environment
+- The role assigned to each team
+
+## Verify
+
+- The list shows the teams and roles you expected
+- Permissions match what you need for this environment
 
 ## Common issues
 
 - List is empty: confirm teams and roles exist in the organization
 - You cannot open the list: check environment permissions
 
-## Next
+## What to do next
 
-- Assign more access in [Add a Team Membership](/docs/environments/team-memberships/add-team-membership)
+- [Add a team membership](/docs/environments/team-memberships/add-team-membership)

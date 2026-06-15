@@ -16,20 +16,21 @@ links:
 An **environment** is a separate infrastructure setup inside one project. Each environment has its own servers, applications, credentials, files, pipelines, and access rules. Nothing in one environment is shared automatically with another.
 
 Names like `Development`, `Staging`, and `Production` are common, but an environment is not just a label: dev might run on one or two servers while production runs on twenty servers behind a load balancer, or on serverless infrastructure in the cloud.
-Also an environment can be used to manage infrastructure and application for one specific client, e.g. `customer Acme`, `customer ABC`
+
+You can also name an environment after a client when you manage separate infrastructure per client, for example `customer-acme` or `customer-abc`.
 
 ## About
 
 - Use environments when you need fully independent infrastructure inside one project
 - Resources in one environment (servers, applications, SSH keys, daemons, cron jobs, virtual hosts, credentials) do not exist in another unless you create them there
-- Most teams deploy to dev first, then promote stable work to staging and production
+- Most teams deploy to dev first, then move stable work to staging and production
 - Each environment can scale differently: smaller setups for testing, larger setups for live traffic
 
 ## Who this is for
 
 - Teams that need separate dev, staging, and production infrastructure
 - Operators who need different servers, credentials, or access per release flow
-- Founders who want one project but safe isolation before changes reach live users
+- Founders who want one project with isolated dev and production setups
 
 ## Think of it like this
 
@@ -58,15 +59,15 @@ Add another environment when you need stronger isolation:
 - Temporary client-specific or hotfix work that must not affect production
 - Different infrastructure per team, region, or compliance requirement
 
-## Examples
+## Common setups
 
-### Product company / Startup
+### Product company or startup
 
 - Start with one `Production` environment if you are validating a first version
-- Add `Development`, `Staging`, or custom environments as the team grows
-- Deploy to dev first, validate, then promote stable work to staging and production
+- Add `Development`, `Staging`, or custom environments when you need separate infrastructure
+- Deploy to dev first, validate, then move stable work to staging and production
 
-### Agency or client specific custom software
+### Agency or client-specific software
 
 - Start with your organization and one project per client
 - One project per client can include `Production`, `Staging`, and custom environments

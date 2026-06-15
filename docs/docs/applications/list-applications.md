@@ -12,11 +12,11 @@ required_permissions:
   - application:read
 ---
 
-Find the applications in one environment so you can open details, deploy one, or inspect its related resources.
+List applications in one environment.
 
 ## Goal
 
-Show the applications that belong to the selected project and environment.
+See which applications exist in the selected project and environment.
 
 ## What you need
 
@@ -25,7 +25,7 @@ Show the applications that belong to the selected project and environment.
 
 ## Using Devopness MCP
 
-If you use Devopness from your IDE or an AI agent, try prompts like:
+Try these prompts in Devopness MCP:
 
 - "List the applications in the Production environment of `acme-platform`"
 - "Show applications named `api` in Staging"
@@ -33,14 +33,13 @@ If you use Devopness from your IDE or an AI agent, try prompts like:
 
 ## What you see
 
-- Each application row shows the name you can open
-- Search helps you narrow the list by name
-- Opening a row takes you to application details and related tabs
+- Application names you can open
+- Search by name when the list is long
 
 ## Verify
 
 - The list shows the environment you expected
-- The application names match the resources you want to manage
+- The application names match what you need to manage
 
 ## Common issues
 
@@ -50,5 +49,5 @@ If you use Devopness from your IDE or an AI agent, try prompts like:
 
 ## What to do next
 
-- Open an application to review its details
-- [Deploy the application](/docs/applications/deploy-application) when you are ready to release changes
+- [View an application](/docs/applications/view-application)
+- [Deploy an application](/docs/applications/deploy-application)

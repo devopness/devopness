@@ -11,34 +11,41 @@ links:
   featured:
 ---
 
-Find and review environments you can use for deployments and management.
+List environments in one project.
 
 ## Goal
 
-Select the right environment before adding resources or making changes.
+See which environments exist before you add resources or make changes.
 
-## Who should use this
+## What you need
 
-- Engineers checking current environment setup
-- Teams managing multiple isolated environments in one project
+- The correct project selected
+- Permission to read environments
 
-## Steps
+## Using Devopness MCP
 
-1. Select the project you want to work with
-2. Open `Environments`
-3. Review the environment list and their types
-4. Select one environment to continue
+Try these prompts in Devopness MCP:
 
-## Expected result
+- "List the environments in the `acme-platform` project"
+- "Show environments in my current project"
+- "List Production and Staging environments for `northwind`"
 
-- You can see available environments with names and roles
-- You can open the chosen environment for details
+## What you see
+
+- Environment names and types
+- A way to open one environment for details
+
+## Verify
+
+- The list shows the project you expected
+- The environment names match what you need to work with
 
 ## Common issues
 
 - Empty list: confirm your role allows environment visibility
 - Wrong project selected: switch to the intended project
 
-## Next
+## What to do next
 
-- Open [`View Environment`](/docs/environments/view-environment)
+- [View an environment](/docs/environments/view-environment)
+- [Add an environment](/docs/environments/add-environment)

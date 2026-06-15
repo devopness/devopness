@@ -13,36 +13,44 @@ links:
   featured:
 ---
 
-Inspect one environment and confirm resources, settings, and access.
+Open one environment to inspect its resources, settings, and access.
 
-## About
+## Goal
 
-Use this page to check what is active and what still needs setup.
+Check what is configured before you deploy, edit settings, or add resources.
 
-## Who should use this
+## What you need
 
-- Operators preparing deployments
-- Team members validating resource and access configuration
+- The correct project selected
+- Permission to read the environment
+- The environment name or list entry you want to open
 
-## Steps
+## Using Devopness MCP
 
-1. Go to the environments list for the project
-2. Select the environment you want to inspect
-3. Review resource summary, team memberships, and settings
+Try these prompts in Devopness MCP:
 
-## What you can do from here
+- "Show me the Production environment in `acme-platform`"
+- "Open the Staging environment details"
+- "List resources in my current environment"
 
-- Add resources to this environment
-- Add or change team memberships
-- Archive or unarchive the environment
-- Update environment settings
+## What you see
 
-## Expected result
+- A summary of resources in the environment
+- Team memberships and settings
+- Actions such as archive, unarchive, or remove
 
-- You can see a complete snapshot of the environment state
-- You can continue with one of the available environment actions
+## Verify
+
+- The details page shows the environment you expected
+- Resources and settings match the current setup
 
 ## Common issues
 
-- Missing resources on the page: configure resources first
+- Missing resources on the page: add resources first
 - You cannot edit settings: your role may be read-only for this environment
+
+## What to do next
+
+- [Add an environment](/docs/environments/add-environment) when you need another setup
+- [Add applications](/docs/applications/add-application) in this environment
+- [Archive an environment](/docs/environments/archive-environment) when you want to pause it

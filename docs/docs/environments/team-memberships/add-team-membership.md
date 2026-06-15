@@ -9,36 +9,50 @@ links:
   featured:
 ---
 
-Add a team to an environment with a role so team members can collaborate with shared access.
+Add a team to an environment with a role so all members of that team get the same access.
 
 ## Goal
 
-Grant all members of the team the same access to that environment through one role assignment.
+Grant one team the same access to an environment through one role assignment.
 
-## Who should use this
-
-- Project owners configuring environment access
-
-## You need
+## Prerequisites
 
 - Team and role created in the organization
 - Permission to manage team memberships
 
-## Steps
+## What you need
 
-1. Go to the environment that needs access
-2. Open `TEAM MEMBERSHIPS` (project admins can find it from the project tab; environment admins in environment details)
-3. Select `ADD TEAM MEMBERSHIP`
-4. Choose a team
-5. Choose a role
-6. Save
+### Team
 
-## Expected result
+The team that should get access to this environment.
 
-- The team can access the environment based on role
+### Role
+
+The role that defines what that team can do in this environment.
+
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Add the `backend` team to Production with the Developer role"
+- "Grant the `ops` team access to Staging in `acme-platform`"
+
+## After you save
+
+- Members of the team can access the environment based on the role
 - The new membership appears in the list
+
+## Verify
+
+- The team appears in the environment team memberships list
+- The assigned role matches what you intended
 
 ## Common issues
 
 - Role not sufficient: check role details and permissions
-- Team not listed: verify team is created in the organization
+- Team not listed: verify the team exists in the organization
+
+## What to do next
+
+- [List team memberships](/docs/environments/team-memberships/list-team-memberships)
+- [Teams](/docs/teams/) and [Roles](/docs/roles/)

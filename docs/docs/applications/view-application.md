@@ -16,7 +16,7 @@ Open one application to inspect its repository, deploy settings, and related res
 
 ## Goal
 
-Review the application details before you edit, link, or deploy it.
+Check repository, pipeline, and deploy settings before you edit or deploy.
 
 ## What you need
 
@@ -26,18 +26,17 @@ Review the application details before you edit, link, or deploy it.
 
 ## Using Devopness MCP
 
-If you use Devopness from your IDE or an AI agent, try prompts like:
+Try these prompts in Devopness MCP:
 
 - "Show me the application `acme-api`"
-- "Open the application details for the current Staging app"
-- "Display the repository and deploy settings for `acme-web`"
+- "Open the application details for the Staging app named `acme-web`"
+- "Show the repository and deploy settings for `acme-web`"
 
 ## What you see
 
 - Repository details and deploy configuration
-- Related tabs such as pipelines, deployments, servers, files, variables, and virtual hosts
-- The current settings that control how the application is built and released
-- If you change files or variables, use the related tabs to review what will be deployed next
+- Tabs for pipelines, deployments, servers, files, variables, and virtual hosts
+- Settings that control how the application is built and released
 
 ## Verify
 
@@ -52,5 +51,5 @@ If you use Devopness from your IDE or an AI agent, try prompts like:
 
 ## What to do next
 
-- Edit the application if the settings need to change
-- [Deploy the application](/docs/applications/deploy-application) if the current configuration is ready
+- [Edit the application](/docs/applications/edit-application) when settings need to change
+- [Deploy the application](/docs/applications/deploy-application) when the configuration is ready

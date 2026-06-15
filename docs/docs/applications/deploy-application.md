@@ -12,9 +12,9 @@ required_permissions:
   - application:deploy
 ---
 
-You have connected your repository. This step turns source code into a release on your servers.
+Run the deploy pipeline to build your code and release it to your servers.
 
-On your first deploy, Devopness links a server automatically when one is needed, so you can focus on the deploy instead of a separate setup step.
+On first deploy, Devopness links a server automatically when one is needed.
 Each deploy creates a new timestamped release folder on the server, for example `~/acme-api/releases/2026-06-15 13:45:10`, and updates `~/acme-api/current` to point to the latest successful release.
 
 ## Goal
@@ -35,7 +35,7 @@ Run the deploy pipeline for an application branch, tag, or commit.
 
 ## Deploy options
 
-Use these when confirming a deploy in the web app.
+Use these fields when confirming a deploy in the web app.
 
 ### Branch, tag, or commit
 
@@ -59,15 +59,13 @@ Available values depend on your pipeline configuration.
 
 ## Using Devopness MCP
 
-If you use Devopness from your IDE or an AI agent, try prompts like:
+Try these prompts in Devopness MCP:
 
 - "Deploy the `acme-api` application in Production using branch `main`."
 - "Deploy `acme-web` to Staging and tell me when the deploy action completes."
 - "List recent deploy actions for `acme-worker` in Production and redeploy the last successful branch."
 
 ## Verify
-
-You are done when:
 
 - The deploy action reaches `completed`, not `failed` or stuck `pending`
 - The server has a new timestamped release folder under `~/application-name/releases/`
@@ -77,8 +75,6 @@ You are done when:
 - The deployment appears in history with the expected branch or commit
 
 ## After you deploy
-
-Choose what fits your application:
 
 **Public API or web app**
 

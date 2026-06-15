@@ -12,13 +12,11 @@ required_permissions:
   - application:create
 ---
 
-Connect the repository you want Devopness to build and deploy in this environment.
-
-You are in the right place if you have a git repo ready and want Devopness to support your stack, whether that is Node, Python, PHP, Java, Ruby, Go, C#, or another supported runtime.
+Connect a git repository to this environment so Devopness can build and deploy it.
 
 ## Goal
 
-Register your repository as an application so you can add configuration, deploy, and run it on your servers.
+Add the application before you add configuration files, deploy, or expose it on a public URL.
 
 ## Prerequisites
 
@@ -27,8 +25,6 @@ Register your repository as an application so you can add configuration, deploy,
 - A [credential](/docs/credentials/add-credential) that can read the repository on your git host
 
 ## What you need
-
-Fill in the form using the fields below.
 
 ### Source provider
 
@@ -53,7 +49,7 @@ This is the name shown in lists and deploy logs.
 ### Programming language, framework, and engine version
 
 The stack Devopness uses to choose default pipeline steps and runtime settings.
-Devopness is not limited to one framework. Examples include Laravel, Django, FastAPI, Spring Boot, Rails, ASP.NET, Express, and many others.
+Examples: Laravel, Django, FastAPI, Spring Boot, Rails, ASP.NET, Express.
 
 ### Root directory
 
@@ -71,26 +67,22 @@ Leave the defaults unless your stack needs custom commands.
 
 ## Using Devopness MCP
 
-If you use Devopness from your IDE or an AI agent, try prompts like:
+Try these prompts in Devopness MCP:
 
 - "In project `acme-platform`, Production environment, add an application from GitHub repo `acme/api` using my `acme-github` credential."
 - "List applications in Staging, then add the worker repo `acme/worker` with root directory `/apps/worker` and default branch `main`."
-- "Add a Laravel app from `acme/billing` to Production and confirm the suggested PHP framework settings."
+- "Add a Laravel app from `acme/billing` to Production with the suggested PHP framework settings."
 
 ## After you save
 
-A typical path from here:
-
 1. Add [configuration files](/docs/files/add-file), for example a `.env` with database URLs, API keys, and other environment variables
 2. [Deploy the application](/docs/applications/deploy-application). Devopness links a server on first deploy when needed
-3. Then choose what fits your app:
+3. Then:
    - **Public API or web app:** [add a virtual host](/docs/virtual-hosts/add-virtual-host)
    - **Background worker or scheduled job:** add a [daemon](/docs/daemons/add-daemon) or [cron job](/docs/cronjobs/add-cronjob)
 4. Optional: customize the [deploy pipeline](/docs/pipelines/add-pipeline) or set up [deploy on git push](/docs/applications/deploy-application-using-incoming-hook)
 
 ## Verify
-
-You are done when:
 
 - The application appears in the environment list with the expected name and repository
 - The repository and credential match the git host you selected
@@ -101,7 +93,7 @@ You are done when:
 ### Multiple applications in the same environment
 
 Add one application per service when that matches how you release code.
-This works when your API (any backend stack), frontend (React, Next.js, Vite, and others), worker, docs site, or SDK share the same environment but need different deploy settings.
+This works when your API, frontend, worker, docs site, or SDK share the same environment but need different deploy settings.
 
 Create a new environment when you need separate infrastructure, data, access rules, or release cadence.
 

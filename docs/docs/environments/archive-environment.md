@@ -9,33 +9,38 @@ links:
   featured:
 ---
 
-Pause an environment and keep all setup and history.
+Archive an environment to make it read-only while keeping its setup and history.
 
 ## Goal
 
-Keep historical environments visible while preventing active changes.
+Pause an old release flow without deleting its configuration.
 
-## Who should use this
-
-- Project owners with many environments
-- Teams freezing old release flows
-
-## You need
+## Prerequisites
 
 - Permission to archive environments
 - The target environment to archive
 
-## Steps
+## What you need
 
-1. Go to the project and choose the environment to pause
-2. Open environment settings
-3. Go to `Archived environments`
-4. Confirm archive
+- The environment you want to archive
+- Confirmation that active changes should stop in this environment
 
-## Expected result
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Archive the `legacy-staging` environment in `acme-platform`"
+- "Archive the old hotfix environment in my project"
+
+## After you save
 
 - The environment becomes read-only
-- Settings, history, and team memberships remain preserved
+- Settings, history, and team memberships stay in place
+
+## Verify
+
+- The environment appears in the archived list
+- You cannot make active changes in it
 
 ## Common issues
 
@@ -51,3 +56,8 @@ Remove unused resources before archive to avoid extra cost.
 Archived environments are read-only.
 Only project owners can restore them.
 :::
+
+## What to do next
+
+- [Find an archived environment](/docs/environments/find-archived-environment)
+- [Unarchive an environment](/docs/environments/unarchive-environment) when you need it active again

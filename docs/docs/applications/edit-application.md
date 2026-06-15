@@ -12,12 +12,11 @@ required_permissions:
   - application:update
 ---
 
-Update an application when the source, build, or release settings changed.
-Use this page to keep the application aligned with the repo, folder, branch, and commands used to build and run it.
+Change an application's repository, build settings, or branch when the source or deploy setup changes.
 
 ## Goal
 
-Keep the application configuration current after source, runtime, or deployment changes.
+Update application settings without creating a new application.
 
 ## Prerequisites
 
@@ -27,7 +26,7 @@ Keep the application configuration current after source, runtime, or deployment 
 
 ## What you need
 
-Fill in only the fields that need to change:
+Change only the fields that need an update.
 
 ### Repository or source location
 
@@ -35,7 +34,7 @@ The git repository, or the folder inside a monorepo, that Devopness should build
 
 ### Source provider and credential
 
-The git host and credential that can still read the source.
+The git host and credential that can read the source.
 
 ### Root directory
 
@@ -44,7 +43,7 @@ Use a subfolder when the source lives inside a monorepo.
 
 ### Default branch
 
-The branch Devopness should use when a deploy does not specify another ref.
+The branch Devopness uses when a deploy does not specify another ref.
 
 ### Install dependencies command / Build command
 
@@ -52,7 +51,7 @@ Custom commands only when the defaults no longer match your stack.
 
 ## Using Devopness MCP
 
-If you use Devopness from your IDE or an AI agent, try prompts like:
+Try these prompts in Devopness MCP:
 
 - "Update the `acme-api` application to use the `main` branch"
 - "Change the repository for `acme-web`"
@@ -60,13 +59,13 @@ If you use Devopness from your IDE or an AI agent, try prompts like:
 
 ## After you save
 
-- The application keeps the same identity in Devopness
+- The application stays the same in Devopness; only the updated fields change
 - Existing linked resources stay attached unless you change them
-- You may need to deploy again if the changes affect runtime behavior
+- Deploy again if the changes affect runtime behavior
 
 ## Verify
 
-- The application details page shows the updated settings
+- The application details show the updated settings
 - The repository, root directory, and commands match the new source layout
 
 ## Common issues
@@ -77,5 +76,5 @@ If you use Devopness from your IDE or an AI agent, try prompts like:
 
 ## What to do next
 
-- Review the updated application in [View an Application](/docs/applications/view-application)
-- Run a new [Deploy Application](/docs/applications/deploy-application) if the change affects runtime behavior
+- [View the application](/docs/applications/view-application)
+- [Deploy the application](/docs/applications/deploy-application) when the change affects runtime behavior
