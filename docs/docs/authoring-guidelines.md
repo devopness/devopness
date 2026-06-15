@@ -26,16 +26,17 @@ Write each operation page for three readers:
 
 | Reader                            | Primary sections                                       | What they need                                                              |
 | --------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------- |
-| Human using in-app `?` help       | Goal, What you need, After you save, Common issues     | Field meaning and decisions, not navigation to the form they are already on |
-| MCP-connected agent               | Goal, Examples, Verify, What you need                  | Example prompts, scope, and success signals                                 |
-| Website visitor browsing the docs | Goal, What you need, Examples, Verify, What to do next | A clear path from the task to the next step                                 |
+| Human using in-app `?` help       | Goal, What you need, follow-up section, Common issues | Field meaning and decisions, not navigation to the form they are already on |
+| MCP-connected agent               | Goal, Using Devopness MCP, Verify, What you need        | Example prompts, scope, and success signals                                 |
+| Website visitor browsing the docs | Goal, What you need, Using Devopness MCP, Verify, What to do next | A clear path from the task to the next step                 |
 
 **Documentation priority (not product stack priority):**
 
-1. **Goal + Verify** — every page
+1. **Goal + Verify** — every operation page
 2. **What you need** — form-backed operations and deploy dialogs
-3. **Examples** — example prompts and expected outcomes
-4. **After you save / What to do next** — follow-up actions
+3. **Using Devopness MCP** — example prompts and expected outcomes
+4. **Follow-up section** — use the heading that matches the action (see operation types below)
+5. **What to do next** — end the page here when follow-up actions exist
 
 If an operation is **API-only today** (some webhooks and automation flows), say so upfront and link to the API reference site. Do not invent UI steps.
 
@@ -58,27 +59,31 @@ If an operation is **API-only today** (some webhooks and automation flows), say 
 ### Operation pages (`add-*`, `edit-*`, `list-*`, `view-*`, `archive-*`, `deploy-*`, etc.)
 
 - Keep operation pages outcome-driven
-- Recommended sections:
+- Use one follow-up heading that matches the action. Do not use `## After you save` on deploy, list, or view pages
+- Keep this section order on every operation page:
 
 ```markdown
 ## Goal
 
-## Prerequisites
+## Prerequisites          (when permission or scope matters)
 
-## What you need
+## What you need          (or ## Deploy options on deploy pages)
+                          (or ## What you see on list/view pages)
 
-## Examples
+## Using Devopness MCP   (or a note when MCP is not available)
 
-Try these examples in Devopness MCP:
-
-## After you save
+## After you save        (add/edit only)
 
 ## Verify
 
+## After deploy           (deploy only)
+
 ## Common issues
 
-## What to do next
+## What to do next        (last section when follow-up links exist)
 ```
+
+Omit sections that do not apply to the operation type.
 
 - Group content by decision and outcome first, not by UI position
 - Do not open with numbered navigation steps when the doc is linked from the matching form
@@ -151,6 +156,7 @@ Optional machine-parseable frontmatter:
 
 Do not present **link server to application** as a required step before first deploy.
 Recent Devopness versions link servers automatically during first deploy when needed.
+Keep **link server to application** as an optional page for changing or adding deploy targets after deploy has started.
 
 Guide readers through:
 
@@ -160,6 +166,13 @@ Guide readers through:
 4. Then branch by app type:
    - Public API or web app → virtual host
    - Private worker or batch job → daemon or cron job (no virtual host required)
+
+**Pagination (`links.previous` / `links.next`)** should follow that path for the first-deploy sequence:
+
+`add-application` → `files/add-file` → `deploy-application` → `virtual-hosts/add-virtual-host`
+
+Do not route `add-file` or `add-variable` to `link-server-to-application` as the next step in that sequence.
+Place `link-server-to-application` outside the default pagination chain, or after `deploy-application` when the page is about changing servers.
 
 ## 4) Language rules
 
@@ -195,9 +208,12 @@ Guide readers through:
 - Keep sections predictable and clear. Agents and RAG chunk by H2 headings.
 - Prefer clarity over extreme brevity. Write enough detail so a newcomer can act without follow-up questions.
 - Keep sentences short and direct
-- End each operation page with a clear **Verify** section, not `Result` or `Expected result`
+- Keep **Verify** on every operation page with a concrete success signal
+- Place **Verify** after the follow-up section on `add-*` and `edit-*` pages, and before **After deploy** on `deploy-*` pages
+- Place **Common issues** after **Verify** (and after **After deploy** on deploy pages)
+- End the page with **What to do next** when follow-up links exist. Do not place sections after it
 - Keep naming, meaning, and sequence consistent across sibling pages
-- On `Examples` sections, include a short lead-in like `Try these examples in Devopness MCP:` when it helps the reader
+- On **Using Devopness MCP** sections, include a short lead-in like `Try these examples in Devopness MCP:` when it helps the reader
 - On `What you need` sections, map UI labels to plain-language descriptions when helpful
 - Do not put navigation-only steps at the top of pages used as in-app help
 
@@ -226,12 +242,13 @@ Guide readers through:
 ## 8) Minimum checklist (every doc change)
 
 - [ ] one clear outcome in the opening sentence
-- [ ] **Verify** section with a concrete success signal
-- [ ] **Examples** when an operation is available through MCP, or a brief note when MCP is not available
+- [ ] **Verify** with a concrete success signal, in the order defined for that operation type
+- [ ] **Using Devopness MCP** when the operation is available through MCP, or a brief note when MCP is not available
+- [ ] follow-up heading matches the operation type (`After you save`, `After deploy`, etc.)
 - [ ] **What you need** section on operation pages, not navigation steps
 - [ ] `required_permissions` in frontmatter when the operation is permission-gated
 - [ ] one **Common issues** section on operation pages
-- [ ] links to next action or next relevant doc
+- [ ] **What to do next** as the last section when follow-up links exist
 - [ ] no `intro` in frontmatter
 
 ## 9) What to include

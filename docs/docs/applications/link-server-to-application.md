@@ -3,8 +3,8 @@ title: Link a server to an application
 links:
   overview:
   quickstart:
-  previous: files/add-file
-  next: applications/deploy-application
+  previous: applications/deploy-application
+  next: virtual-hosts/add-virtual-host
   guides:
   related:
   featured:

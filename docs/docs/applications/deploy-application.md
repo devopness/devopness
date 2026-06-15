@@ -3,7 +3,7 @@ title: Deploy Application
 links:
   overview:
   quickstart:
-  previous: applications/add-application
+  previous: files/add-file
   next: virtual-hosts/add-virtual-host
   guides:
   related:
