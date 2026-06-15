@@ -15,31 +15,6 @@ Devopness provides a remote MCP server that OpenCode connects to through its nat
 
 ## Installation
 
-### Option A: Edit your OpenCode config file (opencode.json)
-
-1. Open your `opencode.json` config file in your favorite text editor, for Windows users located on the following path: `%USERPROFILE%\.config\opencode\opencode.json`, for Linux and MacOS users located on the following path: `~/.config/opencode/opencode.json`
-2. Add the following configuration to your `opencode.json` file:
-
-```json
-{
-  "mcp": {
-    "devopness": {
-      "type": "remote",
-      "url": "https://mcp.devopness.com/mcp/",
-      "oauth": {}
-    }
-  }
-}
-```
-
-3. Save the `opencode.json` file
-4. Open your terminal and run `opencode mcp auth` and choose the `devopness` option
-5. Will open a browser window for you to authenticate with your Devopness account, and upon successful authentication, you will be redirected back to your terminal.
-6. Restart your terminal
-7. You are now authenticated with your Devopness account and can use the Devopness MCP server with your Opencode CLI sessions.
-
-### Option B: Use the interactive mode `opencode mcp add`
-
 1. Open your terminal and run `opencode mcp add`
 2. Follow the interactive prompts to add your Devopness MCP server to your OpenCode config:
   - **Location** choose the location `Global`
