@@ -17,7 +17,7 @@ Use one project per product or client. Do not mix unrelated products in the same
 
 ## Think of it like this
 
-- **Organization:** your company or agency workspace, like `/@acme`
+- **Organization:** your company or agency account, like `/@acme`
 - **Project:** one product or client inside that organization
 - **Environment:** separate infrastructure inside the project (dev, staging, production)
 - **Application:** one git repository connected to one environment
