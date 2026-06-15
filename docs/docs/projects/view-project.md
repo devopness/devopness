@@ -3,43 +3,55 @@ title: View a Project
 links:
   overview:
   quickstart:
-  previous: projects/add-project
-  next: projects/list-projects
+  previous: projects/list-projects
+  next: projects/edit-project
   guides:
     - projects/list-projects
     - projects/add-project
   featured:
 ---
 
-Review one project setup in Devopness.
+Review one project's environments, teams, roles, and API tokens.
 
-## About
+## Goal
 
-Use this page to confirm environments, teams, roles, and API tokens for one project.
+Check that the project has the environments and access you expect.
 
-## Who should use this
+## What you need
 
-- Project owners checking if setup is ready
-- Team members validating access before deploy
+- The correct organization selected
+- Permission to view the project
+- The project name or list entry you want to open
 
-## Steps
+## Using Devopness MCP
 
-1. Go to the project you want to review
-2. Open **Environments** to check each environment
-3. Open **Teams** to see who can work there
-4. Open **Roles** to verify access
-5. Open **API Tokens** when you need token-level checks
+Try these prompts in Devopness MCP:
 
-## Expected result
+- "Show details for project `acme-platform`"
+- "List environments in project `northwind`"
+- "What teams and roles are configured for `design-studio`?"
 
-- You can confirm environment and access settings
-- You know what teams, roles, and tokens are active
+## What you see
+
+- **Environments:** separate infrastructure setups inside the project (dev, staging, production)
+- **Teams:** who can work in this project
+- **Roles:** access rules for project members
+- **API tokens:** tokens for this project when you use the API or MCP
+
+## Verify
+
+- You opened the project you intended
+- Environments, teams, and roles match what you expect
+- API tokens are listed when you need them for automation
 
 ## Common issues
 
-- You cannot view project details: confirm your project permission in the selected organization
-- API tokens are missing: confirm the project has tokens enabled or create one
+- You cannot view project details: confirm your role in the selected organization
+- An environment is missing: [add an environment](/docs/environments/add-environment)
+- API tokens are missing: create tokens for this project when you need API or MCP access
 
-## Next
+## What to do next
 
-- Use [`Remove a Project`](/docs/projects/remove-project) if this is no longer needed
+- [Add an environment](/docs/environments/add-environment) when the project needs another infrastructure setup
+- [Add an application](/docs/applications/add-application) inside an environment
+- [Edit the project](/docs/projects/edit-project) when the name or settings need to change
