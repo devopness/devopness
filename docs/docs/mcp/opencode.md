@@ -37,6 +37,7 @@ MCP servers
 
 ✓ devopness connected (OAuth)
     https://mcp.devopness.com/mcp/
+```
 
 :::
 
