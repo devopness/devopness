@@ -24,11 +24,11 @@ Organize docs around the task the reader wants to complete, not around Devopness
 
 Write each operation page for three readers:
 
-| Reader                              | Primary sections                                   | What they need                                                               |
-| ----------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Human using in-app `?` help        | Goal, What you need, After you save, Common issues | Field meaning and decisions, not navigation to the form they are already on  |
-| MCP-connected agent                | Goal, Examples, Verify, What you need              | Example prompts, scope, and success signals                                  |
-| Website visitor browsing the docs   | Goal, What you need, Examples, Verify, What to do next | A clear path from the task to the next step                                 |
+| Reader                            | Primary sections                                       | What they need                                                              |
+| --------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Human using in-app `?` help       | Goal, What you need, After you save, Common issues     | Field meaning and decisions, not navigation to the form they are already on |
+| MCP-connected agent               | Goal, Examples, Verify, What you need                  | Example prompts, scope, and success signals                                 |
+| Website visitor browsing the docs | Goal, What you need, Examples, Verify, What to do next | A clear path from the task to the next step                                 |
 
 **Documentation priority (not product stack priority):**
 
@@ -44,6 +44,7 @@ If an operation is **API-only today** (some webhooks and automation flows), say 
 ### Index pages (`index.md`)
 
 - Keep index pages conceptual
+- Start with a brief introductory paragraph that explains the concept in plain language
 - Make them complete enough for a first-time visitor: what the concept is, when to use it, and how it relates
 - Do not make concept pages too short: include a brief introduction plus 2 to 4 bullets that add context, examples, and practical use cases
 - Recommended sections:
@@ -93,6 +94,12 @@ Try these examples in Devopness MCP:
 - When a next step needs a doc link, keep the bullet itself simple and put the link in a separate sentence or note if needed
 - Avoid generic page-menu headings like `Details`, `MCP`, and `Next` when a more descriptive phrase fits
 
+### What to do next
+
+- Use `## What to do next` for practical follow-up use cases that help readers avoid common mistakes or choose the right next step
+- Keep it short and concrete
+- Do not repeat the core `What you need`, `Examples`, `Verify`, or `Common issues` sections
+
 ### List and view pages
 
 - Use the same heading set where possible
@@ -104,13 +111,23 @@ Try these examples in Devopness MCP:
 - `index.md`: use the first paragraph for one conceptual sentence
 - Operation pages: use the first paragraph to state the outcome of the action
 - Keep one clear meaning for each core concept:
-  - organization
-  - project
-  - environment
+  - **organization:** top-level workspace for one company, legal entity, or client portfolio
+  - **project:** groups environments and resources for one product or client inside an organization
+  - **environment:** separate infrastructure setup inside a project (own servers, applications, credentials, pipelines, files, and deploy settings). Names like Development, Staging, and Production are common; dev might use one or two servers while production uses many servers, load balancers, or serverless infrastructure. Deploy to dev first, then promote stable work to staging and production
+  - **application:** one git repository (or one folder in a monorepo) connected to one environment, with its own build and deploy settings
   - team
   - role
   - permission
   - etc
+
+### Words for "environment"
+
+Prefer plain phrases that work for non-native English readers:
+
+- **Good:** separate infrastructure setup, isolated space, separate copy of infrastructure, fully independent
+- **Avoid:** boundary (abstract), container (conflicts with Docker in DevOps docs)
+
+Use **stage** only when talking about release flow (dev → staging → production), not as the definition of environment.
 
 Optional machine-parseable frontmatter:
 
@@ -120,7 +137,31 @@ Optional machine-parseable frontmatter:
 | `operation`            | CRUD or domain verb          | `add`, `deploy`      |
 | `required_permissions` | RBAC gate                    | `application:deploy` |
 
-## 3) Language rules
+## 3) Voice and first-time clarity
+
+- Lead with a plain-language sentence a first-time reader understands before internal terms
+- Use **you** and concrete examples (repo names, branches, stacks) before words like build target or source tree
+- On index pages, include an ordered **path to success**, not only a flat link list
+- Use **Think of it like this** or a short analogy when a concept is new
+- Show stack variety in examples (Node, Python, PHP, Java, Ruby, Go, C#, React, Laravel, etc.) so readers see Devopness is not limited to one PaaS-style runtime
+- Separate **Using Devopness MCP** from form guidance so humans on the `?` icon do not feel the page is only for agents
+- Prefer encouraging, direct phrasing: "You are done when…" instead of only checklist bullets
+
+### Typical application flow
+
+Do not present **link server to application** as a required step before first deploy.
+Recent Devopness versions link servers automatically during first deploy when needed.
+
+Guide readers through:
+
+1. Add application
+2. Add configuration files (for example `.env`)
+3. Deploy
+4. Then branch by app type:
+   - Public API or web app → virtual host
+   - Private worker or batch job → daemon or cron job (no virtual host required)
+
+## 4) Language rules
 
 - Use clear verbs: set, create, add, configure, select, verify, confirm, save, deploy
 - Avoid abstract jargon and enterprise language
@@ -134,7 +175,7 @@ Optional machine-parseable frontmatter:
 - Prefer `deploy` when writing actions tied to release, rollout, or platform operations
 - Use `ship` only for high-level, product-level outcomes outside UI action language
 
-## 4) Decision and clarity
+## 5) Decision and clarity
 
 - Lead with outcomes:
   - what people can do next
@@ -149,7 +190,7 @@ Optional machine-parseable frontmatter:
   - API, web app, worker, background queue, production flow
 - Explain the result before long detail
 
-## 5) LLM-friendly format
+## 6) LLM-friendly format
 
 - Keep sections predictable and clear. Agents and RAG chunk by H2 headings.
 - Prefer clarity over extreme brevity. Write enough detail so a newcomer can act without follow-up questions.
@@ -160,7 +201,7 @@ Optional machine-parseable frontmatter:
 - On `What you need` sections, map UI labels to plain-language descriptions when helpful
 - Do not put navigation-only steps at the top of pages used as in-app help
 
-## 6) List style and punctuation
+## 7) List style and punctuation
 
 - For short bullet items and checklist items, skip the final period
 - Use a period only for full sentences with more than one clause
@@ -169,7 +210,20 @@ Optional machine-parseable frontmatter:
 - Do not add trailing colons to Markdown headings (`## About:` is invalid style; use `## About`)
 - Use colons in prose only when they introduce examples, ranges, or key/value clauses, not as heading punctuation
 
-## 7) Minimum checklist (every doc change)
+### Dashes and hyphens
+
+- **Hyphens (`-`)** join compound words: `long-running`, `first-time`, `single-stack`
+- **Colons (`:`)** introduce examples or lists after a complete clause:
+  - Good: `One environment can host many applications: your API, frontend, worker`
+  - Good: `**Application:** Devopness settings for one repo in one environment`
+- **Avoid em dashes (`—`)** glued to words without spaces. Readers can misread `applications—your` as one word
+- Prefer a colon, period, or parentheses instead of an em dash when adding an explanation or example
+- If you use an em dash, put spaces around it: `applications — your API, frontend`
+- In numbered steps, put the explanation after the link on a new phrase or use a colon, not an em dash:
+  - Good: `1. Add an application: connect your repository to this environment`
+  - Avoid: `1. Add an application — connect your repository`
+
+## 8) Minimum checklist (every doc change)
 
 - [ ] one clear outcome in the opening sentence
 - [ ] **Verify** section with a concrete success signal
@@ -180,7 +234,7 @@ Optional machine-parseable frontmatter:
 - [ ] links to next action or next relevant doc
 - [ ] no `intro` in frontmatter
 
-## 8) What to include
+## 9) What to include
 
 - Document outcomes and field decisions, not menu paths
 - For concept pages, keep enough context for first-time readers and discovery, including practical examples and decision signals
@@ -188,7 +242,7 @@ Optional machine-parseable frontmatter:
 - Add one practical example for each major concept
 - Add MCP prompts that name scope: organization, project, environment, resource names
 
-## 9) What to avoid
+## 10) What to avoid
 
 - Avoid repeating API validation details already shown by the API or OpenAPI
 - Avoid long policy essays in setup guides
@@ -196,7 +250,7 @@ Optional machine-parseable frontmatter:
 - Avoid opening form help topics with "navigate to… click Add…"
 - Avoid long API blocks on MCP-primary pages. Link to the API reference site instead.
 
-## 10) Canonical location
+## 11) Canonical location
 
 - This file is the canonical guide for documentation writing
 - Keep `/docs/docs/README.md` for frontmatter, markdown, and metadata rules
