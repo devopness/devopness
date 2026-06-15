@@ -37,7 +37,6 @@ const PopoverPopupState = ({ trigger, children }: PopoverPopupStateProps) => (
       <div>
         <Button
           {...bindTrigger(popupState)}
-          noMargin
           buttonType="borderless"
         >
           {trigger}
