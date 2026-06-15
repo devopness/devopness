@@ -20,15 +20,15 @@ Team memberships connect a team to an environment with a role.
 - Teams and roles are managed at the organization level
 - The role controls what the team can do in that environment
 
-## Who should use this
+## Who this is for
 
-- Project admins controlling project-wide collaboration
+- Project admins controlling project-wide access
 - Environment admins setting per-environment access
 
 ## Why this exists
 
-- It is how you invite a team to contribute in an environment
-- It gives that team a clear role so people can collaborate safely
+- It is how you give a team access to one environment
+- The role defines what members of that team can do there
 
 ## Relationship to other concepts
 

@@ -9,6 +9,9 @@
     "@changesets/changelog-github": "^0.7.0",
     "@changesets/cli": "^2.31.0"
   },
+  "scripts": {
+    "format:changelogs": "npx prettier --write \"packages/*/*/CHANGELOG.md\""
+  },
   "devDependencies": {
     "jsdom": "^29.1.1"
   },
