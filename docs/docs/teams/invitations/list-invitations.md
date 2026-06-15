@@ -4,9 +4,9 @@ links:
   overview: teams/invitations/index
   quickstart:
   previous: teams/invitations/add-invitation
-  # next: teams/members/add-team-member
   guides:
     - teams/invitations/add-invitation
+    - users/teams/invitations/list-invitations
     - teams/invitations/index
   featured:
 ---
