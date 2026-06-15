@@ -17,12 +17,14 @@ Devopness provides a remote MCP server that OpenCode connects to through its nat
 
 1. Open your terminal and run `opencode mcp add`
 2. Follow the interactive prompts to add your Devopness MCP server to your OpenCode config:
-  - **Location** choose the location `Global`
-  - **Enter MCP server name**  Enter MCP name, we recommend `devopness`
-  - **Select MCP server type** Choose `remote`
-  - **Enter MCP server URL** Enter MCP URL, use `https://mcp.devopness.com/mcp/`
-  - **Does this server require OAuth authentication?** Choose the option `yes`
-  - **Do you have a pre-registered client ID?** Choose the option `no`
+
+- **Location** choose the location `Global`
+- **Enter MCP server name** Enter MCP name, we recommend `devopness`
+- **Select MCP server type** Choose `remote`
+- **Enter MCP server URL** Enter MCP URL, use `https://mcp.devopness.com/mcp/`
+- **Does this server require OAuth authentication?** Choose the option `yes`
+- **Do you have a pre-registered client ID?** Choose the option `no`
+
 3. run `opencode mcp auth` and choose the `devopness` option
 4. Will open a browser window for you to authenticate with your Devopness account, and upon successful authentication, you will be redirected back to your terminal.
 5. Restart your terminal
