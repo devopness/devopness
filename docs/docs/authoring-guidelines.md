@@ -24,11 +24,11 @@ Organize docs around the task the reader wants to complete, not around Devopness
 
 Write each operation page for three readers:
 
-| Reader                            | Primary sections                                       | What they need                                                              |
-| --------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------- |
-| Human using in-app `?` help       | Goal, What you need, follow-up section, Common issues | Field meaning and decisions, not navigation to the form they are already on |
-| MCP-connected agent               | Goal, Using Devopness MCP, Verify, What you need        | Example prompts, scope, and success signals                                 |
-| Website visitor browsing the docs | Goal, What you need, Using Devopness MCP, Verify, What to do next | A clear path from the task to the next step                 |
+| Reader                            | Primary sections                                                  | What they need                                                              |
+| --------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Human using in-app `?` help       | Goal, What you need, follow-up section, Common issues             | Field meaning and decisions, not navigation to the form they are already on |
+| MCP-connected agent               | Goal, Using Devopness MCP, Verify, What you need                  | Example prompts, scope, and success signals                                 |
+| Website visitor browsing the docs | Goal, What you need, Using Devopness MCP, Verify, What to do next | A clear path from the task to the next step                                 |
 
 **Documentation priority (not product stack priority):**
 
@@ -65,22 +65,23 @@ If an operation is **API-only today** (some webhooks and automation flows), say 
 ```markdown
 ## Goal
 
-## Prerequisites          (when permission or scope matters)
+## Prerequisites (when permission or scope matters)
 
-## What you need          (or ## Deploy options on deploy pages)
+## What you need (or ## Deploy options on deploy pages)
+
                           (or ## What you see on list/view pages)
 
-## Using Devopness MCP   (or a note when MCP is not available)
+## Using Devopness MCP (or a note when MCP is not available)
 
-## After you save        (add/edit only)
+## After you save (add/edit only)
 
 ## Verify
 
-## After deploy           (deploy only)
+## After deploy (deploy only)
 
 ## Common issues
 
-## What to do next        (last section when follow-up links exist)
+## What to do next (last section when follow-up links exist)
 ```
 
 Omit sections that do not apply to the operation type.
