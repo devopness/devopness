@@ -38,11 +38,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Enable button loading animation */
   loading?: boolean
   /**
-   * The button component has a 15px margin on its sides, to remove activate the "noMargin" property
-   */
-  noMargin?: boolean
-  /**
-   * The button component has a 10px margin on its sides, to remove activate the "noIconMargin" property
+   * The button component has a 10px gap between icon and label by default.
+   * Set to true to remove the gap.
    */
   noIconMargin?: boolean
   /**
@@ -124,7 +121,6 @@ const Button = ({
   iconSize,
   loading: isLoading,
   noIconMargin,
-  noMargin,
   noPadding,
   noPointerEvents,
   revertOrientation = false,
@@ -140,7 +136,6 @@ const Button = ({
     $buttonType={buttonType}
     $color={color}
     $noIconMargin={noIconMargin}
-    $noMargin={noMargin}
     $noPadding={noPadding}
     $noPointerEvents={noPointerEvents}
     $revertOrientation={revertOrientation}
