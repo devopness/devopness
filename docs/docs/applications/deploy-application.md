@@ -73,11 +73,12 @@ Try these prompts in Devopness MCP:
 - The deployment appears in history with the expected branch or commit
 
 ## After you deploy
+
 **Private worker or background job**
 
 - Add a [daemon](/docs/daemons/add-daemon) to keep the process running and restart it on failure
 - Add a [cron job](/docs/cronjobs/add-cronjob) for scheduled tasks from your application code
-**Any application**
+  **Any application**
 
 - If you changed code or deploy settings, deploy again so servers pick up the update
 - [Set up deploy on git push](/docs/applications/deploy-application-using-incoming-hook) when you want automatic releases

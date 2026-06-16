@@ -1,5 +1,4 @@
 import type { ComponentProps } from 'react';
-
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import {
@@ -44,7 +43,12 @@ export default async function Page(props: {
         ? normalizeInternalDocUrl(props.href)
         : props.href;
 
-    return <RelativeLink {...props} href={href} />;
+    return (
+      <RelativeLink
+        {...props}
+        href={href}
+      />
+    );
   };
 
   return (

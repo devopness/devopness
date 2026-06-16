@@ -1,6 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-
 import type { Node, Parent } from 'unist';
 import { visit } from 'unist-util-visit';
 
@@ -60,7 +59,10 @@ export function normalizeDocPath(rawPath: string): string {
  * Preserves URL fragments (`#heading`).
  */
 export function normalizeInternalDocUrl(href: string): string {
-  const [path, ...hashParts] = href.split('#');
+  const [
+    path,
+    ...hashParts
+  ] = href.split('#');
   const hash = hashParts.length > 0 ? hashParts.join('#') : undefined;
   const normalized = normalizeDocPath(path);
 

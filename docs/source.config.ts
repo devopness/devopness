@@ -1,7 +1,6 @@
 import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-
 import { remarkDirectiveAdmonition } from 'fumadocs-core/mdx-plugins';
 import {
   defineConfig,
