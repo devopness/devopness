@@ -9,7 +9,7 @@ pagination_next: organizations/index
 
 Devopness helps you deploy apps and manage servers and serverless infrastructure in your own cloud accounts on AWS, Azure, Google Cloud, DigitalOcean, Hetzner, and others.
 
-You can use the [web app](https://app.devopness.com/), the API, or [/docs/mcp/index] when Devopness is connected to your AI agents.
+You can use the [web app](https://app.devopness.com/), the API, or [/docs/mcp] when Devopness is connected to your AI agents.
 
 ## Why Devopness exists
 
@@ -50,7 +50,7 @@ Think of it like this:
 - **Environment:** a separate infrastructure setup inside a project (its own servers, applications, credentials, and deploy settings). Names like `Development`, `Staging`, and `Production` are common
 - **Application:** one git repository (or one folder in a monorepo) connected to one environment
 
-Read more in [/docs/organizations/index], [/docs/projects/index], and [/docs/environments/index].
+Read more in [/docs/organizations], [/docs/projects], and [/docs/environments].
 
 ## Who this is for
 

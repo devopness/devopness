@@ -167,9 +167,38 @@ pagination_next: advanced-usage
 
 ## Mentioning Other Posts
 
-You can reference other documentation pages using the markdown reference link syntax: `[/docs/<id>]`. By default, the `id` is the "file path (including folders, without the extension)", e.g. `/docs/pipelines/run-pipeline.md` becomes `[/docs/pipelines/run-pipeline]`.
+You can reference other documentation pages using the markdown reference link syntax: `[/docs/<id>]`. By default, the `id` is the file path (including folders, without the extension), e.g. `[/docs/pipelines/run-pipeline]` or `[/docs/pipelines/run-pipeline.md]`.
 
-The `/docs/` prefix is required to differentiate between internal links and external links. This syntax is supported by the `remarkMentionLink` plugin (see `src/plugins/remark-mention-link.ts`), which automatically generates link text from the file path.
+The `/docs/` prefix is required to differentiate between internal links and external links. This syntax is supported by the `remarkMentionLink` plugin (see `src/plugins/remark-mention-link.ts`), which resolves the target page URL and uses that page's `title` from frontmatter as the link text.
+
+Prefer mention syntax over hand-written markdown links to other docs pages. The link label comes from the target page `title` in frontmatter, so it stays in sync when that page is renamed.
+
+To control mention link text, set `title` on the page you link to (for example `docs/docs/api/index.md`), not in the page that contains the mention:
+
+```yaml
+---
+title: API
+---
+```
+
+`[/docs/api]` then renders as **[API](/docs/api/)**, not "Api".
+
+```markdown
+<!-- Bad: hard-coded title and URL -->
+[Devopness API reference](/docs/api)
+
+<!-- Good: title resolved from the target page frontmatter -->
+[/docs/api]
+```
+
+For folder index pages, these forms are equivalent and all resolve to the same URL:
+
+- `[/docs/mcp]`
+- `[/docs/mcp/]`
+- `[/docs/mcp/index]`
+- `[/docs/mcp/index.md]`
+
+Prefer `[/docs/mcp]` for index pages. Do not link to `/docs/mcp/index/` in the browser; Fumadocs serves index pages at `/docs/mcp/`.
 
 Examples:
 
@@ -182,7 +211,7 @@ Follow the guide [/docs/virtual-hosts/edit-virtual-host]
 ```markdown
 <!-- docs/users/subscriptions/faq/index.md -->
 
-3. In environments using custom [/docs/roles/index] in their [/docs/environments/team-memberships/index], the membership will be updated to use the role “Read”, converting all users to read-only users.
+3. In environments using custom [/docs/roles] in their [/docs/environments/team-memberships], the membership will be updated to use the role “Read”, converting all users to read-only users.
 ```
 
 This reference will be automatically converted into clickable links, using the post title as the link text.

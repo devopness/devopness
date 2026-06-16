@@ -11,7 +11,7 @@ links:
   featured:
 ---
 
-1. Obtain a `Personal Access Token` by following the instructions in [/docs/api-tokens/personal-access-tokens/index]
+1. Obtain a `Personal Access Token` by following the instructions in [/docs/api-tokens/personal-access-tokens]
 1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `GET /users/me`, replacing `<personal_access_token>` with the value of your `Personal Access Token`
 
 ```bash
