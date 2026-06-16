@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "index",
+    "add-project",
+    "list-projects",
+    "view-project",
+    "edit-project",
+    "remove-project"
+  ]
+}

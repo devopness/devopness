@@ -1,0 +1,9 @@
+{
+  "pages": [
+    "index",
+    "add-personal-access-token",
+    "list-personal-access-tokens",
+    "view-personal-access-token",
+    "revoke-personal-access-token"
+  ]
+}

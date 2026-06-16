@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "index",
+    "add-step",
+    "view-step",
+    "remove-step"
+  ]
+}
