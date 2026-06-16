@@ -2,7 +2,7 @@
 slug: /
 title: Get started with Devopness
 description: Deploy applications, provision servers, and manage serverless infrastructure in your cloud accounts with Devopness. Multi-cloud support, permissions per environment, and AI-ready DevOps through MCP.
-pagination_next: organizations/index
+pagination_next: organizations/add-organization
 ---
 
 ## About
@@ -62,7 +62,7 @@ Read more in [/docs/organizations], [/docs/projects], and [/docs/environments].
 ## Where to start
 
 - [Create an account and sign in](https://app.devopness.com/). It is free, and no credit card is required.
-- Follow the **Getting Started** section in the sidebar for the first-setup path from workspace creation through your first deploy
+- Follow the **Getting started** section in the sidebar for the first-setup path from organization creation through creating a server and deploying your application
 - Watch walkthroughs on the [Devopness YouTube channel](https://www.youtube.com/@devopness)
 
 ## Get help

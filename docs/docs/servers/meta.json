@@ -1,7 +1,6 @@
 {
   "pages": [
     "index",
-    "add-server",
     "add-existing-server",
     "add-aws-server",
     "add-azure-server",

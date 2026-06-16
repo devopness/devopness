@@ -3,8 +3,8 @@ title: Add an Organization
 links:
   overview:
   quickstart:
-  previous: organizations/index
-  next: organizations/edit-organization
+  previous: index
+  next: projects/add-project
   guides: []
   featured:
 ---

@@ -24,26 +24,26 @@ The docs site uses [Fumadocs page conventions](https://www.fumadocs.dev/docs/pag
 The root `meta.json` defines top-level sidebar sections and folder order. Section labels use Fumadocs separators:
 
 ```json
-"---Getting Started---"
+"---Getting started---"
 ```
 
 Current sections:
 
-| Section | Purpose |
-| --- | --- |
-| **Getting Started** | Linear first-setup path (org → project → environment → credential → app → file → deploy) plus the main index page |
-| **Platform** | Org hierarchy and access (organizations, projects, environments, teams, roles, users) |
-| **Applications & Deploy** | Shipping code and runtime exposure (applications, pipelines, files, variables, webhooks, virtual hosts, daemons, cron jobs) |
-| **Infrastructure** | Servers, credentials, networking, SSL, resource links |
-| **Operations** | Actions (deploy history, debugging) |
-| **API & MCP** | MCP, API reference, API tokens |
-| **Legal** | Security and legal pages |
-| **Contributing** | Authoring guidelines for contributors |
+| Section                       | Purpose                                                                                                                     |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Getting started**           | Linear first-setup path (org → project → environment → credential → server → app → deploy) plus the main index page         |
+| **Core concepts**             | Org hierarchy and access (organizations, projects, environments, teams, roles, users)                                       |
+| **Deploy & run applications** | Shipping code and runtime exposure (applications, pipelines, files, variables, webhooks, virtual hosts, daemons, cron jobs) |
+| **Infrastructure**            | Servers, credentials, networking, SSL, resource links                                                                       |
+| **Operations**                | Actions (deploy history, debugging)                                                                                         |
+| **API & MCP**                 | MCP, API reference, API tokens                                                                                              |
+| **Legal**                     | Security and legal pages                                                                                                    |
+| **Contributing**              | Authoring guidelines for contributors                                                                                       |
 
 You do **not** need separate sidebar sections such as Introduction, Quick Start, or Basics:
 
 - **`index.md`** is the introduction and product overview
-- **Getting Started** in `meta.json` is the quick-start path (specific operation pages in setup order)
+- **Getting started** in `meta.json` is the quick-start path (specific operation pages in setup order)
 - **Concept pages** (`<resource>/index.md`) under each folder are the “basics” for that resource
 - **Operation pages** (`add-*`, `deploy-*`, etc.) are the task guides
 
@@ -169,10 +169,10 @@ pagination_next: advanced-usage
 
 Two ways to link to another docs page. Both work; you do not need to bulk-replace legacy links.
 
-| Syntax | Link text | Best for |
-| --- | --- | --- |
-| `[/docs/<path>]` | Target page `title` from frontmatter | New links — label stays in sync when the page is renamed |
-| `[your label](/docs/<path>)` | What you write | Legacy links — still valid, no migration needed |
+| Syntax                       | Link text                            | Best for                                                 |
+| ---------------------------- | ------------------------------------ | -------------------------------------------------------- |
+| `[/docs/<path>]`             | Target page `title` from frontmatter | New links — label stays in sync when the page is renamed |
+| `[your label](/docs/<path>)` | What you write                       | Legacy links — still valid, no migration needed          |
 
 ### How each syntax is processed
 
