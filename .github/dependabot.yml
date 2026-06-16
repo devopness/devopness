@@ -6,43 +6,35 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   groups:
-    # Storybook first: eslint-plugin-storybook also matches eslint-* below.
+    # Storybook first: eslint-plugin-storybook also matches eslint-* in linters.
     storybook:
       patterns:
         - "storybook"
         - "@storybook/*"
         - "eslint-plugin-storybook"
-    typescript-eslint:
+    linters:
       patterns:
         - "typescript-eslint"
         - "@typescript-eslint/*"
-    eslint:
-      patterns:
         - "eslint"
         - "@eslint/*"
         - "eslint-*"
-    prettier:
-      patterns:
         - "prettier"
         - "prettier-*"
         - "@ianvs/prettier-plugin-sort-imports"
-    typescript:
-      patterns:
         - "typescript"
     jest:
       patterns:
         - "jest"
         - "ts-jest"
         - "@types/jest"
-    vitest:
-      patterns:
-        - "vitest"
-        - "@vitest/*"
     vite:
       patterns:
         - "vite"
         - "@vitejs/*"
         - "vite-*"
+        - "vitest"
+        - "@vitest/*"
 
 - package-ecosystem: pip
   directories:
@@ -60,33 +52,26 @@ updates:
     fumadocs:
       patterns:
         - "fumadocs-*"
-    typescript-eslint:
+    linters:
       patterns:
         - "typescript-eslint"
         - "@typescript-eslint/*"
-    eslint:
-      patterns:
         - "eslint"
         - "@eslint/*"
         - "eslint-*"
         - "@next/eslint-plugin-next"
-    prettier:
-      patterns:
         - "prettier"
         - "prettier-*"
         - "@ianvs/prettier-plugin-sort-imports"
-    typescript:
-      patterns:
         - "typescript"
         - "@types/node"
         - "@types/react"
         - "@types/react-dom"
         - "@types/mdx"
-    next:
-      patterns:
-        - "next"
     tailwind:
       patterns:
         - "tailwindcss"
         - "@tailwindcss/*"
-        - "prettier-plugin-tailwindcss"
+    next:
+      patterns:
+        - "next"
