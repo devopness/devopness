@@ -97,7 +97,7 @@ Example (`docs/docs/applications/meta.json`):
 
 After changing any `meta.json`, run `npm run dev` or `npm run build` locally and confirm the sidebar order.
 
-## Predefined variables
+# Predefined variables
 
 Here is a list of predefined variables that can be set in the `front-matter` block of a documentation topic:
 
@@ -165,56 +165,55 @@ pagination_next: advanced-usage
 ---
 ```
 
-## Mentioning Other Posts
+## Linking to other pages
 
-You can reference other documentation pages using the markdown reference link syntax: `[/docs/<id>]`. By default, the `id` is the file path (including folders, without the extension), e.g. `[/docs/pipelines/run-pipeline]` or `[/docs/pipelines/run-pipeline.md]`.
+Two ways to link to another docs page. Both work; you do not need to bulk-replace legacy links.
 
-The `/docs/` prefix is required to differentiate between internal links and external links. This syntax is supported by the `remarkMentionLink` plugin (see `src/plugins/remark-mention-link.ts`), which resolves the target page URL and uses that page's `title` from frontmatter as the link text.
+| Syntax | Link text | Best for |
+| --- | --- | --- |
+| `[/docs/<path>]` | Target page `title` from frontmatter | New links — label stays in sync when the page is renamed |
+| `[your label](/docs/<path>)` | What you write | Legacy links — still valid, no migration needed |
 
-Prefer mention syntax over hand-written markdown links to other docs pages. The link label comes from the target page `title` in frontmatter, so it stays in sync when that page is renamed.
+### How each syntax is processed
 
-To control mention link text, set `title` on the page you link to (for example `docs/docs/api/index.md`), not in the page that contains the mention:
+1. **Mention syntax** (`[/docs/api]`) — converted at MDX compile time by `remarkMentionLink` (`src/plugins/remark-mention-link.ts`). Reads the target page `title` from frontmatter.
+2. **Markdown links** (`[label](/docs/api)`) — the `/docs` prefix is stripped at render time by `DocsLink` in `src/app/[[...slug]]/page.tsx`. This avoids `/docs/docs/...` URLs because Next.js already serves the site under `basePath: '/docs'`.
+
+External links (`https://...`), relative links (`./page`), and anchors (`#section`) are not modified.
+
+### Control mention link text
+
+Set `title` on the **target** page, not in the page that contains the mention:
 
 ```yaml
+# docs/docs/api/index.md
 ---
-title: API
+title: Devopness API Reference
 ---
 ```
 
-`[/docs/api]` then renders as **[API](/docs/api/)**, not "Api".
+`[/docs/api]` renders as **[Devopness API Reference](/docs/api/)**.
 
-```markdown
-<!-- Bad: hard-coded title and URL -->
-[Devopness API reference](/docs/api)
+### Index page paths
 
-<!-- Good: title resolved from the target page frontmatter -->
-[/docs/api]
-```
-
-For folder index pages, these forms are equivalent and all resolve to the same URL:
+These mention forms all resolve to the same URL:
 
 - `[/docs/mcp]`
 - `[/docs/mcp/]`
 - `[/docs/mcp/index]`
 - `[/docs/mcp/index.md]`
 
-Prefer `[/docs/mcp]` for index pages. Do not link to `/docs/mcp/index/` in the browser; Fumadocs serves index pages at `/docs/mcp/`.
+Prefer `[/docs/mcp]`. Do not browse to `/docs/mcp/index/` — Fumadocs serves index pages at `/docs/mcp/`.
 
-Examples:
-
-```markdown
-<!-- docs/virtual-hosts/edit-virtual-host.md -->
-
-Follow the guide [/docs/virtual-hosts/edit-virtual-host]
-```
+### Examples
 
 ```markdown
-<!-- docs/users/subscriptions/faq/index.md -->
+Use [/docs/api] to link with the page title as label.
 
-3. In environments using custom [/docs/roles] in their [/docs/environments/team-memberships], the membership will be updated to use the role “Read”, converting all users to read-only users.
+Follow [/docs/virtual-hosts/edit-virtual-host] when routing changes.
+
+Legacy links still work: [create incoming webhook](/docs/webhooks/create-incoming-webhook).
 ```
-
-This reference will be automatically converted into clickable links, using the post title as the link text.
 
 ## How to use Admonitions
 
