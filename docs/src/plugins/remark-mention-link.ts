@@ -31,7 +31,7 @@ const MENTION_PATTERN = /\[(\/(?:docs\/)?[^\]]+)\]/g;
  * normalizeDocPath('/docs/api/')         // => '/api'
  */
 export function normalizeDocPath(rawPath: string): string {
-  let path = rawPath.replace(/^\/docs\//, '/');
+  let path = rawPath === '/docs' ? '/' : rawPath.replace(/^\/docs\//, '/');
   if (!path.startsWith('/')) {
     path = `/${path}`;
   }
