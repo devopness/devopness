@@ -6,8 +6,9 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   groups:
+    # Group naming: unprefixed = repo-wide (workspace packages), ui-react-* / sdk-js-* = package-specific.
     # Storybook first: eslint-plugin-storybook also matches eslint-* in linters.
-    storybook:
+    ui-react-storybook:
       patterns:
         - "storybook"
         - "@storybook/*"
@@ -23,12 +24,12 @@ updates:
         - "prettier-*"
         - "@ianvs/prettier-plugin-sort-imports"
         - "typescript"
-    jest:
+    sdk-js-jest:
       patterns:
         - "jest"
         - "ts-jest"
         - "@types/jest"
-    vite:
+    ui-react-vite:
       patterns:
         - "vite"
         - "@vitejs/*"
@@ -49,10 +50,11 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   groups:
-    fumadocs:
+    # Group naming: docs-* = scoped to the /docs npm ecosystem.
+    docs-fumadocs:
       patterns:
         - "fumadocs-*"
-    linters:
+    docs-linters:
       patterns:
         - "typescript-eslint"
         - "@typescript-eslint/*"
@@ -68,10 +70,10 @@ updates:
         - "@types/react"
         - "@types/react-dom"
         - "@types/mdx"
-    tailwind:
+    docs-tailwind:
       patterns:
         - "tailwindcss"
         - "@tailwindcss/*"
-    next:
+    docs-next:
       patterns:
         - "next"
