@@ -9,55 +9,80 @@ links:
     - environments/list-environments
   related:
     - projects/index
+    - applications/index
   featured:
 ---
 
-Environments define the deployment stages and runtime target for one project.
+An **environment** is a separate infrastructure setup inside one project. Each environment has its own servers, applications, credentials, files, pipelines, and access rules. Nothing in one environment is shared automatically with another.
+
+Names like `Development`, `Staging`, and `Production` are common, but an environment is not just a label: dev might run on one or two servers while production runs on twenty servers behind a load balancer, or on serverless infrastructure in the cloud.
+
+You can also name an environment after a client when you manage separate infrastructure per client, for example `customer-acme` or `customer-abc`.
 
 ## About
 
-Use environments to separate deployment flow, resource settings, and access levels inside one project.
+- Use environments when you need fully independent infrastructure inside one project
+- Resources in one environment (servers, applications, SSH keys, daemons, cron jobs, virtual hosts, credentials) do not exist in another unless you create them there
+- Most teams deploy to dev first, then move stable work to staging and production
+- Each environment can scale differently: smaller setups for testing, larger setups for live traffic
 
-Each environment is a named work area in one project.
-Most teams start with `Production`, then add `Development` and `Staging`.
-Each environment has its own credentials, resources, deployment settings, and team access.
+## Who this is for
+
+- Teams that need separate dev, staging, and production infrastructure
+- Operators who need different servers, credentials, or access per release flow
+- Founders who want one project with isolated dev and production setups
+
+## Think of it like this
+
+- **Project:** one product or client
+- **Environment:** a separate copy of infrastructure for that product (its own servers and applications)
+- **Application:** one git repository connected to that environment
 
 ## Start here
 
 - Confirm you are in the right project
 - Create a first `Production` environment
-- Add `Development` and `Staging` when you need separate stages
+- Add `Development` and `Staging` when you need separate infrastructure and release flow
+- [Add applications](/docs/applications/add-application) in each environment
 - Add client or hotfix environments only when needed
-  - Example: a security hotfix environment with separate credentials
+  - Example: a security hotfix environment with separate servers and credentials
   - Example: a staging environment for demoing work in progress
 
 ## When to split environments
 
 Start with one `Production` environment while validating the first release.
-Split environments when you need stronger isolation:
+Add another environment when you need stronger isolation:
 
-- Release moves through separate stages (`Development`, `Staging`, `Production`)
-- Different credentials, web domains, and deployment permissions
-- Temporary client-specific work or hotfix work that should not affect ongoing production releases
+- You want a safe place to test before production (dev or staging)
+- Different credentials, domains, or deployment permissions per setup
+- Different servers, applications, or supporting resources (one dev server vs many production servers)
+- Temporary client-specific or hotfix work that must not affect production
 - Different infrastructure per team, region, or compliance requirement
 
-## Examples
+## Common setups
 
-### Product company / Startup
+### Product company or startup
 
-- Start with one project in `Production` if you are validating a first version
-- Add `Development`, `Staging`, or custom environments as the team grows
-- Use each environment to test before moving work to production
+- Start with one `Production` environment if you are validating a first version
+- Add `Development`, `Staging`, or custom environments when you need separate infrastructure
+- Deploy to dev first, validate, then move stable work to staging and production
 
-### Agency or client specific custom software
+### Agency or client-specific software
 
 - Start with your organization and one project per client
 - One project per client can include `Production`, `Staging`, and custom environments
-- Keep each client’s workflow separate from the others
+- Keep each client's workflow separate from the others
 - Use custom environments for one-off client changes without touching other releases
 
 ## Why this matters
 
-- It reduces accidental changes across stages
+- It reduces accidental changes across dev, staging, and production
 - It makes it easier to decide what to test and deploy next
-- It lets teams set safer access per stage
+- It lets teams set safer access per environment
+- It keeps infrastructure, applications, and credentials isolated when you need a clean separation
+
+## What to do next
+
+- Add your first [environment](/docs/environments/add-environment)
+- Review [Projects](/docs/projects/) if you still need to create the parent project
+- [Add applications](/docs/applications/add-application) inside the environment

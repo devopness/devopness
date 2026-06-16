@@ -1,6 +1,5 @@
 ---
 title: Integrate Application deployments with your Continuous Integration (CI) workflows
-intro: Learn how to create outgoing webhooks to integrate the application deployment with your existing CI workflow.
 links:
   overview:
   quickstart:
@@ -11,144 +10,81 @@ links:
   featured:
 ---
 
-:::note
+Use an outgoing hook when you want Devopness to report deploy progress back to your source provider or CI system.
 
-Webhooks, for now, are an API only feature; so this post will guide you through the usage of our API to help you create an outgoing webhook.
+This page is API-only today. Use the [Devopness API reference](/docs/api/index) to create outgoing hooks that update commit status in your source provider.
 
-1. Make sure you have API access by following the instructions in [/docs/api/index]
-1. Take note of the ID (`<pipeline_id>`) of a pipeline that runs the `deploy` operation for the application which you want to watch the action statuses
-   - Follow the [/docs/applications/deploy-application-using-incoming-hook] guide for detailed instructions
+## Goal
 
-1. Take note of the `Target URL` (`<target_url>`), `Request Headers` (`<request_headers>`) and `Request Body` (`<request_body>`) fields according to the source provider where the application' source code is hosted, by following the source provider's instructions on the links bellow:
-   - [Bitbucket](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-commit-statuses/#api-repositories-workspace-repo-slug-commit-commit-statuses-build-post)
-   - [Github](https://docs.github.com/en/rest/commits/statuses#create-a-commit-status)
-   - [Gitlab](https://docs.gitlab.com/ee/api/commits.html#set-the-pipeline-status-of-a-commit)
+Keep source provider commit status in sync with application deploy actions.
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.started` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
-   - For further instructions, follow the guide [/docs/webhooks/create-outgoing-webhook]
+## Prerequisites
 
-   ```bash
-   curl --request POST \
-     --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
-     --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <your_api_token>' \
-     --header 'Content-Type: application/json' \
-     --data '{
-       "name": "CI(build)",
-       "action_type": "deploy",
-       "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
-       "settings": {
-         "request_headers": [
-           {
-             "name": "Authorization",
-             "value": "Bearer {{ application.source_provider.access_token }}"
-           }
-           // NOTE: add Request Headers (`<request_headers>`) here
-         ],
-         "request_body": {
-           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider instructions
-           "state": <source_provider_pipeline_status>,
-           "target_url": "https://app.devopness.com/actions/{{ action.id }}",
-           "url": "https://app.devopness.com/actions/{{ action.id }}",
-           "description": "Application building started",
-           "context": "ci\/devopness(build)",
-           "key": "ci\/devopness(build)"
-         }
-       },
-       "trigger_when": {
-         "events": [
-           "action.started"
-         ]
-       }
-     }'
-   ```
+- The application already has a deploy pipeline
+- You know the pipeline ID
+- You have API access for webhook creation
+- You know the commit status format required by your source provider
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.failed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
+## What you need
 
-   ```bash
-   curl --request POST \
-     --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
-     --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <your_api_token>' \
-     --header 'Content-Type: application/json' \
-     --data '{
-       "name": "CI(build)",
-       "action_type": "deploy",
-       "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
-       "settings": {
-         "request_headers": [
-           {
-             "name": "Authorization",
-             "value": "Bearer {{ application.source_provider.access_token }}"
-           }
-           // NOTE: add Request Headers (`<request_headers>`) here
-         ],
-         "request_body": {
-           // NOTE: review the fields bellow according to Request Body (`<request_body>`) from the source provider instructions
-           "state": <source_provider_pipeline_status>,
-           "target_url": "https://app.devopness.com/actions/{{ action.id }}",
-           "url": "https://app.devopness.com/actions/{{ action.id }}",
-           "description": "Application building failed",
-           "context": "ci\/devopness(build)",
-           "key": "ci\/devopness(build)"
-         }
-       },
-       "trigger_when": {
-         "events": [
-           "action.failed"
-         ]
-       }
-     }'
-   ```
+- The pipeline ID for the deploy pipeline
+- The target URL that your source provider should call
+- The request headers required by the source provider
+- The request body shape required by the source provider
 
-   - NOTE: the field `request_body.context` needs to be the same for all the action status; this way the same commit status will be updated, instead of creating a new entry for every state.
+## How it works
 
-1. On your local machine, in a terminal window, submit a request to Devopness API endpoint `POST /pipelines/:id/hooks/outgoing` to create an outgoing webhook for the `action.completed` event. In the example below, replace `<pipeline_id>`, `<target_url>`, `<request_headers>` and `<request_body>` with the actual values of each parameter before submitting the request.
+- Devopness emits action events for the deploy pipeline
+- Your outgoing hook sends a status update to the provider
+- The provider updates the commit status for the same commit
 
-   ```bash
-   curl --request POST \
-     --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
-     --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <your_api_token>' \
-     --header 'Content-Type: application/json' \
-     --data '{
-       "name": "CI(build)",
-       "action_type": "deploy",
-       "target_url": "https://<target_url>/{{ action.triggered_from.hook_parsed_variables.commit_hash }}",
-       "settings": {
-         "request_headers": [
-           {
-             "name": "Authorization",
-             "value": "Bearer {{ application.source_provider.access_token }}"
-           }
-           // NOTE: add Request Headers (`<request_headers>`) here
-         ],
-         "request_body": {
-           // NOTE: review the fields below according to Request Body (`<request_body>`) from the source provider instructions
-           "state": <source_provider_pipeline_status>,
-           "target_url": "https://app.devopness.com/actions/{{ action.id }}",
-           "url": "https://app.devopness.com/actions/{{ action.id }}",
-           "description": "Application building success",
-           "context": "ci\/devopness(build)",
-           "key": "ci\/devopness(build)"
-         }
-       },
-       "trigger_when": {
-         "events": [
-           "action.completed"
-         ]
-       }
-     }'
-   ```
+## Using Devopness MCP
 
-1. On your local machine, in a terminal window, run command to list all the pipeline webhooks, replacing `<pipeline_id>`.
+MCP is not available for creating outgoing hooks.
+Use the [create outgoing webhook](/docs/webhooks/create-outgoing-webhook) guide and the source provider API docs below:
 
-   ```bash
-   curl --request GET \
-     --url https://api.devopness.com/pipelines/<pipeline_id>/hooks \
-     --header 'Accept: application/json' \
-     --header 'Authorization: Bearer <your_api_token>' \
-     --header 'Content-Type: application/json'
-   ```
+- [Bitbucket commit statuses](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-commit-statuses/#api-repositories-workspace-repo-slug-commit-commit-statuses-build-post)
+- [GitHub commit statuses](https://docs.github.com/en/rest/commits/statuses#create-a-commit-status)
+- [GitLab commit statuses](https://docs.gitlab.com/ee/api/commits.html#set-the-pipeline-status-of-a-commit)
 
-1. In the previous command response, the recently created hooks will be included in the list
+## Minimal request
+
+Use the API reference and the outgoing webhook guide to fill in the provider-specific body. A minimal request looks like this:
+
+```bash
+curl --request POST \
+  --url https://api.devopness.com/pipelines/<pipeline_id>/hooks/outgoing \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer <your_api_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{ ... }'
+```
+
+## After you save
+
+- The source provider can show deploy progress for the selected commit
+- The same context value should be reused so each status updates the same entry
+
+## Find the pipeline ID
+
+Use the pipeline ID for the deploy pipeline that emits the action events.
+
+- Open the application pipeline details page and copy the ID from the URL, or use the API response if you already know the pipeline
+- If you have not created the pipeline yet, add one first from the application pipeline pages
+
+## Verify
+
+- The source provider shows the expected commit status for the deploy action
+- The status links back to the Devopness action details page
+- The same commit status entry updates as the action moves through its states
+
+## Common issues
+
+- The status never updates: confirm the pipeline ID and hook URL are correct
+- The source provider rejects the request: confirm the headers and body match its API
+- Each status creates a new entry: reuse the same `context` value for every event
+
+## What to do next
+
+- Create the matching [incoming hook](/docs/applications/deploy-application-using-incoming-hook) if you also want deploys to start from source control events
+- Review the [Outgoing webhook](/docs/webhooks/create-outgoing-webhook) guide for request details

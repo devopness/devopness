@@ -1,5 +1,110 @@
 # @devopness/ui-react
 
+## 2.191.0
+
+### Minor Changes
+
+- [#3144](https://github.com/devopness/devopness/pull/3144) [`7ed784d`](https://github.com/devopness/devopness/commit/7ed784dddf5bb6043e3ad02468bc3b7bd2ce9f7b) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Add `CardGrid` primitive
+
+  A responsive grid layout for collections of card-shaped children. Does not
+  impose any visual style on the cards themselves — the consumer controls
+  tile content and decoration. Column counts are configurable per breakpoint
+  (`mobile` / `tablet` / `desktop`) and default to `1` / `2` / `4`.
+
+  ```tsx
+  import { CardGrid } from '@devopness/ui-react'
+  ;<CardGrid rowHeight="160px">
+    {items.map((item) => (
+      <Card
+        key={item.id}
+        {...item}
+      />
+    ))}
+  </CardGrid>
+  ```
+
+## 2.190.1
+
+### Patch Changes
+
+- [#3137](https://github.com/devopness/devopness/pull/3137) [`681e807`](https://github.com/devopness/devopness/commit/681e8070b9892315edcab74cbbb969a57287f78c) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Fix `TimerCounter` showing stale values and leaking intervals on prop transitions
+
+  Two problems were fixed:
+  1. The component was early-returning to `00:00` whenever `shouldStartTimer`
+     was `false`, even when `shouldStopTimer` was `true` — which froze the
+     timer at `00:00` for any finished action (`Completed`, `Failed`,
+     `Skipped`) when callers used `shouldStartTimer` to mean "the action is
+     currently running".
+  2. The effect that controlled the interval lifecycle only depended on
+     `shouldStartTimer`, but it also read `shouldResetTimer`,
+     `shouldStopTimer`, and `timerStartDate`. When any of those changed
+     without `shouldStartTimer` changing, the interval could keep running
+     (stop/reset transitions) or never start (`timerStartDate` going from
+     `null` to a real date). The displayed value could also flicker as the
+     stale interval kept overwriting the value derived from the new props.
+
+  The effect now lives in a single `useEffect` that depends on every prop
+  it reads, and `formatDurationTime` is accessed via a ref so the effect
+  does not restart on every parent re-render when the caller doesn't
+  memoize it.
+
+  Behavior matrix across status combinations:
+  - `Pending` / `Waiting` / `Queued` (no start date) → `00:00`
+  - `InProgress` → live ticking
+  - `Completed` / `Failed` → final duration (no flicker on transition)
+  - `Skipped` (no start date) → `00:00`
+
+## 2.190.0
+
+### Minor Changes
+
+- [#3127](https://github.com/devopness/devopness/pull/3127) [`057ad96`](https://github.com/devopness/devopness/commit/057ad96421a2aa12b98e7b256b65b0b2dd7714d4) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Add Radio primitive for grouped radio inputs
+
+  New `Radio` namespace export with `Radio.Root` and `Radio.Item`. `Root` is
+  a controlled component (`value` + `onChange`) that can be paired with any
+  form library (e.g. react-hook-form's `Controller`). Supports row/column
+  direction, an error message, and disabled items.
+
+  Migrated from `devopness-web-app`'s local component so the same UI can be
+  reused across Devopness products. The form-library integration was
+  removed from the primitive itself to keep it library-agnostic — callers
+  are now responsible for wiring it into their form state.
+
+## 2.189.0
+
+### Minor Changes
+
+- [#3122](https://github.com/devopness/devopness/pull/3122) [`96fdbc8`](https://github.com/devopness/devopness/commit/96fdbc8062151351fe61fe8ba2abea4c48cc0014) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Add PermissionCheckboxChip primitive for toggling permissions in forms
+
+  New `PermissionCheckboxChip` component — a selectable chip designed for
+  toggling permissions in forms (e.g. role permissions). It exposes the
+  `checkbox` ARIA role with full keyboard support (Space and Enter) and
+  supports states for unchecked, checked, error, disabled, and an optional
+  tooltip via the `hint` prop.
+
+  Migrated from `devopness-web-app`'s local component so the same UI can be
+  reused across Devopness products.
+
+## 2.188.0
+
+### Minor Changes
+
+- [#3115](https://github.com/devopness/devopness/pull/3115) [`864ca5b`](https://github.com/devopness/devopness/commit/864ca5b5133a7d4cc453c48d584c3655fbd16858) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Add ErrorBanner primitive for route-level error states
+
+  New `ErrorBanner` component for displaying generic, content-driven error
+  states in routes (e.g., OAuth failures, missing parameters, API errors).
+
+  Features:
+  - Title and description for error context
+  - Optional `errorDetail` field for technical information
+  - Optional `action` prop with label and href for user recovery paths
+  - Uses shared `Link` primitive for consistent navigation behavior
+  - Includes accessibility semantics (`role="alert"`, `aria-live="assertive"`)
+  - Full test coverage and Storybook stories
+
+  Typical use cases: OAuth authorization errors, API callback failures,
+  missing or invalid request parameters.
+
 ## 2.187.1
 
 ### Patch Changes

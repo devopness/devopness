@@ -1,11 +1,10 @@
 ---
 title: Add an Application
-intro: Add applications to your infrastructure environments so they can be managed and deployed directly by web interface or through automated workflows
 links:
   overview:
   quickstart:
-  previous: servers/ssh-into-server
-  next: pipelines/steps/add-step
+  previous: applications/index
+  next: files/add-file
   guides:
   related:
   featured:
@@ -13,41 +12,108 @@ required_permissions:
   - application:create
 ---
 
-1. On Devopness, navigate to a project then select an environment
-1. Find the `Applications` card
-1. Click `View` in the `Applications` card to see a list of existing `Applications`
-1. On the upper-right corner of the list click `ADD APPLICATION`
-1. Select a `Source Provider`
-1. Select a `Credential`
-   > If no credential is listed or you want to use a different one, click `Create a new Credential` and follow the guide [/docs/credentials/add-credential]
-1. Once a `Credential` is selected, select the git repository where the application source code is hosted
-1. Follow the prompts then click `CONFIRM`
-1. In the `Application` details view, the recently created `Application` details can be seen
+Connect a git repository to this environment so Devopness can build and deploy it.
 
-## Multiple repositories in the same environment
+## Goal
 
-You can add unlimited applications to the same environment, one per repository. This works well when your marketing site, demo app, production app, API, AI agents, and MCP servers belong to the same product and are managed by the same teams.
+Add the application before you add configuration files, deploy, or expose it on a public URL.
 
-If you later need to separate demo and production (separate domains, versions, data, or access rules), create a new environment and deploy those applications there.
+## Prerequisites
 
-## Enable auto deployments on git push
+- You can create applications in this environment (`application:create`)
+- The target project and environment are already selected
+- A [credential](/docs/credentials/add-credential) that can read the repository on your git host
 
-To deploy automatically when you push commits, set up an incoming webhook in Devopness and connect it to your Git provider. This is currently done via the API (not the UI yet).
+## What you need
 
-Steps:
+### Source provider
 
-1. Create an incoming webhook in Devopness
-   - Follow the guide [/docs/webhooks/create-incoming-webhook]
-1. Add a webhook in your GitHub repository using the incoming webhook URL and secret
-1. Push a commit to verify the deployment triggers
+The git host where the repository lives, such as GitHub, GitLab, or Bitbucket.
+It must match the host used by the credential.
 
-## Keep apps running in the background
+### Credential
 
-If your application is not managed by Docker Compose, add a daemon to keep it running and auto-restart it. For a Next.js application, the command is typically `npm run start`.
+The OAuth token or access token Devopness uses to clone and read the repository.
+If the list is empty, [create a credential](/docs/credentials/add-credential) first.
 
-1. Add a daemon with the start command and working directory
-   - Follow the guide [/docs/daemons/add-daemon]
+### Repository
 
-## Redeploy after configuration changes
+The repository name in `owner/name` format, for example `acme/api`.
+If the code lives inside a monorepo, set **Root directory** to the folder you want Devopness to build.
 
-If you change configuration files (for example a `.env` file), run a new deployment so the updated configuration is applied. Follow the guide [/docs/pipelines/run-pipeline].
+### Name
+
+The short name for this application in the environment.
+This is the name shown in lists and deploy logs.
+
+### Programming language, framework, and engine version
+
+The stack Devopness uses to choose default pipeline steps and runtime settings.
+Examples: Laravel, Django, FastAPI, Spring Boot, Rails, ASP.NET, Express.
+
+### Root directory
+
+The folder inside the repository that contains the package manager file for this application, such as `package.json`, `composer.json`, `Gemfile`, `pom.xml`, or `pyproject.toml`.
+Use the subfolder where that file lives. Use `/` only when the file is at the repository root.
+
+### Default branch
+
+The branch Devopness uses when a deploy does not specify another ref (usually `main` or `master`).
+
+### Install dependencies command / Build command
+
+Optional overrides for how Devopness installs packages and builds artifacts during deploy.
+Leave the defaults unless your stack needs custom commands.
+
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "In project `acme-platform`, Production environment, add an application from GitHub repo `acme/api` using my `acme-github` credential."
+- "List applications in Staging, then add the worker repo `acme/worker` with root directory `/apps/worker` and default branch `main`."
+- "Add a Laravel app from `acme/billing` to Production with the suggested PHP framework settings."
+
+## After you save
+
+1. Add [configuration files](/docs/files/add-file), for example a `.env` with database URLs, API keys, and other environment variables
+2. [Deploy the application](/docs/applications/deploy-application). Devopness links a server on first deploy when needed
+3. Then:
+   - **Public API or web app:** [add a virtual host](/docs/virtual-hosts/add-virtual-host)
+   - **Background worker or scheduled job:** add a [daemon](/docs/daemons/add-daemon) or [cron job](/docs/cronjobs/add-cronjob)
+4. Optional: customize the [deploy pipeline](/docs/pipelines/add-pipeline) or set up [deploy on git push](/docs/applications/deploy-application-using-incoming-hook)
+
+## Verify
+
+- The application appears in the environment list with the expected name and repository
+- The repository and credential match the git host you selected
+- The root directory points to the folder that contains your package manager file
+
+## What to consider
+
+### Multiple applications in the same environment
+
+Add one application per service when that matches how you release code.
+This works when your API, frontend, worker, docs site, or SDK share the same environment but need different deploy settings.
+
+Create a new environment when you need separate infrastructure, data, access rules, or release cadence.
+
+### Public vs private applications
+
+- **Public** (API, web app, marketing site): deploy, then add a [virtual host](/docs/virtual-hosts/add-virtual-host)
+- **Private** (queue worker, internal processor): deploy, then add a [daemon](/docs/daemons/add-daemon) or [cron job](/docs/cronjobs/add-cronjob). No virtual host required
+
+### Redeploy after configuration changes
+
+If you change configuration files such as `.env`, [deploy again](/docs/applications/deploy-application) so servers pick up the update.
+
+## Common issues
+
+- **No credential in the list:** [create one](/docs/credentials/add-credential) for the same source provider
+- **Repository not listed:** confirm the credential has access to that repo on the git host
+- **Deploy fails later at clone step:** check **Root directory** points to the folder with your package manager file
+- **You do not see Add Application:** confirm you have `application:create` for this environment
+
+## What to do next
+
+- [Add a configuration file](/docs/files/add-file)
+- [Deploy Application](/docs/applications/deploy-application)

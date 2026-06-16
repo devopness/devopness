@@ -3,41 +3,49 @@ title: List Projects
 links:
   overview:
   quickstart:
-  previous: projects/view-project
-  next: environments/add-environment
+  previous: projects/index
+  next: projects/view-project
   guides:
     - projects/add-project
   featured:
 ---
 
-See the projects you have access to in the current organization.
+See which projects you can access in the current organization.
 
-## About
+## Goal
 
-Use the list to verify project access and navigate into the one you want to manage.
+Find the project you need before you open environments, applications, or team settings.
 
-## Who should use this
+## What you need
 
-- Team members checking access across many projects
-- Admins validating organization setup
+- The correct organization selected
+- Permission to read projects in that organization
 
-## Steps
+## Using Devopness MCP
 
-1. Confirm you are in the right organization
-2. Go to the `Projects` page
-3. Confirm the list matches what you expect
-4. Pick one project to continue
+Try these prompts in Devopness MCP:
 
-## Expected result
+- "List projects in organization `acme`"
+- "Show all projects I can access in `/@acme`"
+- "Which projects exist in my current organization?"
 
-- You can identify each project and who owns it
-- You can jump to project details from one list item
+## What you see
+
+- Project names you can open for more detail
+- All projects available to you in the selected organization
+
+## Verify
+
+- The list shows the organization you expected
+- The project you need is listed, or you know you must [add one](/docs/projects/add-project)
 
 ## Common issues
 
-- No projects appear: confirm you are in the right organization
-- You may need extra permissions to see all projects
+- No projects appear: confirm you selected the correct organization
+- A project is missing: confirm you have access to that project in this organization
+- You expected more projects: check whether they are in a different organization
 
-## Next
+## What to do next
 
-- Open a project with [`View a Project`](/docs/projects/view-project)
+- [View a project](/docs/projects/view-project) to inspect environments and access
+- [Add a project](/docs/projects/add-project) if the one you need does not exist yet

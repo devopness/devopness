@@ -19,8 +19,10 @@ on:
     paths:
       - '**/package*.json'
       - 'packages/**/CHANGELOG.md'
+      - '.changeset/**'
     branches:
-      # Trigger when commits are pushed to the changesets branch, to sync the root lock file
+      # Triggered by pushes from the changesets bot (GITHUB_TOKEN suppresses pull_request events,
+      # so the push trigger on this branch is the only way to catch changeset-driven updates)
       - 'changeset-release/*'
 
 permissions:
@@ -59,8 +61,10 @@ jobs:
   load-pypi-projects:
     name: Load Python packages matrix
     needs: detect-changes
+    # Skip fork PRs: GITHUB_TOKEN cannot push to a fork's branch, so these sync jobs would always fail
     if: >
       needs.detect-changes.outputs.has_package_changes == 'true' &&
+      (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) &&
       ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
        github.event_name == 'push')
     runs-on: ubuntu-latest
@@ -80,8 +84,10 @@ jobs:
   sync-pypi-package-versions:
     name: Sync pyproject.toml
     needs: [detect-changes, load-pypi-projects]
+    # Skip fork PRs: GITHUB_TOKEN cannot push to a fork's branch, so these sync jobs would always fail
     if: >
       needs.detect-changes.outputs.has_package_changes == 'true' &&
+      (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) &&
       ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
        github.event_name == 'push')
     runs-on: ubuntu-latest
@@ -95,8 +101,19 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+          # Prevent checkout from persisting its GITHUB_TOKEN credential so the PAT set
+          # below is the only credential used when git-auto-commit-action pushes
+          persist-credentials: false
+
+      - name: Set up git identity
+        # Reconfigure the remote with a PAT so the pushed commit triggers downstream CI.
+        # Commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
+        # The PAT is set via remote URL rather than actions/checkout's token: input due to
+        # a bug in actions/checkout@v6 where custom tokens are not applied correctly.
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -113,14 +130,6 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
-      - name: Ensure branch is up-to-date
-        run: |
-          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
-          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git fetch origin ${{ github.head_ref || github.ref_name }} || true
-          # Try to rebase local changes onto the latest remote to avoid non-fast-forward push errors
-          git pull --rebase origin ${{ github.head_ref || github.ref_name }} || true
-
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
@@ -130,19 +139,34 @@ jobs:
 
   sync-main-lockfile:
     name: Sync the package-lock.json
-    needs: detect-changes
+    # Runs after sync-pypi-package-versions to avoid parallel push races on the same branch
+    needs: [detect-changes, sync-pypi-package-versions]
+    # Skip fork PRs: GITHUB_TOKEN cannot push to a fork's branch, so these sync jobs would always fail
     if: >
       needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
+      (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) &&
       ((github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]') ||
-       github.event_name == 'push')
+       github.event_name == 'push') &&
+      always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.head_ref || github.ref_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+          # Prevent checkout from persisting its GITHUB_TOKEN credential so the PAT set
+          # below is the only credential used when git-auto-commit-action pushes
+          persist-credentials: false
+
+      - name: Set up git identity
+        # Reconfigure the remote with a PAT so the pushed commit triggers downstream CI.
+        # Commits pushed with GITHUB_TOKEN are suppressed by GitHub to prevent loops.
+        # The PAT is set via remote URL rather than actions/checkout's token: input due to
+        # a bug in actions/checkout@v6 where custom tokens are not applied correctly.
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -152,12 +176,16 @@ jobs:
       - name: Sync workspace versions in lockfile
         run: npm install --workspaces
 
-      - name: Ensure branch is up-to-date
+      - name: Rebase onto latest remote to avoid non-fast-forward push
         run: |
-          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
-          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git fetch origin ${{ github.head_ref || github.ref_name }} || true
-          git pull --rebase origin ${{ github.head_ref || github.ref_name }} || true
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            git stash --include-untracked
+            STASHED=true
+          fi
+          git pull --rebase origin ${{ github.head_ref || github.ref_name }}
+          if [ "$STASHED" = "true" ]; then
+            git stash pop
+          fi
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
@@ -182,17 +210,61 @@ jobs:
           ref: ${{ github.head_ref || github.ref_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # For non-fork PRs and pushes: the sync jobs ran — fail if they did not succeed
       - name: Fail if sync-pypi-package-versions did not succeed
-        if: needs.detect-changes.outputs.has_package_changes == 'true'
+        if: >
+          needs.detect-changes.outputs.has_package_changes == 'true' &&
+          (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
         run: |
           if [ "${{ needs.sync-pypi-package-versions.result }}" = "failure" ] || [ "${{ needs.sync-pypi-package-versions.result }}" = "cancelled" ]; then
-            echo "❌ Job `sync-pypi-package-versions` failed or was cancelled"
+            echo "❌ Job 'sync-pypi-package-versions' failed or was cancelled"
             exit 1
           fi
 
       - name: Fail if sync-main-lockfile did not succeed
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
         run: |
           if [ "${{ needs.sync-main-lockfile.result }}" = "failure" ] || [ "${{ needs.sync-main-lockfile.result }}" = "cancelled" ]; then
-            echo "❌ Job `sync-main-lockfile` failed or was cancelled"
+            echo "❌ Job 'sync-main-lockfile' failed or was cancelled"
             exit 1
           fi
+
+      # For fork PRs: the sync jobs were skipped (can't push to a fork), so validate read-only instead
+      - name: Set up Node (fork PR lockfile check)
+        if: >
+          needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+
+      - name: Fail if package-lock.json is out of sync (fork PR)
+        if: >
+          needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          npm install --workspaces
+          if ! git diff --exit-code package-lock.json; then
+            echo "❌ package-lock.json is out of sync — run 'npm install --workspaces' locally and commit the result"
+            exit 1
+          fi
+
+      - name: Fail if pyproject.toml versions are out of sync (fork PR)
+        if: >
+          needs.detect-changes.outputs.has_package_changes == 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          PACKAGES=$(cat .github/configs/python-packages.json | jq -r '.[].path')
+          FAILED=false
+          for PKG_PATH in $PACKAGES; do
+            EXPECTED=$(jq -r .version "$PKG_PATH/package.json")
+            ACTUAL=$(grep -m1 '^version = ' "$PKG_PATH/pyproject.toml" | sed 's/version = "\(.*\)"/\1/')
+            if [ "$ACTUAL" != "$EXPECTED" ]; then
+              echo "❌ $PKG_PATH/pyproject.toml version ('$ACTUAL') does not match package.json ('$EXPECTED')"
+              FAILED=true
+            fi
+          done
+          if [ "$FAILED" = "true" ]; then exit 1; fi

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+  <div class="container">
+    <img src="<%= devopnessLogoURL %>" alt="Devopness Logo" class="logo logo-devopness">
+    <div class="heart">❤️</div>
+    <img src="<%= nodeLogoURL %>" alt="Node.js Logo" class="logo logo-node">
+  </div>
+
+  <div class="description">
+    <% descriptions.forEach(function(description) { %>
+      <p><%= description %></p>
+    <% }); %>
+  </div>
+</body>
+</html>

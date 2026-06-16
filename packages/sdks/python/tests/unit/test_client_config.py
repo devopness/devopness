@@ -9,6 +9,26 @@ from devopness.core.sdk_error import DevopnessSdkError
 
 
 class TestDevopnessClientConfig(unittest.TestCase):
+    def test_strict_validation_mode_defaults_to_true(self) -> None:
+        config = DevopnessClientConfig()
+
+        self.assertTrue(config.strict_validation_mode)
+
+        config_from_dict = DevopnessClientConfig.from_dict({})
+
+        self.assertTrue(config_from_dict.strict_validation_mode)
+
+    def test_strict_validation_mode_can_be_disabled(self) -> None:
+        config = DevopnessClientConfig(strict_validation_mode=False)
+
+        self.assertFalse(config.strict_validation_mode)
+
+        config_from_dict = DevopnessClientConfig.from_dict(
+            {"strict_validation_mode": False}
+        )
+
+        self.assertFalse(config_from_dict.strict_validation_mode)
+
     def test_base_url_with_valid_values(self) -> None:
         config = DevopnessClientConfig(base_url="https://api.devopness.com")
         self.assertEqual(config.base_url, "https://api.devopness.com")

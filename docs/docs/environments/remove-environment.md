@@ -12,39 +12,42 @@ links:
   featured:
 ---
 
-Delete an environment when you no longer need that deployment stage.
+Delete an environment when you no longer need that separate infrastructure setup.
 
 ## Goal
 
-Clean up old stages and stop working from it after deployment flow changes.
+Remove an unused environment after your release flow changes.
 
 :::warning
-Removing this environment is permanent. Confirm this stage is no longer needed before you continue.
+Removing this environment is permanent. Confirm this environment is no longer needed before you continue.
 :::
 
 Removed environments no longer keep an active deployment target.
 
-## Who should use this
-
-- Project owners
-- Team members with environment delete permission
-
-## You need
+## Prerequisites
 
 - Permission to edit and remove environments
 - A target environment that is safe to delete
+- No active resources still depend on it
 
-## Steps
+## What you need
 
-1. Go to the environment you want to remove
-2. Go to environment settings
-3. Select `Remove Environment`
-4. Confirm removal
+- The environment you want to remove
+- Confirmation that deletion is intentional
 
-## Result
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Remove the `hotfix-2024` environment from `acme-platform`"
+- "Delete the unused Staging environment in my project"
+
+Check the environment name before you confirm deletion.
+
+## Verify
 
 - The environment no longer appears in the environment list
-- The environment is no longer deployable until it is recreated
+- Remaining environments still work as expected
 
 ## Common issues
 
@@ -52,6 +55,7 @@ Removed environments no longer keep an active deployment target.
 - You do not have permission to remove this environment: ask a project owner for access
 - You need one environment for current workload: remove only after creating a replacement
 
-## Next
+## What to do next
 
-- Use [`List Environments`](/docs/environments/list-environments) to continue with the remaining stages
+- [List environments](/docs/environments/list-environments)
+- [Archive an environment](/docs/environments/archive-environment) when you want to keep history instead of deleting

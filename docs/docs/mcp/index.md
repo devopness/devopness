@@ -12,6 +12,7 @@ Choose your editor or AI tool below for step-by-step installation instructions:
 - [Claude Code](/docs/mcp/claude-code)
 - [Gemini CLI](/docs/mcp/gemini-cli)
 - [JetBrains AI](/docs/mcp/jetbrains)
+- [OpenCode](/docs/mcp/opencode)
 - [Trae](/docs/mcp/trae)
 - [Warp](/docs/mcp/warp)
 - [Windsurf](/docs/mcp/windsurf)
