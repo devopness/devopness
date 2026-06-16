@@ -6,37 +6,36 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   groups:
-    storybook:
+    # Group naming: unprefixed = repo-wide (workspace packages), ui-react-* / sdk-js-* = package-specific.
+    # Storybook first: eslint-plugin-storybook also matches eslint-* in linters.
+    ui-react-storybook:
       patterns:
         - "storybook"
         - "@storybook/*"
         - "eslint-plugin-storybook"
-  ignore:
-  - dependency-name: eslint
-    versions:
-    - 7.23.0
-    - 7.24.0
-  - dependency-name: y18n
-    versions:
-    - 4.0.1
-    - 4.0.2
-  - dependency-name: "@openapitools/openapi-generator-cli"
-    versions:
-    - 2.1.23
-    - 2.1.25
-    - 2.2.1
-    - 2.2.3
-    - 2.2.4
-    - 2.2.5
-  - dependency-name: "@types/jest"
-    versions:
-    - 26.0.22
-  - dependency-name: husky
-    versions:
-    - 5.2.0
-  - dependency-name: typescript
-    versions:
-    - 4.1.4
+    linters:
+      patterns:
+        - "typescript-eslint"
+        - "@typescript-eslint/*"
+        - "eslint"
+        - "@eslint/*"
+        - "eslint-*"
+        - "prettier"
+        - "prettier-*"
+        - "@ianvs/prettier-plugin-sort-imports"
+        - "typescript"
+    sdk-js-jest:
+      patterns:
+        - "jest"
+        - "ts-jest"
+        - "@types/jest"
+    ui-react-vite:
+      patterns:
+        - "vite"
+        - "@vitejs/*"
+        - "vite-*"
+        - "vitest"
+        - "@vitest/*"
 
 - package-ecosystem: pip
   directories:
@@ -44,13 +43,37 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 10
-  
+
 - package-ecosystem: npm
   directory: "/docs"
   schedule:
     interval: daily
   open-pull-requests-limit: 10
   groups:
-    fumadocs:
+    # Group naming: docs-* = scoped to the /docs npm ecosystem.
+    docs-fumadocs:
       patterns:
         - "fumadocs-*"
+    docs-linters:
+      patterns:
+        - "typescript-eslint"
+        - "@typescript-eslint/*"
+        - "eslint"
+        - "@eslint/*"
+        - "eslint-*"
+        - "@next/eslint-plugin-next"
+        - "prettier"
+        - "prettier-*"
+        - "@ianvs/prettier-plugin-sort-imports"
+        - "typescript"
+        - "@types/node"
+        - "@types/react"
+        - "@types/react-dom"
+        - "@types/mdx"
+    docs-tailwind:
+      patterns:
+        - "tailwindcss"
+        - "@tailwindcss/*"
+    docs-next:
+      patterns:
+        - "next"
