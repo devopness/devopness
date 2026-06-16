@@ -1,62 +1,69 @@
 ---
 slug: /
-sidebar_position: 1
 title: Get started with Devopness
-links:
-  overview:
-  quickstart:
-  previous:
-  next: organizations/index
-  guides: []
-  featured:
+description: Deploy applications, provision servers, and manage serverless infrastructure in your cloud accounts with Devopness. Multi-cloud support, permissions per environment, and AI-ready DevOps through MCP.
+pagination_next: organizations/index
 ---
 
 ## About
 
-Devopness is an API-first, AI-assisted platform for provisioning infrastructure and deploying applications.
-Use it with major cloud providers, self-hosted servers, and serverless services.
+Devopness helps you deploy apps and manage servers and serverless infrastructure in your own cloud accounts on AWS, Azure, Google Cloud, DigitalOcean, Hetzner, and others.
+
+You can use the [web app](https://app.devopness.com/), the API, or [/docs/mcp/index] when Devopness is connected to your AI agents.
+
+## Why Devopness exists
+
+Today many software teams:
+
+- Wait on a DevOps specialist, platform team, or contractor for servers, deploys, and small config changes
+- Use many tools: Terraform or Ansible for infrastructure, CI pipelines like Jenkins or GitHub Actions, and separate services for SSL and DNS
+- Struggle to move apps between cloud providers because each one has different consoles and deployment workflows
+- Rely on platforms like Vercel or Heroku that start simple but become expensive or hard to leave as apps grow
+- Write code faster with AI, but still wait too long to get that code running in production
+
+Devopness combines what is usually split across multiple tools into one platform:
+
+- Infrastructure provisioning and server configuration (instead of Terraform and Ansible)
+- CI/CD and deployments (instead of Jenkins, GitHub Actions, Vercel, Heroku, and other PaaS)
+- One simpler workflow for any tech stack and any cloud provider, in accounts you control
+
+People and AI agents can work from the web app, API, or MCP on a laptop, phone, or tablet.
+
+Fine-grained, role-based permissions per environment let teammates deploy without direct cloud-console access, improving security and access control.
+
+This helps you deploy more often to infrastructure you control, without needing deep expertise in every cloud provider.
 
 ## What Devopness gives you
 
-- Deploy apps and infrastructure for any stack from one platform
-- Work with multiple cloud providers without becoming expert in each one
-- Use RBAC to give teams the exact access they need
-- Keep visibility across teams without forcing everyone to connect directly to cloud provider accounts
+- Ship your apps to infrastructure you own, with more frequent and safer deploys
+- Trigger zero-downtime deploys automatically when you push to git
+- See deploy history and infrastructure changes in one place, even from mobile, without SSH or cloud console access
+- Manage servers and deploys from the web app, without manual CLI workflows for routine tasks
+- Run DevOps operations in natural language through MCP when connected to your AI agents
 
-## In 3 steps
+## How Devopness is organized
 
-1. Connect your cloud provider
-2. Link your code source
-3. Deploy your first app and scale 🚀
+Think of it like this:
 
-## How it is organized
+- **Organization:** one company, legal entity, or client portfolio in Devopness, like `/@acme`
+- **Project:** one product or client inside that organization
+- **Environment:** a separate infrastructure setup inside a project (its own servers, applications, credentials, and deploy settings). Names like `Development`, `Staging`, and `Production` are common
+- **Application:** one git repository (or one folder in a monorepo) connected to one environment
 
-- **Organization**: the workspace for teams, projects, and long-term collaboration
-- **Project**: where related applications and infrastructure are grouped
-- **Environment**: where release stages live (`Development`, `Staging`, `Production`)
-
-This page is the fastest route into the full setup flow.
+Read more in [/docs/organizations/index], [/docs/projects/index], and [/docs/environments/index].
 
 ## Who this is for
 
-- Developers shipping apps and infrastructure with small teams.
-- Team leads moving from single to multi-environment operations.
-- Founders who want predictable deployment structure early.
+- Developers who ship apps, side projects, and cloud infrastructure
+- Team leads who want to simplify deploy workflows, speed up releases, and cut down on complex tooling
+- Founders and solo builders deploying from day one on cloud infrastructure they control
+- Freelancers and agencies who need fast deploys and separate client infrastructure at an affordable cost
 
-## Start here
+## Where to start
 
-1. Create your organization in [`Organizations`](/docs/organizations/) (or select the one you already use).
-2. Confirm it is the organization you want to use.
-3. Create your first project.
-4. Add a first `Production` environment.
-5. Connect your cloud and Git credentials.
-6. Deploy your first app and check it is live 🚀
-
-## Common issues
-
-- You are in the wrong organization and only see a subset of resources.
-- You cannot edit or add items because your role does not include all required permissions.
-- You need faster, safer onboarding before release: start with one project and one production environment.
+- [Create an account and sign in](https://app.devopness.com/). It is free, and no credit card is required.
+- Follow the **Getting Started** section in the sidebar for the first-setup path from workspace creation through your first deploy
+- Watch walkthroughs on the [Devopness YouTube channel](https://www.youtube.com/@devopness)
 
 ## Get help
 
@@ -64,4 +71,4 @@ If you need help, contact us on [GitHub](https://github.com/devopness/devopness/
 
 ## Report a vulnerability
 
-If you found a vulnerability in our products, follow the guide [/docs/security/reporting-a-security-vulnerability].
+If you found a vulnerability in our product, please follow the guide [/docs/security/reporting-a-security-vulnerability].
