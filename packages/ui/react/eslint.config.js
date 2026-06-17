@@ -99,7 +99,12 @@ export default tseslint.config(
       ...react.configs['jsx-runtime'].rules,
       'react-refresh/only-export-components': [
         'warn',
-        { allowConstantExport: true },
+        {
+          allowConstantExport: true,
+          allowExportNames: [
+            'render',
+          ],
+        },
       ],
       'react/function-component-definition': [
         'error',
@@ -148,6 +153,15 @@ export default tseslint.config(
       //     },
       //   },
       // ],
+    },
+  },
+  {
+    files: [
+      'src/test-utils/**',
+      'src/utils/**',
+    ],
+    rules: {
+      'react-refresh/only-export-components': 'off',
     },
   },
   {
