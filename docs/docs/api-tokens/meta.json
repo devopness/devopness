@@ -1,0 +1,7 @@
+{
+  "pages": [
+    "index",
+    "personal-access-tokens",
+    "project-api-tokens"
+  ]
+}

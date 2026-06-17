@@ -162,16 +162,16 @@ Keep **link server to application** as an optional page for changing or adding d
 
 Guide readers through:
 
-1. Add application
-2. Add configuration files (for example `.env`)
+1. Add server
+2. Add application
 3. Deploy
-4. Then branch by app type:
-   - Public API or web app → virtual host
+4. Then optionally branch by app type:
+   - Public API or web app → (later) add a virtual host and SSL certificate
    - Private worker or batch job → daemon or cron job (no virtual host required)
 
 **Pagination (`links.previous` / `links.next`)** should follow that path for the first-deploy sequence:
 
-`add-application` → `files/add-file` → `deploy-application` → `virtual-hosts/add-virtual-host`
+`organizations/add-organization` → `projects/add-project` → `environments/add-environment` → `credentials/add-credential` → `servers/add-server` → `applications/add-application` → `deploy-application`
 
 Do not route `add-file` or `add-variable` to `link-server-to-application` as the next step in that sequence.
 Place `link-server-to-application` outside the default pagination chain, or after `deploy-application` when the page is about changing servers.

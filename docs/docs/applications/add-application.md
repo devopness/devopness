@@ -3,8 +3,8 @@ title: Add an Application
 links:
   overview:
   quickstart:
-  previous: applications/index
-  next: files/add-file
+  previous: servers/add-server
+  next: applications/deploy-application
   guides:
   related:
   featured:
@@ -16,7 +16,7 @@ Connect a git repository to this environment so Devopness can build and deploy i
 
 ## Goal
 
-Add the application before you add configuration files, deploy, or expose it on a public URL.
+Add the application before you deploy it.
 
 ## Prerequisites
 
@@ -75,12 +75,10 @@ Try these prompts in Devopness MCP:
 
 ## After you save
 
-1. Add [configuration files](/docs/files/add-file), for example a `.env` with database URLs, API keys, and other environment variables
-2. [Deploy the application](/docs/applications/deploy-application). Devopness links a server on first deploy when needed
-3. Then:
-   - **Public API or web app:** [add a virtual host](/docs/virtual-hosts/add-virtual-host)
+1. [Deploy the application](/docs/applications/deploy-application). Devopness links a server on first deploy when needed
+2. Then (optional):
    - **Background worker or scheduled job:** add a [daemon](/docs/daemons/add-daemon) or [cron job](/docs/cronjobs/add-cronjob)
-4. Optional: customize the [deploy pipeline](/docs/pipelines/add-pipeline) or set up [deploy on git push](/docs/applications/deploy-application-using-incoming-hook)
+3. Optional: customize the [deploy pipeline](/docs/pipelines/add-pipeline) or set up [deploy on git push](/docs/applications/deploy-application-using-incoming-hook)
 
 ## Verify
 
@@ -99,12 +97,12 @@ Create a new environment when you need separate infrastructure, data, access rul
 
 ### Public vs private applications
 
-- **Public** (API, web app, marketing site): deploy, then add a [virtual host](/docs/virtual-hosts/add-virtual-host)
-- **Private** (queue worker, internal processor): deploy, then add a [daemon](/docs/daemons/add-daemon) or [cron job](/docs/cronjobs/add-cronjob). No virtual host required
+- **Public** (API, web app, marketing site): deploy
+- **Private** (queue worker, internal processor): deploy, then add a [daemon](/docs/daemons/add-daemon) or [cron job](/docs/cronjobs/add-cronjob)
 
 ### Redeploy after configuration changes
 
-If you change configuration files such as `.env`, [deploy again](/docs/applications/deploy-application) so servers pick up the update.
+If you change code or deploy settings, [deploy again](/docs/applications/deploy-application) so servers pick up the update.
 
 ## Common issues
 
@@ -115,5 +113,4 @@ If you change configuration files such as `.env`, [deploy again](/docs/applicati
 
 ## What to do next
 
-- [Add a configuration file](/docs/files/add-file)
 - [Deploy Application](/docs/applications/deploy-application)
