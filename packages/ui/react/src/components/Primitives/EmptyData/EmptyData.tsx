@@ -43,7 +43,7 @@ const defaultMessage: EmptyDataMessage = {
 
 const EmptyData = ({ isSmallContainer, image, message }: EmptyDataProps) => {
   const resolved = message ?? defaultMessage
-  const isStructured = typeof resolved === 'object'
+  const isStructured = resolved !== null && typeof resolved === 'object'
 
   return (
     <EmptyDataContainer>
