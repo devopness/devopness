@@ -19,4 +19,4 @@ In this section you will learn how to manage your user profile settings, subscri
 
 - Find your activity summary in [Find your Devopness Activity Summary](/docs/users/find-your-activity-summary)
 - Manage invites sent to you in [Received Invitations](/docs/users/teams/invitations/list-invitations)
-- Manage billing and plans in [Billing and Plans](/docs/users/subscriptions/index)
+- Manage billing and plans in [/docs/users/subscriptions]

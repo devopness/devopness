@@ -12,7 +12,7 @@ links:
 
 Use an outgoing hook when you want Devopness to report deploy progress back to your source provider or CI system.
 
-This page is API-only today. Use the [Devopness API reference](/docs/api/index) to create outgoing hooks that update commit status in your source provider.
+This page is API-only today. Use the [/docs/api] to create outgoing hooks that update commit status in your source provider.
 
 ## Goal
 

@@ -1,0 +1,7 @@
+{
+  "pages": [
+    "index",
+    "add-invitation",
+    "list-invitations"
+  ]
+}

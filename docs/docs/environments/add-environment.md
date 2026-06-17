@@ -4,7 +4,7 @@ links:
   overview:
   quickstart:
   previous: projects/add-project
-  next: environments/list-environments
+  next: credentials/add-credential
   guides:
     - environments/list-environments
     - environments/remove-environment
