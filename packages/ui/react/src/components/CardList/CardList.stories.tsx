@@ -549,7 +549,7 @@ const Error: StoryObj<CardListStoryArgs> = {
 
 export { AllResources, AllZero, Default, Error, Loading }
 
-export default {
+const meta = {
   title: 'Components/CardList',
   component: CardList,
   argTypes: {
@@ -567,14 +567,16 @@ export default {
       description:
         "When true, replaces each card's numeric indicator with a red error icon.",
     },
-    // Hide raw CardList props from the controls panel — managed via cardsCount
     data: { table: { disable: true } },
     loadingCardsCount: { table: { disable: true } },
   },
   parameters: {
+    layout: 'fullscreen',
     controls: {
       sort: 'requiredFirst',
       expanded: true,
     },
   },
-} as Meta<CardListStoryArgs>
+} satisfies Meta<CardListStoryArgs>
+
+export default meta

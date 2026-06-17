@@ -17,13 +17,17 @@ const StyledCardListContainer = styled.section`
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 42px 30px;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 42px 30px;
   padding-bottom: 42px;
   width: 100%;
 
-  @media (min-width: 600px) {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  @media (min-width: 641px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1025px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `
 
