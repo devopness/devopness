@@ -56,6 +56,7 @@ const EmptyData = ({ isSmallContainer, image, message }: EmptyDataProps) => {
           <Img
             src={image}
             alt="Empty data logo"
+            loading="lazy"
           />
         </ImgContainer>
       )}
