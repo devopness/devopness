@@ -22,9 +22,7 @@ const getPropsColor =
     getColor(color)
 
 const getMiniCardBackground = (index: number) =>
-  index + 1 <= backgroundColors.length
-    ? backgroundColors[index]
-    : backgroundColors[(index + 1) % backgroundColors.length]
+  backgroundColors[index % backgroundColors.length]
 
 const getPropsBackground =
   (defaultColor: Color = 'indigo.10') =>

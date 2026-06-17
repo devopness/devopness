@@ -165,7 +165,7 @@ const CardContent = ({
   ) as undefined[]
 
   const allResources: (ResourceItemData | undefined)[] = [
-    ...resources,
+    ...resources.slice(0, maxLength),
     ...emptySlots,
   ]
 
@@ -173,10 +173,7 @@ const CardContent = ({
     <StyledResourceList>
       {allResources.map((resource, index) => (
         <Fragment key={resource?.id ?? `$resource_item_${index}`}>
-          <ResourceItem
-            basePath={basePath}
-            resource={resource}
-          />
+          <ResourceItem resource={resource} />
           {index < maxLength - 1 && <StyledDivider />}
         </Fragment>
       ))}
@@ -218,8 +215,10 @@ const AddResource = ({
           condition={!isDisabled}
           wrapper={(children) => (
             <Link
+              hideExternalUrlIcon
               hideUnderline
               hideUnderlineOnHover
+              target="_self"
               to={pathToNavigateTo}
               style={{
                 display: 'block',
@@ -254,10 +253,9 @@ const AddResource = ({
 
 type ResourceItemProps = {
   resource: ResourceItemData | undefined
-  basePath: string
 }
 
-const ResourceItem = ({ resource, basePath }: ResourceItemProps) => {
+const ResourceItem = ({ resource }: ResourceItemProps) => {
   const elementRef = useRef<HTMLSpanElement>(null)
   const isOverflowing = useIsOverflowing(elementRef)
 
@@ -271,8 +269,10 @@ const ResourceItem = ({ resource, basePath }: ResourceItemProps) => {
       disableHover={!isOverflowing}
     >
       <Link
+        hideExternalUrlIcon
         hideUnderline
-        to={`${basePath}/${resource.id}`}
+        target="_self"
+        to={resource.url}
         style={{
           marginRight: 'auto',
           overflow: 'hidden',
