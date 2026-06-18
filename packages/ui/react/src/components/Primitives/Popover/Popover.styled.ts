@@ -49,6 +49,10 @@ const Title = styled.span`
 `
 
 const Content = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
   padding: 15px;
   box-sizing: border-box;
   width: 100%;
