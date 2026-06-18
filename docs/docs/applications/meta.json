@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "index",
+    "add-application",
+    "list-applications",
+    "view-application",
+    "edit-application",
+    "deploy-application",
+    "link-server-to-application",
+    "deploy-application-using-incoming-hook",
+    "integrate-application-deployments-to-ci-workflows"
+  ]
+}
