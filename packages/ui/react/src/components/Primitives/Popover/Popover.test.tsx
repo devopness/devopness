@@ -24,6 +24,30 @@ describe('Popover', () => {
     expect(screen.getByText('Footer Content')).toBeInTheDocument()
   })
 
+  it('preserves embedded iframe content inside a flex body container', () => {
+  render(
+    <Popover
+      open
+      anchorEl={document.body}
+      title="Test Title"
+    >
+      <iframe title="Embedded content" src="https://example.com" />
+    </Popover>
+  )
+
+  const content = screen.getByTestId('popover-content')
+  const iframe = screen.getByTitle('Embedded content')
+
+  expect(content).toBeInTheDocument()
+  expect(content).toContainElement(iframe)
+  expect(content).toHaveStyle({
+  display: 'flex',
+  flex: '1',
+  flexDirection: 'column',
+  minHeight: '0',
+})
+})
+
   it('renders without footer', () => {
     render(
       <Popover
