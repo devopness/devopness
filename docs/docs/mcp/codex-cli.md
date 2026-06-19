@@ -20,7 +20,7 @@ codex --version
 Add the Devopness remote MCP server:
 
 ```bash
-codex mcp add --url https://mcp.devopness.com/mcp/ devopness
+codex mcp add devopness --url https://mcp.devopness.com/mcp/
 ```
 
 Codex detects OAuth support and opens the Devopness authorization flow in your browser.
