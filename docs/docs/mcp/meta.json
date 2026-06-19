@@ -2,6 +2,7 @@
   "pages": [
     "index",
     "claude-code",
+    "codex-cli",
     "gemini-cli",
     "windsurf",
     "zed",

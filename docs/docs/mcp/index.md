@@ -10,6 +10,7 @@ Choose your editor or AI tool below for step-by-step installation instructions:
 
 - [AntiGravity](/docs/mcp/antigravity)
 - [Claude Code](/docs/mcp/claude-code)
+- [Codex CLI](/docs/mcp/codex-cli)
 - [Gemini CLI](/docs/mcp/gemini-cli)
 - [JetBrains AI](/docs/mcp/jetbrains)
 - [OpenCode](/docs/mcp/opencode)
