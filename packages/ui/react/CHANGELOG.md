@@ -1,5 +1,13 @@
 # @devopness/ui-react
 
+## 2.192.1
+
+### Patch Changes
+
+- [#3211](https://github.com/devopness/devopness/pull/3211) [`32689c9`](https://github.com/devopness/devopness/commit/32689c97c28ce996e61226378dc36210e7b2113a) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add structured message support to EmptyData.
+
+- [#3217](https://github.com/devopness/devopness/pull/3217) [`ecb2a36`](https://github.com/devopness/devopness/commit/ecb2a3631a29862af312558dbf77d29ef784a72a) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Fix Popover body spacing by wrapping the content in a dedicated container, keeping the header, body, and footer aligned consistently.
+
 ## 2.192.0
 
 ### Minor Changes
