@@ -68,7 +68,7 @@ exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = { version = "7.22.0", markers = "python_version < '4.0'" }
-ruff = "^0.15.17"
+ruff = "^0.15.18"
 mypy = "^2.1.0"
 
 [tool.ruff]
