@@ -3,7 +3,7 @@ title: Add a Project
 links:
   overview:
   quickstart:
-  previous: projects/index
+  previous: organizations/add-organization
   next: environments/add-environment
   guides:
     - projects/list-projects

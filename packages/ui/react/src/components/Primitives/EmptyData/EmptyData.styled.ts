@@ -1,5 +1,7 @@
 import { styled } from 'styled-components'
 
+import { getColor } from 'src/colors'
+
 type ImgContainerProps = {
   $isSmallContainer: boolean
 }
@@ -36,4 +38,25 @@ const EmptyDataText = styled.div`
   width: 100%;
   text-align: center;
 `
-export { EmptyDataContainer, EmptyDataText, Img, ImgContainer }
+
+const EmptyDataTitle = styled.p`
+  font-weight: 600;
+  font-size: 15px;
+  color: ${getColor('blue.950')};
+  margin: 0 0 6px 0;
+`
+
+const EmptyDataDescription = styled.p`
+  font-size: 13px;
+  color: ${getColor('blue.950')};
+  line-height: 1.5;
+  margin: 0;
+`
+export {
+  EmptyDataContainer,
+  EmptyDataText,
+  EmptyDataTitle,
+  EmptyDataDescription,
+  Img,
+  ImgContainer,
+}

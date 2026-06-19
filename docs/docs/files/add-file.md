@@ -4,8 +4,8 @@ intro: By adding configuration files you ensure a more consistent resource deplo
 links:
   overview:
   quickstart:
-  previous: pipelines/steps/add-step
-  next: applications/link-server-to-application
+  previous: applications/add-application
+  next: applications/deploy-application
   guides:
   related:
     - files/view-file

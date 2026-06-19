@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.192.0
+
+### Minor Changes
+
+- [#3212](https://github.com/devopness/devopness/pull/3212) [`6811f36`](https://github.com/devopness/devopness/commit/6811f365d18e1bd3da7683bc1efae217582e7d5d) Thanks [@GustavoSMelo](https://github.com/GustavoSMelo)! - Add CardList component with CardContent, CardTheme, and utility functions
+
 ## 2.191.0
 
 ### Minor Changes
