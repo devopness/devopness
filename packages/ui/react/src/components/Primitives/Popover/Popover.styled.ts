@@ -48,6 +48,16 @@ const Title = styled.span`
   color: ${getColor('blue.800')};
 `
 
+const Content = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 15px;
+  box-sizing: border-box;
+  width: 100%;
+`
+
 const Footer = Header
 
-export { Container, Footer, Header, Title }
+export { Container, Footer, Header, Title, Content }

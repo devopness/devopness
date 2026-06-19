@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import type { PopoverProps as MaterialPopoverProps } from '@mui/material'
 
-import { Container, Footer, Header, Title } from './Popover.styled'
+import { Container, Footer, Header, Title, Content } from './Popover.styled'
 import { IconButton } from 'src/components/Buttons'
 import { ConditionalWrapper } from 'src/components/helpers'
 
@@ -55,7 +55,7 @@ const Popover = ({ title, footer, children, ...props }: PopoverProps) => (
       />
     </Header>
 
-    {children}
+    <Content data-testid="popover-content">{children}</Content>
 
     <ConditionalWrapper
       condition={Boolean(footer)}
