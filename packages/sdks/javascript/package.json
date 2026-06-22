@@ -52,7 +52,7 @@
   "homepage": "https://github.com/devopness/devopness#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@openapitools/openapi-generator-cli": "^2.38.0",
+    "@openapitools/openapi-generator-cli": "^2.39.0",
     "@types/jest": "^30.0.0",
     "@typescript-eslint/parser": "^8.61.1",
     "axios-mock-adapter": "^2.1.0",
