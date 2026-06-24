@@ -3,6 +3,7 @@ import { styled, css } from 'styled-components'
 import type { ButtonProps } from '.'
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
+import { getSpacing } from 'src/spacing'
 
 type StyledProps = {
   /**
@@ -21,7 +22,6 @@ type StyledProps = {
     | 'color'
     | 'iconSize'
     | 'noIconMargin'
-    | 'noMargin'
     | 'noPadding'
     | 'noPointerEvents'
     | 'revertOrientation'
@@ -152,7 +152,6 @@ const BaseButton = styled.button<
     | '$buttonType'
     | '$color'
     | '$noIconMargin'
-    | '$noMargin'
     | '$noPadding'
     | '$noPointerEvents'
     | '$revertOrientation'
@@ -165,7 +164,6 @@ const BaseButton = styled.button<
     $buttonType,
     $color,
     $noIconMargin,
-    $noMargin,
     $noPadding,
     $noPointerEvents,
     $revertOrientation,
@@ -197,12 +195,14 @@ const BaseButton = styled.button<
       display: flex;
       background-color: ${resolvedBackgroundColor};
       height: ${resolvedHeight};
-      margin: ${$noMargin ? '0' : '0 15px'};
-      padding: ${$noPadding ? '0' : '5px 15px'};
+      margin: 0;
+      padding: ${$noPadding
+        ? '0'
+        : `${getSpacing('button.paddingY')} ${getSpacing('button.paddingX')}`};
       user-select: none;
 
       /** Flex Layout */
-      gap: ${$noIconMargin ? '0' : '10px'};
+      gap: ${$noIconMargin ? '0' : getSpacing('button.iconGap')};
       align-items: center;
       flex-direction: ${$revertOrientation ? 'row-reverse' : 'row'};
       justify-content: center;

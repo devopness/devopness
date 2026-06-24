@@ -240,7 +240,6 @@ const ElementAnchor = ({
     >
       <Button
         data-testid="dropdown-button"
-        noMargin
         noIconMargin={!!buttonProps?.icon}
         typeSize="medium"
         {...buttonProps}
