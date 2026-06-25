@@ -21,6 +21,7 @@ class CloudOsVersionCode(str, Enum):
     UBUNTU_20_04 = "ubuntu_20_04"
     UBUNTU_22_04 = "ubuntu_22_04"
     UBUNTU_24_04 = "ubuntu_24_04"
+    UBUNTU_26_04 = "ubuntu_26_04"
 
     def __str__(self) -> str:
         """Return the string representation of the CloudOsVersionCode"""
@@ -39,4 +40,5 @@ CloudOsVersionCodePlain = Literal[
     "ubuntu_20_04",
     "ubuntu_22_04",
     "ubuntu_24_04",
+    "ubuntu_26_04",
 ]

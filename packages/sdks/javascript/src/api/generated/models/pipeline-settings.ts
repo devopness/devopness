@@ -34,6 +34,12 @@ export interface PipelineSettings {
      */
     is_user_managed?: boolean;
     /**
+     * Indicates whether this resource operation supports an optional trigger comment
+     * @type {boolean}
+     * @memberof PipelineSettings
+     */
+    supports_trigger_comment?: boolean;
+    /**
      * The list of pipeline setting stage
      * @type {Array<PipelineSettingsStage>}
      * @memberof PipelineSettings

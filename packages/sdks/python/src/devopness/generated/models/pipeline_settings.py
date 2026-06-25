@@ -28,6 +28,7 @@ class PipelineSettings(DevopnessBaseModel):
     Attributes:
         max_pipelines_per_resource (int, optional):
         is_user_managed (bool, optional): Indicates whether the user has permission to manage the pipeline for the resource operation
+        supports_trigger_comment (bool, optional): Indicates whether this resource operation supports an optional trigger comment
         stages (List[PipelineSettingsStage], optional, nullable): The list of pipeline setting stage
         variables (List[PipelineSettingsVariable], optional, nullable): The list of pipeline setting variable
     """
@@ -36,6 +37,10 @@ class PipelineSettings(DevopnessBaseModel):
     is_user_managed: StrictBool | None = Field(
         default=None,
         description="Indicates whether the user has permission to manage the pipeline for the resource operation",
+    )
+    supports_trigger_comment: StrictBool | None = Field(
+        default=None,
+        description="Indicates whether this resource operation supports an optional trigger comment",
     )
     stages: list[PipelineSettingsStage] | None = Field(
         default=None, description="The list of pipeline setting stage"
@@ -52,6 +57,7 @@ class PipelineSettingsPlain(TypedDict, total=False):
 
     max_pipelines_per_resource: int | None
     is_user_managed: bool | None
+    supports_trigger_comment: bool | None
     stages: list[Union[PipelineSettingsStage, PipelineSettingsStagePlain]] | None
     variables: (
         list[Union[PipelineSettingsVariable, PipelineSettingsVariablePlain]] | None
