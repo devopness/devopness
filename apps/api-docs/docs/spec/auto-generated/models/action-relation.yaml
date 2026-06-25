@@ -27,6 +27,11 @@ properties:
     description: 'The permalink URL to the action details on Devopness web app'
     example: 'https://devopness.com/actions/567819876'
     type: string
+  trigger_comment:
+    description: 'Optional comment attached to this action'
+    example: 'Triggered after a configuration update.'
+    type: string
+    nullable: true
   action_data:
     $ref: '#/components/schemas/ActionData'
   triggered_from:
@@ -64,6 +69,7 @@ required:
   - type
   - type_human_readable
   - url_web_permalink
+  - trigger_comment
   - triggered_from
   - resource
   - started_at

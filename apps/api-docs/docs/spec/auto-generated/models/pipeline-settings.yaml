@@ -9,6 +9,10 @@ properties:
     type: boolean
     description: 'Indicates whether the user has permission to manage the pipeline for the resource operation'
     example: true
+  supports_trigger_comment:
+    type: boolean
+    description: 'Indicates whether this resource operation supports an optional trigger comment'
+    example: true
   stages:
     $ref: '#/components/schemas/PipelineSettingsStageList'
   variables:
