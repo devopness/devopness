@@ -41,6 +41,7 @@ class ActionRelation(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
+        trigger_comment (str, optional, nullable): Optional comment attached to this action
         action_data (ActionData, optional, nullable):
         triggered_from (ActionTriggeredFrom):
         resource (ActionResource):
@@ -67,6 +68,9 @@ class ActionRelation(DevopnessBaseModel):
     )
     url_web_permalink: StrictStr = Field(
         description="The permalink URL to the action details on Devopness web app"
+    )
+    trigger_comment: StrictStr | None = Field(
+        description="Optional comment attached to this action"
     )
     action_data: ActionData | None = None
     triggered_from: ActionTriggeredFrom
@@ -117,6 +121,7 @@ class ActionRelationPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
+    trigger_comment: str | None
     action_data: Union[ActionData, ActionDataPlain] | None
     triggered_from: Required[
         Union[
