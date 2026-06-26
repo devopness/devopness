@@ -54,19 +54,19 @@
     "@eslint/js": "^10.0.1",
     "@openapitools/openapi-generator-cli": "^2.39.0",
     "@types/jest": "^30.0.0",
-    "@typescript-eslint/parser": "^8.61.1",
+    "@typescript-eslint/parser": "^8.62.0",
     "axios-mock-adapter": "^2.1.0",
     "eslint": "^10.5.0",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^18.1.0",
+    "eslint-plugin-n": "^18.2.1",
     "eslint-plugin-promise": "^7.3.0",
     "husky": "9.1.7",
     "jest": "^30.4.2",
     "ts-jest": "^29.4.11",
     "typedoc": "^0.28.19",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.61.1"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
