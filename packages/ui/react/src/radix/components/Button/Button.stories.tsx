@@ -36,6 +36,16 @@ export default {
     disabled: {
       control: 'boolean',
     },
+    'aria-label': {
+      control: 'text',
+      description:
+        'Accessible name for icon-only buttons or when the visible label is not descriptive enough.',
+    },
+    title: {
+      control: 'text',
+      description:
+        'Native tooltip shown on hover. Prefer Tooltip for richer content.',
+    },
   },
 }
 
@@ -182,6 +192,111 @@ export const Loading = {
             >
               Outline
             </Button>
+            <Button
+              loading
+              variant="ghost"
+            >
+              Ghost
+            </Button>
+          </Flex>
+        </Flex>
+      </Box>
+    </Theme>
+  ),
+}
+
+export const AriaLabel = {
+  render: () => (
+    <Theme>
+      <Box
+        p="6"
+        style={{ maxWidth: 800 }}
+      >
+        <Flex
+          direction="column"
+          gap="4"
+        >
+          <Heading size="6">Aria label</Heading>
+          <Text
+            size="2"
+            color="gray"
+          >
+            Use aria-label when the button has no visible text, or when the
+            visible label needs a more descriptive accessible name for assistive
+            technologies.
+          </Text>
+          <Flex
+            gap="3"
+            align="center"
+            wrap="wrap"
+          >
+            <Button
+              aria-label="Close dialog"
+              variant="soft"
+            >
+              ×
+            </Button>
+            <Button
+              aria-label="Add new server"
+              variant="solid"
+            >
+              +
+            </Button>
+            <Button
+              aria-label="Save project settings"
+              variant="outline"
+            >
+              Save
+            </Button>
+          </Flex>
+        </Flex>
+      </Box>
+    </Theme>
+  ),
+}
+
+export const Title = {
+  render: () => (
+    <Theme>
+      <Box
+        p="6"
+        style={{ maxWidth: 800 }}
+      >
+        <Flex
+          direction="column"
+          gap="4"
+        >
+          <Heading size="6">Title</Heading>
+          <Text
+            size="2"
+            color="gray"
+          >
+            Use the native title attribute to show a short tooltip on hover. For
+            richer tooltips, prefer the Tooltip component.
+          </Text>
+          <Flex
+            gap="3"
+            wrap="wrap"
+          >
+            <Button
+              title="Deploy the latest version to production"
+              variant="solid"
+            >
+              Deploy
+            </Button>
+            <Button
+              title="This action cannot be undone"
+              variant="outline"
+            >
+              Delete
+            </Button>
+            <Button
+              aria-label="Refresh server status"
+              title="Refresh server status"
+              variant="ghost"
+            >
+              ↻
+            </Button>
           </Flex>
         </Flex>
       </Box>
@@ -205,7 +320,9 @@ export const Disabled = {
             size="2"
             color="gray"
           >
-            Disabled button states.
+            Disabled buttons are not interactive and are excluded from the tab
+            order. Combine with loading when an action is temporarily
+            unavailable.
           </Text>
           <Flex
             gap="3"
@@ -240,6 +357,21 @@ export const Disabled = {
               disabled
             >
               Ghost
+            </Button>
+            <Button
+              variant="solid"
+              disabled
+              loading
+            >
+              Loading
+            </Button>
+            <Button
+              aria-label="Delete project"
+              title="You do not have permission to delete this project"
+              variant="outline"
+              disabled
+            >
+              Delete
             </Button>
           </Flex>
         </Flex>
