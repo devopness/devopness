@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.192.2
+
+### Patch Changes
+
+- [#3251](https://github.com/devopness/devopness/pull/3251) [`e5a71ca`](https://github.com/devopness/devopness/commit/e5a71ca27c71b914979ab2ead4829ff0ce12ac77) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add 'addUrl' to the Pick<CardProps, ...> union in CardListProps.data so consumers can pass addUrl per card item and have it reach the underlying Card component via the existing {...props} spread.
+
 ## 2.192.1
 
 ### Patch Changes
