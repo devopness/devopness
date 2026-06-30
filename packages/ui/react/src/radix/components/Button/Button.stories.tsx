@@ -1,3 +1,5 @@
+import type { ComponentProps } from 'react'
+
 import { Box, Button, Flex, Text, Heading, Theme } from '../../index'
 
 export default {
@@ -46,13 +48,23 @@ export default {
       description:
         'Native tooltip shown on hover. Prefer Tooltip for richer content.',
     },
+    children: {
+      control: 'text',
+    },
+  },
+  args: {
+    children: 'Default Button',
+    variant: 'solid',
+    size: '2',
+    loading: false,
+    disabled: false,
   },
 }
 
 export const Default = {
-  render: () => (
+  render: (args: ComponentProps<typeof Button>) => (
     <Theme>
-      <Button>Default Button</Button>
+      <Button {...args} />
     </Theme>
   ),
 }
