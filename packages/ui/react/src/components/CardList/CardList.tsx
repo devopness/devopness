@@ -15,7 +15,7 @@ type CardListProps = {
   /**
    * Array of card data to be rendered
    */
-  data: (Pick<CardProps, 'children' | 'icon' | 'footer' | 'url'> & {
+  data: (Pick<CardProps, 'addUrl' | 'children' | 'icon' | 'footer' | 'url'> & {
     backgroundColor: Color
     color: Color
     indicator: number

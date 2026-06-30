@@ -497,6 +497,34 @@ function renderAllZero({ cardsCount, isLoading, isError }: CardListStoryArgs) {
   )
 }
 
+/**
+ * Pre-computed cards with addUrl set, showing the + button in each card header.
+ */
+const allCardsWithAddUrl: CardListProps['data'] = allEnvironmentCards.map(
+  (card) => ({
+    ...card,
+    addUrl: `/projects/1/environments/1/${card.label.toLowerCase().replace(/ /g, '-')}/new`,
+  })
+)
+
+/**
+ * WithAddUrl render: uses pre-computed cards with addUrl set.
+ */
+function renderWithAddUrl({
+  cardsCount,
+  isLoading,
+  isError,
+}: CardListStoryArgs) {
+  return (
+    <CardList
+      data={isLoading ? [] : allCardsWithAddUrl.slice(0, cardsCount)}
+      isLoading={isLoading}
+      isError={isError}
+      loadingCardsCount={cardsCount}
+    />
+  )
+}
+
 /** Default: 4 cards rendered. Adjust `cardsCount` to show 1–12 cards. */
 const Default: StoryObj<CardListStoryArgs> = {
   args: {
@@ -547,7 +575,17 @@ const Error: StoryObj<CardListStoryArgs> = {
   render: renderCardList,
 }
 
-export { AllResources, AllZero, Default, Error, Loading }
+/** WithAddUrl: 4 cards each showing a + button in the header via the addUrl prop. */
+const WithAddUrl: StoryObj<CardListStoryArgs> = {
+  args: {
+    cardsCount: 4,
+    isLoading: false,
+    isError: false,
+  },
+  render: renderWithAddUrl,
+}
+
+export { AllResources, AllZero, Default, Error, Loading, WithAddUrl }
 
 const meta = {
   title: 'Components/CardList',
