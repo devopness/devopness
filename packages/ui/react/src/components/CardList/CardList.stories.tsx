@@ -510,7 +510,11 @@ const allCardsWithAddUrl: CardListProps['data'] = allEnvironmentCards.map(
 /**
  * WithAddUrl render: uses pre-computed cards with addUrl set.
  */
-function renderWithAddUrl({ cardsCount, isLoading, isError }: CardListStoryArgs) {
+function renderWithAddUrl({
+  cardsCount,
+  isLoading,
+  isError,
+}: CardListStoryArgs) {
   return (
     <CardList
       data={isLoading ? [] : allCardsWithAddUrl.slice(0, cardsCount)}
