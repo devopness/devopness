@@ -45,21 +45,19 @@ describe('Button', () => {
       })
     })
 
-    it('with margin controls', () => {
+    it('with default margin and icon gap controls', () => {
       render(
         <Button
-          noMargin
+          icon="html"
           noIconMargin
         >
-          No Margin Button
+          No Icon Gap Button
         </Button>
       )
 
       const button = screen.getByTestId('button')
       expect(button).toHaveStyle({ margin: '0' })
-
-      const iconContainer = screen.queryByTestId('button-icon')
-      expect(iconContainer).not.toBeInTheDocument()
+      expect(button).toHaveStyle({ gap: '0' })
     })
 
     it('with disabled state', () => {

@@ -84,7 +84,6 @@ const Alert = (props: AlertProps) => (
               noIconMargin
               onClick={props.onClose}
               typeSize="auto"
-              noMargin
             />
           ) : (
             <></>
