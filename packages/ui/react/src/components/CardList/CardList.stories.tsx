@@ -501,10 +501,17 @@ function renderAllZero({ cardsCount, isLoading, isError }: CardListStoryArgs) {
  * Pre-computed cards with addUrl set, showing the + button in each card header.
  */
 const allCardsWithAddUrl: CardListProps['data'] = allEnvironmentCards.map(
-  (card) => ({
-    ...card,
-    addUrl: `/projects/1/environments/1/${card.label.toLowerCase().replace(/ /g, '-')}/new`,
-  })
+  (card) => {
+    const singular = labelToSingular[card.label] ?? card.label.toLowerCase()
+    return {
+      ...card,
+      addUrl: {
+        target: '_self' as const,
+        to: `/projects/1/environments/1/${card.label.toLowerCase().replace(/ /g, '-')}/new`,
+        tooltip: `Add ${singular}`,
+      },
+    }
+  }
 )
 
 /**

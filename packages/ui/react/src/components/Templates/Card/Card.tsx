@@ -78,12 +78,14 @@ type CardProps = React.PropsWithChildren<{
    * When an object is provided, supports the same props as `url` plus:
    * - `disabled`: renders the button as disabled instead of navigating
    * - `disabledTooltip`: tooltip message shown when disabled
+   * - `tooltip`: tooltip message shown when enabled
    */
   addUrl?:
     | string
     | (Omit<LinkProps, 'style'> & {
         disabled?: boolean
         disabledTooltip?: string
+        tooltip?: string
       })
   /**
    * Subtitle to display in the card
@@ -222,11 +224,11 @@ const Card = ({ children, ...props }: CardProps) => (
             )
           }
 
-          const { disabled, disabledTooltip, ...linkProps } = addUrl
+          const { disabled, disabledTooltip, tooltip, ...linkProps } = addUrl
 
           return (
             <StyledAddCta>
-              <Tooltip title={disabled ? (disabledTooltip ?? '') : ''}>
+              <Tooltip title={disabled ? (disabledTooltip ?? '') : (tooltip ?? '')}>
                 {disabled ? (
                   <StyledAddCtaButton
                     aria-label="add"
