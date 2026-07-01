@@ -231,7 +231,7 @@ const Card = ({ children, ...props }: CardProps) => (
               <Tooltip title={disabled ? disabledTooltip : tooltip}>
                 {disabled ? (
                   <StyledAddCtaButton
-                    aria-label="add"
+                    aria-label={disabledTooltip ?? 'add'}
                     disabled
                     type="button"
                   >
