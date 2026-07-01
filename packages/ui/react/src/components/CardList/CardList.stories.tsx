@@ -502,12 +502,13 @@ function renderAllZero({ cardsCount, isLoading, isError }: CardListStoryArgs) {
  */
 const allCardsWithAddUrl: CardListProps['data'] = allEnvironmentCards.map(
   (card) => {
-    const singular = labelToSingular[card.label] ?? card.label.toLowerCase()
+    const lower = card.label.toLowerCase()
+    const singular = labelToSingular[card.label] ?? lower
     return {
       ...card,
       addUrl: {
         target: '_self' as const,
-        to: `/projects/1/environments/1/${card.label.toLowerCase().replace(/ /g, '-')}/new`,
+        to: `/projects/1/environments/1/${lower.replace(/ /g, '-')}/new`,
         tooltip: `Add ${singular}`,
       },
     }
