@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.192.3
+
+### Patch Changes
+
+- [#3230](https://github.com/devopness/devopness/pull/3230) [`6f3f45c`](https://github.com/devopness/devopness/commit/6f3f45c4f3ae02a94bcbe576df21c0e1410d987b) Thanks [@rebecagrn](https://github.com/rebecagrn)! - Add aria-label, title, and disabled state stories to Radix Button in Storybook
+
 ## 2.192.2
 
 ### Patch Changes
