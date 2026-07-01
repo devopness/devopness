@@ -242,6 +242,7 @@ const Card = ({ children, ...props }: CardProps) => (
                   </StyledAddCtaButton>
                 ) : (
                   <StyledAddCtaLink
+                    aria-label={tooltip ?? 'add'}
                     hideExternalUrlIcon
                     hideUnderline
                     target="_self"
