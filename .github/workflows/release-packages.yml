@@ -76,6 +76,10 @@ jobs:
 
       - name: Create Release Pull Request or Publish Packages
         uses: changesets/action@v1
+        env:
+          # @changesets/changelog-github reads GITHUB_TOKEN from the environment while
+          # `npx changeset version` runs inside the custom version hook.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           title: 'chore: version packages'
           version: /tmp/cs-version.sh
