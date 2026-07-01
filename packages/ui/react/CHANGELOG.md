@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.192.4
+
+### Patch Changes
+
+- [#3259](https://github.com/devopness/devopness/pull/3259) [`930bc4e`](https://github.com/devopness/devopness/commit/930bc4e380413f5ec8ae8d8c339eff68dcc61d1b) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `tooltip` prop to `addUrl` in `Card` for enabled-state tooltip and accessible name on the + button
+
 ## 2.192.3
 
 ### Patch Changes
