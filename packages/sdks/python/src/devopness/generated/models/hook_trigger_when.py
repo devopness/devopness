@@ -30,10 +30,35 @@ class HookTriggerWhen(DevopnessBaseModel):
     """
 
     events: list[StrictStr] | None = Field(
-        default=None, description="List of events that will trigger an outgoing hook"
+        default=None,
+        description="List of events that will trigger an outgoing hook",
+        json_schema_extra={
+            "examples": [
+                [
+                    "action.status_changed",
+                    "action.queued",
+                    "action.started",
+                    "action.completed",
+                    "action.failed",
+                ]
+            ]
+        },
     )
     conditions: list[HookTriggerWhenConditionsInner] | None = Field(
-        default=None, description="Conditions that must be met to trigger the hook"
+        default=None,
+        description="Conditions that must be met to trigger the hook",
+        json_schema_extra={
+            "examples": [
+                [
+                    {
+                        "name": "Only trigger incoming hook on PRs of a given pull request author",
+                        "type": "request_body",
+                        "path": "sender.login",
+                        "accepted_values": ["some-one"],
+                    }
+                ]
+            ]
+        },
     )
 
 

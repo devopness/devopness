@@ -35,23 +35,32 @@ class UserRelation(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the given user")
+    id: StrictInt = Field(
+        description="The Id of the given user", json_schema_extra={"examples": [1]}
+    )
     name: Annotated[str, Field(min_length=3, strict=True, max_length=255)] = Field(
         description="User's full name"
     )
     email: StrictStr = Field(
         description="The e-mail that will uniquely identify the user on the system and become its login credential"
     )
-    url_slug: StrictStr = Field(description="The URL Slug of the user")
+    url_slug: StrictStr = Field(
+        description="The URL Slug of the user",
+        json_schema_extra={"examples": ["someone"]},
+    )
     language: Language | None = None
     active: StrictBool | None = Field(
         default=None, description="Tells if the user is active or not"
     )
     created_at: datetime | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     updated_at: datetime | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
 
 

@@ -31,14 +31,19 @@ class NetworkRuleUpdate(DevopnessBaseModel):
         cidr_block (str): IP address range this rule applies for, defined using CIDR notation.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Network Rule.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Network Rule.",
+        json_schema_extra={"examples": [1]},
+    )
     name: StrictStr = Field(
-        description="The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters."
+        description="The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["Open MySQL port for remote access"]},
     )
     direction: NetworkRuleDirection
     protocol: NetworkRuleProtocol | None = None
     cidr_block: StrictStr = Field(
-        description="IP address range this rule applies for, defined using CIDR notation."
+        description="IP address range this rule applies for, defined using CIDR notation.",
+        json_schema_extra={"examples": ["10.0.0.0/24"]},
     )
 
 

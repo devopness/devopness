@@ -29,7 +29,8 @@ class SocialAccountCreate(DevopnessBaseModel):
 
     provider: SourceProviderName
     callback_code: StrictStr = Field(
-        description="The temporary code forwarded by the OAuth provider as a parameter to our callback URL. Must be at least 8 characters."
+        description="The temporary code forwarded by the OAuth provider as a parameter to our callback URL. Must be at least 8 characters.",
+        json_schema_extra={"examples": ["a606964974b5fb082971"]},
     )
 
 

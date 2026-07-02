@@ -28,16 +28,20 @@ class CredentialAzure(DevopnessBaseModel):
     """
 
     tenant_id: StrictStr = Field(
-        description="ID that identifies your company space (directory) inside Azure"
+        description="ID that identifies your company space (directory) inside Azure",
+        json_schema_extra={"examples": ["1c49c6a3-025c-42e0-9f91-990fbdddbd9b"]},
     )
     subscription_id: StrictStr = Field(
-        description="ID that identifies your billing account where Azure resources are stored"
+        description="ID that identifies your billing account where Azure resources are stored",
+        json_schema_extra={"examples": ["b2887e96-52fa-4444-a5ce-8a4508373453"]},
     )
     client_id: StrictStr = Field(
-        description="ID that identifies the application when connecting to Azure"
+        description="ID that identifies the application when connecting to Azure",
+        json_schema_extra={"examples": ["2e73364c-4843-4a1d-b0e1-30bb5c3517e1"]},
     )
     client_secret: StrictStr = Field(
-        description="Secret password used by the application to authenticate to Azure"
+        description="Secret password used by the application to authenticate to Azure",
+        json_schema_extra={"examples": ["NhW5tQbF51BD0JChpiCigqYHhkvRB5ZeB1ci3Ts1"]},
     )
 
 

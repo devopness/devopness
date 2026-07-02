@@ -24,7 +24,10 @@ class TeamEnvironmentLink(DevopnessBaseModel):
         role_id (int): The role&#39;s ID to link to the team.
     """
 
-    role_id: StrictInt = Field(description="The role's ID to link to the team.")
+    role_id: StrictInt = Field(
+        description="The role's ID to link to the team.",
+        json_schema_extra={"examples": [430]},
+    )
 
 
 class TeamEnvironmentLinkPlain(TypedDict, total=False):

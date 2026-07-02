@@ -51,63 +51,89 @@ class ApplicationRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="Unique ID of the application")
+    id: StrictInt = Field(
+        description="Unique ID of the application",
+        json_schema_extra={"examples": [4654019]},
+    )
     project_id: StrictInt = Field(
-        description="Numeric ID of the project to which the application belongs to"
+        description="Numeric ID of the project to which the application belongs to",
+        json_schema_extra={"examples": [4654019]},
     )
     environment_id: StrictInt = Field(
-        description="Numeric ID of the environment to which the application belongs to"
+        description="Numeric ID of the environment to which the application belongs to",
+        json_schema_extra={"examples": [4654121]},
     )
     created_by: StrictInt = Field(
-        description="The id of the user who created the application and to whom the application belongs"
+        description="The id of the user who created the application and to whom the application belongs",
+        json_schema_extra={"examples": [1]},
     )
-    name: StrictStr = Field(description="The application's unique name")
+    name: StrictStr = Field(
+        description="The application's unique name",
+        json_schema_extra={"examples": ["my-awesome-app"]},
+    )
     repository: StrictStr = Field(
-        description="The full name of a repository (`repository_owner/repository_name`) containing the application source code."
+        description="The full name of a repository (`repository_owner/repository_name`) containing the application source code.",
+        json_schema_extra={"examples": ["devopness/devopness"]},
     )
     repository_name: StrictStr = Field(
-        description="The name part of a repository full name (`repository_owner/repository_name`)"
+        description="The name part of a repository full name (`repository_owner/repository_name`)",
+        json_schema_extra={"examples": ["devopness"]},
     )
     repository_owner: StrictStr = Field(
-        description="The owner part of a repository full name (`repository_owner/repository_name`)"
+        description="The owner part of a repository full name (`repository_owner/repository_name`)",
+        json_schema_extra={"examples": ["devopness"]},
     )
     default_branch: StrictStr = Field(
-        description="The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed."
+        description="The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
+        json_schema_extra={"examples": ["main"]},
     )
     programming_language: StrictStr = Field(
-        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`."
+        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+        json_schema_extra={"examples": ["python"]},
     )
     programming_language_human_readable: StrictStr = Field(
-        description="The human readable version of the programming language of the application."
+        description="The human readable version of the programming language of the application.",
+        json_schema_extra={"examples": ["Python"]},
     )
     engine_version: StrictStr = Field(
-        description="The language runtime engine version to be used to execute this application on the deployed servers"
+        description="The language runtime engine version to be used to execute this application on the deployed servers",
+        json_schema_extra={"examples": ["19.03.2"]},
     )
     framework: StrictStr = Field(
-        description="The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment"
+        description="The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment",
+        json_schema_extra={"examples": ["fastapi"]},
     )
     framework_human_readable: StrictStr = Field(
-        description="The human readable version of the framework of the application."
+        description="The human readable version of the framework of the application.",
+        json_schema_extra={"examples": ["FastAPI"]},
     )
     root_directory: StrictStr | None = Field(
-        description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository."
+        description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+        json_schema_extra={"examples": ["/src"]},
     )
     deployments_keep: StrictInt = Field(
-        description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions"
+        description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
+        json_schema_extra={"examples": [4]},
     )
     install_dependencies_command: StrictStr | None = Field(
-        description="Indicates command that Devopness must execute to install application dependencies"
+        description="Indicates command that Devopness must execute to install application dependencies",
+        json_schema_extra={"examples": ["npm install"]},
     )
     build_command: StrictStr | None = Field(
-        description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state"
+        description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+        json_schema_extra={"examples": ["npm run build"]},
     )
     last_deployments: ApplicationLastDeployments | None = None
     credential: Credential | None = None
     created_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

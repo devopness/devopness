@@ -27,7 +27,10 @@ class ApiError(DevopnessBaseModel):
         errors (ApiErrorErrors, optional):
     """
 
-    message: StrictStr = Field(description="The main exception raised by the server")
+    message: StrictStr = Field(
+        description="The main exception raised by the server",
+        json_schema_extra={"examples": ["The given data was invalid."]},
+    )
     errors: ApiErrorErrors | None = None
 
 

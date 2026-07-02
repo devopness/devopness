@@ -26,11 +26,13 @@ class OrganizationCreate(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="The Name of the organization. Must not be greater than 255 characters."
+        description="The Name of the organization. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["My Org"]},
     )
     url_slug: StrictStr | None = Field(
         default=None,
         description="The URL Slug of the organization. Must not be greater than 30 characters.",
+        json_schema_extra={"examples": ["MyOrg"]},
     )
 
 

@@ -25,9 +25,13 @@ class PersonalAccessTokenUserRotate(DevopnessBaseModel):
         expires_at (str): The date and time when the token expires. Must be a valid date. Must be a date after &lt;code&gt;now&lt;/code&gt;. Must be a date before &lt;code&gt;now +1 year&lt;/code&gt;.
     """
 
-    id: StrictStr = Field(description="The unique identifier of the token.")
+    id: StrictStr = Field(
+        description="The unique identifier of the token.",
+        json_schema_extra={"examples": ["c28f88fe-322e-477c-bfe9-982072805a01"]},
+    )
     expires_at: StrictStr = Field(
-        description="The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>."
+        description="The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+        json_schema_extra={"examples": ["2023-01-01T00:00:00Z"]},
     )
 
 

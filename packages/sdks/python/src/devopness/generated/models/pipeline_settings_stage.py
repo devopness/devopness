@@ -25,11 +25,18 @@ class PipelineSettingsStage(DevopnessBaseModel):
         hint (str, optional): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: StrictStr | None = None
-    human_readable: StrictStr | None = None
+    value: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["remove-old-releases"]}
+    )
+    human_readable: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["Remove old releases"]}
+    )
     hint: StrictStr | None = Field(
         default=None,
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
 
 

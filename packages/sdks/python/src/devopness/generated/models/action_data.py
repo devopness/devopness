@@ -36,7 +36,8 @@ class ActionData(DevopnessBaseModel):
     """
 
     release_name: StrictStr = Field(
-        description="The name generated to release created by this deployment"
+        description="The name generated to release created by this deployment",
+        json_schema_extra={"examples": ["2022-07-05-13-25-38"]},
     )
     commit: ActionDeploymentCommit
     deployment: ActionDeploymentContent

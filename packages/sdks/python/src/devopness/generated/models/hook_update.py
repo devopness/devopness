@@ -38,25 +38,32 @@ class HookUpdate(DevopnessBaseModel):
     """
 
     id: StrictStr = Field(
-        description="The unique ID of the given Hook. Must be a valid UUID."
+        description="The unique ID of the given Hook. Must be a valid UUID.",
+        json_schema_extra={"examples": ["1"]},
     )
     name: StrictStr = Field(
-        description="The name of the outgoing hook. Must not be greater than 60 characters."
+        description="The name of the outgoing hook. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["lets-go-fishing"]},
     )
     active: StrictBool | None = Field(
-        default=None, description="Determines if the hook is currently active."
+        default=None,
+        description="Determines if the hook is currently active.",
+        json_schema_extra={"examples": [False]},
     )
     requires_secret: StrictBool | None = Field(
         default=None,
         description="Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources.",
+        json_schema_extra={"examples": [False]},
     )
     secret_algorithm: StrictStr | None = Field(
         default=None,
         description="The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 20 characters.",
+        json_schema_extra={"examples": ["sha256"]},
     )
     secret_header_name: StrictStr | None = Field(
         default=None,
         description="The name of the HTTP request header from which the request digital signature should be extracted. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 64 characters.",
+        json_schema_extra={"examples": ["X-Custom-Header"]},
     )
     trigger_when: HookTriggerWhen | None = None
     settings: HookPipelineCreateSettings | None = None

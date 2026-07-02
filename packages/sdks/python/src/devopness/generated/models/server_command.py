@@ -25,7 +25,8 @@ class ServerCommand(DevopnessBaseModel):
     """
 
     connect_command: StrictStr = Field(
-        description="The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`"
+        description="The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`",
+        json_schema_extra={"examples": ["echo '# devopness:' | ..."]},
     )
 
 

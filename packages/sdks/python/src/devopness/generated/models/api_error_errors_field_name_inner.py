@@ -27,6 +27,7 @@ class ApiErrorErrorsFieldNameInner(DevopnessBaseModel):
         default=None,
         description="Field name and respective error message",
         alias="field",
+        json_schema_extra={"examples": ["field_9"]},
     )
 
 

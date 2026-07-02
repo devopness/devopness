@@ -30,11 +30,13 @@ class EnvironmentProjectCreate(DevopnessBaseModel):
 
     type: EnvironmentType
     name: StrictStr = Field(
-        description="The environment's name. Must not be greater than 60 characters."
+        description="The environment's name. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["My staging"]},
     )
     description: StrictStr | None = Field(
         default=None,
         description="The environment's description. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["My staging environment"]},
     )
 
 

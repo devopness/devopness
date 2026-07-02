@@ -30,6 +30,9 @@ class DaemonStart(DevopnessBaseModel):
     trigger_comment: StrictStr | None = Field(
         default=None,
         description="Optional comment provided when triggering this action. Must not be greater than 255 characters.",
+        json_schema_extra={
+            "examples": ["Deploying after updating the daemon configuration."]
+        },
     )
 
 

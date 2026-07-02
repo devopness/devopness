@@ -64,29 +64,49 @@ class Server(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
-    created_by: StrictInt = Field(
-        description="The id of the user who created the server and to whom the server belongs"
+    id: StrictInt = Field(
+        description="The unique id of the given record",
+        json_schema_extra={"examples": [9654123]},
     )
-    name: StrictStr = Field(description="The server's name")
-    hostname: StrictStr = Field(description="The server's hostname")
-    provider_name: StrictStr = Field(description="The name of the server's provider.")
+    created_by: StrictInt = Field(
+        description="The id of the user who created the server and to whom the server belongs",
+        json_schema_extra={"examples": [1]},
+    )
+    name: StrictStr = Field(
+        description="The server's name", json_schema_extra={"examples": ["web-srv-1"]}
+    )
+    hostname: StrictStr = Field(
+        description="The server's hostname",
+        json_schema_extra={"examples": ["web-srv-1"]},
+    )
+    provider_name: StrictStr = Field(
+        description="The name of the server's provider.",
+        json_schema_extra={"examples": ["aws"]},
+    )
     provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider's name"
+        description="The human readable version of the provider's name",
+        json_schema_extra={"examples": ["Amazon Web Services"]},
     )
     cloud_service_code: ServerCloudServiceCode
     ip_address: StrictStr | None = Field(
-        default=None, description="Public ipv4 address for server access"
+        default=None,
+        description="Public ipv4 address for server access",
+        json_schema_extra={"examples": ["200.123.45.67"]},
     )
     ssh_port: StrictInt = Field(
-        description="The network port to which the SSH daemon is listening to SSH connections on the server"
+        description="The network port to which the SSH daemon is listening to SSH connections on the server",
+        json_schema_extra={"examples": [22]},
     )
     os: OperatingSystemVersion
     os_version_code: CloudOsVersionCode | None
-    active: StrictBool = Field(description="Tells if the server is active or not")
+    active: StrictBool = Field(
+        description="Tells if the server is active or not",
+        json_schema_extra={"examples": [True]},
+    )
     status: ServerStatus
     max_parallel_actions: StrictInt = Field(
-        description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,"
+        description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,",
+        json_schema_extra={"examples": [1]},
     )
     blueprint: ServerBlueprint
     provision_input: ServerProvisionInput
@@ -96,10 +116,12 @@ class Server(DevopnessBaseModel):
     environment: EnvironmentRelation | None
     credential: CredentialRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

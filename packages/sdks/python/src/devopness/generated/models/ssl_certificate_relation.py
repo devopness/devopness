@@ -42,26 +42,39 @@ class SslCertificateRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given SSL certificate")
-    name: StrictStr = Field(description="The name given to SSL certificate")
+    id: StrictInt = Field(
+        description="The unique ID of the given SSL certificate",
+        json_schema_extra={"examples": [8423749]},
+    )
+    name: StrictStr = Field(
+        description="The name given to SSL certificate",
+        json_schema_extra={"examples": ["my-subdomain.example.com"]},
+    )
     type: SslCertificateType
     issuer: SslCertificateIssuer
     validation_level: SslCertificateValidationLevel
     active: StrictBool = Field(
-        description="Tells if the certificate is active for all linked servers and applications"
+        description="Tells if the certificate is active for all linked servers and applications",
+        json_schema_extra={"examples": [True]},
     )
     last_action: ActionRelationShallow | None = None
     expires_at: StrictStr | None = Field(
-        description="The date and time when this certificate will no longer be valid, down to minute precision"
+        description="The date and time when this certificate will no longer be valid, down to minute precision",
+        json_schema_extra={"examples": ["2020-04-16T15:50:48.000000Z"]},
     )
     last_renewed_at: StrictStr | None = Field(
-        description="The date and time when this certificate was renewed for the last time"
+        description="The date and time when this certificate was renewed for the last time",
+        json_schema_extra={"examples": ["2020-04-16T15:50:48.000000Z"]},
     )
     created_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2020-04-16T15:50:48.000000Z"]},
     )
     updated_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2020-04-16T15:50:48.000000Z"]},
     )
 
 

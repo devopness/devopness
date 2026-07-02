@@ -26,7 +26,8 @@ class ResourceSummaryItemSummary(DevopnessBaseModel):
     """
 
     count: Union[StrictFloat, StrictInt] = Field(
-        description="Total number of entries of this resource"
+        description="Total number of entries of this resource",
+        json_schema_extra={"examples": [1]},
     )
 
 

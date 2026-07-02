@@ -27,7 +27,8 @@ class HookTriggerResponse(DevopnessBaseModel):
     """
 
     message: StrictStr = Field(
-        description="Message containing information about the hook being triggered"
+        description="Message containing information about the hook being triggered",
+        json_schema_extra={"examples": ["Hook successfully triggered"]},
     )
     errors: dict[str, Any] | None = Field(
         description="Optional error object containing details of the server error"

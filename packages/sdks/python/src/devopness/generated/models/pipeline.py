@@ -44,39 +44,57 @@ class Pipeline(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given pipeline")
-    name: StrictStr = Field(description="The pipeline's name")
+    id: StrictInt = Field(
+        description="The unique ID of the given pipeline",
+        json_schema_extra={"examples": [342390]},
+    )
+    name: StrictStr = Field(
+        description="The pipeline's name",
+        json_schema_extra={"examples": ["My pied piper-line"]},
+    )
     environment_id: StrictInt = Field(
-        description="ID of the environment this pipeline belongs to"
+        description="ID of the environment this pipeline belongs to",
+        json_schema_extra={"examples": [4532342]},
     )
     project_id: StrictInt = Field(
-        description="ID of the project this pipeline belongs to"
+        description="ID of the project this pipeline belongs to",
+        json_schema_extra={"examples": [97063242]},
     )
     organization_id: StrictInt = Field(
-        description="ID of the organization this pipeline belongs to"
+        description="ID of the organization this pipeline belongs to",
+        json_schema_extra={"examples": [5324234]},
     )
     resource_type: ResourceType
     resource_type_human_readable: StrictStr = Field(
-        description="Human readable version of the resource type"
+        description="Human readable version of the resource type",
+        json_schema_extra={"examples": ["Application"]},
     )
-    resource_id: StrictInt = Field(description="The pipeline's resource ID")
+    resource_id: StrictInt = Field(
+        description="The pipeline's resource ID",
+        json_schema_extra={"examples": [5324234]},
+    )
     operation: StrictStr = Field(
-        description="The resource operation associated to the pipeline."
+        description="The resource operation associated to the pipeline.",
+        json_schema_extra={"examples": ["deploy"]},
     )
     operation_human_readable: StrictStr = Field(
-        description="Human readable version of the operation"
+        description="Human readable version of the operation",
+        json_schema_extra={"examples": ["Deploy"]},
     )
     max_parallel_actions: StrictInt = Field(
-        description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline."
+        description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
+        json_schema_extra={"examples": [1]},
     )
     trigger_when: PipelineTriggerWhen | None
     steps: list[Step]
     created_by_user: UserRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2022-09-26T15:30:31.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2022-09-26T15:30:58.000000Z"]},
     )
 
 

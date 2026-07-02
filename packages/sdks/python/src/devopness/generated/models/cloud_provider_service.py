@@ -43,7 +43,10 @@ class CloudProviderService(DevopnessBaseModel):
     """
 
     code: CloudProviderServiceCode
-    name: StrictStr = Field(description="The full name of the cloud service")
+    name: StrictStr = Field(
+        description="The full name of the cloud service",
+        json_schema_extra={"examples": ["Amazon Elastic Compute Cloud"]},
+    )
     provider: ProviderRelation | None = None
     regions: list[CloudProviderServiceRegion] | None = None
     resource_types: list[CloudProviderServiceResourceType] | None = None

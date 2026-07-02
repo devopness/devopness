@@ -32,15 +32,23 @@ class ActionTargetCredentialData(DevopnessBaseModel):
         provider_name_human_readable (str): The human readable version of the provider name
     """
 
-    id: StrictInt = Field(description="The unique id of the credential")
-    name: StrictStr = Field(description="The name of the credential")
+    id: StrictInt = Field(
+        description="The unique id of the credential",
+        json_schema_extra={"examples": [4425]},
+    )
+    name: StrictStr = Field(
+        description="The name of the credential",
+        json_schema_extra={"examples": ["my-credential"]},
+    )
     provider_type: ProviderType
     provider_code: ProviderCode
     provider_name: StrictStr = Field(
-        description="The name of the cloud provider of the credential"
+        description="The name of the cloud provider of the credential",
+        json_schema_extra={"examples": ["aws"]},
     )
     provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider name"
+        description="The human readable version of the provider name",
+        json_schema_extra={"examples": ["Amazon Web Services"]},
     )
 
 

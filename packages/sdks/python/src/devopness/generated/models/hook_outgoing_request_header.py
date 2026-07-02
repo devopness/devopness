@@ -27,10 +27,14 @@ class HookOutgoingRequestHeader(DevopnessBaseModel):
     """
 
     name: Annotated[str, Field(strict=True, max_length=256)] = Field(
-        description="Name of the HTTP header."
+        description="Name of the HTTP header.",
+        json_schema_extra={"examples": ["Authorization"]},
     )
     value: Annotated[str, Field(strict=True, max_length=4096)] = Field(
-        description="Value of the HTTP header."
+        description="Value of the HTTP header.",
+        json_schema_extra={
+            "examples": ["Bearer {{ application.source_provider.access_token }}"]
+        },
     )
 
 

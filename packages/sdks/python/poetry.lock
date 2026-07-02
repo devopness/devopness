@@ -347,19 +347,19 @@ files = [
 
 [[package]]
 name = "openapi-generator-cli"
-version = "7.22.0"
+version = "7.23.0"
 description = "CLI for openapi generator"
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["dev"]
 markers = "python_version < \"4.0\""
 files = [
-    {file = "openapi_generator_cli-7.22.0-py3-none-any.whl", hash = "sha256:9fdcc4206ade29f5d9daf329b8089ad1379fcff3bcb0db0eebdace7c5158296d"},
-    {file = "openapi_generator_cli-7.22.0.tar.gz", hash = "sha256:22332d17742576fa04e78a33a20d383351e3bc6d264c7a28d58bfa8a2ac7cb1a"},
+    {file = "openapi_generator_cli-7.23.0-py3-none-any.whl", hash = "sha256:4ff9547eff66b74a9349345164df3d8c1c524a378c14700ac202d2f678520b54"},
+    {file = "openapi_generator_cli-7.23.0.tar.gz", hash = "sha256:6af02de4dd2bbd052da2495cc792580bc9f8b245ad1620c2d5d06daaf440ff1a"},
 ]
 
 [package.extras]
-jdk4py = ["jdk4py (>=21.0.4.1,<22) ; python_version >= \"3.10\""]
+jdk4py = ["jdk4py (>=21.0.4.1,<26) ; python_version >= \"3.10\""]
 
 [[package]]
 name = "pathspec"
@@ -604,4 +604,4 @@ typing-extensions = ">=4.12.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "2cd4a5f69c5a7faae1bfbc7e94e2ac678395b3d6f86a5b9c23202da35314872d"
+content-hash = "98108acce70e9dc343867c8f8381350a227a5deaaa90b905e3444a0bac5e9e49"

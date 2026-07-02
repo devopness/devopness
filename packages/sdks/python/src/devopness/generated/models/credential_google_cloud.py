@@ -25,7 +25,12 @@ class CredentialGoogleCloud(DevopnessBaseModel):
     """
 
     service_account_key: StrictStr = Field(
-        description="The JSON key to service account of Google Cloud provider"
+        description="The JSON key to service account of Google Cloud provider",
+        json_schema_extra={
+            "examples": [
+                '{\n    "type": "service_account",\n    "project_id": "project-name-12345",\n    "private_key_id": "91612c57c42a125c7cdfa788f9ac659006721731",\n    "private_key": "-----BEGIN PRIVATE KEY-----\\nf5RDfS3aRzGyjcKsRLqQfpDWalRVgTWgpMhZwmdoZPkWFi3EPw1BmM\\n-----END PRIVATE KEY-----\\n",\n    "client_email": "account-12345@project-name-12345.iam.gserviceaccount.com",\n    "client_id": "764123001245678971239",\n    "auth_uri": "https://accounts.google.com/o/oauth2/auth",\n    "token_uri": "https://oauth2.googleapis.com/token",\n    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",\n    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/account-12345%40project-name-12345.iam.gserviceaccount.com"\n    }'
+            ]
+        },
     )
 
 

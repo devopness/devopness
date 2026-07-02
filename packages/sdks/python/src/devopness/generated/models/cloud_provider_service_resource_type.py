@@ -45,10 +45,12 @@ class CloudProviderServiceResourceType(DevopnessBaseModel):
     """
 
     provider_resource_type: StrictStr = Field(
-        description="The resource type's name on the cloud provider"
+        description="The resource type's name on the cloud provider",
+        json_schema_extra={"examples": ["vpc"]},
     )
     devopness_resource_type: StrictStr = Field(
-        description="The resource type's name on Devopness"
+        description="The resource type's name on Devopness",
+        json_schema_extra={"examples": ["network"]},
     )
     scope: CloudProviderServiceResourceTypeScope
     input_settings: list[CloudProviderInputSettings] = Field(
@@ -58,6 +60,7 @@ class CloudProviderServiceResourceType(DevopnessBaseModel):
     can_keep_disk_after_delete_server: StrictBool | None = Field(
         default=None,
         description="Tells if this cloud service allows keeping server's persistent disks after a server is deleted. If true, Devopness API will allow users to send a parameter when deleting a server to indicate if the server persistent disks must be retained, keeping data in the disk volumes - possibly incurring extra costs on the user's cloud provider account. For cloud services that do not support this option, server disks will always be deleted when a server is deleted.",
+        json_schema_extra={"examples": [True]},
     )
     operation_custom_settings: OperationCustomSettings | None = None
 

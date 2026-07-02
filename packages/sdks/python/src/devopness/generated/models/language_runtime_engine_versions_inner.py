@@ -10,7 +10,7 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import StrictStr
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -23,7 +23,9 @@ class LanguageRuntimeEngineVersionsInner(DevopnessBaseModel):
         version (str, optional):
     """
 
-    version: StrictStr | None = None
+    version: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["13.8"]}
+    )
 
 
 class LanguageRuntimeEngineVersionsInnerPlain(TypedDict, total=False):

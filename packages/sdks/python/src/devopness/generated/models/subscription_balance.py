@@ -33,19 +33,29 @@ class SubscriptionBalance(DevopnessBaseModel):
 
     credits: Credits | None = None
     unit: StrictStr | None = Field(
-        default=None, description="The unit of measurement to count credits"
+        default=None,
+        description="The unit of measurement to count credits",
+        json_schema_extra={"examples": ["action-step"]},
     )
     billing_period_started_at: datetime | None = Field(
-        default=None, description="The date and time the subscription plan starts"
+        default=None,
+        description="The date and time the subscription plan starts",
+        json_schema_extra={"examples": ["2023-04-11T00:00:00Z"]},
     )
     billing_period_ends_at: datetime | None = Field(
-        default=None, description="The date and time the subscription plan ends"
+        default=None,
+        description="The date and time the subscription plan ends",
+        json_schema_extra={"examples": ["2023-05-11T00:00:00Z"]},
     )
     created_at: datetime | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2023-04-11T00:22:48Z"]},
     )
     updated_at: datetime | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2023-04-12T00:22:48Z"]},
     )
 
 

@@ -39,42 +39,65 @@ class Subscription(DevopnessBaseModel):
         balances (List[SubscriptionBalance], optional): The list of subscription balances
     """
 
-    id: StrictInt | None = Field(default=None, description="The ID of the subscription")
+    id: StrictInt | None = Field(
+        default=None,
+        description="The ID of the subscription",
+        json_schema_extra={"examples": [654982]},
+    )
     user_id: StrictInt | None = Field(
-        default=None, description="The ID of the user this subscription belongs to"
+        default=None,
+        description="The ID of the user this subscription belongs to",
+        json_schema_extra={"examples": [23489]},
     )
     plan_name: StrictStr | None = Field(
-        default=None, description="The plan name of this subscription"
+        default=None,
+        description="The plan name of this subscription",
+        json_schema_extra={"examples": ["Devopness - 300 actions per month plan"]},
     )
     status: StrictStr | None = Field(
-        default=None, description="Status of this subscription"
+        default=None,
+        description="Status of this subscription",
+        json_schema_extra={"examples": ["active"]},
     )
     quantity: StrictInt | None = Field(
-        default=None, description="Amount of plans purchased in this subscription"
+        default=None,
+        description="Amount of plans purchased in this subscription",
+        json_schema_extra={"examples": [10]},
     )
     price_unit: Union[StrictFloat, StrictInt] | None = Field(
-        default=None, description="Unitary price of the subscribed plan"
+        default=None,
+        description="Unitary price of the subscribed plan",
+        json_schema_extra={"examples": [20.5]},
     )
     price_total: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total price of this subscription (quantity x price_unit)",
+        json_schema_extra={"examples": [200.5]},
     )
     price_currency: StrictStr | None = Field(
-        default=None, description="Currency of the prices"
+        default=None,
+        description="Currency of the prices",
+        json_schema_extra={"examples": ["USD"]},
     )
     cancelled_at: datetime | None = Field(
         default=None,
         description="If not null, indicates the date when this subscription was cancelled",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     ends_at: datetime | None = Field(
         default=None,
         description="Indicates the date and time when this subscription ends",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     created_at: datetime | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     updated_at: datetime | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
     current_balance: SubscriptionBalance | None = None
     balances: list[SubscriptionBalance | None] | None = Field(

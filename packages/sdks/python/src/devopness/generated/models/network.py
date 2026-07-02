@@ -42,12 +42,22 @@ class Network(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
-    provider_name: StrictStr = Field(description="The name of the cloud provider")
-    provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider's name"
+    id: StrictInt = Field(
+        description="The unique id of the given record",
+        json_schema_extra={"examples": [6721]},
     )
-    name: StrictStr = Field(description="The networks's name")
+    provider_name: StrictStr = Field(
+        description="The name of the cloud provider",
+        json_schema_extra={"examples": ["aws"]},
+    )
+    provider_name_human_readable: StrictStr = Field(
+        description="The human readable version of the provider's name",
+        json_schema_extra={"examples": ["Amazon Web Services"]},
+    )
+    name: StrictStr = Field(
+        description="The networks's name",
+        json_schema_extra={"examples": ["my-network"]},
+    )
     provision_input: NetworkProvisionInput
     created_by_user: UserRelation | None
     project: ProjectRelation | None
@@ -55,10 +65,12 @@ class Network(DevopnessBaseModel):
     credential: CredentialRelation | None
     last_action: ActionRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

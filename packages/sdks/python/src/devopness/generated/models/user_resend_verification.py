@@ -25,7 +25,8 @@ class UserResendVerification(DevopnessBaseModel):
     """
 
     email: StrictStr = Field(
-        description="The user email to resend the verification link to. Must be a valid email address."
+        description="The user email to resend the verification link to. Must be a valid email address.",
+        json_schema_extra={"examples": ["my-email@devopness.com"]},
     )
 
 

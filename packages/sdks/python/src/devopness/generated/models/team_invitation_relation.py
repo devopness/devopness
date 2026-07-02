@@ -43,35 +43,45 @@ class TeamInvitationRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictStr = Field(description="The unique UUID of the given invitation")
+    id: StrictStr = Field(
+        description="The unique UUID of the given invitation",
+        json_schema_extra={"examples": ["e57996b5-3cf3-4cae-a925-e2e2ada52732"]},
+    )
     type: TeamInvitationType
     email: StrictStr | None = Field(
-        description="The email of the user that has been invited to team"
+        description="The email of the user that has been invited to team",
+        json_schema_extra={"examples": ["invited.user@email.com"]},
     )
     status: TeamInvitationStatus
     status_human_readable: StrictStr = Field(
-        description="Human readable version of the invitation status"
+        description="Human readable version of the invitation status",
+        json_schema_extra={"examples": ["Pending invitation"]},
     )
     public_accept_url: StrictStr | None = Field(
         description="The URL to accept the public invitation"
     )
     accepted_from_ip: StrictStr | None = Field(
-        description="The IP of the user who accepted the invitation"
+        description="The IP of the user who accepted the invitation",
+        json_schema_extra={"examples": ["172.17.0.24"]},
     )
     created_by_user: UserRelation | None
     team: TeamRelation | None
     organization: OrganizationRelation | None
     accepted_at: StrictStr | None = Field(
-        description="The date and time when the invitation was accepted"
+        description="The date and time when the invitation was accepted",
+        json_schema_extra={"examples": ["2019-09-26T13:22:37.000000Z"]},
     )
     expires_at: StrictStr = Field(
-        description="The date and time when the invitation will expire"
+        description="The date and time when the invitation will expire",
+        json_schema_extra={"examples": ["2019-09-27T13:22:37.000000Z"]},
     )
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
 
 

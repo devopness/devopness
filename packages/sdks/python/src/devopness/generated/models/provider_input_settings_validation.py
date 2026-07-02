@@ -28,14 +28,19 @@ class ProviderInputSettingsValidation(DevopnessBaseModel):
         hidden (bool, optional): If true, this field should not be shown to the user (system-provided, like OAuth callback_code)
     """
 
-    required: StrictBool | None = None
-    type: StrictStr | None = None
-    min: StrictInt | None = None
-    max: StrictInt | None = None
+    required: StrictBool | None = Field(
+        default=None, json_schema_extra={"examples": [True]}
+    )
+    type: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["string"]}
+    )
+    min: StrictInt | None = Field(default=None, json_schema_extra={"examples": [10]})
+    max: StrictInt | None = Field(default=None, json_schema_extra={"examples": [20]})
     allowed_values: list[StrictStr] | None = None
     hidden: StrictBool | None = Field(
         default=None,
         description="If true, this field should not be shown to the user (system-provided, like OAuth callback_code)",
+        json_schema_extra={"examples": [False]},
     )
 
 

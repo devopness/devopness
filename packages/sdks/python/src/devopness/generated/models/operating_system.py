@@ -32,10 +32,19 @@ class OperatingSystem(DevopnessBaseModel):
         supported_versions (List[OperatingSystemVersion]):
     """
 
-    code: StrictStr = Field(description="The name of the operating system")
-    name: StrictStr = Field(description="The formatted name of the operating system")
+    code: StrictStr = Field(
+        description="The name of the operating system",
+        json_schema_extra={"examples": ["ubuntu"]},
+    )
+    name: StrictStr = Field(
+        description="The formatted name of the operating system",
+        json_schema_extra={"examples": ["Ubuntu"]},
+    )
     hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
     supported_versions: list[OperatingSystemVersion]
 

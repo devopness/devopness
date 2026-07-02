@@ -25,7 +25,8 @@ class UserUrl(DevopnessBaseModel):
     """
 
     billing_management_url: StrictStr = Field(
-        description="The URL leading to a billing management page"
+        description="The URL leading to a billing management page",
+        json_schema_extra={"examples": ["http://billing.url.example"]},
     )
 
 

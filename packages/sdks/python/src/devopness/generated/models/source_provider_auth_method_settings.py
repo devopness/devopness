@@ -36,20 +36,35 @@ class SourceProviderAuthMethodSettings(DevopnessBaseModel):
         provider_config (List[ProviderCallbackConfig], optional): Configuration mapping for extracting authentication parameters from OAuth/provider callback URLs.
     """
 
-    auth_type: StrictStr = Field(description="The authentication type identifier")
+    auth_type: StrictStr = Field(
+        description="The authentication type identifier",
+        json_schema_extra={"examples": ["oauth"]},
+    )
     auth_type_human_readable: StrictStr | None = Field(
-        default=None, description="Human-readable name for the authentication method"
+        default=None,
+        description="Human-readable name for the authentication method",
+        json_schema_extra={"examples": ["GitHub OAuth"]},
     )
     hint: StrictStr | None = Field(
-        default=None, description="Hint text explaining the authentication flow"
+        default=None,
+        description="Hint text explaining the authentication flow",
+        json_schema_extra={
+            "examples": ["Authorize Devopness to access your repositories using OAuth."]
+        },
     )
     recommended: StrictBool | None = Field(
         default=None,
         description="Whether this authentication method is recommended for this provider",
+        json_schema_extra={"examples": [True]},
     )
     connect_url: StrictStr | None = Field(
         default=None,
         description="The URL to redirect the user for authentication. For OAuth methods, this is the authorization URL. For application installation methods (e.g., GitHub App), this is the installation URL.",
+        json_schema_extra={
+            "examples": [
+                "https://github.com/login/oauth/authorize?client_id=xxx&redirect_uri=https://app.devopness.com/callback&scope=repo,read:org"
+            ]
+        },
     )
     input_settings: list[ProviderInputSettings] = Field(
         description="The list of input settings for credentials of specific provider"
@@ -57,6 +72,24 @@ class SourceProviderAuthMethodSettings(DevopnessBaseModel):
     provider_config: list[ProviderCallbackConfig] | None = Field(
         default=None,
         description="Configuration mapping for extracting authentication parameters from OAuth/provider callback URLs.",
+        json_schema_extra={
+            "examples": [
+                [
+                    {
+                        "field": "callback_code",
+                        "query_string": "code",
+                        "required": True,
+                        "type": "string",
+                    },
+                    {
+                        "field": "installation_id",
+                        "query_string": "installation_id",
+                        "required": True,
+                        "type": "string",
+                    },
+                ]
+            ]
+        },
     )
 
 

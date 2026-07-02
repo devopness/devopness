@@ -26,10 +26,12 @@ class PersonalAccessTokenUserCreate(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="Name of the token. Must be at least 3 characters. Must not be greater than 255 characters."
+        description="Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["MyApp Deploy Automation"]},
     )
     expires_at: StrictStr = Field(
-        description="The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>."
+        description="The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.",
+        json_schema_extra={"examples": ["2023-01-01T00:00:00Z"]},
     )
 
 

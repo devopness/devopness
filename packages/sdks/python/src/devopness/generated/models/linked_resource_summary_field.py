@@ -26,11 +26,16 @@ class LinkedResourceSummaryField(DevopnessBaseModel):
         value (str): The field value
     """
 
-    field_name: StrictStr = Field(description="The field name")
-    field_name_human_readable: StrictStr = Field(
-        description="Human readable version of the field name"
+    field_name: StrictStr = Field(
+        description="The field name", json_schema_extra={"examples": ["ip_address"]}
     )
-    value: StrictStr = Field(description="The field value")
+    field_name_human_readable: StrictStr = Field(
+        description="Human readable version of the field name",
+        json_schema_extra={"examples": ["IP address"]},
+    )
+    value: StrictStr = Field(
+        description="The field value", json_schema_extra={"examples": ["200.123.45.67"]}
+    )
 
 
 class LinkedResourceSummaryFieldPlain(TypedDict, total=False):

@@ -25,7 +25,8 @@ class PasswordResetResponse(DevopnessBaseModel):
     """
 
     message: StrictStr = Field(
-        description="Message with information about the response"
+        description="Message with information about the response",
+        json_schema_extra={"examples": ["Your password has been reset"]},
     )
 
 

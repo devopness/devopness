@@ -25,9 +25,13 @@ class CredentialProviderType(DevopnessBaseModel):
         type_human_readable (str): Human readable version of provider type
     """
 
-    type: StrictStr = Field(description="Type of provider.")
+    type: StrictStr = Field(
+        description="Type of provider.",
+        json_schema_extra={"examples": ["cloud_provider"]},
+    )
     type_human_readable: StrictStr = Field(
-        description="Human readable version of provider type"
+        description="Human readable version of provider type",
+        json_schema_extra={"examples": ["Cloud Provider"]},
     )
 
 

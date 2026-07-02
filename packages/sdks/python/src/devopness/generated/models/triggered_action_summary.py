@@ -30,27 +30,34 @@ class TriggeredActionSummary(DevopnessBaseModel):
     """
 
     count: Union[StrictFloat, StrictInt] | None = Field(
-        default=None, description="Total of actions that were triggered by the user"
+        default=None,
+        description="Total of actions that were triggered by the user",
+        json_schema_extra={"examples": [5]},
     )
     queued: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status queued",
+        json_schema_extra={"examples": [1]},
     )
     pending: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status pending",
+        json_schema_extra={"examples": [1]},
     )
     in_progress: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status in_progress",
+        json_schema_extra={"examples": [1]},
     )
     completed: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status completed",
+        json_schema_extra={"examples": [1]},
     )
     failed: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total of actions that were triggered by the user with status failed",
+        json_schema_extra={"examples": [1]},
     )
 
 

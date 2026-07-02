@@ -25,8 +25,14 @@ class ApplicationPipeline(DevopnessBaseModel):
         name (str): The pipeline&#39;s name
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
-    name: StrictStr = Field(description="The pipeline's name")
+    id: StrictInt = Field(
+        description="The unique id of the given record",
+        json_schema_extra={"examples": [4578]},
+    )
+    name: StrictStr = Field(
+        description="The pipeline's name",
+        json_schema_extra={"examples": ["my pipeline"]},
+    )
 
 
 class ApplicationPipelinePlain(TypedDict, total=False):

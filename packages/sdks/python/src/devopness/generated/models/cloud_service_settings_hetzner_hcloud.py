@@ -31,16 +31,21 @@ class CloudServiceSettingsHetznerHcloud(DevopnessBaseModel):
     """
 
     instance_type: StrictStr = Field(
-        description="The instance type to be launched on the cloud provider"
+        description="The instance type to be launched on the cloud provider",
+        json_schema_extra={"examples": ["cpx11"]},
     )
     region: StrictStr = Field(
-        description="Datacenter region where the cloud instance will be launched"
+        description="Datacenter region where the cloud instance will be launched",
+        json_schema_extra={"examples": ["ash"]},
     )
     region_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the server region"
+        default=None,
+        description="Human readable version of the server region",
+        json_schema_extra={"examples": ["(USA) Ashburn, VA ash"]},
     )
     storage_size: StrictInt = Field(
-        description="The storage's size of the cloud instance"
+        description="The storage's size of the cloud instance",
+        json_schema_extra={"examples": [30]},
     )
     os_version_code: CloudOsVersionCode | None
 

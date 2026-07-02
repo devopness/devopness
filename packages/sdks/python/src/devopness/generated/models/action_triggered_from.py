@@ -34,24 +34,33 @@ class ActionTriggeredFrom(DevopnessBaseModel):
     """
 
     origin: StrictStr | None = Field(
-        description="The HTTP origin of the request that have been dispatched the action."
+        description="The HTTP origin of the request that have been dispatched the action.",
+        json_schema_extra={"examples": ["https://devopness.com"]},
     )
     trigger_type: ActionTriggerType
     name: StrictStr = Field(
-        description="The hook or user name that have been triggered the action."
+        description="The hook or user name that have been triggered the action.",
+        json_schema_extra={"examples": ["User Name"]},
     )
     email: StrictStr | None = Field(
-        description="The user's email if the action have been manually triggered."
+        description="The user's email if the action have been manually triggered.",
+        json_schema_extra={"examples": ["user@example.com"]},
     )
-    ip_address: StrictStr = Field(description="The IP address of the request origin.")
+    ip_address: StrictStr = Field(
+        description="The IP address of the request origin.",
+        json_schema_extra={"examples": ["172.17.0.9"]},
+    )
     user_id: StrictInt | None = Field(
-        description="The user's ID if the action have been manually triggered."
+        description="The user's ID if the action have been manually triggered.",
+        json_schema_extra={"examples": [794613284672]},
     )
     hook_id: StrictStr | None = Field(
-        description="The hook's ID if the action have been triggered by a hook."
+        description="The hook's ID if the action have been triggered by a hook.",
+        json_schema_extra={"examples": ["28623d9b-0f34-48d7-b5ab-9ed281dc5a6c"]},
     )
     hook_request_id: StrictStr | None = Field(
-        description="The hook request's ID if the action have been triggered by a hook."
+        description="The hook request's ID if the action have been triggered by a hook.",
+        json_schema_extra={"examples": ["0369a338-10f0-48d0-aa2d-80d1ce14e91e"]},
     )
 
 

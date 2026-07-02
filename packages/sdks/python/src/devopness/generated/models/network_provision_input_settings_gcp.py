@@ -26,10 +26,13 @@ class NetworkProvisionInputSettingsGcp(DevopnessBaseModel):
     """
 
     region: StrictStr = Field(
-        description="The cloud provider region where the network will be created"
+        description="The cloud provider region where the network will be created",
+        json_schema_extra={"examples": ["global"]},
     )
     region_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the network region"
+        default=None,
+        description="Human readable version of the network region",
+        json_schema_extra={"examples": ["Global"]},
     )
 
 

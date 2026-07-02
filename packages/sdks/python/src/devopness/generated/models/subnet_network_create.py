@@ -31,11 +31,15 @@ class SubnetNetworkCreate(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="The subnet's name. Must be between 1 and 63 characters."
+        description="The subnet's name. Must be between 1 and 63 characters.",
+        json_schema_extra={"examples": ["my-subnet"]},
     )
     type: SubnetType
     provision_input: SubnetProvisionInput
-    credential_id: StrictInt = Field(description="The ID of the cloud credential.")
+    credential_id: StrictInt = Field(
+        description="The ID of the cloud credential.",
+        json_schema_extra={"examples": [123]},
+    )
 
 
 class SubnetNetworkCreatePlain(TypedDict, total=False):

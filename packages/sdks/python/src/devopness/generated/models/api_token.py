@@ -40,8 +40,13 @@ class ApiToken(DevopnessBaseModel):
         created_at (str): Creation date of the Token
     """
 
-    id: StrictStr = Field(description="Unique identifier of the Token")
-    name: StrictStr = Field(description="Name of the Token")
+    id: StrictStr = Field(
+        description="Unique identifier of the Token",
+        json_schema_extra={"examples": ["e70e75cb-7922-47d2-a071-54b7d7ede4be"]},
+    )
+    name: StrictStr = Field(
+        description="Name of the Token", json_schema_extra={"examples": ["My Token"]}
+    )
     type: ApiTokenType
     token: StrictStr | None = Field(
         description="The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time."
@@ -49,11 +54,23 @@ class ApiToken(DevopnessBaseModel):
     status: ApiTokenStatus
     role: RoleRelation | None
     project: ProjectRelation | None
-    last_used_at: StrictStr | None = Field(description="Last time the Token was used")
-    expires_at: StrictStr = Field(description="Expiration date of the Token")
+    last_used_at: StrictStr | None = Field(
+        description="Last time the Token was used",
+        json_schema_extra={"examples": ["2023-01-01T00:00:00Z"]},
+    )
+    expires_at: StrictStr = Field(
+        description="Expiration date of the Token",
+        json_schema_extra={"examples": ["2023-12-31T23:59:59Z"]},
+    )
     revoked_at: StrictStr | None = Field(description="Revocation date of the Token")
-    updated_at: StrictStr = Field(description="Last time the Token was updated")
-    created_at: StrictStr = Field(description="Creation date of the Token")
+    updated_at: StrictStr = Field(
+        description="Last time the Token was updated",
+        json_schema_extra={"examples": ["2023-01-01T00:00:00Z"]},
+    )
+    created_at: StrictStr = Field(
+        description="Creation date of the Token",
+        json_schema_extra={"examples": ["2023-01-01T00:00:00Z"]},
+    )
 
 
 class ApiTokenPlain(TypedDict, total=False):

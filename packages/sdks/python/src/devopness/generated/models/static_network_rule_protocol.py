@@ -34,7 +34,8 @@ class StaticNetworkRuleProtocol(DevopnessBaseModel):
 
     value: NetworkRuleProtocol
     human_readable: StrictStr = Field(
-        description="The formatted name to be displayed in user interfaces"
+        description="The formatted name to be displayed in user interfaces",
+        json_schema_extra={"examples": ["Any"]},
     )
     defaults: StaticNetworkRuleProtocolDefaults
 

@@ -28,18 +28,30 @@ class BillingPlan(DevopnessBaseModel):
         billing_period (str, optional): The billing period of the billing plan
     """
 
-    id: StrictInt | None = Field(default=None, description="The ID of the billing plan")
+    id: StrictInt | None = Field(
+        default=None,
+        description="The ID of the billing plan",
+        json_schema_extra={"examples": [1]},
+    )
     provider_plan_id: StrictStr | None = Field(
-        default=None, description="The provider ID of the billing plan"
+        default=None,
+        description="The provider ID of the billing plan",
+        json_schema_extra={"examples": ["pro_av12s"]},
     )
     price: Union[StrictFloat, StrictInt] | None = Field(
-        default=None, description="The price of the billing plan"
+        default=None,
+        description="The price of the billing plan",
+        json_schema_extra={"examples": [20]},
     )
     credit_limit: Union[StrictFloat, StrictInt] | None = Field(
-        default=None, description="The credit limit of the billing plan"
+        default=None,
+        description="The credit limit of the billing plan",
+        json_schema_extra={"examples": [200]},
     )
     billing_period: StrictStr | None = Field(
-        default=None, description="The billing period of the billing plan"
+        default=None,
+        description="The billing period of the billing plan",
+        json_schema_extra={"examples": ["1 monthly"]},
     )
 
 

@@ -44,42 +44,68 @@ class ActionStep(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the action step")
+    id: StrictInt = Field(
+        description="The unique id of the action step",
+        json_schema_extra={"examples": [18931]},
+    )
     action_id: StrictInt = Field(
-        description="The unique id of the action linked to this step"
+        description="The unique id of the action linked to this step",
+        json_schema_extra={"examples": [98412]},
     )
     action_target_id: StrictInt = Field(
-        description="The unique id of the action target linked to this step"
+        description="The unique id of the action target linked to this step",
+        json_schema_extra={"examples": [65712]},
     )
     name: StrictStr | None = Field(
-        description="Name of the action describing your purpose"
+        description="Name of the action describing your purpose",
+        json_schema_extra={"examples": ["Setting up cron job"]},
     )
     description: StrictStr | None = Field(
         default=None,
         description="A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.",
+        json_schema_extra={
+            "examples": ["Setting up cron job for daily execution at 00:00"]
+        },
     )
-    order: StrictInt = Field(description="The execution order of the given step")
+    order: StrictInt = Field(
+        description="The execution order of the given step",
+        json_schema_extra={"examples": [3]},
+    )
     status: ActionStatus
     status_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the action status"
+        default=None,
+        description="Human readable version of the action status",
+        json_schema_extra={"examples": ["Pending"]},
     )
     status_reason_code: ActionStatusReasonCode | None = None
     status_reason_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the status reason code"
+        default=None,
+        description="Human readable version of the status reason code",
+        json_schema_extra={
+            "examples": [
+                "Pending: Step created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved."
+            ]
+        },
     )
     started_at: datetime | None = Field(
         default=None,
         description="The date and time when the action started execution (i.e., left the `pending/queued` status)",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     completed_at: datetime | None = Field(
         default=None,
         description="The date and time when the action has finished execution",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
     created_at: datetime | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     updated_at: datetime | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
 
 

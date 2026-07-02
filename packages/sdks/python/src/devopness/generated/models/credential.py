@@ -41,28 +41,45 @@ class Credential(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the credential")
-    name: StrictStr = Field(description="The name of the credential")
+    id: StrictInt = Field(
+        description="The unique ID of the credential",
+        json_schema_extra={"examples": [85324]},
+    )
+    name: StrictStr = Field(
+        description="The name of the credential",
+        json_schema_extra={"examples": ["My cool credential"]},
+    )
     provider: ProviderRelation
-    provider_type: StrictStr = Field(description="The type of the credential")
+    provider_type: StrictStr = Field(
+        description="The type of the credential",
+        json_schema_extra={"examples": ["cloud_provider"]},
+    )
     provider_type_human_readable: StrictStr = Field(
-        description="The human readable version of the type of the credential"
+        description="The human readable version of the type of the credential",
+        json_schema_extra={"examples": ["Cloud Provider"]},
     )
     provider_auth_type: StrictStr = Field(
-        description="The authentication type of the credential"
+        description="The authentication type of the credential",
+        json_schema_extra={"examples": ["api_credentials"]},
     )
     provider_auth_type_human_readable: StrictStr = Field(
-        description="The human readable version of the authentication type"
+        description="The human readable version of the authentication type",
+        json_schema_extra={"examples": ["API Credentials"]},
     )
-    active: StrictBool = Field(description="If this credential is active or not")
+    active: StrictBool = Field(
+        description="If this credential is active or not",
+        json_schema_extra={"examples": [True]},
+    )
     organization: OrganizationRelation | None = None
     created_by_user: UserRelation | None
     last_action: ActionRelationShallow | None = None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
 
 

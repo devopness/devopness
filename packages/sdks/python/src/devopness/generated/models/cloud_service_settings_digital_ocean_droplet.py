@@ -30,13 +30,17 @@ class CloudServiceSettingsDigitalOceanDroplet(DevopnessBaseModel):
     """
 
     instance_type: StrictStr = Field(
-        description="The instance type to be launched on the cloud provider"
+        description="The instance type to be launched on the cloud provider",
+        json_schema_extra={"examples": ["s-1vcpu-1gb"]},
     )
     region: StrictStr = Field(
-        description="Datacenter region where the cloud instance will be launched"
+        description="Datacenter region where the cloud instance will be launched",
+        json_schema_extra={"examples": ["nyc1"]},
     )
     region_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the server region"
+        default=None,
+        description="Human readable version of the server region",
+        json_schema_extra={"examples": ["New York nyc1"]},
     )
     os_version_code: CloudOsVersionCode | None
 

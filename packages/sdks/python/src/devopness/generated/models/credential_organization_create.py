@@ -36,11 +36,15 @@ class CredentialOrganizationCreate(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="The name of the credential. Must not be greater than 60 characters."
+        description="The name of the credential. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["My cool credential"]},
     )
     provider_code: ProviderCode
     provider_type: ProviderType
-    active: StrictBool = Field(description="If this credential is active or not.")
+    active: StrictBool = Field(
+        description="If this credential is active or not.",
+        json_schema_extra={"examples": [False]},
+    )
     settings: CredentialInputSettings
 
 

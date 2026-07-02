@@ -30,13 +30,17 @@ class CloudServiceSettingsGcpGce(DevopnessBaseModel):
     """
 
     instance_type: StrictStr = Field(
-        description="The instance type to be launched on the cloud provider"
+        description="The instance type to be launched on the cloud provider",
+        json_schema_extra={"examples": ["f1-micro"]},
     )
     region: StrictStr = Field(
-        description="Datacenter region where the cloud instance will be launched"
+        description="Datacenter region where the cloud instance will be launched",
+        json_schema_extra={"examples": ["us-east1"]},
     )
     region_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the server region"
+        default=None,
+        description="Human readable version of the server region",
+        json_schema_extra={"examples": ["US East (N. Virginia) us-east1"]},
     )
     os_version_code: CloudOsVersionCode | None
 

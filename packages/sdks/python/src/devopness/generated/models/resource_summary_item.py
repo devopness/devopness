@@ -33,15 +33,21 @@ class ResourceSummaryItem(DevopnessBaseModel):
         summary (ResourceSummaryItemSummary):
     """
 
-    resource_type: StrictStr = Field(description="The type of the resource")
+    resource_type: StrictStr = Field(
+        description="The type of the resource",
+        json_schema_extra={"examples": ["environment"]},
+    )
     resource_type_plural: StrictStr = Field(
-        description="The plural name of the resource type"
+        description="The plural name of the resource type",
+        json_schema_extra={"examples": ["environments"]},
     )
     resource_type_human_readable: StrictStr = Field(
-        description="The human readable name of the resource type"
+        description="The human readable name of the resource type",
+        json_schema_extra={"examples": ["Environment"]},
     )
     resource_type_human_readable_plural: StrictStr = Field(
-        description="The human readable plural name of the resource type"
+        description="The human readable plural name of the resource type",
+        json_schema_extra={"examples": ["Environments"]},
     )
     summary: ResourceSummaryItemSummary
 

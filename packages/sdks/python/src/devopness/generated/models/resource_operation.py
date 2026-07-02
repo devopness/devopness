@@ -11,7 +11,7 @@ from typing import (
     Union,
 )
 
-from pydantic import StrictStr
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 from .pipeline_settings import PipelineSettings, PipelineSettingsPlain
@@ -27,8 +27,12 @@ class ResourceOperation(DevopnessBaseModel):
         pipeline_settings (PipelineSettings, optional):
     """
 
-    operation: StrictStr | None = None
-    operation_human_readable: StrictStr | None = None
+    operation: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["deploy"]}
+    )
+    operation_human_readable: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["Deploy"]}
+    )
     pipeline_settings: PipelineSettings | None = None
 
 

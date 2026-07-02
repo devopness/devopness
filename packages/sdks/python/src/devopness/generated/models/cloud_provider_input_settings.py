@@ -37,13 +37,18 @@ class CloudProviderInputSettings(DevopnessBaseModel):
         validation (CloudProviderPropertyValidation):
     """
 
-    name: StrictStr = Field(description="Name of the property")
+    name: StrictStr = Field(
+        description="Name of the property",
+        json_schema_extra={"examples": ["access_key_id"]},
+    )
     name_human_readable: StrictStr = Field(
-        description="Human readable version of the property's name"
+        description="Human readable version of the property's name",
+        json_schema_extra={"examples": ["Access Key"]},
     )
     default_value: CloudProviderInputSettingsDefaultValue | None
     sensitive: StrictBool = Field(
-        description="Defines if the property data is a sensitive content"
+        description="Defines if the property data is a sensitive content",
+        json_schema_extra={"examples": [False]},
     )
     validation: CloudProviderPropertyValidation
 

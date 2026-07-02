@@ -28,9 +28,13 @@ class User(DevopnessBaseModel):
         type (UserType):
     """
 
-    id: StrictInt = Field(description="The unique ID of the user")
+    id: StrictInt = Field(
+        description="The unique ID of the user", json_schema_extra={"examples": [45678]}
+    )
     url_slug: StrictStr | None = Field(
-        default=None, description="The URL Slug of the user"
+        default=None,
+        description="The URL Slug of the user",
+        json_schema_extra={"examples": ["someone"]},
     )
     type: UserType
 

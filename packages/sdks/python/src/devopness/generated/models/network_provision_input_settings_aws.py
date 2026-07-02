@@ -27,12 +27,18 @@ class NetworkProvisionInputSettingsAws(DevopnessBaseModel):
     """
 
     region: StrictStr = Field(
-        description="The cloud provider region where the network will be created"
+        description="The cloud provider region where the network will be created",
+        json_schema_extra={"examples": ["us-east-1"]},
     )
     region_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the network region"
+        default=None,
+        description="Human readable version of the network region",
+        json_schema_extra={"examples": ["US East (N. Virginia) us-east-1"]},
     )
-    cidr_block: StrictStr = Field(description="The IP CIDR range of the network")
+    cidr_block: StrictStr = Field(
+        description="The IP CIDR range of the network",
+        json_schema_extra={"examples": ["10.0.0.0/24"]},
+    )
 
 
 class NetworkProvisionInputSettingsAwsPlain(TypedDict, total=False):

@@ -26,10 +26,16 @@ class RepositoryTagCommit(DevopnessBaseModel):
     """
 
     hash: StrictStr = Field(
-        description="The commit comment's full hash that uniquely identify it"
+        description="The commit comment's full hash that uniquely identify it",
+        json_schema_extra={"examples": ["4a03b9d21edeef8434c45818594a5d72027c14e7"]},
     )
     url: StrictStr = Field(
-        description="The direct URL for accessing commit details on the provider's web application"
+        description="The direct URL for accessing commit details on the provider's web application",
+        json_schema_extra={
+            "examples": [
+                "https://github.com/myusername/myrepo/commit/4a03b9d21edeef8434c45818594a5d72027c14e7"
+            ]
+        },
     )
 
 

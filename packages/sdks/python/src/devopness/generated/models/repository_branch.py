@@ -28,9 +28,13 @@ class RepositoryBranch(DevopnessBaseModel):
         commit (Commit):
     """
 
-    name: StrictStr = Field(description="The name of the branch")
+    name: StrictStr = Field(
+        description="The name of the branch",
+        json_schema_extra={"examples": ["feature/some-branch"]},
+    )
     repo_full_name: StrictStr = Field(
-        description="The full name of the repository (`owner/repository`)"
+        description="The full name of the repository (`owner/repository`)",
+        json_schema_extra={"examples": ["devopness/devopness-site"]},
     )
     commit: Commit
 

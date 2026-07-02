@@ -27,16 +27,29 @@ class ProjectUpdate(DevopnessBaseModel):
         logo_url (str, optional): A URL path to the project&#39;s logo image. Must be a valid URL.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Project.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Project.",
+        json_schema_extra={"examples": [1]},
+    )
     name: StrictStr = Field(
-        description="The name of the project. Must not be greater than 60 characters."
+        description="The name of the project. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["my project"]},
     )
     logo_image: StrictStr | None = Field(
-        default=None, description="A base64 string representation of the logo image."
+        default=None,
+        description="A base64 string representation of the logo image.",
+        json_schema_extra={
+            "examples": [
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACA.../AgwAgJqsE2/7ccAAAAAASUVORK5CYII="
+            ]
+        },
     )
     logo_url: StrictStr | None = Field(
         default=None,
         description="A URL path to the project's logo image. Must be a valid URL.",
+        json_schema_extra={
+            "examples": ["https://example.com/projects-beautiful-logo.png"]
+        },
     )
 
 

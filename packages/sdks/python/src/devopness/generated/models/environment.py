@@ -40,29 +40,44 @@ class Environment(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="Unique id of the given record")
+    id: StrictInt = Field(
+        description="Unique id of the given record",
+        json_schema_extra={"examples": [16523]},
+    )
     type: EnvironmentType
     type_human_readable: StrictStr = Field(
-        description="The human readable version of the type"
+        description="The human readable version of the type",
+        json_schema_extra={"examples": ["Staging"]},
     )
-    name: StrictStr = Field(description="Environment's name")
-    description: StrictStr | None = Field(description="Environment's description")
+    name: StrictStr = Field(
+        description="Environment's name", json_schema_extra={"examples": ["My staging"]}
+    )
+    description: StrictStr | None = Field(
+        description="Environment's description",
+        json_schema_extra={"examples": ["My staging environment"]},
+    )
     is_archived: StrictBool = Field(
-        description="Indicates whether the record was archived"
+        description="Indicates whether the record was archived",
+        json_schema_extra={"examples": [False]},
     )
     resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
     teams: list[TeamRelation | None]
     current_user_permissions: list[StrictStr] = Field(
-        description="The list of permissions granted for this role"
+        description="The list of permissions granted for this role",
+        json_schema_extra={
+            "examples": [["application:read", "application:create", "server:read"]]
+        },
     )
     created_by_user: UserRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

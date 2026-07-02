@@ -35,45 +35,63 @@ class ApplicationUpdate(DevopnessBaseModel):
         install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Application.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Application.",
+        json_schema_extra={"examples": [1]},
+    )
     name: StrictStr = Field(
-        description="The application's unique name. Must not be greater than 60 characters."
+        description="The application's unique name. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["my-awesome-app"]},
     )
     build_command: StrictStr | None = Field(
         default=None,
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state.",
+        json_schema_extra={
+            "examples": [
+                "`npm run build`, `yarn build`, `docker build -t my_image_name .`, `python build.py`"
+            ]
+        },
     )
     engine_version: StrictStr = Field(
-        description="The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters."
+        description="The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters.",
+        json_schema_extra={"examples": ["3.12"]},
     )
     framework: StrictStr = Field(
-        description="The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters."
+        description="The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.",
+        json_schema_extra={"examples": ["fastapi"]},
     )
     programming_language: StrictStr = Field(
-        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters."
+        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.",
+        json_schema_extra={"examples": ["python"]},
     )
     repository: StrictStr | None = Field(
         default=None,
         description="The full name of a repository (`repository_owner/repository_name`) containing the application source code. Must not be greater than 100 characters.",
+        json_schema_extra={"examples": ["devopness/devopness"]},
     )
     credential_id: StrictInt | None = Field(
         default=None,
         description="Numeric ID of the credential to source provider where the repository is hosted. This field is required when <code>repository</code> is present.",
+        json_schema_extra={"examples": [9732156]},
     )
     root_directory: StrictStr | None = Field(
         default=None,
         description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
+        json_schema_extra={"examples": ["/src"]},
     )
     default_branch: StrictStr = Field(
-        description="The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters."
+        description="The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.",
+        json_schema_extra={"examples": ["main"]},
     )
     deployments_keep: StrictInt | None = Field(
         default=None,
         description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.",
+        json_schema_extra={"examples": [4]},
     )
     install_dependencies_command: StrictStr | None = Field(
         default=None,
         description="Indicates command that Devopness must execute to install application dependencies.",
+        json_schema_extra={"examples": ["npm install"]},
     )
 
 

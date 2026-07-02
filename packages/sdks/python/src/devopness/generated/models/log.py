@@ -31,7 +31,8 @@ class Log(DevopnessBaseModel):
     target: ActionTargetData | None
     step: ActionTargetLogStep | None
     updated_at: StrictStr | None = Field(
-        description="The date and time when the requested log record was last updated"
+        description="The date and time when the requested log record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

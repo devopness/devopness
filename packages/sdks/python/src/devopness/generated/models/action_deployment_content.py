@@ -35,13 +35,20 @@ class ActionDeploymentContent(DevopnessBaseModel):
     type: DeploymentType
     source_type: SourceType
     source_ref: StrictStr = Field(
-        description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash."
+        description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash.",
+        json_schema_extra={"examples": ["develop"]},
     )
     repository: StrictStr = Field(
-        description="The repository of the deployed application"
+        description="The repository of the deployed application",
+        json_schema_extra={"examples": ["devopness/example"]},
     )
-    provider_name: StrictStr = Field(description="The source provider's name")
-    pipeline_id: StrictInt = Field(description="The ID of the pipeline")
+    provider_name: StrictStr = Field(
+        description="The source provider's name",
+        json_schema_extra={"examples": ["github"]},
+    )
+    pipeline_id: StrictInt = Field(
+        description="The ID of the pipeline", json_schema_extra={"examples": [23439]}
+    )
 
 
 class ActionDeploymentContentPlain(TypedDict, total=False):
