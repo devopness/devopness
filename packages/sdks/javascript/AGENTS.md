@@ -11,6 +11,7 @@ From `packages/sdks/javascript`, use these package scripts:
 - `make build-sdk-js`
 - `make test`
 - `make lint`
+- `make npm ARGS=run lint:fix`
 
 ## Generated files
 
@@ -22,3 +23,4 @@ From `packages/sdks/javascript`, use these package scripts:
 
 - For non-docker local workflows, prefer package-level scripts and CI examples in CI workflows.
 - Follow the root [AGENTS.md](../../../AGENTS.md) for repository-wide git workflow and PR guidance.
+- Do not use installer or build workarounds such as `--legacy-peer-deps` or `--force` or similar shortcuts for dependency conflicts. Fix the package constraints, lockfiles, or build inputs instead.

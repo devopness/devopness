@@ -19,6 +19,7 @@
     "docs-update-service-index": "npm run docs-remove-service-index && npm run docs-export-service-index",
     "docs": "npm run docs-update-service-index && typedoc",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "test": "jest"
   },
@@ -50,6 +51,9 @@
     "url": "https://github.com/devopness/devopness/issues"
   },
   "homepage": "https://github.com/devopness/devopness#readme",
+  "engines": {
+    "node": ">=16"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@openapitools/openapi-generator-cli": "^2.39.1",
