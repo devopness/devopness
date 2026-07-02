@@ -20,7 +20,8 @@ type Spacing = keyof Flatten<typeof spacing>
  */
 const getSpacing = <TSpacing extends Spacing>(
   name: TSpacing
-): Flatten<typeof spacing>[TSpacing] => get(spacing, name)
+): Flatten<typeof spacing>[TSpacing] =>
+  get(spacing, name) as Flatten<typeof spacing>[TSpacing]
 
 export type { Spacing }
 
