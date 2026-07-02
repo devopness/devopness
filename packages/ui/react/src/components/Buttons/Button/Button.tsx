@@ -43,7 +43,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean
   /**
    * @deprecated `noMargin` will be removed in a future release.
-   * The button component has a 15px margin on its sides, to remove activate the "noMargin" property.
+   * Kept for compatibility while layout spacing moves to the parent container.
    */
   noMargin?: boolean
   /**
@@ -131,7 +131,6 @@ const Button = ({
   iconColor,
   iconSize,
   loading: isLoading,
-  noMargin,
   noIconMargin,
   noPadding,
   noPointerEvents,
@@ -147,7 +146,6 @@ const Button = ({
     $borderColor={borderColor}
     $buttonType={buttonType}
     $color={color}
-    $noMargin={noMargin}
     $noIconMargin={noIconMargin}
     $noPadding={noPadding}
     $noPointerEvents={noPointerEvents}

@@ -45,11 +45,10 @@ describe('Button', () => {
       })
     })
 
-    it('with noMargin and icon gap controls', () => {
+    it('with icon gap controls', () => {
       render(
         <Button
           icon="html"
-          noMargin
           noIconMargin
         >
           No Icon Gap Button
