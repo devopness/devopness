@@ -53,7 +53,6 @@ const Pagination = ({
         type="button"
         buttonType={'outlinedAuxiliary'}
         typeSize="medium"
-        noMargin
         onClick={firstPaginateAction}
         disabled={disableAllActions || disablePreviousActions}
         aria-label="Go to first page"
@@ -65,7 +64,6 @@ const Pagination = ({
         buttonType={'outlinedSecondary'}
         typeSize="medium"
         icon="arrowLeft"
-        noMargin
         onClick={previousPaginateAction}
         disabled={disableAllActions || disablePreviousActions}
         aria-label="Go to previous page"
@@ -78,7 +76,6 @@ const Pagination = ({
         typeSize="medium"
         icon="arrowRight"
         revertOrientation
-        noMargin
         onClick={nextPaginateAction}
         disabled={disableAllActions || disableNextActions}
         aria-label="Go to next page"
@@ -89,7 +86,6 @@ const Pagination = ({
         type="button"
         buttonType={'outlinedAuxiliary'}
         typeSize="medium"
-        noMargin
         onClick={lastPaginateAction}
         disabled={disableAllActions || disableNextActions}
         aria-label="Go to last page"

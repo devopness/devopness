@@ -304,7 +304,6 @@ const Card = ({ children, ...props }: CardProps) => (
               )}
               <Button
                 buttonType="borderless"
-                noMargin
                 noPadding
               >
                 {typeof footer.label === 'object' && (
