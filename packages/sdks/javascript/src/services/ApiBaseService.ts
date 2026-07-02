@@ -149,7 +149,7 @@ export class ApiBaseService {
             return false;
         }
 
-        let decodedToken: Record<string, unknown> = {};
+        let decodedToken: Record<string, unknown>;
 
         try {
             decodedToken = JSON.parse(
