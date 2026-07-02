@@ -10,7 +10,6 @@ Run the package commands from `packages/sdks/python` so the local Makefile and P
 - `make build-sdk-python`
 - `make lint`
 - `make format`
-- `npm run lint:fix`
 - `make test-unit`
 
 ## Generated files
