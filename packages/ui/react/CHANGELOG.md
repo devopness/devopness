@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.192.5
+
+### Patch Changes
+
+- [#3193](https://github.com/devopness/devopness/pull/3193) [`66c54bd`](https://github.com/devopness/devopness/commit/66c54bd572ac8f9b819a58bd9b6d05b4f7b9e383) Thanks [@camilatigre](https://github.com/camilatigre)! - Deprecate `Button.noMargin`, centralize button spacing tokens, and keep the new spacing helper internal to `ui-react`.
+
 ## 2.192.4
 
 ### Patch Changes
