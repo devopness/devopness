@@ -150,10 +150,34 @@ export class ApiBaseService {
         }
 
         const decodedToken = JSON.parse(
-            Buffer.from(ApiBaseService.accessToken?.split(".")?.[1], "base64").toString()
+            ApiBaseService.decodeJwtPayload(ApiBaseService.accessToken)
         );
 
         return response?.status === 401 && decodedToken.exp < (new Date().getTime() / 1000);
+    }
+
+    /**
+     * Decode the JWT payload so we can inspect the `exp` claim without depending on Node-only APIs.
+     * The SDK runs in browser and Node environments, so this keeps the token parsing portable.
+     */
+    private static decodeJwtPayload(token: string): string {
+        const payload = token.split(".")?.[1];
+
+        if (!payload) {
+            return "{}";
+        }
+
+        const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+        const paddingLength = (4 - (base64.length % 4)) % 4;
+        const paddedBase64 = base64 + "=".repeat(paddingLength);
+        const binary = atob(paddedBase64);
+
+        return decodeURIComponent(
+            Array.from(binary, (character) => {
+                const hex = character.charCodeAt(0).toString(16);
+                return `%${hex.length === 1 ? `0${hex}` : hex}`;
+            }).join("")
+        );
     }
 
     public baseURL(): string {
