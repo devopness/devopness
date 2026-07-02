@@ -180,6 +180,8 @@ export class ApiBaseService {
                 }).join("")
             );
         } catch {
+            // Malformed or legacy token payloads should not break the axios error path.
+            // Treat undecodable tokens as empty payloads and let the 401 handling continue.
             return "{}";
         }
     }
