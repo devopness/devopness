@@ -2,8 +2,8 @@
   "compilerOptions": {
     /* Basic Options */
     "target": "es2015",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "lib": [
       "ES2015",
       "DOM"
@@ -16,7 +16,6 @@
     "removeComments": false,
     /* Strict Type-Checking Options */
     "strict": true,
-    "isolatedModules": true,
     "noImplicitAny": true,
     "noUnusedLocals": false,
     "strictNullChecks": true,

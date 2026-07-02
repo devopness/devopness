@@ -2,6 +2,11 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosRequestHeade
 import { ApiError, ArgumentNullException, NetworkError } from "../common/Exceptions";
 
 declare const window: unknown;
+declare const Buffer: {
+    from(value: string, encoding: string): {
+        toString(encoding: string): string;
+    };
+};
 
 export interface ConfigurationOptions {
     apiToken?: string;
@@ -157,27 +162,36 @@ export class ApiBaseService {
     }
 
     /**
-     * Decode the JWT payload so we can inspect the `exp` claim without depending on Node-only APIs.
-     * The SDK runs in browser and Node environments, so this keeps the token parsing portable.
+     * Decode the JWT payload so we can inspect the `exp` claim in both browser and Node runtimes.
+     * This avoids relying on a Node-only JWT helper while still tolerating malformed tokens safely.
      */
     private static decodeJwtPayload(token: string): string {
-        const payload = token.split(".")?.[1];
+        try {
+            const payload = token.split(".")?.[1];
 
-        if (!payload) {
+            if (!payload) {
+                return "{}";
+            }
+
+            const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+            const paddingLength = (4 - (base64.length % 4)) % 4;
+            const paddedBase64 = base64 + "=".repeat(paddingLength);
+
+            if (typeof globalThis.atob === "function") {
+                const binary = globalThis.atob(paddedBase64);
+
+                return decodeURIComponent(
+                    Array.from(binary, (character) => {
+                        const hex = character.charCodeAt(0).toString(16);
+                        return `%${hex.length === 1 ? `0${hex}` : hex}`;
+                    }).join("")
+                );
+            }
+
+            return Buffer.from(paddedBase64, "base64").toString("utf8");
+        } catch {
             return "{}";
         }
-
-        const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
-        const paddingLength = (4 - (base64.length % 4)) % 4;
-        const paddedBase64 = base64 + "=".repeat(paddingLength);
-        const binary = atob(paddedBase64);
-
-        return decodeURIComponent(
-            Array.from(binary, (character) => {
-                const hex = character.charCodeAt(0).toString(16);
-                return `%${hex.length === 1 ? `0${hex}` : hex}`;
-            }).join("")
-        );
     }
 
     public baseURL(): string {

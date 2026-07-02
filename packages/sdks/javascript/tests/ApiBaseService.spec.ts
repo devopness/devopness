@@ -70,3 +70,10 @@ test('isTokenExpired returns false for a token that is still valid', () => {
 
     expect(service.hasExpired(buildResponse(401))).toBe(false);
 });
+
+test('isTokenExpired returns false when the token payload cannot be decoded', () => {
+    ApiBaseService.accessToken = 'header.not-base64.signature';
+    const service = new TestApiBaseService();
+
+    expect(service.hasExpired(buildResponse(401))).toBe(false);
+});
