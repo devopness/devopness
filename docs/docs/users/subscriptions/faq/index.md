@@ -60,7 +60,7 @@ For your convenience, each action step output log is made available for you in D
 
 See also:
 
-- [/docs/actions/index]
+- [/docs/actions]
 
 ## What are credits?
 
@@ -104,7 +104,7 @@ You can see your total and remaining credits by accessing `Billing and Plans` in
 
 For detailed instructions, see:
 
-- [/docs/users/subscriptions/index]
+- [/docs/users/subscriptions]
 
 ## What happens when I run out of credits?
 
@@ -165,6 +165,6 @@ A few things will happen:
 
 1. Your subscription will be downgraded to the FREE plan;
 2. You can still access action details and action steps output logs, but limited to actions created in the last 24 hours;
-3. In environments using custom [/docs/roles/index] in their [/docs/environments/team-memberships/index], the membership will be updated to use the role “Read”, converting all users to read-only users.
+3. In environments using custom [/docs/roles] in their [/docs/environments/team-memberships], the membership will be updated to use the role “Read”, converting all users to read-only users.
 
 But don’t worry: your data will not be lost and your configurations, including team membership roles, will be restored once you update your payment methods and upgrade again to a paid plan.

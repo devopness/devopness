@@ -33,21 +33,28 @@ class VariableUpdate(DevopnessBaseModel):
         hidden (bool): Indicates if the variable value should be visible or not in the deployment logs.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Variable.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Variable.",
+        json_schema_extra={"examples": [1]},
+    )
     key: StrictStr = Field(
-        description="The unique key used to identify the variable on the target.                     When variable is of type `file`, this is the relative path                     to the file within the application directory. Must not be greater than 100 characters."
+        description="The unique key used to identify the variable on the target.                     When variable is of type `file`, this is the relative path                     to the file within the application directory. Must not be greater than 100 characters.",
+        json_schema_extra={"examples": ["APP_URL"]},
     )
     value: StrictStr = Field(
-        description="The value to be assigned to this variable when deployed to its target.                     When variable is of type `file`, this is the file content. Must not be greater than 21504 characters."
+        description="The value to be assigned to this variable when deployed to its target.                     When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+        json_schema_extra={"examples": ["https://staging.devopness.com"]},
     )
     description: StrictStr | None = Field(
         default=None,
         description="A text describing the variable, provided by the end user. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["Sample variable description"]},
     )
     target: VariableTarget
     type: VariableType
     hidden: StrictBool = Field(
-        description="Indicates if the variable value should be visible or not in the deployment logs."
+        description="Indicates if the variable value should be visible or not in the deployment logs.",
+        json_schema_extra={"examples": [False]},
     )
 
 

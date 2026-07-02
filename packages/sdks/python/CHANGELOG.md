@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.6.0
+
+### Minor Changes
+
+- [#3242](https://github.com/devopness/devopness/pull/3242) [`42b13b2`](https://github.com/devopness/devopness/commit/42b13b24e3e2a82fd62de3b65347e3fd86d56d52) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Adds optional `trigger_comment` support to action-triggered pipeline and daemon operations, exposes `supports_trigger_comment` in pipeline settings, and adds `ubuntu_26_04` to the cloud OS version enum.
+
 ## 2.5.0
 
 ### Minor Changes

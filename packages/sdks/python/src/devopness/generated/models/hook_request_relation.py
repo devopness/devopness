@@ -33,30 +33,49 @@ class HookRequestRelation(DevopnessBaseModel):
         updated_at (datetime, optional, nullable): The date and time when the record was last updated
     """
 
-    id: StrictStr = Field(description="The unique UUID of the hook request")
+    id: StrictStr = Field(
+        description="The unique UUID of the hook request",
+        json_schema_extra={"examples": ["6fa16226-9dc4-4367-88aa-e689ad2bc580"]},
+    )
     hook_id: StrictStr = Field(
-        description="The UUID of the hook that the request belongs to"
+        description="The UUID of the hook that the request belongs to",
+        json_schema_extra={"examples": ["f1a61a4e-4d08-11eb-9481-0242ac130004"]},
     )
     action_id: StrictInt | None = Field(
-        description="The id of the action that the request belongs to"
+        description="The id of the action that the request belongs to",
+        json_schema_extra={"examples": [1985239]},
     )
     retry_of: StrictStr | None = Field(
-        description="The UUID of the request that this request is a retry of"
+        description="The UUID of the request that this request is a retry of",
+        json_schema_extra={"examples": ["002afd04-e3af-4dad-bf46-b2b25978482a"]},
     )
     ip_address: StrictStr = Field(
-        description="The IP address of the source that triggered the hook"
+        description="The IP address of the source that triggered the hook",
+        json_schema_extra={"examples": ["172.17.0.4"]},
     )
     url: StrictStr | None = Field(
-        default=None, description="Original URL used on the request"
+        default=None,
+        description="Original URL used on the request",
+        json_schema_extra={
+            "examples": [
+                "https://api.devopness.com/hooks-incoming/f1a61a4e-4d08-11eb-9481-0242ac130004"
+            ]
+        },
     )
     response_status_code: StrictInt | None = Field(
-        default=None, description="The response status code"
+        default=None,
+        description="The response status code",
+        json_schema_extra={"examples": [200]},
     )
     created_at: datetime | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     updated_at: datetime | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
 
 

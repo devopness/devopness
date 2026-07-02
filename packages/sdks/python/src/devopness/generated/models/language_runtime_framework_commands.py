@@ -25,11 +25,25 @@ class LanguageRuntimeFrameworkCommands(DevopnessBaseModel):
     """
 
     build: list[StrictStr] | None = Field(
-        default=None, description="Available build command options for the stack"
+        default=None,
+        description="Available build command options for the stack",
+        json_schema_extra={"examples": [["npm build", "yarn build", "custom", "none"]]},
     )
     dependencies: list[StrictStr] | None = Field(
         default=None,
         description="Available dependencies installation command options for the stack",
+        json_schema_extra={
+            "examples": [
+                [
+                    "npm install",
+                    "npm install --production",
+                    "npm ci",
+                    "yarn install",
+                    "custom",
+                    "none",
+                ]
+            ]
+        },
     )
 
 

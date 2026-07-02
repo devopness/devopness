@@ -27,6 +27,12 @@ export interface ActionPipelineCreate {
      */
     servers?: Array<number>;
     /**
+     * Optional comment provided when triggering this action. Must not be greater than 255 characters. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof ActionPipelineCreate
+     */
+    trigger_comment?: string;
+    /**
      * 
      * @type {SourceType}
      * @memberof ActionPipelineCreate

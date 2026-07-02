@@ -27,14 +27,19 @@ class RoleOrganizationCreate(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="The role's name. Must be at least 2 characters. Must not be greater than 60 characters."
+        description="The role's name. Must be at least 2 characters. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["admin"]},
     )
     description: StrictStr | None = Field(
         default=None,
         description="Description of this role. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["Has total access to resources"]},
     )
     permissions: list[StrictStr] = Field(
-        description="The list of permissions granted for this role"
+        description="The list of permissions granted for this role",
+        json_schema_extra={
+            "examples": [["application:read", "application:create", "server:read"]]
+        },
     )
 
 

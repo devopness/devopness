@@ -30,10 +30,14 @@ class ActionResource(DevopnessBaseModel):
         data (ActionResourceData, optional, nullable):
     """
 
-    id: StrictInt = Field(description="The unique id of the resource")
+    id: StrictInt = Field(
+        description="The unique id of the resource",
+        json_schema_extra={"examples": [1839123]},
+    )
     type: ResourceType
     type_human_readable: StrictStr = Field(
-        description="Human readable version of the resource type"
+        description="Human readable version of the resource type",
+        json_schema_extra={"examples": ["Application"]},
     )
     data: ActionResourceData | None = None
 

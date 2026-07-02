@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "index",
+    "add-existing-server",
+    "add-aws-server",
+    "add-azure-server",
+    "add-digitalocean-server",
+    "add-gcp-server",
+    "list-servers",
+    "view-server",
+    "start-server",
+    "stop-server",
+    "restart-server",
+    "ssh-into-server",
+    "get-server-status",
+    "check-server-provision-logs",
+    "find-server-ip-address",
+    "rotate-key",
+    "remove-server",
+    "remove-selfhosted-server",
+    "delete-cloudprovider-server"
+  ]
+}

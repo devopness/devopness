@@ -4,8 +4,8 @@ intro: Devopness allows you to manage multiple provider accounts from a single p
 links:
   overview:
   quickstart:
-  previous: credentials/index
-  next:
+  previous: environments/add-environment
+  next: servers/add-server
   guides:
   related:
     - credentials/add-aws-credential

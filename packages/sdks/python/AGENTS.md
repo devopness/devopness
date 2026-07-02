@@ -4,11 +4,12 @@ Instructions for AI agents working in the Python SDK package.
 
 ## Workflow
 
-From `packages/sdks/python`, run:
+Run the package commands from `packages/sdks/python` so the local Makefile and Python tooling are used:
 
 - `make build-image`
 - `make build-sdk-python`
 - `make lint`
+- `make format`
 - `make test-unit`
 
 ## Generated files

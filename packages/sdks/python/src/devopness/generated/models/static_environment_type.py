@@ -26,12 +26,19 @@ class StaticEnvironmentType(DevopnessBaseModel):
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: StrictStr = Field(description="The internal name of the environment")
+    value: StrictStr = Field(
+        description="The internal name of the environment",
+        json_schema_extra={"examples": ["development"]},
+    )
     human_readable: StrictStr = Field(
-        description="The formatted name to be displayed in user interfaces"
+        description="The formatted name to be displayed in user interfaces",
+        json_schema_extra={"examples": ["Development"]},
     )
     hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
 
 

@@ -1,5 +1,5 @@
 ---
-title: API
+title: Devopness API Reference
 intro:
 links:
   overview:
@@ -19,7 +19,7 @@ This `API-first` development approach makes it possible that every piece of func
 
 The base URL for Devopness API is https://api.devopness.com/
 
-Before submitting your first request, make sure to obtain a token following the instructions in [/docs/api-tokens/index].
+Before submitting your first request, make sure to obtain a token following the instructions in [/docs/api-tokens].
 
 Once a token is obtained, you can test access to Devopness API using the example requests below:
 

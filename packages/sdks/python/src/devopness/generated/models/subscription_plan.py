@@ -10,7 +10,7 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import StrictBool, StrictStr
+from pydantic import Field, StrictBool, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -25,9 +25,15 @@ class SubscriptionPlan(DevopnessBaseModel):
         allow_subscriptions (bool, optional):
     """
 
-    provider_plan_id: StrictStr | None = None
-    human_readable: StrictStr | None = None
-    allow_subscriptions: StrictBool | None = None
+    provider_plan_id: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["PAID"]}
+    )
+    human_readable: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["Standard"]}
+    )
+    allow_subscriptions: StrictBool | None = Field(
+        default=None, json_schema_extra={"examples": [True]}
+    )
 
 
 class SubscriptionPlanPlain(TypedDict, total=False):

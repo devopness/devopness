@@ -12,7 +12,7 @@ links:
 
 Use an incoming hook when you want a git event or other external event to trigger an application deploy.
 
-This page is API-only today. Use the [Devopness API reference](/docs/api/index) and the webhook guide to create the hook that triggers a deploy pipeline.
+This page is API-only today. Use the [/docs/api] and the webhook guide to create the hook that triggers a deploy pipeline.
 
 ## Goal
 

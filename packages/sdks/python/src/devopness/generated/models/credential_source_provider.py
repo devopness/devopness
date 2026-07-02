@@ -33,14 +33,17 @@ class CredentialSourceProvider(DevopnessBaseModel):
     callback_code: StrictStr | None = Field(
         default=None,
         description="The temporary code forwarded by the OAuth provider as a parameter to our callback URL",
+        json_schema_extra={"examples": ["a606964974b5fb082971"]},
     )
     installation_id: StrictStr | None = Field(
         default=None,
         description="The installation ID of the source provider integration installation.",
+        json_schema_extra={"examples": ["123456"]},
     )
     setup_action: StrictStr | None = Field(
         default=None,
         description="The action to be performed with the provided callback code.",
+        json_schema_extra={"examples": ["update"]},
     )
 
 

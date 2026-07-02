@@ -51,21 +51,31 @@ class ActionRelationShallow(DevopnessBaseModel):
         updated_at (datetime): When the action was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the action")
+    id: StrictInt = Field(
+        description="The Id of the action", json_schema_extra={"examples": [567819876]}
+    )
     status: ActionStatus
     status_human_readable: StrictStr = Field(
-        description="Human readable version of the action status"
+        description="Human readable version of the action status",
+        json_schema_extra={"examples": ["Pending"]},
     )
     status_reason_code: ActionStatusReasonCode
     status_reason_human_readable: StrictStr = Field(
-        description="Human readable version of the status reason code"
+        description="Human readable version of the status reason code",
+        json_schema_extra={
+            "examples": [
+                "Pending: Action created successfully but has not yet been queued for execution."
+            ]
+        },
     )
     type: ActionType
     type_human_readable: StrictStr = Field(
-        description="Human readable version of the action type"
+        description="Human readable version of the action type",
+        json_schema_extra={"examples": ["Deploy"]},
     )
     url_web_permalink: StrictStr = Field(
-        description="Permalink to view the action on Devopness web"
+        description="Permalink to view the action on Devopness web",
+        json_schema_extra={"examples": ["https://devopness.com/actions/567819876"]},
     )
     action_data: ActionData | None = None
     triggered_from: ActionTriggeredFrom | None = None

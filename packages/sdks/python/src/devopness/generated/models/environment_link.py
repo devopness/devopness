@@ -26,10 +26,17 @@ class EnvironmentLink(DevopnessBaseModel):
         servers (List[int]): A list of server IDs to which the item link/unlink operations must be performed
     """
 
-    id: StrictInt = Field(description="Environment's unique id")
-    name: StrictStr | None = Field(default=None, description="Environment's name")
+    id: StrictInt = Field(
+        description="Environment's unique id", json_schema_extra={"examples": [867]}
+    )
+    name: StrictStr | None = Field(
+        default=None,
+        description="Environment's name",
+        json_schema_extra={"examples": ["my project - staging"]},
+    )
     servers: list[StrictInt] = Field(
-        description="A list of server IDs to which the item link/unlink operations must be performed"
+        description="A list of server IDs to which the item link/unlink operations must be performed",
+        json_schema_extra={"examples": [[54789]]},
     )
 
 

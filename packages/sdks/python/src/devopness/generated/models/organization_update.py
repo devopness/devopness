@@ -26,12 +26,17 @@ class OrganizationUpdate(DevopnessBaseModel):
         url_slug (str): The URL Slug of the organization. Must not be greater than 30 characters.
     """
 
-    id: StrictStr = Field(description="The unique ID of the given Organization.")
+    id: StrictStr = Field(
+        description="The unique ID of the given Organization.",
+        json_schema_extra={"examples": ["1"]},
+    )
     name: StrictStr = Field(
-        description="The Name of the organization. Must not be greater than 255 characters."
+        description="The Name of the organization. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["My Org"]},
     )
     url_slug: StrictStr = Field(
-        description="The URL Slug of the organization. Must not be greater than 30 characters."
+        description="The URL Slug of the organization. Must not be greater than 30 characters.",
+        json_schema_extra={"examples": ["MyOrg"]},
     )
 
 

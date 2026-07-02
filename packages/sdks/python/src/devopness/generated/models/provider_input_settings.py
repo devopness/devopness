@@ -33,16 +33,21 @@ class ProviderInputSettings(DevopnessBaseModel):
         sensitive (bool): Defines if the input field data is a sensitive content
     """
 
-    name: StrictStr = Field(description="The name of a credential input field")
+    name: StrictStr = Field(
+        description="The name of a credential input field",
+        json_schema_extra={"examples": ["access_key_id"]},
+    )
     name_human_readable: StrictStr = Field(
-        description="The human readable version of the input field name"
+        description="The human readable version of the input field name",
+        json_schema_extra={"examples": ["Access Key"]},
     )
     validation: ProviderInputSettingsValidation
     default_value: StrictStr | None = Field(
         description="The default value of the input field"
     )
     sensitive: StrictBool = Field(
-        description="Defines if the input field data is a sensitive content"
+        description="Defines if the input field data is a sensitive content",
+        json_schema_extra={"examples": [False]},
     )
 
 

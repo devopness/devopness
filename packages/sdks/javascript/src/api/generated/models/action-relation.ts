@@ -76,6 +76,12 @@ export interface ActionRelation {
      */
     url_web_permalink: string;
     /**
+     * Optional comment attached to this action
+     * @type {string}
+     * @memberof ActionRelation
+     */
+    trigger_comment: string | null;
+    /**
      * 
      * @type {ActionData}
      * @memberof ActionRelation

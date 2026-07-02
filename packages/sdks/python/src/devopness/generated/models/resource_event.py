@@ -29,7 +29,8 @@ class ResourceEvent(DevopnessBaseModel):
     """
 
     resource_type: StrictStr = Field(
-        description="The resource type to create events for."
+        description="The resource type to create events for.",
+        json_schema_extra={"examples": ["payment_provider"]},
     )
     resource_id: StrictInt = Field(description="The resource ID.")
     resource_data: Subscription | None

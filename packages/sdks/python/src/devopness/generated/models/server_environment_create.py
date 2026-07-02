@@ -39,19 +39,23 @@ class ServerEnvironmentCreate(DevopnessBaseModel):
         default=None, description="The resources to be linked with this resource"
     )
     hostname: StrictStr = Field(
-        description="The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters."
+        description="The hostname to be set on Linux servers. Accepts numbers (0-9), dash (-) and lower case non accented characters. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["web-srv-1"]},
     )
     ip_address: StrictStr | None = Field(
         default=None,
         description="Public ipv4 address for server access. This field is required when <code>provision_input.cloud_service_code</code> is <code>self-hosted-custom</code>.",
+        json_schema_extra={"examples": ["200.123.45.67"]},
     )
     ssh_port: StrictInt | None = Field(
         default=None,
         description="The network port to which the SSH daemon is listening to SSH connections on the server. This field is required when <code>provision_input.cloud_service_code</code> is <code>self-hosted-custom</code>. Must be between 22 and 65535.",
+        json_schema_extra={"examples": [22]},
     )
     max_parallel_actions: StrictInt | None = Field(
         default=None,
         description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.",
+        json_schema_extra={"examples": [1]},
     )
     blueprint: list[BlueprintService] | None = Field(
         default=None,
@@ -61,6 +65,7 @@ class ServerEnvironmentCreate(DevopnessBaseModel):
     credential_id: StrictStr | None = Field(
         default=None,
         description="The ID of the cloud credential. This field is required unless <code>provision_input.cloud_service_code</code> is in <code>self-hosted-custom</code>.",
+        json_schema_extra={"examples": ["123"]},
     )
 
 

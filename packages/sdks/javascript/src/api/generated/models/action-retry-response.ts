@@ -94,6 +94,12 @@ export interface ActionRetryResponse {
      */
     url_web_permalink: string;
     /**
+     * Optional comment attached to this action
+     * @type {string}
+     * @memberof ActionRetryResponse
+     */
+    trigger_comment: string | null;
+    /**
      * 
      * @type {ActionData}
      * @memberof ActionRetryResponse

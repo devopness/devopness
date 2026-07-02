@@ -34,21 +34,36 @@ class Commit(DevopnessBaseModel):
     """
 
     hash: StrictStr = Field(
-        description="The commit comment's full hash that uniquely identify it"
+        description="The commit comment's full hash that uniquely identify it",
+        json_schema_extra={"examples": ["4a03b9d21edeef8434c45818594a5d72027c14e7"]},
     )
-    message: StrictStr = Field(description="The commit's comment message")
+    message: StrictStr = Field(
+        description="The commit's comment message",
+        json_schema_extra={
+            "examples": ["Good developers always add messages to their commits"]
+        },
+    )
     committed_at: StrictStr = Field(
-        description="The date and time when the commit has been submitted"
+        description="The date and time when the commit has been submitted",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     provider: SourceProviderName
     repository: StrictStr = Field(
-        description="The full name of the repository (`owner/repository`) to which the commit belongs to"
+        description="The full name of the repository (`owner/repository`) to which the commit belongs to",
+        json_schema_extra={"examples": ["devopness/devopness-site"]},
     )
     url: StrictStr = Field(
-        description="The direct URL for accessing commit details on the provider's web application"
+        description="The direct URL for accessing commit details on the provider's web application",
+        json_schema_extra={"examples": ["https://github.com/myusername/myrepo"]},
     )
-    author_email: StrictStr = Field(description="The e-mail of the commit's author")
-    author_name: StrictStr = Field(description="The name of the commit's author")
+    author_email: StrictStr = Field(
+        description="The e-mail of the commit's author",
+        json_schema_extra={"examples": ["myusername@email.com"]},
+    )
+    author_name: StrictStr = Field(
+        description="The name of the commit's author",
+        json_schema_extra={"examples": ["myusername"]},
+    )
 
 
 class CommitPlain(TypedDict, total=False):

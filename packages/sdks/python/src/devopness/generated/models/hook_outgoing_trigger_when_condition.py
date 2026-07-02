@@ -26,10 +26,12 @@ class HookOutgoingTriggerWhenCondition(DevopnessBaseModel):
     """
 
     path: StrictStr = Field(
-        description="A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition."
+        description="A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition.",
+        json_schema_extra={"examples": ["action.pipeline.id"]},
     )
     accepted_values: list[StrictStr] = Field(
-        description="List of accepted values for this condition."
+        description="List of accepted values for this condition.",
+        json_schema_extra={"examples": [[123, "some-value", False, True]]},
     )
 
 

@@ -33,10 +33,12 @@ class Member(DevopnessBaseModel):
     user: UserRelation | None
     team: TeamRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
 
 

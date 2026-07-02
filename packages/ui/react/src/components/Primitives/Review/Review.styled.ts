@@ -43,9 +43,9 @@ const gridInformation = css`
 const DetailContentInformation = styled.article<DetailContentInformationProps>`
   ${gridInformation}
   ${({ $noIcon, $isIconAfterLabel }) => css`
-    grid-template-columns: ${$noIcon || $isIconAfterLabel
-      ? 'auto'
-      : '20px auto'};
+    grid-template-columns: ${
+      $noIcon || $isIconAfterLabel ? 'auto' : '20px auto'
+    };
     padding-left: ${$noIcon || $isIconAfterLabel ? '10px' : '5px'};
   `}
   background-color: ${(props) =>

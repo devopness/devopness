@@ -33,13 +33,18 @@ class CloudProviderPropertyValidation(DevopnessBaseModel):
         allowed_values (List[str]): List of allowed values for the property. If empty, any value is allowed
     """
 
-    required: StrictBool = Field(description="Defines if the property is required")
+    required: StrictBool = Field(
+        description="Defines if the property is required",
+        json_schema_extra={"examples": [True]},
+    )
     type: CloudProviderPropertyType
     min: StrictInt = Field(
-        description="The minimum allowed property value. For properties of type `string` the validation checks the length of the property value"
+        description="The minimum allowed property value. For properties of type `string` the validation checks the length of the property value",
+        json_schema_extra={"examples": [10]},
     )
     max: StrictInt = Field(
-        description="The maximum allowed property value. For properties of type `string` the validation checks the length of the property value"
+        description="The maximum allowed property value. For properties of type `string` the validation checks the length of the property value",
+        json_schema_extra={"examples": [30]},
     )
     allowed_values: list[StrictStr] = Field(
         description="List of allowed values for the property. If empty, any value is allowed"

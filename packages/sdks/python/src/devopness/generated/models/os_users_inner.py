@@ -24,7 +24,10 @@ class OsUsersInner(DevopnessBaseModel):
         name (str): Operating system username
     """
 
-    name: StrictStr = Field(description="Operating system username")
+    name: StrictStr = Field(
+        description="Operating system username",
+        json_schema_extra={"examples": ["devopness"]},
+    )
 
 
 class OsUsersInnerPlain(TypedDict, total=False):

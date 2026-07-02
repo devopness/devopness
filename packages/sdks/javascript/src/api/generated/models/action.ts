@@ -94,6 +94,12 @@ export interface Action {
      */
     url_web_permalink: string;
     /**
+     * Optional comment attached to this action
+     * @type {string}
+     * @memberof Action
+     */
+    trigger_comment: string | null;
+    /**
      * 
      * @type {ActionData}
      * @memberof Action

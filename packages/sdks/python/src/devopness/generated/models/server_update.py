@@ -28,20 +28,29 @@ class ServerUpdate(DevopnessBaseModel):
         credential_id (str, optional): The ID of the cloud credential.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Server.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Server.",
+        json_schema_extra={"examples": [1]},
+    )
     ip_address: StrictStr | None = Field(
-        default=None, description="Public ipv4 address for server access."
+        default=None,
+        description="Public ipv4 address for server access.",
+        json_schema_extra={"examples": ["200.123.45.67"]},
     )
     ssh_port: StrictInt | None = Field(
         default=None,
         description="The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 22 and 65535.",
+        json_schema_extra={"examples": [22]},
     )
     max_parallel_actions: StrictInt | None = Field(
         default=None,
         description="Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.",
+        json_schema_extra={"examples": [1]},
     )
     credential_id: StrictStr | None = Field(
-        default=None, description="The ID of the cloud credential."
+        default=None,
+        description="The ID of the cloud credential.",
+        json_schema_extra={"examples": ["123"]},
     )
 
 

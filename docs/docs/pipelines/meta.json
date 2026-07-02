@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "index",
+    "add-pipeline",
+    "view-pipeline",
+    "edit-pipeline",
+    "run-pipeline",
+    "steps",
+    "remove-pipeline"
+  ]
+}

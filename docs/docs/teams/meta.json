@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "index",
+    "add-team",
+    "list-teams",
+    "view-team",
+    "members",
+    "invitations"
+  ]
+}

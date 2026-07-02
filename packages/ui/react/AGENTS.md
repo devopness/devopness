@@ -4,10 +4,11 @@ Instructions for AI agents working in `packages/ui/react`.
 
 ## Workflow
 
-Use the package scripts from `packages/ui/react`:
+Run the package scripts from `packages/ui/react` so the local ESLint, Prettier, and TypeScript config is used:
 
 - `npm run build`
 - `npm run lint`
+- `npm run lint:fix`
 - `npm run test`
 - `npm run storybook`
 - `npm run build-storybook`

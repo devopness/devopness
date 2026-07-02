@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "index",
+    "add-environment",
+    "list-environments",
+    "view-environment",
+    "team-memberships",
+    "archive-environment",
+    "find-archived-environment",
+    "unarchive-environment",
+    "remove-environment"
+  ]
+}

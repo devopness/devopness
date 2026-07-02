@@ -28,14 +28,26 @@ class CredentialProvider(DevopnessBaseModel):
         type_human_readable (str): Human readable version of provider type
     """
 
-    code: StrictStr = Field(description="The provider code")
-    name: StrictStr = Field(description="The provider name")
-    hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+    code: StrictStr = Field(
+        description="The provider code", json_schema_extra={"examples": ["aws"]}
     )
-    type: StrictStr = Field(description="Type of provider.")
+    name: StrictStr = Field(
+        description="The provider name",
+        json_schema_extra={"examples": ["Amazon Web Services"]},
+    )
+    hint: StrictStr = Field(
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
+    )
+    type: StrictStr = Field(
+        description="Type of provider.",
+        json_schema_extra={"examples": ["cloud_provider"]},
+    )
     type_human_readable: StrictStr = Field(
-        description="Human readable version of provider type"
+        description="Human readable version of provider type",
+        json_schema_extra={"examples": ["Cloud Provider"]},
     )
 
 

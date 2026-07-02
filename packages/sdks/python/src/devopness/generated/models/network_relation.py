@@ -40,32 +40,50 @@ class NetworkRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
+    id: StrictInt = Field(
+        description="The unique id of the given record",
+        json_schema_extra={"examples": [6721]},
+    )
     project_id: StrictInt = Field(
-        description="Numeric ID of the project to which the network belongs to"
+        description="Numeric ID of the project to which the network belongs to",
+        json_schema_extra={"examples": [123]},
     )
     environment_id: StrictInt = Field(
-        description="Numeric ID of the environment to which the network belongs to"
+        description="Numeric ID of the environment to which the network belongs to",
+        json_schema_extra={"examples": [456]},
     )
     created_by: StrictInt = Field(
-        description="The id of the user who created the network"
+        description="The id of the user who created the network",
+        json_schema_extra={"examples": [789]},
     )
     is_auto_generated: StrictBool = Field(
-        description="If true, the network is auto-generated"
+        description="If true, the network is auto-generated",
+        json_schema_extra={"examples": [False]},
     )
-    provider_name: StrictStr = Field(description="The name of the cloud provider")
+    provider_name: StrictStr = Field(
+        description="The name of the cloud provider",
+        json_schema_extra={"examples": ["aws"]},
+    )
     provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider's name"
+        description="The human readable version of the provider's name",
+        json_schema_extra={"examples": ["Amazon Web Services"]},
     )
     credential: Credential | None = None
-    name: StrictStr = Field(description="The networks's name")
+    name: StrictStr = Field(
+        description="The networks's name",
+        json_schema_extra={"examples": ["my-network"]},
+    )
     provision_input: NetworkProvisionInput
     last_action: ActionRelationShallow | None = None
     created_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

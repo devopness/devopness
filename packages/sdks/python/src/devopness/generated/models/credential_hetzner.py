@@ -25,7 +25,10 @@ class CredentialHetzner(DevopnessBaseModel):
     """
 
     api_token: StrictStr = Field(
-        description="The API token used to authenticate to Hetzner"
+        description="The API token used to authenticate to Hetzner",
+        json_schema_extra={
+            "examples": ["1d0493baf88ce53a0dea2866ee05f032edb8c12easdasd12"]
+        },
     )
 
 

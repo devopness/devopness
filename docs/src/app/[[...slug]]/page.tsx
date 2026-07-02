@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import {
@@ -15,6 +16,10 @@ import { RequiredPermissions } from '@/components/required-permissions';
 import { getGithubDocsEditUrl, getGithubDocsRawUrl } from '@/lib/constants';
 import { getLLMText, getPageImage, source } from '@/lib/source';
 import { getMDXComponents } from '@/mdx-components';
+import {
+  isRedundantDocsHref,
+  normalizeInternalDocUrl,
+} from '@/plugins/remark-mention-link';
 
 export default async function Page(props: {
   params: Promise<{ slug: string[] }>;
@@ -25,6 +30,26 @@ export default async function Page(props: {
 
   const MDX = page.data.body;
   const markdown = await getLLMText(page);
+
+  // Fumadocs link component that resolves relative (`./foo`) links.
+  const RelativeLink = createRelativeLink(source, page);
+
+  // Wrap it to strip a redundant `/docs` prefix from in-site links so legacy
+  // `[label](/docs/...)` markdown does not resolve to `/docs/docs/...` under the
+  // Next.js `basePath: '/docs'`. External, anchor, and relative links pass through.
+  const DocsLink = (props: ComponentProps<'a'>) => {
+    const href =
+      typeof props.href === 'string' && isRedundantDocsHref(props.href)
+        ? normalizeInternalDocUrl(props.href)
+        : props.href;
+
+    return (
+      <RelativeLink
+        {...props}
+        href={href}
+      />
+    );
+  };
 
   return (
     <DocsPage
@@ -46,7 +71,7 @@ export default async function Page(props: {
         {page.data.intro && <p>{page.data.intro}</p>}
         <MDX
           components={getMDXComponents({
-            a: createRelativeLink(source, page),
+            a: DocsLink,
           })}
         />
         {page.data.required_permissions &&

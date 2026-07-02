@@ -1,5 +1,37 @@
 # @devopness/ui-react
 
+## 2.192.4
+
+### Patch Changes
+
+- [#3259](https://github.com/devopness/devopness/pull/3259) [`930bc4e`](https://github.com/devopness/devopness/commit/930bc4e380413f5ec8ae8d8c339eff68dcc61d1b) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `tooltip` prop to `addUrl` in `Card` for enabled-state tooltip and accessible name on the + button
+
+## 2.192.3
+
+### Patch Changes
+
+- [#3230](https://github.com/devopness/devopness/pull/3230) [`6f3f45c`](https://github.com/devopness/devopness/commit/6f3f45c4f3ae02a94bcbe576df21c0e1410d987b) Thanks [@rebecagrn](https://github.com/rebecagrn)! - Add aria-label, title, and disabled state stories to Radix Button in Storybook
+
+## 2.192.2
+
+### Patch Changes
+
+- [#3251](https://github.com/devopness/devopness/pull/3251) [`e5a71ca`](https://github.com/devopness/devopness/commit/e5a71ca27c71b914979ab2ead4829ff0ce12ac77) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add 'addUrl' to the Pick<CardProps, ...> union in CardListProps.data so consumers can pass addUrl per card item and have it reach the underlying Card component via the existing {...props} spread.
+
+## 2.192.1
+
+### Patch Changes
+
+- [#3211](https://github.com/devopness/devopness/pull/3211) [`32689c9`](https://github.com/devopness/devopness/commit/32689c97c28ce996e61226378dc36210e7b2113a) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add structured message support to EmptyData.
+
+- [#3217](https://github.com/devopness/devopness/pull/3217) [`ecb2a36`](https://github.com/devopness/devopness/commit/ecb2a3631a29862af312558dbf77d29ef784a72a) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Fix Popover body spacing by wrapping the content in a dedicated container, keeping the header, body, and footer aligned consistently.
+
+## 2.192.0
+
+### Minor Changes
+
+- [#3212](https://github.com/devopness/devopness/pull/3212) [`6811f36`](https://github.com/devopness/devopness/commit/6811f365d18e1bd3da7683bc1efae217582e7d5d) Thanks [@GustavoSMelo](https://github.com/GustavoSMelo)! - Add CardList component with CardContent, CardTheme, and utility functions
+
 ## 2.191.0
 
 ### Minor Changes

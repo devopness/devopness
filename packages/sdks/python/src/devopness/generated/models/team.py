@@ -34,17 +34,28 @@ class Team(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given team")
-    name: StrictStr = Field(description="The name of the given team")
-    photo_url: StrictStr | None = Field(description="The URL to team's image")
+    id: StrictInt = Field(
+        description="The unique ID of the given team",
+        json_schema_extra={"examples": [137]},
+    )
+    name: StrictStr = Field(
+        description="The name of the given team",
+        json_schema_extra={"examples": ["One Development Team"]},
+    )
+    photo_url: StrictStr | None = Field(
+        description="The URL to team's image",
+        json_schema_extra={"examples": ["https://example.com/images/my_team.png"]},
+    )
     users: list[UserRelation | None] = Field(description="The list of users")
     organization: OrganizationRelation | None
     created_by_user: UserRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
 
 

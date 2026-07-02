@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "index",
+    "add-organization",
+    "edit-organization",
+    "remove-organization"
+  ]
+}

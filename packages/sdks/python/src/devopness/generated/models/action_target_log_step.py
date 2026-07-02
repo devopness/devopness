@@ -28,12 +28,17 @@ class ActionTargetLogStep(DevopnessBaseModel):
         output (str, optional, nullable): The full text output log
     """
 
-    order: StrictInt = Field(description="The execution order of the given step")
+    order: StrictInt = Field(
+        description="The execution order of the given step",
+        json_schema_extra={"examples": [3]},
+    )
     started_at: datetime | None = Field(
-        description="The date and time when the step started execution (i.e., left the `pending/queued` status)"
+        description="The date and time when the step started execution (i.e., left the `pending/queued` status)",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     completed_at: datetime | None = Field(
-        description="The date and time when the step has finished execution"
+        description="The date and time when the step has finished execution",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
     output: StrictStr | None = Field(description="The full text output log")
 

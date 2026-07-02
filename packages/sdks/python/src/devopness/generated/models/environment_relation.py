@@ -38,28 +38,40 @@ class EnvironmentRelation(DevopnessBaseModel):
         project (ProjectRelation, optional, nullable):
     """
 
-    id: StrictInt = Field(description="Unique id of the given record")
+    id: StrictInt = Field(
+        description="Unique id of the given record", json_schema_extra={"examples": [2]}
+    )
     type: EnvironmentType
     type_human_readable: StrictStr = Field(
-        description="The human readable version of the type"
+        description="The human readable version of the type",
+        json_schema_extra={"examples": ["Staging"]},
     )
-    name: StrictStr = Field(description="Environment's name")
-    description: StrictStr | None = Field(description="Environment's description")
+    name: StrictStr = Field(
+        description="Environment's name", json_schema_extra={"examples": ["My staging"]}
+    )
+    description: StrictStr | None = Field(
+        description="Environment's description",
+        json_schema_extra={"examples": ["My staging environment"]},
+    )
     used_credits: StrictInt | None = Field(
         default=None,
         description="Number of credits used in the current monthly billing cycle by actions of resources in the environment.",
+        json_schema_extra={"examples": [50]},
     )
     resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
     archived_at: StrictStr | None = Field(
-        description="The date and time when the record was archived"
+        description="The date and time when the record was archived",
+        json_schema_extra={"examples": ["2019-09-26T10:45:42.000000Z"]},
     )
     project: ProjectRelation | None
 

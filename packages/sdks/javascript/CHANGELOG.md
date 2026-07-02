@@ -1,5 +1,17 @@
 # @devopness/sdk-js
 
+## 3.5.1
+
+### Patch Changes
+
+- [#3270](https://github.com/devopness/devopness/pull/3270) [`b9058ca`](https://github.com/devopness/devopness/commit/b9058ca507280b2e6afd4d68026ddbf3f9173d67) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Fix `accessToken` expiry checks so SDK-JS can decode JWT payloads in browser runtimes and safely ignore malformed tokens instead of throwing from the axios error path.
+
+## 3.5.0
+
+### Minor Changes
+
+- [#3242](https://github.com/devopness/devopness/pull/3242) [`42b13b2`](https://github.com/devopness/devopness/commit/42b13b24e3e2a82fd62de3b65347e3fd86d56d52) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Adds optional `trigger_comment` support to action-triggered pipeline and daemon operations, exposes `supports_trigger_comment` in pipeline settings, and adds `ubuntu_26_04` to the cloud OS version enum.
+
 ## 3.4.1
 
 ### Patch Changes

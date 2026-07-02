@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "index",
+    "claude-code",
+    "codex-cli",
+    "gemini-cli",
+    "windsurf",
+    "zed",
+    "jetbrains",
+    "warp",
+    "trae",
+    "antigravity",
+    "opencode"
+  ]
+}

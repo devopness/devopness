@@ -24,7 +24,10 @@ class ServiceUpdate(DevopnessBaseModel):
         id (int): The unique ID of the given Service.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Service.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Service.",
+        json_schema_extra={"examples": [1]},
+    )
 
 
 class ServiceUpdatePlain(TypedDict, total=False):

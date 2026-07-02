@@ -14354,6 +14354,12 @@
             "example": "https://devopness.com/actions/567819876",
             "type": "string"
           },
+          "trigger_comment": {
+            "description": "Optional comment attached to this action",
+            "example": "Triggered after a configuration update.",
+            "type": "string",
+            "nullable": true
+          },
           "action_data": {
             "$ref": "#/components/schemas/ActionData"
           },
@@ -14424,6 +14430,7 @@
           "type",
           "type_human_readable",
           "url_web_permalink",
+          "trigger_comment",
           "action_data",
           "triggered_from",
           "parent",
@@ -14597,6 +14604,11 @@
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           },
+          "trigger_comment": {
+            "description": "Optional comment provided when triggering this action. Must not be greater than 255 characters. Must not be greater than 255 characters.",
+            "example": "Deploying a hotfix for production.",
+            "type": "string"
+          },
           "source_type": {
             "$ref": "#/components/schemas/SourceType"
           },
@@ -14643,6 +14655,12 @@
             "description": "The permalink URL to the action details on Devopness web app",
             "example": "https://devopness.com/actions/567819876",
             "type": "string"
+          },
+          "trigger_comment": {
+            "description": "Optional comment attached to this action",
+            "example": "Triggered after a configuration update.",
+            "type": "string",
+            "nullable": true
           },
           "action_data": {
             "$ref": "#/components/schemas/ActionData"
@@ -14691,6 +14709,7 @@
           "type",
           "type_human_readable",
           "url_web_permalink",
+          "trigger_comment",
           "triggered_from",
           "resource",
           "started_at",
@@ -14905,6 +14924,12 @@
             "example": "https://devopness.com/actions/567819876",
             "type": "string"
           },
+          "trigger_comment": {
+            "description": "Optional comment attached to this action",
+            "example": "Triggered after a configuration update.",
+            "type": "string",
+            "nullable": true
+          },
           "action_data": {
             "$ref": "#/components/schemas/ActionData"
           },
@@ -14975,6 +15000,7 @@
           "type",
           "type_human_readable",
           "url_web_permalink",
+          "trigger_comment",
           "action_data",
           "triggered_from",
           "parent",
@@ -16610,13 +16636,14 @@
         "type": "string",
         "nullable": true,
         "description": "The Operating System distribution and version used in the server/virtual machine instance",
-        "example": "ubuntu_24_04",
+        "example": "ubuntu_26_04",
         "enum": [
           "centos_7",
           "ubuntu_18_04",
           "ubuntu_20_04",
           "ubuntu_22_04",
-          "ubuntu_24_04"
+          "ubuntu_24_04",
+          "ubuntu_26_04"
         ]
       },
       "CloudProvider": {
@@ -18049,6 +18076,11 @@
         "properties": {
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
+          },
+          "trigger_comment": {
+            "description": "Optional comment provided when triggering this action. Must not be greater than 255 characters.",
+            "example": "Deploying after updating the daemon configuration.",
+            "type": "string"
           }
         }
       },
@@ -18104,6 +18136,11 @@
         "properties": {
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
+          },
+          "trigger_comment": {
+            "description": "Optional comment provided when triggering this action. Must not be greater than 255 characters.",
+            "example": "Deploying after updating the daemon configuration.",
+            "type": "string"
           }
         }
       },
@@ -18189,6 +18226,11 @@
         "properties": {
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
+          },
+          "trigger_comment": {
+            "description": "Optional comment provided when triggering this action. Must not be greater than 255 characters.",
+            "example": "Deploying after updating the daemon configuration.",
+            "type": "string"
           }
         }
       },
@@ -18197,6 +18239,11 @@
         "properties": {
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
+          },
+          "trigger_comment": {
+            "description": "Optional comment provided when triggering this action. Must not be greater than 255 characters.",
+            "example": "Deploying after updating the daemon configuration.",
+            "type": "string"
           }
         }
       },
@@ -18205,6 +18252,11 @@
         "properties": {
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
+          },
+          "trigger_comment": {
+            "description": "Optional comment provided when triggering this action. Must not be greater than 255 characters.",
+            "example": "Deploying after updating the daemon configuration.",
+            "type": "string"
           }
         }
       },
@@ -21353,6 +21405,11 @@
           "is_user_managed": {
             "type": "boolean",
             "description": "Indicates whether the user has permission to manage the pipeline for the resource operation",
+            "example": true
+          },
+          "supports_trigger_comment": {
+            "type": "boolean",
+            "description": "Indicates whether this resource operation supports an optional trigger comment",
             "example": true
           },
           "stages": {

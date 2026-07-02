@@ -38,31 +38,38 @@ class LanguageRuntimeFrameworkDefaults(DevopnessBaseModel):
     default_branch: StrictStr | None = Field(
         default=None,
         description="The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.",
+        json_schema_extra={"examples": ["main"]},
     )
     engine_version: StrictStr | None = Field(
         default=None,
         description="The language runtime engine version to be used to execute this application code on the deployed servers",
+        json_schema_extra={"examples": ["19.03.2"]},
     )
     framework: StrictStr | None = Field(
         default=None,
         description="The base framework on top of which the application has been implemented - if any",
+        json_schema_extra={"examples": ["fastapi"]},
     )
     root_directory: StrictStr | None = Field(
         default=None,
         description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+        json_schema_extra={"examples": ["/ or /src or /lib/src or /code or /app"]},
     )
     deployments_keep: StrictInt | None = Field(
         default=None,
         description="The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers",
+        json_schema_extra={"examples": [4]},
     )
     commands: LanguageRuntimeFrameworkCommands | None = None
     install_dependencies_command: StrictStr | None = Field(
         default=None,
         description="Indicates command that Devopness must execute to install application dependencies",
+        json_schema_extra={"examples": ["npm install"]},
     )
     build_command: StrictStr | None = Field(
         default=None,
         description="The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+        json_schema_extra={"examples": ["npm run build"]},
     )
 
 

@@ -38,28 +38,45 @@ class LinkedResourceData(DevopnessBaseModel):
         updated_at (datetime, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the resource")
-    name: StrictStr = Field(description="Resource name")
+    id: StrictInt = Field(
+        description="The unique ID of the resource",
+        json_schema_extra={"examples": [1839123]},
+    )
+    name: StrictStr = Field(
+        description="Resource name", json_schema_extra={"examples": ["my-server"]}
+    )
     summary_fields: list[LinkedResourceSummaryField] | None = Field(
         default=None, description="The summary of linked resource fields"
     )
     environment_id: StrictInt | None = Field(
-        default=None, description="The ID of the environment this resource belongs to"
+        default=None,
+        description="The ID of the environment this resource belongs to",
+        json_schema_extra={"examples": [12345]},
     )
     environment_name: StrictStr | None = Field(
-        default=None, description="The name of the environment this resource belongs to"
+        default=None,
+        description="The name of the environment this resource belongs to",
+        json_schema_extra={"examples": ["production"]},
     )
     project_id: StrictInt | None = Field(
-        default=None, description="The ID of the project this resource belongs to"
+        default=None,
+        description="The ID of the project this resource belongs to",
+        json_schema_extra={"examples": [12345]},
     )
     project_name: StrictStr | None = Field(
-        default=None, description="The name of the project this resource belongs to"
+        default=None,
+        description="The name of the project this resource belongs to",
+        json_schema_extra={"examples": ["my-project"]},
     )
     created_at: datetime | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     updated_at: datetime | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
 
 

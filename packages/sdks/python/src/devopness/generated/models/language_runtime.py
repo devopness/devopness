@@ -37,10 +37,12 @@ class LanguageRuntime(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="The internal name/code of the language runtime"
+        description="The internal name/code of the language runtime",
+        json_schema_extra={"examples": ["nodejs"]},
     )
     name_human_readable: StrictStr = Field(
-        description="The formatted name to be displayed in user interfaces"
+        description="The formatted name to be displayed in user interfaces",
+        json_schema_extra={"examples": ["Node.js"]},
     )
     engine_versions: list[LanguageRuntimeEngineVersionsInner] = Field(
         description="The list of the supported versions of the runtime engine"

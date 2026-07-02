@@ -31,9 +31,13 @@ class CredentialUpdate(DevopnessBaseModel):
         settings (CredentialInputSettings, optional):
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Credential.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Credential.",
+        json_schema_extra={"examples": [1]},
+    )
     name: StrictStr = Field(
-        description="The name of the credential. Must not be greater than 60 characters."
+        description="The name of the credential. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["My cool credential"]},
     )
     settings: CredentialInputSettings | None = None
 

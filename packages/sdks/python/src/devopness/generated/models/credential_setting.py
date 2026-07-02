@@ -34,7 +34,8 @@ class CredentialSetting(DevopnessBaseModel):
 
     provider: CredentialProviderType
     organization_id: StrictInt = Field(
-        description="Numeric ID of the organization to which the credential belongs to"
+        description="Numeric ID of the organization to which the credential belongs to",
+        json_schema_extra={"examples": [456]},
     )
     settings: ProviderSettings
 

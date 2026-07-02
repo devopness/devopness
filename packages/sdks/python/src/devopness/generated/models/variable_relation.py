@@ -40,36 +40,48 @@ class VariableRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The ID of the given variable")
+    id: StrictInt = Field(
+        description="The ID of the given variable",
+        json_schema_extra={"examples": [93023]},
+    )
     key: StrictStr = Field(
-        description="The unique key used to identify the variable on the target"
+        description="The unique key used to identify the variable on the target",
+        json_schema_extra={"examples": ["APP_URL"]},
     )
     type: VariableType
     description: StrictStr | None = Field(
-        description="A text describing the variable, provided by the end user"
+        description="A text describing the variable, provided by the end user",
+        json_schema_extra={"examples": ["Sample variable description"]},
     )
     value: StrictStr | None = Field(
-        description="The value to be assigned to this variable when deployed to its target"
+        description="The value to be assigned to this variable when deployed to its target",
+        json_schema_extra={"examples": ["https://staging.devopness.com"]},
     )
     target: VariableTarget
     target_human_readable: StrictStr = Field(
-        description="Human readable version of target"
+        description="Human readable version of target",
+        json_schema_extra={"examples": ["Resource Configuration File"]},
     )
     resource_id: StrictInt | None = Field(
-        description="The ID of the resource this variable is linked to"
+        description="The ID of the resource this variable is linked to",
+        json_schema_extra={"examples": [3426]},
     )
     resource_type: StrictStr = Field(
-        description="The name of the resource this variable is linked to"
+        description="The name of the resource this variable is linked to",
+        json_schema_extra={"examples": ["application"]},
     )
     hidden: StrictBool = Field(
-        description="Indicates if the variable value should be visible or not in the deployment logs"
+        description="Indicates if the variable value should be visible or not in the deployment logs",
+        json_schema_extra={"examples": [False]},
     )
     created_by_user: UserRelation | None = None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2022-09-26T15:30:31.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2022-09-26T15:30:58.000000Z"]},
     )
 
 

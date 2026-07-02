@@ -33,14 +33,24 @@ class TriggeredActionStats(DevopnessBaseModel):
     """
 
     resource_type: StrictStr | None = Field(
-        default=None, description="Type of resource used in the action"
+        default=None,
+        description="Type of resource used in the action",
+        json_schema_extra={"examples": ["server"]},
     )
-    action_type: StrictStr | None = Field(default=None, description="Type of action")
+    action_type: StrictStr | None = Field(
+        default=None,
+        description="Type of action",
+        json_schema_extra={"examples": ["configure"]},
+    )
     resource_type_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the resource type"
+        default=None,
+        description="Human readable version of the resource type",
+        json_schema_extra={"examples": ["Server"]},
     )
     action_type_human_readable: StrictStr | None = Field(
-        default=None, description="Type of action human readable"
+        default=None,
+        description="Type of action human readable",
+        json_schema_extra={"examples": ["Add"]},
     )
     summary: TriggeredActionSummary | None = None
 

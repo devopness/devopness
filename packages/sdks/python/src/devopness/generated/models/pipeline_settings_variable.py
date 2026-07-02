@@ -27,14 +27,25 @@ class PipelineSettingsVariable(DevopnessBaseModel):
         required (bool, optional):
     """
 
-    name: StrictStr | None = None
-    human_readable: StrictStr | None = None
+    name: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["source_type"]}
+    )
+    human_readable: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["Source type"]}
+    )
     hint: StrictStr | None = Field(
         default=None,
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
-    type: StrictStr | None = None
-    required: StrictBool | None = None
+    type: StrictStr | None = Field(
+        default=None, json_schema_extra={"examples": ["string"]}
+    )
+    required: StrictBool | None = Field(
+        default=None, json_schema_extra={"examples": [True]}
+    )
 
 
 class PipelineSettingsVariablePlain(TypedDict, total=False):

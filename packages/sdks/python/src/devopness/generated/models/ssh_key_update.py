@@ -25,9 +25,13 @@ class SshKeyUpdate(DevopnessBaseModel):
         name (str): The ssh key&#39;s name. Must not be greater than 60 characters.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given SSH Key.")
+    id: StrictInt = Field(
+        description="The unique ID of the given SSH Key.",
+        json_schema_extra={"examples": [1]},
+    )
     name: StrictStr = Field(
-        description="The ssh key's name. Must not be greater than 60 characters."
+        description="The ssh key's name. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["my-ssh-key"]},
     )
 
 

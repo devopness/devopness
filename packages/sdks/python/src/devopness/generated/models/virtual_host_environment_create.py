@@ -34,21 +34,28 @@ class VirtualHostEnvironmentCreate(DevopnessBaseModel):
     linked_resources: list[ResourceToBeLinked] | None = Field(
         default=None, description="The resources to be linked with this resource"
     )
-    type: StrictStr = Field(description="The type of virtual host to be created.")
+    type: StrictStr = Field(
+        description="The type of virtual host to be created.",
+        json_schema_extra={"examples": ["name-based"]},
+    )
     name: StrictStr = Field(
-        description="The name of the virtual host, unique within the environment. For `name-based` type, it must be a valid domain name (e.g., `my-site.example.com`). For `ip-based` type, it must be a valid IPv4 address or an IPv4 address with port (e.g., `127.0.0.1:3000`). Must not be greater than 255 characters."
+        description="The name of the virtual host, unique within the environment. For `name-based` type, it must be a valid domain name (e.g., `my-site.example.com`). For `ip-based` type, it must be a valid IPv4 address or an IPv4 address with port (e.g., `127.0.0.1:3000`). Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["my-site.example.com"]},
     )
     root_directory: StrictStr | None = Field(
         default=None,
         description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["public"]},
     )
     application_listen_address: StrictStr | None = Field(
         default=None,
         description="The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket). Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["http://127.0.0.1:3000"]},
     )
     application_id: StrictInt | None = Field(
         default=None,
         description="The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
+        json_schema_extra={"examples": [1]},
     )
 
 

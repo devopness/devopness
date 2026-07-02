@@ -36,13 +36,19 @@ class TriggerWhenCondition(DevopnessBaseModel):
         accepted_values (List[TriggerWhenConditionAcceptedValuesInner]): List of accepted values for this condition.
     """
 
-    name: StrictStr | None = Field(default=None, description="Name of the condition")
+    name: StrictStr | None = Field(
+        default=None,
+        description="Name of the condition",
+        json_schema_extra={"examples": ["Check pullrequest author"]},
+    )
     type: TriggerWhenConditionType
     path: StrictStr = Field(
-        description="A dot-notation path of the request body attribute to be used as the value to evaluate this condition."
+        description="A dot-notation path of the request body attribute to be used as the value to evaluate this condition.",
+        json_schema_extra={"examples": ["pullrequest.author.nickname"]},
     )
     accepted_values: list[TriggerWhenConditionAcceptedValuesInner] = Field(
-        description="List of accepted values for this condition."
+        description="List of accepted values for this condition.",
+        json_schema_extra={"examples": [["myuser123", "bu_nick456"]]},
     )
 
 

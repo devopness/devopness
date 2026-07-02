@@ -25,5 +25,11 @@ export interface DaemonStop {
      * @memberof DaemonStop
      */
     servers?: Array<number>;
+    /**
+     * Optional comment provided when triggering this action. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof DaemonStop
+     */
+    trigger_comment?: string;
 }
 

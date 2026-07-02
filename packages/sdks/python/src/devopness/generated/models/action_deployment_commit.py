@@ -34,21 +34,52 @@ class ActionDeploymentCommit(DevopnessBaseModel):
     """
 
     repository: StrictStr = Field(
-        description="The repository of the deployed application"
+        description="The repository of the deployed application",
+        json_schema_extra={"examples": ["devopness/example"]},
     )
-    author_name: StrictStr = Field(description="The author of the commit")
-    author_email: StrictStr = Field(description="The commit author's email")
+    author_name: StrictStr = Field(
+        description="The author of the commit",
+        json_schema_extra={"examples": ["Author Name"]},
+    )
+    author_email: StrictStr = Field(
+        description="The commit author's email",
+        json_schema_extra={"examples": ["email@example.com"]},
+    )
     committed_at: datetime = Field(
-        description="The date and time when the commit was created"
+        description="The date and time when the commit was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
-    hash: StrictStr = Field(description="The commit hash used on deployment")
-    message: StrictStr = Field(description="The commit message")
-    url: StrictStr = Field(description="The commit URL on the source provider")
+    hash: StrictStr = Field(
+        description="The commit hash used on deployment",
+        json_schema_extra={"examples": ["d433e4622fde4b59a48586ed94082e2d76e855c1"]},
+    )
+    message: StrictStr = Field(
+        description="The commit message",
+        json_schema_extra={"examples": ["fix: some bug"]},
+    )
+    url: StrictStr = Field(
+        description="The commit URL on the source provider",
+        json_schema_extra={
+            "examples": [
+                "https://source-provider.com/commit/d433e4622fde4b59a48586ed94082e2d76e855c1"
+            ]
+        },
+    )
     clone_url: StrictStr = Field(
-        description="The URL to clone the repository on the specific commit"
+        description="The URL to clone the repository on the specific commit",
+        json_schema_extra={
+            "examples": [
+                "https://source-provider.com/commit/d433e4622fde4b59a48586ed94082e2d76e855c1.git"
+            ]
+        },
     )
     download_url: StrictStr = Field(
-        description="The URL to download the commit source code"
+        description="The URL to download the commit source code",
+        json_schema_extra={
+            "examples": [
+                "https://source-provider.com/commit/d433e4622fde4b59a48586ed94082e2d76e855c1.tar.gz"
+            ]
+        },
     )
 
 

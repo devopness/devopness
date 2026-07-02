@@ -25,5 +25,11 @@ export interface DaemonGetStatus {
      * @memberof DaemonGetStatus
      */
     servers?: Array<number>;
+    /**
+     * Optional comment provided when triggering this action. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof DaemonGetStatus
+     */
+    trigger_comment?: string;
 }
 

@@ -4,8 +4,8 @@ intro: Add an SSL Certificate to secure communication between clients and server
 links:
   overview:
   quickstart:
-  previous: ssl-certificates/index
-  next: ssl-certificates/list-ssl-certificates
+  previous: virtual-hosts/add-virtual-host
+  next: organizations/index
   guides:
   related:
     - ssl-certificates/list-ssl-certificates

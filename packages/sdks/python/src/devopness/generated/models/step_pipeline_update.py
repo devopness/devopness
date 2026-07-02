@@ -36,30 +36,45 @@ class StepPipelineUpdate(DevopnessBaseModel):
         trigger_after (int, optional): Repositions the pipeline step after the step with the given &#x60;trigger_order&#x60;. Must be at least 0. Must not be greater than 16777214.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Pipeline Step.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Pipeline Step.",
+        json_schema_extra={"examples": [1]},
+    )
     name: StrictStr | None = Field(
         default=None,
         description="Name/short description of the script. Must be at least 4 characters. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["Extra step before build app"]},
     )
     description: StrictStr | None = Field(
         default=None,
         description="A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.",
+        json_schema_extra={
+            "examples": ["This is an extra step before build application."]
+        },
     )
     type: StrictStr | None = Field(
         default=None,
         description="The pipeline step's type. Must not be greater than 20 characters.",
+        json_schema_extra={"examples": ["default-step"]},
     )
     command: StrictStr = Field(
-        description="A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters."
+        description="A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.",
+        json_schema_extra={
+            "examples": [
+                "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+            ]
+        },
     )
     runner: PipelineStepRunnerName
     run_as_user: StrictStr | None = Field(
         default=None,
         description="The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["devopness"]},
     )
     trigger_after: StrictInt | None = Field(
         default=None,
         description="Repositions the pipeline step after the step with the given `trigger_order`. Must be at least 0. Must not be greater than 16777214.",
+        json_schema_extra={"examples": [2000]},
     )
 
 

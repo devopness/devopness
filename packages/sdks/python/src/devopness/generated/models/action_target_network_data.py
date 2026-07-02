@@ -30,14 +30,23 @@ class ActionTargetNetworkData(DevopnessBaseModel):
         provision_input (NetworkProvisionInput):
     """
 
-    id: StrictInt = Field(description="The unique id of the network")
-    name: StrictStr = Field(description="The networks's name")
+    id: StrictInt = Field(
+        description="The unique id of the network",
+        json_schema_extra={"examples": [9654123]},
+    )
+    name: StrictStr = Field(
+        description="The networks's name",
+        json_schema_extra={"examples": ["my-network"]},
+    )
     provider_name: StrictStr | None = Field(
-        default=None, description="The name of the network's cloud provider."
+        default=None,
+        description="The name of the network's cloud provider.",
+        json_schema_extra={"examples": ["aws"]},
     )
     provider_name_human_readable: StrictStr | None = Field(
         default=None,
         description="The human readable version of the cloud provider's name",
+        json_schema_extra={"examples": ["Amazon Web Services"]},
     )
     provision_input: NetworkProvisionInput
 

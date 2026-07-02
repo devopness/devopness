@@ -25,5 +25,11 @@ export interface DaemonRestart {
      * @memberof DaemonRestart
      */
     servers?: Array<number>;
+    /**
+     * Optional comment provided when triggering this action. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof DaemonRestart
+     */
+    trigger_comment?: string;
 }
 

@@ -33,22 +33,33 @@ class OperatingSystemVersion(DevopnessBaseModel):
         end_of_life_at (str): The date when this release will no longer receive any patches or security updates. For details and terms of service, please refer to the documentation on the OS website.
     """
 
-    name: StrictStr = Field(description="Version name")
-    code_name: StrictStr = Field(
-        description="The name given to the OS version while it is under development. For some OS it can be seen as a version nickname that is used to refer to that version even after official release."
+    name: StrictStr = Field(
+        description="Version name",
+        json_schema_extra={"examples": ["22.04 LTS (Jammy Jellyfish)"]},
     )
-    version: StrictStr = Field(description="Version number")
+    code_name: StrictStr = Field(
+        description="The name given to the OS version while it is under development. For some OS it can be seen as a version nickname that is used to refer to that version even after official release.",
+        json_schema_extra={"examples": ["Jammy Jellyfish"]},
+    )
+    version: StrictStr = Field(
+        description="Version number", json_schema_extra={"examples": ["22.04"]}
+    )
     os_version_code: CloudOsVersionCode | None
     os_version_code_human_readable: StrictStr | None = Field(
         default=None,
         description="Human readable version of the operating system version",
+        json_schema_extra={"examples": ["Ubuntu 22.04 LTS (Jammy Jellyfish)"]},
     )
-    released_at: StrictStr = Field(description="Release date")
+    released_at: StrictStr = Field(
+        description="Release date", json_schema_extra={"examples": ["2020-04-23"]}
+    )
     end_standard_support_at: StrictStr = Field(
-        description="The date when this release will no longer receive updates under their LTS (Long Term Support) conditions. For details and terms of service, please refer to the documentation on the OS website."
+        description="The date when this release will no longer receive updates under their LTS (Long Term Support) conditions. For details and terms of service, please refer to the documentation on the OS website.",
+        json_schema_extra={"examples": ["2025-04-01"]},
     )
     end_of_life_at: StrictStr = Field(
-        description="The date when this release will no longer receive any patches or security updates. For details and terms of service, please refer to the documentation on the OS website."
+        description="The date when this release will no longer receive any patches or security updates. For details and terms of service, please refer to the documentation on the OS website.",
+        json_schema_extra={"examples": ["2030-04-01"]},
     )
 
 

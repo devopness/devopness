@@ -27,14 +27,23 @@ class StaticPermission(DevopnessBaseModel):
         required_permissions (List[str], optional): List of permissions the role must have before receiving this one
     """
 
-    name: StrictStr = Field(description="Name of permission")
-    human_readable: StrictStr = Field(description="Human readable permission name")
+    name: StrictStr = Field(
+        description="Name of permission", json_schema_extra={"examples": ["create"]}
+    )
+    human_readable: StrictStr = Field(
+        description="Human readable permission name",
+        json_schema_extra={"examples": ["Add"]},
+    )
     hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
     required_permissions: list[StrictStr] | None = Field(
         default=None,
         description="List of permissions the role must have before receiving this one",
+        json_schema_extra={"examples": [["application:read"]]},
     )
 
 

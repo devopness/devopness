@@ -49,26 +49,42 @@ class ActionTarget(DevopnessBaseModel):
         updated_at (datetime): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The ID of the action target")
+    id: StrictInt = Field(
+        description="The ID of the action target",
+        json_schema_extra={"examples": [1234]},
+    )
     resource_type: StrictStr = Field(
-        description="The type of the cloud resource on which the action must be performed"
+        description="The type of the cloud resource on which the action must be performed",
+        json_schema_extra={"examples": ["server"]},
     )
     resource_type_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the resource type"
+        default=None,
+        description="Human readable version of the resource type",
+        json_schema_extra={"examples": ["Server"]},
     )
     resource_id: StrictInt = Field(
-        description="The Id of the cloud resource on which the action must be performed"
+        description="The Id of the cloud resource on which the action must be performed",
+        json_schema_extra={"examples": [4567890]},
     )
     status: ActionStatus
     status_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the action status"
+        default=None,
+        description="Human readable version of the action status",
+        json_schema_extra={"examples": ["Pending"]},
     )
     status_reason_code: ActionStatusReasonCode
     status_reason_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the status reason code"
+        default=None,
+        description="Human readable version of the status reason code",
+        json_schema_extra={
+            "examples": [
+                "Pending: Target created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved."
+            ]
+        },
     )
     total_steps: Annotated[int, Field(le=127, strict=True, ge=0)] | None = Field(
-        description="The total number of steps to complete the action"
+        description="The total number of steps to complete the action",
+        json_schema_extra={"examples": [5]},
     )
     current_step: ActionStep | None
     steps: list[ActionStep | None] | None = Field(
@@ -78,16 +94,20 @@ class ActionTarget(DevopnessBaseModel):
     started_at: datetime | None = Field(
         default=None,
         description="The date and time when the action started execution (i.e., left the `pending/queued` status)",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     completed_at: datetime | None = Field(
         default=None,
         description="The date and time when the action has finished execution",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
     created_at: datetime = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     updated_at: datetime = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
 
 

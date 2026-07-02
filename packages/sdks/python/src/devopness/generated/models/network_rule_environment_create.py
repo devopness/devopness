@@ -37,15 +37,18 @@ class NetworkRuleEnvironmentCreate(DevopnessBaseModel):
         default=None, description="The resources to be linked with this resource"
     )
     name: StrictStr = Field(
-        description="The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters."
+        description="The rule's name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["Open MySQL port for remote access"]},
     )
     direction: NetworkRuleDirection
     protocol: NetworkRuleProtocol
     cidr_block: StrictStr = Field(
-        description="IP address range this rule applies for, defined using CIDR notation."
+        description="IP address range this rule applies for, defined using CIDR notation.",
+        json_schema_extra={"examples": ["10.0.0.0/24"]},
     )
     port: StrictInt = Field(
-        description="Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535."
+        description="Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535.",
+        json_schema_extra={"examples": [3306]},
     )
 
 

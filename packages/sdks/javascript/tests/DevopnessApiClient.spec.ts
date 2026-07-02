@@ -1,3 +1,4 @@
+import { expect, jest, test } from '@jest/globals';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
@@ -54,7 +55,7 @@ test("base URL is configurable on initialization", () => {
 })
 
 test("expired access_token should trigger callback function", async () => {
-  const mockRefreshTokenCallback = jest.fn(token => token);
+  const mockRefreshTokenCallback = jest.fn((token: string) => token);
 
   const apiClient = new DevopnessApiClient();
   apiClient.accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhcGkuZGV2b3BuZXNzLmNvbSIsImlhdCI6MTcxMjYyMTYwMywiZXhwIjoxNzEyNTg5MjAzLCJhdWQiOiJ3d3cubXktcHJvZHVjdC5jb20iLCJzdWIiOiJzb21lb25lQGV4YW1wbGUuY29tIiwic2NvcGUiOlsic2VydmVyOnJlYWQiLCJzZXJ2ZXI6Z2V0X3N0YXR1cyIsImFwcGxpY2F0aW9uOmRlcGxveSIsImFwcGxpY2F0aW9uOmVkaXQiLCJjcm9uam9iOnJlYWQiLCJjcm9uam9iOmRlcGxveSIsInNzbC1jZXJ0aWZpY2F0ZTpkZXBsb3kiXX0.GirkUv0UI1kUORKpcWSrSKsfbM-s5Hwd1LSlDpExgbg';

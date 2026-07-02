@@ -29,12 +29,17 @@ class Credits(DevopnessBaseModel):
     limit: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total credits that can be used to perform actions in the subscription period",
+        json_schema_extra={"examples": [200]},
     )
     used: Union[StrictFloat, StrictInt] | None = Field(
-        default=None, description="Total credits that were used to perform actions"
+        default=None,
+        description="Total credits that were used to perform actions",
+        json_schema_extra={"examples": [50]},
     )
     remaining: Union[StrictFloat, StrictInt] | None = Field(
-        default=None, description="Total credits available to use to perform actions"
+        default=None,
+        description="Total credits available to use to perform actions",
+        json_schema_extra={"examples": [150]},
     )
 
 

@@ -67,5 +67,20 @@ const Default: Story = {
   },
 }
 
-export { Default }
+const StructuredMessage: Story = {
+  name: 'Structured Message (title + description)',
+  argTypes: {
+    message: { control: false },
+  },
+  args: {
+    image: EMPTY_APPLICATIONS,
+    isSmallContainer: false,
+    message: {
+      title: 'Nothing here yet',
+      description: 'This is where your items will appear once you add them.',
+    },
+  },
+}
+
+export { Default, StructuredMessage }
 export default meta

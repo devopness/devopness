@@ -23,6 +23,7 @@ class ActionPipelineCreate(DevopnessBaseModel):
 
     Attributes:
         servers (List[int], optional): List of valid resource IDs
+        trigger_comment (str, optional): Optional comment provided when triggering this action. Must not be greater than 255 characters. Must not be greater than 255 characters.
         source_type (SourceType, optional):
         source_ref (str, optional): A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.
     """
@@ -30,10 +31,16 @@ class ActionPipelineCreate(DevopnessBaseModel):
     servers: list[StrictInt] | None = Field(
         default=None, description="List of valid resource IDs"
     )
+    trigger_comment: StrictStr | None = Field(
+        default=None,
+        description="Optional comment provided when triggering this action. Must not be greater than 255 characters. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["Deploying a hotfix for production."]},
+    )
     source_type: SourceType | None = None
     source_ref: StrictStr | None = Field(
         default=None,
         description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.",
+        json_schema_extra={"examples": ["main"]},
     )
 
 
@@ -43,5 +50,6 @@ class ActionPipelineCreatePlain(TypedDict, total=False):
     """
 
     servers: list[int] | None
+    trigger_comment: str | None
     source_type: Union[SourceType, SourceTypePlain] | None
     source_ref: str | None

@@ -29,9 +29,15 @@ class DeploymentDefaultStep(DevopnessBaseModel):
     """
 
     value: TriggerEvent
-    human_readable: StrictStr = Field(description="Formatted name of the event")
+    human_readable: StrictStr = Field(
+        description="Formatted name of the event",
+        json_schema_extra={"examples": ["Install dependencies"]},
+    )
     hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
 
 

@@ -41,6 +41,7 @@ class ActionRelation(DevopnessBaseModel):
         type (ActionType):
         type_human_readable (str): Human readable version of the action type
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
+        trigger_comment (str, optional, nullable): Optional comment attached to this action
         action_data (ActionData, optional, nullable):
         triggered_from (ActionTriggeredFrom):
         resource (ActionResource):
@@ -52,21 +53,36 @@ class ActionRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the given action")
+    id: StrictInt = Field(
+        description="The Id of the given action",
+        json_schema_extra={"examples": [567819876]},
+    )
     status: ActionStatus
     status_human_readable: StrictStr = Field(
-        description="Human readable version of action status"
+        description="Human readable version of action status",
+        json_schema_extra={"examples": ["Pending"]},
     )
     status_reason_code: ActionStatusReasonCode
     status_reason_human_readable: StrictStr = Field(
-        description="Human readable version of the status reason code"
+        description="Human readable version of the status reason code",
+        json_schema_extra={
+            "examples": [
+                "Pending: Action created successfully but has not yet been queued for execution. It will be added to an execution queue once their dependencies are resolved."
+            ]
+        },
     )
     type: ActionType
     type_human_readable: StrictStr = Field(
-        description="Human readable version of the action type"
+        description="Human readable version of the action type",
+        json_schema_extra={"examples": ["Deploy"]},
     )
     url_web_permalink: StrictStr = Field(
-        description="The permalink URL to the action details on Devopness web app"
+        description="The permalink URL to the action details on Devopness web app",
+        json_schema_extra={"examples": ["https://devopness.com/actions/567819876"]},
+    )
+    trigger_comment: StrictStr | None = Field(
+        description="Optional comment attached to this action",
+        json_schema_extra={"examples": ["Triggered after a configuration update."]},
     )
     action_data: ActionData | None = None
     triggered_from: ActionTriggeredFrom
@@ -76,16 +92,20 @@ class ActionRelation(DevopnessBaseModel):
         default=None, description="List of actions dispatched to cloud resource targets"
     )
     started_at: StrictStr | None = Field(
-        description="The date and time when the action started execution (i.e., left the `pending/queued` status)"
+        description="The date and time when the action started execution (i.e., left the `pending/queued` status)",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     completed_at: StrictStr | None = Field(
-        description="The date and time when the action has finished execution"
+        description="The date and time when the action has finished execution",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 
@@ -117,6 +137,7 @@ class ActionRelationPlain(TypedDict, total=False):
     ]
     type_human_readable: Required[str]
     url_web_permalink: Required[str]
+    trigger_comment: str | None
     action_data: Union[ActionData, ActionDataPlain] | None
     triggered_from: Required[
         Union[

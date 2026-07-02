@@ -25,5 +25,11 @@ export interface DaemonStart {
      * @memberof DaemonStart
      */
     servers?: Array<number>;
+    /**
+     * Optional comment provided when triggering this action. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof DaemonStart
+     */
+    trigger_comment?: string;
 }
 

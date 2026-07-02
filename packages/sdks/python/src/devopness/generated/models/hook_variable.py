@@ -33,14 +33,21 @@ class HookVariable(DevopnessBaseModel):
         default_value (HookVariableDefaultValue, optional, nullable):
     """
 
-    name: StrictStr | None = Field(default=None, description="The name of the variable")
+    name: StrictStr | None = Field(
+        default=None,
+        description="The name of the variable",
+        json_schema_extra={"examples": ["environment_id"]},
+    )
     path: StrictStr | None = Field(
         default=None,
         description="A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the `name` will be used instead.",
+        json_schema_extra={"examples": ["data.environment.id"]},
     )
     type: HookVariableType | None = None
     required: StrictBool | None = Field(
-        default=None, description="Defines if the variable is required"
+        default=None,
+        description="Defines if the variable is required",
+        json_schema_extra={"examples": [False]},
     )
     default_value: HookVariableDefaultValue | None = None
 

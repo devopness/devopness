@@ -18,6 +18,22 @@ describe('EmptyData', () => {
     ).toBeInTheDocument()
   })
 
+  it('should render structured message when passed as object', () => {
+    render(
+      <EmptyData
+        message={{
+          title: 'Nothing here yet',
+          description: 'Add your first item to get started.',
+        }}
+      />
+    )
+
+    expect(screen.getByText('Nothing here yet')).toBeInTheDocument()
+    expect(
+      screen.getByText('Add your first item to get started.')
+    ).toBeInTheDocument()
+  })
+
   it('should render the provided message when passed as prop', () => {
     const customMessage = 'No items found. Try creating one.'
 

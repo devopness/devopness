@@ -1,0 +1,9 @@
+{
+  "pages": [
+    "index",
+    "add-project-api-token",
+    "list-project-api-tokens",
+    "view-project-api-token",
+    "revoke-project-api-token"
+  ]
+}

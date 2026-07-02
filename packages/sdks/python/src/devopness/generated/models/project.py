@@ -39,11 +39,21 @@ class Project(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the project")
-    user_id: StrictInt = Field(description="The id of the user that own the project")
-    name: StrictStr = Field(description="The project's name")
+    id: StrictInt = Field(
+        description="The Id of the project", json_schema_extra={"examples": [45678]}
+    )
+    user_id: StrictInt = Field(
+        description="The id of the user that own the project",
+        json_schema_extra={"examples": [984123]},
+    )
+    name: StrictStr = Field(
+        description="The project's name", json_schema_extra={"examples": ["my project"]}
+    )
     logo_url: StrictStr | None = Field(
-        description="A URL path to the project's logo image"
+        description="A URL path to the project's logo image",
+        json_schema_extra={
+            "examples": ["https://example.com/projects-beautiful-logo.png"]
+        },
     )
     resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
@@ -53,14 +63,19 @@ class Project(DevopnessBaseModel):
     )
     organization: OrganizationRelation | None
     current_user_permissions: list[StrictStr] = Field(
-        description="The list of permissions granted for this role"
+        description="The list of permissions granted for this role",
+        json_schema_extra={
+            "examples": [["application:read", "application:create", "server:read"]]
+        },
     )
     created_by_user: UserRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2022-09-26T15:30:31.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2022-09-26T15:30:58.000000Z"]},
     )
 
 

@@ -27,12 +27,18 @@ class SubnetProvisionInputSettingsGcp(DevopnessBaseModel):
     """
 
     region: StrictStr = Field(
-        description="The cloud provider region where the subnet will be created"
+        description="The cloud provider region where the subnet will be created",
+        json_schema_extra={"examples": ["us-west1"]},
     )
     region_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the subnet region"
+        default=None,
+        description="Human readable version of the subnet region",
+        json_schema_extra={"examples": ["Oregon us-west1"]},
     )
-    cidr_block: StrictStr = Field(description="The IP CIDR range of the subnet")
+    cidr_block: StrictStr = Field(
+        description="The IP CIDR range of the subnet",
+        json_schema_extra={"examples": ["10.2.0.0/24"]},
+    )
 
 
 class SubnetProvisionInputSettingsGcpPlain(TypedDict, total=False):

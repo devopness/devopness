@@ -34,21 +34,35 @@ class Organization(DevopnessBaseModel):
         updated_at (str): The date and time when the organization was last updated
     """
 
-    id: StrictInt = Field(description="The unique identifier for the organization")
-    name: StrictStr = Field(description="The name of the organization")
-    url_slug: StrictStr = Field(description="The URL Slug of the organization")
+    id: StrictInt = Field(
+        description="The unique identifier for the organization",
+        json_schema_extra={"examples": [16523]},
+    )
+    name: StrictStr = Field(
+        description="The name of the organization",
+        json_schema_extra={"examples": ["My Organization"]},
+    )
+    url_slug: StrictStr = Field(
+        description="The URL Slug of the organization",
+        json_schema_extra={"examples": ["MyOrganization"]},
+    )
     resource_summary: list[ResourceSummaryItem] | None = Field(
         default=None, description="Summary of the resource"
     )
     current_user_permissions: list[StrictStr] = Field(
-        description="The list of permissions granted for this role"
+        description="The list of permissions granted for this role",
+        json_schema_extra={
+            "examples": [["application:read", "application:create", "server:read"]]
+        },
     )
     owner: UserRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the organization was created"
+        description="The date and time when the organization was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the organization was last updated"
+        description="The date and time when the organization was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

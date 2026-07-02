@@ -28,10 +28,12 @@ class UserTeamStats(DevopnessBaseModel):
     owner_of: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total number of teams that user has access to, as owner.",
+        json_schema_extra={"examples": [4]},
     )
     member_of: Union[StrictFloat, StrictInt] | None = Field(
         default=None,
         description="Total number of teams that user has access to, as team member.",
+        json_schema_extra={"examples": [6]},
     )
 
 

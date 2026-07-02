@@ -10,7 +10,7 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import Field, StrictInt
+from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -21,10 +21,18 @@ class DaemonStop(DevopnessBaseModel):
 
     Attributes:
         servers (List[int], optional): List of valid resource IDs
+        trigger_comment (str, optional): Optional comment provided when triggering this action. Must not be greater than 255 characters.
     """
 
     servers: list[StrictInt] | None = Field(
         default=None, description="List of valid resource IDs"
+    )
+    trigger_comment: StrictStr | None = Field(
+        default=None,
+        description="Optional comment provided when triggering this action. Must not be greater than 255 characters.",
+        json_schema_extra={
+            "examples": ["Deploying after updating the daemon configuration."]
+        },
     )
 
 
@@ -34,3 +42,4 @@ class DaemonStopPlain(TypedDict, total=False):
     """
 
     servers: list[int] | None
+    trigger_comment: str | None

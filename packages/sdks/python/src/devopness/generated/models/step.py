@@ -42,35 +42,65 @@ class Step(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given pipeline step")
-    name: StrictStr | None = Field(default=None, description="The pipeline step's name")
-    description: StrictStr | None = Field(
-        default=None, description="The pipeline step's description"
+    id: StrictInt = Field(
+        description="The unique ID of the given pipeline step",
+        json_schema_extra={"examples": [45678]},
     )
-    type: StrictStr = Field(description="The pipeline step's type")
+    name: StrictStr | None = Field(
+        default=None,
+        description="The pipeline step's name",
+        json_schema_extra={"examples": ["Extra step before build app"]},
+    )
+    description: StrictStr | None = Field(
+        default=None,
+        description="The pipeline step's description",
+        json_schema_extra={
+            "examples": ["This is an extra step before build application."]
+        },
+    )
+    type: StrictStr = Field(
+        description="The pipeline step's type",
+        json_schema_extra={"examples": ["default-step"]},
+    )
     run_as_user: StrictStr = Field(
-        description="The name of the Unix user on behalf of which the script will be executed"
+        description="The name of the Unix user on behalf of which the script will be executed",
+        json_schema_extra={"examples": ["devopness"]},
     )
     command: StrictStr = Field(
-        description="A command line or multiline bash pipeline step"
+        description="A command line or multiline bash pipeline step",
+        json_schema_extra={
+            "examples": [
+                "echo 'Deploy with devopness is a breeze!' | tee -a /tmp/build-started.log"
+            ]
+        },
     )
     runner: PipelineStepRunnerName
-    script_id: StrictInt = Field(description="The script's ID of this pipeline step")
-    pipeline_id: StrictInt = Field(description="The pipeline's ID")
+    script_id: StrictInt = Field(
+        description="The script's ID of this pipeline step",
+        json_schema_extra={"examples": [3452033]},
+    )
+    pipeline_id: StrictInt = Field(
+        description="The pipeline's ID", json_schema_extra={"examples": [7869450]}
+    )
     trigger_order: StrictInt = Field(
-        description="The relative order of the step execution in case of multiple steps attached to pipeline"
+        description="The relative order of the step execution in case of multiple steps attached to pipeline",
+        json_schema_extra={"examples": [1001]},
     )
     is_auto_generated: StrictBool = Field(
-        description="True if this step is auto-generated or false if this was created by the user"
+        description="True if this step is auto-generated or false if this was created by the user",
+        json_schema_extra={"examples": [False]},
     )
     is_default_step: StrictBool = Field(
-        description="True if this step is a default step of the pipeline and cannot be updated/deleted"
+        description="True if this step is a default step of the pipeline and cannot be updated/deleted",
+        json_schema_extra={"examples": [False]},
     )
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
 
 
