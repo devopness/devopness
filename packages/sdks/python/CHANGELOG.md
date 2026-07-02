@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.6.1
+
+### Patch Changes
+
+- [#3273](https://github.com/devopness/devopness/pull/3273) [`5800c26`](https://github.com/devopness/devopness/commit/5800c26746f35759a6cd0b6ccfc8d0d4ada8714c) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support for Symlink Variables
+
 ## 2.6.0
 
 ### Minor Changes
