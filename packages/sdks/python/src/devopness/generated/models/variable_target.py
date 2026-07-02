@@ -28,6 +28,7 @@ class VariableTarget(str, Enum):
     PHP_MINUS_FPM_POOL_MINUS_D_MINUS_WWW_MINUS_CONF = "php-fpm_pool-d-www-conf"
     REDIS_MINUS_CONF = "redis-conf"
     RESOURCE_MINUS_CONFIG_MINUS_FILE = "resource-config-file"
+    RESOURCE_MINUS_SYMLINK = "resource-symlink"
     SUPERVISORD_MINUS_CONF = "supervisord-conf"
     SYSCTL_MINUS_CONF = "sysctl-conf"
 
@@ -55,6 +56,7 @@ VariableTargetPlain = Literal[
     "php-fpm_pool-d-www-conf",
     "redis-conf",
     "resource-config-file",
+    "resource-symlink",
     "supervisord-conf",
     "sysctl-conf",
 ]
