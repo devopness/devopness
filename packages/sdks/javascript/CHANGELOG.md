@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.5.2
+
+### Patch Changes
+
+- [#3273](https://github.com/devopness/devopness/pull/3273) [`5800c26`](https://github.com/devopness/devopness/commit/5800c26746f35759a6cd0b6ccfc8d0d4ada8714c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add support for Symlink Variables
+
 ## 3.5.1
 
 ### Patch Changes

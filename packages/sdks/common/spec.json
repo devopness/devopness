@@ -26014,7 +26014,7 @@
             "type": "integer"
           },
           "key": {
-            "description": "The unique key used to identify the variable on the target",
+            "description": "The unique key used to identify the variable on the target, or the filesystem path for configuration files and symlinks",
             "example": "APP_URL",
             "type": "string"
           },
@@ -26028,7 +26028,7 @@
             "nullable": true
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target",
+            "description": "The value to be assigned to this variable when deployed to its target. For configuration files this is the file content; for symlinks this is the symlink target path",
             "example": "https://staging.devopness.com",
             "type": "string",
             "nullable": true
@@ -26090,12 +26090,12 @@
         "type": "object",
         "properties": {
           "key": {
-            "description": "The unique key used to identify the variable on the target.\n                When variable is of type `file`, this is the relative path\n                to the file within the application directory. Must not be greater than 100 characters.",
+            "description": "The unique key used to identify the variable on the target.\n                For `resource-config-file`, use a relative path such as `.env` or `storage/oauth-public.key`.\n                For `resource-symlink`, `key` is the link path and `value` is the destination path, for example `node_modules` -> `${APP_SHARED_DIR}/node_modules`. Must not be greater than 100 characters.",
             "example": "APP_URL",
             "type": "string"
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content.\n                When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.",
             "example": "https://staging.devopness.com",
             "type": "string"
           },
@@ -26128,12 +26128,12 @@
         "type": "object",
         "properties": {
           "key": {
-            "description": "The unique key used to identify the variable on the target. Must not be greater than 100 characters.",
+            "description": "The unique key used to identify the variable on the target. For `resource-config-file`, use a relative path such as `.env` or `storage/oauth-public.key`. For `resource-symlink`, `key` is the link path and `value` is the destination path, for example `node_modules` -> `${APP_SHARED_DIR}/node_modules`. Must not be greater than 100 characters.",
             "example": "APP_URL",
             "type": "string"
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content.\n                When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.",
             "example": "https://staging.devopness.com",
             "type": "string"
           },
@@ -26177,7 +26177,7 @@
             "type": "integer"
           },
           "key": {
-            "description": "The unique key used to identify the variable on the target",
+            "description": "The unique key used to identify the variable on the target, or the filesystem path for configuration files and symlinks",
             "example": "APP_URL",
             "type": "string"
           },
@@ -26191,7 +26191,7 @@
             "nullable": true
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target",
+            "description": "The value to be assigned to this variable when deployed to its target. For configuration files this is the file content; for symlinks this is the symlink target path",
             "example": "https://staging.devopness.com",
             "type": "string",
             "nullable": true
@@ -26304,6 +26304,7 @@
           "php-fpm_pool-d-www-conf",
           "redis-conf",
           "resource-config-file",
+          "resource-symlink",
           "supervisord-conf",
           "sysctl-conf"
         ],
@@ -26338,6 +26339,7 @@
         "type": "string",
         "enum": [
           "file",
+          "symlink",
           "variable"
         ],
         "example": "file"
@@ -26351,12 +26353,12 @@
             "type": "integer"
           },
           "key": {
-            "description": "The unique key used to identify the variable on the target.\n                    When variable is of type `file`, this is the relative path\n                    to the file within the application directory. Must not be greater than 100 characters.",
+            "description": "The unique key used to identify the variable on the target.\n                    For `resource-config-file`, use a relative path such as `.env` or `storage/oauth-public.key`.\n                    For `resource-symlink`, `key` is the link path and `value` is the destination path, for example `node_modules` -> `${APP_SHARED_DIR}/node_modules`. Must not be greater than 100 characters.",
             "example": "APP_URL",
             "type": "string"
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target.\n                    When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "description": "The value to be assigned to this variable when deployed to its target.\n                    When variable is of type `file`, this is the file content.\n                    When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.",
             "example": "https://staging.devopness.com",
             "type": "string"
           },
