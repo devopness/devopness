@@ -45,11 +45,17 @@ class Subnet(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
-    name: StrictStr = Field(description="The subnet's name")
+    id: StrictInt = Field(
+        description="The unique id of the given record",
+        json_schema_extra={"examples": [7641]},
+    )
+    name: StrictStr = Field(
+        description="The subnet's name", json_schema_extra={"examples": ["my-subnet"]}
+    )
     type: SubnetType
     is_auto_generated: StrictBool = Field(
-        description="True if this subnet is auto-generated or false if this was created by the user"
+        description="True if this subnet is auto-generated or false if this was created by the user",
+        json_schema_extra={"examples": [False]},
     )
     provision_input: SubnetProvisionInput
     created_by_user: UserRelation | None
@@ -59,10 +65,12 @@ class Subnet(DevopnessBaseModel):
     credential: CredentialRelation | None
     last_action: ActionRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

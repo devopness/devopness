@@ -30,10 +30,14 @@ class StaticVirtualHostType(DevopnessBaseModel):
 
     name: VirtualHostType
     name_human_readable: StrictStr = Field(
-        description="Human readable version of the virtual host type"
+        description="Human readable version of the virtual host type",
+        json_schema_extra={"examples": ["Domain name (name-based virtual host)"]},
     )
     hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
 
 

@@ -43,37 +43,62 @@ class ServerRelation(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
-    created_by: StrictInt = Field(
-        description="The id of the user who created the server and to whom the server belongs"
+    id: StrictInt = Field(
+        description="The unique id of the given record",
+        json_schema_extra={"examples": [9654123]},
     )
-    name: StrictStr = Field(description="The server's name")
-    hostname: StrictStr = Field(description="The server's hostname")
-    provider_name: StrictStr = Field(description="The name of the server's provider.")
+    created_by: StrictInt = Field(
+        description="The id of the user who created the server and to whom the server belongs",
+        json_schema_extra={"examples": [1]},
+    )
+    name: StrictStr = Field(
+        description="The server's name", json_schema_extra={"examples": ["web-srv-1"]}
+    )
+    hostname: StrictStr = Field(
+        description="The server's hostname",
+        json_schema_extra={"examples": ["web-srv-1"]},
+    )
+    provider_name: StrictStr = Field(
+        description="The name of the server's provider.",
+        json_schema_extra={"examples": ["self-hosted"]},
+    )
     provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider's name"
+        description="The human readable version of the provider's name",
+        json_schema_extra={"examples": ["VPS/Self Hosted"]},
     )
     credential: CredentialRelation | None = None
     region: StrictStr | None = Field(
-        description="The region in which the server is located"
+        description="The region in which the server is located",
+        json_schema_extra={"examples": ["us-east-1"]},
     )
     region_human_readable: StrictStr | None = Field(
-        description="The human readable version of the region"
+        description="The human readable version of the region",
+        json_schema_extra={"examples": ["US East (N. Virginia) us-east-1"]},
     )
     ip_address: StrictStr | None = Field(
-        default=None, description="Public ipv4 address for server access"
+        default=None,
+        description="Public ipv4 address for server access",
+        json_schema_extra={"examples": ["200.123.45.67"]},
     )
     ssh_port: StrictInt = Field(
-        description="The network port to which the SSH daemon is listening to SSH connections on the server"
+        description="The network port to which the SSH daemon is listening to SSH connections on the server",
+        json_schema_extra={"examples": [22]},
     )
-    active: StrictBool = Field(description="Tells if the server is active or not")
+    active: StrictBool = Field(
+        description="Tells if the server is active or not",
+        json_schema_extra={"examples": [True]},
+    )
     status: ServerStatus
     last_action: ActionRelationShallow | None = None
     created_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

@@ -28,14 +28,28 @@ class UserRefreshTokenResponse(DevopnessBaseModel):
     """
 
     token_type: StrictStr = Field(
-        description="The type of the authorization token being issued"
+        description="The type of the authorization token being issued",
+        json_schema_extra={"examples": ["Bearer"]},
     )
     expires_in: StrictInt = Field(
-        description="The number of seconds remaining to the token expiration time, to be counted since the token issue date and time"
+        description="The number of seconds remaining to the token expiration time, to be counted since the token issue date and time",
+        json_schema_extra={"examples": [3600]},
     )
-    access_token: StrictStr = Field(description="The issued JWT access token")
+    access_token: StrictStr = Field(
+        description="The issued JWT access token",
+        json_schema_extra={
+            "examples": [
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwYjQxZjk1MTdiYWExOTg4Zjk..."
+            ]
+        },
+    )
     refresh_token: StrictStr = Field(
-        description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint"
+        description="A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint",
+        json_schema_extra={
+            "examples": [
+                "def50200a757a1c4dbc4859a4c47195632f4df60ebb521ac5a28a0b7553101f08f8b9..."
+            ]
+        },
     )
 
 

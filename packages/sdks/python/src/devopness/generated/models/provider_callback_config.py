@@ -30,14 +30,20 @@ class ProviderCallbackConfig(DevopnessBaseModel):
     var_field: StrictStr = Field(
         description="The credential field name that this parameter maps to",
         alias="field",
+        json_schema_extra={"examples": ["callback_code"]},
     )
     query_string: StrictStr = Field(
-        description="The query parameter name in the callback URL"
+        description="The query parameter name in the callback URL",
+        json_schema_extra={"examples": ["code"]},
     )
     required: StrictBool = Field(
-        description="Whether this parameter is required in the callback"
+        description="Whether this parameter is required in the callback",
+        json_schema_extra={"examples": [True]},
     )
-    type: StrictStr = Field(description="The expected data type of the parameter value")
+    type: StrictStr = Field(
+        description="The expected data type of the parameter value",
+        json_schema_extra={"examples": ["string"]},
+    )
 
 
 class ProviderCallbackConfigPlain(TypedDict, total=False):

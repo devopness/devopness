@@ -31,6 +31,7 @@ class InvitationTeamCreate(DevopnessBaseModel):
     email: StrictStr | None = Field(
         default=None,
         description="The user email to send the invitation. Must be a valid email address. This field is required when <code>type</code> is <code>private</code>.",
+        json_schema_extra={"examples": ["invited.user@email.com"]},
     )
 
 

@@ -29,10 +29,14 @@ class NetworkEnvironmentCreate(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="The network's name. Must not be one of <code>default</code> Must be between 1 and 63 characters."
+        description="The network's name. Must not be one of <code>default</code> Must be between 1 and 63 characters.",
+        json_schema_extra={"examples": ["my-network"]},
     )
     provision_input: NetworkProvisionInput
-    credential_id: StrictInt = Field(description="The ID of the cloud credential.")
+    credential_id: StrictInt = Field(
+        description="The ID of the cloud credential.",
+        json_schema_extra={"examples": [123]},
+    )
 
 
 class NetworkEnvironmentCreatePlain(TypedDict, total=False):

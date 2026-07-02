@@ -33,10 +33,13 @@ class BlueprintService(DevopnessBaseModel):
     auto_start: StrictBool | None = Field(
         default=None,
         description="Indicates if the service will start automatically on operating system boot",
+        json_schema_extra={"examples": [False]},
     )
     initial_state: ServiceInitialState | None = ServiceInitialState.STARTED
     type: ServiceType
-    version: StrictStr = Field(description="The service version")
+    version: StrictStr = Field(
+        description="The service version", json_schema_extra={"examples": ["8.0"]}
+    )
 
 
 class BlueprintServicePlain(TypedDict, total=False):

@@ -27,15 +27,21 @@ class RepositoryRelation(DevopnessBaseModel):
         html_url (str): The URL for viewing repository details on the provider&#39;s web application
     """
 
-    name: StrictStr = Field(description="The name of the repository")
+    name: StrictStr = Field(
+        description="The name of the repository",
+        json_schema_extra={"examples": ["myrepo"]},
+    )
     user_name: StrictStr = Field(
-        description="The name of the user/account on the Version Control System"
+        description="The name of the user/account on the Version Control System",
+        json_schema_extra={"examples": ["myusername"]},
     )
     full_name: StrictStr = Field(
-        description="The fully qualified repository name. Usually composed of user_name/name"
+        description="The fully qualified repository name. Usually composed of user_name/name",
+        json_schema_extra={"examples": ["myusername/myrepo"]},
     )
     html_url: StrictStr = Field(
-        description="The URL for viewing repository details on the provider's web application"
+        description="The URL for viewing repository details on the provider's web application",
+        json_schema_extra={"examples": ["https://github.com/myusername/myrepo"]},
     )
 
 

@@ -27,7 +27,9 @@ class StaticServiceTypeSupportedVersionsInner(DevopnessBaseModel):
     """
 
     version: StrictStr | None = Field(
-        default=None, description="The service's version that is supported"
+        default=None,
+        description="The service's version that is supported",
+        json_schema_extra={"examples": ["8.0"]},
     )
     variable_targets: list[VariableTargets] | None = Field(
         default=None, description="The list of VariableTarget"

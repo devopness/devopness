@@ -25,7 +25,12 @@ class CredentialDigitalOcean(DevopnessBaseModel):
     """
 
     api_token: StrictStr = Field(
-        description="The API token used to authenticate to DigitalOcean"
+        description="The API token used to authenticate to DigitalOcean",
+        json_schema_extra={
+            "examples": [
+                "dop_v1_65f82e89e52a9109320868fd84cf9d5610958bd9d839ef3c30b70e43aa4e453e"
+            ]
+        },
     )
 
 

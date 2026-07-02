@@ -35,10 +35,12 @@ class ResourceTypeRelation(DevopnessBaseModel):
 
     resource_type: ResourceType
     resource_type_human_readable: StrictStr = Field(
-        description="Human readable version of the resource type"
+        description="Human readable version of the resource type",
+        json_schema_extra={"examples": ["Application"]},
     )
     resource_type_human_readable_plural: StrictStr = Field(
-        description="Human readable version of the resource type, in plural form"
+        description="Human readable version of the resource type, in plural form",
+        json_schema_extra={"examples": ["Applications"]},
     )
     supported_operations: list[ResourceOperation] = Field(
         description="A list of resource operations"

@@ -27,12 +27,18 @@ class NetworkProvisionInputSettingsDigitalOcean(DevopnessBaseModel):
     """
 
     region: StrictStr = Field(
-        description="The cloud provider region where the network will be created"
+        description="The cloud provider region where the network will be created",
+        json_schema_extra={"examples": ["ams2"]},
     )
     region_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the network region"
+        default=None,
+        description="Human readable version of the network region",
+        json_schema_extra={"examples": ["Amsterdam 2 ams2"]},
     )
-    cidr_block: StrictStr = Field(description="The IP CIDR range of the network")
+    cidr_block: StrictStr = Field(
+        description="The IP CIDR range of the network",
+        json_schema_extra={"examples": ["10.0.0.0/24"]},
+    )
 
 
 class NetworkProvisionInputSettingsDigitalOceanPlain(TypedDict, total=False):

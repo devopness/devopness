@@ -32,9 +32,17 @@ class SshKeyEnvironmentCreate(DevopnessBaseModel):
         default=None, description="The resources to be linked with this resource"
     )
     name: StrictStr = Field(
-        description="The ssh key's name. Must not be greater than 60 characters."
+        description="The ssh key's name. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["my-ssh-key"]},
     )
-    public_key: StrictStr = Field(description="The public key of the ssh key.")
+    public_key: StrictStr = Field(
+        description="The public key of the ssh key.",
+        json_schema_extra={
+            "examples": [
+                "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAJGoD1B2m718Q6us8k7UbkjwDJQkusFZ1Yg+s13yuEfd+pfEnni1YfWxz67HPCGUYMtdUTnb7Fkc9xgPgj5Fkl6vhQv1mFbL/addJcV9bIYd4e29LMEsojiAyh99JDTtSXMkljlWYuf4ywALswCna2w+70WHSdoDD3p82THDdoB7p9hPXRzRLZVAzw7Y7is/8Sho4V1byXPxxRfTd5HSGqLqi0zdoef8iXZ2wg4uBJStbszu75oSijM9zHgQtUxE0CgQ1iaPHOg8Idxmg8BQoaYD2OmzwxjwW4wmKUZ5F/qOMknrwZ6iUqjqYFJaLZrj6ZMEZ2ydTuS3uNAQO7Zfb"
+            ]
+        },
+    )
 
 
 class SshKeyEnvironmentCreatePlain(TypedDict, total=False):

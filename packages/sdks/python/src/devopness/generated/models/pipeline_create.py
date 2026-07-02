@@ -30,14 +30,17 @@ class PipelineCreate(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters."
+        description="The pipeline's name. Must be at least 3 characters. Must not be greater than 80 characters.",
+        json_schema_extra={"examples": ["My pipeline"]},
     )
     operation: StrictStr = Field(
-        description="The resource operation associated to the pipeline. Must not be greater than 20 characters."
+        description="The resource operation associated to the pipeline. Must not be greater than 20 characters.",
+        json_schema_extra={"examples": ["deploy"]},
     )
     max_parallel_actions: StrictInt | None = Field(
         default=None,
         description="Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.",
+        json_schema_extra={"examples": [1]},
     )
     trigger_when: PipelineTriggerWhen | None = None
 

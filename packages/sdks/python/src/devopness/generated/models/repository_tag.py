@@ -27,7 +27,9 @@ class RepositoryTag(DevopnessBaseModel):
         commit (RepositoryTagCommit):
     """
 
-    name: StrictStr = Field(description="The name of the tag")
+    name: StrictStr = Field(
+        description="The name of the tag", json_schema_extra={"examples": ["v1.0.0"]}
+    )
     commit: RepositoryTagCommit
 
 

@@ -31,16 +31,21 @@ class CloudServiceSettingsAwsEc2(DevopnessBaseModel):
     """
 
     instance_type: StrictStr = Field(
-        description="The instance type to be launched on the cloud provider"
+        description="The instance type to be launched on the cloud provider",
+        json_schema_extra={"examples": ["a1.medium"]},
     )
     region: StrictStr = Field(
-        description="Datacenter region where the cloud instance will be launched"
+        description="Datacenter region where the cloud instance will be launched",
+        json_schema_extra={"examples": ["us-east-1"]},
     )
     region_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the server region"
+        default=None,
+        description="Human readable version of the server region",
+        json_schema_extra={"examples": ["US East (N. Virginia) us-east-1"]},
     )
     storage_size: StrictInt = Field(
-        description="The storage's size of the cloud instance"
+        description="The storage's size of the cloud instance",
+        json_schema_extra={"examples": [32]},
     )
     os_version_code: CloudOsVersionCode | None
 

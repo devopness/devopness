@@ -35,22 +35,32 @@ class ResourceLinkChild(DevopnessBaseModel):
     """
 
     link_type: StrictStr = Field(
-        description="The link type to related resource (`child` or `parent`)"
+        description="The link type to related resource (`child` or `parent`)",
+        json_schema_extra={"examples": ["child"]},
     )
-    resource_id: StrictInt = Field(description="The linked resource ID")
-    resource_type: StrictStr = Field(description="The linked resource type")
+    resource_id: StrictInt = Field(
+        description="The linked resource ID", json_schema_extra={"examples": [123]}
+    )
+    resource_type: StrictStr = Field(
+        description="The linked resource type",
+        json_schema_extra={"examples": ["application"]},
+    )
     resource_type_human_readable: StrictStr = Field(
-        description="Human readable resource type"
+        description="Human readable resource type",
+        json_schema_extra={"examples": ["Application"]},
     )
     can_be_unlinked: StrictBool = Field(
-        description="If false, the link cannot be manually removed"
+        description="If false, the link cannot be manually removed",
+        json_schema_extra={"examples": [True]},
     )
     linked_resource_data: LinkedResourceData
     created_at: datetime = Field(
-        description="The date and time when the resource link was created"
+        description="The date and time when the resource link was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     updated_at: datetime = Field(
-        description="The date and time when the resource link was last updated"
+        description="The date and time when the resource link was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
 
 

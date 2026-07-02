@@ -29,11 +29,16 @@ class VariableTargets(DevopnessBaseModel):
 
     name: VariableTarget | None = None
     name_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the variable target name"
+        default=None,
+        description="Human readable version of the variable target name",
+        json_schema_extra={"examples": ["MySQL Configuration (my.cnf)"]},
     )
     hint: StrictStr | None = Field(
         default=None,
         description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
 
 

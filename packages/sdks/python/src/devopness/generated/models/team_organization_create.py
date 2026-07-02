@@ -26,10 +26,13 @@ class TeamOrganizationCreate(DevopnessBaseModel):
     """
 
     name: StrictStr = Field(
-        description="The name of the team. Must not be greater than 255 characters."
+        description="The name of the team. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["Development Team"]},
     )
     photo_url: StrictStr | None = Field(
-        default=None, description="The URL to team's image. Must be a valid URL."
+        default=None,
+        description="The URL to team's image. Must be a valid URL.",
+        json_schema_extra={"examples": ["https://example.com/images/my_team.png"]},
     )
 
 

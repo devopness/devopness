@@ -32,19 +32,25 @@ class DeploymentApplicationCreate(DevopnessBaseModel):
     """
 
     environment: StrictStr | None = Field(
-        default=None, description="The environment type of the deployment."
+        default=None,
+        description="The environment type of the deployment.",
+        json_schema_extra={"examples": ["staging"]},
     )
     type: DeploymentType
     source_type: StrictStr | None = Field(
         default=None,
         description="The 'source type' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application's default branch will be used. This field is required when <code>source_ref</code> is present.",
+        json_schema_extra={"examples": ["commit"]},
     )
     source_ref: StrictStr | None = Field(
         default=None,
         description="A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. This field is required when <code>source_type</code> is present. Must not be greater than 200 characters.",
+        json_schema_extra={"examples": ["7ff09b0f2ed07625222f689d1afc29aa322b03a2"]},
     )
     pipeline_id: StrictInt | None = Field(
-        default=None, description="The pipeline's ID to use for deployment."
+        default=None,
+        description="The pipeline's ID to use for deployment.",
+        json_schema_extra={"examples": [59387]},
     )
     servers: list[StrictInt] | None = Field(
         default=None, description="List of valid resource IDs"

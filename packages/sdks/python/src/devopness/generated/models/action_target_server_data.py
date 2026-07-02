@@ -34,17 +34,29 @@ class ActionTargetServerData(DevopnessBaseModel):
         provision_input (ServerProvisionInput):
     """
 
-    id: StrictInt = Field(description="The unique id of the server")
-    hostname: StrictStr = Field(description="The server's hostname")
-    provider_name: StrictStr = Field(description="The name of the server's provider.")
+    id: StrictInt = Field(
+        description="The unique id of the server",
+        json_schema_extra={"examples": [9654123]},
+    )
+    hostname: StrictStr = Field(
+        description="The server's hostname",
+        json_schema_extra={"examples": ["web-srv-1"]},
+    )
+    provider_name: StrictStr = Field(
+        description="The name of the server's provider.",
+        json_schema_extra={"examples": ["self-hosted"]},
+    )
     provider_name_human_readable: StrictStr = Field(
-        description="The human readable version of the provider's name"
+        description="The human readable version of the provider's name",
+        json_schema_extra={"examples": ["VPS/Self Hosted"]},
     )
     ip_address: StrictStr | None = Field(
-        description="Public ipv4 address for server access"
+        description="Public ipv4 address for server access",
+        json_schema_extra={"examples": ["200.123.45.67"]},
     )
     ssh_port: StrictInt = Field(
-        description="The network port to which the SSH daemon is listening to SSH connections on the server"
+        description="The network port to which the SSH daemon is listening to SSH connections on the server",
+        json_schema_extra={"examples": [22]},
     )
     os_version_code: CloudOsVersionCode | None
     provision_input: ServerProvisionInput

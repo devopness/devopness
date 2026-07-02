@@ -35,22 +35,35 @@ class UserMe(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given user")
-    name: StrictStr = Field(description="User's full name")
+    id: StrictInt = Field(
+        description="The unique ID of the given user",
+        json_schema_extra={"examples": [45678]},
+    )
+    name: StrictStr = Field(
+        description="User's full name", json_schema_extra={"examples": ["Some One"]}
+    )
     email: StrictStr = Field(
-        description="The e-mail that will uniquely identify the user on the system and become its login credential"
+        description="The e-mail that will uniquely identify the user on the system and become its login credential",
+        json_schema_extra={"examples": ["someone@example.com"]},
     )
     url_slug: StrictStr | None = Field(
-        default=None, description="The URL Slug of the user"
+        default=None,
+        description="The URL Slug of the user",
+        json_schema_extra={"examples": ["someone"]},
     )
     language: Language | None
-    active: StrictBool = Field(description="Tells if the user is active or not")
+    active: StrictBool = Field(
+        description="Tells if the user is active or not",
+        json_schema_extra={"examples": [True]},
+    )
     social_accounts: list[SocialAccountRelation | None]
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
 
 

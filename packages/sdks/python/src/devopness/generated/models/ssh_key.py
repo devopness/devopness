@@ -40,32 +40,47 @@ class SshKey(DevopnessBaseModel):
         updated_at (str, optional): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The Id of the given SSH public key")
+    id: StrictInt = Field(
+        description="The Id of the given SSH public key",
+        json_schema_extra={"examples": [643]},
+    )
     created_by: StrictInt | None = Field(
-        default=None, description="The id of the user to which the SSH key belongs to"
+        default=None,
+        description="The id of the user to which the SSH key belongs to",
+        json_schema_extra={"examples": [35131]},
     )
     project_id: StrictInt | None = Field(
         default=None,
         description="The project id to which the SSH public key belongs to",
+        json_schema_extra={"examples": [16642]},
     )
     environment_id: StrictInt = Field(
-        description="The environment id to which the SSH public key belongs to"
+        description="The environment id to which the SSH public key belongs to",
+        json_schema_extra={"examples": [76441]},
     )
     name: StrictStr = Field(
-        description="The name entered by the user to uniquely identify the public SSH key"
+        description="The name entered by the user to uniquely identify the public SSH key",
+        json_schema_extra={"examples": ["my-ssh-key"]},
     )
     fingerprint: StrictStr = Field(
-        description="The hashed fingerprint of the public key"
+        description="The hashed fingerprint of the public key",
+        json_schema_extra={
+            "examples": ["74:2a:d5:75:8a:9b:64:4c:21:18:54:3f:c5:0a:59:f0"]
+        },
     )
     created_by_user: UserRelation | None
     environment: EnvironmentRelation | None
     servers: list[ServerRelation | None]
     last_action: ActionRelation | None
     created_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2022-09-26T15:30:31.000000Z"]},
     )
     updated_at: StrictStr | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2022-09-26T15:30:58.000000Z"]},
     )
 
 

@@ -28,10 +28,16 @@ class StaticCronJobFrequency(DevopnessBaseModel):
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: StrictStr = Field(description="Frequency pattern to trigger the cronjob")
+    value: StrictStr = Field(
+        description="Frequency pattern to trigger the cronjob",
+        json_schema_extra={"examples": ["0 0 1 * *"]},
+    )
     human_readable: CronJobPattern
     hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
 
 

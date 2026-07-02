@@ -38,6 +38,7 @@ class ServerProvisionInput(DevopnessBaseModel):
     subnet_id: StrictInt | None = Field(
         default=None,
         description="The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider",
+        json_schema_extra={"examples": [7414831]},
     )
     cloud_service_code: ServerCloudServiceCode
     settings: ServerProvisionInputSettings | None = None

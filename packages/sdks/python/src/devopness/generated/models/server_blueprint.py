@@ -32,16 +32,30 @@ class ServerBlueprint(DevopnessBaseModel):
     """
 
     id: StrictInt | None = Field(
-        default=None, description="The unique id of the blueprint"
+        default=None,
+        description="The unique id of the blueprint",
+        json_schema_extra={"examples": [23]},
     )
-    name: StrictStr | None = Field(default=None, description="Name of the blueprint")
-    type: StrictStr | None = Field(default=None, description="The blueprint type")
+    name: StrictStr | None = Field(
+        default=None,
+        description="Name of the blueprint",
+        json_schema_extra={"examples": ["bp-from-server:web-srv-1"]},
+    )
+    type: StrictStr | None = Field(
+        default=None,
+        description="The blueprint type",
+        json_schema_extra={"examples": ["server"]},
+    )
     spec: ServerBlueprintSpec | None = None
     created_at: datetime | None = Field(
-        default=None, description="The date and time when the record was created"
+        default=None,
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48Z"]},
     )
     updated_at: datetime | None = Field(
-        default=None, description="The date and time when the record was last updated"
+        default=None,
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04Z"]},
     )
 
 

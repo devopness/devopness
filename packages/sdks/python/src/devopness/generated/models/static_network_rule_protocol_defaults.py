@@ -23,7 +23,10 @@ class StaticNetworkRuleProtocolDefaults(DevopnessBaseModel):
         port (int, optional, nullable): The default port for the protocol
     """
 
-    port: StrictInt | None = Field(description="The default port for the protocol")
+    port: StrictInt | None = Field(
+        description="The default port for the protocol",
+        json_schema_extra={"examples": [3306]},
+    )
 
 
 class StaticNetworkRuleProtocolDefaultsPlain(TypedDict, total=False):

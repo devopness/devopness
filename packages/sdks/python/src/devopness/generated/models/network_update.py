@@ -25,8 +25,14 @@ class NetworkUpdate(DevopnessBaseModel):
         credential_id (int): The ID of the cloud credential.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Network.")
-    credential_id: StrictInt = Field(description="The ID of the cloud credential.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Network.",
+        json_schema_extra={"examples": [1]},
+    )
+    credential_id: StrictInt = Field(
+        description="The ID of the cloud credential.",
+        json_schema_extra={"examples": [123]},
+    )
 
 
 class NetworkUpdatePlain(TypedDict, total=False):

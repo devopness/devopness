@@ -29,14 +29,19 @@ class EnvironmentUpdate(DevopnessBaseModel):
         description (str, optional): The environment&#39;s description. Must not be greater than 255 characters.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Environment.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Environment.",
+        json_schema_extra={"examples": [1]},
+    )
     type: EnvironmentType
     name: StrictStr = Field(
-        description="The environment's name. Must not be greater than 60 characters."
+        description="The environment's name. Must not be greater than 60 characters.",
+        json_schema_extra={"examples": ["My staging"]},
     )
     description: StrictStr | None = Field(
         default=None,
         description="The environment's description. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["My staging environment"]},
     )
 
 

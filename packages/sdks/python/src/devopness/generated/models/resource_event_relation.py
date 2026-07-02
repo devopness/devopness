@@ -31,17 +31,30 @@ class ResourceEventRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The ID of the given resource event")
-    event_type: StrictStr = Field(description="The type of resource event")
-    resource_type: StrictStr = Field(description="The event's resource type")
-    resource_id: StrictInt = Field(description="The event's resource ID")
-    message: StrictStr | None
-    triggered_by: StrictInt | None
+    id: StrictInt = Field(
+        description="The ID of the given resource event",
+        json_schema_extra={"examples": [652674]},
+    )
+    event_type: StrictStr = Field(
+        description="The type of resource event",
+        json_schema_extra={"examples": ["testtype"]},
+    )
+    resource_type: StrictStr = Field(
+        description="The event's resource type",
+        json_schema_extra={"examples": ["service"]},
+    )
+    resource_id: StrictInt = Field(
+        description="The event's resource ID", json_schema_extra={"examples": [652674]}
+    )
+    message: StrictStr | None = Field(json_schema_extra={"examples": ["Test message"]})
+    triggered_by: StrictInt | None = Field(json_schema_extra={"examples": [2]})
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2020-04-16T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2020-04-16T15:50:48.000000Z"]},
     )
 
 

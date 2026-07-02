@@ -28,14 +28,17 @@ class OperationCustomSettings(DevopnessBaseModel):
     operation: StrictStr | None = Field(
         default=None,
         description="The resource's custom operation that are CSP specific",
+        json_schema_extra={"examples": ["remove"]},
     )
     operation_human_readable: StrictStr | None = Field(
         default=None,
         description="Human redable version of the resource's custom operation",
+        json_schema_extra={"examples": ["Delete"]},
     )
     triggers_action: StrictBool | None = Field(
         default=None,
         description="Whether the `server:remove` operation will trigger an action or not",
+        json_schema_extra={"examples": [True]},
     )
 
 

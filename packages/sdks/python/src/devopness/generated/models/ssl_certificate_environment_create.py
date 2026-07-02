@@ -37,7 +37,8 @@ class SslCertificateEnvironmentCreate(DevopnessBaseModel):
     """
 
     virtual_host_id: StrictInt = Field(
-        description="The ID of the virtual host to which this SSL certificate will be issued."
+        description="The ID of the virtual host to which this SSL certificate will be issued.",
+        json_schema_extra={"examples": [123]},
     )
     issuer: SslCertificateIssuer
     type: SslCertificateType | None = None
@@ -45,10 +46,20 @@ class SslCertificateEnvironmentCreate(DevopnessBaseModel):
     custom_private_key: StrictStr | None = Field(
         default=None,
         description="The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
+        json_schema_extra={
+            "examples": [
+                "-----BEGIN RSA PRIVATE KEY-----\n                Proc-Type: 4,ENCRYPTED\n                DEK-Info: DES-EDE3-CBC,4E262401F693044C\n\n                jyoAdQaTKnfNDNfqAZR7hZsNNXoMXmspJp0h0eb7Gc2FyaX1iS70VeUWVlGkPfG/\n                lp7cPvvUO36pTaU0kLOWdG8FGHRIblO8v4f9E2/eD7VgNLJ4W8tP0rff3d18M32B\n                jfG/Mg90Gsew3XXlLo5eVO+3xbuGhKcZ1p6RVa5vdEOr1Pk/huyvH6HLsXCEOSS+\n                6NF/nVRqP8VAlSFF58QQIz7hQsfyOr8EVzdW4RNlygaUgWDCGa/CCwR6NgGcRyRj\n                M3R1R36KUWubxmPHj21EB1XO4H4LF15eE0ZjBXfRUllWdaWONU26HOlld4Y8HhMf\n                tVCt7LeavMuh0tVRmKCrj3fbxRCgc1mRM58EEhYbbFkj0jZzWmbVUB6xegwGCyLH\n                LSb/HuC9WI7xKsNXIkm9O0Gso+EZ75Feex8DGVX407kiAQtJ/Kdh8Lo8Hv0bDby9\n                IuSpfJszDn5eB9K3k112SOz1LPfQJB8m/o94MmnaFACX5Usc0yy5CmN/3iCEnnVj\n                i2po86njYaqiN2NeAXY07bkp+U2paVfs+crpXkboegy/IO0qWizU3x2GgOxB/6Sg\n                BzqqDNb8yiVjctcr7puIjJfMCe4QR4gAeaMphlK1Y8EeABdTGLsFF7Rxf/2Bn6WS\n                Kd7EW8bF5UqnSM18h9GSbMoZMSBpZF6YGA45lzgKEPlhJqNhBhUgtOz17RocnwnC\n                7Sl7XFIJZWG9kgVY1bLzD/0hKN3TzTdAzSlFW2dybKdz+te5LSPuI7GjwSi14PPN\n                r/YoTMcpn4EYxiUq/IVaKQkDc5ZE1qKe9etiLQPIp/L7hN3zFgd6UPqAB6vRweJa\n                tS5g1bl24Il/a5yt9i7TgbxyrpY3ZmU5g0WKoz1/WFvO4s49RC9Jgih1ShO5u+CG\n                aV4A80+TMbROuWx35P7y3ZjmUH/y9XU8gKdRo6BgZrBfK0QgIq/JzN7Zca6Z3oss\n                nW8B2g9KTK9JqIKSfhq5Udfyfmtipe6EidpDwHXTMWDNey42CAMH/IOj5Pq5rUwb\n                LW4VOnk4RIVwyGtms3qHRUuki6VBSpy75ROkfHe5v/3RaNqd+2VrzvsGyk3R7ek6\n                dQbe8J5AUK2/hUYI7UOP6hkQ/jvET+R2DVkqHQoGgGH5XO+7efc60oZuz7qh8khH\n                m2gMmP+6LsSUYAEG743FQFu1BOrFdQPrF7/3Zmx64fPpqp1lVWpqHY0EoDZYfzYw\n                TD2WxeMRFNY4+l1HiKxZOaO+4Q82vOW7fMs8YSH6uDTmTy78R28gTenv/r4kiFQg\n                bey+ghK5msxMFV6Dy9vIrD20D4qknBjl/8Qt73hUaRrRSFaakp0Tq2myg6fzpbQ8\n                3d/Yx3tZeRnjufh/PrAp+9wdNT5sotuNflXjSiPQ7VDGuSLu4InTu2j/bgcHfqDf\n                0vRd5GQRcWcVDUwXY5xR7hOoot/Ej/F045rtg2pIG0ALdpfOY0NB5HDVaKY9lvWQ\n                DNL5iY1cxjSK1fjN5qpy1JV7ZHGHoCogBac9SOtBkf+tJPEKu2eF/kIQOCp0iqSg\n                3ke/l7xYSrusjiEwzIjN+XTsdlcQzMk8OJb7/+Y+SZGqMmlTIemip+L/ybeXETEL\n                -----END RSA PRIVATE KEY-----"
+            ]
+        },
     )
     custom_certificate: StrictStr | None = Field(
         default=None,
         description="The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.",
+        json_schema_extra={
+            "examples": [
+                "-----BEGIN RSA PRIVATE KEY-----\n                MIIEpAIBAAKCAQEA1DFNCpE0TTSuZNPRYivpH92uFyptmNL0bY8KpnVTzUR/G3vr\n                e5Iua0OuCB9sW0JB1MCoYndHjeSt6NtJ0zDcbT/i+c0LyWqhx4YfsyUhPtYUBOy4\n                tnDsG9dzFe+PWomxVPERFwVk5a7CflHlbtqadxdhHTBGU34XUk3lGs+YjQarj5OV\n                vbk5sAIkrXYF2hDFn0I2NY7I47sB2CvHqMlXfrawSWMSA0XZhO6g0Fp9AzEw23xf\n                U/oxbTyShyOiwq6fBv/lviqacJTrF4b078qCKUhAW0bDhhk6Oz9NOQlAGV90ISVY\n                Y5vKn0Jpgmi6G+Btsk0+Y626RTAi6bDw6B0QJwIDAQABAoIBAQCS+XsVgLIrb/wD\n                lrwHNccJ7XByV08GdcgcQuHrnoTnPzSTguf+9af1YDGhKrLRGzmh9bgsS9ZiMC1N\n                hubBw6xKd9/tittJLfTU0NAQM/2tGndPWfAvXlQMjNUIMqCm44zS+w8NVQ0oEj5h\n                ZLR4bi5jouv/Xbq4hjP9LDsusPBHbT4HqkM/7jlydV/0L38b+Gpo1bsweVjhSv7w\n                nAfmmiDiV7TmoldJNl/dG69bmSgJzza5ywKSBQQkdGpGYsYK1Y8On8mBgS36wvAN\n                p1rtxV+/Bdg74e5oWuLygHJeR1DnvE0uswcA9ln2KTsLAcw1JESWflWdAGeFTgbp\n                jdU40X5BAoGBAPVRzVx2sSuFQ4Y7QhVvH36/A5HYO1u9JTal8RNebjz+UXMtNFzX\n                6qsUih5JD60EloZUIgtOhyXw+NdRdyKTUdkuwszldDBvLKIVHmZb9tx46l5C39xf\n                1O6vIO6mY0l/OlPsg0MNXv73PJllYycXylfFsX1jqCZulCdncEzrYprXAoGBAN1u\n                SKNPe3/pfaZA8HAqvrX6g0N0OwWvQ9muQl8BlVzRzdsdsrfEHCMJ8qJcp5WhpYwg\n                RnyB1jhsjLx9rzpTL9OXwHDII8oo1WqbNW0EGLBYaktXZ9lGUIDBAmdgrxqZTba9\n                t5r7aUCSYgA6dI2S/SNRxquEbRfq1cwpbQ2RBVsxAoGAFSr81Gitevrhy7hbSGwx\n                RIeI8FG/NXhJuMBy39/7FSpArvaMmSJMbny0Ok7FmoFV17t0wJMDGGQFpNazt/kM\n                S/g7+OAnuXIuYMH/wIdY8sdAOef9Vw+x2PKlndIfqRzgVJOI9AU4WDnPMdFMz/e+\n                jvpRCWfK/531DL1hNFHvTTsCgYA+T2xtWE5+fiv3fsqqJb0o5GfPsYNyZBGJzfmr\n                Vny7c+ajxEWoZK0uRvxaKAyYlLZLKkHrg3XOxu0LlaqblREeT9O9aPR5TOhRaX+t\n                P7va0+aFcQEuKRU6RhXxFUnxCDbQN67VE+5YV1jwi4KE3FoTeE2ZslgopNKo8vdX\n                G/oP4QKBgQClfgjKf0Vj7wsq1wYJiVQ7it8jZtgB5nv1DQsWoK8OoydzaM0HTWR4\n                DCdSRb+LB6CfwFiBcZGvGFNNewDZc1X/lKXZ+uuFffCKcwP7f7PYgm3lXIa20KUK\n                ktcbPcfeN0sof3+Mb+NDzLTwL+8bU+8S8AYu5M3JFxBCyzWrldvRrA==\n                -----END RSA PRIVATE KEY-----"
+            ]
+        },
     )
 
 

@@ -34,11 +34,14 @@ class ProviderRelation(DevopnessBaseModel):
     active: StrictBool = Field(description="Tells if the provider is active or not")
     code: ProviderCode
     code_human_readable: StrictStr = Field(
-        description="Human readable version of provider code"
+        description="Human readable version of provider code",
+        json_schema_extra={"examples": ["Amazon Web Services"]},
     )
     type: ProviderType
     type_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of provider type"
+        default=None,
+        description="Human readable version of provider type",
+        json_schema_extra={"examples": ["Cloud Provider"]},
     )
 
 

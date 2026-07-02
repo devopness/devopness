@@ -33,14 +33,18 @@ class PipelineSettings(DevopnessBaseModel):
         variables (List[PipelineSettingsVariable], optional, nullable): The list of pipeline setting variable
     """
 
-    max_pipelines_per_resource: StrictInt | None = None
+    max_pipelines_per_resource: StrictInt | None = Field(
+        default=None, json_schema_extra={"examples": [1]}
+    )
     is_user_managed: StrictBool | None = Field(
         default=None,
         description="Indicates whether the user has permission to manage the pipeline for the resource operation",
+        json_schema_extra={"examples": [True]},
     )
     supports_trigger_comment: StrictBool | None = Field(
         default=None,
         description="Indicates whether this resource operation supports an optional trigger comment",
+        json_schema_extra={"examples": [True]},
     )
     stages: list[PipelineSettingsStage] | None = Field(
         default=None, description="The list of pipeline setting stage"

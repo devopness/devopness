@@ -35,10 +35,14 @@ class StaticServiceType(DevopnessBaseModel):
 
     value: ServiceType
     human_readable: StrictStr = Field(
-        description="Displayable version of the service name"
+        description="Displayable version of the service name",
+        json_schema_extra={"examples": ["MySQL"]},
     )
     hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
     supported_versions: list[StaticServiceTypeSupportedVersionsInner] = Field(
         description="List of service versions supported by Devopness"

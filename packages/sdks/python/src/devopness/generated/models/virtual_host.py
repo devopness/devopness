@@ -44,27 +44,37 @@ class VirtualHost(DevopnessBaseModel):
         updated_at (str): The date and time when the record was updated
     """
 
-    id: StrictInt = Field(description="Unique ID of the Virtual Host")
+    id: StrictInt = Field(
+        description="Unique ID of the Virtual Host", json_schema_extra={"examples": [1]}
+    )
     type: VirtualHostType
     type_human_readable: StrictStr = Field(
-        description="The human readable version of the type"
+        description="The human readable version of the type",
+        json_schema_extra={"examples": ["Domain name (name-based virtual host)"]},
     )
-    name: StrictStr = Field(description="The name of the Virtual Host")
+    name: StrictStr = Field(
+        description="The name of the Virtual Host",
+        json_schema_extra={"examples": ["my-site.example.com"]},
+    )
     application: ApplicationRelation | None
     root_directory: StrictStr | None = Field(
-        description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host"
+        description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
+        json_schema_extra={"examples": ["public"]},
     )
     application_listen_address: StrictStr | None = Field(
-        description="The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)"
+        description="The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)",
+        json_schema_extra={"examples": ["http://localhost:3000"]},
     )
     ssl_certificate: SslCertificateRelation | None
     last_action: ActionRelation | None
     created_by_user: UserRelation | None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was updated"
+        description="The date and time when the record was updated",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
 
 

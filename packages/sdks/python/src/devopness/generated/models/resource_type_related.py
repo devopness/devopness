@@ -30,15 +30,19 @@ class ResourceTypeRelated(DevopnessBaseModel):
 
     resource_type: ResourceType | None = None
     resource_type_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the resource type name"
+        default=None,
+        description="Human readable version of the resource type name",
+        json_schema_extra={"examples": ["Application"]},
     )
     resource_type_human_readable_plural: StrictStr | None = Field(
         default=None,
         description="Plural human readable version of the resource type name",
+        json_schema_extra={"examples": ["Applications"]},
     )
     can_be_linked: StrictBool | None = Field(
         default=None,
         description="If true, the relation with this resource type can be changed manually by the user",
+        json_schema_extra={"examples": [True]},
     )
 
 

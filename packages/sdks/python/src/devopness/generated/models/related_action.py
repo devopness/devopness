@@ -36,24 +36,34 @@ class RelatedAction(DevopnessBaseModel):
         url_web_permalink (str): The permalink URL to the action details on Devopness web app
     """
 
-    id: StrictInt = Field(description="The Id of the given action")
+    id: StrictInt = Field(
+        description="The Id of the given action",
+        json_schema_extra={"examples": [567819876]},
+    )
     status: ActionStatus
     status_human_readable: StrictStr | None = Field(
-        default=None, description="Human readable version of the action status"
+        default=None,
+        description="Human readable version of the action status",
+        json_schema_extra={"examples": ["Pending"]},
     )
     type: ActionType
     type_human_readable: StrictStr = Field(
-        description="Human readable version of the action type"
+        description="Human readable version of the action type",
+        json_schema_extra={"examples": ["Deploy"]},
     )
     resource_name: StrictStr | None = Field(
-        default=None, description="The name of the resource"
+        default=None,
+        description="The name of the resource",
+        json_schema_extra={"examples": ["Example resource"]},
     )
     resource_type: ResourceType
     resource_type_human_readable: StrictStr = Field(
-        description="Human readable version of the resource type"
+        description="Human readable version of the resource type",
+        json_schema_extra={"examples": ["Application"]},
     )
     url_web_permalink: StrictStr = Field(
-        description="The permalink URL to the action details on Devopness web app"
+        description="The permalink URL to the action details on Devopness web app",
+        json_schema_extra={"examples": ["https://devopness.com/actions/567819876"]},
     )
 
 

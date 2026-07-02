@@ -38,24 +38,34 @@ class SocialAccount(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The ID of the given social account")
-    user_id: StrictInt = Field(description="The current user's ID")
+    id: StrictInt = Field(
+        description="The ID of the given social account",
+        json_schema_extra={"examples": [85324]},
+    )
+    user_id: StrictInt = Field(
+        description="The current user's ID", json_schema_extra={"examples": [6589]}
+    )
     provider: SocialAccountProvider
     provider_human_readable: SocialAccountDisplayableName
     provider_user_nickname: StrictStr = Field(
-        description="The nickname of the user on the Source Authentication provider"
+        description="The nickname of the user on the Source Authentication provider",
+        json_schema_extra={"examples": ["Joe Smith"]},
     )
     is_vcs: StrictBool = Field(
-        description="Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github"
+        description="Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github",
+        json_schema_extra={"examples": [True]},
     )
     token_expires_at: StrictStr | None = Field(
-        description="The date and time indicating when the authentication token will expire at"
+        description="The date and time indicating when the authentication token will expire at",
+        json_schema_extra={"examples": ["2020-09-25T15:50:48.000000Z"]},
     )
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
 
 

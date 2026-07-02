@@ -28,9 +28,15 @@ class BillingPlansOptionsRelation(DevopnessBaseModel):
         plans (List[BillingPlan]): The list of plans available for billing
     """
 
-    name: StrictStr = Field(description="Product name of the plan")
+    name: StrictStr = Field(
+        description="Product name of the plan",
+        json_schema_extra={"examples": ["Devopness Pro"]},
+    )
     hint: StrictStr | None = Field(
-        description="A short text describing the target audience of the product"
+        description="A short text describing the target audience of the product",
+        json_schema_extra={
+            "examples": ["For professional developers, startups and small teams"]
+        },
     )
     plans: list[BillingPlan] = Field(
         description="The list of plans available for billing"

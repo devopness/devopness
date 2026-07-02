@@ -26,12 +26,18 @@ class TeamUpdate(DevopnessBaseModel):
         photo_url (str, optional): The URL to team&#39;s image. Must be a valid URL.
     """
 
-    id: StrictInt = Field(description="The unique ID of the given Team.")
+    id: StrictInt = Field(
+        description="The unique ID of the given Team.",
+        json_schema_extra={"examples": [1]},
+    )
     name: StrictStr = Field(
-        description="The name of the team. Must not be greater than 255 characters."
+        description="The name of the team. Must not be greater than 255 characters.",
+        json_schema_extra={"examples": ["Development Team"]},
     )
     photo_url: StrictStr | None = Field(
-        default=None, description="The URL to team's image. Must be a valid URL."
+        default=None,
+        description="The URL to team's image. Must be a valid URL.",
+        json_schema_extra={"examples": ["https://example.com/images/my_team.png"]},
     )
 
 

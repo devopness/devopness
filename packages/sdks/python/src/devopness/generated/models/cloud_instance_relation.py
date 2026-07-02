@@ -34,24 +34,46 @@ class CloudInstanceRelation(DevopnessBaseModel):
         memory (int): The RAM memory size (in MB) of the instance
     """
 
-    name: StrictStr = Field(description="The name of the cloud instance")
-    type: StrictStr = Field(description="The type of the cloud instance")
-    family: StrictStr = Field(description="The family to which the instance belongs")
+    name: StrictStr = Field(
+        description="The name of the cloud instance",
+        json_schema_extra={"examples": ["m5.large"]},
+    )
+    type: StrictStr = Field(
+        description="The type of the cloud instance",
+        json_schema_extra={"examples": ["m5"]},
+    )
+    family: StrictStr = Field(
+        description="The family to which the instance belongs",
+        json_schema_extra={"examples": ["Memory Optimized"]},
+    )
     architecture: StrictStr | None = Field(
-        description="The type of CPU used in the cloud server (x86_64 or arm64)"
+        description="The type of CPU used in the cloud server (x86_64 or arm64)",
+        json_schema_extra={"examples": ["x86_64"]},
     )
     default_disk_size: StrictInt = Field(
-        description="The default disk size (in GB) used to instance"
+        description="The default disk size (in GB) used to instance",
+        json_schema_extra={"examples": [25]},
     )
     price_hourly: Union[StrictFloat, StrictInt] = Field(
-        description="The price per hour of the instance"
+        description="The price per hour of the instance",
+        json_schema_extra={"examples": [0.096]},
     )
     price_monthly: Union[StrictFloat, StrictInt] = Field(
-        description="The price per month of the instance"
+        description="The price per month of the instance",
+        json_schema_extra={"examples": [70.28]},
     )
-    price_currency: StrictStr = Field(description="The currency of the prices")
-    vcpus: StrictInt = Field(description="The number of virtual CPU of the instance")
-    memory: StrictInt = Field(description="The RAM memory size (in MB) of the instance")
+    price_currency: StrictStr = Field(
+        description="The currency of the prices",
+        json_schema_extra={"examples": ["USD"]},
+    )
+    vcpus: StrictInt = Field(
+        description="The number of virtual CPU of the instance",
+        json_schema_extra={"examples": [2]},
+    )
+    memory: StrictInt = Field(
+        description="The RAM memory size (in MB) of the instance",
+        json_schema_extra={"examples": [8192]},
+    )
 
 
 class CloudInstanceRelationPlain(TypedDict, total=False):

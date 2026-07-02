@@ -38,28 +38,39 @@ class SubnetRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique id of the given record")
+    id: StrictInt = Field(
+        description="The unique id of the given record",
+        json_schema_extra={"examples": [7641]},
+    )
     project_id: StrictInt = Field(
-        description="Numeric ID of the project to which the subnet belongs to"
+        description="Numeric ID of the project to which the subnet belongs to",
+        json_schema_extra={"examples": [123]},
     )
     environment_id: StrictInt = Field(
-        description="Numeric ID of the environment to which the subnet belongs to"
+        description="Numeric ID of the environment to which the subnet belongs to",
+        json_schema_extra={"examples": [456]},
     )
     created_by: StrictInt = Field(
-        description="The id of the user who created the subnet"
+        description="The id of the user who created the subnet",
+        json_schema_extra={"examples": [789]},
     )
     network: NetworkRelation | None = None
-    name: StrictStr = Field(description="The subnet's name")
+    name: StrictStr = Field(
+        description="The subnet's name", json_schema_extra={"examples": ["my-subnet"]}
+    )
     type: SubnetType
     is_auto_generated: StrictBool = Field(
-        description="True if this subnet is auto-generated or false if this was created by the user"
+        description="True if this subnet is auto-generated or false if this was created by the user",
+        json_schema_extra={"examples": [False]},
     )
     provision_input: SubnetProvisionInput
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T15:50:48.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:52:04.000000Z"]},
     )
 
 

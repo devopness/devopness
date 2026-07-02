@@ -35,22 +35,37 @@ class RoleRelation(DevopnessBaseModel):
         updated_at (str): The date and time when the record was last updated
     """
 
-    id: StrictInt = Field(description="The unique ID of the given role")
-    name: StrictStr = Field(description="The name of the given role")
-    description: StrictStr = Field(description="Description of this role")
+    id: StrictInt = Field(
+        description="The unique ID of the given role",
+        json_schema_extra={"examples": [45678]},
+    )
+    name: StrictStr = Field(
+        description="The name of the given role",
+        json_schema_extra={"examples": ["admin"]},
+    )
+    description: StrictStr = Field(
+        description="Description of this role",
+        json_schema_extra={"examples": ["Has total access to resources"]},
+    )
     is_predefined: StrictBool = Field(
-        description="Defines if the role is predefined or a custom role for specific organization"
+        description="Defines if the role is predefined or a custom role for specific organization",
+        json_schema_extra={"examples": [False]},
     )
     permissions: list[StrictStr] = Field(
-        description="The list of permissions granted for this role"
+        description="The list of permissions granted for this role",
+        json_schema_extra={
+            "examples": [["application:read", "application:create", "server:read"]]
+        },
     )
     organization: OrganizationRelation | None = None
     created_by_user: UserRelation | None = None
     created_at: StrictStr = Field(
-        description="The date and time when the record was created"
+        description="The date and time when the record was created",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
     updated_at: StrictStr = Field(
-        description="The date and time when the record was last updated"
+        description="The date and time when the record was last updated",
+        json_schema_extra={"examples": ["2019-09-25T13:22:37.000000Z"]},
     )
 
 

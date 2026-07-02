@@ -26,10 +26,12 @@ class CredentialAws(DevopnessBaseModel):
     """
 
     access_key_id: StrictStr = Field(
-        description="The key used to authenticate on AWS cloud provider"
+        description="The key used to authenticate on AWS cloud provider",
+        json_schema_extra={"examples": ["3dlxAUgbuTJY0AitQMAFHd6JadVRw3rGml"]},
     )
     secret_access_key: StrictStr = Field(
-        description="The secret used to authenticate on AWS cloud provider"
+        description="The secret used to authenticate on AWS cloud provider",
+        json_schema_extra={"examples": ["my-secret"]},
     )
 
 

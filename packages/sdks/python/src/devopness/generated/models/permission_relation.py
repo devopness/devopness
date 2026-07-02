@@ -29,9 +29,13 @@ class PermissionRelation(DevopnessBaseModel):
     """
 
     resource_type: StrictStr = Field(
-        description="The type of resource this permission affects"
+        description="The type of resource this permission affects",
+        json_schema_extra={"examples": ["application"]},
     )
-    human_readable: StrictStr = Field(description="Human readable resource name")
+    human_readable: StrictStr = Field(
+        description="Human readable resource name",
+        json_schema_extra={"examples": ["Application"]},
+    )
     permissions: list[StaticPermission] = Field(
         description="List of permissions available for this resource"
     )

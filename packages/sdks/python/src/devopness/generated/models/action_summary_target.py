@@ -28,13 +28,26 @@ class ActionSummaryTarget(DevopnessBaseModel):
         failed (int): The number of action targets failed
     """
 
-    count: StrictInt = Field(description="The total number of action targets")
-    pending: StrictInt = Field(description="The number of action targets pending")
-    in_progress: StrictInt = Field(
-        description="The number of action targets in progress"
+    count: StrictInt = Field(
+        description="The total number of action targets",
+        json_schema_extra={"examples": [4]},
     )
-    completed: StrictInt = Field(description="The number of action targets completed")
-    failed: StrictInt = Field(description="The number of action targets failed")
+    pending: StrictInt = Field(
+        description="The number of action targets pending",
+        json_schema_extra={"examples": [2]},
+    )
+    in_progress: StrictInt = Field(
+        description="The number of action targets in progress",
+        json_schema_extra={"examples": [1]},
+    )
+    completed: StrictInt = Field(
+        description="The number of action targets completed",
+        json_schema_extra={"examples": [1]},
+    )
+    failed: StrictInt = Field(
+        description="The number of action targets failed",
+        json_schema_extra={"examples": [0]},
+    )
 
 
 class ActionSummaryTargetPlain(TypedDict, total=False):

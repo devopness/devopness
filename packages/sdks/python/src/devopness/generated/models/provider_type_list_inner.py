@@ -11,7 +11,7 @@ from typing import (
     TypedDict,
 )
 
-from pydantic import StrictStr
+from pydantic import Field, StrictStr
 
 from .. import DevopnessBaseModel
 
@@ -25,8 +25,10 @@ class ProviderTypeListInner(DevopnessBaseModel):
         type_human_readable (str):
     """
 
-    type: StrictStr
-    type_human_readable: StrictStr
+    type: StrictStr = Field(json_schema_extra={"examples": ["cloud_provider"]})
+    type_human_readable: StrictStr = Field(
+        json_schema_extra={"examples": ["Cloud Provider"]}
+    )
 
 
 class ProviderTypeListInnerPlain(TypedDict, total=False):

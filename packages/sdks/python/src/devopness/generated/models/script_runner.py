@@ -26,10 +26,19 @@ class ScriptRunner(DevopnessBaseModel):
         hint (str): Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
     """
 
-    value: StrictStr = Field(description="How to call the runner in CLI")
-    human_readable: StrictStr = Field(description="The formatted name of the runner")
+    value: StrictStr = Field(
+        description="How to call the runner in CLI",
+        json_schema_extra={"examples": ["composer"]},
+    )
+    human_readable: StrictStr = Field(
+        description="The formatted name of the runner",
+        json_schema_extra={"examples": ["Composer"]},
+    )
     hint: StrictStr = Field(
-        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field"
+        description="Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field",
+        json_schema_extra={
+            "examples": ["Some text here describing this field for end users"]
+        },
     )
 
 

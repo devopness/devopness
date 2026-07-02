@@ -26,9 +26,21 @@ class SocialAccountStatus(DevopnessBaseModel):
         connect_url (str): URL of the connection
     """
 
-    provider: StrictStr = Field(description="Name of the provider")
-    connected: StrictBool = Field(description="If the account is currently connected")
-    connect_url: StrictStr = Field(description="URL of the connection")
+    provider: StrictStr = Field(
+        description="Name of the provider", json_schema_extra={"examples": ["gitlab"]}
+    )
+    connected: StrictBool = Field(
+        description="If the account is currently connected",
+        json_schema_extra={"examples": [False]},
+    )
+    connect_url: StrictStr = Field(
+        description="URL of the connection",
+        json_schema_extra={
+            "examples": [
+                "https://gitlab.com/oauth/authorize?client_id=%3CSET-DEVOPNESS-GITLAB-CLIENT-ID-HERE%3E&redirect_uri=http%3A%2F%2Fd2-social-provider-redirect-url.com%3Fprovider%3Dgitlab&scope=read_user+email+api&response_type=code"
+            ]
+        },
+    )
 
 
 class SocialAccountStatusPlain(TypedDict, total=False):

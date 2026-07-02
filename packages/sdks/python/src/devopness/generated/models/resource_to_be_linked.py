@@ -26,9 +26,13 @@ class ResourceToBeLinked(DevopnessBaseModel):
     """
 
     resource_type: StrictStr = Field(
-        description="The type of the resource to be linked"
+        description="The type of the resource to be linked",
+        json_schema_extra={"examples": ["server"]},
     )
-    resource_id: StrictInt = Field(description="The ID of the resource to be linked")
+    resource_id: StrictInt = Field(
+        description="The ID of the resource to be linked",
+        json_schema_extra={"examples": [1]},
+    )
 
 
 class ResourceToBeLinkedPlain(TypedDict, total=False):
