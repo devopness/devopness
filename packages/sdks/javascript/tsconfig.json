@@ -11,6 +11,9 @@
     "allowJs": false,
     "declaration": true,
     "resolveJsonModule": true,
+    "types": [
+      "jest"
+    ],
     "rootDir": "./src",
     "outDir": "./dist",
     "removeComments": false,
