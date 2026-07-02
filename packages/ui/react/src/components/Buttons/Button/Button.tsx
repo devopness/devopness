@@ -23,10 +23,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
    * - `outlinedAuxiliary`: Outlined button with neutral gray border, used for secondary actions
    */
   buttonType?:
-    | 'borderless'
-    | 'outlinedSecondary'
-    | 'outlinedAuxiliary'
-    | 'Default'
+    'borderless' | 'outlinedSecondary' | 'outlinedAuxiliary' | 'Default'
   /** `Warning`: This property overrides the style defined by the `buttonType` property!
    *
    * Customize elements color

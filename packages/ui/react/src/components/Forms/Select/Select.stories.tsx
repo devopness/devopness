@@ -84,8 +84,7 @@ const ControlledMultiSelect = () => {
 
   const handleChange = (
     newValue:
-      | MultiValue<OptionProps<string>>
-      | SingleValue<OptionProps<string>>,
+      MultiValue<OptionProps<string>> | SingleValue<OptionProps<string>>,
     _: ActionMeta<OptionProps<string>>
   ) => {
     setValue(Array.isArray(newValue) ? newValue : [])

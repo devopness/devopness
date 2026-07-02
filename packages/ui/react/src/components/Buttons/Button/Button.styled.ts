@@ -13,20 +13,22 @@ type StyledProps = {
    *
    * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
    */
-  [Key in keyof Pick<
-    ButtonProps,
-    | 'backgroundColor'
-    | 'borderColor'
-    | 'buttonType'
-    | 'color'
-    | 'iconSize'
-    | 'noIconMargin'
-    | 'noMargin'
-    | 'noPadding'
-    | 'noPointerEvents'
-    | 'revertOrientation'
-    | 'typeSize'
-  > as `$${Key}`]: ButtonProps[Key]
+  [
+    Key in keyof Pick<
+      ButtonProps,
+      | 'backgroundColor'
+      | 'borderColor'
+      | 'buttonType'
+      | 'color'
+      | 'iconSize'
+      | 'noIconMargin'
+      | 'noMargin'
+      | 'noPadding'
+      | 'noPointerEvents'
+      | 'revertOrientation'
+      | 'typeSize'
+    > as `$${Key}`
+  ]: ButtonProps[Key]
 }
 
 const getBackgroundColor = (

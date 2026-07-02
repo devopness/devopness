@@ -4,8 +4,7 @@ type NoOptionsMessageProps = {
   selectProps: {
     inputValue?: string
     noOptionsMessage?:
-      | string
-      | ((obj: { inputValue: string }) => React.ReactNode)
+      string | ((obj: { inputValue: string }) => React.ReactNode)
   }
 }
 

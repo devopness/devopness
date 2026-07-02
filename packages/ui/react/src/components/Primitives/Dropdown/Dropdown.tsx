@@ -206,8 +206,7 @@ type DropdownVariationContainerProps = DropdownSharedProps & {
 }
 
 type DropdownProps =
-  | DropdownVariationContainerProps
-  | DropdownVariationButtonProps
+  DropdownVariationContainerProps | DropdownVariationButtonProps
 
 type ElementAnchorProps = {
   popupState: PopupStateProps

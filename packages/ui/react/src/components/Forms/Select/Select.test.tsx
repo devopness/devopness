@@ -44,8 +44,7 @@ describe('<Select />', () => {
 
     expect(handleChange).toHaveBeenCalled()
     const selectedValue = handleChange.mock.calls[0][0] as
-      | SingleValue<OptionProps<string>>
-      | MultiValue<OptionProps<string>>
+      SingleValue<OptionProps<string>> | MultiValue<OptionProps<string>>
     expect(selectedValue).toMatchObject({ value: 'A', label: 'Option A' })
   })
 
