@@ -2,11 +2,6 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosRequestHeade
 import { ApiError, ArgumentNullException, NetworkError } from "../common/Exceptions";
 
 declare const window: unknown;
-declare const Buffer: {
-    from(value: string, encoding: string): {
-        toString(encoding: string): string;
-    };
-};
 
 export interface ConfigurationOptions {
     apiToken?: string;
@@ -176,19 +171,14 @@ export class ApiBaseService {
             const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
             const paddingLength = (4 - (base64.length % 4)) % 4;
             const paddedBase64 = base64 + "=".repeat(paddingLength);
+            const binary = atob(paddedBase64);
 
-            if (typeof globalThis.atob === "function") {
-                const binary = globalThis.atob(paddedBase64);
-
-                return decodeURIComponent(
-                    Array.from(binary, (character) => {
-                        const hex = character.charCodeAt(0).toString(16);
-                        return `%${hex.length === 1 ? `0${hex}` : hex}`;
-                    }).join("")
-                );
-            }
-
-            return Buffer.from(paddedBase64, "base64").toString("utf8");
+            return decodeURIComponent(
+                Array.from(binary, (character) => {
+                    const hex = character.charCodeAt(0).toString(16);
+                    return `%${hex.length === 1 ? `0${hex}` : hex}`;
+                }).join("")
+            );
         } catch {
             return "{}";
         }
