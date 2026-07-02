@@ -21,8 +21,8 @@ type StyledProps = {
       | 'buttonType'
       | 'color'
       | 'iconSize'
-      | 'noIconMargin'
       | 'noMargin'
+      | 'noIconMargin'
       | 'noPadding'
       | 'noPointerEvents'
       | 'revertOrientation'
@@ -153,8 +153,8 @@ const BaseButton = styled.button<
     | '$borderColor'
     | '$buttonType'
     | '$color'
-    | '$noIconMargin'
     | '$noMargin'
+    | '$noIconMargin'
     | '$noPadding'
     | '$noPointerEvents'
     | '$revertOrientation'
@@ -166,8 +166,8 @@ const BaseButton = styled.button<
     $borderColor,
     $buttonType,
     $color,
-    $noIconMargin,
     $noMargin,
+    $noIconMargin,
     $noPadding,
     $noPointerEvents,
     $revertOrientation,
