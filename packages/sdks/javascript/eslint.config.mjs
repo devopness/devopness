@@ -15,6 +15,7 @@ export default tseslint.config(
       "node_modules",
       "dist",
       "coverage",
+      "src/api/generated/**/*",
       "src/services/AuthService.ts",
     ]
   },

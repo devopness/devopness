@@ -18,10 +18,12 @@ type StyledProps = {
    *
    * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
    */
-  [Key in keyof Pick<
-    IconButtonProps,
-    'backgroundColor' | 'borderColor' | 'color' | 'padding' | 'size'
-  > as `$${Key}`]: IconButtonProps[Key]
+  [
+    Key in keyof Pick<
+      IconButtonProps,
+      'backgroundColor' | 'borderColor' | 'color' | 'padding' | 'size'
+    > as `$${Key}`
+  ]: IconButtonProps[Key]
 } & {
   $variant: IconButtonVariant
 }
@@ -127,10 +129,12 @@ const BaseIconButton = styled.button<StyledProps>`
         &:hover:enabled {
           filter: none;
           background-color: ${resolved.hoverBackgroundColor};
-          ${hasBorder &&
-          css`
-            border-color: ${resolved.hoverBorderColor};
-          `}
+          ${
+            hasBorder &&
+            css`
+              border-color: ${resolved.hoverBorderColor};
+            `
+          }
         }
       }
 

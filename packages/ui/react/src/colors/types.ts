@@ -23,10 +23,12 @@ type Flatten<T extends object> = object extends T
                 ? Pick<T, K>
                 : Flatten<V> extends infer FV
                   ? {
-                      [P in keyof FV as `${Extract<K, string | number>}.${Extract<
-                        P,
-                        string | number
-                      >}`]: FV[P]
+                      [
+                        P in keyof FV as `${Extract<K, string | number>}.${Extract<
+                          P,
+                          string | number
+                        >}`
+                      ]: FV[P]
                     }
                   : never
               : Pick<T, K>
@@ -57,21 +59,6 @@ type OpacityFromFloatToHex = {
 
 /** Represents a digit of a Hexadecimal value, base 16 */
 type HexDigit =
-  | 0
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 'a'
-  | 'b'
-  | 'c'
-  | 'd'
-  | 'e'
-  | 'f'
+  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
 
 export type { Flatten, OpacityFromFloatToHex, HexDigit }

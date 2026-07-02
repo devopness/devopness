@@ -55,13 +55,14 @@ There are some limits when using Devopness actions, depending on the subscriptio
 These limits are subject to change every time our plans are updated. For details, see our [pricing page](https://www.devopness.com/pricing/)
 
 Below you have a table with the current applied limits, per plan, followed by an explanation on the impact of each limit:
-| | Free | Standard |
-|:-------------------------------------------------------------|:-----------|:---------------------|
-| **Max parallel actions, per server** | 1 | 10 |
-| **Max parallel actions, per pipeline** | 1 | 10 |
-| **Max amount of time an action step log remains accessible** | 24 hours | 90 days |
-| **Max execution time, per action step** | 10 minutes | 15 minutes |
-| **Max API requests, per minute** | 30 | 120 |
+
+|                                                              | Free       | Standard   |
+| :----------------------------------------------------------- | :--------- | :--------- |
+| **Max parallel actions, per server**                         | 1          | 10         |
+| **Max parallel actions, per pipeline**                       | 1          | 10         |
+| **Max amount of time an action step log remains accessible** | 24 hours   | 90 days    |
+| **Max execution time, per action step**                      | 10 minutes | 15 minutes |
+| **Max API requests, per minute**                             | 30         | 120        |
 
 - **Max parallel actions, per server**: Users can control how many actions can run simultaneously on each server, so the server resources are used the way that is most suitable for each user environment
 

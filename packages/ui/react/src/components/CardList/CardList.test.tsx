@@ -1,6 +1,6 @@
-import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import '@testing-library/jest-dom'
+import { describe, expect, it } from 'vitest'
 
 import type { CardListProps } from './CardList'
 import { CardList } from './CardList'
@@ -45,5 +45,25 @@ describe('CardList', () => {
 
     expect(screen.getByTestId('card-list-empty-state')).toBeInTheDocument()
     expect(screen.queryByRole('article')).not.toBeInTheDocument()
+  })
+
+  it('renders add button when addUrl is provided', () => {
+    const dataWithAddUrl = [
+      {
+        ...mockData[0],
+        addUrl: { to: '/test/add', disabled: true },
+      },
+    ] satisfies CardListProps['data']
+
+    render(
+      <CardList
+        data={dataWithAddUrl}
+        isError={false}
+        isLoading={false}
+        loadingCardsCount={1}
+      />
+    )
+
+    expect(screen.getByRole('button', { name: /add/i })).toBeInTheDocument()
   })
 })

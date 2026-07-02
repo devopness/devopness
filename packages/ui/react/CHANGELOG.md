@@ -1,5 +1,23 @@
 # @devopness/ui-react
 
+## 2.192.4
+
+### Patch Changes
+
+- [#3259](https://github.com/devopness/devopness/pull/3259) [`930bc4e`](https://github.com/devopness/devopness/commit/930bc4e380413f5ec8ae8d8c339eff68dcc61d1b) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `tooltip` prop to `addUrl` in `Card` for enabled-state tooltip and accessible name on the + button
+
+## 2.192.3
+
+### Patch Changes
+
+- [#3230](https://github.com/devopness/devopness/pull/3230) [`6f3f45c`](https://github.com/devopness/devopness/commit/6f3f45c4f3ae02a94bcbe576df21c0e1410d987b) Thanks [@rebecagrn](https://github.com/rebecagrn)! - Add aria-label, title, and disabled state stories to Radix Button in Storybook
+
+## 2.192.2
+
+### Patch Changes
+
+- [#3251](https://github.com/devopness/devopness/pull/3251) [`e5a71ca`](https://github.com/devopness/devopness/commit/e5a71ca27c71b914979ab2ead4829ff0ce12ac77) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add 'addUrl' to the Pick<CardProps, ...> union in CardListProps.data so consumers can pass addUrl per card item and have it reach the underlying Card component via the existing {...props} spread.
+
 ## 2.192.1
 
 ### Patch Changes
