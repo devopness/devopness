@@ -31,6 +31,7 @@
     "build": "rm -Rf dist && tsc -b && vite build",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
     "lint": "eslint --max-warnings=0 . && prettier --check .",
+    "lint:fix": "eslint --fix . && prettier --write .",
     "format": "eslint --fix . && prettier --write .",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "storybook": "storybook dev -p 6006",

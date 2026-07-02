@@ -19,6 +19,7 @@
     "docs-update-service-index": "npm run docs-remove-service-index && npm run docs-export-service-index",
     "docs": "npm run docs-update-service-index && typedoc",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "test": "jest"
   },
