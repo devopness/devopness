@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#3270](https://github.com/devopness/devopness/pull/3270) [`b9058ca`](https://github.com/devopness/devopness/commit/b9058ca507280b2e6afd4d68026ddbf3f9173d67) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Fix `accessToken` expiry checks so the SDK can decode JWT payloads in browser runtimes and safely ignore malformed tokens instead of throwing from the axios error path.
+- [#3270](https://github.com/devopness/devopness/pull/3270) [`b9058ca`](https://github.com/devopness/devopness/commit/b9058ca507280b2e6afd4d68026ddbf3f9173d67) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Fix `accessToken` expiry checks so SDK-JS can decode JWT payloads in browser runtimes and safely ignore malformed tokens instead of throwing from the axios error path.
 
 ## 3.5.0
 
