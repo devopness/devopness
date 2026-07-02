@@ -11,7 +11,7 @@ Devopness helps you deploy apps and provision cloud infrastructure from scratch 
 
 Unlike server and app management panels that only connect to servers you already have (Coolify, Dokploy, and similar), Devopness creates infrastructure in your cloud through the platform, not only apps on servers you connected manually. Self-hosted and serverless cloud services are supported too.
 
-You can use the [web app](https://app.devopness.com/), the API, or [/docs/mcp/index] when Devopness is connected to your AI agents.
+You can use the [web app](https://app.devopness.com/), the API, or [/docs/mcp] when Devopness is connected to your AI agents.
 
 **One MCP server** to manage any cloud, any infrastructure, any Linux version, and any stack: C#, Docker, Go, HTML, Java, Node.js, PHP, Python, Ruby, TypeScript, and more.
 
