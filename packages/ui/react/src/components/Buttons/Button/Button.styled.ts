@@ -3,7 +3,6 @@ import { styled, css } from 'styled-components'
 import type { ButtonProps } from '.'
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
-import { getSpacing } from 'src/spacing'
 
 type StyledProps = {
   /**
@@ -14,19 +13,22 @@ type StyledProps = {
    *
    * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
    */
-  [Key in keyof Pick<
-    ButtonProps,
-    | 'backgroundColor'
-    | 'borderColor'
-    | 'buttonType'
-    | 'color'
-    | 'iconSize'
-    | 'noIconMargin'
-    | 'noPadding'
-    | 'noPointerEvents'
-    | 'revertOrientation'
-    | 'typeSize'
-  > as `$${Key}`]: ButtonProps[Key]
+  [
+    Key in keyof Pick<
+      ButtonProps,
+      | 'backgroundColor'
+      | 'borderColor'
+      | 'buttonType'
+      | 'color'
+      | 'iconSize'
+      | 'noIconMargin'
+      | 'noMargin'
+      | 'noPadding'
+      | 'noPointerEvents'
+      | 'revertOrientation'
+      | 'typeSize'
+    > as `$${Key}`
+  ]: ButtonProps[Key]
 }
 
 const getBackgroundColor = (
@@ -152,6 +154,7 @@ const BaseButton = styled.button<
     | '$buttonType'
     | '$color'
     | '$noIconMargin'
+    | '$noMargin'
     | '$noPadding'
     | '$noPointerEvents'
     | '$revertOrientation'
@@ -164,6 +167,7 @@ const BaseButton = styled.button<
     $buttonType,
     $color,
     $noIconMargin,
+    $noMargin,
     $noPadding,
     $noPointerEvents,
     $revertOrientation,
@@ -195,14 +199,12 @@ const BaseButton = styled.button<
       display: flex;
       background-color: ${resolvedBackgroundColor};
       height: ${resolvedHeight};
-      margin: 0;
-      padding: ${$noPadding
-        ? '0'
-        : `${getSpacing('button.paddingY')} ${getSpacing('button.paddingX')}`};
+      margin: ${$noMargin ? '0' : '0 15px'};
+      padding: ${$noPadding ? '0' : '5px 15px'};
       user-select: none;
 
       /** Flex Layout */
-      gap: ${$noIconMargin ? '0' : getSpacing('button.iconGap')};
+      gap: ${$noIconMargin ? '0' : '10px'};
       align-items: center;
       flex-direction: ${$revertOrientation ? 'row-reverse' : 'row'};
       justify-content: center;

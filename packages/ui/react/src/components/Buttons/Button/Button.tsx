@@ -47,6 +47,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
    */
   noIconMargin?: boolean
   /**
+   * @deprecated `noMargin` will be removed in a future release.
+   * The button component has a 15px margin on its sides, to remove activate the "noMargin" property.
+   */
+  noMargin?: boolean
+  /**
    * The button component has a 15px padding on its sides, to remove activate the "noPadding" property
    */
   noPadding?: boolean
@@ -127,6 +132,7 @@ const Button = ({
   iconSize,
   loading: isLoading,
   noIconMargin,
+  noMargin,
   noPadding,
   noPointerEvents,
   revertOrientation = false,
@@ -142,6 +148,7 @@ const Button = ({
     $buttonType={buttonType}
     $color={color}
     $noIconMargin={noIconMargin}
+    $noMargin={noMargin}
     $noPadding={noPadding}
     $noPointerEvents={noPointerEvents}
     $revertOrientation={revertOrientation}
