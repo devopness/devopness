@@ -149,11 +149,17 @@ export class ApiBaseService {
             return false;
         }
 
-        const decodedToken = JSON.parse(
-            ApiBaseService.decodeJwtPayload(ApiBaseService.accessToken)
-        );
+        let decodedToken: Record<string, unknown> = {};
 
-        return response?.status === 401 && decodedToken.exp < (new Date().getTime() / 1000);
+        try {
+            decodedToken = JSON.parse(
+                ApiBaseService.decodeJwtPayload(ApiBaseService.accessToken)
+            );
+        } catch {
+            return false;
+        }
+
+        return response?.status === 401 && (decodedToken.exp as number) < (new Date().getTime() / 1000);
     }
 
     /**
