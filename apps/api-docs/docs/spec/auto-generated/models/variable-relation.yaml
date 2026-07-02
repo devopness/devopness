@@ -6,7 +6,7 @@ properties:
     example: 93023
     type: integer
   key:
-    description: 'The unique key used to identify the variable on the target'
+    description: 'The unique key used to identify the variable on the target, or the filesystem path for configuration files and symlinks'
     example: APP_URL
     type: string
   type:
@@ -17,7 +17,7 @@ properties:
     type: string
     nullable: true
   value:
-    description: 'The value to be assigned to this variable when deployed to its target'
+    description: 'The value to be assigned to this variable when deployed to its target. For configuration files this is the file content; for symlinks this is the symlink target path'
     example: 'https://staging.devopness.com'
     type: string
     nullable: true
