@@ -4,13 +4,21 @@
   </a>
 </p>
 
-# Devopness
+<h1 align="center">Devopness</h1>
 
-**Stop managing DevOps. Ship more, stress less.**
+<p align="center"><strong>Stop managing DevOps. Ship more, stress less.</strong></p>
 
-Deploy apps and **provision cloud infrastructure from scratch** in your own accounts (AWS, Azure, GCP, DigitalOcean, Hetzner): networks, subnets, static IPs, servers, Linux configuration, and deploys. One platform instead of Terraform, Jenkins, PaaS (Vercel, Heroku, etc), and server and app management panels.
+<p align="center"><em>DevOps Happiness for AI agents and humans.</em></p>
 
-**One MCP server** for Cursor, VS Code, and other AI agents: manage any cloud, any infrastructure, any Linux version, and any stack (C#, Docker, Go, HTML, Java, Node.js, PHP, Python, Ruby, TypeScript, and more).
+<h3 align="center">One platform · Any cloud · Any stack · Free plan</h3>
+
+Deploy apps and **provision cloud infrastructure from scratch** on AWS, Azure, GCP, DigitalOcean, and Hetzner — in accounts you control.
+
+One platform to replace many tools: Terraform + Ansible + Jenkins + PaaS (Vercel, Heroku, etc), and stack-specific server panels.
+
+Manage apps, Linux servers, and cloud infrastructure from anywhere — web, mobile, API, or natural language in your AI agent through MCP. No SSH or cloud console for routine work.
+
+<div align="center">
 
 [![npm](https://img.shields.io/npm/v/@devopness/sdk-js?label=npm)](https://www.npmjs.com/package/@devopness/sdk-js)
 [![PyPI](https://img.shields.io/pypi/v/devopness?label=pypi)](https://pypi.org/project/devopness/)
@@ -18,11 +26,13 @@ Deploy apps and **provision cloud infrastructure from scratch** in your own acco
 [![Discord](https://img.shields.io/discord/1354644459031232655?label=discord&color=5865F2&logo=discord&logoColor=white)](https://discord.gg/WxKbZ3g37Q)
 [![GitHub stars](https://img.shields.io/github/stars/devopness/devopness?style=social)](https://github.com/devopness/devopness/stargazers)
 
-**[Create free account](https://app.devopness.com/)** · [Docs](https://www.devopness.com/docs/) · [Website](https://www.devopness.com/) · [Discord](https://discord.gg/WxKbZ3g37Q)
+**[Create free account](https://app.devopness.com/)** · [Docs](https://www.devopness.com/docs/) · [Discord](https://discord.gg/WxKbZ3g37Q)
+
+</div>
 
 ## For AI agents (MCP)
 
-Ask your AI agent to provision servers, deploy apps, migrate between clouds, and manage infrastructure. Devopness executes through a secure MCP server.
+Ask your AI agent to provision servers, deploy apps, migrate between clouds, and manage infrastructure through one MCP server — not a separate integration per cloud or stack.
 
 **One-click install**
 
@@ -36,19 +46,13 @@ Example prompt:
 
 ![AI agent migrating an app from AWS to Hetzner through Devopness MCP](.github/readme/mcp-terminal-demo.gif)
 
-> When you start the MCP server, you will be asked to **log in with your Devopness account** to authenticate.
+Starting the MCP server prompts you to log in with your Devopness account.
 
-**Other supported tools:** Claude Code, Codex CLI, Gemini CLI, Windsurf, Zed, Warp, JetBrains AI, and more. See step-by-step guides in [MCP docs](https://www.devopness.com/docs/mcp/).
-
-[![Deploy flow](https://assets.devopness.com/images/site-case-deploy.png)](https://www.devopness.com/)
-
-## Provision from scratch, not just connect a server
-
-Many self-hosted deploy tools (Coolify, Dokploy, and similar) assume you already provisioned a server and can connect over SSH.
-
-Devopness provisions infrastructure in your cloud from scratch, configures Linux, and deploys your apps. Routine work runs from the web app, API, or MCP: no SSH and no cloud console for everyday tasks.
+**MCP-compatible clients:** Cursor, VS Code, Claude Code, Codex CLI, Gemini CLI, Windsurf, Zed, Warp, JetBrains AI, and more. See step-by-step guides in [MCP docs](https://www.devopness.com/docs/mcp/).
 
 ## What Devopness replaces
+
+Many self-hosted deploy tools (Coolify, Dokploy, and similar) assume you already provisioned a server and can connect over SSH. Devopness provisions infrastructure in your cloud from scratch, configures Linux, and deploys your apps. Routine work runs from the web app, API, or MCP: no SSH and no cloud console for everyday tasks.
 
 Devopness combines what teams usually split across multiple tools into one platform:
 
@@ -64,48 +68,43 @@ Devopness combines what teams usually split across multiple tools into one platf
 
 Instead of separate panels per stack, use one platform for all stacks. Devopness replaces:
 
-- **PHP:** cPanel, Laravel Forge/Envoyer, Plesk, RunCloud, [ServerPanel.app](https://serverpanel.app/)
+- **PHP:** cPanel, Laravel Forge/Envoyer, Plesk, RunCloud, ServerPanel.app
 - **Python:** FastAPI Cloud, and similar stack-focused tools
 - **Ruby:** Cloud 66, Hatchbox, Kamal (popular in Rails, works for any stack)
 - **Self-hosted (bring your own server):** Coolify, Dokploy
 
-**One workflow everywhere**
-
-- One simpler workflow for any tech stack and any cloud provider, in accounts you control
-
 ## What you get
 
-- Ship your apps to infrastructure you own, with more frequent and safer deploys
 - Trigger zero-downtime deploys automatically when you push to git
 - See deploy history and infrastructure changes in one place, even from mobile, without SSH or cloud console access
-- Provision networks, subnets, static IPs, and servers in your cloud, then configure Linux and deploy apps without SSH for routine tasks
 - Fine-grained, role-based permissions per environment so teammates deploy without direct cloud-console access
 - Run DevOps operations in natural language through MCP when connected to your AI agents
 
 ## Quick start
 
 1. **[Create an account](https://app.devopness.com/)**: free, no credit card required
-2. **[Follow Getting Started](https://www.devopness.com/docs/)**: workspace → project → environment → first deploy
+2. **[Follow Getting Started](https://www.devopness.com/docs/)**: organization → project → environment → first deploy
 3. **[Connect MCP](https://www.devopness.com/docs/mcp/)**: optional; one-click in Cursor or VS Code above
 
-## Who this is for
+For developers, team leads, founders, and agencies shipping on cloud infrastructure they control.
 
-- Developers who ship apps, side projects, and cloud infrastructure
-- Team leads who want to simplify deploy workflows, speed up releases, and cut down on complex tooling
-- Founders and solo builders deploying from day one on cloud infrastructure they control
-- Freelancers and agencies who need fast deploys and separate client infrastructure at an affordable cost
+<p align="center">
+  <a href="https://www.devopness.com/">
+    <img src="https://assets.devopness.com/images/site-case-deploy.png" alt="Devopness deploy flow" width="640">
+  </a>
+</p>
 
 ## This repository
 
 Open source packages and documentation for [Devopness](https://www.devopness.com/):
 
-| Path                                                   | Package               | Description                                                                                                                                       |
-| :----------------------------------------------------- | :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [/docs](docs/)                                         | Documentation         | Product docs (published at [devopness.com/docs](https://www.devopness.com/docs/))                                                                 |
-| [/packages/sdks/javascript](packages/sdks/javascript/) | `@devopness/sdk-js`   | JavaScript/TypeScript API SDK [![npm](https://img.shields.io/npm/v/@devopness/sdk-js?label=npm)](https://www.npmjs.com/package/@devopness/sdk-js) |
-| [/packages/sdks/python](packages/sdks/python/)         | `devopness`           | Python API SDK [![PyPI](https://img.shields.io/pypi/v/devopness?label=pypi)](https://pypi.org/project/devopness/)                                 |
-| [/packages/ui/react](packages/ui/react/)               | `@devopness/ui-react` | React design system [![npm](https://img.shields.io/npm/v/@devopness/ui-react?label=npm)](https://www.npmjs.com/package/@devopness/ui-react)       |
-| [/examples/applications](examples/applications/)       | Examples              | Sample app integrations (Rails, Express, Laravel, and more)                                                                                       |
+| Path                                                   | Package               | Description                                                 |
+| :----------------------------------------------------- | :-------------------- | :---------------------------------------------------------- |
+| [/docs](docs/)                                         | Documentation         | Product docs                                                |
+| [/packages/sdks/javascript](packages/sdks/javascript/) | `@devopness/sdk-js`   | JavaScript/TypeScript API SDK                               |
+| [/packages/sdks/python](packages/sdks/python/)         | `devopness`           | Python API SDK                                              |
+| [/packages/ui/react](packages/ui/react/)               | `@devopness/ui-react` | React design system                                         |
+| [/examples/applications](examples/applications/)       | Examples              | Sample app integrations (Rails, Express, Laravel, and more) |
 
 ## Community
 
@@ -115,16 +114,8 @@ Open source packages and documentation for [Devopness](https://www.devopness.com
 
 ## Contributing
 
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). If you use AI tools, also read [AGENTS.md](AGENTS.md).
-
-All contributions are subject to the [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). If you use AI tools, also read [AGENTS.md](AGENTS.md). All contributions are subject to the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 Like the project? **[Star this repo](https://github.com/devopness/devopness/stargazers)**: it helps others discover Devopness.
 
-## Changelog
-
-Release notes: [GitHub Releases](https://github.com/devopness/devopness/releases)
-
-## License
-
-[MIT License](LICENSE) unless otherwise specified in a package `LICENSE` file.
+Release notes: [GitHub Releases](https://github.com/devopness/devopness/releases). [MIT License](LICENSE) unless otherwise specified in a package `LICENSE` file.
