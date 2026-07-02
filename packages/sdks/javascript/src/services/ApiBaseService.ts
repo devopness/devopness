@@ -144,14 +144,38 @@ export class ApiBaseService {
         ApiBaseService._onTokenExpired = callback;
     }
 
+    /**
+     * Decode the JWT payload so token expiry can be checked in browsers too.
+     *
+     * The payload is the middle section of the token, encoded as base64url.
+     * We normalize it to standard base64, decode it with `atob`, and parse the
+     * JSON payload instead of relying on Node's `Buffer`.
+     */
+    private decodeJwtPayload(token: string): { exp?: number } | undefined {
+        const payload = token.split(".")?.[1];
+        if (!payload) {
+            return undefined;
+        }
+
+        const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+        const paddedBase64 = base64 + "=".repeat((4 - (base64.length % 4)) % 4);
+
+        try {
+            return JSON.parse(globalThis.atob(paddedBase64));
+        } catch {
+            return undefined;
+        }
+    }
+
     protected isTokenExpired(response: AxiosResponse | undefined): boolean {
         if (!ApiBaseService.accessToken) {
             return false;
         }
 
-        const decodedToken = JSON.parse(
-            Buffer.from(ApiBaseService.accessToken?.split(".")?.[1], "base64").toString()
-        );
+        const decodedToken = this.decodeJwtPayload(ApiBaseService.accessToken);
+        if (!decodedToken?.exp) {
+            return false;
+        }
 
         return response?.status === 401 && decodedToken.exp < (new Date().getTime() / 1000);
     }
