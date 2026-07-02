@@ -5,8 +5,7 @@ type ThemeProps = {
   children: React.ReactNode
 } & Omit<React.ComponentProps<typeof OriginalTheme>, 'accentColor'> & {
     accentColor?:
-      | React.ComponentProps<typeof OriginalTheme>['accentColor']
-      | 'devopness'
+      React.ComponentProps<typeof OriginalTheme>['accentColor'] | 'devopness'
   }
 
 // Create our custom Theme component with default props

@@ -4,7 +4,7 @@ Instructions for AI agents working in the JavaScript SDK package.
 
 ## Workflow
 
-From `packages/sdks/javascript`, use these package scripts:
+Run the package scripts from `packages/sdks/javascript` so the package-local ESLint and generator config is used:
 
 - `make build-image`
 - `make npm-ci`

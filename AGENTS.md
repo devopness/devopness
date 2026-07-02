@@ -7,6 +7,7 @@ This file is for fast, action-oriented instructions for AI agents.
 1. Keep changes scoped and minimal
 2. Run the smallest relevant check set for the modified paths
 3. Avoid duplicating broad repo-wide process instructions that already belong to CONTRIBUTING
+4. When working in a package directory, run lint and fix scripts from that package folder so the package-local config is used
 
 ## Shared constraints
 
