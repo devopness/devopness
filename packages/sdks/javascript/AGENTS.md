@@ -11,6 +11,7 @@ From `packages/sdks/javascript`, use these package scripts:
 - `make build-sdk-js`
 - `make test`
 - `make lint`
+- `make npm ARGS=run lint:fix`
 
 ## Generated files
 
