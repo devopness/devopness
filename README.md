@@ -1,4 +1,4 @@
-# Devopness: deploy apps and manage servers on your own cloud
+# Devopness
 
 **Stop managing DevOps. Ship more, stress less.**
 
@@ -6,11 +6,13 @@ Deploy apps and **provision cloud infrastructure from scratch** in your own acco
 
 **One MCP server** for Cursor, VS Code, and other AI agents: manage any cloud, any infrastructure, any Linux version, and any stack (C#, Docker, Go, HTML, Java, Node.js, PHP, Python, Ruby, TypeScript, and more).
 
-[![Website](https://img.shields.io/badge/website-devopness.com-orange?style=flat-square)](https://www.devopness.com/)
-[![Docs](https://img.shields.io/badge/docs-read-blue?style=flat-square)](https://www.devopness.com/docs/)
-[![Start free](https://img.shields.io/badge/start_free-app.devopness.com-green?style=flat-square)](https://app.devopness.com/)
-[![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@devopness/sdk-js?label=npm)](https://www.npmjs.com/package/@devopness/sdk-js)
+[![PyPI](https://img.shields.io/pypi/v/devopness?label=pypi)](https://pypi.org/project/devopness/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Discord](https://img.shields.io/discord/1354644459031232655?label=discord&color=5865F2&logo=discord&logoColor=white)](https://discord.gg/WxKbZ3g37Q)
 [![GitHub stars](https://img.shields.io/github/stars/devopness/devopness?style=social)](https://github.com/devopness/devopness/stargazers)
+
+**[Create free account](https://app.devopness.com/)** · [Docs](https://www.devopness.com/docs/) · [Website](https://www.devopness.com/) · [Discord](https://discord.gg/WxKbZ3g37Q)
 
 ## For AI agents (MCP)
 
@@ -101,7 +103,7 @@ Open source packages and documentation for [Devopness](https://www.devopness.com
 
 ## Community
 
-- [Discord](https://devopness.com/discord/)
+- [Discord](https://discord.gg/WxKbZ3g37Q)
 - [GitHub Discussions](https://github.com/devopness/devopness/discussions)
 - [YouTube](https://www.youtube.com/@devopness)
 
