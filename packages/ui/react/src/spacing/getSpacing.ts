@@ -14,9 +14,6 @@ const spacing = {
     paddingY: '5px',
     iconGap: '10px',
   },
-  inset: {
-    md: '15px',
-  },
 } as const
 
 type Spacing = keyof Flatten<typeof spacing>
