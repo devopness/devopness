@@ -10,7 +10,7 @@
 
 <p align="center"><em>DevOps Happiness for AI agents and humans.</em></p>
 
-<h3 align="center">One platform · Any cloud · Any stack · Free plan</h3>
+<p align="center"><strong>One platform · Any cloud · Any stack · Free plan</strong></p>
 
 Deploy apps and **provision cloud infrastructure from scratch** on AWS, Azure, GCP, DigitalOcean, and Hetzner — in accounts you control.
 
