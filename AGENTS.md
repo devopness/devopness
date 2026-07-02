@@ -13,6 +13,7 @@ This file is for fast, action-oriented instructions for AI agents.
 
 - Do not hand-edit `packages/sdks/common/spec.json`
 - Prefer source inputs over editing generated output
+- Avoid workaround flags or bypasses such as `--legacy-peer-deps`, `--force`, or similar installer shortcuts unless the user explicitly asks for a temporary unblock and you explain the tradeoff.
 
 ## Monorepo structure
 

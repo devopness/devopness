@@ -1,60 +1,86 @@
-import { expect, test } from '@jest/globals';
+import { beforeEach, expect, test } from '@jest/globals';
+import { AxiosResponse } from 'axios';
 
 import { ApiBaseService, Configuration } from '../src/services/ApiBaseService';
 
 class TestApiBaseService extends ApiBaseService {
-  public hasExpiredToken(response: Parameters<ApiBaseService['isTokenExpired']>[0]) {
-    return this.isTokenExpired(response)
-  }
+    public hasExpired(response: AxiosResponse | undefined): boolean {
+        return this.isTokenExpired(response);
+    }
 }
 
-const createJwt = (payload: Record<string, unknown>) => {
-  const encodedPayload = btoa(JSON.stringify(payload))
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/u, '')
+const base64UrlEncode = (value: string): string => {
+    return btoa(value)
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/g, '');
+};
 
-  return `header.${encodedPayload}.signature`
-}
+const buildJwt = (payload: Record<string, unknown>): string => {
+    const header = base64UrlEncode(JSON.stringify({ alg: 'none', typ: 'JWT' }));
+    const body = base64UrlEncode(JSON.stringify(payload));
 
-const makeService = (accessToken?: string) => {
-  ApiBaseService.configuration = new Configuration({})
-  ApiBaseService.accessToken = accessToken ?? ''
-  return new TestApiBaseService()
-}
+    return `${header}.${body}.signature`;
+};
 
-test('returns false when no access token is set', () => {
-  const service = makeService()
+const buildResponse = (status: number): AxiosResponse => {
+    return {
+        data: null,
+        status,
+        statusText: 'OK',
+        config: {},
+        headers: {},
+    } as AxiosResponse;
+};
 
-  expect(service.hasExpiredToken({ status: 401 } as never)).toBe(false)
-})
+beforeEach(() => {
+    ApiBaseService.configuration = new Configuration({});
+    ApiBaseService.accessToken = '';
+});
 
-test('returns false when the token is still valid', () => {
-  const service = makeService(
-    createJwt({
-      exp: Math.floor(Date.now() / 1000) + 60,
-    })
-  )
+test('isTokenExpired returns false when there is no access token', () => {
+    const service = new TestApiBaseService();
 
-  expect(service.hasExpiredToken({ status: 401 } as never)).toBe(false)
-})
+    expect(service.hasExpired(buildResponse(401))).toBe(false);
+});
 
-test('returns false when the response is not a 401', () => {
-  const service = makeService(
-    createJwt({
-      exp: Math.floor(Date.now() / 1000) - 60,
-    })
-  )
+test('isTokenExpired returns false when the response is not a 401', () => {
+    ApiBaseService.accessToken = buildJwt({ exp: Math.floor(Date.now() / 1000) - 60 });
+    const service = new TestApiBaseService();
 
-  expect(service.hasExpiredToken({ status: 500 } as never)).toBe(false)
-})
+    expect(service.hasExpired(buildResponse(200))).toBe(false);
+});
 
-test('returns true when the token is expired and the response is a 401', () => {
-  const service = makeService(
-    createJwt({
-      exp: Math.floor(Date.now() / 1000) - 60,
-    })
-  )
+test('isTokenExpired returns true for an expired token', () => {
+    ApiBaseService.accessToken = buildJwt({
+        exp: Math.floor(Date.now() / 1000) - 60,
+        sub: 'jeferson-oliveira@example.com',
+    });
+    const service = new TestApiBaseService();
 
-  expect(service.hasExpiredToken({ status: 401 } as never)).toBe(true)
-})
+    expect(service.hasExpired(buildResponse(401))).toBe(true);
+});
+
+test('isTokenExpired returns false for a token that is still valid', () => {
+    ApiBaseService.accessToken = buildJwt({
+        exp: Math.floor(Date.now() / 1000) + 3600,
+        sub: 'jeferson-oliveira@example.com',
+    });
+    const service = new TestApiBaseService();
+
+    expect(service.hasExpired(buildResponse(401))).toBe(false);
+});
+
+test('isTokenExpired returns false when the token payload cannot be decoded', () => {
+    ApiBaseService.accessToken = 'header.not-base64.signature';
+    const service = new TestApiBaseService();
+
+    expect(service.hasExpired(buildResponse(401))).toBe(false);
+});
+
+test('isTokenExpired returns false when the token payload decodes but is not JSON', () => {
+    ApiBaseService.accessToken = `header.${base64UrlEncode('hello')}.signature`;
+    const service = new TestApiBaseService();
+
+    expect(service.hasExpired(buildResponse(401))).toBe(false);
+});

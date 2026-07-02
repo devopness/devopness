@@ -57,6 +57,9 @@
     "url": "https://github.com/devopness/devopness/issues"
   },
   "homepage": "https://github.com/devopness/devopness#readme",
+  "engines": {
+    "node": ">=16"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@openapitools/openapi-generator-cli": "2.38.0",

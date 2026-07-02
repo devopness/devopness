@@ -177,7 +177,37 @@ export class ApiBaseService {
             return false;
         }
 
-        return response?.status === 401 && decodedToken.exp < (new Date().getTime() / 1000);
+        return response?.status === 401 && (decodedToken.exp as number) < (new Date().getTime() / 1000);
+    }
+
+    /**
+     * Decode the JWT payload so we can inspect the `exp` claim in both browser and Node runtimes.
+     * This avoids relying on a Node-only JWT helper while still tolerating malformed tokens safely.
+     */
+    private static decodeJwtPayload(token: string): string {
+        try {
+            const payload = token.split(".")?.[1];
+
+            if (!payload) {
+                return "{}";
+            }
+
+            const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+            const paddingLength = (4 - (base64.length % 4)) % 4;
+            const paddedBase64 = base64 + "=".repeat(paddingLength);
+            const binary = atob(paddedBase64);
+
+            return decodeURIComponent(
+                Array.from(binary, (character) => {
+                    const hex = character.charCodeAt(0).toString(16);
+                    return `%${hex.length === 1 ? `0${hex}` : hex}`;
+                }).join("")
+            );
+        } catch {
+            // Malformed or legacy token payloads should not break the axios error path.
+            // Treat undecodable tokens as empty payloads and let the 401 handling continue.
+            return "{}";
+        }
     }
 
     public baseURL(): string {
