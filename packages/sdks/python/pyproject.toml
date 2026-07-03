@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 name = "devopness"
 version = "2.6.1"
 description = "Devopness API Python SDK - Painless essential DevOps to everyone"
-license = "MIT"
+license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Devopness (https://www.devopness.com)" }]
@@ -33,7 +33,7 @@ classifiers = [
   "Framework :: Pydantic",
   "Intended Audience :: Developers",
   "Intended Audience :: System Administrators",
-  "License :: OSI Approved :: MIT License",
+  "License :: OSI Approved :: Apache Software License",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",

@@ -47,7 +47,7 @@
     "Server Management"
   ],
   "author": "Devopness (https://www.devopness.com)",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "release": {
     "branches": [
       "main"
