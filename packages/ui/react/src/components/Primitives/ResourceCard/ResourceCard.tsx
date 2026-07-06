@@ -69,13 +69,20 @@ const formatRelativeTime = (date: string | Date) => {
   return relativeTimeFormatter.format(Math.round(diffMs / 1000), 'second')
 }
 
-/** Hashes a name into a stable index for picking an avatar background color */
+/**
+ * Hashes a name into a stable index for picking an avatar background color
+ *
+ * Mirrors `getMiniCardBackground` from devopness-web-app's `helpers/theme`,
+ * so the same name resolves to the same color across the app
+ */
 const hashNameToColorIndex = (name: string) => {
   const sum = name
     .split('')
     .reduce((total, char) => total + char.charCodeAt(0), 0)
 
-  return sum % AVATAR_BACKGROUND_COLORS.length
+  return sum + 1 <= AVATAR_BACKGROUND_COLORS.length
+    ? sum
+    : (sum + 1) % AVATAR_BACKGROUND_COLORS.length
 }
 
 type ResourceCardProps = {
