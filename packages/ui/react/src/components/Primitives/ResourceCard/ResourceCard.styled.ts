@@ -10,7 +10,13 @@ const CardContainer = styled.div`
   width: 100%;
   min-width: 0;
   cursor: pointer;
+  border-radius: 12px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+  &:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+  }
 `
 
 const CardInner = styled.div`
@@ -36,12 +42,6 @@ const CardInner = styled.div`
     box-shadow:
       0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-
-  &:focus-visible {
-    outline: 2px solid #6366f1;
-    outline-offset: 2px;
-    border-color: #6366f1;
   }
 `
 
