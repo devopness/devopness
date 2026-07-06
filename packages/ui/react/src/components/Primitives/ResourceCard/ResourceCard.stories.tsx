@@ -20,16 +20,19 @@ const WithOrganization: Story = {
   },
 }
 
+// Fixed so the "relative time" label doesn't drift while the story sits open
+const SAMPLE_CREATED_AT = new Date('2025-01-01T00:00:00Z')
+
 const WithCreatedAt: Story = {
   args: {
-    createdAt: new Date(Date.now() - 5 * 60 * 1000),
+    createdAt: SAMPLE_CREATED_AT,
   },
 }
 
 const WithOrganizationAndCreatedAt: Story = {
   args: {
     organization: 'Acme Inc.',
-    createdAt: new Date(Date.now() - 5 * 60 * 1000),
+    createdAt: SAMPLE_CREATED_AT,
   },
 }
 

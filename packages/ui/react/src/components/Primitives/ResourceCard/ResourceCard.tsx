@@ -1,3 +1,5 @@
+import type React from 'react'
+
 import {
   Avatar,
   CardContainer,
@@ -78,9 +80,7 @@ const hashNameToColorIndex = (name: string) => {
     .split('')
     .reduce((total, char) => total + char.charCodeAt(0), 0)
 
-  return sum + 1 <= AVATAR_BACKGROUND_COLORS.length
-    ? sum
-    : (sum + 1) % AVATAR_BACKGROUND_COLORS.length
+  return (sum + 1) % AVATAR_BACKGROUND_COLORS.length
 }
 
 type ResourceCardProps = {
@@ -117,9 +117,16 @@ const ResourceCard = ({
 
   const createdLabel = createdAt ? formatRelativeTime(createdAt) : undefined
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return
+    event.preventDefault()
+    onClick?.()
+  }
+
   return (
     <CardContainer
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
     >

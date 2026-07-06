@@ -108,6 +108,33 @@ describe('ResourceCard', () => {
         fireEvent.click(screen.getByRole('button'))
       }).not.toThrow()
     })
+
+    it.each([
+      'Enter',
+      ' ',
+    ])('calls onClick when %s is pressed', (key) => {
+      const handleClick = vi.fn()
+      render(
+        <ResourceCard
+          name="Keyboard"
+          onClick={handleClick}
+        />
+      )
+      fireEvent.keyDown(screen.getByRole('button'), { key })
+      expect(handleClick).toHaveBeenCalledTimes(1)
+    })
+
+    it('does not call onClick for other keys', () => {
+      const handleClick = vi.fn()
+      render(
+        <ResourceCard
+          name="Keyboard"
+          onClick={handleClick}
+        />
+      )
+      fireEvent.keyDown(screen.getByRole('button'), { key: 'Tab' })
+      expect(handleClick).not.toHaveBeenCalled()
+    })
   })
 
   describe('accessibility', () => {
