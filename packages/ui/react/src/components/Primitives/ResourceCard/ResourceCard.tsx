@@ -70,10 +70,8 @@ const formatRelativeTime = (date: string | Date) => {
 }
 
 /**
- * Hashes a name into a stable index for picking an avatar background color
- *
- * Mirrors `getMiniCardBackground` from devopness-web-app's `helpers/theme`,
- * so the same name resolves to the same color across the app
+ * Hashes a name into a stable index for picking an avatar background color,
+ * so the same name always resolves to the same color
  */
 const hashNameToColorIndex = (name: string) => {
   const sum = name
