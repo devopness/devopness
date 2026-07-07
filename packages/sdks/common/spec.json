@@ -14671,6 +14671,15 @@
           "resource": {
             "$ref": "#/components/schemas/ActionResource"
           },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
           },
@@ -14712,6 +14721,9 @@
           "trigger_comment",
           "triggered_from",
           "resource",
+          "organization",
+          "project",
+          "environment",
           "started_at",
           "completed_at",
           "created_at",
