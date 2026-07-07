@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.193.0
+
+### Minor Changes
+
+- [#3282](https://github.com/devopness/devopness/pull/3282) [`3035c9b`](https://github.com/devopness/devopness/commit/3035c9bf950f16d5ad10c393b209c2fc0bf6396a) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `ResourceCard` primitive, a card summarizing a resource (name, organization and creation date) for use as a tile inside `CardGrid`
+
 ## 2.192.5
 
 ### Patch Changes
