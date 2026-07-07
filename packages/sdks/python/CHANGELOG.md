@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#3286](https://github.com/devopness/devopness/pull/3286) [`9a611b2`](https://github.com/devopness/devopness/commit/9a611b27362e36ed90fe0987cb4d5ac4a17475c4) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Expose the Action Context - Organization, Project, Environment - in endpoints that return a list of actions like GET /actions
+- [#3286](https://github.com/devopness/devopness/pull/3286) [`9a611b2`](https://github.com/devopness/devopness/commit/9a611b27362e36ed90fe0987cb4d5ac4a17475c4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose the Action Context - Organization, Project, Environment - in endpoints that return a list of actions like GET /actions
 
 ## 2.6.1
 
