@@ -64,7 +64,7 @@
     "@eslint/js": "^10.0.1",
     "@openapitools/openapi-generator-cli": "^2.39.1",
     "@types/jest": "^30.0.0",
-    "@typescript-eslint/parser": "^8.62.1",
+    "@typescript-eslint/parser": "^8.63.0",
     "axios-mock-adapter": "^2.1.0",
     "eslint": "^10.6.0",
     "eslint-import-resolver-typescript": "^4.4.5",
@@ -76,7 +76,7 @@
     "ts-jest": "^29.4.11",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.1"
+    "typescript-eslint": "^8.63.0"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
