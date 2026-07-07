@@ -56,4 +56,34 @@ describe('Link', () => {
     expect(expectedText).toHaveStyle('color: #ff0000;')
     expect(expectedText).toHaveStyle('background-color: #00ff00;')
   })
+
+  it('renders as a custom component when "as" is provided, forwarding "to"', () => {
+    const CustomLink = ({
+      to,
+      children,
+      ...props
+    }: React.PropsWithChildren<{ to?: string }>) => (
+      <span
+        data-testid="custom-link"
+        data-to={to}
+        {...props}
+      >
+        {children}
+      </span>
+    )
+
+    render(
+      <Link
+        as={CustomLink}
+        to={LINK_PROPS.url}
+      >
+        LinkComponent
+      </Link>
+    )
+
+    const customLink = screen.getByTestId('custom-link')
+    expect(customLink).toBeInTheDocument()
+    expect(customLink).toHaveAttribute('data-to', LINK_PROPS.url)
+    expect(customLink).not.toHaveAttribute('href')
+  })
 })

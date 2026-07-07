@@ -131,6 +131,7 @@ const Button = ({
   iconColor,
   iconSize,
   loading: isLoading,
+  noMargin: _noMargin,
   noIconMargin,
   noPadding,
   noPointerEvents,
