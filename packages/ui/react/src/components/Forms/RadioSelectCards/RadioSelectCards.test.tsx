@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 
 import { RadioSelectCards } from './RadioSelectCards'
 
@@ -72,5 +72,74 @@ describe('RadioSelectCards', () => {
     fireEvent.click(option2)
     expect(option1.checked).toBe(false)
     expect(option2.checked).toBe(true)
+  })
+
+  it('applies a mobile breakpoint that switches the grid to 2 columns', () => {
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        data={sampleData}
+      />
+    )
+    const styles = Array.from(document.querySelectorAll('style'))
+      .map((style) => style.textContent)
+      .join('\n')
+
+    expect(styles).toContain('max-width: 600px')
+    expect(styles).toContain('repeat(2, 1fr)')
+  })
+
+  it('does not warn when a data item sets both checked and defaultChecked (controlled/uncontrolled guard)', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(vi.fn())
+
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        inputProps={{ onChange: vi.fn() }}
+        data={[
+          {
+            value: 'option1',
+            label: 'Option 1',
+            icon: 'icon1',
+            checked: true,
+            defaultChecked: false,
+          },
+          {
+            value: 'option2',
+            label: 'Option 2',
+            icon: 'icon2',
+            checked: false,
+            defaultChecked: true,
+          },
+        ]}
+      />
+    )
+
+    expect(errorSpy).not.toHaveBeenCalled()
+    errorSpy.mockRestore()
+  })
+
+  it('treats the input as controlled once `checked` is set, ignoring `defaultChecked`', () => {
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        inputProps={{ onChange: vi.fn() }}
+        data={[
+          {
+            value: 'option1',
+            label: 'Option 1',
+            icon: 'icon1',
+            checked: true,
+            defaultChecked: false,
+          },
+        ]}
+      />
+    )
+
+    const option1 = screen.getByRole('radio', {
+      name: 'Option 1',
+    }) as HTMLInputElement
+
+    expect(option1.checked).toBe(true)
   })
 })
