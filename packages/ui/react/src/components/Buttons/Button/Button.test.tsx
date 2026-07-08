@@ -168,6 +168,14 @@ describe('Button', () => {
       const label = screen.queryByTestId('button-label')
       expect(label).not.toBeInTheDocument()
     })
+
+    it('does not leak the deprecated noMargin prop onto the DOM', () => {
+      render(<Button noMargin>Button</Button>)
+
+      const button = screen.getByTestId('button')
+      expect(button).not.toHaveAttribute('noMargin')
+      expect(button).not.toHaveAttribute('nomargin')
+    })
   })
 
   describe('interactions', () => {

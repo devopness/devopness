@@ -84,6 +84,15 @@ type CardContentProps = {
   resources: ResourceItemData[]
 
   /**
+   * Renders internal links (resource rows and "add resource") as this
+   * component instead of a plain `<a>` — e.g. your router's `Link` — so
+   * navigation goes through client-side routing.
+   *
+   * @see {Link}
+   */
+  linkAs?: React.ElementType
+
+  /**
    * Whether the user is allowed to add a new resource.
    * If not allowed, the button is disabled.
    */
@@ -105,6 +114,7 @@ const CardContent = ({
   customAddPath,
   isError,
   isLoading,
+  linkAs,
   maxLength = DEFAULT_MAX_LENGTH,
   resourceTypeLabelPlural,
   resourceTypeLabelSingular,
@@ -151,6 +161,7 @@ const CardContent = ({
       <AddResource
         basePath={basePath}
         customAddPath={customAddPath}
+        linkAs={linkAs}
         resourceTypeLabelPlural={resourceTypeLabelPlural}
         resourceTypeLabelSingular={resourceTypeLabelSingular}
         userCanAddResource={userCanAddResource}
@@ -173,7 +184,10 @@ const CardContent = ({
     <StyledResourceList>
       {allResources.map((resource, index) => (
         <Fragment key={resource?.id ?? `$resource_item_${index}`}>
-          <ResourceItem resource={resource} />
+          <ResourceItem
+            resource={resource}
+            linkAs={linkAs}
+          />
           {index < maxLength - 1 && <StyledDivider />}
         </Fragment>
       ))}
@@ -187,6 +201,7 @@ type AddResourceProps = Pick<
   | 'resourceTypeLabelPlural'
   | 'resourceTypeLabelSingular'
   | 'customAddPath'
+  | 'linkAs'
 > & {
   userCanAddResource: boolean
   userPermissionsErrorMessage?: string
@@ -195,6 +210,7 @@ type AddResourceProps = Pick<
 const AddResource = ({
   basePath,
   customAddPath,
+  linkAs,
   resourceTypeLabelPlural,
   resourceTypeLabelSingular,
   userCanAddResource,
@@ -215,6 +231,7 @@ const AddResource = ({
           condition={!isDisabled}
           wrapper={(children) => (
             <Link
+              as={linkAs}
               hideExternalUrlIcon
               hideUnderline
               hideUnderlineOnHover
@@ -232,7 +249,6 @@ const AddResource = ({
           <Button
             buttonType="outlinedSecondary"
             color={getColor('purple.800')}
-            noMargin
             noPointerEvents={isDisabled}
             disabled={isDisabled}
             style={{
@@ -251,11 +267,11 @@ const AddResource = ({
   )
 }
 
-type ResourceItemProps = {
+type ResourceItemProps = Pick<CardContentProps, 'linkAs'> & {
   resource: ResourceItemData | undefined
 }
 
-const ResourceItem = ({ resource }: ResourceItemProps) => {
+const ResourceItem = ({ resource, linkAs }: ResourceItemProps) => {
   const elementRef = useRef<HTMLSpanElement>(null)
   const isOverflowing = useIsOverflowing(elementRef)
 
@@ -269,6 +285,7 @@ const ResourceItem = ({ resource }: ResourceItemProps) => {
       disableHover={!isOverflowing}
     >
       <Link
+        as={linkAs}
         hideExternalUrlIcon
         hideUnderline
         target="_self"

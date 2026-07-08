@@ -1,2 +1,2 @@
-export type { CardContentProps } from './CardContent'
+export type { CardContentProps, ResourceItemData } from './CardContent'
 export { CardContent } from './CardContent'
