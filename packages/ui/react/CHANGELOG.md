@@ -1,5 +1,13 @@
 # @devopness/ui-react
 
+## 2.194.0
+
+### Minor Changes
+
+- [#3288](https://github.com/devopness/devopness/pull/3288) [`1b32e90`](https://github.com/devopness/devopness/commit/1b32e90a6bc67b5d83dc35c1f226c759db132b57) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Export `CardList` and `CardContent` components. `CardContent` gained a `linkAs` prop to render its internal links through a custom component (e.g. a router's `Link`) instead of a plain `<a>`.
+
+  Also fixed `Button`'s deprecated `noMargin` prop leaking onto the underlying DOM `<button>` element, and added an `as` prop to `Link` so it can render as a custom component (with `to` forwarded to it) instead of a plain `<a>`.
+
 ## 2.193.0
 
 ### Minor Changes
