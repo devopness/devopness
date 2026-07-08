@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.194.1
+
+### Patch Changes
+
+- [#3294](https://github.com/devopness/devopness/pull/3294) [`a02014e`](https://github.com/devopness/devopness/commit/a02014e21f9b41d42a9b3336cdd2444c37ee2df8) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Fix `CardList`'s grid to use a fluid `auto-fill`/`minmax(250px, 1fr)` layout instead of a fixed 1/2/3-column breakpoint grid. The fixed grid capped the desktop layout at 3 columns regardless of viewport width, wasting horizontal space and wrapping cards to a new row even on very wide screens.
+
 ## 2.194.0
 
 ### Minor Changes
