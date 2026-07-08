@@ -85,5 +85,6 @@ describe('Link', () => {
     expect(customLink).toBeInTheDocument()
     expect(customLink).toHaveAttribute('data-to', LINK_PROPS.url)
     expect(customLink).not.toHaveAttribute('href')
+    expect(customLink).not.toHaveAttribute('rel')
   })
 })

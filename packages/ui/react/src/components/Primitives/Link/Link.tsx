@@ -69,7 +69,11 @@ const Link = ({
   target = '_blank',
   children,
   color = 'purple.800',
-  rel = target === '_blank' ? 'noopener noreferrer' : 'noreferrer',
+  rel = as
+    ? undefined
+    : target === '_blank'
+      ? 'noopener noreferrer'
+      : 'noreferrer',
   to: href,
   hideUnderline = false,
   hideUnderlineOnHover = false,
