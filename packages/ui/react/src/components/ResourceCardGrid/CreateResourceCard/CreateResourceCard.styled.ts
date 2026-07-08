@@ -37,7 +37,7 @@ const CardInner = styled.div`
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
-  &:focus-visible {
+  ${CardContainer}:focus-visible & {
     outline: 2px solid #6366f1;
     outline-offset: 2px;
     border-color: #6366f1;

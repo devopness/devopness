@@ -9,8 +9,12 @@ import { ResourceCard } from 'src/components/Primitives/ResourceCard'
 type ResourceCardGridProps = {
   /** Label used in the "Add {resourceType}" create-tile, e.g. `"project"` */
   resourceType: string
-  /** Resource tiles to render after the create tile */
-  resources: ResourceCardProps[]
+  /**
+   * Resource tiles to render after the create tile. Pass `id` when two
+   * resources may share the same `name`, so the grid can use it as the React
+   * key instead of falling back to `name`.
+   */
+  resources: (ResourceCardProps & { id?: string | number })[]
   /** Called when the create tile is clicked */
   onCreateResource?: () => void
   /** Total number of pages; pagination controls only render when greater than 1 */
@@ -56,7 +60,7 @@ const ResourceCardGrid = ({
 
       {resources.map((resource) => (
         <ResourceCard
-          key={resource.name}
+          key={resource.id ?? resource.name}
           {...resource}
         />
       ))}
