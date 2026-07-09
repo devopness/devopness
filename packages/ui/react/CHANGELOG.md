@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.195.0
+
+### Minor Changes
+
+- [#3297](https://github.com/devopness/devopness/pull/3297) [`3c97505`](https://github.com/devopness/devopness/commit/3c975059d3d5c7958ca5055f026d7970d33c80c7) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `ResourceCardGrid`, a composed component combining `CardGrid`, `ResourceCard` and `Pagination` with an always-first "create resource" tile — the layout used by resource-listing pages (projects, environments, organizations) instead of assembling those primitives by hand.
+
 ## 2.194.1
 
 ### Patch Changes
