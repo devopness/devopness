@@ -1,6 +1,12 @@
 import React from 'react'
 
-import { StyledLabel } from './RadioSelectCards.styled'
+import {
+  CardContent,
+  IconWrapper,
+  LabelText,
+  RadioGrid,
+  StyledLabel,
+} from './RadioSelectCards.styled'
 import { getColor } from 'src/colors'
 import { RingLoader, ErrorMessage } from 'src/components/Primitives'
 import { Unwrap } from 'src/components/types'
@@ -44,14 +50,8 @@ const CardRadioInput = ({
 
   return (
     <StyledLabel htmlFor={inputId}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: '0.5rem',
-          }}
-        >
+      <CardContent>
+        <IconWrapper>
           {typeof icon === 'string' && (
             <>{iconLoader(icon as Icon, ICON_SIZE)}</>
           )}
@@ -69,19 +69,9 @@ const CardRadioInput = ({
             {...props}
             {...inputProps}
           />
-        </div>
-        <span
-          style={{
-            color: getColor('blue.950'),
-            fontFamily: getFont('roboto'),
-            fontSize: '0.8125rem',
-            fontWeight: 500,
-            letterSpacing: '0.01625rem',
-          }}
-        >
-          {label}
-        </span>
-      </div>
+        </IconWrapper>
+        <LabelText>{label}</LabelText>
+      </CardContent>
     </StyledLabel>
   )
 }
@@ -90,8 +80,17 @@ const CardRadioInput = ({
  * Props for the RadioSelectCards component
  */
 type RadioSelectCardsProps = Unwrap<
-  Pick<CardRadioCardProps, 'name' | 'inputProps'> &
+  Pick<CardRadioCardProps, 'name'> &
     Pick<React.HTMLAttributes<HTMLDivElement>, 'style'> & {
+      /**
+       * Props shared by every card's input. `checked`/`defaultChecked` are
+       * per-card only (set via `data`) — a single boolean here would apply
+       * identically to every card in the group.
+       */
+      inputProps?: Omit<
+        NonNullable<CardRadioCardProps['inputProps']>,
+        'checked' | 'defaultChecked'
+      >
       /** Array of card data to render */
       data: Unwrap<
         Omit<CardRadioCardProps, 'name' | 'inputProps'> & {
@@ -155,30 +154,33 @@ const RadioSelectCards = ({
 
   return (
     <>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(10rem, 1fr))',
-          gap: '3rem 2.5rem',
-          border: error ? `1px solid ${getColor('red.500')}` : undefined,
-          ...style,
-        }}
+      <RadioGrid
+        $hasError={Boolean(error)}
+        style={style}
       >
-        {data.map(({ defaultChecked, checked, disabled, ...props }) => (
-          <CardRadioInput
-            name={name}
-            key={String(props.value)}
-            inputProps={{
-              ...sharedInputProps,
-              defaultChecked:
-                sharedInputProps?.defaultChecked ?? defaultChecked,
-              checked: sharedInputProps?.checked ?? checked,
-              disabled: sharedInputProps?.disabled ?? disabled,
-            }}
-            {...props}
-          />
-        ))}
-      </div>
+        {data.map(({ defaultChecked, checked, disabled, ...props }) => {
+          // A native <input> must not receive both `checked` and
+          // `defaultChecked` — that mixes controlled/uncontrolled modes and
+          // triggers a React warning. Once this card's own `checked` is set,
+          // treat it as controlled and drop `defaultChecked` entirely.
+          const isControlled = checked !== undefined
+
+          return (
+            <CardRadioInput
+              name={name}
+              key={String(props.value)}
+              inputProps={{
+                ...sharedInputProps,
+                ...(isControlled
+                  ? { checked: Boolean(checked), defaultChecked: undefined }
+                  : { defaultChecked }),
+                disabled: sharedInputProps?.disabled ?? disabled,
+              }}
+              {...props}
+            />
+          )
+        })}
+      </RadioGrid>
       {error && (
         <div style={{ fontFamily: getFont('roboto') }}>
           <ErrorMessage error={error} />
