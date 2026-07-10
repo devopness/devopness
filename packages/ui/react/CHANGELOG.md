@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.195.1
+
+### Patch Changes
+
+- [#3302](https://github.com/devopness/devopness/pull/3302) [`5812aec`](https://github.com/devopness/devopness/commit/5812aec39db2c86aa9df8c210eb0cf87c82dc221) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add a mobile-responsive layout to `RadioSelectCards` (`@media (max-width: 600px)`: 2-column grid, horizontal card layout, constrained icon size, truncated label), and fix it passing both `checked` and `defaultChecked` to the same radio `<input>` when a data item, or the shared `inputProps`, sets both.
+
 ## 2.195.0
 
 ### Minor Changes
