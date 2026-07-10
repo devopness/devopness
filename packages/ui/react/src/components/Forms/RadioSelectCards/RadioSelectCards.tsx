@@ -80,8 +80,17 @@ const CardRadioInput = ({
  * Props for the RadioSelectCards component
  */
 type RadioSelectCardsProps = Unwrap<
-  Pick<CardRadioCardProps, 'name' | 'inputProps'> &
+  Pick<CardRadioCardProps, 'name'> &
     Pick<React.HTMLAttributes<HTMLDivElement>, 'style'> & {
+      /**
+       * Props shared by every card's input. `checked`/`defaultChecked` are
+       * per-card only (set via `data`) — a single boolean here would apply
+       * identically to every card in the group.
+       */
+      inputProps?: Omit<
+        NonNullable<CardRadioCardProps['inputProps']>,
+        'checked' | 'defaultChecked'
+      >
       /** Array of card data to render */
       data: Unwrap<
         Omit<CardRadioCardProps, 'name' | 'inputProps'> & {
@@ -152,12 +161,9 @@ const RadioSelectCards = ({
         {data.map(({ defaultChecked, checked, disabled, ...props }) => {
           // A native <input> must not receive both `checked` and
           // `defaultChecked` — that mixes controlled/uncontrolled modes and
-          // triggers a React warning. Once either the shared props or this
-          // item set `checked`, treat the whole input as controlled and
-          // drop `defaultChecked` entirely.
-          const isControlled =
-            sharedInputProps?.checked !== undefined || checked !== undefined
-          const resolvedChecked = sharedInputProps?.checked ?? checked
+          // triggers a React warning. Once this card's own `checked` is set,
+          // treat it as controlled and drop `defaultChecked` entirely.
+          const isControlled = checked !== undefined
 
           return (
             <CardRadioInput
@@ -166,14 +172,8 @@ const RadioSelectCards = ({
               inputProps={{
                 ...sharedInputProps,
                 ...(isControlled
-                  ? {
-                      checked: Boolean(resolvedChecked),
-                      defaultChecked: undefined,
-                    }
-                  : {
-                      defaultChecked:
-                        sharedInputProps?.defaultChecked ?? defaultChecked,
-                    }),
+                  ? { checked: Boolean(checked), defaultChecked: undefined }
+                  : { defaultChecked }),
                 disabled: sharedInputProps?.disabled ?? disabled,
               }}
               {...props}
