@@ -166,7 +166,10 @@ const RadioSelectCards = ({
               inputProps={{
                 ...sharedInputProps,
                 ...(isControlled
-                  ? { checked: Boolean(resolvedChecked) }
+                  ? {
+                      checked: Boolean(resolvedChecked),
+                      defaultChecked: undefined,
+                    }
                   : {
                       defaultChecked:
                         sharedInputProps?.defaultChecked ?? defaultChecked,

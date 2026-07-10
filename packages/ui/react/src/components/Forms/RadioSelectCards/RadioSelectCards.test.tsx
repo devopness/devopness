@@ -119,6 +119,21 @@ describe('RadioSelectCards', () => {
     errorSpy.mockRestore()
   })
 
+  it('does not warn when the shared inputProps sets both checked and defaultChecked', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(vi.fn())
+
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        inputProps={{ checked: true, defaultChecked: true, onChange: vi.fn() }}
+        data={sampleData}
+      />
+    )
+
+    expect(errorSpy).not.toHaveBeenCalled()
+    errorSpy.mockRestore()
+  })
+
   it('treats the input as controlled once `checked` is set, ignoring `defaultChecked`', () => {
     render(
       <RadioSelectCards
