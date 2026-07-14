@@ -1,12 +1,11 @@
 import { ComponentType, CSSProperties, ElementType, ReactNode } from 'react'
 
-import { useMediaQuery } from '@mui/material'
 import uniqueId from 'lodash/uniqueId'
 
 import { CopyToClipboard } from '../CopyToClipboard'
 import { ToggleContent } from '../ToggleContent'
 import { Tooltip } from '../Tooltip'
-import { Paragraph, Label, Text } from './ViewDetails.styled'
+import { Paragraph, Label, Text, MobileHiddenHint } from './ViewDetails.styled'
 import { getColor } from 'src/colors'
 import { ConditionalWrapper } from 'src/components/helpers'
 import { isDefined } from 'src/components/type-guards'
@@ -102,7 +101,6 @@ const ViewDetailsContent = ({
   shouldDisableTextWrap = false,
   navigationComponent,
 }: DetailsContentProps) => {
-  const isMobile = useMediaQuery('(max-width:600px)')
   const isBoolean = typeof value === 'boolean'
   const formattedValue = (() => {
     if (isBoolean) return value ? 'Yes' : 'No'
@@ -128,9 +126,8 @@ const ViewDetailsContent = ({
         {isDefined(label) && (
           <Label className="translate">
             {label}
-            {typeof tooltip === 'object' &&
-              isDefined(tooltip.label) &&
-              !isMobile && (
+            {typeof tooltip === 'object' && isDefined(tooltip.label) && (
+              <MobileHiddenHint>
                 <Tooltip
                   title={tooltip.label}
                   placement="right-start"
@@ -144,7 +141,8 @@ const ViewDetailsContent = ({
                 >
                   <QuestionIcon />
                 </Tooltip>
-              )}
+              </MobileHiddenHint>
+            )}
             {isBoolean ? '?' : ':'}
           </Label>
         )}
@@ -202,10 +200,7 @@ const ViewDetailsContent = ({
             <ConditionalWrapper
               condition={!!isCopyToClipboard && isDefined(formattedValue)}
               wrapper={(children) => (
-                <CopyToClipboard
-                  id={uniqueId(label)}
-                  alwaysVisible={isMobile}
-                >
+                <CopyToClipboard id={uniqueId(label)}>
                   {children}
                 </CopyToClipboard>
               )}
@@ -266,9 +261,8 @@ const ViewDetailsContent = ({
           </ConditionalWrapper>
         )}
 
-        {typeof tooltip === 'object' &&
-          isDefined(tooltip.value) &&
-          !isMobile && (
+        {typeof tooltip === 'object' && isDefined(tooltip.value) && (
+          <MobileHiddenHint>
             <Tooltip
               title={tooltip.value}
               placement="right-start"
@@ -283,7 +277,8 @@ const ViewDetailsContent = ({
             >
               <QuestionIcon />
             </Tooltip>
-          )}
+          </MobileHiddenHint>
+        )}
       </Paragraph>
     </ConditionalWrapper>
   )

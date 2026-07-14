@@ -1,6 +1,5 @@
 import { CSSProperties, FC, ReactNode } from 'react'
 
-import { useMediaQuery } from '@mui/material'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi, beforeEach } from 'vitest'
@@ -8,14 +7,6 @@ import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { ViewDetails } from './ViewDetails'
 import { DetailsContentProps } from './ViewDetailsContent'
 import { ViewDetailsLoading } from './ViewDetailsLoading'
-
-vi.mock('@mui/material', async () => {
-  const actual = await vi.importActual('@mui/material')
-  return {
-    ...actual,
-    useMediaQuery: vi.fn(),
-  }
-})
 
 const MockNavigationLink: FC<{
   to: string | undefined
@@ -41,7 +32,6 @@ beforeEach(() => {
     value: { writeText: writeTextSpy },
     writable: true,
   })
-  ;(useMediaQuery as unknown as ReturnType<typeof vi.fn>).mockReturnValue(false)
 })
 
 const sampleData: { label: string; items: DetailsContentProps[] }[] = [
@@ -209,11 +199,7 @@ describe('ViewDetails', () => {
     expect(styles).toContain('16px 1fr 16px')
   })
 
-  it('hides the label/value question-mark tooltips on mobile', () => {
-    ;(useMediaQuery as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
-      true
-    )
-
+  it('hides the label/value question-mark tooltips on mobile via CSS only (no JS media-query hook)', () => {
     const dataWithTooltip: { label: string; items: DetailsContentProps[] }[] = [
       {
         label: 'Tooltip Section',
@@ -227,14 +213,22 @@ describe('ViewDetails', () => {
         ],
       },
     ]
-    const { container } = render(
+    render(
       <ViewDetails
         navigationComponent={MockNavigationLink}
         data={dataWithTooltip}
       />
     )
 
+    // Both tooltips still render in markup (identical on server and client —
+    // no hydration divergence); visibility below 600px is CSS-only.
     expect(screen.getByText('Info:')).toBeInTheDocument()
-    expect(container.querySelectorAll('svg')).toHaveLength(0)
+
+    const styles = Array.from(document.querySelectorAll('style'))
+      .map((style) => style.textContent)
+      .join('\n')
+
+    expect(styles).toContain('max-width: 600px')
+    expect(styles).toContain('display:none')
   })
 })
