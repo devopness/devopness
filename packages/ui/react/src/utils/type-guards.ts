@@ -43,18 +43,6 @@ type CamelCase<S extends string> =
     ? `${Head}${CamelCase<Capitalize<Tail>>}`
     : S
 
-type GlobalStringExtensions = {
-  /** Converts all the alphabetic characters in a string to uppercase. */
-  toUpperCase<T extends string>(this: T): Uppercase<T>
-  /** Converts all the alphabetic characters in a string to lowercase. */
-  toLowerCase<T extends string>(this: T): Lowercase<T>
-}
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions, @typescript-eslint/no-empty-object-type
-  interface String extends GlobalStringExtensions {}
-}
-
 /**
  * Convert kebab-case string literal to snake_case
  */
