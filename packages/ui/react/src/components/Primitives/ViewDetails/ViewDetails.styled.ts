@@ -32,6 +32,11 @@ const Container = styled.div`
 
   padding-top: 42px;
   padding-bottom: 42px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 16px 1fr 16px;
+    grid-column-gap: 0;
+  }
 `
 
 const DetailViewSection = styled.div`

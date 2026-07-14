@@ -1,5 +1,6 @@
 import { ComponentType, CSSProperties, ElementType, ReactNode } from 'react'
 
+import { useMediaQuery } from '@mui/material'
 import uniqueId from 'lodash/uniqueId'
 
 import { CopyToClipboard } from '../CopyToClipboard'
@@ -101,6 +102,7 @@ const ViewDetailsContent = ({
   shouldDisableTextWrap = false,
   navigationComponent,
 }: DetailsContentProps) => {
+  const isMobile = useMediaQuery('(max-width:600px)')
   const isBoolean = typeof value === 'boolean'
   const formattedValue = (() => {
     if (isBoolean) return value ? 'Yes' : 'No'
@@ -126,21 +128,23 @@ const ViewDetailsContent = ({
         {isDefined(label) && (
           <Label className="translate">
             {label}
-            {typeof tooltip === 'object' && isDefined(tooltip.label) && (
-              <Tooltip
-                title={tooltip.label}
-                placement="right-start"
-                styles={{
-                  color: getColor('white'),
-                }}
-                style={{
-                  padding: '0 2px',
-                  height: '16px',
-                }}
-              >
-                <QuestionIcon />
-              </Tooltip>
-            )}
+            {typeof tooltip === 'object' &&
+              isDefined(tooltip.label) &&
+              !isMobile && (
+                <Tooltip
+                  title={tooltip.label}
+                  placement="right-start"
+                  styles={{
+                    color: getColor('white'),
+                  }}
+                  style={{
+                    padding: '0 2px',
+                    height: '16px',
+                  }}
+                >
+                  <QuestionIcon />
+                </Tooltip>
+              )}
             {isBoolean ? '?' : ':'}
           </Label>
         )}
@@ -177,6 +181,9 @@ const ViewDetailsContent = ({
               width: '100%',
             },
           }}
+          buttonProps={{
+            style: { padding: '0 8px' },
+          }}
         >
           {isDefined(url) ? (
             <NavigationLink
@@ -195,7 +202,10 @@ const ViewDetailsContent = ({
             <ConditionalWrapper
               condition={!!isCopyToClipboard && isDefined(formattedValue)}
               wrapper={(children) => (
-                <CopyToClipboard id={uniqueId(label)}>
+                <CopyToClipboard
+                  id={uniqueId(label)}
+                  alwaysVisible={isMobile}
+                >
                   {children}
                 </CopyToClipboard>
               )}
@@ -256,22 +266,24 @@ const ViewDetailsContent = ({
           </ConditionalWrapper>
         )}
 
-        {typeof tooltip === 'object' && isDefined(tooltip.value) && (
-          <Tooltip
-            title={tooltip.value}
-            placement="right-start"
-            styles={{
-              color: getColor('white'),
-            }}
-            style={{
-              padding: '0 2px',
-              height: '16px',
-              overflow: 'visible',
-            }}
-          >
-            <QuestionIcon />
-          </Tooltip>
-        )}
+        {typeof tooltip === 'object' &&
+          isDefined(tooltip.value) &&
+          !isMobile && (
+            <Tooltip
+              title={tooltip.value}
+              placement="right-start"
+              styles={{
+                color: getColor('white'),
+              }}
+              style={{
+                padding: '0 2px',
+                height: '16px',
+                overflow: 'visible',
+              }}
+            >
+              <QuestionIcon />
+            </Tooltip>
+          )}
       </Paragraph>
     </ConditionalWrapper>
   )
