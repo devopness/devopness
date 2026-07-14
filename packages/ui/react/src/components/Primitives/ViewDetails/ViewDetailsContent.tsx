@@ -15,7 +15,7 @@ import { QuestionIcon, getTextContent } from 'src/utils'
 const EMPTY_CONTENT = '—'
 
 /** Props for the icon component */
-type IconProps =
+type DetailsIconProps =
   | (Icon | Omit<string, Icon>)
   | {
       name: Omit<string, Icon>
@@ -46,7 +46,7 @@ type DetailsContentProps = {
   /** Value for the detail item */
   value: ReactNode
   /** Icon to display alongside the label */
-  icon?: IconProps
+  icon?: DetailsIconProps
   /** URL string or props object for the navigation component */
   url?: string | Partial<NavigationComponentProps>
   /** If true, the URL is a resource within the application */
@@ -69,7 +69,7 @@ type DetailsContentProps = {
         label?: string
         value?: string
       }
-  statusIcon?: IconProps
+  statusIcon?: DetailsIconProps
   /**
    * Component to use for navigation links
    */
@@ -284,4 +284,4 @@ const ViewDetailsContent = ({
   )
 }
 export { ViewDetailsContent }
-export type { IconProps, DetailsContentProps }
+export type { DetailsIconProps, DetailsContentProps }
