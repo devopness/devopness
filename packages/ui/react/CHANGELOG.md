@@ -1,5 +1,13 @@
 # @devopness/ui-react
 
+## 2.195.3
+
+### Patch Changes
+
+- [#3325](https://github.com/devopness/devopness/pull/3325) [`9ac2091`](https://github.com/devopness/devopness/commit/9ac2091f295ebab50f0365b471028f82dbcf38d0) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Fix `ViewDetailsContent`'s `IconProps` being silently shadowed by an unrelated same-named type
+
+  The package exported two different types both named `IconProps` (one from `Icon`, one from `ViewDetailsContent`), and TypeScript's explicit named re-export for `Icon`'s `IconProps` always won over the wildcard re-export of `ViewDetailsContent`'s, with no compile error. `ViewDetailsContent`'s icon type is now exported as `DetailsIconProps` instead, resolving the ambiguity.
+
 ## 2.195.2
 
 ### Patch Changes
