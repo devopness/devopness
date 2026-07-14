@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.195.2
+
+### Patch Changes
+
+- [#3313](https://github.com/devopness/devopness/pull/3313) [`625fbb0`](https://github.com/devopness/devopness/commit/625fbb04f8df4f631ffd2a0bc07b1028b42c6016) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add a mobile-responsive layout to `ViewDetails`/`ViewDetailsContent`: the container grid collapses to a single column below `768px`, the label/value question-mark tooltips are hidden below `600px`, and `CopyToClipboard` becomes always-visible (instead of hover-only) below `600px` — parity with the local implementation this component is meant to replace.
+
 ## 2.195.1
 
 ### Patch Changes
