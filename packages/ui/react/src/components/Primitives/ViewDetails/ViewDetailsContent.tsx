@@ -5,7 +5,7 @@ import uniqueId from 'lodash/uniqueId'
 import { CopyToClipboard } from '../CopyToClipboard'
 import { ToggleContent } from '../ToggleContent'
 import { Tooltip } from '../Tooltip'
-import { Paragraph, Label, Text } from './ViewDetails.styled'
+import { Paragraph, Label, Text, MobileHiddenHint } from './ViewDetails.styled'
 import { getColor } from 'src/colors'
 import { ConditionalWrapper } from 'src/components/helpers'
 import { isDefined } from 'src/components/type-guards'
@@ -127,19 +127,21 @@ const ViewDetailsContent = ({
           <Label className="translate">
             {label}
             {typeof tooltip === 'object' && isDefined(tooltip.label) && (
-              <Tooltip
-                title={tooltip.label}
-                placement="right-start"
-                styles={{
-                  color: getColor('white'),
-                }}
-                style={{
-                  padding: '0 2px',
-                  height: '16px',
-                }}
-              >
-                <QuestionIcon />
-              </Tooltip>
+              <MobileHiddenHint>
+                <Tooltip
+                  title={tooltip.label}
+                  placement="right-start"
+                  styles={{
+                    color: getColor('white'),
+                  }}
+                  style={{
+                    padding: '0 2px',
+                    height: '16px',
+                  }}
+                >
+                  <QuestionIcon />
+                </Tooltip>
+              </MobileHiddenHint>
             )}
             {isBoolean ? '?' : ':'}
           </Label>
@@ -176,6 +178,9 @@ const ViewDetailsContent = ({
             style: {
               width: '100%',
             },
+          }}
+          buttonProps={{
+            style: { padding: '0 8px' },
           }}
         >
           {isDefined(url) ? (
@@ -257,20 +262,22 @@ const ViewDetailsContent = ({
         )}
 
         {typeof tooltip === 'object' && isDefined(tooltip.value) && (
-          <Tooltip
-            title={tooltip.value}
-            placement="right-start"
-            styles={{
-              color: getColor('white'),
-            }}
-            style={{
-              padding: '0 2px',
-              height: '16px',
-              overflow: 'visible',
-            }}
-          >
-            <QuestionIcon />
-          </Tooltip>
+          <MobileHiddenHint>
+            <Tooltip
+              title={tooltip.value}
+              placement="right-start"
+              styles={{
+                color: getColor('white'),
+              }}
+              style={{
+                padding: '0 2px',
+                height: '16px',
+                overflow: 'visible',
+              }}
+            >
+              <QuestionIcon />
+            </Tooltip>
+          </MobileHiddenHint>
         )}
       </Paragraph>
     </ConditionalWrapper>

@@ -183,4 +183,52 @@ describe('ViewDetails', () => {
     expect(label).toBeInTheDocument()
     await userEvent.hover(label)
   })
+
+  it('applies a mobile breakpoint to the container grid', () => {
+    render(
+      <ViewDetails
+        navigationComponent={MockNavigationLink}
+        data={sampleData}
+      />
+    )
+    const styles = Array.from(document.querySelectorAll('style'))
+      .map((style) => style.textContent)
+      .join('\n')
+
+    expect(styles).toContain('max-width: 768px')
+    expect(styles).toContain('16px 1fr 16px')
+  })
+
+  it('hides the label/value question-mark tooltips on mobile via CSS only (no JS media-query hook)', () => {
+    const dataWithTooltip: { label: string; items: DetailsContentProps[] }[] = [
+      {
+        label: 'Tooltip Section',
+        items: [
+          {
+            label: 'Info',
+            value: 'Value',
+            tooltip: { label: 'Label tooltip', value: 'Value tooltip' },
+            navigationComponent: MockNavigationLink,
+          },
+        ],
+      },
+    ]
+    render(
+      <ViewDetails
+        navigationComponent={MockNavigationLink}
+        data={dataWithTooltip}
+      />
+    )
+
+    // Both tooltips still render in markup (identical on server and client —
+    // no hydration divergence); visibility below 600px is CSS-only.
+    expect(screen.getByText('Info:')).toBeInTheDocument()
+
+    const styles = Array.from(document.querySelectorAll('style'))
+      .map((style) => style.textContent)
+      .join('\n')
+
+    expect(styles).toContain('max-width: 600px')
+    expect(styles).toContain('display:none')
+  })
 })

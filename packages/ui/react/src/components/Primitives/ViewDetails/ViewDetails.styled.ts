@@ -32,6 +32,11 @@ const Container = styled.div`
 
   padding-top: 42px;
   padding-bottom: 42px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 16px 1fr 16px;
+    grid-column-gap: 0;
+  }
 `
 
 const DetailViewSection = styled.div`
@@ -76,6 +81,20 @@ const Text = styled.span`
   color: ${getColor('blue.800')};
   white-space: pre-wrap;
 `
+
+/**
+ * Hides its content below 600px using only CSS, instead of a JS media-query
+ * hook — keeps this component's markup identical between server and client
+ * render, avoiding a hydration flash/mismatch on mobile viewports.
+ */
+const MobileHiddenHint = styled.span`
+  display: contents;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+`
+
 export {
   Container,
   Section,
@@ -87,4 +106,5 @@ export {
   Label,
   DetailViewSection,
   LineWrapper,
+  MobileHiddenHint,
 }
