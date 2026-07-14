@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "ignoreDeprecations": "6.0",
     "target": "ESNext",
     "lib": [
@@ -28,7 +27,7 @@
         "./src/*"
       ],
       "fumadocs-mdx:collections/*": [
-        ".source/*"
+        "./.source/*"
       ]
     },
     "plugins": [
