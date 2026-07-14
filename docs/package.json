@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "dotenv-expand": "^13.0.0",
-    "fumadocs-core": "16.11.3",
-    "fumadocs-mdx": "15.1.0",
-    "fumadocs-ui": "16.11.3",
+    "fumadocs-core": "16.11.4",
+    "fumadocs-mdx": "15.1.1",
+    "fumadocs-ui": "16.11.4",
     "lucide-react": "^1.24.0",
     "next": "16.2.10",
     "react": "^19.2.5",
