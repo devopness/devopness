@@ -231,4 +231,58 @@ describe('ViewDetails', () => {
     expect(styles).toContain('max-width: 600px')
     expect(styles).toContain('display:none')
   })
+
+  it('renders an em dash for an empty value by default', () => {
+    const dataWithEmptyValue: {
+      label: string
+      items: DetailsContentProps[]
+    }[] = [
+      {
+        label: 'Section',
+        items: [
+          {
+            label: 'Empty field',
+            value: undefined,
+            navigationComponent: MockNavigationLink,
+          },
+        ],
+      },
+    ]
+    render(
+      <ViewDetails
+        navigationComponent={MockNavigationLink}
+        data={dataWithEmptyValue}
+      />
+    )
+
+    expect(screen.getByText('—')).toBeInTheDocument()
+  })
+
+  it('renders emptyContent instead of the default em dash when provided', () => {
+    const dataWithEmptyContent: {
+      label: string
+      items: DetailsContentProps[]
+    }[] = [
+      {
+        label: 'Section',
+        items: [
+          {
+            label: 'Empty field',
+            value: undefined,
+            emptyContent: 'N/A',
+            navigationComponent: MockNavigationLink,
+          },
+        ],
+      },
+    ]
+    render(
+      <ViewDetails
+        navigationComponent={MockNavigationLink}
+        data={dataWithEmptyContent}
+      />
+    )
+
+    expect(screen.getByText('N/A')).toBeInTheDocument()
+    expect(screen.queryByText('—')).not.toBeInTheDocument()
+  })
 })

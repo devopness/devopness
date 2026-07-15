@@ -45,6 +45,11 @@ type DetailsContentProps = {
   label?: string
   /** Value for the detail item */
   value: ReactNode
+  /**
+   * Content to render when `value` is empty/undefined
+   * @default '—'
+   */
+  emptyContent?: ReactNode
   /** Icon to display alongside the label */
   icon?: DetailsIconProps
   /** URL string or props object for the navigation component */
@@ -91,6 +96,7 @@ type DetailsContentProps = {
 const ViewDetailsContent = ({
   label,
   value,
+  emptyContent = EMPTY_CONTENT,
   url,
   icon,
   isCopyToClipboard,
@@ -206,7 +212,7 @@ const ViewDetailsContent = ({
               )}
             >
               <Tooltip
-                title={getTextContent(formattedValue)}
+                title={getTextContent(formattedValue ?? emptyContent)}
                 enableOnlyWithEllipsisPoints
               >
                 <Text
@@ -221,7 +227,7 @@ const ViewDetailsContent = ({
                       : undefined
                   }
                 >
-                  {formattedValue ?? EMPTY_CONTENT}
+                  {formattedValue ?? emptyContent}
                 </Text>
               </Tooltip>
             </ConditionalWrapper>
