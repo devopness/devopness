@@ -73,11 +73,8 @@ const CopyToClipboard = ({
         setTooltipMessage('Copied!')
         setIsCopied(true)
       })
-      .catch((error: unknown) => {
+      .catch(() => {
         setTooltipMessage('Error!')
-        throw new Error(
-          `CopyToClipboard: unable to copy: ${JSON.stringify(error)}`
-        )
       })
   }
 

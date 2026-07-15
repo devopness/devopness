@@ -52,23 +52,7 @@ describe('CopyToClipboard', () => {
   })
 
   it('displays Error! when copying fails', async () => {
-    /*
-      We mock the writeText method to return a custom "fake promise".
-      This allows us to trigger the `.catch` block in the component
-      and synchronously swallow the `throw new Error(...)` it generates,
-      preventing Vitest from failing due to an Unhandled Promise Rejection.
-    */
-    const fakePromise = {
-      then: () => fakePromise,
-      catch: (errorCallback: (err: Error) => void) => {
-        try {
-          errorCallback(new Error('Clipboard error'))
-        } catch {
-          // Swallow the error thrown by the component
-        }
-      },
-    }
-    writeTextSpy.mockReturnValueOnce(fakePromise as unknown as Promise<void>)
+    writeTextSpy.mockRejectedValueOnce(new Error('Clipboard error'))
 
     render(<CopyToClipboard id="test">Copiar isso</CopyToClipboard>)
     const copyButton = screen.getByRole('button')
