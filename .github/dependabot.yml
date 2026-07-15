@@ -24,11 +24,6 @@ updates:
         - "prettier-*"
         - "@ianvs/prettier-plugin-sort-imports"
         - "typescript"
-    sdk-js-jest:
-      patterns:
-        - "jest"
-        - "ts-jest"
-        - "@types/jest"
     ui-react-vite:
       patterns:
         - "vite"
@@ -36,6 +31,15 @@ updates:
         - "vite-*"
         - "vitest"
         - "@vitest/*"
+    sdk-js-viteplus:
+      patterns:
+        - "vite-plus"
+        - "typescript"
+        - "@types/parse-link-header"
+        - "axios"
+        - "axios-mock-adapter"
+        - "typedoc"
+        - "husky"
 
 - package-ecosystem: pip
   directories:
@@ -54,17 +58,9 @@ updates:
     docs-fumadocs:
       patterns:
         - "fumadocs-*"
-    docs-linters:
+    docs-viteplus:
       patterns:
-        - "typescript-eslint"
-        - "@typescript-eslint/*"
-        - "eslint"
-        - "@eslint/*"
-        - "eslint-*"
-        - "@next/eslint-plugin-next"
-        - "prettier"
-        - "prettier-*"
-        - "@ianvs/prettier-plugin-sort-imports"
+        - "vite-plus"
         - "typescript"
         - "@types/node"
         - "@types/react"
