@@ -24,10 +24,10 @@
     "docs-export-service-index": "find src/services/ ! -name 'index.ts' -name '*.ts' -type f | sort -k3 -t'/' | xargs -I'{}' bash -c 'echo \"export * from $(echo -e \"\\x27\")./$(basename $0 .ts)$(echo -e \"\\x27\")\" >> src/services/index.ts' {} \\;",
     "docs-update-service-index": "npm run docs-remove-service-index && npm run docs-export-service-index",
     "docs": "npm run docs-update-service-index && typedoc",
-    "lint": "vp check",
-    "lint:fix": "vp check --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
-    "test": "jest"
+    "test": "vitest run"
   },
   "repository": {
     "type": "git",
@@ -58,18 +58,23 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "engines": {
-    "node": "^20.19.0 || ^22.18.0 || >=24.11.0"
+    "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@openapitools/openapi-generator-cli": "^2.39.1",
-    "@types/jest": "^30.0.0",
+    "@typescript-eslint/parser": "^8.64.0",
     "axios-mock-adapter": "^2.1.0",
+    "eslint": "^10.7.0",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^18.2.2",
+    "eslint-plugin-promise": "^7.3.0",
     "husky": "9.1.7",
-    "jest": "^30.4.2",
-    "ts-jest": "^29.4.11",
     "typedoc": "^0.28.20",
-    "typescript": "^6.0.3",
-    "vite-plus": "0.2.4"
+    "typescript": "^7.0.2",
+    "typescript-eslint": "^8.64.0",
+    "vitest": "^4.1.10"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",

@@ -1,5 +1,5 @@
-import { beforeEach, expect, test } from '@jest/globals';
 import { AxiosResponse } from 'axios';
+import { beforeEach, expect, test } from 'vitest';
 
 import { ApiBaseService, Configuration } from '../src/services/ApiBaseService';
 
