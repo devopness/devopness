@@ -1,4 +1,4 @@
-import { expect, test, vi } from 'vitest';
+import { expect, test, vi } from 'vite-plus/test';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 

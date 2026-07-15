@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { beforeEach, expect, test } from 'vitest';
+import { beforeEach, expect, test } from 'vite-plus/test';
 
 import { ApiBaseService, Configuration } from '../src/services/ApiBaseService';
 

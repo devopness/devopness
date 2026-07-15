@@ -27,7 +27,7 @@
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
-    "test": "vitest run"
+    "test": "vp test"
   },
   "repository": {
     "type": "git",
@@ -65,8 +65,7 @@
     "axios-mock-adapter": "^2.1.0",
     "husky": "9.1.7",
     "typescript": "^7.0.2",
-    "typedoc": "^0.28.20",
-    "vitest": "^4.1.10"
+    "typedoc": "^0.28.20"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",

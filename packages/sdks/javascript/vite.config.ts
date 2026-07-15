@@ -6,6 +6,10 @@ import { defineConfig } from 'vite-plus'
  * aligned with the package-local CI workflow.
  */
 export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'node',
+  },
   fmt: {
     ignorePatterns: [
       'CHANGELOG.md',

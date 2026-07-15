@@ -11,9 +11,7 @@
     "allowJs": false,
     "declaration": true,
     "resolveJsonModule": true,
-    "types": [
-      "vitest/globals"
-    ],
+    "types": ["vite-plus/test/globals"],
     "rootDir": "./src",
     "outDir": "./dist",
     "removeComments": false,
