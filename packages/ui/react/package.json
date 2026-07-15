@@ -55,7 +55,6 @@
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
     "lint": "vp check",
     "lint:fix": "vp check --fix",
-    "format": "vp fmt",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "storybook": "storybook dev -p 6006",
     "test": "vitest"

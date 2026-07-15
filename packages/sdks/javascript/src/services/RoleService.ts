@@ -1,4 +1,3 @@
-import { RolesApiService } from '../api/generated/apis/roles-api';
+import { RolesApiService } from "../api/generated/apis/roles-api";
 
-export class RoleService extends RolesApiService {
-}
+export class RoleService extends RolesApiService {}
