@@ -26,7 +26,6 @@
     "docs": "npm run docs-update-service-index && typedoc",
     "lint": "vp check",
     "lint:fix": "vp check --fix",
-    "format": "vp fmt",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "test": "jest"
   },
