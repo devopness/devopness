@@ -1,10 +1,26 @@
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite-plus'
 import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  fmt: {
+    ignorePatterns: [
+      'node_modules',
+      '*.yml',
+      '.eslintignore',
+      '.gitignore',
+      'package-lock.json',
+      'yarn.lock',
+    ],
+    printWidth: 80,
+    semi: false,
+    singleAttributePerLine: true,
+    singleQuote: true,
+    tabWidth: 2,
+    trailingComma: 'es5',
+  },
   plugins: [
     react(),
     dts({
@@ -34,10 +50,7 @@ export default defineConfig({
         radix: resolve(__dirname, 'src/radix/index.tsx'),
         'radix/styles': resolve(__dirname, 'src/radix/styles.css'),
       },
-      formats: [
-        'es',
-        'cjs',
-      ],
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: [
@@ -48,7 +61,7 @@ export default defineConfig({
         /^react(\/.*)?$/,
       ],
       output: {
-        assetFileNames: (assetInfo) => {
+        assetFileNames: (assetInfo: { name?: string }) => {
           const name = assetInfo.name ?? ''
           if (name.endsWith('.css')) return 'radix/styles.css'
           return 'assets/[name]-[hash][extname]'
@@ -56,4 +69,4 @@ export default defineConfig({
       },
     },
   },
-})
+} as any)

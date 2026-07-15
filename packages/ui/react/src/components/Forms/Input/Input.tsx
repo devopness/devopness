@@ -87,13 +87,8 @@ const generateUniqueId = () =>
  */
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const internalRef = useRef<HTMLInputElement>(null)
-  const [
-    randomId,
-  ] = useState(generateUniqueId)
-  const [
-    showPassword,
-    setShowPassword,
-  ] = useState(false)
+  const [randomId] = useState(generateUniqueId)
+  const [showPassword, setShowPassword] = useState(false)
   const inputRef =
     (ref as React.RefObject<HTMLInputElement> | undefined) ?? internalRef
   const {
@@ -117,11 +112,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     if (autoFocusOnError && error && inputRef.current) {
       inputRef.current.focus()
     }
-  }, [
-    autoFocusOnError,
-    error,
-    inputRef,
-  ])
+  }, [autoFocusOnError, error, inputRef])
 
   const errorId = `${inputId}-error`
   const hasError = Boolean(error)

@@ -56,7 +56,10 @@ type MapFieldProps = {
     | RefObject<HTMLSelectElement>
     | ((
         instance:
-          HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement | null
+          | HTMLTextAreaElement
+          | HTMLInputElement
+          | HTMLSelectElement
+          | null
       ) => void)
   /** Validation error */
   error?: { message: string } | null
@@ -90,7 +93,10 @@ type DynamicFieldProps = {
     | RefObject<HTMLSelectElement>
     | ((
         instance:
-          HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement | null
+          | HTMLTextAreaElement
+          | HTMLInputElement
+          | HTMLSelectElement
+          | null
       ) => void)
 } & ExternalControlProps
 

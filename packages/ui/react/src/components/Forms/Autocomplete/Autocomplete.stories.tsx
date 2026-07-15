@@ -14,11 +14,7 @@ const meta: Meta<AutocompleteProps> = {
       placeholder: 'Select or type to search',
     },
     autocompleteProps: {
-      options: [
-        'github',
-        'gitlab',
-        'bitbucket',
-      ],
+      options: ['github', 'gitlab', 'bitbucket'],
     },
   },
 }

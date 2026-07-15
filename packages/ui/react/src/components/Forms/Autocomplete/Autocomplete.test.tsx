@@ -14,10 +14,7 @@ describe('Autocomplete', () => {
   const defaultProps: AutocompleteProps = {
     inputProps: { placeholder: 'Type something' },
     autocompleteProps: {
-      options: [
-        'Option 1',
-        'Option 2',
-      ],
+      options: ['Option 1', 'Option 2'],
       value: '',
     },
   }

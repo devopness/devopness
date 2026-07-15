@@ -16,9 +16,7 @@ describe('ResourceCardGrid', () => {
     render(
       <ResourceCardGrid
         resourceType="project"
-        resources={[
-          { name: 'my-app' },
-        ]}
+        resources={[{ name: 'my-app' }]}
         pageCount={1}
         pagination={noopPagination}
       />
@@ -48,10 +46,7 @@ describe('ResourceCardGrid', () => {
     render(
       <ResourceCardGrid
         resourceType="project"
-        resources={[
-          { name: 'app-one' },
-          { name: 'app-two' },
-        ]}
+        resources={[{ name: 'app-one' }, { name: 'app-two' }]}
         pageCount={1}
         pagination={noopPagination}
       />

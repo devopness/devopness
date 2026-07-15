@@ -25,30 +25,12 @@ const AVATAR_BACKGROUND_COLORS = [
   '#fd6ef3',
 ]
 
-const RELATIVE_TIME_UNITS: [
-  Intl.RelativeTimeFormatUnit,
-  number,
-][] = [
-  [
-    'year',
-    1000 * 60 * 60 * 24 * 365,
-  ],
-  [
-    'month',
-    1000 * 60 * 60 * 24 * 30,
-  ],
-  [
-    'day',
-    1000 * 60 * 60 * 24,
-  ],
-  [
-    'hour',
-    1000 * 60 * 60,
-  ],
-  [
-    'minute',
-    1000 * 60,
-  ],
+const RELATIVE_TIME_UNITS: [Intl.RelativeTimeFormatUnit, number][] = [
+  ['year', 1000 * 60 * 60 * 24 * 365],
+  ['month', 1000 * 60 * 60 * 24 * 30],
+  ['day', 1000 * 60 * 60 * 24],
+  ['hour', 1000 * 60 * 60],
+  ['minute', 1000 * 60],
 ]
 
 const relativeTimeFormatter = new Intl.RelativeTimeFormat('en', {
@@ -59,10 +41,7 @@ const relativeTimeFormatter = new Intl.RelativeTimeFormat('en', {
 const formatRelativeTime = (date: string | Date) => {
   const diffMs = new Date(date).getTime() - Date.now()
 
-  for (const [
-    unit,
-    unitMs,
-  ] of RELATIVE_TIME_UNITS) {
+  for (const [unit, unitMs] of RELATIVE_TIME_UNITS) {
     if (Math.abs(diffMs) >= unitMs) {
       return relativeTimeFormatter.format(Math.round(diffMs / unitMs), unit)
     }

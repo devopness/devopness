@@ -109,10 +109,7 @@ describe('ResourceCard', () => {
       }).not.toThrow()
     })
 
-    it.each([
-      'Enter',
-      ' ',
-    ])('calls onClick when %s is pressed', (key) => {
+    it.each(['Enter', ' '])('calls onClick when %s is pressed', (key) => {
       const handleClick = vi.fn()
       render(
         <ResourceCard

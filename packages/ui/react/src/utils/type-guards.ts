@@ -109,12 +109,7 @@ const typedMemo: <T>(c: T) => T = React.memo
  * Code obtained from StackOverflow: https://stackoverflow.com/a/72299265
  * Source code from alex-wayne @ https://stackoverflow.com/users/62076/alex-wayne
  */
-type Pop<T extends unknown[]> = T extends [
-  ...infer U,
-  unknown,
-]
-  ? U
-  : never
+type Pop<T extends unknown[]> = T extends [...infer U, unknown] ? U : never
 
 /**
  * Flatten an object while retaining types for all paths
@@ -141,12 +136,10 @@ type Flatten<T extends object> = object extends T
                 ? Pick<T, K>
                 : Flatten<V> extends infer FV
                   ? {
-                      [
-                        P in keyof FV as `${Extract<K, string | number>}.${Extract<
-                          P,
-                          string | number
-                        >}`
-                      ]: FV[P]
+                      [P in keyof FV as `${Extract<K, string | number>}.${Extract<
+                        P,
+                        string | number
+                      >}`]: FV[P]
                     }
                   : never
               : Pick<T, K>

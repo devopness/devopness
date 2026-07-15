@@ -8,9 +8,7 @@ import { Button } from 'src/components/Buttons'
 const meta: Meta<PopoverProps> = {
   title: 'Primitives/Popover',
   component: Popover,
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
 }
 
 type Story = StoryObj<PopoverProps>
@@ -18,10 +16,7 @@ type Story = StoryObj<PopoverProps>
 const Default: Story = {
   render: (args) => {
     const PopoverStory = () => {
-      const [
-        open,
-        setOpen,
-      ] = useState(true)
+      const [open, setOpen] = useState(true)
       return (
         <>
           <Button
@@ -56,10 +51,7 @@ const Default: Story = {
 const WithoutFooter: Story = {
   render: (args) => {
     const PopoverStory = () => {
-      const [
-        open,
-        setOpen,
-      ] = useState(true)
+      const [open, setOpen] = useState(true)
       return (
         <>
           <Button

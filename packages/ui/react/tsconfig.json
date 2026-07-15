@@ -10,20 +10,12 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "paths": {
-      "src/*": [
-        "./src/*"
-      ],
-      "@mui/styled-engine": [
-        "./node_modules/@mui/styled-engine-sc"
-      ]
+      "src/*": ["./src/*"],
+      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
     },
     "target": "es2022",
     "useDefineForClassFields": true,
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
