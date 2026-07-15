@@ -48,8 +48,7 @@ const DetailContentInformation = styled.article<DetailContentInformationProps>`
     };
     padding-left: ${$noIcon || $isIconAfterLabel ? '10px' : '5px'};
   `}
-  background-color: ${(props) =>
-    props.$backgroundColor && props.$backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor ?? 'transparent'};
 `
 
 const DetailContentValue = styled.span<DetailContentValueProps>`
@@ -80,8 +79,7 @@ const ContentIcon = styled.div<StyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) =>
-    props.$backgroundColor && props.$backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor ?? 'transparent'};
   color: white;
 `
 
