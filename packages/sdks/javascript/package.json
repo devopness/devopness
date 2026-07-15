@@ -59,7 +59,7 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "engines": {
-    "node": ">=20.19.0"
+    "node": "^20.19.0 || ^22.18.0 || >=24.11.0"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.39.1",
