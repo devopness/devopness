@@ -285,4 +285,35 @@ describe('ViewDetails', () => {
     expect(screen.getByText('N/A')).toBeInTheDocument()
     expect(screen.queryByText('—')).not.toBeInTheDocument()
   })
+
+  it('renders emptyContent inside a link when the linked value is empty', () => {
+    const dataWithEmptyLinkValue: {
+      label: string
+      items: DetailsContentProps[]
+    }[] = [
+      {
+        label: 'Section',
+        items: [
+          {
+            label: 'Empty link',
+            value: undefined,
+            emptyContent: 'N/A',
+            url: 'https://example.com',
+            navigationComponent: MockNavigationLink,
+          },
+        ],
+      },
+    ]
+    render(
+      <ViewDetails
+        navigationComponent={MockNavigationLink}
+        data={dataWithEmptyLinkValue}
+      />
+    )
+
+    expect(screen.getByText('N/A').closest('a')).toHaveAttribute(
+      'href',
+      'https://example.com'
+    )
+  })
 })

@@ -200,7 +200,7 @@ const ViewDetailsContent = ({
               to={typeof url === 'string' ? url : undefined}
               {...(typeof url === 'object' ? url : undefined)}
             >
-              {value}
+              {formattedValue ?? emptyContent}
             </NavigationLink>
           ) : (
             <ConditionalWrapper
