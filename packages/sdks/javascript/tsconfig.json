@@ -4,11 +4,14 @@
     "target": "es2015",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": ["ES2015", "DOM"],
+    "lib": [
+      "ES2015",
+      "DOM"
+    ],
     "allowJs": false,
     "declaration": true,
     "resolveJsonModule": true,
-    "types": ["jest"],
+    "types": ["vite-plus/test/globals"],
     "rootDir": "./src",
     "outDir": "./dist",
     "removeComments": false,
@@ -22,6 +25,10 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["tests/*"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "tests/*"
+  ]
 }

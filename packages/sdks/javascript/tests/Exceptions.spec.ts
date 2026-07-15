@@ -1,8 +1,8 @@
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
 
-import { DevopnessApiClient } from '../src/DevopnessApiClient';
-import { ApiError, NetworkError } from '../src/common/Exceptions';
+import { DevopnessApiClient } from "../src/DevopnessApiClient";
+import { ApiError, NetworkError } from "../src/common/Exceptions";
 
 const reqMock = new MockAdapter(axios);
 const apiClient = new DevopnessApiClient();
@@ -17,7 +17,7 @@ test("200 response shouldn't reject", async () => {
   }
 });
 
-test('non-200 response should reject with an ApiError', async () => {
+test("non-200 response should reject with an ApiError", async () => {
   expect.assertions(1);
   reqMock.onAny().replyOnce(422, {});
   try {
@@ -29,27 +29,27 @@ test('non-200 response should reject with an ApiError', async () => {
 
 test("ApiError message must contain a prefix so consumers know it's been raised by Devopness SDK", async () => {
   expect.assertions(2);
-  reqMock.onGet('/users/me').replyOnce(403, {});
+  reqMock.onGet("/users/me").replyOnce(403, {});
   try {
     await apiClient.users.getUserMe();
   } catch (e: any) {
     expect(e).toBeInstanceOf(ApiError);
-    expect(e.message).toBe('Request failed with status code 403');
+    expect(e.message).toBe("Request failed with status code 403");
   }
 });
 
 test("NetworkError message must contain a prefix so consumers know it's been raised by Devopness SDK", async () => {
   expect.assertions(2);
-  reqMock.onGet('/users/me').timeoutOnce();
+  reqMock.onGet("/users/me").timeoutOnce();
   try {
     await apiClient.users.getUserMe();
   } catch (e: any) {
     expect(e).toBeInstanceOf(NetworkError);
-    expect(e.message).toContain('Devopness SDK Network Error - timeout of ');
+    expect(e.message).toContain("Devopness SDK Network Error - timeout of ");
   }
 });
 
-test('request timeout should reject with a NetworkError', async () => {
+test("request timeout should reject with a NetworkError", async () => {
   expect.assertions(1);
   reqMock.onAny().timeoutOnce();
   try {
@@ -59,7 +59,7 @@ test('request timeout should reject with a NetworkError', async () => {
   }
 });
 
-test('request network error should reject with a NetworkError', async () => {
+test("request network error should reject with a NetworkError", async () => {
   expect.assertions(1);
   reqMock.onAny().networkErrorOnce();
   try {

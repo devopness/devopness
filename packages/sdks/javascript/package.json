@@ -27,7 +27,7 @@
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
-    "test": "jest"
+    "test": "vp test"
   },
   "repository": {
     "type": "git",
@@ -58,18 +58,15 @@
   },
   "homepage": "https://github.com/devopness/devopness#readme",
   "engines": {
-    "node": "^20.19.0 || ^22.18.0 || >=24.11.0"
+    "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.39.1",
-    "@types/jest": "^30.0.0",
     "axios-mock-adapter": "^2.1.0",
     "husky": "9.1.7",
-    "jest": "^30.4.2",
-    "ts-jest": "^29.4.11",
-    "typedoc": "^0.28.20",
-    "typescript": "^6.0.3",
-    "vite-plus": "0.2.4"
+    "vite-plus": "0.2.4",
+    "typescript": "^7.0.2",
+    "typedoc": "^0.28.20"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
