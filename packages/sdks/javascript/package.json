@@ -68,7 +68,7 @@
     "jest": "^30.4.2",
     "ts-jest": "^29.4.11",
     "typedoc": "^0.28.20",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vite-plus": "0.2.4"
   },
   "dependencies": {
