@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { formatPermissionHumanReadable } from '@/utils/permissions';
+import { formatPermissionHumanReadable } from "@/utils/permissions";
 
 interface RequiredPermissionsProps {
   permissions: string[];
@@ -12,9 +12,7 @@ interface RequiredPermissionsProps {
  * each permission in a human-readable format using the static permissions data.
  */
 export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
-  const valid = permissions.filter(
-    (p) => typeof p === 'string' && p.trim() !== ''
-  );
+  const valid = permissions.filter((p) => typeof p === "string" && p.trim() !== "");
   if (valid.length === 0) return null;
 
   const formatted = valid.map((p) => formatPermissionHumanReadable(p));
@@ -23,8 +21,7 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
     <div className="mt-4">
       <h2 className="text-lg font-semibold mb-2">Required permissions</h2>
       <p className="text-sm text-fd-muted-foreground mb-4">
-        To follow this guide, you need the following permissions in the target
-        environment.
+        To follow this guide, you need the following permissions in the target environment.
       </p>
       <table className="w-full text-sm">
         <thead>
@@ -35,10 +32,7 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
         </thead>
         <tbody>
           {formatted.map((fp) => (
-            <tr
-              key={`${fp.resource_type}-${fp.permission}`}
-              className="border-b"
-            >
+            <tr key={`${fp.resource_type}-${fp.permission}`} className="border-b">
               <td className="py-2">{fp.resource_type}</td>
               <td className="py-2">{fp.permission}</td>
             </tr>
@@ -46,12 +40,8 @@ export function RequiredPermissions({ permissions }: RequiredPermissionsProps) {
         </tbody>
       </table>
       <p className="text-sm text-fd-muted-foreground mt-4">
-        For instructions on how to grant user permissions to an environment,
-        please follow the guide{' '}
-        <Link
-          href="/environments/team-memberships/add-team-membership"
-          className="underline"
-        >
+        For instructions on how to grant user permissions to an environment, please follow the guide{" "}
+        <Link href="/environments/team-memberships/add-team-membership" className="underline">
           Add a team to an environment
         </Link>
         .

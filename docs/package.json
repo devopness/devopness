@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "next build && node scripts/post-build.mjs",
+    "build": "next build && tsc --noEmit -p tsconfig.json && node scripts/post-build.mjs",
     "dev": "next dev",
-    "lint": "printf '%s\\n' '🔍Linting with:' && printf '%s' '  Prettier: ' && prettier -v && printf '%s' '  ESLint: ' && eslint -v && printf '%s\\n' '' && printf '%s\\n' 'Running ESLint ...' && eslint . && printf '%s\\n' 'Running Prettier ...' && prettier --check . && printf '%s\\n' 'Running TypeScript ...' && tsc --noEmit -p tsconfig.json",
-    "lint:fix": "eslint --fix . && prettier --write . && npm run lint",
+    "lint": "vp check",
+    "lint:fix": "vp check --fix",
     "postinstall": "fumadocs-mdx",
     "start": "next start"
   },
@@ -24,27 +24,17 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.0",
-    "@next/eslint-plugin-next": "^16.2.10",
-    "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/mdx": "^2.0.14",
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@tailwindcss/postcss": "^4.3.3",
-    "@types/mdx": "^2.0.14",
-    "@typescript-eslint/eslint-plugin": "^8.64.0",
-    "@typescript-eslint/parser": "^8.64.0",
-    "eslint": "^10.7.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.7.0",
     "postcss": "^8.5.20",
-    "prettier": "^3.9.5",
-    "prettier-plugin-multiline-arrays": "^4.1.10",
-    "prettier-plugin-sort-json": "^4.1.1",
-    "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.2.4",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vite-plus": "0.2.4"
+  },
+  "engines": {
+    "node": "^20.19.0 || ^22.18.0 || >=24.11.0"
   }
 }
