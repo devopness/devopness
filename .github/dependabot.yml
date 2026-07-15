@@ -23,6 +23,7 @@ updates:
         patterns:
           - "typescript"
           - "vite-plus"
+          - "vite-*"
           - "@types/parse-link-header"
           - "axios"
           - "axios-mock-adapter"
@@ -30,6 +31,8 @@ updates:
           - "husky"
       ui-react:
         patterns:
+          - "typescript"
+          - "vite-plus"
           - "vite"
           - "@vitejs/*"
           - "vite-*"
@@ -58,6 +61,7 @@ updates:
       docs:
         patterns:
           - "vite-plus"
+          - "vite-*"
           - "typescript"
           - "@types/node"
           - "@types/react"
