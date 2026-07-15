@@ -1,4 +1,6 @@
 {
-  "pages": ["list-link"],
+  "pages": [
+    "list-link"
+  ],
   "title": "Links"
 }
