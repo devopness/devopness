@@ -15,10 +15,7 @@ export function mergeSiblingClasses(target: any, siblings: any[]): any {
   // patch target
   siblings.forEach((sibling) => {
     Object.getOwnPropertyNames(sibling.prototype).forEach((name) => {
-      const descriptor = Object.getOwnPropertyDescriptor(
-        sibling.prototype,
-        name
-      );
+      const descriptor = Object.getOwnPropertyDescriptor(sibling.prototype, name);
       if (descriptor) {
         Object.defineProperty(target.prototype, name, descriptor);
       } else {

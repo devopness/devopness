@@ -1,38 +1,34 @@
-import { ActionService } from './services/ActionService';
-import {
-  ApiBaseService,
-  Configuration,
-  ConfigurationOptions,
-} from './services/ApiBaseService';
-import { ApiTokenService } from './services/ApiTokenService';
-import { ApplicationService } from './services/ApplicationService';
-import { CredentialService } from './services/CredentialService';
-import { CronJobService } from './services/CronJobService';
-import { DaemonService } from './services/DaemonService';
-import { EnvironmentService } from './services/EnvironmentService';
-import { HookRequestService } from './services/HookRequestService';
-import { HookService } from './services/HookService';
-import { LogService } from './services/LogService';
-import { NetworkRuleService } from './services/NetworkRuleService';
-import { NetworkService } from './services/NetworkService';
-import { OrganizationService } from './services/OrganizationService';
-import { PipelineService } from './services/PipelineService';
-import { ProjectService } from './services/ProjectService';
-import { ResourceEventService } from './services/ResourceEventService';
-import { ResourceLinkService } from './services/ResourceLinkService';
-import { RoleService } from './services/RoleService';
-import { ServerService } from './services/ServerService';
-import { ServiceService } from './services/ServiceService';
-import { SocialAccountService } from './services/SocialAccountService';
-import { SshKeyService } from './services/SshKeyService';
-import { SslCertificateService } from './services/SslCertificateService';
-import { StaticService } from './services/StaticService';
-import { SubnetService } from './services/SubnetService';
-import { TeamInvitationService } from './services/TeamInvitationService';
-import { TeamService } from './services/TeamService';
-import { UserService } from './services/UserService';
-import { VariableService } from './services/VariableService';
-import { VirtualHostService } from './services/VirtualHostService';
+import { ActionService } from "./services/ActionService";
+import { ApiBaseService, Configuration, ConfigurationOptions } from "./services/ApiBaseService";
+import { ApiTokenService } from "./services/ApiTokenService";
+import { ApplicationService } from "./services/ApplicationService";
+import { CredentialService } from "./services/CredentialService";
+import { CronJobService } from "./services/CronJobService";
+import { DaemonService } from "./services/DaemonService";
+import { EnvironmentService } from "./services/EnvironmentService";
+import { HookRequestService } from "./services/HookRequestService";
+import { HookService } from "./services/HookService";
+import { LogService } from "./services/LogService";
+import { NetworkRuleService } from "./services/NetworkRuleService";
+import { NetworkService } from "./services/NetworkService";
+import { OrganizationService } from "./services/OrganizationService";
+import { PipelineService } from "./services/PipelineService";
+import { ProjectService } from "./services/ProjectService";
+import { ResourceEventService } from "./services/ResourceEventService";
+import { ResourceLinkService } from "./services/ResourceLinkService";
+import { RoleService } from "./services/RoleService";
+import { ServerService } from "./services/ServerService";
+import { ServiceService } from "./services/ServiceService";
+import { SocialAccountService } from "./services/SocialAccountService";
+import { SshKeyService } from "./services/SshKeyService";
+import { SslCertificateService } from "./services/SslCertificateService";
+import { StaticService } from "./services/StaticService";
+import { SubnetService } from "./services/SubnetService";
+import { TeamInvitationService } from "./services/TeamInvitationService";
+import { TeamService } from "./services/TeamService";
+import { UserService } from "./services/UserService";
+import { VariableService } from "./services/VariableService";
+import { VirtualHostService } from "./services/VirtualHostService";
 
 export class DevopnessApiClient {
   actions: ActionService;
@@ -129,7 +125,7 @@ export class DevopnessApiClient {
      */
     if (accessToken && accessToken.length < MIN_TOKEN_LENGHT) {
       throw new Error(
-        `"${accessToken.substring(0, 10)} ..." doesn't seem to be a valid access token issued by Devopness API.`
+        `"${accessToken.substring(0, 10)} ..." doesn't seem to be a valid access token issued by Devopness API.`,
       );
     }
 

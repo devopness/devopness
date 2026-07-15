@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from "axios";
 
 export class SdkError extends Error {}
 
@@ -6,11 +6,11 @@ export class ArgumentNullException extends SdkError {
   constructor(
     public param: string,
     method?: string,
-    msg?: string
+    msg?: string,
   ) {
     super(
       msg ||
-        `Devopness SDK Error - Value cannot be null. Missing required parameter: "${param}" when calling "${method}"`
+        `Devopness SDK Error - Value cannot be null. Missing required parameter: "${param}" when calling "${method}"`,
     );
   }
 }
@@ -35,7 +35,7 @@ export class ApiError<T> extends SdkError {
     if (!error.response) {
       throw error;
     }
-    super('Devopness API response error');
+    super("Devopness API response error");
 
     this.setMessage(error.message);
     this.status = error.response.status;

@@ -5,12 +5,8 @@ import axios, {
   AxiosRequestHeaders,
   AxiosResponse,
   InternalAxiosRequestConfig,
-} from 'axios';
-import {
-  ApiError,
-  ArgumentNullException,
-  NetworkError,
-} from '../common/Exceptions';
+} from "axios";
+import { ApiError, ArgumentNullException, NetworkError } from "../common/Exceptions";
 
 declare const window: unknown;
 
@@ -21,7 +17,7 @@ export interface ConfigurationOptions {
 
 export class Configuration implements ConfigurationOptions {
   public apiToken?: string;
-  public baseURL = 'https://api.devopness.com';
+  public baseURL = "https://api.devopness.com";
 
   constructor(options: ConfigurationOptions) {
     this.apiToken = options.apiToken;
@@ -37,21 +33,21 @@ export class ApiBaseService {
 
   public static configuration: Configuration;
 
-  private static SDK_VERSION = '0.0.0-development';
+  private static SDK_VERSION = "0.0.0-development";
 
   private defaultAxiosSettings: AxiosRequestConfig = {
     timeout: 30000,
-    responseType: 'json',
+    responseType: "json",
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
     withCredentials: false,
   };
 
   constructor() {
     if (ApiBaseService.configuration == undefined) {
-      throw new ArgumentNullException('configuration');
+      throw new ArgumentNullException("configuration");
     }
 
     const settings = this.defaultAxiosSettings;
@@ -77,11 +73,11 @@ export class ApiBaseService {
     // i.e: node.js cli, node.js server side, web workers, ...
     // if a window object is defined then we're very likely on a browser
     // so we don't set a custom User-Agent header
-    const runningOnBrowserForeground = typeof window !== 'undefined';
+    const runningOnBrowserForeground = typeof window !== "undefined";
     if (!runningOnBrowserForeground) {
       // Setting the `User-Agent` with SDK version so we can track SDK adoption
       // through requests sent through it hitting our API servers
-      this.api.defaults.headers.common['User-Agent'] =
+      this.api.defaults.headers.common["User-Agent"] =
         `devopness-sdk-js/${ApiBaseService.SDK_VERSION}`;
     }
   }
@@ -105,7 +101,7 @@ export class ApiBaseService {
       },
       (error: AxiosError) => {
         throw error;
-      }
+      },
     );
   }
 
@@ -130,7 +126,7 @@ export class ApiBaseService {
           // request wasn't sent. e.g: invalid IP/DNS provided as API base URL
           throw new NetworkError(error);
         }
-      }
+      },
     );
   }
 
@@ -162,17 +158,12 @@ export class ApiBaseService {
     let decodedToken: Record<string, unknown>;
 
     try {
-      decodedToken = JSON.parse(
-        ApiBaseService.decodeJwtPayload(ApiBaseService.accessToken)
-      );
+      decodedToken = JSON.parse(ApiBaseService.decodeJwtPayload(ApiBaseService.accessToken));
     } catch {
       return false;
     }
 
-    return (
-      response?.status === 401 &&
-      (decodedToken.exp as number) < new Date().getTime() / 1000
-    );
+    return response?.status === 401 && (decodedToken.exp as number) < new Date().getTime() / 1000;
   }
 
   /**
@@ -181,44 +172,44 @@ export class ApiBaseService {
    */
   private static decodeJwtPayload(token: string): string {
     try {
-      const payload = token.split('.')?.[1];
+      const payload = token.split(".")?.[1];
 
       if (!payload) {
-        return '{}';
+        return "{}";
       }
 
-      const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+      const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
       const paddingLength = (4 - (base64.length % 4)) % 4;
-      const paddedBase64 = base64 + '='.repeat(paddingLength);
+      const paddedBase64 = base64 + "=".repeat(paddingLength);
       const binary = atob(paddedBase64);
 
       return decodeURIComponent(
         Array.from(binary, (character) => {
           const hex = character.charCodeAt(0).toString(16);
           return `%${hex.length === 1 ? `0${hex}` : hex}`;
-        }).join('')
+        }).join(""),
       );
     } catch {
       // Malformed or legacy token payloads should not break the axios error path.
       // Treat undecodable tokens as empty payloads and let the 401 handling continue.
-      return '{}';
+      return "{}";
     }
   }
 
   public baseURL(): string {
-    return this.api.defaults.baseURL ? this.api.defaults.baseURL : '';
+    return this.api.defaults.baseURL ? this.api.defaults.baseURL : "";
   }
 
   protected async post<T, B = undefined, R = AxiosResponse<T>>(
     endpoint: string,
-    data?: B
+    data?: B,
   ): Promise<R> {
     return this.api.post<T, R>(endpoint, data);
   }
 
   protected async put<T, B = undefined, R = AxiosResponse<T>>(
     endpoint: string,
-    data?: B
+    data?: B,
   ): Promise<R> {
     return this.api.put<T, R>(endpoint, data);
   }

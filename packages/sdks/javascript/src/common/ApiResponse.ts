@@ -1,5 +1,5 @@
-import { AxiosResponse } from 'axios';
-import parseLinkHeader from 'parse-link-header';
+import { AxiosResponse } from "axios";
+import parseLinkHeader from "parse-link-header";
 
 interface ApiLinks {
   last: {
@@ -19,14 +19,12 @@ export class ApiResponse<T> {
     this.pageCount = 1;
 
     if (axiosResp.headers) {
-      const linkHeader = parseLinkHeader(
-        axiosResp.headers.link
-      ) as ApiLinks | null;
+      const linkHeader = parseLinkHeader(axiosResp.headers.link) as ApiLinks | null;
       this.pageCount = Number(linkHeader?.last?.page) || 1;
 
-      if (axiosResp.headers['x-devopness-action-id']) {
+      if (axiosResp.headers["x-devopness-action-id"]) {
         // axios headers are intentionally lower cased, as per https://github.com/axios/axios/issues/413
-        this.actionId = Number(axiosResp.headers['x-devopness-action-id']);
+        this.actionId = Number(axiosResp.headers["x-devopness-action-id"]);
       }
     }
   }
