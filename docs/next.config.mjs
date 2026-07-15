@@ -14,6 +14,9 @@ const withMDX = createMDX();
 const config = {
   output: "export",
   typescript: {
+    // Next.js 16 currently trips over the TS 7 package exports during its
+    // internal build-time type check. The docs build runs `tsc` after `next build`
+    // so generated `.next/types` are still validated.
     ignoreBuildErrors: true,
   },
   // basePath: Where this app is served (e.g., /docs makes all routes start with /docs/)
