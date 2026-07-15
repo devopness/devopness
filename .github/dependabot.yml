@@ -8,11 +8,6 @@ updates:
   groups:
     # Group naming: unprefixed = repo-wide (workspace packages), ui-react-* / sdk-js-* = package-specific.
     # Storybook first: eslint-plugin-storybook also matches eslint-* in linters.
-    ui-react-storybook:
-      patterns:
-        - "storybook"
-        - "@storybook/*"
-        - "eslint-plugin-storybook"
     linters:
       patterns:
         - "typescript-eslint"
@@ -40,6 +35,11 @@ updates:
         - "axios-mock-adapter"
         - "typedoc"
         - "husky"
+    ui-react-storybook:
+      patterns:
+        - "storybook"
+        - "@storybook/*"
+        - "eslint-plugin-storybook"
 
 - package-ecosystem: pip
   directories:
