@@ -5,8 +5,8 @@ import { UsersEnvironmentsApiService } from '../api/generated/apis/users-environ
 import { UsersProjectsApiService } from '../api/generated/apis/users-projects-api';
 
 export class UserService extends UsersApiService {
-    public environments = new UsersEnvironmentsApiService();
-    public passwords = new UsersPasswordsApiService();
-    public projects = new UsersProjectsApiService();
-    public teamInvitations = new UsersTeamInvitationsApiService();
+  public environments = new UsersEnvironmentsApiService();
+  public passwords = new UsersPasswordsApiService();
+  public projects = new UsersProjectsApiService();
+  public teamInvitations = new UsersTeamInvitationsApiService();
 }

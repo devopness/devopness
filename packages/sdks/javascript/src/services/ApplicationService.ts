@@ -5,16 +5,16 @@ import { ApplicationsVariablesApiService } from '../api/generated/apis/applicati
 import { ApplicationsHooksApiService } from '../api/generated/apis/applications-hooks-api';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-export class ApplicationService extends ApiBaseService { }
+export class ApplicationService extends ApiBaseService {}
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-export interface ApplicationService extends
+export interface ApplicationService
+  extends
     ApplicationsApiService,
     ApplicationsVariablesApiService,
-    ApplicationsHooksApiService {
-}
+    ApplicationsHooksApiService {}
 
 mergeSiblingClasses(ApplicationService, [
-    ApplicationsApiService,
-    ApplicationsVariablesApiService,
-    ApplicationsHooksApiService,
+  ApplicationsApiService,
+  ApplicationsVariablesApiService,
+  ApplicationsHooksApiService,
 ]);

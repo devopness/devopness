@@ -1,5 +1,9 @@
 import { ActionService } from './services/ActionService';
-import { ApiBaseService, Configuration, ConfigurationOptions } from './services/ApiBaseService';
+import {
+  ApiBaseService,
+  Configuration,
+  ConfigurationOptions,
+} from './services/ApiBaseService';
 import { ApiTokenService } from './services/ApiTokenService';
 import { ApplicationService } from './services/ApplicationService';
 import { CredentialService } from './services/CredentialService';
@@ -108,7 +112,7 @@ export class DevopnessApiClient {
   }
 
   public set apiToken(value: string | undefined) {
-      ApiBaseService.apiToken = value;
+    ApiBaseService.apiToken = value;
   }
 
   public get accessToken(): string {
@@ -124,7 +128,9 @@ export class DevopnessApiClient {
      * issue when first initializing this SDK from their apps
      */
     if (accessToken && accessToken.length < MIN_TOKEN_LENGHT) {
-      throw new Error(`"${accessToken.substring(0, 10)} ..." doesn't seem to be a valid access token issued by Devopness API.`);
+      throw new Error(
+        `"${accessToken.substring(0, 10)} ..." doesn't seem to be a valid access token issued by Devopness API.`
+      );
     }
 
     ApiBaseService.accessToken = accessToken;

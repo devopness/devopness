@@ -3,6 +3,6 @@ import { TeamsInvitationsApiService } from '../api/generated/apis/teams-invitati
 import { TeamsMembersApiService } from '../api/generated/apis/teams-members-api';
 
 export class TeamService extends TeamsApiService {
-    public invitations = new TeamsInvitationsApiService();
-    public members = new TeamsMembersApiService();
+  public invitations = new TeamsInvitationsApiService();
+  public members = new TeamsMembersApiService();
 }
