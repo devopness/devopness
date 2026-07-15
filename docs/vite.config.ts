@@ -10,19 +10,12 @@ export default defineConfig({
       ".next",
       ".source",
       "build",
+      "docs/**/meta.json",
       "node_modules",
       "next-env.d.ts",
       "out",
       "package-lock.json",
       "public",
-    ],
-    overrides: [
-      {
-        files: ["docs/**/meta.json"],
-        options: {
-          printWidth: 40,
-        },
-      },
     ],
   },
   lint: {
