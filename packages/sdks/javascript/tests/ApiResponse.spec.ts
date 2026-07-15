@@ -1,14 +1,14 @@
-import { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { ApiResponse } from '../src/common/ApiResponse';
+import { AxiosResponse, AxiosRequestConfig } from "axios";
+import { ApiResponse } from "../src/common/ApiResponse";
 
-test('ApiResponse has the correct pageCount value', () => {
-  const baseUrl = 'https://test.com/path';
+test("ApiResponse has the correct pageCount value", () => {
+  const baseUrl = "https://test.com/path";
   const expectedPageCount = 7;
 
   const axiosResponse = {
     data: null,
     status: 200,
-    statusText: 'OK',
+    statusText: "OK",
     config: {} as AxiosRequestConfig,
     headers: {
       link: `<${baseUrl}?page=1>; rel="first", <${baseUrl}?page=${expectedPageCount}>; rel="last"`,
@@ -20,11 +20,11 @@ test('ApiResponse has the correct pageCount value', () => {
   expect(response.pageCount).toBe(expectedPageCount);
 });
 
-test('ApiResponse do not fail if no header is present', () => {
+test("ApiResponse do not fail if no header is present", () => {
   const axiosResponse = {
     data: null,
     status: 200,
-    statusText: 'OK',
+    statusText: "OK",
     config: {} as AxiosRequestConfig,
     headers: {},
   } as AxiosResponse<null>;
@@ -35,11 +35,11 @@ test('ApiResponse do not fail if no header is present', () => {
   expect(response.pageCount).toBe(1);
 });
 
-test('If no have last link, expect pageCount to be 1', () => {
+test("If no have last link, expect pageCount to be 1", () => {
   const axiosResponse = {
     data: null,
     status: 200,
-    statusText: 'OK',
+    statusText: "OK",
     config: {} as AxiosRequestConfig,
     headers: {
       link: `<https://test.com/path?page=1>; rel="first"`,
@@ -51,7 +51,7 @@ test('If no have last link, expect pageCount to be 1', () => {
   expect(response.pageCount).toBe(1);
 });
 
-test('ApiResponse do not fail if headers is undefined', () => {
+test("ApiResponse do not fail if headers is undefined", () => {
   const axiosResponse = {
     data: null,
     status: 200,
@@ -62,14 +62,14 @@ test('ApiResponse do not fail if headers is undefined', () => {
   expect(response).toBeDefined();
 });
 
-test('ApiResponse has the correct action id value', () => {
+test("ApiResponse has the correct action id value", () => {
   const axiosResponse = {
     data: null,
     status: 200,
-    statusText: 'OK',
+    statusText: "OK",
     config: {} as AxiosRequestConfig,
     headers: {
-      'x-devopness-action-id': '54321',
+      "x-devopness-action-id": "54321",
     },
   } as AxiosResponse<null>;
 
