@@ -9,17 +9,11 @@ export default {
     layout: 'centered',
     useRadixTheme: true,
   },
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
   argTypes: {
     size: {
       control: 'select',
-      options: [
-        '1',
-        '2',
-        '3',
-      ],
+      options: ['1', '2', '3'],
     },
     value: {
       control: {

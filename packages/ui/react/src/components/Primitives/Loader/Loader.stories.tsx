@@ -9,12 +9,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: [
-        'bar',
-        'page',
-        'circle',
-        'ring',
-      ],
+      options: ['bar', 'page', 'circle', 'ring'],
       description: 'Loader type to be displayed',
     },
     color: {

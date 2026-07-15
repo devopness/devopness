@@ -22,10 +22,7 @@ const StoryContainer = ({ children }: { children: React.ReactNode }) => (
 )
 
 const ControlledSelect = () => {
-  const [
-    value,
-    setValue,
-  ] = useState<
+  const [value, setValue] = useState<
     SingleValue<OptionProps<string>> | MultiValue<OptionProps<string>>
   >(null)
 
@@ -77,14 +74,12 @@ const ReadOnly: StoryObj<typeof Select> = {
 }
 
 const ControlledMultiSelect = () => {
-  const [
-    value,
-    setValue,
-  ] = useState<MultiValue<OptionProps<string>>>([])
+  const [value, setValue] = useState<MultiValue<OptionProps<string>>>([])
 
   const handleChange = (
     newValue:
-      MultiValue<OptionProps<string>> | SingleValue<OptionProps<string>>,
+      | MultiValue<OptionProps<string>>
+      | SingleValue<OptionProps<string>>,
     _: ActionMeta<OptionProps<string>>
   ) => {
     setValue(Array.isArray(newValue) ? newValue : [])
@@ -108,10 +103,7 @@ const Multiselect: StoryObj<typeof Select> = {
 }
 
 const CreatableControlledSelect = () => {
-  const [
-    value,
-    setValue,
-  ] = useState<
+  const [value, setValue] = useState<
     SingleValue<OptionProps<string>> | MultiValue<OptionProps<string>>
   >(null)
 

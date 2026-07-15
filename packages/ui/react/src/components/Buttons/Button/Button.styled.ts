@@ -14,21 +14,19 @@ type StyledProps = {
    *
    * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
    */
-  [
-    Key in keyof Pick<
-      ButtonProps,
-      | 'backgroundColor'
-      | 'borderColor'
-      | 'buttonType'
-      | 'color'
-      | 'iconSize'
-      | 'noIconMargin'
-      | 'noPadding'
-      | 'noPointerEvents'
-      | 'revertOrientation'
-      | 'typeSize'
-    > as `$${Key}`
-  ]: ButtonProps[Key]
+  [Key in keyof Pick<
+    ButtonProps,
+    | 'backgroundColor'
+    | 'borderColor'
+    | 'buttonType'
+    | 'color'
+    | 'iconSize'
+    | 'noIconMargin'
+    | 'noPadding'
+    | 'noPointerEvents'
+    | 'revertOrientation'
+    | 'typeSize'
+  > as `$${Key}`]: ButtonProps[Key]
 }
 
 const getBackgroundColor = (
@@ -198,11 +196,9 @@ const BaseButton = styled.button<
       background-color: ${resolvedBackgroundColor};
       height: ${resolvedHeight};
       margin: 0;
-      padding: ${
-        $noPadding
-          ? '0'
-          : `${getSpacing('button.paddingY')} ${getSpacing('button.paddingX')}`
-      };
+      padding: ${$noPadding
+        ? '0'
+        : `${getSpacing('button.paddingY')} ${getSpacing('button.paddingX')}`};
       user-select: none;
 
       /** Flex Layout */

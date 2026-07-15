@@ -107,12 +107,10 @@ const InputWrapper = styled.div<InputWrapperProps>`
 
     &:hover,
     &:focus-within {
-      ${
-        !($readOnly ?? $disabled) &&
-        css`
-          border-color: ${getColor($hasError ? 'red.500' : 'purple.800')};
-        `
-      }
+      ${!($readOnly ?? $disabled) &&
+      css`
+        border-color: ${getColor($hasError ? 'red.500' : 'purple.800')};
+      `}
     }
   `}
 `
@@ -132,12 +130,10 @@ const InputText = styled.input<InputTextProps>`
     font-style: ${$publicStyle?.fontStyleValue ?? 'normal'};
     outline: none;
 
-    ${
-      $hasIcon &&
-      css`
+    ${$hasIcon &&
+    css`
       padding-${$iconPosition === 'left' ? 'left' : 'right'}: 8px;
-    `
-    }
+    `}
 
     &::placeholder {
       font-size: 13px;
@@ -145,10 +141,8 @@ const InputText = styled.input<InputTextProps>`
       font-style: ${$publicStyle?.fontStylePlaceholder ?? 'normal'};
     }
 
-    ${
-      type === 'number' &&
-      ($removeArrows ? InputTypeNumberRemoveArrows : InputTypeNumber)
-    }
+    ${type === 'number' &&
+    ($removeArrows ? InputTypeNumberRemoveArrows : InputTypeNumber)}
   `}
 `
 

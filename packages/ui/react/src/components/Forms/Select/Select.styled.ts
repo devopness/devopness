@@ -67,7 +67,7 @@ const Container = styled.div`
    * being show for named Multi Selects while maintaining
    * its functionality
    */
-  > div > div:last-child:not(.devopness__control):has(input[type="hidden"]) {
+  > div > div:last-child:not(.devopness__control):has(input[type='hidden']) {
     display: none !important;
   }
 `

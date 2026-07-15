@@ -48,14 +48,8 @@ const CopyToClipboard = ({
   alwaysVisible = false,
 }: CopyToClipboardProps) => {
   const contentId = `copy_${id}`
-  const [
-    tooltipMessage,
-    setTooltipMessage,
-  ] = useState('Copy to clipboard')
-  const [
-    isCopied,
-    setIsCopied,
-  ] = useState(false)
+  const [tooltipMessage, setTooltipMessage] = useState('Copy to clipboard')
+  const [isCopied, setIsCopied] = useState(false)
 
   const handleResetCopyState = () => {
     setTimeout(() => {

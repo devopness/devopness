@@ -17,9 +17,7 @@ const Default: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'role',
-      ],
+      exclude: ['role'],
     },
   },
 }

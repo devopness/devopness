@@ -1,19 +1,39 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "type": "module",
   "name": "@devopness/ui-react",
   "version": "2.196.0",
-  "publishConfig": {
-    "access": "public"
-  },
   "description": "Devopness Design System React Components - Painless essential DevOps to everyone",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "keywords": [
+    "Cloud Engineering",
+    "Cloud Infrastructure Management",
+    "Cloud Platform Engineering",
+    "Configuration Management",
+    "Deploy",
+    "Deployment",
+    "DevOps",
+    "Devopness",
+    "Platform Engineering",
+    "Server Management",
+    "Zero Downtime Deploy"
+  ],
+  "homepage": "https://github.com/devopness/devopness#readme",
+  "bugs": {
+    "url": "https://github.com/devopness/devopness/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "Devopness (https://www.devopness.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devopness/devopness.git"
+  },
   "files": [
     "dist"
   ],
+  "type": "module",
   "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -27,44 +47,19 @@
     },
     "./radix/styles.css": "./dist/radix/styles.css"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vp build",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
-    "lint": "vp lint",
-    "lint:fix": "vp lint --fix && vp fmt",
+    "lint": "vp check",
+    "lint:fix": "vp check --fix",
     "format": "vp fmt",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "storybook": "storybook dev -p 6006",
     "test": "vitest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/devopness/devopness.git"
-  },
-  "keywords": [
-    "Cloud Engineering",
-    "Cloud Infrastructure Management",
-    "Cloud Platform Engineering",
-    "Configuration Management",
-    "DevOps",
-    "Devopness",
-    "Deploy",
-    "Deployment",
-    "Platform Engineering",
-    "Zero Downtime Deploy",
-    "Server Management"
-  ],
-  "author": "Devopness (https://www.devopness.com)",
-  "license": "Apache-2.0",
-  "release": {
-    "branches": [
-      "main"
-    ]
-  },
-  "bugs": {
-    "url": "https://github.com/devopness/devopness/issues"
-  },
-  "homepage": "https://github.com/devopness/devopness#readme",
   "dependencies": {
     "@mui/icons-material": "9.2.0",
     "@mui/material": "9.2.0",
@@ -116,5 +111,10 @@
     "vitest": {
       "vite": "$vite"
     }
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }

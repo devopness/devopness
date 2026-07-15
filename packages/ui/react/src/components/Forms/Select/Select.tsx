@@ -58,7 +58,8 @@ type SelectProps<TOption> = Omit<
     isCreatable?: boolean
     /** Text to display when there are no options */
     noOptionsMessage?:
-      string | ((obj: { inputValue: string }) => React.ReactNode)
+      | string
+      | ((obj: { inputValue: string }) => React.ReactNode)
     /** Format the label for create option */
     formatCreateLabel?: (inputValue: string) => string
     /** Handle create option */

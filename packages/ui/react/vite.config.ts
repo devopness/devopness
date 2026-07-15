@@ -50,10 +50,7 @@ export default defineConfig({
         radix: resolve(__dirname, 'src/radix/index.tsx'),
         'radix/styles': resolve(__dirname, 'src/radix/styles.css'),
       },
-      formats: [
-        'es',
-        'cjs',
-      ],
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: [

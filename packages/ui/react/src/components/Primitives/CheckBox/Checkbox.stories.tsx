@@ -5,9 +5,7 @@ import { CheckBox } from './Checkbox'
 const meta: Meta<typeof CheckBox> = {
   title: 'Primitives/Checkbox',
   component: CheckBox,
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
 }
 
 type Story = StoryObj<typeof CheckBox>

@@ -89,12 +89,7 @@ const ErrorMessage = ({
   role = 'status',
 }: ErrorMessageProps) => {
   const errorMessage = handleErrorMessage(error)
-  const classNames = [
-    'translate',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const classNames = ['translate', className].filter(Boolean).join(' ')
 
   return (
     <StyledErrorMessage

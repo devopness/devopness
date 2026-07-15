@@ -42,11 +42,7 @@ const Default: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'ref',
-        'children',
-        'enableOnlyWithEllipsisPoints',
-      ],
+      exclude: ['ref', 'children', 'enableOnlyWithEllipsisPoints'],
     },
   },
   render: ({ children: _, ...props }) => (

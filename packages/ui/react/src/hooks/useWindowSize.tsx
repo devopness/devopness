@@ -3,27 +3,15 @@
 import { useEffect, useState } from 'react'
 
 const useWindowSize = () => {
-  const [
-    size,
-    setSize,
-  ] = useState<number[]>(() => {
+  const [size, setSize] = useState<number[]>(() => {
     if (typeof window !== 'undefined') {
-      return [
-        window.innerWidth,
-        window.innerHeight,
-      ]
+      return [window.innerWidth, window.innerHeight]
     }
-    return [
-      0,
-      0,
-    ]
+    return [0, 0]
   })
 
   const updateSize = () => {
-    setSize([
-      window.innerWidth,
-      window.innerHeight,
-    ])
+    setSize([window.innerWidth, window.innerHeight])
   }
 
   useEffect(() => {

@@ -619,10 +619,7 @@
   <Autocomplete
     inputProps={{ placeholder: 'Type something' }}
     autocompleteProps={{
-      options: [
-        'Option 1',
-        'Option 2',
-      ],
+      options: ['Option 1', 'Option 2'],
       value: '',
       onChange: (event, value) => console.log(value),
     }}
@@ -944,10 +941,7 @@
   ```tsx
   <Dropdown
     id="example-dropdown"
-    options={[
-      { label: 'Option 1' },
-      { label: 'Option 2' },
-    ]}
+    options={[{ label: 'Option 1' }, { label: 'Option 2' }]}
     anchorType="button"
     label="Open Menu"
     popoverProps={{

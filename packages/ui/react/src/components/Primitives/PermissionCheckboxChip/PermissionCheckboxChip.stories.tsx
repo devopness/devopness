@@ -10,9 +10,7 @@ const meta: Meta<typeof PermissionCheckboxChip> = {
   parameters: {
     layout: 'centered',
   },
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
   argTypes: {
     onChange: { action: 'toggled' },
   },
@@ -63,10 +61,7 @@ const DisabledChecked: Story = {
 const InteractiveDemo = (
   args: React.ComponentProps<typeof PermissionCheckboxChip>
 ) => {
-  const [
-    isChecked,
-    setIsChecked,
-  ] = useState(args.isChecked)
+  const [isChecked, setIsChecked] = useState(args.isChecked)
   return (
     <PermissionCheckboxChip
       {...args}

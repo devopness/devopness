@@ -20,19 +20,14 @@ type ResourceItemData = {
 }
 
 function useIsOverflowing(ref: React.RefObject<HTMLElement | null>) {
-  const [
-    isOverflowing,
-    setIsOverflowing,
-  ] = useState(false)
+  const [isOverflowing, setIsOverflowing] = useState(false)
 
   useEffect(() => {
     const el = ref.current
     if (el) {
       setIsOverflowing(el.scrollWidth > el.clientWidth)
     }
-  }, [
-    ref,
-  ])
+  }, [ref])
 
   return isOverflowing
 }

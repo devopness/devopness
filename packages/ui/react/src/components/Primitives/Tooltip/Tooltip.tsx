@@ -92,10 +92,7 @@ const Tooltip = ({
   children,
   ...props
 }: TooltipComponentProps) => {
-  const [
-    isOverflowed,
-    setIsOverflowed,
-  ] = useState(false)
+  const [isOverflowed, setIsOverflowed] = useState(false)
   const isControlled = props.open !== undefined
   const contentChildrenRef = useRef<HTMLSpanElement>(null)
 
@@ -138,9 +135,7 @@ const Tooltip = ({
       window.removeEventListener('resize', updateOverflow)
       if (resizeObserver) resizeObserver.disconnect()
     }
-  }, [
-    contentChildrenRef,
-  ])
+  }, [contentChildrenRef])
 
   return (
     <StyledTooltip
