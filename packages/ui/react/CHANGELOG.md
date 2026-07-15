@@ -1,5 +1,13 @@
 # @devopness/ui-react
 
+## 2.196.0
+
+### Minor Changes
+
+- [#3327](https://github.com/devopness/devopness/pull/3327) [`1896614`](https://github.com/devopness/devopness/commit/1896614619279067bc0e8b3ceacf0a59f4263b23) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `emptyContent` prop to `ViewDetailsContent` to override the default empty-value fallback
+
+  `ViewDetailsContent` previously hardcoded an em dash (`—`) as the fallback for an empty/undefined `value`, with no way for consumers to override it. A new optional `emptyContent` prop lets consumers pass their own fallback content (e.g. `-`, `N/A`) instead.
+
 ## 2.195.3
 
 ### Patch Changes
