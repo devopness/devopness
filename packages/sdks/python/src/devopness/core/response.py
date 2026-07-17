@@ -21,7 +21,7 @@ T = TypeVar("T")
 class _OpaqueResponseData(dict[str, Any]):
     """Opaque wrapper for response payloads that fail model validation."""
 
-    def __getattr__(self, key: str) -> Any:  # noqa: ANN401
+    def __getattr__(self, key: str) -> Any:  # ruff:ignore[any-type]
         try:
             return self[key]
         except KeyError as e:
@@ -215,7 +215,7 @@ class DevopnessResponse(Generic[T]):
         if raw_data == b"" or model_cls is None:
             return None
 
-        try:  # noqa: PLW0717
+        try:  # ruff:ignore[too-many-statements-in-try-clause]
             # Handle primitive types
             if model_cls is str:
                 return raw_data.decode("utf-8")
