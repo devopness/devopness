@@ -21,17 +21,17 @@ class DevopnessBaseModel(BaseModel):
         protected_namespaces=(),
     )
 
-    def __getitem__(self, key: str) -> Any:  # noqa: ANN401
+    def __getitem__(self, key: str) -> Any:  # ruff:ignore[any-type]
         return getattr(self, key)
 
-    def __setitem__(self, key: str, value: Any) -> None:  # noqa: ANN401
+    def __setitem__(self, key: str, value: Any) -> None:  # ruff:ignore[any-type]
         setattr(self, key, value)
 
     def __contains__(self, key: str) -> bool:
         return hasattr(self, key)
 
     @classmethod
-    def from_dict(cls, data: Any) -> Self:  # noqa: ANN401
+    def from_dict(cls, data: Any) -> Self:  # ruff:ignore[any-type]
         """
         Create an instance of the model from a dictionary.
 

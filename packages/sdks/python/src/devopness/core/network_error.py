@@ -51,7 +51,7 @@ class DevopnessNetworkError(DevopnessSdkError):
         )
 
 
-def handle_network_errors(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # noqa: ANN201
+def handle_network_errors(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # ruff:ignore[missing-return-type-undocumented-public-function]
     """
     Async decorator to catch and re-raise network-related exceptions
     as `DevopnessNetworkError`.
@@ -67,7 +67,7 @@ def handle_network_errors(func: Callable):  # type: ignore[no-untyped-def, type-
     """
 
     @functools.wraps(func)
-    async def wrapper(*args, **kwargs):  # type: ignore[no-untyped-def]  # noqa: ANN002, ANN003, ANN202
+    async def wrapper(*args, **kwargs):  # type: ignore[no-untyped-def]  # ruff:ignore[missing-type-args, missing-type-kwargs, missing-return-type-private-function]
         try:
             return await func(*args, **kwargs)
 
@@ -79,7 +79,7 @@ def handle_network_errors(func: Callable):  # type: ignore[no-untyped-def, type-
     return wrapper
 
 
-def handle_network_errors_sync(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # noqa: ANN201
+def handle_network_errors_sync(func: Callable):  # type: ignore[no-untyped-def, type-arg]  # ruff:ignore[missing-return-type-undocumented-public-function]
     """
     Decorator to catch and re-raise network-related exceptions
     as `DevopnessNetworkError`.
@@ -95,7 +95,7 @@ def handle_network_errors_sync(func: Callable):  # type: ignore[no-untyped-def, 
     """
 
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):  # type: ignore[no-untyped-def]  # noqa: ANN002, ANN003, ANN202
+    def wrapper(*args, **kwargs):  # type: ignore[no-untyped-def]  # ruff:ignore[missing-type-args, missing-type-kwargs, missing-return-type-private-function]
         try:
             return func(*args, **kwargs)
 
