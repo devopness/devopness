@@ -99,25 +99,25 @@ extend-select = [
 ]
 
 ignore = [
-  "PLC2701", # Private name import `*` from external module `*`
-  "RET504",  # Unnecessary assignment to `**kwargs` before `return` statement
+  "import-private-name", # Private name import `*` from external module `*`
+  "unnecessary-assign",   # Unnecessary assignment to `**kwargs` before `return` statement
 ]
 
 [tool.ruff.lint.per-file-ignores]
 "src/devopness/generated/**/*" = [
-  "E501",  # Line too long
-  "UP007", # Use `X | Y` for type annotations (auto-generated code uses Union)
+  "line-too-long",                 # Line too long
+  "non-pep604-annotation-union",   # Use `X | Y` for type annotations (auto-generated code uses Union)
 ]
 "src/devopness/generated/**/__init__.py" = [
-  "F401", # Module imported but unused
+  "unused-import", # Module imported but unused
 ]
 "src/devopness/generated/models/api_token_type.py" = [
-  "S105", # False positive 'Possible hardcoded password assigned'
+  "hardcoded-password-string", # False positive 'Possible hardcoded password assigned'
 ]
 "tests/**/*" = [
   "ANN",  # flake8-annotations
-  "E501", # Line too long
-  "S101", # Use of `assert` detected
+  "line-too-long", # Line too long
+  "assert",        # Use of `assert` detected
 ]
 
 [tool.ruff.lint.isort]
