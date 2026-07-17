@@ -4,6 +4,7 @@ on:
   pull_request:
     types:
       - opened
+      - reopened
       - synchronize
   schedule:
     - cron: "24 3 * * 1"
