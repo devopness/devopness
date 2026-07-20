@@ -32,7 +32,7 @@
     "@types/react-dom": "^19.2.3",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/mdx": "^2.0.14",
-    "@typescript-eslint/eslint-plugin": "^8.64.0",
+    "@typescript-eslint/eslint-plugin": "^8.65.0",
     "@typescript-eslint/parser": "^8.64.0",
     "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
@@ -43,8 +43,8 @@
     "prettier": "^3.9.5",
     "prettier-plugin-multiline-arrays": "^4.1.10",
     "prettier-plugin-sort-json": "^4.1.1",
-    "prettier-plugin-tailwindcss": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.2.4",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   }
 }
