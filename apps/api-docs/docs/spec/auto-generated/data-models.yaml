@@ -779,6 +779,12 @@ TeamRelation:
   $ref: ./auto-generated/models/team-relation.yaml
 TeamUpdate:
   $ref: ./auto-generated/models/team-update.yaml
+Template:
+  $ref: ./auto-generated/models/template.yaml
+TemplateInputs:
+  $ref: ./auto-generated/models/template-inputs.yaml
+TemplateList:
+  $ref: ./auto-generated/models/template-list.yaml
 TriggerEvent:
   $ref: ./auto-generated/models/trigger-event.yaml
 TriggerWhenCondition:

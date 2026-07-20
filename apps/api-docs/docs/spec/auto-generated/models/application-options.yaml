@@ -7,7 +7,10 @@ properties:
     $ref: '#/components/schemas/LanguageRuntimeList'
   script_runners:
     $ref: '#/components/schemas/ScriptRunnerList'
+  templates:
+    $ref: '#/components/schemas/TemplateList'
 required:
   - variable_targets
   - language_runtimes
   - script_runners
+  - templates

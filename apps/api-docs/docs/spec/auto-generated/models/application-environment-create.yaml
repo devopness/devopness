@@ -47,6 +47,12 @@ properties:
     description: 'Indicates command that Devopness must execute to install application dependencies.'
     example: 'npm install'
     type: string
+  template:
+    description: 'Optional template to use when creating the application. Leave empty to create the application directly without using a template.'
+    example: n8n
+    type: string
+  template_inputs:
+    $ref: '#/components/schemas/TemplateInputs'
 required:
   - name
   - engine_version

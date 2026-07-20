@@ -396,6 +396,12 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
         body['entrypoint'] = 'index.html'
         body['credential_id'] = credential?.id ?? body.credential_id
+
+        // The `addEnvironmentApplication201` test case must exercise the
+        // flow of "creating the application directly", without using the
+        // App Templates system.
+        delete body['template']
+        delete body['template_inputs']
     }))
 
     before('updateApplication204', utils.rewriteTransactionRequestBody((body: any) => {

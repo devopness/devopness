@@ -85,6 +85,10 @@ properties:
     $ref: '#/components/schemas/ServerList'
   credential:
     $ref: '#/components/schemas/CredentialRelation'
+  services:
+    $ref: '#/components/schemas/ServiceList'
+  cronjobs:
+    $ref: '#/components/schemas/CronJobList'
   virtual_hosts:
     $ref: '#/components/schemas/VirtualHostList'
   daemons:
@@ -121,6 +125,8 @@ required:
   - environment
   - servers
   - credential
+  - services
+  - cronjobs
   - virtual_hosts
   - daemons
   - created_at
