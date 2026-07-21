@@ -75,7 +75,9 @@ jobs:
         run: git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Create Release Pull Request or Publish Packages
-        uses: changesets/action@v1
+        # TODO: remove this pin once changesets/action fixes the missing-prettier regression in v1.9.0+.
+        # v1.8.0 keeps the release hook working until that upstream bug is fixed.
+        uses: changesets/action@v1.8.0
         env:
           # @changesets/changelog-github reads GITHUB_TOKEN from the environment while
           # `npx changeset version` runs inside the custom version hook.
