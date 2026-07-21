@@ -92,5 +92,17 @@ export interface ApplicationEnvironmentCreate {
      * @memberof ApplicationEnvironmentCreate
      */
     install_dependencies_command?: string;
+    /**
+     * Optional template to use when creating the application. Leave empty to create the application directly without using a template.
+     * @type {string}
+     * @memberof ApplicationEnvironmentCreate
+     */
+    template?: string;
+    /**
+     * Key/value pairs used to fill template placeholders before an application is created. Each template decides which inputs it accepts.
+     * @type {{ [key: string]: object; }}
+     * @memberof ApplicationEnvironmentCreate
+     */
+    template_inputs?: { [key: string]: object; };
 }
 

@@ -16006,6 +16006,12 @@
           "credential": {
             "$ref": "#/components/schemas/CredentialRelation"
           },
+          "services": {
+            "$ref": "#/components/schemas/ServiceList"
+          },
+          "cronjobs": {
+            "$ref": "#/components/schemas/CronJobList"
+          },
           "virtual_hosts": {
             "$ref": "#/components/schemas/VirtualHostList"
           },
@@ -16047,6 +16053,8 @@
           "environment",
           "servers",
           "credential",
+          "services",
+          "cronjobs",
           "virtual_hosts",
           "daemons",
           "created_at",
@@ -16113,6 +16121,14 @@
             "description": "Indicates command that Devopness must execute to install application dependencies.",
             "example": "npm install",
             "type": "string"
+          },
+          "template": {
+            "description": "Optional template to use when creating the application. Leave empty to create the application directly without using a template.",
+            "example": "n8n",
+            "type": "string"
+          },
+          "template_inputs": {
+            "$ref": "#/components/schemas/TemplateInputs"
           }
         },
         "required": [
@@ -16158,12 +16174,16 @@
           },
           "script_runners": {
             "$ref": "#/components/schemas/ScriptRunnerList"
+          },
+          "templates": {
+            "$ref": "#/components/schemas/TemplateList"
           }
         },
         "required": [
           "variable_targets",
           "language_runtimes",
-          "script_runners"
+          "script_runners",
+          "templates"
         ]
       },
       "ApplicationPipeline": {
@@ -25518,6 +25538,61 @@
           "id",
           "name"
         ]
+      },
+      "Template": {
+        "type": "object",
+        "description": "One template shown to users when creating an application.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique template ID.",
+            "example": "n8n"
+          },
+          "name": {
+            "type": "string",
+            "description": "The internal template name used inside Devopness.",
+            "example": "n8n"
+          },
+          "title": {
+            "type": "string",
+            "description": "The display name users see in the UI.",
+            "example": "n8n"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "A short summary explaining what the template does.",
+            "example": "Deploy n8n with PostgreSQL and the default app resources."
+          },
+          "version": {
+            "type": "string",
+            "description": "The template version string.",
+            "example": "v1"
+          },
+          "manifest": {
+            "type": "object",
+            "nullable": true,
+            "description": "The raw template file content used to build the application request."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "title",
+          "version"
+        ]
+      },
+      "TemplateInputs": {
+        "description": "Key/value pairs used to fill template placeholders before an application is created. Each template decides which inputs it accepts.",
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TemplateList": {
+        "type": "array",
+        "description": "The list of templates users can choose from.",
+        "items": {
+          "$ref": "#/components/schemas/Template"
+        }
       },
       "TriggerEvent": {
         "type": "string",
