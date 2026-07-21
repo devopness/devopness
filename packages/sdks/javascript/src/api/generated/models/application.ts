@@ -14,9 +14,11 @@
 
 import { ApplicationLastDeployments } from './application-last-deployments';
 import { CredentialRelation } from './credential-relation';
+import { CronJobRelation } from './cron-job-relation';
 import { DaemonRelation } from './daemon-relation';
 import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
+import { ServiceRelation } from './service-relation';
 import { UserRelation } from './user-relation';
 import { VirtualHostRelation } from './virtual-host-relation';
 
@@ -164,6 +166,18 @@ export interface Application {
      * @memberof Application
      */
     credential: CredentialRelation | null;
+    /**
+     * 
+     * @type {Array<ServiceRelation>}
+     * @memberof Application
+     */
+    services: Array<ServiceRelation>;
+    /**
+     * 
+     * @type {Array<CronJobRelation>}
+     * @memberof Application
+     */
+    cronjobs: Array<CronJobRelation>;
     /**
      * 
      * @type {Array<VirtualHostRelation>}

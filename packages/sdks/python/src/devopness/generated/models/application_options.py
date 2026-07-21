@@ -17,6 +17,7 @@ from pydantic import Field
 from .. import DevopnessBaseModel
 from .language_runtime import LanguageRuntime, LanguageRuntimePlain
 from .script_runner import ScriptRunner, ScriptRunnerPlain
+from .template import Template, TemplatePlain
 from .variable_targets import VariableTargets, VariableTargetsPlain
 
 
@@ -28,6 +29,7 @@ class ApplicationOptions(DevopnessBaseModel):
         variable_targets (List[VariableTargets]): The list of VariableTarget
         language_runtimes (List[LanguageRuntime]):
         script_runners (List[ScriptRunner]):
+        templates (List[Template]): The list of templates users can choose from.
     """
 
     variable_targets: list[VariableTargets] = Field(
@@ -35,6 +37,9 @@ class ApplicationOptions(DevopnessBaseModel):
     )
     language_runtimes: list[LanguageRuntime]
     script_runners: list[ScriptRunner]
+    templates: list[Template] = Field(
+        description="The list of templates users can choose from."
+    )
 
 
 class ApplicationOptionsPlain(TypedDict, total=False):
@@ -63,6 +68,14 @@ class ApplicationOptionsPlain(TypedDict, total=False):
             Union[
                 ScriptRunner,
                 ScriptRunnerPlain,
+            ]
+        ]
+    ]
+    templates: Required[
+        list[
+            Union[
+                Template,
+                TemplatePlain,
             ]
         ]
     ]

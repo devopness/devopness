@@ -7,6 +7,7 @@ Note:
 """
 
 from typing import (
+    Any,
     Required,
     TypedDict,
     Union,
@@ -35,6 +36,8 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
         default_branch (str): The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.
         deployments_keep (int, optional): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers. OR The number of deployment artifacts to be retained in the user&#39;s servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.
         install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies.
+        template (str, optional): Optional template to use when creating the application. Leave empty to create the application directly without using a template.
+        template_inputs (Dict[str, object], optional): Key/value pairs used to fill template placeholders before an application is created. Each template decides which inputs it accepts.
     """
 
     linked_resources: list[ResourceToBeLinked] | None = Field(
@@ -92,6 +95,15 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
         description="Indicates command that Devopness must execute to install application dependencies.",
         json_schema_extra={"examples": ["npm install"]},
     )
+    template: StrictStr | None = Field(
+        default=None,
+        description="Optional template to use when creating the application. Leave empty to create the application directly without using a template.",
+        json_schema_extra={"examples": ["n8n"]},
+    )
+    template_inputs: dict[str, Any] | None = Field(
+        default=None,
+        description="Key/value pairs used to fill template placeholders before an application is created. Each template decides which inputs it accepts.",
+    )
 
 
 class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
@@ -111,3 +123,5 @@ class ApplicationEnvironmentCreatePlain(TypedDict, total=False):
     default_branch: Required[str]
     deployments_keep: int | None
     install_dependencies_command: str | None
+    template: str | None
+    template_inputs: dict[str, object] | None
