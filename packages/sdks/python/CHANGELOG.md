@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.6.3
+
+### Patch Changes
+
+- [#3352](https://github.com/devopness/devopness/pull/3352) [`983ace3`](https://github.com/devopness/devopness/commit/983ace3d58148c108096f2438f3222805090fdf8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support for Application Templates
+
 ## 2.6.2
 
 ### Patch Changes
