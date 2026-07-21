@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { source } from '@/lib/source';
+import { source } from "@/lib/source";
 
 interface RelatedLinksProps {
   links: string[];
@@ -12,13 +12,13 @@ interface RelatedLinksProps {
  * to its title and URL using the Fumadocs source loader.
  */
 export function RelatedLinks({ links }: RelatedLinksProps) {
-  const valid = links.filter((l) => typeof l === 'string' && l.trim() !== '');
+  const valid = links.filter((l) => typeof l === "string" && l.trim() !== "");
   if (valid.length === 0) return null;
 
   const resolved = valid
     .map((docPath) => {
       // Resolve the doc path to a page in the source
-      const slugs = docPath.replace(/\/index$/, '').split('/');
+      const slugs = docPath.replace(/\/index$/, "").split("/");
       const page = source.getPage(slugs);
       if (!page) return null;
       return {

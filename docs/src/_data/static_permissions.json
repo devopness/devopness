@@ -7,9 +7,7 @@
         "name": "create",
         "human_readable": "Add",
         "hint": "Allow to create new applications",
-        "required_permissions": [
-          "application:read"
-        ]
+        "required_permissions": ["application:read"]
       },
       {
         "name": "read",
@@ -20,35 +18,25 @@
         "name": "update",
         "human_readable": "Edit",
         "hint": "Allow to modify existing applications; and create, edit and delete configuration files, pipelines and SSL certificates",
-        "required_permissions": [
-          "application:read"
-        ]
+        "required_permissions": ["application:read"]
       },
       {
         "name": "delete",
         "human_readable": "Remove",
         "hint": "Allow to delete applications",
-        "required_permissions": [
-          "application:read",
-          "application:update"
-        ]
+        "required_permissions": ["application:read", "application:update"]
       },
       {
         "name": "pipeline_run",
         "human_readable": "Pipeline run",
         "hint": "Grant team members the ability to run pipelines on resources of this type. Learn more at www.devopness.com/docs/roles",
-        "required_permissions": [
-          "application:read"
-        ]
+        "required_permissions": ["application:read"]
       },
       {
         "name": "pipeline_change_step_user",
         "human_readable": "Pipeline change step user",
         "hint": "Allow team members to change the user account under which the pipeline step runs",
-        "required_permissions": [
-          "application:read",
-          "application:update"
-        ]
+        "required_permissions": ["application:read", "application:update"]
       }
     ]
   },
@@ -60,9 +48,7 @@
         "name": "create",
         "human_readable": "Add",
         "hint": "Allow to create new cron jobs",
-        "required_permissions": [
-          "cronjob:read"
-        ]
+        "required_permissions": ["cronjob:read"]
       },
       {
         "name": "read",
@@ -73,35 +59,25 @@
         "name": "update",
         "human_readable": "Edit",
         "hint": "Allow to modify existing cron jobs",
-        "required_permissions": [
-          "cronjob:read"
-        ]
+        "required_permissions": ["cronjob:read"]
       },
       {
         "name": "delete",
         "human_readable": "Remove",
         "hint": "Allow to delete cron jobs",
-        "required_permissions": [
-          "cronjob:read",
-          "cronjob:update"
-        ]
+        "required_permissions": ["cronjob:read", "cronjob:update"]
       },
       {
         "name": "pipeline_run",
         "human_readable": "Pipeline run",
         "hint": "Grant team members the ability to run pipelines on resources of this type. Learn more at www.devopness.com/docs/roles",
-        "required_permissions": [
-          "cronjob:read"
-        ]
+        "required_permissions": ["cronjob:read"]
       },
       {
         "name": "pipeline_change_step_user",
         "human_readable": "Pipeline change step user",
         "hint": "Allow team members to change the user account under which the pipeline step runs",
-        "required_permissions": [
-          "cronjob:read",
-          "cronjob:update"
-        ]
+        "required_permissions": ["cronjob:read", "cronjob:update"]
       }
     ]
   },
@@ -113,9 +89,7 @@
         "name": "create",
         "human_readable": "Add",
         "hint": "Allow to create new daemons",
-        "required_permissions": [
-          "daemon:read"
-        ]
+        "required_permissions": ["daemon:read"]
       },
       {
         "name": "read",
@@ -126,35 +100,25 @@
         "name": "update",
         "human_readable": "Edit",
         "hint": "Allow to modify existing daemons",
-        "required_permissions": [
-          "daemon:read"
-        ]
+        "required_permissions": ["daemon:read"]
       },
       {
         "name": "delete",
         "human_readable": "Remove",
         "hint": "Allow to delete daemons",
-        "required_permissions": [
-          "daemon:read",
-          "daemon:update"
-        ]
+        "required_permissions": ["daemon:read", "daemon:update"]
       },
       {
         "name": "pipeline_run",
         "human_readable": "Pipeline run",
         "hint": "Grant team members the ability to run pipelines on resources of this type. Learn more at www.devopness.com/docs/roles",
-        "required_permissions": [
-          "daemon:read"
-        ]
+        "required_permissions": ["daemon:read"]
       },
       {
         "name": "pipeline_change_step_user",
         "human_readable": "Pipeline change step user",
         "hint": "Allow team members to change the user account under which the pipeline step runs",
-        "required_permissions": [
-          "daemon:read",
-          "daemon:update"
-        ]
+        "required_permissions": ["daemon:read", "daemon:update"]
       }
     ]
   },
@@ -166,9 +130,7 @@
         "name": "create",
         "human_readable": "Add",
         "hint": "Allow to create new hooks",
-        "required_permissions": [
-          "hook:read"
-        ]
+        "required_permissions": ["hook:read"]
       },
       {
         "name": "read",
@@ -179,18 +141,13 @@
         "name": "update",
         "human_readable": "Edit",
         "hint": "Allow to modify existing hooks",
-        "required_permissions": [
-          "hook:read"
-        ]
+        "required_permissions": ["hook:read"]
       },
       {
         "name": "delete",
         "human_readable": "Remove",
         "hint": "Allow to delete hooks",
-        "required_permissions": [
-          "hook:read",
-          "hook:update"
-        ]
+        "required_permissions": ["hook:read", "hook:update"]
       }
     ]
   },
@@ -202,9 +159,7 @@
         "name": "create",
         "human_readable": "Add",
         "hint": "Allow to create new network rules",
-        "required_permissions": [
-          "network-rule:read"
-        ]
+        "required_permissions": ["network-rule:read"]
       },
       {
         "name": "read",
@@ -215,35 +170,25 @@
         "name": "update",
         "human_readable": "Edit",
         "hint": "Allow to modify existing network rules",
-        "required_permissions": [
-          "network-rule:read"
-        ]
+        "required_permissions": ["network-rule:read"]
       },
       {
         "name": "delete",
         "human_readable": "Remove",
         "hint": "Allow to delete network rules",
-        "required_permissions": [
-          "network-rule:read",
-          "network-rule:update"
-        ]
+        "required_permissions": ["network-rule:read", "network-rule:update"]
       },
       {
         "name": "pipeline_run",
         "human_readable": "Pipeline run",
         "hint": "Grant team members the ability to run pipelines on resources of this type. Learn more at www.devopness.com/docs/roles",
-        "required_permissions": [
-          "network-rule:read"
-        ]
+        "required_permissions": ["network-rule:read"]
       },
       {
         "name": "pipeline_change_step_user",
         "human_readable": "Pipeline change step user",
         "hint": "Allow team members to change the user account under which the pipeline step runs",
-        "required_permissions": [
-          "network-rule:read",
-          "network-rule:update"
-        ]
+        "required_permissions": ["network-rule:read", "network-rule:update"]
       }
     ]
   },
@@ -255,9 +200,7 @@
         "name": "create",
         "human_readable": "Add",
         "hint": "Allow to create new servers",
-        "required_permissions": [
-          "server:read"
-        ]
+        "required_permissions": ["server:read"]
       },
       {
         "name": "read",
@@ -268,35 +211,25 @@
         "name": "update",
         "human_readable": "Edit",
         "hint": "Allow to modify existing servers",
-        "required_permissions": [
-          "server:read"
-        ]
+        "required_permissions": ["server:read"]
       },
       {
         "name": "delete",
         "human_readable": "Remove",
         "hint": "Allow to delete servers",
-        "required_permissions": [
-          "server:read",
-          "server:update"
-        ]
+        "required_permissions": ["server:read", "server:update"]
       },
       {
         "name": "pipeline_run",
         "human_readable": "Pipeline run",
         "hint": "Grant team members the ability to run pipelines on resources of this type. Learn more at www.devopness.com/docs/roles",
-        "required_permissions": [
-          "server:read"
-        ]
+        "required_permissions": ["server:read"]
       },
       {
         "name": "pipeline_change_step_user",
         "human_readable": "Pipeline change step user",
         "hint": "Allow team members to change the user account under which the pipeline step runs",
-        "required_permissions": [
-          "server:read",
-          "server:update"
-        ]
+        "required_permissions": ["server:read", "server:update"]
       }
     ]
   },
@@ -308,9 +241,7 @@
         "name": "create",
         "human_readable": "Add",
         "hint": "Allow to create new services",
-        "required_permissions": [
-          "service:read"
-        ]
+        "required_permissions": ["service:read"]
       },
       {
         "name": "read",
@@ -321,35 +252,25 @@
         "name": "update",
         "human_readable": "Edit",
         "hint": "Allow to modify existing services",
-        "required_permissions": [
-          "service:read"
-        ]
+        "required_permissions": ["service:read"]
       },
       {
         "name": "delete",
         "human_readable": "Remove",
         "hint": "Allow to delete services",
-        "required_permissions": [
-          "service:read",
-          "service:update"
-        ]
+        "required_permissions": ["service:read", "service:update"]
       },
       {
         "name": "pipeline_run",
         "human_readable": "Pipeline run",
         "hint": "Grant team members the ability to run pipelines on resources of this type. Learn more at www.devopness.com/docs/roles",
-        "required_permissions": [
-          "service:read"
-        ]
+        "required_permissions": ["service:read"]
       },
       {
         "name": "pipeline_change_step_user",
         "human_readable": "Pipeline change step user",
         "hint": "Allow team members to change the user account under which the pipeline step runs",
-        "required_permissions": [
-          "service:read",
-          "service:update"
-        ]
+        "required_permissions": ["service:read", "service:update"]
       }
     ]
   },
@@ -361,9 +282,7 @@
         "name": "create",
         "human_readable": "Add",
         "hint": "Allow to create new SSH keys",
-        "required_permissions": [
-          "ssh-key:read"
-        ]
+        "required_permissions": ["ssh-key:read"]
       },
       {
         "name": "read",
@@ -374,35 +293,25 @@
         "name": "update",
         "human_readable": "Edit",
         "hint": "Allow to modify existing SSH keys",
-        "required_permissions": [
-          "ssh-key:read"
-        ]
+        "required_permissions": ["ssh-key:read"]
       },
       {
         "name": "delete",
         "human_readable": "Remove",
         "hint": "Allow to delete SSH keys",
-        "required_permissions": [
-          "ssh-key:read",
-          "ssh-key:update"
-        ]
+        "required_permissions": ["ssh-key:read", "ssh-key:update"]
       },
       {
         "name": "pipeline_run",
         "human_readable": "Pipeline run",
         "hint": "Grant team members the ability to run pipelines on resources of this type. Learn more at www.devopness.com/docs/roles",
-        "required_permissions": [
-          "ssh-key:read"
-        ]
+        "required_permissions": ["ssh-key:read"]
       },
       {
         "name": "pipeline_change_step_user",
         "human_readable": "Pipeline change step user",
         "hint": "Allow team members to change the user account under which the pipeline step runs",
-        "required_permissions": [
-          "ssh-key:read",
-          "ssh-key:update"
-        ]
+        "required_permissions": ["ssh-key:read", "ssh-key:update"]
       }
     ]
   }

@@ -1,24 +1,19 @@
-import { existsSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { remarkDirectiveAdmonition } from 'fumadocs-core/mdx-plugins';
-import {
-  defineConfig,
-  defineDocs,
-  frontmatterSchema,
-  metaSchema,
-} from 'fumadocs-mdx/config';
-import remarkDirective from 'remark-directive';
-import { z } from 'zod';
+import { existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { remarkDirectiveAdmonition } from "fumadocs-core/mdx-plugins";
+import { defineConfig, defineDocs, frontmatterSchema, metaSchema } from "fumadocs-mdx/config";
+import remarkDirective from "remark-directive";
+import { z } from "zod";
 
-import { remarkMentionLink } from './src/plugins/remark-mention-link';
+import { remarkMentionLink } from "./src/plugins/remark-mention-link";
 
 // Path to markdown content (`docs/docs`). Must work for source.config.ts and the
 // bundled `.source/source.config.mjs` copy (different `import.meta.url` dirname).
 const configDir = dirname(fileURLToPath(import.meta.url));
-const docsContentDir = existsSync(join(configDir, 'docs', 'api', 'index.md'))
-  ? join(configDir, 'docs')
-  : join(configDir, '..', 'docs');
+const docsContentDir = existsSync(join(configDir, "docs", "api", "index.md"))
+  ? join(configDir, "docs")
+  : join(configDir, "..", "docs");
 
 // Extended frontmatter schema with custom fields used in the existing markdown files.
 // These fields (intro, slug, sidebar_position, links, required_permissions) are
@@ -44,13 +39,9 @@ const docsSchema = frontmatterSchema.extend({
 });
 
 export const docs = defineDocs({
-  dir: 'docs',
+  dir: "docs",
   docs: {
-    files: [
-      '**/*.md',
-      '**/*.mdx',
-      '!**/README.md',
-    ],
+    files: ["**/*.md", "**/*.mdx", "!**/README.md"],
     schema: docsSchema,
     postprocess: {
       includeProcessedMarkdown: true,
@@ -65,24 +56,17 @@ export default defineConfig({
   mdxOptions: {
     remarkPlugins: [
       // Required by remarkDirectiveAdmonition
-      [
-        remarkDirective,
-      ],
+      [remarkDirective],
       // Supports :::note, :::warning, :::danger admonition syntax used in the existing markdown files
       // @see https://fumadocs.dev/docs/mdx/admonition
-      [
-        remarkDirectiveAdmonition,
-      ],
+      [remarkDirectiveAdmonition],
       // Converts [/docs/...] mention syntax to links with titles from frontmatter
-      [
-        remarkMentionLink,
-        { docsRoot: docsContentDir },
-      ],
+      [remarkMentionLink, { docsRoot: docsContentDir }],
     ],
   },
   plugins: [
     {
-      name: 'intro-to-description',
+      name: "intro-to-description",
       doc: {
         frontmatter: (data: Record<string, unknown>) => {
           // Map `intro` to `description` so Fumadocs renders it under the title

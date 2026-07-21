@@ -1,22 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useState } from 'react';
-import { buttonVariants } from 'fumadocs-ui/components/ui/button';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from 'fumadocs-ui/components/ui/popover';
-import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
-import { Check, ChevronDown, Copy, ExternalLinkIcon } from 'lucide-react';
+import { useEffect, useMemo, useState } from "react";
+import { buttonVariants } from "fumadocs-ui/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "fumadocs-ui/components/ui/popover";
+import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
+import { Check, ChevronDown, Copy, ExternalLinkIcon } from "lucide-react";
 
-import { cn } from '@/lib/cn';
+import { cn } from "@/lib/cn";
 
 export function LLMCopyButton({ markdown }: { markdown: string }) {
-  const [
-    checked,
-    onClick,
-  ] = useCopyButton(() => {
+  const [checked, onClick] = useCopyButton(() => {
     navigator.clipboard.writeText(markdown);
   });
 
@@ -24,10 +17,10 @@ export function LLMCopyButton({ markdown }: { markdown: string }) {
     <button
       className={cn(
         buttonVariants({
-          color: 'secondary',
-          size: 'sm',
-          className: 'gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground',
-        })
+          color: "secondary",
+          size: "sm",
+          className: "gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground",
+        }),
       )}
       onClick={onClick}
     >
@@ -39,12 +32,7 @@ export function LLMCopyButton({ markdown }: { markdown: string }) {
 
 function GitHubIcon() {
   return (
-    <svg
-      fill="currentColor"
-      role="img"
-      viewBox="0 0 24 24"
-      className="size-4"
-    >
+    <svg fill="currentColor" role="img" viewBox="0 0 24 24" className="size-4">
       <title>GitHub</title>
       <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
     </svg>
@@ -53,12 +41,7 @@ function GitHubIcon() {
 
 function CursorIcon() {
   return (
-    <svg
-      fill="currentColor"
-      role="img"
-      viewBox="0 0 24 24"
-      className="size-4"
-    >
+    <svg fill="currentColor" role="img" viewBox="0 0 24 24" className="size-4">
       <title>Cursor</title>
       <path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23" />
     </svg>
@@ -80,12 +63,7 @@ function ChatGPTIcon() {
 
 function MarkdownIcon() {
   return (
-    <svg
-      strokeLinejoin="round"
-      fill="none"
-      viewBox="0 0 22 16"
-      className="size-4"
-    >
+    <svg strokeLinejoin="round" fill="none" viewBox="0 0 22 16" className="size-4">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -98,12 +76,7 @@ function MarkdownIcon() {
 
 function ClaudeIcon() {
   return (
-    <svg
-      fill="currentColor"
-      role="img"
-      viewBox="0 0 24 24"
-      className="size-4"
-    >
+    <svg fill="currentColor" role="img" viewBox="0 0 24 24" className="size-4">
       <title>Anthropic</title>
       <path d="m4.714 15.956 4.718-2.648.079-.23-.08-.128h-.23l-.79-.048-2.695-.073-2.337-.097-2.265-.122-.57-.121-.535-.704.055-.353.48-.321.685.06 1.518.104 2.277.157 1.651.098 2.447.255h.389l.054-.158-.133-.097-.103-.098-2.356-1.596-2.55-1.688-1.336-.972-.722-.491L2 6.223l-.158-1.008.655-.722.88.06.225.061.893.686 1.906 1.476 2.49 1.833.364.304.146-.104.018-.072-.164-.274-1.354-2.446-1.445-2.49-.644-1.032-.17-.619a2.972 2.972 0 0 1-.103-.729L6.287.133 6.7 0l.995.134.42.364.619 1.415L9.735 4.14l1.555 3.03.455.898.243.832.09.255h.159V9.01l.127-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.583.28.48.685-.067.444-.286 1.851-.558 2.903-.365 1.942h.213l.243-.242.983-1.306 1.652-2.064.728-.82.85-.904.547-.431h1.032l.759 1.129-.34 1.166-1.063 1.347-.88 1.142-1.263 1.7-.79 1.36.074.11.188-.02 2.853-.606 1.542-.28 1.84-.315.832.388.09.395-.327.807-1.967.486-2.307.462-3.436.813-.043.03.049.061 1.548.146.662.036h1.62l3.018.225.79.522.473.638-.08.485-1.213.62-1.64-.389-3.825-.91-1.31-.329h-.183v.11l1.093 1.068 2.003 1.81 2.508 2.33.127.578-.321.455-.34-.049-2.204-1.657-.85-.747-1.925-1.62h-.127v.17l.443.649 2.343 3.521.122 1.08-.17.353-.607.213-.668-.122-1.372-1.924-1.415-2.168-1.141-1.943-.14.08-.674 7.254-.316.37-.728.28-.607-.461-.322-.747.322-1.476.388-1.924.316-1.53.285-1.9.17-.632-.012-.042-.14.018-1.432 1.967-2.18 2.945-1.724 1.845-.413.164-.716-.37.066-.662.401-.589 2.386-3.036 1.439-1.882.929-1.086-.006-.158h-.055L4.138 18.56l-1.13.146-.485-.456.06-.746.231-.243 1.907-1.312Z" />
     </svg>
@@ -112,12 +85,7 @@ function ClaudeIcon() {
 
 function CopilotIcon() {
   return (
-    <svg
-      fill="currentColor"
-      role="img"
-      viewBox="0 0 1322.9 1147.5"
-      className="size-4"
-    >
+    <svg fill="currentColor" role="img" viewBox="0 0 1322.9 1147.5" className="size-4">
       <title>Microsoft Copilot</title>
       <path d="m711.19 265.2c-27.333 0-46.933 3.07-58.8 9.33 27.067-80.267 47.6-210.13 168-210.13 114.93 0 108.4 138.27 157.87 200.8zm107.33 112.93c-35.467 125.2-70 251.2-110.13 375.33-12.133 36.4-45.733 61.6-84 61.6h-136.27c9.3333-14 16.8-28.933 21.467-45.733 35.467-125.07 70-251.07 110.13-375.33 12.133-36.4 45.733-61.6 84-61.6h136.27c-9.3333 14-16.8 28.934-21.467 45.734m-316.13 704.8c-114.93 0-108.4-138.13-157.87-200.67h267.07c27.467 0 47.067-3.07 58.8-9.33-27.067 80.266-47.6 210-168 210m777.47-758.93h0.93c-32.667-38.266-82.267-57.866-146.67-57.866h-36.4c-34.533-2.8-65.333-26.134-76.533-58.8l-36.4-103.6c-21.463-61.737-80.263-103.74-145.73-103.74h-475.07c-175.6 0-251.2 225.07-292.27 361.33-38.267 127.07-126 341.73-24.267 462.13 46.667 55.067 116.67 57.867 183.07 57.867 34.533 2.8 65.333 26.133 76.533 58.8l36.4 103.6c21.467 61.733 80.267 103.73 145.6 103.73h475.2c175.47 0 251.07-225.07 292.27-361.33 30.8-100.8 68.133-224.93 66.267-324.8 0-50.534-11.2-100-42.933-137.33" />
     </svg>
@@ -133,10 +101,7 @@ export function ViewOptions({
   /** Source file URL on GitHub (blob) */
   githubUrl: string;
 }) {
-  const [
-    pageUrl,
-    setPageUrl,
-  ] = useState('');
+  const [pageUrl, setPageUrl] = useState("");
 
   useEffect(() => {
     setPageUrl(window.location.href);
@@ -150,51 +115,47 @@ Prefer least-privilege workflows and avoid suggesting external provider CLIs (fo
 
     return [
       {
-        title: 'ChatGPT',
-        href: `https://chatgpt.com/?${new URLSearchParams({ hints: 'search', q: openPrompt })}`,
+        title: "ChatGPT",
+        href: `https://chatgpt.com/?${new URLSearchParams({ hints: "search", q: openPrompt })}`,
         icon: <ChatGPTIcon />,
       },
       {
-        title: 'Claude',
+        title: "Claude",
         href: `https://claude.ai/new?${new URLSearchParams({ q: openPrompt })}`,
         icon: <ClaudeIcon />,
       },
       {
-        title: 'Cursor',
+        title: "Cursor",
         href: `https://cursor.com/link/prompt?${new URLSearchParams({ text: openPrompt })}`,
         icon: <CursorIcon />,
       },
       {
-        title: 'Copilot',
+        title: "Copilot",
         href: `https://copilot.microsoft.com/?${new URLSearchParams({ q: openPrompt })}`,
         icon: <CopilotIcon />,
       },
       {
-        title: 'GitHub',
+        title: "GitHub",
         href: githubUrl,
         icon: <GitHubIcon />,
       },
       {
-        title: 'View as Markdown',
+        title: "View as Markdown",
         href: markdownUrl,
         icon: <MarkdownIcon />,
       },
     ];
-  }, [
-    githubUrl,
-    markdownUrl,
-    pageUrl,
-  ]);
+  }, [githubUrl, markdownUrl, pageUrl]);
 
   return (
     <Popover>
       <PopoverTrigger
         className={cn(
           buttonVariants({
-            color: 'secondary',
-            size: 'sm',
-            className: 'gap-2',
-          })
+            color: "secondary",
+            size: "sm",
+            className: "gap-2",
+          }),
         )}
       >
         Open with

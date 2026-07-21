@@ -1,29 +1,24 @@
-import type { ComponentProps } from 'react';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import type { ComponentProps } from "react";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import {
   DocsBody,
   DocsDescription,
   DocsPage,
   DocsTitle,
   EditOnGitHub,
-} from 'fumadocs-ui/layouts/notebook/page';
-import { createRelativeLink } from 'fumadocs-ui/mdx';
+} from "fumadocs-ui/layouts/notebook/page";
+import { createRelativeLink } from "fumadocs-ui/mdx";
 
-import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
-import { RelatedLinks } from '@/components/related-links';
-import { RequiredPermissions } from '@/components/required-permissions';
-import { getGithubDocsEditUrl, getGithubDocsRawUrl } from '@/lib/constants';
-import { getLLMText, getPageImage, source } from '@/lib/source';
-import { getMDXComponents } from '@/mdx-components';
-import {
-  isRedundantDocsHref,
-  normalizeInternalDocUrl,
-} from '@/plugins/remark-mention-link';
+import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
+import { RelatedLinks } from "@/components/related-links";
+import { RequiredPermissions } from "@/components/required-permissions";
+import { getGithubDocsEditUrl, getGithubDocsRawUrl } from "@/lib/constants";
+import { getLLMText, getPageImage, source } from "@/lib/source";
+import { getMDXComponents } from "@/mdx-components";
+import { isRedundantDocsHref, normalizeInternalDocUrl } from "@/plugins/remark-mention-link";
 
-export default async function Page(props: {
-  params: Promise<{ slug: string[] }>;
-}) {
+export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
@@ -37,25 +32,17 @@ export default async function Page(props: {
   // Wrap it to strip a redundant `/docs` prefix from in-site links so legacy
   // `[label](/docs/...)` markdown does not resolve to `/docs/docs/...` under the
   // Next.js `basePath: '/docs'`. External, anchor, and relative links pass through.
-  const DocsLink = (props: ComponentProps<'a'>) => {
+  const DocsLink = (props: ComponentProps<"a">) => {
     const href =
-      typeof props.href === 'string' && isRedundantDocsHref(props.href)
+      typeof props.href === "string" && isRedundantDocsHref(props.href)
         ? normalizeInternalDocUrl(props.href)
         : props.href;
 
-    return (
-      <RelativeLink
-        {...props}
-        href={href}
-      />
-    );
+    return <RelativeLink {...props} href={href} />;
   };
 
   return (
-    <DocsPage
-      toc={page.data.toc}
-      full={page.data.full}
-    >
+    <DocsPage toc={page.data.toc} full={page.data.full}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription className="mb-0">
         {!page.data.intro ? page.data.description : undefined}
@@ -74,10 +61,9 @@ export default async function Page(props: {
             a: DocsLink,
           })}
         />
-        {page.data.required_permissions &&
-          page.data.required_permissions.length > 0 && (
-            <RequiredPermissions permissions={page.data.required_permissions} />
-          )}
+        {page.data.required_permissions && page.data.required_permissions.length > 0 && (
+          <RequiredPermissions permissions={page.data.required_permissions} />
+        )}
         {page.data.links?.related && page.data.links.related.length > 0 && (
           <RelatedLinks links={page.data.links.related} />
         )}
@@ -126,10 +112,5 @@ export async function generateStaticParams() {
   // If `source.generateParams()` already emitted the docs home route (`[]`), keep list as-is
   // to avoid duplicates.
   // Otherwise add `{ slug: [] }` so `/docs` gets a static path during export as well.
-  return hasIndex
-    ? dynamicParams
-    : [
-        { slug: [] },
-        ...dynamicParams,
-      ];
+  return hasIndex ? dynamicParams : [{ slug: [] }, ...dynamicParams];
 }
