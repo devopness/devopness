@@ -61,7 +61,7 @@
     "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.39.1",
+    "@openapitools/openapi-generator-cli": "^2.40.0",
     "axios-mock-adapter": "^2.1.0",
     "husky": "9.1.7",
     "vite-plus": "0.2.5",
