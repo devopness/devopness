@@ -303,6 +303,7 @@ export * from './team-organization-link';
 export * from './team-project-link';
 export * from './team-relation';
 export * from './team-update';
+export * from './template';
 export * from './trigger-event';
 export * from './trigger-when-condition';
 export * from './trigger-when-condition-type';
