@@ -27,6 +27,7 @@ const config = {
   reactStrictMode: true,
   images: { unoptimized: true },
   turbopack: {
+    ignoreIssue: [{ path: "**/next.config.mjs" }],
     root: resolve(import.meta.dirname, "."),
   },
 };
