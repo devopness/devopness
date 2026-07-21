@@ -31,7 +31,7 @@
     "@types/react-dom": "^19.2.3",
     "postcss": "^8.5.20",
     "tailwindcss": "^4.2.4",
-    "typescript": "^6.0.3",
-    "vite-plus": "0.2.4"
+    "typescript": "^7.0.2",
+    "vite-plus": "0.2.5"
   }
 }
