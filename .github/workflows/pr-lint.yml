@@ -29,20 +29,141 @@ jobs:
         with:
           markdown: ${{ github.event.pull_request.body }}
 
-      - name: Checkout Repo PR Branch
-        uses: actions/checkout@v6
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
-          persist-credentials: true
-          fetch-depth: 0
-
-      - name: Write JSON to Disk
-        run: |
-          cat > .github/scripts/tmp-pr-description-data.json <<'PR_JSON_EOF'
-          ${{ steps.markdown.outputs.data }}
-          PR_JSON_EOF
-
       - name: Validate PR Description Fields
-        run: |-
-          node .github/scripts/pr-validate-description.js
+        env:
+          PR_DESCRIPTION_DATA: ${{ steps.markdown.outputs.data }}
+        run: |
+          node <<'NODE'
+          const prDescription = JSON.parse(process.env.PR_DESCRIPTION_DATA)
+
+          validateDescriptionOfChanges(prDescription.Description_of_changes)
+          validateResolvedIssuesSection(prDescription.GitHub_issues_resolved_by_this_PR)
+          validateQaSection(prDescription.Quality_Assurance)
+
+          function fail(fieldName, message) {
+            console.log(`❌ ${fieldName}:
+          > ${message}`)
+            process.exitCode = 1
+          }
+
+          function pass(fieldName, message) {
+            console.log(`✅ ${fieldName}:
+          > ${message}`)
+          }
+
+          function validateDescriptionOfChanges(descriptionOfChanges) {
+            if (!descriptionOfChanges?.bodies) {
+              fail(
+                'Description of Changes',
+                "Invalid PR template format. The 'Description of changes' section is missing or malformed."
+              )
+              return
+            }
+
+            const descriptionText = descriptionOfChanges.bodies
+              .filter((item) => item.type === 'list')
+              .map((item) => item.raw.trim())
+              .join(' ')
+
+            const PLACEHOLDER_ONLY_PATTERN = /^-\s*\[\s*\]\s*<[^>]+>$/
+            const isPlaceholderOnly = PLACEHOLDER_ONLY_PATTERN.test(descriptionText)
+
+            if (!descriptionText || descriptionText.length === 0 || isPlaceholderOnly) {
+              fail(
+                'Description of Changes',
+                "Pull requests must include a short description of changes in the 'Description of changes' field. This field cannot be empty."
+              )
+              return
+            }
+            pass('Description of Changes', descriptionText)
+          }
+
+          function validateResolvedIssuesSection(resolvedIssues) {
+            if (!resolvedIssues?.bodies) {
+              fail(
+                'GitHub Issues',
+                "Invalid PR template format. The 'GitHub issues resolved by this PR' section is missing or malformed."
+              )
+              return
+            }
+
+            const issuesCheckList = resolvedIssues.bodies
+              .filter((item) => item.type === 'list')
+              .at(0)
+
+            if (!issuesCheckList?.raw) {
+              fail(
+                'GitHub Issues',
+                "The 'GitHub issues resolved by this PR' section must contain a list of resolved issues."
+              )
+              return
+            }
+
+            const GITHUB_ISSUE_FORMAT = /#\d+/g
+            const issueList = issuesCheckList.raw.match(GITHUB_ISSUE_FORMAT) ?? []
+
+            if (issueList.length === 0 && !issuesCheckList.raw.toLowerCase().includes('n/a')) {
+              fail(
+                'Missing Resolved Issues',
+                `Pull requests must specify at least one resolved GitHub issue (e.g., #123) or explicitly state "N/A" if no issue applies, in field "${issuesCheckList.raw}"`
+              )
+              return
+            }
+            pass(
+              'Issues resolved by this pull request',
+              issueList.length > 0 ? issueList : 'N/A'
+            )
+          }
+
+          function validateQaSection(qaSection) {
+            if (!qaSection?.bodies) {
+              fail(
+                'Quality Assurance',
+                "Invalid PR template format. The 'Quality Assurance' section is missing or malformed."
+              )
+              return
+            }
+
+            const SUCCESS_CRITERIA_TITLE =
+              '- Once the changes in this PR are merged and deployed, success criteria is:'
+
+            const qaCheckList = qaSection.bodies
+              .filter((item) => item.type === 'list')
+              .at(0)
+
+            if (!qaCheckList) {
+              fail(
+                'Quality Assurance',
+                "The 'Quality Assurance' section must contain a list with success criteria."
+              )
+              return
+            }
+
+            if (!qaCheckList.items?.length) {
+              fail(
+                'Quality Assurance',
+                "The success criteria list in the 'Quality Assurance' section cannot be empty."
+              )
+              return
+            }
+
+            const successCriteria = qaCheckList.items[0]
+
+            if (!successCriteria?.raw) {
+              fail(
+                'Quality Assurance',
+                "Invalid success criteria format in the 'Quality Assurance' section."
+              )
+              return
+            }
+
+            if (successCriteria.raw.trim() === SUCCESS_CRITERIA_TITLE) {
+              fail(
+                'Success criteria',
+                `Pull requests must have a short description of success criteria, in field "${successCriteria.raw}"`
+              )
+              return
+            }
+            pass('Success criteria', successCriteria.raw)
+          }
+          NODE
