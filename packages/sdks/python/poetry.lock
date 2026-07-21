@@ -353,15 +353,15 @@ files = [
 
 [[package]]
 name = "openapi-generator-cli"
-version = "7.23.0"
+version = "7.24.0"
 description = "CLI for openapi generator"
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["dev"]
 markers = "python_version < \"4.0\""
 files = [
-    {file = "openapi_generator_cli-7.23.0-py3-none-any.whl", hash = "sha256:4ff9547eff66b74a9349345164df3d8c1c524a378c14700ac202d2f678520b54"},
-    {file = "openapi_generator_cli-7.23.0.tar.gz", hash = "sha256:6af02de4dd2bbd052da2495cc792580bc9f8b245ad1620c2d5d06daaf440ff1a"},
+    {file = "openapi_generator_cli-7.24.0-py3-none-any.whl", hash = "sha256:5aa997a45b571afd2d5e3a4553e1fa54cb7beb38c0ad37439f25ddc8a0a4313f"},
+    {file = "openapi_generator_cli-7.24.0.tar.gz", hash = "sha256:89493ecf8d8f736b9d137991a8c8d81282fb2fd84cceff1d0975ee477db24bb4"},
 ]
 
 [package.extras]
@@ -610,4 +610,4 @@ typing-extensions = ">=4.12.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "22e8120955bb68d9debdf9f77ea4ca7adc42d9d21897c4e0b996aa29be385f14"
+content-hash = "c84d4bc688e65e9ba2e0096c63556f1dcf240ea6959e062c1a85ed7e43cc81a8"
