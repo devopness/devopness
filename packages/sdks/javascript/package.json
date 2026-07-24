@@ -64,7 +64,7 @@
     "@openapitools/openapi-generator-cli": "^2.40.1",
     "axios-mock-adapter": "^2.1.0",
     "husky": "9.1.7",
-    "vite-plus": "0.2.5",
+    "vite-plus": "0.2.6",
     "typescript": "^7.0.2",
     "typedoc": "^0.28.20"
   },
