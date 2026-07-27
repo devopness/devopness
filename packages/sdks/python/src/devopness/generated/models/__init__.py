@@ -68,6 +68,14 @@ from .api_token_status import ApiTokenStatus, ApiTokenStatusPlain
 from .api_token_type import ApiTokenType, ApiTokenTypePlain
 from .api_token_type_prefix import ApiTokenTypePrefix, ApiTokenTypePrefixPlain
 from .application import Application, ApplicationPlain
+from .application_apply_template_response import (
+    ApplicationApplyTemplateResponse,
+    ApplicationApplyTemplateResponsePlain,
+)
+from .application_environment_apply_template import (
+    ApplicationEnvironmentApplyTemplate,
+    ApplicationEnvironmentApplyTemplatePlain,
+)
 from .application_environment_create import (
     ApplicationEnvironmentCreate,
     ApplicationEnvironmentCreatePlain,
@@ -746,6 +754,10 @@ __all__ = [
     "ApiTokenTypePrefix",
     "ApiTokenTypePrefixPlain",
     "Application",
+    "ApplicationApplyTemplateResponse",
+    "ApplicationApplyTemplateResponsePlain",
+    "ApplicationEnvironmentApplyTemplate",
+    "ApplicationEnvironmentApplyTemplatePlain",
     "ApplicationEnvironmentCreate",
     "ApplicationEnvironmentCreatePlain",
     "ApplicationLastDeployments",
