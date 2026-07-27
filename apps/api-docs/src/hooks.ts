@@ -191,6 +191,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['addOrganizationCredential201', 'linkCredentialToEnvironment204'],
         // credentials must be linked before resources can use them
         ['linkCredentialToEnvironment204', 'addEnvironmentApplication201'],
+        ['linkCredentialToEnvironment204', 'applyTemplateEnvironmentApplication201'],
         ['linkCredentialToEnvironment204', 'addEnvironmentNetwork201'],
         ['linkCredentialToEnvironment204', 'addEnvironmentServer201'],
         // variable tests should run before deleteApplication
@@ -396,12 +397,6 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
         body['entrypoint'] = 'index.html'
         body['credential_id'] = credential?.id ?? body.credential_id
-
-        // The `addEnvironmentApplication201` test case must exercise the
-        // flow of "creating the application directly", without using the
-        // App Templates system.
-        delete body['template']
-        delete body['template_inputs']
     }))
 
     before('updateApplication204', utils.rewriteTransactionRequestBody((body: any) => {
@@ -488,6 +483,26 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
     before('addOrganizationCredential201', beforeCreateCredential)
     after('addOrganizationCredential201', afterCreateCredential)
+
+    before('applyTemplateEnvironmentApplication201', (transaction: Transaction) => {
+        const tag = `[apply-template]`;
+        const credential = fixtures.get<Identifiable>('credential_source_provider');
+
+        hooks.log(`${tag} configuring template inputs...`);
+
+        // Set the template ID and template inputs
+        transaction.request.body = JSON.stringify({
+            template: 'n8n',
+            template_inputs: {
+                source_credential_id: credential?.id,
+                domain_name: 'n8n.devopness.com',
+                daemon_name: 'n8n-runtime',
+                postgres_password: 'password',
+            }
+        })
+
+        hooks.log(`${tag} template inputs configured...`);
+    })
 
     // //// repositories
     before('getCredentialRepository200', (transaction: Transaction) => {

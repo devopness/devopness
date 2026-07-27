@@ -32,7 +32,7 @@ properties:
     example: 9732156
     type: integer
   root_directory:
-    description: "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>."
+    description: "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code> Must not be greater than 255 characters."
     example: /src
     type: string
   default_branch:
@@ -47,12 +47,6 @@ properties:
     description: 'Indicates command that Devopness must execute to install application dependencies.'
     example: 'npm install'
     type: string
-  template:
-    description: 'Optional template to use when creating the application. Leave empty to create the application directly without using a template.'
-    example: n8n
-    type: string
-  template_inputs:
-    $ref: '#/components/schemas/TemplateInputs'
 required:
   - name
   - engine_version

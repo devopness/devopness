@@ -77,6 +77,10 @@ ApiTokenTypePrefix:
   $ref: ./auto-generated/models/api-token-type-prefix.yaml
 Application:
   $ref: ./auto-generated/models/application.yaml
+ApplicationApplyTemplateResponse:
+  $ref: ./auto-generated/models/application-apply-template-response.yaml
+ApplicationEnvironmentApplyTemplate:
+  $ref: ./auto-generated/models/application-environment-apply-template.yaml
 ApplicationEnvironmentCreate:
   $ref: ./auto-generated/models/application-environment-create.yaml
 ApplicationLastDeployments:

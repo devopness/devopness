@@ -101,6 +101,9 @@
     $ref: ./auto-generated/endpoints/list-environment-applications.yaml
   post:
     $ref: ./auto-generated/endpoints/add-environment-application.yaml
+'/environments/{environment_id}/applications/apply-template':
+  post:
+    $ref: ./auto-generated/endpoints/apply-template-environment-application.yaml
 '/environments/{environment_id}/archive':
   post:
     $ref: ./auto-generated/endpoints/archive-environment.yaml
