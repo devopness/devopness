@@ -69,7 +69,7 @@ export interface ApplicationEnvironmentCreate {
      */
     credential_id: number;
     /**
-     * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.
+     * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code> Must not be greater than 255 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
@@ -92,17 +92,5 @@ export interface ApplicationEnvironmentCreate {
      * @memberof ApplicationEnvironmentCreate
      */
     install_dependencies_command?: string;
-    /**
-     * Optional template to use when creating the application. Leave empty to create the application directly without using a template.
-     * @type {string}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    template?: string;
-    /**
-     * Key/value pairs used to fill template placeholders before an application is created. Each template decides which inputs it accepts.
-     * @type {{ [key: string]: object; }}
-     * @memberof ApplicationEnvironmentCreate
-     */
-    template_inputs?: { [key: string]: object; };
 }
 
