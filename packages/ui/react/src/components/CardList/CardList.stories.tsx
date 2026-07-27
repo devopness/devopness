@@ -117,7 +117,6 @@ function emptyResourceChildren(label: string) {
       <Button
         buttonType="outlinedSecondary"
         color={getColor('purple.800')}
-        noMargin
         style={{
           alignItems: 'start',
           cursor: 'pointer',

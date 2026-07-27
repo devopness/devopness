@@ -29,13 +29,8 @@ jobs:
         with:
           markdown: ${{ github.event.pull_request.body }}
 
-      - name: Checkout Repo PR Branch
+      - name: Checkout Repo
         uses: actions/checkout@v6
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
-          persist-credentials: true
-          fetch-depth: 0
 
       - name: Write JSON to Disk
         run: |

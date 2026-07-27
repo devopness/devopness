@@ -71,7 +71,7 @@ class DevopnessBaseService:
         return self._client.get(endpoint)
 
     @handle_network_errors_sync
-    def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
+    def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # ruff:ignore[any-type]
         """
         Sends an HTTP POST request with optional JSON body.
 
@@ -86,7 +86,7 @@ class DevopnessBaseService:
         return self._client.post(endpoint, json=payload)
 
     @handle_network_errors_sync
-    def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
+    def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # ruff:ignore[any-type]
         """
         Sends an HTTP PUT request with optional JSON body.
 
@@ -245,7 +245,7 @@ class DevopnessBaseServiceAsync:
         return await self._client.get(endpoint)
 
     @handle_network_errors
-    async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
+    async def _post(self, endpoint: str, data: Any = None) -> httpx.Response:  # ruff:ignore[any-type]
         """
         Sends an HTTP POST request with optional JSON body.
 
@@ -260,7 +260,7 @@ class DevopnessBaseServiceAsync:
         return await self._client.post(endpoint, json=payload)
 
     @handle_network_errors
-    async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # noqa: ANN401
+    async def _put(self, endpoint: str, data: Any = None) -> httpx.Response:  # ruff:ignore[any-type]
         """
         Sends an HTTP PUT request with optional JSON body.
 

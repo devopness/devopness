@@ -4,25 +4,25 @@
   </a>
 </p>
 
-<h1 align="center">Devopness</h1>
-
 <p align="center"><strong>Stop managing DevOps. Ship more, stress less.</strong></p>
 
 <p align="center"><em>DevOps Happiness for AI agents and humans.</em></p>
 
 <p align="center"><strong>One platform · Any cloud · Any stack · Free plan</strong></p>
 
-Deploy apps and **provision cloud infrastructure from scratch** on AWS, Azure, GCP, DigitalOcean, and Hetzner — in accounts you control.
+# Devopness
+
+Deploy apps and **provision cloud infrastructure from scratch** on AWS, Azure, GCP, DigitalOcean, and Hetzner: in accounts you control.
 
 One platform to replace many tools: Terraform + Ansible + Jenkins + PaaS (Vercel, Heroku, etc), and stack-specific server panels.
 
-Manage apps, Linux servers, and cloud infrastructure from anywhere — web, mobile, API, or natural language in your AI agent through MCP. No SSH or cloud console for routine work.
+Manage apps, Linux servers, and cloud infrastructure from anywhere: web, mobile, API, or natural language in your AI agent through MCP. No SSH or cloud console for routine work.
 
 <div align="center">
 
 [![npm](https://img.shields.io/npm/v/@devopness/sdk-js?label=npm)](https://www.npmjs.com/package/@devopness/sdk-js)
 [![PyPI](https://img.shields.io/pypi/v/devopness?label=pypi)](https://pypi.org/project/devopness/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Discord](https://img.shields.io/discord/1354644459031232655?label=discord&color=5865F2&logo=discord&logoColor=white)](https://discord.gg/WxKbZ3g37Q)
 [![GitHub stars](https://img.shields.io/github/stars/devopness/devopness?style=social)](https://github.com/devopness/devopness/stargazers)
 
@@ -32,7 +32,7 @@ Manage apps, Linux servers, and cloud infrastructure from anywhere — web, mobi
 
 ## For AI agents (MCP)
 
-Ask your AI agent to provision servers, deploy apps, migrate between clouds, and manage infrastructure through one MCP server — not a separate integration per cloud or stack.
+Ask your AI agent to provision servers, deploy apps, migrate between clouds, and manage infrastructure through one MCP server: not a separate integration per cloud or stack.
 
 **One-click install**
 
@@ -83,7 +83,7 @@ Instead of separate panels per stack, use one platform for all stacks. Devopness
 ## Quick start
 
 1. **[Create an account](https://app.devopness.com/)**: free, no credit card required
-2. **[Follow Getting Started](https://www.devopness.com/docs/)**: organization → project → environment → first deploy
+2. **[Follow Getting Started](https://www.devopness.com/docs/)**: organization -> project -> environment -> first deploy
 3. **[Connect MCP](https://www.devopness.com/docs/mcp/)**: optional; one-click in Cursor or VS Code above
 
 For developers, team leads, founders, and agencies shipping on cloud infrastructure they control.
@@ -118,4 +118,4 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). If you use AI
 
 Like the project? **[Star this repo](https://github.com/devopness/devopness/stargazers)**: it helps others discover Devopness.
 
-Release notes: [GitHub Releases](https://github.com/devopness/devopness/releases). [MIT License](LICENSE) unless otherwise specified in a package `LICENSE` file.
+Release notes: [GitHub Releases](https://github.com/devopness/devopness/releases). Licensed under [Apache License 2.0](LICENSE).

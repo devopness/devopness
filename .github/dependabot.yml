@@ -1,79 +1,79 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  groups:
-    # Group naming: unprefixed = repo-wide (workspace packages), ui-react-* / sdk-js-* = package-specific.
-    # Storybook first: eslint-plugin-storybook also matches eslint-* in linters.
-    ui-react-storybook:
-      patterns:
-        - "storybook"
-        - "@storybook/*"
-        - "eslint-plugin-storybook"
-    linters:
-      patterns:
-        - "typescript-eslint"
-        - "@typescript-eslint/*"
-        - "eslint"
-        - "@eslint/*"
-        - "eslint-*"
-        - "prettier"
-        - "prettier-*"
-        - "@ianvs/prettier-plugin-sort-imports"
-        - "typescript"
-    sdk-js-jest:
-      patterns:
-        - "jest"
-        - "ts-jest"
-        - "@types/jest"
-    ui-react-vite:
-      patterns:
-        - "vite"
-        - "@vitejs/*"
-        - "vite-*"
-        - "vitest"
-        - "@vitest/*"
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    groups:
+      # Group naming: unprefixed = repo-wide (workspace packages), ui-react-* / sdk-js-* = package-specific.
+      # Storybook first: eslint-plugin-storybook also matches eslint-* in linters.
+      linters:
+        patterns:
+          - "typescript-eslint"
+          - "@typescript-eslint/*"
+          - "eslint"
+          - "@eslint/*"
+          - "eslint-*"
+          - "prettier"
+          - "prettier-*"
+          - "@ianvs/prettier-plugin-sort-imports"
+          - "typescript"
+      sdk-js:
+        patterns:
+          - "typescript"
+          - "vite-plus"
+          - "vite-*"
+          - "@types/parse-link-header"
+          - "axios"
+          - "axios-mock-adapter"
+          - "typedoc"
+          - "husky"
+      ui-react:
+        patterns:
+          - "typescript"
+          - "vite-plus"
+          - "vite"
+          - "@vitejs/*"
+          - "vite-*"
+          - "vitest"
+          - "@vitest/*"
+      ui-react-storybook:
+        patterns:
+          - "storybook"
+          - "@storybook/*"
+          - "eslint-plugin-storybook"
 
-- package-ecosystem: pip
-  directories:
-    - "/packages/sdks/python"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
+  - package-ecosystem: pip
+    directories:
+      - "/packages/sdks/python"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
 
-- package-ecosystem: npm
-  directory: "/docs"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  groups:
-    # Group naming: docs-* = scoped to the /docs npm ecosystem.
-    docs-fumadocs:
-      patterns:
-        - "fumadocs-*"
-    docs-linters:
-      patterns:
-        - "typescript-eslint"
-        - "@typescript-eslint/*"
-        - "eslint"
-        - "@eslint/*"
-        - "eslint-*"
-        - "@next/eslint-plugin-next"
-        - "prettier"
-        - "prettier-*"
-        - "@ianvs/prettier-plugin-sort-imports"
-        - "typescript"
-        - "@types/node"
-        - "@types/react"
-        - "@types/react-dom"
-        - "@types/mdx"
-    docs-tailwind:
-      patterns:
-        - "tailwindcss"
-        - "@tailwindcss/*"
-    docs-next:
-      patterns:
-        - "next"
+  - package-ecosystem: npm
+    directory: "/docs"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    groups:
+      # Group naming: docs-* = scoped to the /docs npm ecosystem.
+      docs:
+        patterns:
+          - "vite-plus"
+          - "vite-*"
+          - "typescript"
+          - "@types/node"
+          - "@types/react"
+          - "@types/react-dom"
+          - "@types/mdx"
+      docs-fumadocs:
+        patterns:
+          - "fumadocs-*"
+      docs-next:
+        patterns:
+          - "next"
+      docs-tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"

@@ -45,14 +45,8 @@ const config: StorybookConfig = {
       },
       // Process all TS/TSX files in src/, except stories, tests, and CSS
       // (they don't export React components, so docgen would waste time and show warnings)
-      include: [
-        '**/src/**/*.{ts,tsx}',
-      ],
-      exclude: [
-        '**/*.stories.{ts,tsx}',
-        '**/*.test.{ts,tsx}',
-        '**/*.css',
-      ],
+      include: ['**/src/**/*.{ts,tsx}'],
+      exclude: ['**/*.stories.{ts,tsx}', '**/*.test.{ts,tsx}', '**/*.css'],
     },
   },
 

@@ -14,6 +14,7 @@
 
 import { LanguageRuntime } from './language-runtime';
 import { ScriptRunner } from './script-runner';
+import { Template } from './template';
 import { VariableTargets } from './variable-targets';
 
 /**
@@ -40,5 +41,11 @@ export interface ApplicationOptions {
      * @memberof ApplicationOptions
      */
     script_runners: Array<ScriptRunner>;
+    /**
+     * The list of templates users can choose from.
+     * @type {Array<Template>}
+     * @memberof ApplicationOptions
+     */
+    templates: Array<Template>;
 }
 

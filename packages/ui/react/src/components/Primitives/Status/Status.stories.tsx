@@ -6,9 +6,7 @@ import { ActionStatus } from 'src/constants'
 const meta: Meta<typeof Status> = {
   title: 'Primitives/Status',
   component: Status,
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
   argTypes: {
     status: { control: 'select', options: Object.values(ActionStatus) },
     statusHumanReadable: { control: 'text' },

@@ -75,7 +75,7 @@ class TestDevopnessClientConfig(unittest.TestCase):
     def test_use_of_api_token_should_disable_auto_refresh_token(self) -> None:
         with self.assertWarns(UserWarning) as cm:
             config = DevopnessClientConfig(
-                api_token="devopness_api_token",  # noqa: S106
+                api_token="devopness_api_token",  # ruff:ignore[hardcoded-password-func-arg]
                 auto_refresh_token=True,
             )
 

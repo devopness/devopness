@@ -20,6 +20,9 @@ import { ActionSummary } from './action-summary';
 import { ActionTarget } from './action-target';
 import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
+import { EnvironmentRelation } from './environment-relation';
+import { OrganizationRelation } from './organization-relation';
+import { ProjectRelation } from './project-relation';
 
 /**
  * 
@@ -99,6 +102,24 @@ export interface ActionRelation {
      * @memberof ActionRelation
      */
     resource: ActionResource;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof ActionRelation
+     */
+    organization: OrganizationRelation | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof ActionRelation
+     */
+    project: ProjectRelation | null;
+    /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof ActionRelation
+     */
+    environment: EnvironmentRelation | null;
     /**
      * 
      * @type {ActionSummary}

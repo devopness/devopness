@@ -8,8 +8,7 @@ export class ApiTokenService extends ApiBaseService {}
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface ApiTokenService
-  extends ProjectsAPITokensApiService,
-    UsersPersonalAccessTokensApiService {}
+  extends ProjectsAPITokensApiService, UsersPersonalAccessTokensApiService {}
 
 mergeSiblingClasses(ApiTokenService, [
   ProjectsAPITokensApiService,

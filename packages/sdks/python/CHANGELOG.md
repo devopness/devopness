@@ -1,5 +1,23 @@
 # @devopness/sdk-python
 
+## 2.6.4
+
+### Patch Changes
+
+- [#3385](https://github.com/devopness/devopness/pull/3385) [`9d21f3d`](https://github.com/devopness/devopness/commit/9d21f3d25a4a80ef3149648fd84a0900aa5adf88) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the "Add Application" method and add a specific method to create an application using templates (applyTemplateEnvironmentApplication).
+
+## 2.6.3
+
+### Patch Changes
+
+- [#3352](https://github.com/devopness/devopness/pull/3352) [`983ace3`](https://github.com/devopness/devopness/commit/983ace3d58148c108096f2438f3222805090fdf8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support for Application Templates
+
+## 2.6.2
+
+### Patch Changes
+
+- [#3286](https://github.com/devopness/devopness/pull/3286) [`9a611b2`](https://github.com/devopness/devopness/commit/9a611b27362e36ed90fe0987cb4d5ac4a17475c4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose the Action Context - Organization, Project, Environment - in endpoints that return a list of actions like GET /actions
+
 ## 2.6.1
 
 ### Patch Changes
@@ -130,6 +148,7 @@
 ### Patch Changes
 
 - [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
   - Added a method to list all subnets belonging to an environment:
 
     ```python
@@ -149,6 +168,7 @@
   Previously, deploying resources required a multi-step process: listing pipelines, finding the deploy pipeline, and triggering an action. Now, dedicated `deploy()` methods provide direct deployment capabilities.
 
   **Affected resources:**
+
   - Cron Jobs
   - Daemons
   - Network Rules

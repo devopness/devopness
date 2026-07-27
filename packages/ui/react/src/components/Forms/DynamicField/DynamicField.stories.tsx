@@ -19,10 +19,7 @@ const meta: Meta<typeof DynamicField> = {
 type Story = StoryObj<typeof DynamicField>
 
 const StringFieldTemplate = (args: DynamicFieldProps) => {
-  const [
-    value,
-    setValue,
-  ] = useState<string>('')
+  const [value, setValue] = useState<string>('')
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }
@@ -36,10 +33,7 @@ const StringFieldTemplate = (args: DynamicFieldProps) => {
 }
 
 const TextAreaFieldTemplate = (args: DynamicFieldProps) => {
-  const [
-    value,
-    setValue,
-  ] = useState<string>('')
+  const [value, setValue] = useState<string>('')
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value)
   }
@@ -53,10 +47,7 @@ const TextAreaFieldTemplate = (args: DynamicFieldProps) => {
 }
 
 const NumberFieldTemplate = (args: DynamicFieldProps) => {
-  const [
-    value,
-    setValue,
-  ] = useState<number | ''>('')
+  const [value, setValue] = useState<number | ''>('')
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const num = e.target.value === '' ? '' : Number(e.target.value)
     setValue(num)
@@ -73,10 +64,9 @@ const NumberFieldTemplate = (args: DynamicFieldProps) => {
 type BooleanOption = { label: string; value: boolean }
 
 const BooleanFieldTemplate = (args: DynamicFieldProps) => {
-  const [
-    selectedOption,
-    setSelectedOption,
-  ] = useState<BooleanOption | null>(null)
+  const [selectedOption, setSelectedOption] = useState<BooleanOption | null>(
+    null
+  )
 
   return (
     <div style={{ minWidth: 150, padding: 16 }}>

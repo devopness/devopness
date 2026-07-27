@@ -28,10 +28,7 @@ const Default: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-        'error',
-      ],
+      exclude: ['publicStyle', 'error'],
     },
   },
 }
@@ -57,9 +54,7 @@ const Error: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-      ],
+      exclude: ['publicStyle'],
     },
   },
 }
@@ -82,10 +77,7 @@ const Number: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-        'error',
-      ],
+      exclude: ['publicStyle', 'error'],
     },
   },
 }
@@ -107,9 +99,7 @@ const WithAutoFocusOnError: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-      ],
+      exclude: ['publicStyle'],
     },
   },
 }
@@ -131,10 +121,7 @@ const WithIconLeft: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-        'error',
-      ],
+      exclude: ['publicStyle', 'error'],
     },
   },
 }
@@ -156,10 +143,7 @@ const WithIconRight: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-        'error',
-      ],
+      exclude: ['publicStyle', 'error'],
     },
   },
 }
@@ -184,9 +168,7 @@ const WithIconAndError: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-      ],
+      exclude: ['publicStyle'],
     },
   },
 }
@@ -208,10 +190,7 @@ const WithIconDisabled: Story = {
   },
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-        'error',
-      ],
+      exclude: ['publicStyle', 'error'],
     },
   },
 }
@@ -279,12 +258,7 @@ const IconShowcase: Story = {
   ),
   parameters: {
     controls: {
-      exclude: [
-        'publicStyle',
-        'error',
-        'icon',
-        'iconPosition',
-      ],
+      exclude: ['publicStyle', 'error', 'icon', 'iconPosition'],
     },
   },
 }

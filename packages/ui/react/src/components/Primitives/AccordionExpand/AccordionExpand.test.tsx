@@ -40,9 +40,7 @@ describe('AccordionExpand', () => {
     render(
       <AccordionExpand
         label="Test Accordion"
-        items={[
-          { label: 'Option 1', onClick },
-        ]}
+        items={[{ label: 'Option 1', onClick }]}
       />
     )
     fireEvent.click(screen.getByText('Test Accordion'))
@@ -55,9 +53,7 @@ describe('AccordionExpand', () => {
     render(
       <AccordionExpand
         label="Test Accordion"
-        items={[
-          { label: 'Disabled Option', onClick, isDisabled: true },
-        ]}
+        items={[{ label: 'Disabled Option', onClick, isDisabled: true }]}
       />
     )
     fireEvent.click(screen.getByText('Test Accordion'))
