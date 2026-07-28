@@ -35,6 +35,8 @@ export * from './api-token-status';
 export * from './api-token-type';
 export * from './api-token-type-prefix';
 export * from './application';
+export * from './application-apply-template-response';
+export * from './application-environment-apply-template';
 export * from './application-environment-create';
 export * from './application-last-deployments';
 export * from './application-options';

@@ -14,9 +14,9 @@ import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
 import { RelatedLinks } from "@/components/related-links";
 import { RequiredPermissions } from "@/components/required-permissions";
 import { getGithubDocsEditUrl, getGithubDocsRawUrl } from "@/lib/constants";
+import { isRedundantDocsHref, normalizeInternalDocUrl } from "@/lib/internal-doc-links";
 import { getLLMText, getPageImage, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
-import { isRedundantDocsHref, normalizeInternalDocUrl } from "@/plugins/remark-mention-link";
 
 export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
   const params = await props.params;
