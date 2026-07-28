@@ -1,3 +1,5 @@
+[![MCP Toplist](https://mcptoplist.com/badge/pulsemcp%2Fdevopness.svg)](https://mcptoplist.com/server/pulsemcp%2Fdevopness)
+
 <p align="center">
   <a href="https://www.devopness.com/">
     <img src="https://assets.devopness.com/images/logo-devopness-primary.svg" alt="Devopness" width="220">
