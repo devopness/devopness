@@ -67,13 +67,16 @@
   **Create a credential at organization level:**
 
   ```python
-  credential = devopness.credentials.add_organization_credential(organization_id, {
-      "name": "My Cloud Provider",
-      "provider_code": "aws",  # or 'azure', 'gcp', 'digitalocean', etc.
-      "settings": {
-          # Provider-specific configuration
-      }
-  })
+  credential = devopness.credentials.add_organization_credential(
+      organization_id,
+      {
+          "name": "My Cloud Provider",
+          "provider_code": "aws",  # or 'azure', 'gcp', 'digitalocean', etc.
+          "settings": {
+              # Provider-specific configuration
+          },
+      },
+  )
   ```
 
   ### Environment credential linking
@@ -193,16 +196,12 @@
 
   # Old multi-step approach
   pipelines = devopness.pipelines.list_resource_pipelines(
-      environment_id,
-      resource_type,
-      resource_id
+      environment_id, resource_type, resource_id
   )
 
   deploy_pipeline = next(p for p in pipelines.data if p.type == "deploy")
 
-  devopness.actions.trigger_pipeline_action(deploy_pipeline.id, {
-      "servers": [server_id]
-  })
+  devopness.actions.trigger_pipeline_action(deploy_pipeline.id, {"servers": [server_id]})
   ```
 
   **After:**
@@ -213,9 +212,7 @@
   devopness = DevopnessClient()
 
   # New simplified approach
-  devopness.cron_jobs.deploy_cron_job(cron_job_id, {
-      "servers": [server_id]
-  })
+  devopness.cron_jobs.deploy_cron_job(cron_job_id, {"servers": [server_id]})
 
   # Other examples:
   devopness.daemons.deploy_daemon(daemon_id, {"servers": [server_id]})
@@ -338,7 +335,9 @@
   response = devopness.teams.list_team_memberships(team_id)
 
   for membership in response.data:
-      print(f"Access to environment {membership.environment.name} with role {membership.role.name}")
+      print(
+          f"Access to environment {membership.environment.name} with role {membership.role.name}"
+      )
   ```
 
 ## 2.0.1
