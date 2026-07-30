@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/sdk-js",
-  "version": "3.5.5",
+  "version": "3.5.6",
   "publishConfig": {
     "access": "public"
   },
@@ -70,7 +70,7 @@
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
-    "axios": "^1.18.1",
+    "axios": "^1.19.0",
     "parse-link-header": "^2.0.0"
   }
 }

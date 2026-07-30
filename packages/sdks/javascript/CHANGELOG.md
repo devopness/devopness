@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.5.6
+
+### Patch Changes
+
+- [#3397](https://github.com/devopness/devopness/pull/3397) [`1e995bc`](https://github.com/devopness/devopness/commit/1e995bce4389aa8558de00ccf8c263e800f551fc) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support for applying application templates by template ID or raw template manifest, including dry-run validation.
+
 ## 3.5.5
 
 ### Patch Changes
