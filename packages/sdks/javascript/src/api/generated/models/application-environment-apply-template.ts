@@ -20,16 +20,28 @@
  */
 export interface ApplicationEnvironmentApplyTemplate {
     /**
-     * Template to use when creating the application group.
+     * ID of the Template to be applied.
      * @type {string}
      * @memberof ApplicationEnvironmentApplyTemplate
      */
-    template: string;
+    template_id?: string;
     /**
      * Key/value pairs used to fill template placeholders before an application is created. Each template decides which inputs it accepts.
      * @type {{ [key: string]: object; }}
      * @memberof ApplicationEnvironmentApplyTemplate
      */
     template_inputs: { [key: string]: object; };
+    /**
+     * Raw YAML for a custom template manifest. Must not be greater than 21504 characters.
+     * @type {string}
+     * @memberof ApplicationEnvironmentApplyTemplate
+     */
+    template?: string;
+    /**
+     * Validate the template and permissions without creating any database records.
+     * @type {boolean}
+     * @memberof ApplicationEnvironmentApplyTemplate
+     */
+    dry_run?: boolean;
 }
 
