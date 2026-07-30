@@ -191,7 +191,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['addOrganizationCredential201', 'linkCredentialToEnvironment204'],
         // credentials must be linked before resources can use them
         ['linkCredentialToEnvironment204', 'addEnvironmentApplication201'],
-        ['linkCredentialToEnvironment204', 'applyTemplateEnvironmentApplication201'],
+        ['linkCredentialToEnvironment204', 'applyTemplateEnvironmentApplication204'],
+        ['applyTemplateEnvironmentApplication204', 'applyTemplateEnvironmentApplication201'],
         ['linkCredentialToEnvironment204', 'addEnvironmentNetwork201'],
         ['linkCredentialToEnvironment204', 'addEnvironmentServer201'],
         // variable tests should run before deleteApplication
@@ -492,7 +493,28 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
 
         // Set the template ID and template inputs
         transaction.request.body = JSON.stringify({
-            template: 'n8n',
+            template_id: 'n8n',
+            template_inputs: {
+                source_credential_id: credential?.id,
+                domain_name: 'n8n.devopness.com',
+                daemon_name: 'n8n-runtime',
+                postgres_password: 'password',
+            }
+        })
+
+        hooks.log(`${tag} template inputs configured...`);
+    })
+
+    before('applyTemplateEnvironmentApplication204', (transaction: Transaction) => {
+        const tag = `[apply-template-dry-run]`;
+        const credential = fixtures.get<Identifiable>('credential_source_provider');
+
+        hooks.log(`${tag} configuring template inputs...`);
+
+        // Set the template ID, template inputs, and dry-run flag
+        transaction.request.body = JSON.stringify({
+            template_id: 'n8n',
+            dry_run: true,
             template_inputs: {
                 source_credential_id: credential?.id,
                 domain_name: 'n8n.devopness.com',

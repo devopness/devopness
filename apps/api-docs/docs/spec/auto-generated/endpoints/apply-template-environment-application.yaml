@@ -28,6 +28,8 @@ responses:
       application/json:
         schema:
           $ref: '#/components/schemas/ApplicationApplyTemplateResponse'
+  204:
+    description: 'No Content'
   403:
     description: Forbidden/Unauthorized
     content:
