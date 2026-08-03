@@ -19,6 +19,16 @@ export default defineConfig({
     ],
   },
   lint: {
-    ignorePatterns: [".next", ".source", "build", "node_modules", "next-env.d.ts", "out", "public"],
+    ignorePatterns: [
+      ".next",
+      ".source",
+      "build",
+      "docs/**/meta.json",
+      "node_modules",
+      "next-env.d.ts",
+      "out",
+      "package-lock.json",
+      "public",
+    ],
   },
 });
