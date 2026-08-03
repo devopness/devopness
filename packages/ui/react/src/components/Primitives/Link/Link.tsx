@@ -13,6 +13,14 @@ type LinkProps = Omit<
   'href' | 'target' | 'color' | 'ref' | 'as'
 > & {
   /**
+   * Renders the link as a different component instead of a plain `<a>` —
+   * e.g. your router's `Link` — so navigation can go through client-side
+   * routing instead of a full page load. The `to` prop is only forwarded
+   * to that component (never to a plain `<a>`, to avoid leaking unknown
+   * DOM attributes).
+   */
+  as?: React.ElementType
+  /**
    * Defines element foreground color
    *
    * https://developer.mozilla.org/en-US/docs/Web/CSS/color
@@ -57,10 +65,15 @@ type LinkProps = Omit<
  * Display a hyperlink to other application pages or external resources
  */
 const Link = ({
+  as,
   target = '_blank',
   children,
   color = 'purple.800',
-  rel = target === '_blank' ? 'noopener noreferrer' : 'noreferrer',
+  rel = as
+    ? undefined
+    : target === '_blank'
+      ? 'noopener noreferrer'
+      : 'noreferrer',
   to: href,
   hideUnderline = false,
   hideUnderlineOnHover = false,
@@ -69,8 +82,9 @@ const Link = ({
   ...props
 }: React.PropsWithChildren<LinkProps>) => (
   <StyledLink
+    as={as}
     rel={rel}
-    href={href}
+    {...(as ? { to: href } : { href })}
     target={target}
     color={getColor(color)}
     $showUnderline={!hideUnderline}

@@ -10,9 +10,7 @@ const meta: Meta<typeof Radio.Root> = {
   parameters: {
     layout: 'centered',
   },
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
 }
 
 type Story = StoryObj<typeof Radio.Root>
@@ -105,10 +103,7 @@ const InteractiveDemo = (args: {
   label: string
   direction?: 'row' | 'column'
 }) => {
-  const [
-    value,
-    setValue,
-  ] = useState('')
+  const [value, setValue] = useState('')
   return (
     <Radio.Root
       label={args.label}

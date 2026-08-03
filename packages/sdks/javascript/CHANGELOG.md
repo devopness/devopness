@@ -1,5 +1,35 @@
 # @devopness/sdk-js
 
+## 3.5.6
+
+### Patch Changes
+
+- [#3397](https://github.com/devopness/devopness/pull/3397) [`1e995bc`](https://github.com/devopness/devopness/commit/1e995bce4389aa8558de00ccf8c263e800f551fc) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support for applying application templates by template ID or raw template manifest, including dry-run validation.
+
+## 3.5.5
+
+### Patch Changes
+
+- [#3385](https://github.com/devopness/devopness/pull/3385) [`9d21f3d`](https://github.com/devopness/devopness/commit/9d21f3d25a4a80ef3149648fd84a0900aa5adf88) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the "Add Application" method and add a specific method to create an application using templates (applyTemplateEnvironmentApplication).
+
+## 3.5.4
+
+### Patch Changes
+
+- [#3352](https://github.com/devopness/devopness/pull/3352) [`983ace3`](https://github.com/devopness/devopness/commit/983ace3d58148c108096f2438f3222805090fdf8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support for Application Templates
+
+## 3.5.3
+
+### Patch Changes
+
+- [#3286](https://github.com/devopness/devopness/pull/3286) [`9a611b2`](https://github.com/devopness/devopness/commit/9a611b27362e36ed90fe0987cb4d5ac4a17475c4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose the Action Context - Organization, Project, Environment - in endpoints that return a list of actions like GET /actions
+
+## 3.5.2
+
+### Patch Changes
+
+- [#3273](https://github.com/devopness/devopness/pull/3273) [`5800c26`](https://github.com/devopness/devopness/commit/5800c26746f35759a6cd0b6ccfc8d0d4ada8714c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add support for Symlink Variables
+
 ## 3.5.1
 
 ### Patch Changes
@@ -37,8 +67,9 @@
   **List all credentials in your organization:**
 
   ```javascript
-  const credentials =
-    await devopness.credentials.listOrganizationCredentials(organizationId);
+  const credentials = await devopness.credentials.listOrganizationCredentials(
+    organizationId
+  );
   ```
 
   **Create a credential at organization level:**
@@ -52,7 +83,7 @@
       settings: {
         // Provider-specific configuration
       },
-    },
+    }
   );
   ```
 
@@ -64,7 +95,7 @@
   await devopness.credentials.linkCredentialToEnvironment(
     environmentId,
     credentialId,
-    {},
+    {}
   );
   ```
 
@@ -73,11 +104,12 @@
   ```javascript
   await devopness.credentials.unlinkCredentialFromEnvironment(
     environmentId,
-    credentialId,
+    credentialId
   );
   ```
 
   ## What Stays the Same?
+
   - **Listing environment credentials** - `listEnvironmentCredentials()` still works
   - **Getting credential details** - `getCredential()` unchanged
   - **Updating credentials** - `updateCredential()` unchanged
@@ -118,6 +150,7 @@
   Team and role management methods have been moved from nested service paths to the main `teams` and `roles` services:
 
   **Removed:**
+
   - `devopness.projects.roles.*` → Use `devopness.roles.*`
   - `devopness.projects.teams.*` → Use `devopness.teams.*`
   - `devopness.environments.teams.*` → Use `devopness.teams.*`
@@ -134,7 +167,7 @@
 
   // Listing environment team memberships
   await devopness.environments.teamMemberships.listEnvironmentTeamMemberships(
-    envId,
+    envId
   );
 
   // Managing project roles
@@ -156,6 +189,7 @@
   ## New Features
 
   ### Organization-level team management
+
   - `addOrganizationTeam(organizationId, data)` - Create team at organization level
   - `listOrganizationTeams(organizationId)` - List all teams in an organization
   - `listOrganizationTeamMemberships(organizationId)` - List team memberships in organization
@@ -163,12 +197,14 @@
   - `unlinkTeamFromOrganization(organizationId, teamId)` - Remove team from organization
 
   ### Enhanced team linking
+
   - `linkTeamToProject(projectId, teamId, data)` - Link team to project with role
   - `unlinkTeamFromProject(projectId, teamId)` - Remove team from project
   - `listProjectTeamMemberships(projectId)` - List team memberships in project
   - `listTeamMemberships(teamId)` - List all memberships of a specific team
 
   ### Organization-level role management
+
   - `addOrganizationRole(organizationId, data)` - Create custom role at organization level
   - `listOrganizationRoles(organizationId)` - List all roles in an organization
 
@@ -181,6 +217,7 @@
 ### Patch Changes
 
 - [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
   - Added a method to list all subnets belonging to an environment:
 
     ```javascript
@@ -200,6 +237,7 @@
   Previously, deploying resources required a multi-step process: listing pipelines, finding the deploy pipeline, and triggering an action. Now, dedicated `deploy()` methods provide direct deployment capabilities.
 
   **Affected resources:**
+
   - Cron Jobs
   - Daemons
   - Network Rules
@@ -226,7 +264,7 @@
   const pipelines = await devopness.pipelines.listResourcePipelines(
     environmentId,
     resourceType,
-    resourceId,
+    resourceId
   );
 
   const deployPipeline = pipelines.data.find((p) => p.type === "deploy");
@@ -361,7 +399,7 @@
 
   for (const membership of response.data) {
     console.log(
-      `Access to environment ${membership.environment.name} with role ${membership.role.name}`,
+      `Access to environment ${membership.environment.name} with role ${membership.role.name}`
     );
   }
   ```
@@ -373,6 +411,7 @@
 - [#2282](https://github.com/devopness/devopness/pull/2282) [`9932dc9`](https://github.com/devopness/devopness/commit/9932dc991ed985e2148ac2ffffdf2bcaf0aeb603) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   ## Changes
+
   - Added a dedicated method to create projects under an organization: `devopnessClient.projects.addOrganizationProject`
   - Removed the `organization_id` parameter from `devopnessClient.projects.addProject`, as organization-specific project creation is now handled by the new method.
 
@@ -383,14 +422,17 @@
 - [#2272](https://github.com/devopness/devopness/pull/2272) [`35bf25d`](https://github.com/devopness/devopness/commit/35bf25df929890ef8fd439b99a95d4a365f73e6f) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   ## Changes
+
   - Added support for **Public Team Invitations**, allowing teams to generate shareable links that let any user with the link join the team.
 
   ### ⚠️ Breaking change
+
   - The structure used to create team invitations has changed to include a new field defining the type of invitation (`"private"` or `"public"`).
   - The email address is now optional and only required for private invitations.
   - This change affects any process or integration that creates team invitations and requires adjustments to align with the new format.
 
   ### Additionally
+
   - The process for accepting invitations now supports authorization via a token when handling public invitations.
 
 ## 2.164.10
@@ -400,9 +442,11 @@
 - [#2243](https://github.com/devopness/devopness/pull/2243) [`2f12356`](https://github.com/devopness/devopness/commit/2f12356b41ac52cc9478f6f05f5117862bfd5bfd) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   ## Added
+
   - New method in the `static` service to **list available subscription plans** in Devopness.
 
   ## Deprecated
+
   - User management methods (`create`, `update`, `etc`) and authentication methods (`login`, `logout`, `refresh-token`, `etc`) are now **deprecated**.
     - They always return **403 Forbidden**.
     - Their signatures have been simplified to **accept no arguments**.
@@ -453,7 +497,7 @@
       name: "My Project Token",
       expires_in: SdkModels.ApiTokenAllowedExpiration._7Days,
       role_id: role.id,
-    },
+    }
   );
 
   // Switch to the new token at runtime
@@ -669,6 +713,7 @@
 - [#1530](https://github.com/devopness/devopness/pull/1530) [`09b7be4`](https://github.com/devopness/devopness/commit/09b7be4d81b96da798c77f722771c7b9c41434d2) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add Support for Organizations
 
   Include methods to:
+
   - Create Organization
   - List Organizations
   - Get Organization
@@ -683,9 +728,11 @@
 ### Minor Changes
 
 - [#1458](https://github.com/devopness/devopness/pull/1458) [`509d2fa`](https://github.com/devopness/devopness/commit/509d2fa226a680f5e7427014c944228d487b35ef) Thanks [@Diegiwg](https://github.com/Diegiwg)! - 🚨 Breaking Changes
+
   - Removed the direct _team_memberships_ relation from EnvironmentRelation and ArchivedEnvironmentRelation.
 
   🔄 Changes
+
   - Added the _resource_summary_ field to the EnvironmentRelation and ArchivedEnvironmentRelation.
 
   📌 Reason for Changes
@@ -718,6 +765,7 @@
 - [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   🚨 Breaking Changes
+
   - Removed: Direct resource relation fields from the Environment model:
     - applications
     - credentials
@@ -732,6 +780,7 @@
     - virtual_hosts
 
   🔄 Changes
+
   - Added: resource_summary field to the Environment model.
 
   📌 Reason for Changes
@@ -741,6 +790,7 @@
   This change enhances efficiency by reducing response payload size while still providing resource count details.
 
   Each entry in resource_summary includes:
+
   - resource_type: The singular identifier of the resource.
   - resource_type_plural: The plural form of the resource type.
   - resource_type_human_readable: A user-friendly singular name.
@@ -762,6 +812,7 @@
 - [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   🔄 Changes
+
   - Added: resource_summary field to the ProjectRelation model.
 
   📌 Reason for Changes
@@ -771,6 +822,7 @@
   This ensures efficient access to resource counts without exposing full lists.
 
   Each entry in resource_summary includes:
+
   - resource_type: The singular identifier of the resource.
   - resource_type_plural: The plural form of the resource type.
   - resource_type_human_readable: A user-friendly singular name.
@@ -790,9 +842,11 @@
 - [#1422](https://github.com/devopness/devopness/pull/1422) [`9386735`](https://github.com/devopness/devopness/commit/93867352ab65ff6e129ed13e5e372be6767019f8) Thanks [@Diegiwg](https://github.com/Diegiwg)
 
   🚨 Breaking Changes
+
   - Removed: environments, teams, and roles fields from the Project model.
 
   🔄 Changes
+
   - Added: resource_summary field to the Project model.
 
   📌 Reason for Changes
@@ -800,6 +854,7 @@
   The resource_summary field centralizes summary information about linked resources (environments, teams, and roles) within a project.
 
   Each resource in resource_summary is an object containing:
+
   - resource_type: Identifies the resource type.
   - resource_type_plural: Identifies the resource type in plural form.
   - resource_type_human_readable: Identifies the resource type in human readable form.
@@ -837,6 +892,7 @@
 ### Minor Changes
 
 - [#1298](https://github.com/devopness/devopness/pull/1298) [`6e2ccd8`](https://github.com/devopness/devopness/commit/6e2ccd8d093d3d7b5fafc8ca0cce4b3b5323008c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Breaking Change:** Renamed `allow_custom_steps` property to `is_user_managed` in `PipelineSettings` interface.
+
   - The new property indicates whether the user has permission to see and manage the pipeline for the resource operation.
 
 - [#1298](https://github.com/devopness/devopness/pull/1298) [`6e2ccd8`](https://github.com/devopness/devopness/commit/6e2ccd8d093d3d7b5fafc8ca0cce4b3b5323008c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Breaking Change:** Removed the deprecated `is_auto_generated` property from both `Pipeline` and `PipelineRelation` interfaces as it's no longer used by the Devopness API.
@@ -886,6 +942,7 @@
 - [#1061](https://github.com/devopness/devopness/pull/1061) [`d917573`](https://github.com/devopness/devopness/commit/d917573f811c25f51356830e4808e0e4d9764ccf) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Add** the `region_human_readable` field to `SubnetProvisionInput` providing users with more context about the selected region
 
 - [#1063](https://github.com/devopness/devopness/pull/1063) [`e8d5df6`](https://github.com/devopness/devopness/commit/e8d5df641b684ceaf9232c5803f5181851d2a357) Thanks [@souz4-my](https://github.com/souz4-my)! - Enhancements to Pipeline Step creation and editing
+
   - The `Name` field is now optional (nullable) when creating/editing a Pipeline Step.
   - Added a `Description` field for creating/editing Pipeline Steps, also optional (nullable).
 
@@ -900,6 +957,7 @@
 - [#1038](https://github.com/devopness/devopness/pull/1038) [`44f5126`](https://github.com/devopness/devopness/commit/44f5126ac03d52254d413e28cddfe03e4f9bd00a) Thanks [@souz4-my](https://github.com/souz4-my)! - **Add** support for _OS Environment Variables (os-env-var)_ as a new target for application variables, expanding configuration options. This functionality is accessible via the _variable_targets_ field in the ApplicationOptions model.
 
 - [#1038](https://github.com/devopness/devopness/pull/1038) [`44f5126`](https://github.com/devopness/devopness/commit/44f5126ac03d52254d413e28cddfe03e4f9bd00a) Thanks [@souz4-my](https://github.com/souz4-my)! - **Rename** AWS credential fields to align with AWS tool standards (e.g., CLI):
+
   - `access_key` → `access_key_id`
   - `secret` → `secret_access_key`
 
@@ -916,6 +974,7 @@
 - [#1028](https://github.com/devopness/devopness/pull/1028) [`07e005a`](https://github.com/devopness/devopness/commit/07e005a0895219caa764af6ff9112cd533b2dc9f) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Remove **action_type** field from **HookPipelineCreate** and **HookUpdate** models
 
 - [#1028](https://github.com/devopness/devopness/pull/1028) [`07e005a`](https://github.com/devopness/devopness/commit/07e005a0895219caa764af6ff9112cd533b2dc9f) Thanks [@souz4-my](https://github.com/souz4-my)! - Rename **auto_generated** field to **is_auto_generated** in models:
+
   - CronJob
   - CronJobRelation
   - Daemon

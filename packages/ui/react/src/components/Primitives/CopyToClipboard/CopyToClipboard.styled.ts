@@ -27,6 +27,12 @@ const ContentCopyAction = styled.div<{ $alwaysVisible?: boolean }>`
   > svg {
     fill: ${getColor('gray.615')};
   }
+
+  /* Touch viewports don't have hover — always show the action regardless
+   * of $alwaysVisible, so it's reachable without a hover-capable pointer. */
+  @media (max-width: 600px) {
+    opacity: 1;
+  }
 `
 
 const ContentChildren = styled.span<{ $alwaysVisible?: boolean }>`

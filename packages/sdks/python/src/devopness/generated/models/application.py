@@ -20,9 +20,11 @@ from .application_last_deployments import (
     ApplicationLastDeploymentsPlain,
 )
 from .credential_relation import CredentialRelation, CredentialRelationPlain
+from .cron_job_relation import CronJobRelation, CronJobRelationPlain
 from .daemon_relation import DaemonRelation, DaemonRelationPlain
 from .environment_relation import EnvironmentRelation, EnvironmentRelationPlain
 from .server_relation import ServerRelation, ServerRelationPlain
+from .service_relation import ServiceRelation, ServiceRelationPlain
 from .user_relation import UserRelation, UserRelationPlain
 from .virtual_host_relation import VirtualHostRelation, VirtualHostRelationPlain
 
@@ -55,6 +57,8 @@ class Application(DevopnessBaseModel):
         environment (EnvironmentRelation, optional, nullable):
         servers (List[ServerRelation]):
         credential (CredentialRelation, optional, nullable):
+        services (List[ServiceRelation]):
+        cronjobs (List[CronJobRelation]):
         virtual_hosts (List[VirtualHostRelation]):
         daemons (List[DaemonRelation]):
         created_at (str): The date and time when the record was created
@@ -138,6 +142,8 @@ class Application(DevopnessBaseModel):
     environment: EnvironmentRelation | None
     servers: list[ServerRelation | None]
     credential: CredentialRelation | None
+    services: list[ServiceRelation | None]
+    cronjobs: list[CronJobRelation | None]
     virtual_hosts: list[VirtualHostRelation | None]
     daemons: list[DaemonRelation | None]
     created_at: StrictStr = Field(
@@ -190,6 +196,22 @@ class ApplicationPlain(TypedDict, total=False):
         ]
     ]
     credential: Union[CredentialRelation, CredentialRelationPlain] | None
+    services: Required[
+        list[
+            Union[
+                ServiceRelation,
+                ServiceRelationPlain,
+            ]
+        ]
+    ]
+    cronjobs: Required[
+        list[
+            Union[
+                CronJobRelation,
+                CronJobRelationPlain,
+            ]
+        ]
+    ]
     virtual_hosts: Required[
         list[
             Union[

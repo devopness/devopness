@@ -1,15 +1,19 @@
 ---
 slug: /
 title: Get started with Devopness
-description: Deploy applications, provision servers, and manage serverless infrastructure in your cloud accounts with Devopness. Multi-cloud support, permissions per environment, and AI-ready DevOps through MCP.
+description: Deploy applications and provision cloud infrastructure from scratch in your cloud accounts with Devopness. Networks, servers, deploys, permissions per environment, and AI-ready DevOps through MCP.
 pagination_next: organizations/add-organization
 ---
 
 ## About
 
-Devopness helps you deploy apps and manage servers and serverless infrastructure in your own cloud accounts on AWS, Azure, Google Cloud, DigitalOcean, Hetzner, and others.
+Devopness helps you deploy apps and provision cloud infrastructure from scratch in your own accounts on AWS, Azure, Google Cloud, DigitalOcean, Hetzner, and others: networks, subnets, static IPs, servers, Linux configuration, and deploys — without SSH for routine tasks.
+
+Unlike server and app management panels that only connect to servers you already have (Coolify, Dokploy, and similar), Devopness creates infrastructure in your cloud through the platform, not only apps on servers you connected manually. Self-hosted and serverless cloud services are supported too.
 
 You can use the [web app](https://app.devopness.com/), the API, or [/docs/mcp] when Devopness is connected to your AI agents.
+
+**One MCP server** to manage any cloud, any infrastructure, any Linux version, and any stack: C#, Docker, Go, HTML, Java, Node.js, PHP, Python, Ruby, TypeScript, and more.
 
 ## Why Devopness exists
 
@@ -23,8 +27,13 @@ Today many software teams:
 
 Devopness combines what is usually split across multiple tools into one platform:
 
-- Infrastructure provisioning and server configuration (instead of Terraform and Ansible)
-- CI/CD and deployments (instead of Jenkins, GitHub Actions, Vercel, Heroku, and other PaaS)
+- Cloud infrastructure from scratch: networks, subnets, static IPs, servers, and Linux configuration (instead of Terraform and Ansible)
+- CI/CD and hosted PaaS: Jenkins, GitHub Actions, Vercel, Heroku, and similar platforms
+- Server and app management panels: Devopness replaces separate panels per stack with one platform for all stacks:
+  - **PHP:** cPanel, Laravel Forge/Envoyer, Plesk, RunCloud, ServerPanel.app
+  - **Python:** FastAPI Cloud, and similar stack-focused tools
+  - **Ruby:** Cloud 66, Hatchbox, Kamal (popular in Rails, works for any stack)
+  - **Self-hosted (bring your own server):** Coolify, Dokploy
 - One simpler workflow for any tech stack and any cloud provider, in accounts you control
 
 People and AI agents can work from the web app, API, or MCP on a laptop, phone, or tablet.

@@ -2245,7 +2245,7 @@
     },
     "/environments/{environment_id}/applications": {
       "get": {
-        "summary": "Return a list of all Applications belonging to an environment",
+        "summary": "List applications in an environment",
         "operationId": "listEnvironmentApplications",
         "tags": [
           "Applications"
@@ -2300,7 +2300,7 @@
         }
       },
       "post": {
-        "summary": "Create a new application",
+        "summary": "Create an application",
         "operationId": "addEnvironmentApplication",
         "tags": [
           "Applications"
@@ -2356,6 +2356,73 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ApplicationEnvironmentCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/environments/{environment_id}/applications/apply-template": {
+      "post": {
+        "summary": "Create applications from a template",
+        "operationId": "applyTemplateEnvironmentApplication",
+        "tags": [
+          "Applications"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/acceptHeader"
+          },
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "$ref": "#/components/parameters/contentTypeHeader"
+          },
+          {
+            "in": "path",
+            "name": "environment_id",
+            "description": "The ID of the environment.",
+            "example": 123,
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationApplyTemplateResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden/Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A JSON object containing the resource data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationEnvironmentApplyTemplate"
               }
             }
           }
@@ -14671,6 +14738,15 @@
           "resource": {
             "$ref": "#/components/schemas/ActionResource"
           },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationRelation"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
           "summary": {
             "$ref": "#/components/schemas/ActionSummary"
           },
@@ -14712,6 +14788,9 @@
           "trigger_comment",
           "triggered_from",
           "resource",
+          "organization",
+          "project",
+          "environment",
           "started_at",
           "completed_at",
           "created_at",
@@ -15994,6 +16073,12 @@
           "credential": {
             "$ref": "#/components/schemas/CredentialRelation"
           },
+          "services": {
+            "$ref": "#/components/schemas/ServiceList"
+          },
+          "cronjobs": {
+            "$ref": "#/components/schemas/CronJobList"
+          },
           "virtual_hosts": {
             "$ref": "#/components/schemas/VirtualHostList"
           },
@@ -16035,10 +16120,203 @@
           "environment",
           "servers",
           "credential",
+          "services",
+          "cronjobs",
           "virtual_hosts",
           "daemons",
           "created_at",
           "updated_at"
+        ]
+      },
+      "ApplicationApplyTemplateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique ID of the application",
+            "example": 4654019,
+            "type": "integer"
+          },
+          "project_id": {
+            "description": "Numeric ID of the project to which the application belongs to",
+            "example": 4654019,
+            "type": "integer"
+          },
+          "environment_id": {
+            "description": "Numeric ID of the environment to which the application belongs to",
+            "example": 4654121,
+            "type": "integer"
+          },
+          "created_by": {
+            "description": "The id of the user who created the application and to whom the application belongs",
+            "example": 1,
+            "type": "integer"
+          },
+          "name": {
+            "description": "The application's unique name",
+            "example": "my-awesome-app",
+            "type": "string"
+          },
+          "repository": {
+            "description": "The full name of a repository (`repository_owner/repository_name`) containing the application source code.",
+            "example": "devopness/devopness",
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "The name part of a repository full name (`repository_owner/repository_name`)",
+            "example": "devopness",
+            "type": "string"
+          },
+          "repository_owner": {
+            "description": "The owner part of a repository full name (`repository_owner/repository_name`)",
+            "example": "devopness",
+            "type": "string"
+          },
+          "default_branch": {
+            "description": "The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.",
+            "example": "main",
+            "type": "string"
+          },
+          "programming_language": {
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+            "example": "python",
+            "type": "string"
+          },
+          "programming_language_human_readable": {
+            "description": "The human readable version of the programming language of the application.",
+            "example": "Python",
+            "type": "string"
+          },
+          "engine_version": {
+            "description": "The language runtime engine version to be used to execute this application on the deployed servers",
+            "example": "19.03.2",
+            "type": "string"
+          },
+          "framework": {
+            "description": "The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment",
+            "example": "fastapi",
+            "type": "string"
+          },
+          "framework_human_readable": {
+            "description": "The human readable version of the framework of the application.",
+            "example": "FastAPI",
+            "type": "string"
+          },
+          "root_directory": {
+            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.",
+            "example": "/src",
+            "type": "string"
+          },
+          "deployments_keep": {
+            "description": "The number of deployment history, logs and artifacts to keep stored in both devopness servers and user's servers. OR The number of deployment artifacts to be retained in the user's servers, making it easier and faster to rollback to previous versions",
+            "example": 4,
+            "type": "integer"
+          },
+          "install_dependencies_command": {
+            "description": "Indicates command that Devopness must execute to install application dependencies",
+            "example": "npm install",
+            "type": "string",
+            "nullable": true
+          },
+          "build_command": {
+            "description": "The optional command that should be executed once during deployment to build the source code and get the application in a ready state",
+            "example": "npm run build",
+            "type": "string",
+            "nullable": true
+          },
+          "created_by_user": {
+            "$ref": "#/components/schemas/UserRelation"
+          },
+          "last_deployments": {
+            "$ref": "#/components/schemas/ApplicationLastDeployments"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/EnvironmentRelation"
+          },
+          "servers": {
+            "$ref": "#/components/schemas/ServerList"
+          },
+          "credential": {
+            "$ref": "#/components/schemas/CredentialRelation"
+          },
+          "services": {
+            "$ref": "#/components/schemas/ServiceList"
+          },
+          "cronjobs": {
+            "$ref": "#/components/schemas/CronJobList"
+          },
+          "virtual_hosts": {
+            "$ref": "#/components/schemas/VirtualHostList"
+          },
+          "daemons": {
+            "$ref": "#/components/schemas/DaemonList"
+          },
+          "created_at": {
+            "description": "The date and time when the record was created",
+            "example": "2019-09-25T15:50:48.000000Z",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "The date and time when the record was last updated",
+            "example": "2019-09-25T13:52:04.000000Z",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "project_id",
+          "environment_id",
+          "created_by",
+          "name",
+          "repository",
+          "repository_name",
+          "repository_owner",
+          "default_branch",
+          "programming_language",
+          "programming_language_human_readable",
+          "engine_version",
+          "framework",
+          "framework_human_readable",
+          "root_directory",
+          "deployments_keep",
+          "install_dependencies_command",
+          "build_command",
+          "created_by_user",
+          "last_deployments",
+          "environment",
+          "servers",
+          "credential",
+          "services",
+          "cronjobs",
+          "virtual_hosts",
+          "daemons",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "ApplicationEnvironmentApplyTemplate": {
+        "type": "object",
+        "properties": {
+          "template_id": {
+            "description": "ID of the Template to be applied.",
+            "example": "n8n",
+            "type": "string"
+          },
+          "template_inputs": {
+            "$ref": "#/components/schemas/TemplateInputs"
+          },
+          "template": {
+            "description": "Raw YAML for a custom template manifest. Must not be greater than 21504 characters.",
+            "example": "        apiVersion: templates.devopness.io/v1\n        kind: DevopnessTemplate\n\n        metadata:\n          name: simple-app\n          title: Simple Application Template\n\n        spec:\n          inputs:\n            - name: application_name\n              description: The name of the application Devopness will create.\n              type: string\n              required: true\n              default: simple-app\n\n            - name: database_password\n              type: string\n              required: true\n              hidden: true\n              description: The password used to connect to the database.\n\n          resources:\n            applications:\n              - name: \"{{ inputs.application_name }}\"\n                repository: devopness/devopness\n                default_branch: main\n                credential_id: 1\n                programming_language: html\n                framework: none\n                engine_version: none\n                root_directory: /\n                deployments_keep: 1\n\n                configuration_files:\n                  - key: .env\n                    target: resource-config-file\n                    type: file\n                    value: |-\n                      DB_HOST=127.0.0.1\n                      DB_PORT=5432\n                      DB_USER=devopness\n                      DB_PASSWORD={{ inputs.database_password }}",
+            "type": "string"
+          },
+          "dry_run": {
+            "description": "Validate the template and permissions without creating any database records.",
+            "example": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_inputs"
         ]
       },
       "ApplicationEnvironmentCreate": {
@@ -16083,7 +16361,7 @@
             "type": "integer"
           },
           "root_directory": {
-            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
+            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code> Must not be greater than 255 characters.",
             "example": "/src",
             "type": "string"
           },
@@ -16146,12 +16424,16 @@
           },
           "script_runners": {
             "$ref": "#/components/schemas/ScriptRunnerList"
+          },
+          "templates": {
+            "$ref": "#/components/schemas/TemplateList"
           }
         },
         "required": [
           "variable_targets",
           "language_runtimes",
-          "script_runners"
+          "script_runners",
+          "templates"
         ]
       },
       "ApplicationPipeline": {
@@ -16353,7 +16635,7 @@
             "type": "integer"
           },
           "root_directory": {
-            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
+            "description": "The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code> Must not be greater than 255 characters.",
             "example": "/src",
             "type": "string"
           },
@@ -25507,6 +25789,61 @@
           "name"
         ]
       },
+      "Template": {
+        "type": "object",
+        "description": "One template shown to users when creating an application.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique template ID.",
+            "example": "n8n"
+          },
+          "name": {
+            "type": "string",
+            "description": "The internal template name used inside Devopness.",
+            "example": "n8n"
+          },
+          "title": {
+            "type": "string",
+            "description": "The display name users see in the UI.",
+            "example": "n8n"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "A short summary explaining what the template does.",
+            "example": "Deploy n8n with PostgreSQL and the default app resources."
+          },
+          "version": {
+            "type": "string",
+            "description": "The template version string.",
+            "example": "v1"
+          },
+          "manifest": {
+            "type": "object",
+            "nullable": true,
+            "description": "The raw template file content used to build the application request."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "title",
+          "version"
+        ]
+      },
+      "TemplateInputs": {
+        "description": "Key/value pairs used to fill template placeholders before an application is created. Each template decides which inputs it accepts.",
+        "type": "object",
+        "additionalProperties": true
+      },
+      "TemplateList": {
+        "type": "array",
+        "description": "The list of templates users can choose from.",
+        "items": {
+          "$ref": "#/components/schemas/Template"
+        }
+      },
       "TriggerEvent": {
         "type": "string",
         "description": "The application deployment event to which it's attached",
@@ -26014,7 +26351,7 @@
             "type": "integer"
           },
           "key": {
-            "description": "The unique key used to identify the variable on the target",
+            "description": "The unique key used to identify the variable on the target, or the filesystem path for configuration files and symlinks",
             "example": "APP_URL",
             "type": "string"
           },
@@ -26028,7 +26365,7 @@
             "nullable": true
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target",
+            "description": "The value to be assigned to this variable when deployed to its target. For configuration files this is the file content; for symlinks this is the symlink target path",
             "example": "https://staging.devopness.com",
             "type": "string",
             "nullable": true
@@ -26090,12 +26427,12 @@
         "type": "object",
         "properties": {
           "key": {
-            "description": "The unique key used to identify the variable on the target.\n                When variable is of type `file`, this is the relative path\n                to the file within the application directory. Must not be greater than 100 characters.",
+            "description": "The unique key used to identify the variable on the target.\n                For `resource-config-file`, use a relative path such as `.env` or `storage/oauth-public.key`.\n                For `resource-symlink`, `key` is the link path and `value` is the destination path, for example `node_modules` -> `${APP_SHARED_DIR}/node_modules`. Must not be greater than 100 characters.",
             "example": "APP_URL",
             "type": "string"
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content.\n                When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.",
             "example": "https://staging.devopness.com",
             "type": "string"
           },
@@ -26128,12 +26465,12 @@
         "type": "object",
         "properties": {
           "key": {
-            "description": "The unique key used to identify the variable on the target. Must not be greater than 100 characters.",
+            "description": "The unique key used to identify the variable on the target. For `resource-config-file`, use a relative path such as `.env` or `storage/oauth-public.key`. For `resource-symlink`, `key` is the link path and `value` is the destination path, for example `node_modules` -> `${APP_SHARED_DIR}/node_modules`. Must not be greater than 100 characters.",
             "example": "APP_URL",
             "type": "string"
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "description": "The value to be assigned to this variable when deployed to its target.\n                When variable is of type `file`, this is the file content.\n                When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.",
             "example": "https://staging.devopness.com",
             "type": "string"
           },
@@ -26177,7 +26514,7 @@
             "type": "integer"
           },
           "key": {
-            "description": "The unique key used to identify the variable on the target",
+            "description": "The unique key used to identify the variable on the target, or the filesystem path for configuration files and symlinks",
             "example": "APP_URL",
             "type": "string"
           },
@@ -26191,7 +26528,7 @@
             "nullable": true
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target",
+            "description": "The value to be assigned to this variable when deployed to its target. For configuration files this is the file content; for symlinks this is the symlink target path",
             "example": "https://staging.devopness.com",
             "type": "string",
             "nullable": true
@@ -26304,6 +26641,7 @@
           "php-fpm_pool-d-www-conf",
           "redis-conf",
           "resource-config-file",
+          "resource-symlink",
           "supervisord-conf",
           "sysctl-conf"
         ],
@@ -26338,6 +26676,7 @@
         "type": "string",
         "enum": [
           "file",
+          "symlink",
           "variable"
         ],
         "example": "file"
@@ -26351,12 +26690,12 @@
             "type": "integer"
           },
           "key": {
-            "description": "The unique key used to identify the variable on the target.\n                    When variable is of type `file`, this is the relative path\n                    to the file within the application directory. Must not be greater than 100 characters.",
+            "description": "The unique key used to identify the variable on the target.\n                    For `resource-config-file`, use a relative path such as `.env` or `storage/oauth-public.key`.\n                    For `resource-symlink`, `key` is the link path and `value` is the destination path, for example `node_modules` -> `${APP_SHARED_DIR}/node_modules`. Must not be greater than 100 characters.",
             "example": "APP_URL",
             "type": "string"
           },
           "value": {
-            "description": "The value to be assigned to this variable when deployed to its target.\n                    When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+            "description": "The value to be assigned to this variable when deployed to its target.\n                    When variable is of type `file`, this is the file content.\n                    When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.",
             "example": "https://staging.devopness.com",
             "type": "string"
           },

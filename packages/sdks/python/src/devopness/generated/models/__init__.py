@@ -68,6 +68,14 @@ from .api_token_status import ApiTokenStatus, ApiTokenStatusPlain
 from .api_token_type import ApiTokenType, ApiTokenTypePlain
 from .api_token_type_prefix import ApiTokenTypePrefix, ApiTokenTypePrefixPlain
 from .application import Application, ApplicationPlain
+from .application_apply_template_response import (
+    ApplicationApplyTemplateResponse,
+    ApplicationApplyTemplateResponsePlain,
+)
+from .application_environment_apply_template import (
+    ApplicationEnvironmentApplyTemplate,
+    ApplicationEnvironmentApplyTemplatePlain,
+)
 from .application_environment_create import (
     ApplicationEnvironmentCreate,
     ApplicationEnvironmentCreatePlain,
@@ -608,6 +616,7 @@ from .team_organization_link import TeamOrganizationLink, TeamOrganizationLinkPl
 from .team_project_link import TeamProjectLink, TeamProjectLinkPlain
 from .team_relation import TeamRelation, TeamRelationPlain
 from .team_update import TeamUpdate, TeamUpdatePlain
+from .template import Template, TemplatePlain
 from .trigger_event import TriggerEvent, TriggerEventPlain
 from .trigger_when_condition import TriggerWhenCondition, TriggerWhenConditionPlain
 from .trigger_when_condition_accepted_values_inner import (
@@ -745,6 +754,10 @@ __all__ = [
     "ApiTokenTypePrefix",
     "ApiTokenTypePrefixPlain",
     "Application",
+    "ApplicationApplyTemplateResponse",
+    "ApplicationApplyTemplateResponsePlain",
+    "ApplicationEnvironmentApplyTemplate",
+    "ApplicationEnvironmentApplyTemplatePlain",
     "ApplicationEnvironmentCreate",
     "ApplicationEnvironmentCreatePlain",
     "ApplicationLastDeployments",
@@ -1304,6 +1317,8 @@ __all__ = [
     "TeamRelationPlain",
     "TeamUpdate",
     "TeamUpdatePlain",
+    "Template",
+    "TemplatePlain",
     "TriggerEvent",
     "TriggerEventPlain",
     "TriggerWhenCondition",

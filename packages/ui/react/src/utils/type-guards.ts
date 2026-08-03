@@ -43,18 +43,6 @@ type CamelCase<S extends string> =
     ? `${Head}${CamelCase<Capitalize<Tail>>}`
     : S
 
-type GlobalStringExtensions = {
-  /** Converts all the alphabetic characters in a string to uppercase. */
-  toUpperCase<T extends string>(this: T): Uppercase<T>
-  /** Converts all the alphabetic characters in a string to lowercase. */
-  toLowerCase<T extends string>(this: T): Lowercase<T>
-}
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions, @typescript-eslint/no-empty-object-type
-  interface String extends GlobalStringExtensions {}
-}
-
 /**
  * Convert kebab-case string literal to snake_case
  */
@@ -121,12 +109,7 @@ const typedMemo: <T>(c: T) => T = React.memo
  * Code obtained from StackOverflow: https://stackoverflow.com/a/72299265
  * Source code from alex-wayne @ https://stackoverflow.com/users/62076/alex-wayne
  */
-type Pop<T extends unknown[]> = T extends [
-  ...infer U,
-  unknown,
-]
-  ? U
-  : never
+type Pop<T extends unknown[]> = T extends [...infer U, unknown] ? U : never
 
 /**
  * Flatten an object while retaining types for all paths
@@ -153,12 +136,10 @@ type Flatten<T extends object> = object extends T
                 ? Pick<T, K>
                 : Flatten<V> extends infer FV
                   ? {
-                      [
-                        P in keyof FV as `${Extract<K, string | number>}.${Extract<
-                          P,
-                          string | number
-                        >}`
-                      ]: FV[P]
+                      [P in keyof FV as `${Extract<K, string | number>}.${Extract<
+                        P,
+                        string | number
+                      >}`]: FV[P]
                     }
                   : never
               : Pick<T, K>

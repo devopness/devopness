@@ -5,7 +5,7 @@ import uniqueId from 'lodash/uniqueId'
 import { CopyToClipboard } from '../CopyToClipboard'
 import { ToggleContent } from '../ToggleContent'
 import { Tooltip } from '../Tooltip'
-import { Paragraph, Label, Text } from './ViewDetails.styled'
+import { Paragraph, Label, Text, MobileHiddenHint } from './ViewDetails.styled'
 import { getColor } from 'src/colors'
 import { ConditionalWrapper } from 'src/components/helpers'
 import { isDefined } from 'src/components/type-guards'
@@ -15,7 +15,7 @@ import { QuestionIcon, getTextContent } from 'src/utils'
 const EMPTY_CONTENT = '—'
 
 /** Props for the icon component */
-type IconProps =
+type DetailsIconProps =
   | (Icon | Omit<string, Icon>)
   | {
       name: Omit<string, Icon>
@@ -45,8 +45,13 @@ type DetailsContentProps = {
   label?: string
   /** Value for the detail item */
   value: ReactNode
+  /**
+   * Content to render when `value` is empty/undefined
+   * @default '—'
+   */
+  emptyContent?: ReactNode
   /** Icon to display alongside the label */
-  icon?: IconProps
+  icon?: DetailsIconProps
   /** URL string or props object for the navigation component */
   url?: string | Partial<NavigationComponentProps>
   /** If true, the URL is a resource within the application */
@@ -69,7 +74,7 @@ type DetailsContentProps = {
         label?: string
         value?: string
       }
-  statusIcon?: IconProps
+  statusIcon?: DetailsIconProps
   /**
    * Component to use for navigation links
    */
@@ -91,6 +96,7 @@ type DetailsContentProps = {
 const ViewDetailsContent = ({
   label,
   value,
+  emptyContent = EMPTY_CONTENT,
   url,
   icon,
   isCopyToClipboard,
@@ -127,19 +133,21 @@ const ViewDetailsContent = ({
           <Label className="translate">
             {label}
             {typeof tooltip === 'object' && isDefined(tooltip.label) && (
-              <Tooltip
-                title={tooltip.label}
-                placement="right-start"
-                styles={{
-                  color: getColor('white'),
-                }}
-                style={{
-                  padding: '0 2px',
-                  height: '16px',
-                }}
-              >
-                <QuestionIcon />
-              </Tooltip>
+              <MobileHiddenHint>
+                <Tooltip
+                  title={tooltip.label}
+                  placement="right-start"
+                  styles={{
+                    color: getColor('white'),
+                  }}
+                  style={{
+                    padding: '0 2px',
+                    height: '16px',
+                  }}
+                >
+                  <QuestionIcon />
+                </Tooltip>
+              </MobileHiddenHint>
             )}
             {isBoolean ? '?' : ':'}
           </Label>
@@ -177,6 +185,9 @@ const ViewDetailsContent = ({
               width: '100%',
             },
           }}
+          buttonProps={{
+            style: { padding: '0 8px' },
+          }}
         >
           {isDefined(url) ? (
             <NavigationLink
@@ -189,7 +200,7 @@ const ViewDetailsContent = ({
               to={typeof url === 'string' ? url : undefined}
               {...(typeof url === 'object' ? url : undefined)}
             >
-              {value}
+              {formattedValue ?? emptyContent}
             </NavigationLink>
           ) : (
             <ConditionalWrapper
@@ -201,7 +212,7 @@ const ViewDetailsContent = ({
               )}
             >
               <Tooltip
-                title={getTextContent(formattedValue)}
+                title={getTextContent(formattedValue ?? emptyContent)}
                 enableOnlyWithEllipsisPoints
               >
                 <Text
@@ -216,7 +227,7 @@ const ViewDetailsContent = ({
                       : undefined
                   }
                 >
-                  {formattedValue ?? EMPTY_CONTENT}
+                  {formattedValue ?? emptyContent}
                 </Text>
               </Tooltip>
             </ConditionalWrapper>
@@ -257,24 +268,26 @@ const ViewDetailsContent = ({
         )}
 
         {typeof tooltip === 'object' && isDefined(tooltip.value) && (
-          <Tooltip
-            title={tooltip.value}
-            placement="right-start"
-            styles={{
-              color: getColor('white'),
-            }}
-            style={{
-              padding: '0 2px',
-              height: '16px',
-              overflow: 'visible',
-            }}
-          >
-            <QuestionIcon />
-          </Tooltip>
+          <MobileHiddenHint>
+            <Tooltip
+              title={tooltip.value}
+              placement="right-start"
+              styles={{
+                color: getColor('white'),
+              }}
+              style={{
+                padding: '0 2px',
+                height: '16px',
+                overflow: 'visible',
+              }}
+            >
+              <QuestionIcon />
+            </Tooltip>
+          </MobileHiddenHint>
         )}
       </Paragraph>
     </ConditionalWrapper>
   )
 }
 export { ViewDetailsContent }
-export type { IconProps, DetailsContentProps }
+export type { DetailsIconProps, DetailsContentProps }

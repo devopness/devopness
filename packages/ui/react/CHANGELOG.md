@@ -1,5 +1,59 @@
 # @devopness/ui-react
 
+## 2.196.0
+
+### Minor Changes
+
+- [#3327](https://github.com/devopness/devopness/pull/3327) [`1896614`](https://github.com/devopness/devopness/commit/1896614619279067bc0e8b3ceacf0a59f4263b23) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `emptyContent` prop to `ViewDetailsContent` to override the default empty-value fallback
+
+  `ViewDetailsContent` previously hardcoded an em dash (`—`) as the fallback for an empty/undefined `value`, with no way for consumers to override it. A new optional `emptyContent` prop lets consumers pass their own fallback content (e.g. `-`, `N/A`) instead.
+
+## 2.195.3
+
+### Patch Changes
+
+- [#3325](https://github.com/devopness/devopness/pull/3325) [`9ac2091`](https://github.com/devopness/devopness/commit/9ac2091f295ebab50f0365b471028f82dbcf38d0) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Fix `ViewDetailsContent`'s `IconProps` being silently shadowed by an unrelated same-named type
+
+  The package exported two different types both named `IconProps` (one from `Icon`, one from `ViewDetailsContent`), and TypeScript's explicit named re-export for `Icon`'s `IconProps` always won over the wildcard re-export of `ViewDetailsContent`'s, with no compile error. `ViewDetailsContent`'s icon type is now exported as `DetailsIconProps` instead, resolving the ambiguity.
+
+## 2.195.2
+
+### Patch Changes
+
+- [#3313](https://github.com/devopness/devopness/pull/3313) [`625fbb0`](https://github.com/devopness/devopness/commit/625fbb04f8df4f631ffd2a0bc07b1028b42c6016) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add a mobile-responsive layout to `ViewDetails`/`ViewDetailsContent`: the container grid collapses to a single column below `768px`, the label/value question-mark tooltips are hidden below `600px`, and `CopyToClipboard` becomes always-visible (instead of hover-only) below `600px` — parity with the local implementation this component is meant to replace.
+
+## 2.195.1
+
+### Patch Changes
+
+- [#3302](https://github.com/devopness/devopness/pull/3302) [`5812aec`](https://github.com/devopness/devopness/commit/5812aec39db2c86aa9df8c210eb0cf87c82dc221) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add a mobile-responsive layout to `RadioSelectCards` (`@media (max-width: 600px)`: 2-column grid, horizontal card layout, constrained icon size, truncated label), and fix it passing both `checked` and `defaultChecked` to the same radio `<input>` when a data item, or the shared `inputProps`, sets both.
+
+## 2.195.0
+
+### Minor Changes
+
+- [#3297](https://github.com/devopness/devopness/pull/3297) [`3c97505`](https://github.com/devopness/devopness/commit/3c975059d3d5c7958ca5055f026d7970d33c80c7) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `ResourceCardGrid`, a composed component combining `CardGrid`, `ResourceCard` and `Pagination` with an always-first "create resource" tile — the layout used by resource-listing pages (projects, environments, organizations) instead of assembling those primitives by hand.
+
+## 2.194.1
+
+### Patch Changes
+
+- [#3294](https://github.com/devopness/devopness/pull/3294) [`a02014e`](https://github.com/devopness/devopness/commit/a02014e21f9b41d42a9b3336cdd2444c37ee2df8) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Fix `CardList`'s grid to use a fluid `auto-fill`/`minmax(250px, 1fr)` layout instead of a fixed 1/2/3-column breakpoint grid. The fixed grid capped the desktop layout at 3 columns regardless of viewport width, wasting horizontal space and wrapping cards to a new row even on very wide screens.
+
+## 2.194.0
+
+### Minor Changes
+
+- [#3288](https://github.com/devopness/devopness/pull/3288) [`1b32e90`](https://github.com/devopness/devopness/commit/1b32e90a6bc67b5d83dc35c1f226c759db132b57) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Export `CardList` and `CardContent` components. `CardContent` gained a `linkAs` prop to render its internal links through a custom component (e.g. a router's `Link`) instead of a plain `<a>`.
+
+  Also fixed `Button`'s deprecated `noMargin` prop leaking onto the underlying DOM `<button>` element, and added an `as` prop to `Link` so it can render as a custom component (with `to` forwarded to it) instead of a plain `<a>`.
+
+## 2.193.0
+
+### Minor Changes
+
+- [#3282](https://github.com/devopness/devopness/pull/3282) [`3035c9b`](https://github.com/devopness/devopness/commit/3035c9bf950f16d5ad10c393b209c2fc0bf6396a) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `ResourceCard` primitive, a card summarizing a resource (name, organization and creation date) for use as a tile inside `CardGrid`
+
 ## 2.192.5
 
 ### Patch Changes
@@ -565,10 +619,7 @@
   <Autocomplete
     inputProps={{ placeholder: 'Type something' }}
     autocompleteProps={{
-      options: [
-        'Option 1',
-        'Option 2',
-      ],
+      options: ['Option 1', 'Option 2'],
       value: '',
       onChange: (event, value) => console.log(value),
     }}
@@ -890,10 +941,7 @@
   ```tsx
   <Dropdown
     id="example-dropdown"
-    options={[
-      { label: 'Option 1' },
-      { label: 'Option 2' },
-    ]}
+    options={[{ label: 'Option 1' }, { label: 'Option 2' }]}
     anchorType="button"
     label="Open Menu"
     popoverProps={{

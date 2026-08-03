@@ -29,7 +29,7 @@ class ApplicationUpdate(DevopnessBaseModel):
         programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be &#x60;html&#x60;. Must not be greater than 30 characters.
         repository (str, optional): The full name of a repository (&#x60;repository_owner/repository_name&#x60;) containing the application source code. Must not be greater than 100 characters.
         credential_id (int, optional): Numeric ID of the credential to source provider where the repository is hosted. This field is required when &lt;code&gt;repository&lt;/code&gt; is present.
-        root_directory (str, optional): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of &lt;code&gt;/&lt;/code&gt;.
+        root_directory (str, optional): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of &lt;code&gt;/&lt;/code&gt; Must not be greater than 255 characters.
         default_branch (str): The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed. Must not be greater than 200 characters.
         deployments_keep (int, optional): The number of deployment history, logs and artifacts to keep stored in both devopness servers and user&#39;s servers. OR The number of deployment artifacts to be retained in the user&#39;s servers, making it easier and faster to rollback to previous versions. Must be at least 1. Must not be greater than 10.
         install_dependencies_command (str, optional): Indicates command that Devopness must execute to install application dependencies.
@@ -76,7 +76,7 @@ class ApplicationUpdate(DevopnessBaseModel):
     )
     root_directory: StrictStr | None = Field(
         default=None,
-        description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.",
+        description="The relative directory where package manager's manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code> Must not be greater than 255 characters.",
         json_schema_extra={"examples": ["/src"]},
     )
     default_branch: StrictStr = Field(

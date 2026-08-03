@@ -7,13 +7,14 @@
   ],
   "dependencies": {
     "@changesets/changelog-github": "^0.7.0",
-    "@changesets/cli": "^2.31.0"
+    "@changesets/cli": "^2.31.1"
   },
   "scripts": {
-    "format:changelogs": "npx prettier --write \"packages/*/*/CHANGELOG.md\""
+    "format:changelogs": "vp fmt \"packages/*/*/CHANGELOG.md\""
   },
   "devDependencies": {
-    "jsdom": "^29.1.1"
+    "jsdom": "^29.1.1",
+    "vite-plus": "0.2.6"
   },
   "overrides": {
     "babel-plugin-istanbul": {

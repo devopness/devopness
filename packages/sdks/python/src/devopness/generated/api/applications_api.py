@@ -11,6 +11,9 @@ from typing import Union
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
 from ..models import (
     Application,
+    ApplicationApplyTemplateResponse,
+    ApplicationEnvironmentApplyTemplate,
+    ApplicationEnvironmentApplyTemplatePlain,
     ApplicationEnvironmentCreate,
     ApplicationEnvironmentCreatePlain,
     ApplicationRelation,
@@ -61,7 +64,7 @@ class ApplicationsApiService(DevopnessBaseService):
         ],
     ) -> DevopnessResponse[Application]:
         """
-        Create a new application
+        Create an application
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -76,6 +79,31 @@ class ApplicationsApiService(DevopnessBaseService):
         response = self._post(endpoint, application_environment_create)
 
         return DevopnessResponse(response, Application)
+
+    def apply_template_environment_application(
+        self,
+        environment_id: int,
+        application_environment_apply_template: Union[
+            ApplicationEnvironmentApplyTemplate,
+            ApplicationEnvironmentApplyTemplatePlain,
+        ],
+    ) -> DevopnessResponse[ApplicationApplyTemplateResponse]:
+        """
+        Create applications from a template
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/applications/apply-template",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = self._post(endpoint, application_environment_apply_template)
+
+        return DevopnessResponse(response, ApplicationApplyTemplateResponse)
 
     def delete_application(
         self,
@@ -126,7 +154,7 @@ class ApplicationsApiService(DevopnessBaseService):
         per_page: int | None = None,
     ) -> DevopnessResponse[list[ApplicationRelation]]:
         """
-        Return a list of all Applications belonging to an environment
+        List applications in an environment
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -215,7 +243,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         ],
     ) -> DevopnessResponse[Application]:
         """
-        Create a new application
+        Create an application
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -230,6 +258,33 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         response = await self._post(endpoint, application_environment_create)
 
         return await DevopnessResponse.from_async(response, Application)
+
+    async def apply_template_environment_application(
+        self,
+        environment_id: int,
+        application_environment_apply_template: Union[
+            ApplicationEnvironmentApplyTemplate,
+            ApplicationEnvironmentApplyTemplatePlain,
+        ],
+    ) -> DevopnessResponse[ApplicationApplyTemplateResponse]:
+        """
+        Create applications from a template
+
+        Raises:
+            DevopnessApiError: If an API request error occurs.
+            DevopnessNetworkError: If a network error occurs.
+        """
+
+        endpoint_parts = [
+            f"/environments/{environment_id}/applications/apply-template",
+        ]
+
+        endpoint: str = "".join(endpoint_parts)
+        response = await self._post(endpoint, application_environment_apply_template)
+
+        return await DevopnessResponse.from_async(
+            response, ApplicationApplyTemplateResponse
+        )
 
     async def delete_application(
         self,
@@ -280,7 +335,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         per_page: int | None = None,
     ) -> DevopnessResponse[list[ApplicationRelation]]:
         """
-        Return a list of all Applications belonging to an environment
+        List applications in an environment
 
         Raises:
             DevopnessApiError: If an API request error occurs.

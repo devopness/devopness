@@ -26,10 +26,10 @@ class VariableRelation(DevopnessBaseModel):
 
     Attributes:
         id (int): The ID of the given variable
-        key (str): The unique key used to identify the variable on the target
+        key (str): The unique key used to identify the variable on the target, or the filesystem path for configuration files and symlinks
         type (VariableType):
         description (str, optional, nullable): A text describing the variable, provided by the end user
-        value (str, optional, nullable): The value to be assigned to this variable when deployed to its target
+        value (str, optional, nullable): The value to be assigned to this variable when deployed to its target. For configuration files this is the file content; for symlinks this is the symlink target path
         target (VariableTarget):
         target_human_readable (str): Human readable version of target
         resource_id (int, optional, nullable): The ID of the resource this variable is linked to
@@ -45,7 +45,7 @@ class VariableRelation(DevopnessBaseModel):
         json_schema_extra={"examples": [93023]},
     )
     key: StrictStr = Field(
-        description="The unique key used to identify the variable on the target",
+        description="The unique key used to identify the variable on the target, or the filesystem path for configuration files and symlinks",
         json_schema_extra={"examples": ["APP_URL"]},
     )
     type: VariableType
@@ -54,7 +54,7 @@ class VariableRelation(DevopnessBaseModel):
         json_schema_extra={"examples": ["Sample variable description"]},
     )
     value: StrictStr | None = Field(
-        description="The value to be assigned to this variable when deployed to its target",
+        description="The value to be assigned to this variable when deployed to its target. For configuration files this is the file content; for symlinks this is the symlink target path",
         json_schema_extra={"examples": ["https://staging.devopness.com"]},
     )
     target: VariableTarget

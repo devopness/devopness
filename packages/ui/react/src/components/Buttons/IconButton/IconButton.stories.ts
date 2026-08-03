@@ -18,11 +18,7 @@ const meta = {
     padding: { control: 'number' },
     variant: {
       control: 'inline-radio',
-      options: [
-        'primary',
-        'ghost',
-        'outlined',
-      ],
+      options: ['primary', 'ghost', 'outlined'],
     },
   },
   args: {

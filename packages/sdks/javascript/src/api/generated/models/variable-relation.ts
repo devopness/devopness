@@ -29,7 +29,7 @@ export interface VariableRelation {
      */
     id: number;
     /**
-     * The unique key used to identify the variable on the target
+     * The unique key used to identify the variable on the target, or the filesystem path for configuration files and symlinks
      * @type {string}
      * @memberof VariableRelation
      */
@@ -47,7 +47,7 @@ export interface VariableRelation {
      */
     description: string | null;
     /**
-     * The value to be assigned to this variable when deployed to its target
+     * The value to be assigned to this variable when deployed to its target. For configuration files this is the file content; for symlinks this is the symlink target path
      * @type {string}
      * @memberof VariableRelation
      */
