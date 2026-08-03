@@ -29,12 +29,7 @@
     "@types/node": "^26.1.2",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "globals": "^17.7.0",
     "postcss": "^8.5.25",
-    "prettier": "^3.9.4",
-    "prettier-plugin-multiline-arrays": "^4.1.10",
-    "prettier-plugin-sort-json": "^4.1.1",
-    "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.2.4",
     "typescript": "^7.0.2",
     "vite-plus": "0.2.6"
