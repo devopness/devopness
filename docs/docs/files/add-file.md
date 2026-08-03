@@ -52,8 +52,8 @@ Use the same key names your application reads so it picks up the values on the n
 
 Try these prompts in Devopness MCP:
 
-- "In project `acme-platform`, add a `.env` file to the `acme-api` application in the Production environment with `DATABASE_URL` and `API_KEY`."
-- "In project `acme-platform`, create a configuration file `config.yaml` for `acme-web` in Staging and set environment variables from this list."
+- "In organization `acme-inc`, project `acme-platform`, add a `.env` file to the `acme-api` application in the Production environment with `DATABASE_URL` and `API_KEY`."
+- "In organization `acme-inc`, project `acme-platform`, create a configuration file `config.yaml` for `acme-web` in Staging and set environment variables from this list."
 
 ## After you save
 

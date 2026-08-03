@@ -42,8 +42,8 @@ Keep the same key names your application reads so it picks up the updated values
 
 Try these prompts in Devopness MCP:
 
-- "In project `acme-platform`, update the `DATABASE_URL` in the `.env` file of `acme-api` in the Production environment."
-- "In project `acme-platform`, rename the `config.yaml` file of `acme-web` in Staging and keep its current content."
+- "In organization `acme-inc`, project `acme-platform`, update the `DATABASE_URL` in the `.env` file of `acme-api` in the Production environment."
+- "In organization `acme-inc`, project `acme-platform`, rename the `config.yaml` file of `acme-web` in Staging and keep its current content."
 
 ## After you save
 

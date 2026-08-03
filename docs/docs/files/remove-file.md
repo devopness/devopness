@@ -37,8 +37,8 @@ The configuration file to delete. Confirm the file is no longer needed before yo
 
 Try these prompts in Devopness MCP:
 
-- "In project `acme-platform`, remove the `.env` file from the `acme-api` application in the Production environment."
-- "In project `acme-platform`, delete the obsolete `config.yaml` file of `acme-web` in Staging."
+- "In organization `acme-inc`, project `acme-platform`, remove the `.env` file from the `acme-api` application in the Production environment."
+- "In organization `acme-inc`, project `acme-platform`, delete the obsolete `config.yaml` file of `acme-web` in Staging."
 
 ## After you remove
 
