@@ -32,8 +32,8 @@ Review an application's configuration file and the settings it provides.
 
 Try these prompts in Devopness MCP:
 
-- "Show the `.env` file content of `acme-api` in the Production environment."
-- "List the configuration files of `acme-web` in Staging and show the one named `config.yaml`."
+- "In project `acme-platform`, show the `.env` file content of `acme-api` in the Production environment."
+- "In project `acme-platform`, list the configuration files of `acme-web` in Staging and show the one named `config.yaml`."
 
 ## Verify
 
