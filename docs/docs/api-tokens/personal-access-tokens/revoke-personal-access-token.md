@@ -36,8 +36,8 @@ To revoke it:
 
 Try these prompts in Devopness MCP:
 
-- "Revoke my `ci-deploy` personal access token."
-- "Revoke the personal access token that was last used today."
+- "Revoke the `ci-deploy` personal access token for my Devopness account."
+- "Revoke the personal access token named `ci-deploy` and then confirm it is no longer active."
 
 ## Verify
 
