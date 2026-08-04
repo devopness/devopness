@@ -108,7 +108,11 @@ const ResourceDataCardList = ({
         )}
         {cards.map((cardProps, index) => (
           <ResourceDataCard
-            key={cardProps?.viewDetailsHref ?? `resource-data-card-${index}`}
+            key={
+              cardProps.resourceId ??
+              cardProps.viewDetailsHref ??
+              `resource-data-card-${index}`
+            }
             {...cardProps}
           />
         ))}
