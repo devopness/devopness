@@ -36,7 +36,6 @@ type ResourceDataCardItem = {
 }
 
 type ResourceDataCardProps = {
-  itemKey?: string | number
   title: ReactNode
   headerLabel?: ReactNode
   prefixNode?: ReactNode

@@ -51,7 +51,7 @@ const Empty: Story = {
   },
 }
 
-const WithCustomKey: Story = {
+const WithExplicitKeys: Story = {
   args: {
     cards: [
       {
@@ -93,4 +93,4 @@ const Loading: Story = {
 }
 
 export default meta
-export { Default, Empty, Loading, WithAddCard, WithCustomKey, WithLinkCard }
+export { Default, Empty, Loading, WithAddCard, WithExplicitKeys, WithLinkCard }
