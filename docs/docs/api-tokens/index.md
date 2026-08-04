@@ -49,3 +49,21 @@ Use Project API Tokens when:
 When you can, prefer `Project API Tokens` to keep permission scope small.
 
 :::
+
+## Using Devopness MCP
+
+API tokens can be created and managed through Devopness MCP. Name the organization, project, and token type so the agent targets the right resource.
+
+- "In organization `acme-inc`, project `acme-platform`, create a project API token for the CI pipeline."
+- "List my personal access tokens."
+
+## Practical example
+
+A `ci-deploy` pipeline needs to deploy one application each time you push to git:
+
+- Create a **Project API Token** scoped to the `acme-platform` project
+- Give it a deploy-only role so it can trigger deploys but not change other resources
+- Store the token value once at creation time and use it in the automation
+
+This keeps the token from being able to act like a full user or reach resources outside that project.
+
