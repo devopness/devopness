@@ -1,7 +1,8 @@
 import { styled } from 'styled-components'
 
 import { Link } from 'src/components/Primitives/Link'
-import { getColor, getFont } from 'src/colors'
+import { getColor } from 'src/colors'
+import { getFont } from 'src/fonts'
 
 const CardsContainer = styled.div<{
   $paddingLeft?: string

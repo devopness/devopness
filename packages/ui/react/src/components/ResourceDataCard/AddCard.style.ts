@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
-import { getColor, getFont } from 'src/colors'
+import { getColor } from 'src/colors'
+import { getFont } from 'src/fonts'
 
 const AddCardContainer = styled.button<{ $disabled?: boolean }>`
   height: 80px;
