@@ -2,4 +2,4 @@
 "@devopness/ui-react": minor
 ---
 
-Require explicit `itemKey` values for `ResourceDataCardList` items so expansion state stays tied to stable resource identity when cards reorder or visible fields change.
+Expose the new `ResourceDataCard` family on `@devopness/ui-react`, including `ResourceDataCardList`, `ResourceDataCard`, and related card composition helpers used by the web app.
