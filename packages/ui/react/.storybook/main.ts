@@ -17,6 +17,10 @@ function getAbsolutePath(packageName: string) {
 }
 
 const config: StorybookConfig = {
+  core: {
+    enableCrashReports: false,
+  },
+
   stories: [
     '../src/components/**/*.stories.@(ts|tsx)',
     '../src/radix/**/*.stories.@(ts|tsx)',
