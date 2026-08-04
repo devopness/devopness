@@ -38,9 +38,7 @@ const ResourceDataCardAdd = ({
       $disabled={disabled}
     >
       <AddCardInner $disabled={disabled}>
-        <PlusIconWrapper aria-hidden="true">
-          {icon ?? '+'}
-        </PlusIconWrapper>
+        <PlusIconWrapper aria-hidden="true">{icon ?? '+'}</PlusIconWrapper>
         <AddCardLabel>{`${actionType} ${resourceType}`}</AddCardLabel>
       </AddCardInner>
     </AddCardContainer>
