@@ -595,7 +595,7 @@ const WithAddUrl: StoryObj<CardListStoryArgs> = {
 export { AllResources, AllZero, Default, Error, Loading, WithAddUrl }
 
 const meta = {
-  title: 'Components/CardList',
+  title: 'Components/CardList/CardList',
   component: CardList,
   argTypes: {
     cardsCount: {

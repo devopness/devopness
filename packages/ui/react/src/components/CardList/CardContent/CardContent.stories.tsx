@@ -36,7 +36,7 @@ const MockRouterLink = styled.a`
 `
 
 const meta = {
-  title: 'Components/CardList/CardContent',
+  title: 'Components/CardList/CardContent/CardContent',
   component: CardContent,
   args: {
     basePath: '/applications',
