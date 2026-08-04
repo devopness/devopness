@@ -22,7 +22,6 @@ describe('ResourceDataCardList', () => {
             viewDetailsHref: '/test',
           },
         ]}
-        getItemKey={(card) => card.viewDetailsHref ?? String(card.title)}
         pagination={noopPagination}
       />
     )
@@ -35,7 +34,6 @@ describe('ResourceDataCardList', () => {
       <ResourceDataCardList
         cards={[]}
         emptyTableMessage="Nothing here"
-        getItemKey={(card, index) => `${index}-${String(card.title)}`}
       />
     )
 
@@ -49,7 +47,6 @@ describe('ResourceDataCardList', () => {
         cards={[]}
         onAdd={handleAdd}
         resourceTypeHumanReadable="Resource"
-        getItemKey={(card, index) => `${index}-${String(card.title)}`}
       />
     )
 
@@ -64,7 +61,6 @@ describe('ResourceDataCardList', () => {
         cards={[]}
         onLink={handleLink}
         resourceTypeHumanReadable="Resource"
-        getItemKey={(card, index) => `${index}-${String(card.title)}`}
       />
     )
 
@@ -82,7 +78,6 @@ describe('ResourceDataCardList', () => {
             viewDetailsHref: '/test',
           },
         ]}
-        getItemKey={(card) => card.viewDetailsHref ?? String(card.title)}
         pageCount={2}
         pagination={noopPagination}
       />
@@ -113,12 +108,7 @@ describe('ResourceDataCardList', () => {
       },
     ]
 
-    const { rerender } = render(
-      <ResourceDataCardList
-        cards={cards}
-        getItemKey={(card) => String(card.title)}
-      />
-    )
+    const { rerender } = render(<ResourceDataCardList cards={cards} />)
 
     fireEvent.click(screen.getByRole('button', { name: 'Alpha' }))
     expect(screen.getByRole('button', { name: 'Alpha' })).toHaveAttribute(
@@ -130,12 +120,7 @@ describe('ResourceDataCardList', () => {
       'false'
     )
 
-    rerender(
-      <ResourceDataCardList
-        cards={[cards[1], cards[0]]}
-        getItemKey={(card) => String(card.title)}
-      />
-    )
+    rerender(<ResourceDataCardList cards={[cards[1], cards[0]]} />)
 
     expect(screen.getByRole('button', { name: 'Alpha' })).toHaveAttribute(
       'aria-expanded',

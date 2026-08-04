@@ -13,7 +13,7 @@ import { CardsContainer } from './ResourceDataCard.styled'
 
 type ResourceDataCardListProps = {
   cards: ResourceDataCardProps[]
-  getItemKey: (card: ResourceDataCardProps, index: number) => string | number
+  getItemKey?: (card: ResourceDataCardProps, index: number) => string | number
   isLoading?: boolean
   emptyTableImage?: string
   emptyTableMessage?: EmptyDataProps['message']
@@ -52,6 +52,11 @@ const ResourceDataCardList = ({
   primaryActionType,
   resourceTypeHumanReadable,
 }: ResourceDataCardListProps) => {
+  const getCardKey =
+    getItemKey ??
+    ((card: ResourceDataCardProps) =>
+      card.viewDetailsHref ?? String(card.title))
+
   if (isLoading) {
     return <ResourceDataCardLoading paddingTop={paddingTop} />
   }
@@ -110,7 +115,7 @@ const ResourceDataCardList = ({
         )}
         {cards.map((cardProps, index) => (
           <ResourceDataCard
-            key={getItemKey(cardProps, index)}
+            key={getCardKey(cardProps, index)}
             {...cardProps}
           />
         ))}

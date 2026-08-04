@@ -33,7 +33,6 @@ const meta = {
   component: ResourceDataCardList,
   args: {
     cards: mockCards,
-    getItemKey: (card) => card.viewDetailsHref ?? String(card.title),
     resourceTypeHumanReadable: 'Team',
     pagination: noopPagination,
   },
@@ -50,7 +49,7 @@ const Empty: Story = {
   },
 }
 
-const WithReorderSafeIdentity: Story = {
+const WithCustomKey: Story = {
   args: {
     cards: [
       {
@@ -91,11 +90,4 @@ const Loading: Story = {
 }
 
 export default meta
-export {
-  Default,
-  Empty,
-  Loading,
-  WithAddCard,
-  WithLinkCard,
-  WithReorderSafeIdentity,
-}
+export { Default, Empty, Loading, WithAddCard, WithCustomKey, WithLinkCard }

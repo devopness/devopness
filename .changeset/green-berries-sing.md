@@ -1,5 +1,5 @@
 ---
-"@devopness/ui-react": major
+"@devopness/ui-react": minor
 ---
 
-Require a stable `getItemKey` prop for `ResourceDataCardList` so list state cannot be reused incorrectly when cards reorder or their displayed content changes.
+Add an optional `getItemKey` prop for `ResourceDataCardList` so callers can override the default list identity when needed, while preserving a stable built-in fallback for the common case.
