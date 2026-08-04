@@ -10,6 +10,9 @@ export type { ResourceDataCardLinkProps } from './LinkCard'
 export { ResourceDataCardLink } from './LinkCard'
 export type { ResourceDataCardLoadingProps } from './Loading'
 export { ResourceDataCardLoading } from './Loading'
-export type { ResourceDataCardListProps } from './List'
+export type {
+  ResourceDataCardListItem,
+  ResourceDataCardListProps,
+} from './List'
 export { ResourceDataCardList } from './List'
 export { ActionsContainer } from './ResourceDataCard.styled'

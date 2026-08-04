@@ -17,6 +17,7 @@ describe('ResourceDataCardList', () => {
       <ResourceDataCardList
         cards={[
           {
+            resourceId: 'test-card',
             title: 'Test Card',
             items: [],
             viewDetailsHref: '/test',
@@ -73,6 +74,7 @@ describe('ResourceDataCardList', () => {
       <ResourceDataCardList
         cards={[
           {
+            resourceId: 'test-card',
             title: 'Test Card',
             items: [],
             viewDetailsHref: '/test',
@@ -89,6 +91,7 @@ describe('ResourceDataCardList', () => {
   it('keeps expansion state with the same resource when cards reorder', () => {
     const cards = [
       {
+        resourceId: 'alpha',
         title: 'Alpha',
         items: [
           {
@@ -98,6 +101,7 @@ describe('ResourceDataCardList', () => {
         ],
       },
       {
+        resourceId: 'beta',
         title: 'Beta',
         items: [
           {

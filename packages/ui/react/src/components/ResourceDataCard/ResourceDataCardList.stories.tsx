@@ -13,6 +13,7 @@ const noopPagination = {
 
 const mockCards = [
   {
+    resourceId: 'platform',
     headerLabel: 'Team',
     title: 'Platform',
     ...getResourceCardAvatar('Platform'),
@@ -20,6 +21,7 @@ const mockCards = [
     viewDetailsHref: '/teams/platform',
   },
   {
+    resourceId: 'infra',
     headerLabel: 'Team',
     title: 'Infra',
     ...getResourceCardAvatar('Infra'),
