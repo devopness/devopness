@@ -85,4 +85,50 @@ describe('ResourceDataCardList', () => {
 
     expect(screen.getByRole('button', { name: /next/i })).toBeInTheDocument()
   })
+
+  it('keeps expansion state with the same resource when cards reorder', () => {
+    const cards = [
+      {
+        title: 'Alpha',
+        items: [
+          {
+            label: 'Status',
+            value: 'Running',
+          },
+        ],
+      },
+      {
+        title: 'Beta',
+        items: [
+          {
+            label: 'Status',
+            value: 'Stopped',
+          },
+        ],
+      },
+    ]
+
+    const { rerender } = render(<ResourceDataCardList cards={cards} />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Alpha' }))
+    expect(screen.getByRole('button', { name: 'Alpha' })).toHaveAttribute(
+      'aria-expanded',
+      'true'
+    )
+    expect(screen.getByRole('button', { name: 'Beta' })).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    )
+
+    rerender(<ResourceDataCardList cards={[cards[1], cards[0]]} />)
+
+    expect(screen.getByRole('button', { name: 'Alpha' })).toHaveAttribute(
+      'aria-expanded',
+      'true'
+    )
+    expect(screen.getByRole('button', { name: 'Beta' })).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    )
+  })
 })

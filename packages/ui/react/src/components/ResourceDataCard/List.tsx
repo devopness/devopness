@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import type { EmptyDataProps } from 'src/components/Primitives/EmptyData'
 import { EmptyData, Pagination } from 'src/components/Primitives'
 import type { PaginationProps } from 'src/components/Primitives/Pagination'
+import { getTextContent } from 'src/utils/getTextContent'
 
 import { ResourceDataCard } from './ResourceDataCard'
 import type { ResourceDataCardProps } from './ResourceDataCard'
@@ -10,6 +11,38 @@ import { ResourceDataCardAdd } from './AddCard'
 import { ResourceDataCardLink } from './LinkCard'
 import { ResourceDataCardLoading } from './Loading'
 import { CardsContainer } from './ResourceDataCard.styled'
+
+const getResourceDataCardKey = (cardProps: ResourceDataCardProps) => {
+  if (cardProps.resourceId != null) {
+    return `resource-data-card-${cardProps.resourceId}`
+  }
+
+  if (cardProps.viewDetailsHref) {
+    return `resource-data-card-${cardProps.viewDetailsHref}`
+  }
+
+  const itemIdentity = cardProps.items
+    ?.map((item) =>
+      [
+        getTextContent(item.label),
+        getTextContent(item.value),
+        item.icon ?? '',
+        item.isUrl ? 'url' : '',
+        item.url ?? '',
+        item.isExternalUrl ? 'external' : '',
+      ].join('|')
+    )
+    .join('::')
+
+  return [
+    'resource-data-card',
+    getTextContent(cardProps.headerLabel),
+    getTextContent(cardProps.title),
+    itemIdentity ?? '',
+    cardProps.prefixBackgroundColor ?? '',
+    cardProps.defaultExpanded ? 'expanded' : '',
+  ].join('::')
+}
 
 type ResourceDataCardListProps = {
   cards: ResourceDataCardProps[]
@@ -106,13 +139,9 @@ const ResourceDataCardList = ({
             disabledTooltip={disabledAddTooltip}
           />
         )}
-        {cards.map((cardProps, index) => (
+        {cards.map((cardProps) => (
           <ResourceDataCard
-            key={
-              cardProps.resourceId ??
-              cardProps.viewDetailsHref ??
-              `resource-data-card-${index}`
-            }
+            key={getResourceDataCardKey(cardProps)}
             {...cardProps}
           />
         ))}
