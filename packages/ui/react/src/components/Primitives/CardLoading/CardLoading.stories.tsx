@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CardLoading } from '.'
 
 const meta = {
-  title: 'Primitives/CardLoading',
+  title: 'Primitives/CardLoading/CardLoading',
   component: CardLoading,
 } satisfies Meta<typeof CardLoading>
 

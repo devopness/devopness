@@ -23,7 +23,7 @@ const mockResources = [
 ]
 
 const meta = {
-  title: 'Components/ResourceCardGrid',
+  title: 'Components/ResourceCardGrid/ResourceCardGrid',
   component: ResourceCardGrid,
   args: {
     resourceType: 'application',

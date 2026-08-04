@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "devopness",
+  "packageManager": "npm@11.17.0",
   "workspaces": [
     "packages/sdks/*",
     "packages/ui/*"
@@ -13,8 +14,8 @@
     "format:changelogs": "vp fmt \"packages/*/*/CHANGELOG.md\""
   },
   "devDependencies": {
-    "jsdom": "^29.1.1",
-    "vite-plus": "0.2.6"
+    "jsdom": "^30.0.1",
+    "vite-plus": "0.2.7"
   },
   "overrides": {
     "babel-plugin-istanbul": {

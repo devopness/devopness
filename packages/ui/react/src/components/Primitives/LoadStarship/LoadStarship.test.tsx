@@ -19,8 +19,12 @@ describe('LoadStarship', () => {
 
   it('applies page loading style when fullContainer is false', () => {
     const { container } = render(<LoadStarship />)
-    expect(container.firstChild).toHaveStyle(
-      'height: calc(100vh - (105px + 42px))'
-    )
+    const styles = Array.from(document.head.querySelectorAll('style'))
+      .map((style) => style.textContent ?? '')
+      .join('\n')
+
+    expect(styles).toContain('width:100vw')
+    expect(styles).toContain('height:calc(100vh - (105px + 42px))')
+    expect(container.firstChild).not.toHaveStyle('position: fixed')
   })
 })
