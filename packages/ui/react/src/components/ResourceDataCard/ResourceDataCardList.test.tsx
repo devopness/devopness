@@ -71,12 +71,18 @@ describe('ResourceDataCardList', () => {
   it('renders pagination when pageCount is greater than 1', () => {
     render(
       <ResourceDataCardList
-        cards={[]}
+        cards={[
+          {
+            title: 'Test Card',
+            items: [],
+            viewDetailsHref: '/test',
+          },
+        ]}
         pageCount={2}
         pagination={noopPagination}
       />
     )
 
-    expect(screen.getByLabelText('Go to next page')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /next/i })).toBeInTheDocument()
   })
 })
