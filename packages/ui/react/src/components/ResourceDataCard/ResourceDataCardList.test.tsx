@@ -17,12 +17,12 @@ describe('ResourceDataCardList', () => {
       <ResourceDataCardList
         cards={[
           {
-            resourceId: 'test-card',
             title: 'Test Card',
             items: [],
             viewDetailsHref: '/test',
           },
         ]}
+        getItemKey={(card) => card.viewDetailsHref ?? String(card.title)}
         pagination={noopPagination}
       />
     )
@@ -35,6 +35,7 @@ describe('ResourceDataCardList', () => {
       <ResourceDataCardList
         cards={[]}
         emptyTableMessage="Nothing here"
+        getItemKey={(card, index) => `${index}-${String(card.title)}`}
       />
     )
 
@@ -48,6 +49,7 @@ describe('ResourceDataCardList', () => {
         cards={[]}
         onAdd={handleAdd}
         resourceTypeHumanReadable="Resource"
+        getItemKey={(card, index) => `${index}-${String(card.title)}`}
       />
     )
 
@@ -62,6 +64,7 @@ describe('ResourceDataCardList', () => {
         cards={[]}
         onLink={handleLink}
         resourceTypeHumanReadable="Resource"
+        getItemKey={(card, index) => `${index}-${String(card.title)}`}
       />
     )
 
@@ -74,12 +77,12 @@ describe('ResourceDataCardList', () => {
       <ResourceDataCardList
         cards={[
           {
-            resourceId: 'test-card',
             title: 'Test Card',
             items: [],
             viewDetailsHref: '/test',
           },
         ]}
+        getItemKey={(card) => card.viewDetailsHref ?? String(card.title)}
         pageCount={2}
         pagination={noopPagination}
       />
@@ -91,7 +94,6 @@ describe('ResourceDataCardList', () => {
   it('keeps expansion state with the same resource when cards reorder', () => {
     const cards = [
       {
-        resourceId: 'alpha',
         title: 'Alpha',
         items: [
           {
@@ -101,7 +103,6 @@ describe('ResourceDataCardList', () => {
         ],
       },
       {
-        resourceId: 'beta',
         title: 'Beta',
         items: [
           {
@@ -112,7 +113,12 @@ describe('ResourceDataCardList', () => {
       },
     ]
 
-    const { rerender } = render(<ResourceDataCardList cards={cards} />)
+    const { rerender } = render(
+      <ResourceDataCardList
+        cards={cards}
+        getItemKey={(card) => String(card.title)}
+      />
+    )
 
     fireEvent.click(screen.getByRole('button', { name: 'Alpha' }))
     expect(screen.getByRole('button', { name: 'Alpha' })).toHaveAttribute(
@@ -124,7 +130,12 @@ describe('ResourceDataCardList', () => {
       'false'
     )
 
-    rerender(<ResourceDataCardList cards={[cards[1], cards[0]]} />)
+    rerender(
+      <ResourceDataCardList
+        cards={[cards[1], cards[0]]}
+        getItemKey={(card) => String(card.title)}
+      />
+    )
 
     expect(screen.getByRole('button', { name: 'Alpha' })).toHaveAttribute(
       'aria-expanded',

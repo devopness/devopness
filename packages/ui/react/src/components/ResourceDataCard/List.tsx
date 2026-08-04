@@ -11,12 +11,9 @@ import { ResourceDataCardLink } from './LinkCard'
 import { ResourceDataCardLoading } from './Loading'
 import { CardsContainer } from './ResourceDataCard.styled'
 
-type ResourceDataCardListItem = ResourceDataCardProps & {
-  resourceId: string | number
-}
-
 type ResourceDataCardListProps = {
-  cards: ResourceDataCardListItem[]
+  cards: ResourceDataCardProps[]
+  getItemKey: (card: ResourceDataCardProps, index: number) => string | number
   isLoading?: boolean
   emptyTableImage?: string
   emptyTableMessage?: EmptyDataProps['message']
@@ -37,6 +34,7 @@ type ResourceDataCardListProps = {
 
 const ResourceDataCardList = ({
   cards,
+  getItemKey,
   isLoading,
   pageCount,
   pagination,
@@ -110,9 +108,9 @@ const ResourceDataCardList = ({
             disabledTooltip={disabledAddTooltip}
           />
         )}
-        {cards.map((cardProps) => (
+        {cards.map((cardProps, index) => (
           <ResourceDataCard
-            key={cardProps.resourceId}
+            key={getItemKey(cardProps, index)}
             {...cardProps}
           />
         ))}
@@ -126,5 +124,5 @@ const ResourceDataCardList = ({
   )
 }
 
-export type { ResourceDataCardListItem, ResourceDataCardListProps }
+export type { ResourceDataCardListProps }
 export { ResourceDataCardList }

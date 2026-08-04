@@ -36,12 +36,6 @@ type ResourceDataCardItem = {
 }
 
 type ResourceDataCardProps = {
-  /**
-   * Stable identity for the resource, used by list rendering to keep state
-   * attached to the correct card when items reorder.
-   */
-  resourceId?: string | number
-
   title: ReactNode
   headerLabel?: ReactNode
   prefixNode?: ReactNode

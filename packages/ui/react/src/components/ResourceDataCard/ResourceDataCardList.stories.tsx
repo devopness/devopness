@@ -13,7 +13,6 @@ const noopPagination = {
 
 const mockCards = [
   {
-    resourceId: 'platform',
     headerLabel: 'Team',
     title: 'Platform',
     ...getResourceCardAvatar('Platform'),
@@ -21,7 +20,6 @@ const mockCards = [
     viewDetailsHref: '/teams/platform',
   },
   {
-    resourceId: 'infra',
     headerLabel: 'Team',
     title: 'Infra',
     ...getResourceCardAvatar('Infra'),
@@ -35,6 +33,7 @@ const meta = {
   component: ResourceDataCardList,
   args: {
     cards: mockCards,
+    getItemKey: (card) => card.viewDetailsHref ?? String(card.title),
     resourceTypeHumanReadable: 'Team',
     pagination: noopPagination,
   },
@@ -48,6 +47,28 @@ const Empty: Story = {
   args: {
     cards: [],
     emptyTableMessage: 'No items yet',
+  },
+}
+
+const WithReorderSafeIdentity: Story = {
+  args: {
+    cards: [
+      {
+        headerLabel: 'Team',
+        title: 'Platform',
+        ...getResourceCardAvatar('Platform'),
+        items: [{ label: 'Members', value: '12' }],
+        viewDetailsHref: '/teams/platform',
+      },
+      {
+        headerLabel: 'Team',
+        title: 'Infra',
+        ...getResourceCardAvatar('Infra'),
+        items: [{ label: 'Members', value: '8' }],
+        viewDetailsHref: '/teams/infra',
+      },
+    ],
+    getItemKey: (card) => card.viewDetailsHref ?? String(card.title),
   },
 }
 
@@ -70,4 +91,11 @@ const Loading: Story = {
 }
 
 export default meta
-export { Default, Empty, WithAddCard, WithLinkCard, Loading }
+export {
+  Default,
+  Empty,
+  Loading,
+  WithAddCard,
+  WithLinkCard,
+  WithReorderSafeIdentity,
+}
