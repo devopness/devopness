@@ -52,7 +52,7 @@
   },
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vp build",
-    "build-storybook": "NODE_OPTIONS=--max-old-space-size=4096 NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
+    "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
