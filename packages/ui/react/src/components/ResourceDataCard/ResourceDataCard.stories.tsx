@@ -7,7 +7,7 @@ import { getResourceCardAvatar } from './helpers'
 const SAMPLE_CREATED_AT = new Date('2025-01-01T00:00:00Z')
 
 const meta = {
-  title: 'Components/ResourceDataCard',
+  title: 'Components/ResourceDataCard/ResourceDataCard',
   component: ResourceDataCard,
   args: {
     headerLabel: 'Application Name',

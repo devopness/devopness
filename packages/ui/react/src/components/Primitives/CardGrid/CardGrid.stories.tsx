@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react-vite'
 import { CardGrid } from './CardGrid'
 
 const meta: Meta<typeof CardGrid> = {
-  title: 'Primitives/CardGrid',
+  title: 'Primitives/CardGrid/CardGrid',
   component: CardGrid,
   args: {
     gap: '1.5rem',

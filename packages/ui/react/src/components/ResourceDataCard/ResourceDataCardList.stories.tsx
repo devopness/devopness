@@ -29,7 +29,7 @@ const mockCards = [
 ]
 
 const meta = {
-  title: 'Components/ResourceDataCardList',
+  title: 'Components/ResourceDataCard/ResourceDataCardList',
   component: ResourceDataCardList,
   args: {
     cards: mockCards,
