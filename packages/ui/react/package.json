@@ -52,7 +52,7 @@
   },
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vp build",
-    "build-storybook": "NODE_OPTIONS=--max-old-space-size=4096 NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
+    "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
@@ -94,7 +94,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "storybook": "10.5.5",
-    "typescript": "^7.0.2",
+    "typescript": "^6.0.3",
     "vite": "^8.2.0",
     "vite-plugin-dts": "^5.0.3",
     "vite-plus": "0.2.7",
