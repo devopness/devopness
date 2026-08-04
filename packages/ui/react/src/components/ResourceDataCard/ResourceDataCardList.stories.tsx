@@ -13,6 +13,7 @@ const noopPagination = {
 
 const mockCards = [
   {
+    itemKey: 'team-platform',
     headerLabel: 'Team',
     title: 'Platform',
     ...getResourceCardAvatar('Platform'),
@@ -20,6 +21,7 @@ const mockCards = [
     viewDetailsHref: '/teams/platform',
   },
   {
+    itemKey: 'team-infra',
     headerLabel: 'Team',
     title: 'Infra',
     ...getResourceCardAvatar('Infra'),
@@ -53,6 +55,7 @@ const WithCustomKey: Story = {
   args: {
     cards: [
       {
+        itemKey: 'team-platform',
         headerLabel: 'Team',
         title: 'Platform',
         ...getResourceCardAvatar('Platform'),
@@ -60,6 +63,7 @@ const WithCustomKey: Story = {
         viewDetailsHref: '/teams/platform',
       },
       {
+        itemKey: 'team-infra',
         headerLabel: 'Team',
         title: 'Infra',
         ...getResourceCardAvatar('Infra'),
@@ -67,7 +71,6 @@ const WithCustomKey: Story = {
         viewDetailsHref: '/teams/infra',
       },
     ],
-    getItemKey: (card) => card.viewDetailsHref ?? String(card.title),
   },
 }
 

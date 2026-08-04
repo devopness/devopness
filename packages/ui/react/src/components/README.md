@@ -99,7 +99,7 @@ Prefer nested titles that group related items by feature or family. For example:
 
 Keep the category aligned with the component's role, not its visual appearance alone. A card that is mostly an atomic display surface belongs in `Primitives`; a card that includes list state, empty state, add/link actions, pagination, or resource-specific composition belongs in `Components`.
 
-When a component renders a list of cards or rows, prefer a generic identity contract such as `getItemKey` rather than embedding app-specific identifiers like `resourceId` into the public item type. The consuming app should provide the stable identity value.
+When a component renders a list of cards or rows, prefer a generic identity field such as `itemKey` rather than embedding app-specific identifiers like `resourceId` into the public item type. The consuming app should provide the stable identity value on each item when the visible fields can change or when the list can reorder.
 
 #### Export Pattern
 

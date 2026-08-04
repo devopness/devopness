@@ -52,10 +52,14 @@ const ResourceDataCardList = ({
   primaryActionType,
   resourceTypeHumanReadable,
 }: ResourceDataCardListProps) => {
-  const getCardKey =
-    getItemKey ??
-    ((card: ResourceDataCardProps) =>
-      card.viewDetailsHref ?? String(card.title))
+  const getCardKey = (
+    card: ResourceDataCardProps,
+    index: number
+  ): string | number =>
+    card.itemKey ??
+    getItemKey?.(card, index) ??
+    card.viewDetailsHref ??
+    String(card.title)
 
   if (isLoading) {
     return <ResourceDataCardLoading paddingTop={paddingTop} />
