@@ -11,7 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "dotenv-expand": "^13.0.0",
+    "dotenv-expand": "^1000.0.0",
     "fumadocs-core": "16.14.0",
     "fumadocs-mdx": "15.2.2",
     "fumadocs-ui": "16.14.0",
