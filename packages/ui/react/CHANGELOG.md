@@ -1,5 +1,15 @@
 # @devopness/ui-react
 
+## 2.197.0
+
+### Minor Changes
+
+- [#3420](https://github.com/devopness/devopness/pull/3420) [`eb5b648`](https://github.com/devopness/devopness/commit/eb5b648fc6a357a696148ad558b9f8749405bbfd) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Expose the new `ResourceDataCard` family on `@devopness/ui-react`, including `ResourceDataCardList`, `ResourceDataCard`, and related card composition helpers used by the web app.
+
+### Patch Changes
+
+- [#3418](https://github.com/devopness/devopness/pull/3418) [`0d87ef1`](https://github.com/devopness/devopness/commit/0d87ef1a6f81f6d217ce8382eebbee0f8db1c1e8) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Bump `jsdom` to `30.0.1` for the `@devopness/ui-react` test environment.
+
 ## 2.196.0
 
 ### Minor Changes
@@ -122,6 +132,7 @@
 - [#3137](https://github.com/devopness/devopness/pull/3137) [`681e807`](https://github.com/devopness/devopness/commit/681e8070b9892315edcab74cbbb969a57287f78c) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Fix `TimerCounter` showing stale values and leaking intervals on prop transitions
 
   Two problems were fixed:
+
   1. The component was early-returning to `00:00` whenever `shouldStartTimer`
      was `false`, even when `shouldStopTimer` was `true` — which froze the
      timer at `00:00` for any finished action (`Completed`, `Failed`,
@@ -141,6 +152,7 @@
   memoize it.
 
   Behavior matrix across status combinations:
+
   - `Pending` / `Waiting` / `Queued` (no start date) → `00:00`
   - `InProgress` → live ticking
   - `Completed` / `Failed` → final duration (no flicker on transition)
@@ -187,6 +199,7 @@
   states in routes (e.g., OAuth failures, missing parameters, API errors).
 
   Features:
+
   - Title and description for error context
   - Optional `errorDetail` field for technical information
   - Optional `action` prop with label and href for user recovery paths
@@ -254,6 +267,7 @@
   Introduce a new `IconButton` component for icon-only actions. Renders a
   circular button wrapping a `<Icon>` from the Devopness icon set, with
   three variants tuned for different action weights:
+
   - `primary` — filled purple circle with a white icon, for primary actions.
   - `ghost` — no background or border, just the icon, with a subtle hover
     tint, for inline/quiet actions like help, avatar or navigation triggers.
@@ -304,6 +318,7 @@
 ### Patch Changes
 
 - [#2792](https://github.com/devopness/devopness/pull/2792) [`0b25d34`](https://github.com/devopness/devopness/commit/0b25d343cd28443b3dacb8dc46a2ddd5e2203c38) Thanks [@AladinoBorges](https://github.com/AladinoBorges)!
+
   - Add `alwaysVisible` prop to `CopyToClipboard` component to allow the copy icon to remain permanently visible with full opacity.
   - Pass optional `alwaysVisible` prop through the component to styled elements;
   - Update `CopyToClipboard` styled components to conditionally disable hover effects and set initial opacity;
@@ -329,6 +344,7 @@
 ### Patch Changes
 
 - [#2491](https://github.com/devopness/devopness/pull/2491) [`b269715`](https://github.com/devopness/devopness/commit/b2697150754e92db05763ba25d23e52c264e0fd6) Thanks [@AladinoBorges](https://github.com/AladinoBorges)! - Guard custom element registration and prevent server-side DOM access so the package is safe to import using Next.js framework with `App Router`.
+
   - Mark client-only components as `use client` where appropriate to keep them out of server bundles and to ensure runtime-only APIs run only in the browser.
   - Ensure React remains a peer dependency and avoid bundling multiple React runtimes;
   - Prefer `sideEffects: false` and rebuild artifacts to produce consistent ESM and CJS outputs.
@@ -1238,6 +1254,7 @@
   "DOMException: Failed to execute 'createElement' on 'Document': The tag name provided is not a valid name."
 
   This change:
+
   - Updates the shieldLock icon type from 'icon' to 'image', to correctly render it as an <img> element
   - Fixes the runtime error when using the `shieldLock` icon
   - Maintains backward compatibility - the icon name and usage remain the same
@@ -1286,6 +1303,7 @@
   ### Migration Guide
 
   Old icon names are deprecated but will continue to work during runtime. There are two ways to handle deprecated icons:
+
   1. Update to the new icon name (Recommended)
 
   ```tsx
@@ -1412,6 +1430,7 @@
   ### Test Utilities
 
   Added new test utilities to help write consistent and maintainable tests:
+
   - `testHoverTooltip`: Standardizes testing of tooltip hover interactions
   - Additional utilities can be added to the `test-utils` directory
 
@@ -1434,7 +1453,7 @@ Example usage:
 ```typescript
 <Input
   // Focus will be automatically applied when error prop is present
-  error={{ message: 'This field is required' }}
+  error={{ message: "This field is required" }}
 />
 ```
 
@@ -1609,11 +1628,11 @@ This change helps users quickly identify and fix form validation issues by autom
   This resulted in props like `ButtonProps.icon` being `any`
 
   ```ts
-  import { Button } from '@devopness/ui-react'
+  import { Button } from "@devopness/ui-react";
 
   // ...
 
-  <Button icon="non-existing-icon" /> // => no errors, accepts any value
+  <Button icon="non-existing-icon" />; // => no errors, accepts any value
   ```
 
   AFTER:
@@ -1625,9 +1644,9 @@ This change helps users quickly identify and fix form validation issues by autom
   ```
 
   ```ts
-  import { Button } from '@devopness/ui-react'
+  import { Button } from "@devopness/ui-react";
 
   // ...
 
-  <Button icon="non-existing-icon" /> // => error TS2322: Type '"non-existing-icon"' is not assignable to type '"html" | "link" | ...
+  <Button icon="non-existing-icon" />; // => error TS2322: Type '"non-existing-icon"' is not assignable to type '"html" | "link" | ...
   ```
