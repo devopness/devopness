@@ -6,6 +6,11 @@ import { Unwrap } from 'src/components/types'
 import { Icon, iconLoader } from 'src/icons'
 
 import {
+  CardContent,
+  IconWrapper,
+  LabelText,
+  RadioGrid,
+  StyledLabel,
   StyledCardDescription,
   StyledCardLabel,
   StyledCardHeader,
@@ -28,6 +33,7 @@ const ICON_SIZE = 50
 const LOADING_ICON_SIZE = 60
 const LOADING_ICON_RATIO = 2
 
+type RadioSelectCardsLayout = 'default' | 'grouped'
 type RadioSelectCardsDensity = 'default' | 'compact'
 
 type RadioSelectCardsIcon =
@@ -86,6 +92,8 @@ type RadioSelectCardsProps = Unwrap<
   } & {
     inputProps?: RadioSelectCardsInputProps
   } & Pick<React.HTMLAttributes<HTMLDivElement>, 'style'> & {
+      /** Legacy radio-group layout used by default for backward compatibility. */
+      layout?: RadioSelectCardsLayout
       /** Flat list of cards to render when sections are not needed */
       data?: RadioSelectCardsItem[]
       /** Grouped sections of cards for denser gallery layouts */
@@ -104,6 +112,12 @@ type RadioSelectCardsProps = Unwrap<
 type RadioSelectCardsInputProps = RadioSelectCardsItemInputProps
 
 type RadioSelectCardsOptionProps = RadioSelectCardsItem & {
+  inputId: string
+  name: string
+  sharedInputProps?: RadioSelectCardsInputProps
+}
+
+type RadioSelectCardsGalleryOptionProps = RadioSelectCardsItem & {
   $density: RadioSelectCardsDensity
   $showSelectionIndicator: boolean
   inputId: string
@@ -112,6 +126,54 @@ type RadioSelectCardsOptionProps = RadioSelectCardsItem & {
 }
 
 const RadioSelectCard = ({
+  icon,
+  label,
+  inputId,
+  name,
+  value,
+  inputProps,
+  sharedInputProps,
+}: RadioSelectCardsOptionProps) => {
+  const resolvedChecked = sharedInputProps?.checked ?? inputProps?.checked
+  const resolvedDefaultChecked =
+    sharedInputProps?.defaultChecked ?? inputProps?.defaultChecked
+  const isControlled = resolvedChecked !== undefined
+  const isDisabled = Boolean(sharedInputProps?.disabled ?? inputProps?.disabled)
+
+  return (
+    <StyledLabel htmlFor={inputId}>
+      <CardContent>
+        <IconWrapper>
+          {typeof icon === 'string' && (
+            <>{iconLoader(icon as Icon, ICON_SIZE)}</>
+          )}
+          {typeof icon === 'object' && 'name' in icon && (
+            <>{iconLoader(icon.name as Icon, ICON_SIZE, icon.color)}</>
+          )}
+          <input
+            type="radio"
+            id={inputId}
+            style={{
+              margin: '0.75rem',
+              height: '0.875rem',
+              ...inputProps?.style,
+            }}
+            {...inputProps}
+            {...sharedInputProps}
+            checked={isControlled ? Boolean(resolvedChecked) : undefined}
+            defaultChecked={isControlled ? undefined : resolvedDefaultChecked}
+            disabled={isDisabled}
+            name={name}
+            value={value}
+          />
+        </IconWrapper>
+        <LabelText>{label}</LabelText>
+      </CardContent>
+    </StyledLabel>
+  )
+}
+
+const GalleryRadioSelectCard = ({
   icon,
   label,
   description,
@@ -126,7 +188,7 @@ const RadioSelectCard = ({
   sharedInputProps,
   $density,
   $showSelectionIndicator,
-}: RadioSelectCardsOptionProps) => {
+}: RadioSelectCardsGalleryOptionProps) => {
   const titleId = `${inputId}-title`
   const descriptionId = description ? `${inputId}-description` : undefined
   const metaId = meta ? `${inputId}-meta` : undefined
@@ -198,6 +260,7 @@ const RadioSelectCards = ({
   groups,
   density = 'default',
   showSelectionIndicator = true,
+  layout = 'default',
   inputProps: sharedInputProps,
 }: RadioSelectCardsProps) => {
   const generatedId = useId()
@@ -224,6 +287,45 @@ const RadioSelectCards = ({
     )
   }
 
+  if (layout === 'default') {
+    return (
+      <>
+        <RadioGrid
+          $hasError={Boolean(error)}
+          style={style}
+        >
+          {(data ?? []).map(
+            ({ defaultChecked, checked, disabled, ...props }) => {
+              const isControlled = checked !== undefined
+
+              return (
+                <RadioSelectCard
+                  key={String(props.value)}
+                  inputId={props.id ?? String(props.value)}
+                  name={name}
+                  sharedInputProps={sharedInputProps}
+                  {...props}
+                  checked={isControlled ? checked : undefined}
+                  defaultChecked={isControlled ? undefined : defaultChecked}
+                  disabled={disabled}
+                />
+              )
+            }
+          )}
+        </RadioGrid>
+        {error && (
+          <div
+            style={{
+              fontFamily: 'Roboto',
+            }}
+          >
+            <ErrorMessage error={error} />
+          </div>
+        )}
+      </>
+    )
+  }
+
   return (
     <>
       <StyledCardsRoot style={style}>
@@ -246,7 +348,7 @@ const RadioSelectCards = ({
                 $density={density}
                 $error={Boolean(error)}
               >
-                <RadioSelectCard
+                <GalleryRadioSelectCard
                   {...item}
                   $density={density}
                   $showSelectionIndicator={showSelectionIndicator}
@@ -280,7 +382,7 @@ const RadioSelectCards = ({
               ) : null}
               <StyledCardsGrid $density={density}>
                 {section.data.map((item, itemIndex) => (
-                  <RadioSelectCard
+                  <GalleryRadioSelectCard
                     {...item}
                     key={item.id ?? String(item.value)}
                     $density={density}
@@ -317,4 +419,5 @@ export type {
   RadioSelectCardsGroup,
   RadioSelectCardsItem,
   RadioSelectCardsProps,
+  RadioSelectCardsLayout,
 }

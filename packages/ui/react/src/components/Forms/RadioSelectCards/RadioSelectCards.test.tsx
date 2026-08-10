@@ -109,6 +109,7 @@ describe('RadioSelectCards', () => {
     render(
       <RadioSelectCards
         name="exampleRadio"
+        layout="grouped"
         groups={stackGroups}
         showSelectionIndicator={false}
         density="compact"
@@ -131,6 +132,19 @@ describe('RadioSelectCards', () => {
 
     fireEvent.click(aspNetCore)
     expect(aspNetCore.checked).toBe(true)
+  })
+
+  it('keeps the legacy square layout by default', () => {
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        data={sampleData}
+      />
+    )
+
+    expect(screen.getByText('Option 1')).toBeInTheDocument()
+    expect(screen.getByText('Option 2')).toBeInTheDocument()
+    expect(screen.queryByText('.NET (C#/F#)')).not.toBeInTheDocument()
   })
 
   it('does not warn when a data item sets both checked and defaultChecked', () => {
