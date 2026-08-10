@@ -152,7 +152,7 @@ const getGridGap = (density: Density) =>
   density === 'compact' ? '0.5rem' : '0.75rem'
 
 const getGridMinWidth = (density: Density) =>
-  density === 'compact' ? '12.5rem' : '10rem'
+  density === 'compact' ? '12.5rem' : '12.5rem'
 
 const getIconSize = (density: Density) =>
   density === 'compact' ? '2.5rem' : '2.75rem'
@@ -162,6 +162,7 @@ const StyledCardsRoot = styled.div<{ $error?: boolean }>`
   flex-direction: column;
   gap: 0.75rem;
   width: 100%;
+  font-family: ${getFont('roboto')};
   border: ${({ $error }) =>
     $error ? `1px solid ${getColor('red.500')}` : '1px solid transparent'};
   border-radius: 1rem;
@@ -200,7 +201,7 @@ const StyledCardsSectionHeader = styled.div`
 `
 
 const StyledCardsSectionTitle = styled.span`
-  font-family: inherit;
+  font-family: ${getFont('roboto')};
   font-size: 0.875rem;
   line-height: 1.25;
   font-weight: 700;
@@ -208,7 +209,7 @@ const StyledCardsSectionTitle = styled.span`
 `
 
 const StyledCardsSectionDescription = styled.span`
-  font-family: inherit;
+  font-family: ${getFont('roboto')};
   font-size: 0.8125rem;
   line-height: 1.45;
   color: ${getColor('slate.400')};

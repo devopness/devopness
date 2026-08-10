@@ -182,6 +182,9 @@ const GroupedCards: Story = {
     groups: sampleGroupedGroups,
     showSelectionIndicator: false,
   },
+  parameters: {
+    layout: 'fullscreen',
+  },
 }
 
 export default meta
