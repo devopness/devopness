@@ -26,9 +26,9 @@ class VirtualHostEnvironmentCreate(DevopnessBaseModel):
         linked_resources (List[ResourceToBeLinked], optional): The resources to be linked with this resource
         type (str): The type of virtual host to be created.
         name (str): The name of the virtual host, unique within the environment. For &#x60;name-based&#x60; type, it must be a valid domain name (e.g., &#x60;my-site.example.com&#x60;). For &#x60;ip-based&#x60; type, it must be a valid IPv4 address or an IPv4 address with port (e.g., &#x60;127.0.0.1:3000&#x60;). Must not be greater than 255 characters.
-        root_directory (str, optional): The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.
+        root_directory (str, optional): The document root location to be served for this virtual host. When the virtual host is linked to an application, the value must be a relative path within that application directory. When no application is linked, the value must be an absolute path. Must start with one of &lt;code&gt;/&lt;/code&gt; Must not be greater than 255 characters.
         application_listen_address (str, optional, nullable): The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has &#x60;http&#x60; or &#x60;https&#x60; protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using &#x60;unix:&#x60; protocol. Examples: &#x60;http://127.0.0.1:8080&#x60; (for applications exposing port &#x60;8080&#x60;, for example running in a Docker container), &#x60;http://127.0.0.1:3000&#x60; (for applications kept alive by a daemon/background process that listens on port &#x60;3000&#x60;), &#x60;unix:/var/run/example.sock&#x60; (for applications listening on a custom socket). Must not be greater than 255 characters.
-        application_id (int, optional, nullable): The ID of the application to be associated with the virtual host. The value of &#x60;root_directory&#x60; will be relative to this application directory.
+        application_id (int, optional, nullable): The ID of the application to be associated with the virtual host. When set, the value of &#x60;root_directory&#x60; will be relative to this application directory.
     """
 
     linked_resources: list[ResourceToBeLinked] | None = Field(
@@ -44,7 +44,7 @@ class VirtualHostEnvironmentCreate(DevopnessBaseModel):
     )
     root_directory: StrictStr | None = Field(
         default=None,
-        description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
+        description="The document root location to be served for this virtual host. When the virtual host is linked to an application, the value must be a relative path within that application directory. When no application is linked, the value must be an absolute path. Must start with one of <code>/</code> Must not be greater than 255 characters.",
         json_schema_extra={"examples": ["public"]},
     )
     application_listen_address: StrictStr | None = Field(
@@ -54,7 +54,7 @@ class VirtualHostEnvironmentCreate(DevopnessBaseModel):
     )
     application_id: StrictInt | None = Field(
         default=None,
-        description="The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
+        description="The ID of the application to be associated with the virtual host. When set, the value of `root_directory` will be relative to this application directory.",
         json_schema_extra={"examples": [1]},
     )
 

@@ -35,7 +35,7 @@ class VirtualHostRelation(DevopnessBaseModel):
         type_human_readable (str, optional): The human readable version of the type
         name (str): The name of the Virtual Host
         application (ApplicationRelation, optional, nullable):
-        root_directory (str, optional, nullable): The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host
+        root_directory (str, optional, nullable): The document root location served by this virtual host. When the virtual host is linked to an application, the value is relative to that application directory. When no application is linked, the value is an absolute path
         application_listen_address (str, optional, nullable): The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has &#x60;http&#x60; or &#x60;https&#x60; protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using &#x60;unix:&#x60; protocol. Examples: &#x60;http://127.0.0.1:8080&#x60; (for applications exposing port &#x60;8080&#x60;, for example running in a Docker container), &#x60;http://127.0.0.1:3000&#x60; (for applications kept alive by a daemon/background process that listens on port &#x60;3000&#x60;), &#x60;unix:/var/run/example.sock&#x60; (for applications listening on a custom socket)
         ssl_certificate (SslCertificateRelation, optional, nullable):
         last_action (ActionRelationShallow, optional, nullable):
@@ -59,7 +59,7 @@ class VirtualHostRelation(DevopnessBaseModel):
     )
     application: ApplicationRelation | None
     root_directory: StrictStr | None = Field(
-        description="The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
+        description="The document root location served by this virtual host. When the virtual host is linked to an application, the value is relative to that application directory. When no application is linked, the value is an absolute path",
         json_schema_extra={"examples": ["public"]},
     )
     application_listen_address: StrictStr | None = Field(
