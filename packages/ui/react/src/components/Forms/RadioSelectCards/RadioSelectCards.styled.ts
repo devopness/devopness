@@ -204,7 +204,7 @@ const StyledCardsSectionTitle = styled.span`
   font-family: ${getFont('roboto')};
   font-size: 0.8125rem;
   line-height: 1.25;
-  font-weight: 700;
+  font-weight: 400;
   color: ${getColor('slate.600')};
 `
 
@@ -307,7 +307,7 @@ const StyledCardTitle = styled.span`
   font-family: ${getFont('roboto')};
   font-size: 0.875rem;
   line-height: 1.25;
-  font-weight: 700;
+  font-weight: 400;
   color: ${getColor('blue.950')};
   min-width: 0;
 `
