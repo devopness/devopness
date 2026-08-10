@@ -15,10 +15,6 @@ const meta: Meta<typeof RadioSelectCards> = {
     groups: { control: 'object' },
     isLoading: { control: 'boolean' },
     name: { control: 'text' },
-    layout: {
-      control: 'radio',
-      options: ['default', 'grouped'],
-    },
     showSelectionIndicator: { control: 'boolean' },
     style: { control: 'object' },
   },
@@ -103,7 +99,6 @@ const Loading: Story = {
 const StackGallery: Story = {
   args: {
     name: 'stackGallery',
-    layout: 'grouped',
     density: 'compact',
     groups: sampleStackGroups,
     showSelectionIndicator: false,

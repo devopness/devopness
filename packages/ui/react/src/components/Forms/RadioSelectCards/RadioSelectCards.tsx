@@ -33,7 +33,6 @@ const ICON_SIZE = 50
 const LOADING_ICON_SIZE = 60
 const LOADING_ICON_RATIO = 2
 
-type RadioSelectCardsLayout = 'default' | 'grouped'
 type RadioSelectCardsDensity = 'default' | 'compact'
 
 type RadioSelectCardsIcon =
@@ -92,15 +91,16 @@ type RadioSelectCardsProps = Unwrap<
   } & {
     inputProps?: RadioSelectCardsInputProps
   } & Pick<React.HTMLAttributes<HTMLDivElement>, 'style'> & {
-      /** Legacy radio-group layout used by default for backward compatibility. */
-      layout?: RadioSelectCardsLayout
-      /** Flat list of cards to render when sections are not needed */
+      /** Flat list of cards for the legacy radio-group presentation. Ignored when `groups` is provided. */
       data?: RadioSelectCardsItem[]
-      /** Grouped sections of cards for denser gallery layouts */
+      /**
+       * Grouped sections for the denser gallery presentation.
+       * When provided, the component renders grouped cards and `data` is ignored.
+       */
       groups?: RadioSelectCardsGroup[]
-      /** Compact mode for denser layouts */
+      /** Compact spacing for the grouped gallery presentation. Has no effect in the legacy flat layout. */
       density?: RadioSelectCardsDensity
-      /** Whether to display the native radio indicator */
+      /** Whether to display the native radio indicator in the grouped gallery presentation. Defaults to `true`. */
       showSelectionIndicator?: boolean
       /** Loader state */
       isLoading?: boolean
@@ -260,7 +260,6 @@ const RadioSelectCards = ({
   groups,
   density = 'default',
   showSelectionIndicator = true,
-  layout = 'default',
   inputProps: sharedInputProps,
 }: RadioSelectCardsProps) => {
   const generatedId = useId()
@@ -287,7 +286,7 @@ const RadioSelectCards = ({
     )
   }
 
-  if (layout === 'default') {
+  if (!groups) {
     return (
       <>
         <RadioGrid
@@ -419,5 +418,4 @@ export type {
   RadioSelectCardsGroup,
   RadioSelectCardsItem,
   RadioSelectCardsProps,
-  RadioSelectCardsLayout,
 }

@@ -109,7 +109,6 @@ describe('RadioSelectCards', () => {
     render(
       <RadioSelectCards
         name="exampleRadio"
-        layout="grouped"
         groups={stackGroups}
         showSelectionIndicator={false}
         density="compact"
