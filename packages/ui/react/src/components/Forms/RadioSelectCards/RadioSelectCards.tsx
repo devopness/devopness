@@ -30,6 +30,7 @@ import {
 } from './RadioSelectCards.styled'
 
 const ICON_SIZE = 50
+const GALLERY_ICON_SIZE = 26
 const LOADING_ICON_SIZE = 60
 const LOADING_ICON_RATIO = 2
 
@@ -234,10 +235,12 @@ const GalleryRadioSelectCard = ({
               $selected={Boolean(resolvedChecked)}
             >
               {typeof icon === 'string' && (
-                <>{iconLoader(icon as Icon, ICON_SIZE)}</>
+                <>{iconLoader(icon as Icon, GALLERY_ICON_SIZE)}</>
               )}
               {typeof icon === 'object' && 'name' in icon && (
-                <>{iconLoader(icon.name as Icon, ICON_SIZE, icon.color)}</>
+                <>
+                  {iconLoader(icon.name as Icon, GALLERY_ICON_SIZE, icon.color)}
+                </>
               )}
             </StyledCardIcon>
           ) : null}

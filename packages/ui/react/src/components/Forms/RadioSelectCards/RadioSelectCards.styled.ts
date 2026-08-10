@@ -1,7 +1,6 @@
 import { styled } from 'styled-components'
 
 import { getColor } from 'src/colors'
-import { getFont } from 'src/fonts'
 
 type Density = 'default' | 'compact'
 
@@ -124,7 +123,7 @@ const IconWrapper = styled.div`
 
 const LabelText = styled.span`
   color: ${getColor('blue.950')};
-  font-family: ${getFont('roboto')};
+  font-family: inherit;
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.01625rem;
@@ -143,7 +142,7 @@ const LabelText = styled.span`
 `
 
 const getCardPadding = (density: Density) =>
-  density === 'compact' ? '0.875rem' : '1rem'
+  density === 'compact' ? '0.75rem' : '1rem'
 
 const getCardGap = (density: Density) =>
   density === 'compact' ? '0.5rem' : '0.75rem'
@@ -162,7 +161,7 @@ const StyledCardsRoot = styled.div<{ $error?: boolean }>`
   flex-direction: column;
   gap: 0.75rem;
   width: 100%;
-  font-family: ${getFont('roboto')};
+  font-family: inherit;
   border: ${({ $error }) =>
     $error ? `1px solid ${getColor('red.500')}` : '1px solid transparent'};
   border-radius: 1rem;
@@ -201,7 +200,7 @@ const StyledCardsSectionHeader = styled.div`
 `
 
 const StyledCardsSectionTitle = styled.span`
-  font-family: ${getFont('roboto')};
+  font-family: inherit;
   font-size: 0.875rem;
   line-height: 1.25;
   font-weight: 700;
@@ -209,7 +208,7 @@ const StyledCardsSectionTitle = styled.span`
 `
 
 const StyledCardsSectionDescription = styled.span`
-  font-family: ${getFont('roboto')};
+  font-family: inherit;
   font-size: 0.8125rem;
   line-height: 1.45;
   color: ${getColor('slate.400')};
@@ -304,7 +303,7 @@ const StyledCardText = styled.div`
 `
 
 const StyledCardTitle = styled.span`
-  font-family: ${getFont('roboto')};
+  font-family: inherit;
   font-size: 1rem;
   line-height: 1.25;
   font-weight: 700;
@@ -313,14 +312,14 @@ const StyledCardTitle = styled.span`
 `
 
 const StyledCardDescription = styled.span`
-  font-family: ${getFont('roboto')};
+  font-family: inherit;
   font-size: 0.875rem;
   line-height: 1.45;
   color: ${getColor('slate.600')};
 `
 
 const StyledCardMeta = styled.span`
-  font-family: ${getFont('roboto')};
+  font-family: inherit;
   font-size: 0.75rem;
   line-height: 1.4;
   font-weight: 600;
