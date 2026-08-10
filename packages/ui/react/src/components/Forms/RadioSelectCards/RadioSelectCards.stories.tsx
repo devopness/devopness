@@ -1,6 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { styled } from 'styled-components'
 
 import { RadioSelectCards } from './RadioSelectCards'
+
+const GroupedCardsFrame = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: 0 1.5rem 1.5rem;
+  width: 100%;
+
+  @media (max-width: 600px) {
+    padding: 0 0.75rem 0.75rem;
+  }
+`
 
 const meta: Meta<typeof RadioSelectCards> = {
   title: 'Form/RadioSelectCards',
@@ -182,6 +197,14 @@ const GroupedCards: Story = {
     groups: sampleGroupedGroups,
     showSelectionIndicator: false,
   },
+  parameters: {
+    layout: 'padded',
+  },
+  render: (args) => (
+    <GroupedCardsFrame>
+      <RadioSelectCards {...args} />
+    </GroupedCardsFrame>
+  ),
 }
 
 export default meta
