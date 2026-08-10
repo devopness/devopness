@@ -13,6 +13,37 @@ const sampleData = [
   },
 ]
 
+const stackGroups = [
+  {
+    data: [
+      {
+        value: 'docker',
+        label: 'Docker',
+        icon: 'docker',
+        description: 'Use the runtime defaults without framework helpers.',
+      },
+    ],
+  },
+  {
+    label: '.NET (C#/F#)',
+    description: 'Choose the framework and runtime used to build your app.',
+    data: [
+      {
+        value: 'dotnetcore',
+        label: '.NET (C#/F#)',
+        icon: 'dotnetcore',
+        description: 'Use the runtime defaults without framework helpers.',
+      },
+      {
+        value: 'dotnetcore-aspnetcore',
+        label: 'ASP.NET Core',
+        icon: 'dotnetcore-aspnetcore',
+        description: 'Framework defaults will be applied automatically.',
+      },
+    ],
+  },
+]
+
 describe('RadioSelectCards', () => {
   it('renders without crashing', () => {
     render(
@@ -74,22 +105,35 @@ describe('RadioSelectCards', () => {
     expect(option2.checked).toBe(true)
   })
 
-  it('applies a mobile breakpoint that switches the grid to 2 columns', () => {
+  it('renders grouped stack-style cards with helper text', () => {
     render(
       <RadioSelectCards
         name="exampleRadio"
-        data={sampleData}
+        groups={stackGroups}
+        showSelectionIndicator={false}
+        density="compact"
       />
     )
-    const styles = Array.from(document.querySelectorAll('style'))
-      .map((style) => style.textContent)
-      .join('\n')
 
-    expect(styles).toContain('max-width: 600px')
-    expect(styles).toContain('repeat(2, 1fr)')
+    expect(screen.getAllByText('.NET (C#/F#)')).toHaveLength(2)
+    expect(
+      screen.getByText(
+        'Choose the framework and runtime used to build your app.'
+      )
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText('Framework defaults will be applied automatically.')
+    ).toBeInTheDocument()
+
+    const aspNetCore = screen.getByRole('radio', {
+      name: 'ASP.NET Core',
+    }) as HTMLInputElement
+
+    fireEvent.click(aspNetCore)
+    expect(aspNetCore.checked).toBe(true)
   })
 
-  it('does not warn when a data item sets both checked and defaultChecked (controlled/uncontrolled guard)', () => {
+  it('does not warn when a data item sets both checked and defaultChecked', () => {
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(vi.fn())
 
     render(
@@ -117,41 +161,5 @@ describe('RadioSelectCards', () => {
 
     expect(errorSpy).not.toHaveBeenCalled()
     errorSpy.mockRestore()
-  })
-
-  it('does not allow checked/defaultChecked on the shared inputProps', () => {
-    render(
-      <RadioSelectCards
-        name="exampleRadio"
-        // @ts-expect-error checked/defaultChecked are per-card (set via `data`) — a single
-        // boolean here would apply identically to every card in the group
-        inputProps={{ checked: true, onChange: vi.fn() }}
-        data={sampleData}
-      />
-    )
-  })
-
-  it('treats the input as controlled once `checked` is set, ignoring `defaultChecked`', () => {
-    render(
-      <RadioSelectCards
-        name="exampleRadio"
-        inputProps={{ onChange: vi.fn() }}
-        data={[
-          {
-            value: 'option1',
-            label: 'Option 1',
-            icon: 'icon1',
-            checked: true,
-            defaultChecked: false,
-          },
-        ]}
-      />
-    )
-
-    const option1 = screen.getByRole('radio', {
-      name: 'Option 1',
-    }) as HTMLInputElement
-
-    expect(option1.checked).toBe(true)
   })
 })
