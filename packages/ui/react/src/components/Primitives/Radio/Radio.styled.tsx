@@ -40,13 +40,15 @@ type RadioItemProps = {
   error: boolean
 } & FormControlLabelProps
 
-const handleDisabledErrorColorSelected = (props: RadioItemProps) => {
+type RadioItemState = Pick<RadioItemProps, 'disabled' | 'error'>
+
+const handleDisabledErrorColorSelected = (props: RadioItemState) => {
   if (props.disabled) return getColor('slate.300')
   if (props.error) return getColor('red.500')
   return getColor('purple.800')
 }
 
-const handleDisabledErrorColorUnselected = (props: RadioItemProps) => {
+const handleDisabledErrorColorUnselected = (props: RadioItemState) => {
   if (props.disabled) return getColor('slate.300')
   if (props.error) return getColor('red.500')
   return getColor('slate.450')

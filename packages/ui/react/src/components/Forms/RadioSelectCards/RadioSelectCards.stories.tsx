@@ -9,10 +9,7 @@ const meta: Meta<typeof RadioSelectCards> = {
     data: { control: 'object' },
     density: {
       control: 'radio',
-      options: [
-        'default',
-        'compact',
-      ],
+      options: ['default', 'compact'],
     },
     error: { control: 'text' },
     groups: { control: 'object' },
@@ -21,9 +18,7 @@ const meta: Meta<typeof RadioSelectCards> = {
     showSelectionIndicator: { control: 'boolean' },
     style: { control: 'object' },
   },
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
 }
 
 type Story = StoryObj<typeof RadioSelectCards>

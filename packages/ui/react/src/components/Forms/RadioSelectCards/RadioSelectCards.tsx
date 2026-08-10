@@ -101,10 +101,7 @@ type RadioSelectCardsProps = Unwrap<
     }
 >
 
-type RadioSelectCardsInputProps = Omit<
-  RadioSelectCardsItemInputProps,
-  'checked' | 'defaultChecked'
->
+type RadioSelectCardsInputProps = RadioSelectCardsItemInputProps
 
 type RadioSelectCardsOptionProps = RadioSelectCardsItem & {
   $density: RadioSelectCardsDensity
@@ -133,14 +130,10 @@ const RadioSelectCard = ({
   const titleId = `${inputId}-title`
   const descriptionId = description ? `${inputId}-description` : undefined
   const metaId = meta ? `${inputId}-meta` : undefined
-  const ariaDescribedBy = [
-    descriptionId,
-    metaId,
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const ariaDescribedBy = [descriptionId, metaId].filter(Boolean).join(' ')
 
-  const resolvedChecked = sharedInputProps?.checked ?? inputProps?.checked ?? checked
+  const resolvedChecked =
+    sharedInputProps?.checked ?? inputProps?.checked ?? checked
   const resolvedDefaultChecked =
     sharedInputProps?.defaultChecked ??
     inputProps?.defaultChecked ??
