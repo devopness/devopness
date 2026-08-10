@@ -129,7 +129,10 @@ type RadioSelectCardsProps = Unwrap<
     }
 >
 
-type RadioSelectCardsInputProps = RadioSelectCardsItemInputProps
+type RadioSelectCardsInputProps = Omit<
+  RadioSelectCardsItemInputProps,
+  'checked' | 'defaultChecked'
+>
 
 type RadioSelectCardsOptionProps = RadioSelectCardsItem & {
   inputId: string
@@ -151,14 +154,18 @@ const RadioSelectCard = ({
   inputId,
   name,
   value,
+  checked,
+  defaultChecked,
+  disabled,
   inputProps,
   sharedInputProps,
 }: RadioSelectCardsOptionProps) => {
-  const resolvedChecked = sharedInputProps?.checked ?? inputProps?.checked
-  const resolvedDefaultChecked =
-    sharedInputProps?.defaultChecked ?? inputProps?.defaultChecked
+  const resolvedChecked = inputProps?.checked ?? checked
+  const resolvedDefaultChecked = inputProps?.defaultChecked ?? defaultChecked
   const isControlled = resolvedChecked !== undefined
-  const isDisabled = Boolean(sharedInputProps?.disabled ?? inputProps?.disabled)
+  const isDisabled = Boolean(
+    sharedInputProps?.disabled ?? inputProps?.disabled ?? disabled
+  )
 
   return (
     <StyledLabel htmlFor={inputId}>
@@ -214,12 +221,8 @@ const GalleryRadioSelectCard = ({
   const metaId = meta ? `${inputId}-meta` : undefined
   const ariaDescribedBy = [descriptionId, metaId].filter(Boolean).join(' ')
 
-  const resolvedChecked =
-    sharedInputProps?.checked ?? inputProps?.checked ?? checked
-  const resolvedDefaultChecked =
-    sharedInputProps?.defaultChecked ??
-    inputProps?.defaultChecked ??
-    defaultChecked
+  const resolvedChecked = inputProps?.checked ?? checked
+  const resolvedDefaultChecked = inputProps?.defaultChecked ?? defaultChecked
   const isControlled = resolvedChecked !== undefined
   const isDisabled = Boolean(
     sharedInputProps?.disabled ?? inputProps?.disabled ?? disabled
