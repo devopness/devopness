@@ -32,7 +32,7 @@ const sampleData = [
   },
 ]
 
-const sampleStackGroups = [
+const sampleGroupedGroups = [
   {
     data: [
       {
@@ -96,14 +96,14 @@ const Loading: Story = {
   },
 }
 
-const StackGallery: Story = {
+const GroupedCards: Story = {
   args: {
     name: 'stackGallery',
     density: 'compact',
-    groups: sampleStackGroups,
+    groups: sampleGroupedGroups,
     showSelectionIndicator: false,
   },
 }
 
 export default meta
-export { Default, Loading, StackGallery, WithError }
+export { Default, GroupedCards, Loading, WithError }

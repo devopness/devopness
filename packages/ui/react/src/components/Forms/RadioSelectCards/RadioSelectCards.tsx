@@ -84,6 +84,10 @@ type RadioSelectCardsGroup = {
 
 /**
  * Props for the RadioSelectCards component.
+ *
+ * The component renders one of two presentations:
+ * - Default square radio cards when `groups` is not provided.
+ * - Grouped gallery cards when `groups` is provided.
  */
 type RadioSelectCardsProps = Unwrap<
   {
@@ -91,16 +95,31 @@ type RadioSelectCardsProps = Unwrap<
   } & {
     inputProps?: RadioSelectCardsInputProps
   } & Pick<React.HTMLAttributes<HTMLDivElement>, 'style'> & {
-      /** Flat list of cards for the legacy radio-group presentation. Ignored when `groups` is provided. */
+      /**
+       * Flat list of cards for the default square radio presentation.
+       *
+       * Use this when you want a single ungrouped set of radio cards.
+       * It is ignored when `groups` is provided.
+       */
       data?: RadioSelectCardsItem[]
       /**
-       * Grouped sections for the denser gallery presentation.
-       * When provided, the component renders grouped cards and `data` is ignored.
+       * Grouped sections for the gallery presentation.
+       *
+       * When provided, the component renders grouped cards and ignores `data`.
+       * When omitted, the component renders the default flat square radio cards from `data`.
        */
       groups?: RadioSelectCardsGroup[]
-      /** Compact spacing for the grouped gallery presentation. Has no effect in the legacy flat layout. */
+      /**
+       * Compact spacing for the grouped gallery presentation.
+       *
+       * This has no effect in the default flat layout.
+       */
       density?: RadioSelectCardsDensity
-      /** Whether to display the native radio indicator in the grouped gallery presentation. Defaults to `true`. */
+      /**
+       * Whether to display the native radio indicator in the grouped gallery presentation.
+       *
+       * Defaults to `true`. This only affects the grouped gallery presentation.
+       */
       showSelectionIndicator?: boolean
       /** Loader state */
       isLoading?: boolean

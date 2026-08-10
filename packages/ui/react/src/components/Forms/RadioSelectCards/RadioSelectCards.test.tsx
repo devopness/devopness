@@ -13,7 +13,7 @@ const sampleData = [
   },
 ]
 
-const stackGroups = [
+const groupedStackGroups = [
   {
     data: [
       {
@@ -105,11 +105,11 @@ describe('RadioSelectCards', () => {
     expect(option2.checked).toBe(true)
   })
 
-  it('renders grouped stack-style cards with helper text', () => {
+  it('renders grouped gallery cards with helper text', () => {
     render(
       <RadioSelectCards
         name="exampleRadio"
-        groups={stackGroups}
+        groups={groupedStackGroups}
         showSelectionIndicator={false}
         density="compact"
       />
@@ -133,7 +133,7 @@ describe('RadioSelectCards', () => {
     expect(aspNetCore.checked).toBe(true)
   })
 
-  it('keeps the legacy square layout by default', () => {
+  it('keeps the default square layout by default', () => {
     render(
       <RadioSelectCards
         name="exampleRadio"
