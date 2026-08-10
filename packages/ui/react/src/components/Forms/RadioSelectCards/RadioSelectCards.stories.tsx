@@ -39,25 +39,21 @@ const sampleGroupedGroups = [
         value: 'docker',
         label: 'Docker',
         icon: 'docker',
-        description: 'Use the runtime defaults without framework helpers.',
       },
     ],
   },
   {
     label: '.NET (C#/F#)',
-    description: 'Choose the framework and runtime used to build your app.',
     data: [
       {
         value: 'dotnetcore',
         label: '.NET (C#/F#)',
         icon: 'dotnetcore',
-        description: 'Use the runtime defaults without framework helpers.',
       },
       {
         value: 'dotnetcore-aspnetcore',
         label: 'ASP.NET Core',
         icon: 'dotnetcore-aspnetcore',
-        description: 'Framework defaults will be applied automatically.',
       },
     ],
   },
@@ -67,7 +63,90 @@ const sampleGroupedGroups = [
         value: 'html',
         label: 'HTML (static)',
         icon: 'html',
-        description: 'Use the runtime defaults without framework helpers.',
+      },
+    ],
+  },
+  {
+    data: [
+      {
+        value: 'java',
+        label: 'Java',
+        icon: 'java',
+      },
+    ],
+  },
+  {
+    label: 'Node.js',
+    data: [
+      {
+        value: 'nodejs',
+        label: 'Node.js',
+        icon: 'nodejs',
+      },
+      {
+        value: 'nodejs-nextjs',
+        label: 'Next.js',
+        icon: 'nodejs-nextjs',
+      },
+    ],
+  },
+  {
+    label: 'PHP',
+    data: [
+      {
+        value: 'php',
+        label: 'PHP',
+        icon: 'php',
+      },
+      {
+        value: 'php-laravel',
+        label: 'Laravel',
+        icon: 'php-laravel',
+      },
+    ],
+  },
+  {
+    label: 'Python',
+    data: [
+      {
+        value: 'python',
+        label: 'Python',
+        icon: 'python',
+      },
+      {
+        value: 'python-django',
+        label: 'Django',
+        icon: 'python-django',
+      },
+      {
+        value: 'python-fastapi',
+        label: 'FastAPI',
+        icon: 'python-fastapi',
+      },
+      {
+        value: 'python-fastmcp',
+        label: 'FastMCP',
+        icon: 'python-fastmcp',
+      },
+      {
+        value: 'python-flask',
+        label: 'Flask',
+        icon: 'python-flask',
+      },
+    ],
+  },
+  {
+    label: 'Ruby',
+    data: [
+      {
+        value: 'ruby',
+        label: 'Ruby',
+        icon: 'ruby',
+      },
+      {
+        value: 'ruby-rails',
+        label: 'Ruby on Rails',
+        icon: 'ruby-rails',
       },
     ],
   },

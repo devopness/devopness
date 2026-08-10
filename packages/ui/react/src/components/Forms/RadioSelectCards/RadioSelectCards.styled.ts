@@ -149,19 +149,22 @@ const getCardGap = (density: Density) =>
   density === 'compact' ? '0.5rem' : '0.75rem'
 
 const getGridGap = (density: Density) =>
-  density === 'compact' ? '0.75rem' : '1rem'
+  density === 'compact' ? '0.5rem' : '0.75rem'
 
 const getGridMinWidth = (density: Density) =>
-  density === 'compact' ? '14rem' : '10rem'
+  density === 'compact' ? '12.5rem' : '10rem'
 
 const getIconSize = (density: Density) =>
   density === 'compact' ? '2.5rem' : '2.75rem'
 
-const StyledCardsRoot = styled.div`
+const StyledCardsRoot = styled.div<{ $error?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   width: 100%;
+  border: ${({ $error }) =>
+    $error ? `1px solid ${getColor('red.500')}` : '1px solid transparent'};
+  border-radius: 1rem;
 `
 
 const StyledCardsLoader = styled.div`
@@ -171,7 +174,7 @@ const StyledCardsLoader = styled.div`
   width: 100%;
 `
 
-const StyledCardsGrid = styled.div<{ $density: Density; $error?: boolean }>`
+const StyledCardsGrid = styled.div<{ $density: Density }>`
   display: grid;
   gap: ${({ $density }) => getGridGap($density)};
   grid-template-columns: repeat(
@@ -179,47 +182,34 @@ const StyledCardsGrid = styled.div<{ $density: Density; $error?: boolean }>`
     minmax(${({ $density }) => getGridMinWidth($density)}, 1fr)
   );
   width: 100%;
-  border: ${({ $error }) =>
-    $error ? `1px solid ${getColor('red.500')}` : '1px solid transparent'};
-  border-radius: 1rem;
 `
 
 const StyledCardsSection = styled.section<{
   $density: Density
-  $error?: boolean
 }>`
   display: flex;
   flex-direction: column;
   gap: ${({ $density }) => getGridGap($density)};
-  padding: ${({ $density }) => ($density === 'compact' ? '0.875rem' : '1rem')};
-  border: ${({ $error }) =>
-    $error
-      ? `1px solid ${getColor('red.500')}`
-      : `1px solid ${getColor('slate.300')}`};
-  border-radius: 1rem;
-  background:
-    linear-gradient(180deg, rgba(248, 250, 252, 0.92), rgba(255, 255, 255, 1)),
-    #fff;
   width: 100%;
 `
 
 const StyledCardsSectionHeader = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.125rem;
 `
 
 const StyledCardsSectionTitle = styled.span`
-  font-family: ${getFont('roboto')};
-  font-size: 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
   line-height: 1.25;
   font-weight: 700;
-  color: ${getColor('blue.950')};
+  color: ${getColor('slate.600')};
 `
 
 const StyledCardsSectionDescription = styled.span`
-  font-family: ${getFont('roboto')};
-  font-size: 0.875rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
   line-height: 1.45;
   color: ${getColor('slate.400')};
 `
@@ -238,6 +228,7 @@ const StyledCardLabel = styled.label<{
   border-radius: 1rem;
   border: 1px solid ${getColor('slate.300')};
   background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
   box-sizing: border-box;
   cursor: pointer;
   color: ${getColor('blue.950')};
@@ -272,7 +263,7 @@ const StyledCardLabel = styled.label<{
 
 const StyledCardHeader = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
   min-width: 0;
@@ -280,7 +271,7 @@ const StyledCardHeader = styled.div`
 
 const StyledCardLead = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.75rem;
   min-width: 0;
   flex: 1;
@@ -313,7 +304,7 @@ const StyledCardText = styled.div`
 
 const StyledCardTitle = styled.span`
   font-family: ${getFont('roboto')};
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.25;
   font-weight: 700;
   color: ${getColor('blue.950')};

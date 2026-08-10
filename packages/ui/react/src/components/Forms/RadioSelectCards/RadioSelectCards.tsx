@@ -346,7 +346,10 @@ const RadioSelectCards = ({
 
   return (
     <>
-      <StyledCardsRoot style={style}>
+      <StyledCardsRoot
+        $error={Boolean(error)}
+        style={style}
+      >
         {sections.map((section, sectionIndex) => {
           const shouldRenderSectionShell =
             isDefined(section.label) ||
@@ -364,7 +367,6 @@ const RadioSelectCards = ({
               <StyledCardsGrid
                 key={sectionKey}
                 $density={density}
-                $error={Boolean(error)}
               >
                 <GalleryRadioSelectCard
                   {...item}
@@ -382,7 +384,6 @@ const RadioSelectCards = ({
             <StyledCardsSection
               key={sectionKey}
               $density={density}
-              $error={Boolean(error)}
             >
               {isDefined(section.label) || isDefined(section.description) ? (
                 <StyledCardsSectionHeader>
