@@ -127,10 +127,12 @@ const BaseIconButton = styled.button<StyledProps>`
         &:hover:enabled {
           filter: none;
           background-color: ${resolved.hoverBackgroundColor};
-          ${hasBorder &&
-          css`
-            border-color: ${resolved.hoverBorderColor};
-          `}
+          ${
+            hasBorder &&
+            css`
+              border-color: ${resolved.hoverBorderColor};
+            `
+          }
         }
       }
 
