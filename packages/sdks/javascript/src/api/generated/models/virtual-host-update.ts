@@ -32,7 +32,7 @@ export interface VirtualHostUpdate {
      */
     name: string;
     /**
-     * The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.
+     * The document root location to be served for this virtual host. When the virtual host is linked to an application, the value must be a relative path within that application directory. When no application is linked, the value must be an absolute path. Must start with one of <code>/</code> Must not be greater than 255 characters.
      * @type {string}
      * @memberof VirtualHostUpdate
      */
@@ -44,7 +44,7 @@ export interface VirtualHostUpdate {
      */
     application_listen_address?: string | null;
     /**
-     * The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.
+     * The ID of the application to be associated with the virtual host. When set, the value of `root_directory` will be relative to this application directory.
      * @type {number}
      * @memberof VirtualHostUpdate
      */

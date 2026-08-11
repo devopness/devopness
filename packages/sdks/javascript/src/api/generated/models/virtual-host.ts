@@ -55,7 +55,7 @@ export interface VirtualHost {
      */
     application: ApplicationRelation | null;
     /**
-     * The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host
+     * The document root location served by this virtual host. When the virtual host is linked to an application, the value is relative to that application directory. When no application is linked, the value is an absolute path
      * @type {string}
      * @memberof VirtualHost
      */
