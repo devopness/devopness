@@ -7,21 +7,148 @@ const meta: Meta<typeof RadioSelectCards> = {
   component: RadioSelectCards,
   argTypes: {
     data: { control: 'object' },
-    isLoading: { control: 'boolean' },
+    density: {
+      control: 'radio',
+      options: ['default', 'compact'],
+    },
     error: { control: 'text' },
+    groups: { control: 'object' },
+    isLoading: { control: 'boolean' },
     name: { control: 'text' },
+    showSelectionIndicator: { control: 'boolean' },
     style: { control: 'object' },
   },
+  tags: ['autodocs'],
 }
 
 type Story = StoryObj<typeof RadioSelectCards>
 
 const sampleData = [
-  { value: 'Gitlab', label: 'gitlab', icon: 'gitlab' },
+  { value: 'gitlab', label: 'GitLab', icon: 'gitlab' },
   {
-    value: 'Github',
-    label: 'github',
+    value: 'github',
+    label: 'GitHub',
     icon: { name: 'github', color: 'blue' },
+  },
+]
+
+const sampleGroupedGroups = [
+  {
+    data: [
+      {
+        value: 'docker',
+        label: 'Docker',
+        icon: 'docker',
+      },
+    ],
+  },
+  {
+    label: '.NET (C#/F#)',
+    data: [
+      {
+        value: 'dotnetcore',
+        label: '.NET (C#/F#)',
+        icon: 'dotnetcore',
+      },
+      {
+        value: 'dotnetcore-aspnetcore',
+        label: 'ASP.NET Core',
+        icon: 'dotnetcore-aspnetcore',
+      },
+    ],
+  },
+  {
+    data: [
+      {
+        value: 'html',
+        label: 'HTML (static)',
+        icon: 'html',
+      },
+    ],
+  },
+  {
+    data: [
+      {
+        value: 'java',
+        label: 'Java',
+        icon: 'java',
+      },
+    ],
+  },
+  {
+    label: 'Node.js',
+    data: [
+      {
+        value: 'nodejs',
+        label: 'Node.js',
+        icon: 'nodejs',
+      },
+      {
+        value: 'nodejs-nextjs',
+        label: 'Next.js',
+        icon: 'nodejs-nextjs',
+      },
+    ],
+  },
+  {
+    label: 'PHP',
+    data: [
+      {
+        value: 'php',
+        label: 'PHP',
+        icon: 'php',
+      },
+      {
+        value: 'php-laravel',
+        label: 'Laravel',
+        icon: 'php-laravel',
+      },
+    ],
+  },
+  {
+    label: 'Python',
+    data: [
+      {
+        value: 'python',
+        label: 'Python',
+        icon: 'python',
+      },
+      {
+        value: 'python-django',
+        label: 'Django',
+        icon: 'python-django',
+      },
+      {
+        value: 'python-fastapi',
+        label: 'FastAPI',
+        icon: 'python-fastapi',
+      },
+      {
+        value: 'python-fastmcp',
+        label: 'FastMCP',
+        icon: 'python-fastmcp',
+      },
+      {
+        value: 'python-flask',
+        label: 'Flask',
+        icon: 'python-flask',
+      },
+    ],
+  },
+  {
+    label: 'Ruby',
+    data: [
+      {
+        value: 'ruby',
+        label: 'Ruby',
+        icon: 'ruby',
+      },
+      {
+        value: 'ruby-rails',
+        label: 'Ruby on Rails',
+        icon: 'ruby-rails',
+      },
+    ],
   },
 ]
 
@@ -48,5 +175,22 @@ const Loading: Story = {
   },
 }
 
+const GroupedCards: Story = {
+  args: {
+    name: 'stackGallery',
+    density: 'compact',
+    groups: sampleGroupedGroups,
+    showSelectionIndicator: false,
+    style: {
+      margin: '0 auto',
+      maxWidth: '72rem',
+      width: '100%',
+    },
+  },
+  parameters: {
+    layout: 'padded',
+  },
+}
+
 export default meta
-export { Default, WithError, Loading }
+export { Default, GroupedCards, Loading, WithError }
