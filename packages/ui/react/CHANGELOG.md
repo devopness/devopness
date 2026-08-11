@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.198.0
+
+### Minor Changes
+
+- [#3441](https://github.com/devopness/devopness/pull/3441) [`b822d99`](https://github.com/devopness/devopness/commit/b822d99ce4b9da426bd6cff33ed7414674c0e5ef) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Improve `RadioSelectCards` RadioSelectCards component to allow grouped items with and without radio select button visible
+
 ## 2.197.0
 
 ### Minor Changes
