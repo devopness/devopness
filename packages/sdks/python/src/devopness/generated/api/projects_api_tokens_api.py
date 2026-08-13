@@ -37,6 +37,10 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
         """
         Create a new API token for specific project.
 
+        Attributes:
+            project_id (int): The ID of the project.
+            api_token_project_create (Union[ApiTokenProjectCreate, ApiTokenProjectCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +62,10 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
     ) -> DevopnessResponse[ApiToken]:
         """
         Get details of a specific project API token.
+
+        Attributes:
+            project_id (int): The ID of the project.
+            token_id (str): The ID of the token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -82,6 +90,11 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
         """
         List the API tokens of specific project.
 
+        Attributes:
+            project_id (int): The ID of the project.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -96,7 +109,7 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/projects/{project_id}/tokens",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -111,6 +124,10 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Revoke a specific project API token.
+
+        Attributes:
+            project_id (int): The ID of the project.
+            token_id (str): The ID of the token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -137,6 +154,11 @@ class ProjectsAPITokensApiService(DevopnessBaseService):
     ) -> DevopnessResponse[ApiTokenRotateResponse]:
         """
         Rotate a specific project API token.
+
+        Attributes:
+            project_id (int): The ID of the project.
+            token_id (str): The ID of the token.
+            api_token_project_rotate (Union[ApiTokenProjectRotate, ApiTokenProjectRotatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -169,6 +191,10 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new API token for specific project.
 
+        Attributes:
+            project_id (int): The ID of the project.
+            api_token_project_create (Union[ApiTokenProjectCreate, ApiTokenProjectCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -190,6 +216,10 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[ApiToken]:
         """
         Get details of a specific project API token.
+
+        Attributes:
+            project_id (int): The ID of the project.
+            token_id (str): The ID of the token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -214,6 +244,11 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List the API tokens of specific project.
 
+        Attributes:
+            project_id (int): The ID of the project.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -228,7 +263,7 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/projects/{project_id}/tokens",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -243,6 +278,10 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Revoke a specific project API token.
+
+        Attributes:
+            project_id (int): The ID of the project.
+            token_id (str): The ID of the token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -269,6 +308,11 @@ class ProjectsAPITokensApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[ApiTokenRotateResponse]:
         """
         Rotate a specific project API token.
+
+        Attributes:
+            project_id (int): The ID of the project.
+            token_id (str): The ID of the token.
+            api_token_project_rotate (Union[ApiTokenProjectRotate, ApiTokenProjectRotatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

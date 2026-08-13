@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { HookRelation } from '../../generated/models';
 
 /**
@@ -32,17 +33,12 @@ export class ApplicationsHooksApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationId', 'listApplicationHooks');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/applications/{application_id}/hooks' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/applications/{application_id}/hooks' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<HookRelation>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);

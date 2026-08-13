@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Role } from '../../generated/models';
 import { RoleOrganizationCreate } from '../../generated/models';
@@ -34,13 +35,12 @@ export class RolesApiService extends ApiBaseService {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'addOrganizationRole');
         }
+
         if (roleOrganizationCreate === null || roleOrganizationCreate === undefined) {
             throw new ArgumentNullException('roleOrganizationCreate', 'addOrganizationRole');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}/roles' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/roles';
 
         const response = await this.post <Role, RoleOrganizationCreate>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))), roleOrganizationCreate);
         return new ApiResponse(response);
@@ -56,9 +56,7 @@ export class RolesApiService extends ApiBaseService {
             throw new ArgumentNullException('roleId', 'deleteRole');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/roles/{role_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/roles/{role_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"role_id"}}`, encodeURIComponent(String(roleId))));
         return new ApiResponse(response);
@@ -74,9 +72,7 @@ export class RolesApiService extends ApiBaseService {
             throw new ArgumentNullException('roleId', 'getRole');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/roles/{role_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/roles/{role_id}';
 
         const response = await this.get <Role>(requestUrl.replace(`{${"role_id"}}`, encodeURIComponent(String(roleId))));
         return new ApiResponse(response);
@@ -94,17 +90,12 @@ export class RolesApiService extends ApiBaseService {
             throw new ArgumentNullException('organizationId', 'listOrganizationRoles');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/organizations/{organization_id}/roles' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/roles' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<RoleRelation>>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
         return new ApiResponse(response);
@@ -120,13 +111,12 @@ export class RolesApiService extends ApiBaseService {
         if (roleId === null || roleId === undefined) {
             throw new ArgumentNullException('roleId', 'updateRole');
         }
+
         if (roleUpdate === null || roleUpdate === undefined) {
             throw new ArgumentNullException('roleUpdate', 'updateRole');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/roles/{role_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/roles/{role_id}';
 
         const response = await this.put <void, RoleUpdate>(requestUrl.replace(`{${"role_id"}}`, encodeURIComponent(String(roleId))), roleUpdate);
         return new ApiResponse(response);

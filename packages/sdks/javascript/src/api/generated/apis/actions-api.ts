@@ -14,10 +14,12 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { Action } from '../../generated/models';
 import { ActionRelation } from '../../generated/models';
 import { ActionRetryResponse } from '../../generated/models';
 import { ApiError } from '../../generated/models';
+import { ListActionsFilterParameter } from '../../generated/models';
 
 /**
  * ActionsApiService - Auto-generated
@@ -33,9 +35,7 @@ export class ActionsApiService extends ApiBaseService {
             throw new ArgumentNullException('actionId', 'getAction');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/actions/{action_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/actions/{action_id}';
 
         const response = await this.get <Action>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
         return new ApiResponse(response);
@@ -46,20 +46,16 @@ export class ActionsApiService extends ApiBaseService {
      * @summary Return a list of all actions belonging to current user
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {ListActionsFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
      */
-    public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+    public async listActions(page?: number, perPage?: number, filter?: ListActionsFilterParameter): Promise<ApiResponse<Array<ActionRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'filter': filter,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/actions' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/actions' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ActionRelation>>(requestUrl);
         return new ApiResponse(response);
@@ -77,21 +73,17 @@ export class ActionsApiService extends ApiBaseService {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'listActionsByResourceType');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listActionsByResourceType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/actions/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/actions/{resource_type}/{resource_id}' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
@@ -109,21 +101,17 @@ export class ActionsApiService extends ApiBaseService {
         if (targetResourceId === null || targetResourceId === undefined) {
             throw new ArgumentNullException('targetResourceId', 'listActionsByTargetResourceType');
         }
+
         if (targetResourceType === null || targetResourceType === undefined) {
             throw new ArgumentNullException('targetResourceType', 'listActionsByTargetResourceType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/actions/targets/{target_resource_type}/{target_resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/actions/targets/{target_resource_type}/{target_resource_id}' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"target_resource_id"}}`, encodeURIComponent(String(targetResourceId))).replace(`{${"target_resource_type"}}`, encodeURIComponent(String(targetResourceType))));
         return new ApiResponse(response);
@@ -139,9 +127,7 @@ export class ActionsApiService extends ApiBaseService {
             throw new ArgumentNullException('actionId', 'retryAction');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/actions/{action_id}/retry' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/actions/{action_id}/retry';
 
         const response = await this.post <ActionRetryResponse>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))));
         return new ApiResponse(response);

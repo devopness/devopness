@@ -23,6 +23,10 @@ class TeamInvitationsApiService(DevopnessBaseService):
         """
         Accept a team invitation
 
+        Attributes:
+            team_invitation_id (str): The ID of the team invitation.
+            token (Optional[str]): The token to authorize the acceptance of public invitations.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -36,7 +40,7 @@ class TeamInvitationsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/team-invitations/{team_invitation_id}/accept",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -50,6 +54,9 @@ class TeamInvitationsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a pending team invitation
+
+        Attributes:
+            team_invitation_id (str): The ID of the team invitation.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -71,6 +78,9 @@ class TeamInvitationsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Reject a pending private team invitation
+
+        Attributes:
+            team_invitation_id (str): The ID of the team invitation.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -100,6 +110,10 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Accept a team invitation
 
+        Attributes:
+            team_invitation_id (str): The ID of the team invitation.
+            token (Optional[str]): The token to authorize the acceptance of public invitations.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -113,7 +127,7 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/team-invitations/{team_invitation_id}/accept",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -127,6 +141,9 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a pending team invitation
+
+        Attributes:
+            team_invitation_id (str): The ID of the team invitation.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -148,6 +165,9 @@ class TeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Reject a pending private team invitation
+
+        Attributes:
+            team_invitation_id (str): The ID of the team invitation.
 
         Raises:
             DevopnessApiError: If an API request error occurs.

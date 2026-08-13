@@ -6,8 +6,16 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import ActionRelation
+from ..models import (
+    ActionRelation,
+    ListEnvironmentActionsByResourceTypeFilterParameter,
+    ListEnvironmentActionsByResourceTypeFilterParameterPlain,
+    ListEnvironmentActionsFilterParameter,
+    ListEnvironmentActionsFilterParameterPlain,
+)
 from ..utils import parse_query_string
 
 
@@ -21,9 +29,20 @@ class EnvironmentsActionsApiService(DevopnessBaseService):
         environment_id: int,
         page: int | None = None,
         per_page: int | None = None,
+        filter: Union[
+            ListEnvironmentActionsFilterParameter,
+            ListEnvironmentActionsFilterParameterPlain,
+        ]
+        | None = None,
     ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List environment actions
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            filter (Optional[Union[ListEnvironmentActionsFilterParameter, ListEnvironmentActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -34,12 +53,13 @@ class EnvironmentsActionsApiService(DevopnessBaseService):
             {
                 "page": page,
                 "per_page": per_page,
+                "filter": filter,
             }
         )
 
         endpoint_parts = [
             f"/environments/{environment_id}/actions",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -53,9 +73,21 @@ class EnvironmentsActionsApiService(DevopnessBaseService):
         resource_type: str,
         page: int | None = None,
         per_page: int | None = None,
+        filter: Union[
+            ListEnvironmentActionsByResourceTypeFilterParameter,
+            ListEnvironmentActionsByResourceTypeFilterParameterPlain,
+        ]
+        | None = None,
     ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List environment actions of a resource type
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            resource_type (str): The resource type to get related actions.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            filter (Optional[Union[ListEnvironmentActionsByResourceTypeFilterParameter, ListEnvironmentActionsByResourceTypeFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -66,12 +98,13 @@ class EnvironmentsActionsApiService(DevopnessBaseService):
             {
                 "page": page,
                 "per_page": per_page,
+                "filter": filter,
             }
         )
 
         endpoint_parts = [
             f"/environments/{environment_id}/actions/{resource_type}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -90,9 +123,20 @@ class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
         environment_id: int,
         page: int | None = None,
         per_page: int | None = None,
+        filter: Union[
+            ListEnvironmentActionsFilterParameter,
+            ListEnvironmentActionsFilterParameterPlain,
+        ]
+        | None = None,
     ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List environment actions
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            filter (Optional[Union[ListEnvironmentActionsFilterParameter, ListEnvironmentActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -103,12 +147,13 @@ class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
             {
                 "page": page,
                 "per_page": per_page,
+                "filter": filter,
             }
         )
 
         endpoint_parts = [
             f"/environments/{environment_id}/actions",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -122,9 +167,21 @@ class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
         resource_type: str,
         page: int | None = None,
         per_page: int | None = None,
+        filter: Union[
+            ListEnvironmentActionsByResourceTypeFilterParameter,
+            ListEnvironmentActionsByResourceTypeFilterParameterPlain,
+        ]
+        | None = None,
     ) -> DevopnessResponse[list[ActionRelation]]:
         """
         List environment actions of a resource type
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            resource_type (str): The resource type to get related actions.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            filter (Optional[Union[ListEnvironmentActionsByResourceTypeFilterParameter, ListEnvironmentActionsByResourceTypeFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -135,12 +192,13 @@ class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
             {
                 "page": page,
                 "per_page": per_page,
+                "filter": filter,
             }
         )
 
         endpoint_parts = [
             f"/environments/{environment_id}/actions/{resource_type}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

@@ -38,6 +38,10 @@ class SSHKeysApiService(DevopnessBaseService):
         """
         Create an SSH key and link it to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            ssh_key_environment_create (Union[SshKeyEnvironmentCreate, SshKeyEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +62,9 @@ class SSHKeysApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given SSH key
+
+        Attributes:
+            ssh_key_id (int): The ID of the ssh key.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -84,6 +91,10 @@ class SSHKeysApiService(DevopnessBaseService):
         """
         Deploy a SSH Key
 
+        Attributes:
+            ssh_key_id (int): The ID of the ssh key.
+            ssh_key_deploy (Union[SshKeyDeploy, SshKeyDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -104,6 +115,9 @@ class SSHKeysApiService(DevopnessBaseService):
     ) -> DevopnessResponse[SshKey]:
         """
         Get a SSH key by ID
+
+        Attributes:
+            ssh_key_id (int): The ID of the ssh key.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -128,6 +142,11 @@ class SSHKeysApiService(DevopnessBaseService):
         """
         Return a list of all SSH keys added to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -142,7 +161,7 @@ class SSHKeysApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/ssh-keys",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -160,6 +179,10 @@ class SSHKeysApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing SSH key
+
+        Attributes:
+            ssh_key_id (int): The ID of the ssh key.
+            ssh_key_update (Union[SshKeyUpdate, SshKeyUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -192,6 +215,10 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create an SSH key and link it to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            ssh_key_environment_create (Union[SshKeyEnvironmentCreate, SshKeyEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -212,6 +239,9 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given SSH key
+
+        Attributes:
+            ssh_key_id (int): The ID of the ssh key.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -238,6 +268,10 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Deploy a SSH Key
 
+        Attributes:
+            ssh_key_id (int): The ID of the ssh key.
+            ssh_key_deploy (Union[SshKeyDeploy, SshKeyDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -258,6 +292,9 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[SshKey]:
         """
         Get a SSH key by ID
+
+        Attributes:
+            ssh_key_id (int): The ID of the ssh key.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -282,6 +319,11 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all SSH keys added to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -296,7 +338,7 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/ssh-keys",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -314,6 +356,10 @@ class SSHKeysApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing SSH key
+
+        Attributes:
+            ssh_key_id (int): The ID of the ssh key.
+            ssh_key_update (Union[SshKeyUpdate, SshKeyUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

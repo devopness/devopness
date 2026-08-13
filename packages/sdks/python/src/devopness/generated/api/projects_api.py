@@ -37,6 +37,10 @@ class ProjectsApiService(DevopnessBaseService):
         """
         Create a project to a given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            project_organization_create (Union[ProjectOrganizationCreate, ProjectOrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -56,6 +60,8 @@ class ProjectsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Project]:
         """
         Create a project for the authenticated user
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -86,6 +92,9 @@ class ProjectsApiService(DevopnessBaseService):
         """
         Delete a given project
 
+        Attributes:
+            project_id (int): The ID of the project.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -106,6 +115,9 @@ class ProjectsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Project]:
         """
         Get a Project by ID
+
+        Attributes:
+            project_id (int): The ID of the project.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -130,6 +142,11 @@ class ProjectsApiService(DevopnessBaseService):
         """
         Return a list of projects
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            owner (Optional[str]): Filter by project&#39;s owner ID or URL Slug. If not provided, projects accessible by currently authenticated user are returned.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -145,7 +162,7 @@ class ProjectsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             "/projects",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -163,6 +180,10 @@ class ProjectsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Project
+
+        Attributes:
+            project_id (int): The ID of the project.
+            project_update (Union[ProjectUpdate, ProjectUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -195,6 +216,10 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a project to a given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            project_organization_create (Union[ProjectOrganizationCreate, ProjectOrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -214,6 +239,8 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Project]:
         """
         Create a project for the authenticated user
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -244,6 +271,9 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given project
 
+        Attributes:
+            project_id (int): The ID of the project.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -264,6 +294,9 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Project]:
         """
         Get a Project by ID
+
+        Attributes:
+            project_id (int): The ID of the project.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -288,6 +321,11 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of projects
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            owner (Optional[str]): Filter by project&#39;s owner ID or URL Slug. If not provided, projects accessible by currently authenticated user are returned.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -303,7 +341,7 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             "/projects",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -321,6 +359,10 @@ class ProjectsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Project
+
+        Attributes:
+            project_id (int): The ID of the project.
+            project_update (Union[ProjectUpdate, ProjectUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

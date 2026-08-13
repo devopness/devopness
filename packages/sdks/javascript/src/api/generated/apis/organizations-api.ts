@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Organization } from '../../generated/models';
 import { OrganizationCreate } from '../../generated/models';
@@ -34,9 +35,7 @@ export class OrganizationsApiService extends ApiBaseService {
             throw new ArgumentNullException('organizationCreate', 'addOrganization');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations';
 
         const response = await this.post <Organization, OrganizationCreate>(requestUrl, organizationCreate);
         return new ApiResponse(response);
@@ -52,9 +51,7 @@ export class OrganizationsApiService extends ApiBaseService {
             throw new ArgumentNullException('organizationId', 'deleteOrganization');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
         return new ApiResponse(response);
@@ -70,9 +67,7 @@ export class OrganizationsApiService extends ApiBaseService {
             throw new ArgumentNullException('organizationId', 'getOrganization');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}';
 
         const response = await this.get <Organization>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
         return new ApiResponse(response);
@@ -85,18 +80,12 @@ export class OrganizationsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listOrganizations(page?: number, perPage?: number): Promise<ApiResponse<Array<OrganizationRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/organizations' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<OrganizationRelation>>(requestUrl);
         return new ApiResponse(response);
@@ -112,13 +101,12 @@ export class OrganizationsApiService extends ApiBaseService {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'updateOrganization');
         }
+
         if (organizationUpdate === null || organizationUpdate === undefined) {
             throw new ArgumentNullException('organizationUpdate', 'updateOrganization');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}';
 
         const response = await this.put <void, OrganizationUpdate>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))), organizationUpdate);
         return new ApiResponse(response);

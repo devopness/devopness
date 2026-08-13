@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Daemon } from '../../generated/models';
 import { DaemonDeploy } from '../../generated/models';
@@ -39,13 +40,12 @@ export class DaemonsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentDaemon');
         }
+
         if (daemonEnvironmentCreate === null || daemonEnvironmentCreate === undefined) {
             throw new ArgumentNullException('daemonEnvironmentCreate', 'addEnvironmentDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/daemons' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/daemons';
 
         const response = await this.post <Daemon, DaemonEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), daemonEnvironmentCreate);
         return new ApiResponse(response);
@@ -61,9 +61,7 @@ export class DaemonsApiService extends ApiBaseService {
             throw new ArgumentNullException('daemonId', 'deleteDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/daemons/{daemon_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
         return new ApiResponse(response);
@@ -79,13 +77,12 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'deployDaemon');
         }
+
         if (daemonDeploy === null || daemonDeploy === undefined) {
             throw new ArgumentNullException('daemonDeploy', 'deployDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/daemons/{daemon_id}/deploy' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/daemons/{daemon_id}/deploy';
 
         const response = await this.post <void, DaemonDeploy>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonDeploy);
         return new ApiResponse(response);
@@ -101,9 +98,7 @@ export class DaemonsApiService extends ApiBaseService {
             throw new ArgumentNullException('daemonId', 'getDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/daemons/{daemon_id}';
 
         const response = await this.get <Daemon>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))));
         return new ApiResponse(response);
@@ -119,13 +114,12 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'getStatusDaemon');
         }
+
         if (daemonGetStatus === null || daemonGetStatus === undefined) {
             throw new ArgumentNullException('daemonGetStatus', 'getStatusDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/daemons/{daemon_id}/get-status' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/daemons/{daemon_id}/get-status';
 
         const response = await this.post <void, DaemonGetStatus>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonGetStatus);
         return new ApiResponse(response);
@@ -143,17 +137,12 @@ export class DaemonsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentDaemons');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/daemons' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/daemons' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<DaemonRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -169,13 +158,12 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'restartDaemon');
         }
+
         if (daemonRestart === null || daemonRestart === undefined) {
             throw new ArgumentNullException('daemonRestart', 'restartDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/daemons/{daemon_id}/restart' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/daemons/{daemon_id}/restart';
 
         const response = await this.post <void, DaemonRestart>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonRestart);
         return new ApiResponse(response);
@@ -191,13 +179,12 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'startDaemon');
         }
+
         if (daemonStart === null || daemonStart === undefined) {
             throw new ArgumentNullException('daemonStart', 'startDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/daemons/{daemon_id}/start' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/daemons/{daemon_id}/start';
 
         const response = await this.post <void, DaemonStart>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonStart);
         return new ApiResponse(response);
@@ -213,13 +200,12 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'stopDaemon');
         }
+
         if (daemonStop === null || daemonStop === undefined) {
             throw new ArgumentNullException('daemonStop', 'stopDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/daemons/{daemon_id}/stop' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/daemons/{daemon_id}/stop';
 
         const response = await this.post <void, DaemonStop>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonStop);
         return new ApiResponse(response);
@@ -235,13 +221,12 @@ export class DaemonsApiService extends ApiBaseService {
         if (daemonId === null || daemonId === undefined) {
             throw new ArgumentNullException('daemonId', 'updateDaemon');
         }
+
         if (daemonUpdate === null || daemonUpdate === undefined) {
             throw new ArgumentNullException('daemonUpdate', 'updateDaemon');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/daemons/{daemon_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/daemons/{daemon_id}';
 
         const response = await this.put <void, DaemonUpdate>(requestUrl.replace(`{${"daemon_id"}}`, encodeURIComponent(String(daemonId))), daemonUpdate);
         return new ApiResponse(response);

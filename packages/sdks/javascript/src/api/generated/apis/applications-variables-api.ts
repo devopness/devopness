@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Variable } from '../../generated/models';
 import { VariableApplicationCreate } from '../../generated/models';
@@ -34,13 +35,12 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
         if (applicationId === null || applicationId === undefined) {
             throw new ArgumentNullException('applicationId', 'addApplicationVariable');
         }
+
         if (variableApplicationCreate === null || variableApplicationCreate === undefined) {
             throw new ArgumentNullException('variableApplicationCreate', 'addApplicationVariable');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/applications/{application_id}/variables';
 
         const response = await this.post <Variable, VariableApplicationCreate>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))), variableApplicationCreate);
         return new ApiResponse(response);
@@ -59,17 +59,12 @@ export class ApplicationsVariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('applicationId', 'listApplicationVariables');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/applications/{application_id}/variables' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/applications/{application_id}/variables' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<VariableRelation>>(requestUrl.replace(`{${"application_id"}}`, encodeURIComponent(String(applicationId))));
         return new ApiResponse(response);

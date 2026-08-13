@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { ApiToken } from '../../generated/models';
 import { ApiTokenProjectCreate } from '../../generated/models';
@@ -35,13 +36,12 @@ export class ProjectsAPITokensApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addProjectApiToken');
         }
+
         if (apiTokenProjectCreate === null || apiTokenProjectCreate === undefined) {
             throw new ArgumentNullException('apiTokenProjectCreate', 'addProjectApiToken');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}/tokens' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/tokens';
 
         const response = await this.post <ApiToken, ApiTokenProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), apiTokenProjectCreate);
         return new ApiResponse(response);
@@ -57,13 +57,12 @@ export class ProjectsAPITokensApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'getProjectApiToken');
         }
+
         if (tokenId === null || tokenId === undefined) {
             throw new ArgumentNullException('tokenId', 'getProjectApiToken');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}/tokens/{token_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/tokens/{token_id}';
 
         const response = await this.get <ApiToken>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))).replace(`{${"token_id"}}`, encodeURIComponent(String(tokenId))));
         return new ApiResponse(response);
@@ -81,17 +80,12 @@ export class ProjectsAPITokensApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectApiTokens');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/projects/{project_id}/tokens' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/tokens' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ApiTokenRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
@@ -107,13 +101,12 @@ export class ProjectsAPITokensApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'revokeProjectApiToken');
         }
+
         if (tokenId === null || tokenId === undefined) {
             throw new ArgumentNullException('tokenId', 'revokeProjectApiToken');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}/tokens/{token_id}/revoke' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/tokens/{token_id}/revoke';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))).replace(`{${"token_id"}}`, encodeURIComponent(String(tokenId))));
         return new ApiResponse(response);
@@ -130,16 +123,16 @@ export class ProjectsAPITokensApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'rotateProjectApiToken');
         }
+
         if (tokenId === null || tokenId === undefined) {
             throw new ArgumentNullException('tokenId', 'rotateProjectApiToken');
         }
+
         if (apiTokenProjectRotate === null || apiTokenProjectRotate === undefined) {
             throw new ArgumentNullException('apiTokenProjectRotate', 'rotateProjectApiToken');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}/tokens/{token_id}/rotate' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/tokens/{token_id}/rotate';
 
         const response = await this.post <ApiTokenRotateResponse, ApiTokenProjectRotate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))).replace(`{${"token_id"}}`, encodeURIComponent(String(tokenId))), apiTokenProjectRotate);
         return new ApiResponse(response);

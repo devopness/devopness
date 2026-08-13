@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Subnet } from '../../generated/models';
 import { SubnetRelation } from '../../generated/models';
@@ -32,9 +33,7 @@ export class SubnetsApiService extends ApiBaseService {
             throw new ArgumentNullException('subnetId', 'deleteSubnet');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/subnets/{subnet_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/subnets/{subnet_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"subnet_id"}}`, encodeURIComponent(String(subnetId))));
         return new ApiResponse(response);
@@ -50,9 +49,7 @@ export class SubnetsApiService extends ApiBaseService {
             throw new ArgumentNullException('subnetId', 'getSubnet');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/subnets/{subnet_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/subnets/{subnet_id}';
 
         const response = await this.get <Subnet>(requestUrl.replace(`{${"subnet_id"}}`, encodeURIComponent(String(subnetId))));
         return new ApiResponse(response);
@@ -70,17 +67,12 @@ export class SubnetsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentSubnets');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/subnets' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/subnets' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<SubnetRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);

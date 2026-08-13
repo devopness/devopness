@@ -22,6 +22,9 @@ class HookRequestsApiService(DevopnessBaseService):
         """
         Get a hook request by ID
 
+        Attributes:
+            hook_request_id (str): The ID of the hook request.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -48,6 +51,9 @@ class HookRequestsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[HookRequest]:
         """
         Get a hook request by ID
+
+        Attributes:
+            hook_request_id (str): The ID of the hook request.
 
         Raises:
             DevopnessApiError: If an API request error occurs.

@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { Action } from '../../generated/models';
 import { ActionPipelineCreate } from '../../generated/models';
 import { ActionRelation } from '../../generated/models';
@@ -33,13 +34,12 @@ export class PipelinesActionsApiService extends ApiBaseService {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'addPipelineAction');
         }
+
         if (actionPipelineCreate === null || actionPipelineCreate === undefined) {
             throw new ArgumentNullException('actionPipelineCreate', 'addPipelineAction');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/pipelines/{pipeline_id}/actions' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}/actions';
 
         const response = await this.post <Action, ActionPipelineCreate>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))), actionPipelineCreate);
         return new ApiResponse(response);
@@ -57,17 +57,12 @@ export class PipelinesActionsApiService extends ApiBaseService {
             throw new ArgumentNullException('pipelineId', 'listPipelineActions');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/pipelines/{pipeline_id}/actions' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}/actions' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))));
         return new ApiResponse(response);

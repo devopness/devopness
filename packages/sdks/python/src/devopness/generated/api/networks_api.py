@@ -36,6 +36,10 @@ class NetworksApiService(DevopnessBaseService):
         """
         Create a new network for the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            network_environment_create (Union[NetworkEnvironmentCreate, NetworkEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -56,6 +60,9 @@ class NetworksApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given network
+
+        Attributes:
+            network_id (int): The ID of the network.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -78,6 +85,9 @@ class NetworksApiService(DevopnessBaseService):
         """
         Get a network by ID
 
+        Attributes:
+            network_id (int): The ID of the network.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -98,6 +108,9 @@ class NetworksApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Get current status of a network
+
+        Attributes:
+            network_id (int): The ID of the network.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -125,6 +138,14 @@ class NetworksApiService(DevopnessBaseService):
         """
         Return a list of all networks belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            include_default_network (Optional[bool]): If true, include a &#39;default&#39; network in the list.
+            provider_name (Optional[str]): Filter by network&#39;s cloud provider.
+            region (Optional[str]): Filter by network&#39;s region.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -142,7 +163,7 @@ class NetworksApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/networks",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -160,6 +181,10 @@ class NetworksApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network
+
+        Attributes:
+            network_id (int): The ID of the network.
+            network_update (Union[NetworkUpdate, NetworkUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -192,6 +217,10 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new network for the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            network_environment_create (Union[NetworkEnvironmentCreate, NetworkEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -212,6 +241,9 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given network
+
+        Attributes:
+            network_id (int): The ID of the network.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -234,6 +266,9 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get a network by ID
 
+        Attributes:
+            network_id (int): The ID of the network.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -254,6 +289,9 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Get current status of a network
+
+        Attributes:
+            network_id (int): The ID of the network.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -281,6 +319,14 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all networks belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            include_default_network (Optional[bool]): If true, include a &#39;default&#39; network in the list.
+            provider_name (Optional[str]): Filter by network&#39;s cloud provider.
+            region (Optional[str]): Filter by network&#39;s region.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -298,7 +344,7 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/networks",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -316,6 +362,10 @@ class NetworksApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network
+
+        Attributes:
+            network_id (int): The ID of the network.
+            network_update (Union[NetworkUpdate, NetworkUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

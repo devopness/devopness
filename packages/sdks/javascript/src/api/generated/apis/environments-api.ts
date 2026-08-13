@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Environment } from '../../generated/models';
 import { EnvironmentUpdate } from '../../generated/models';
@@ -32,9 +33,7 @@ export class EnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'archiveEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/archive' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/archive';
 
         const response = await this.post <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -50,9 +49,7 @@ export class EnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'deleteEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -68,9 +65,7 @@ export class EnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'getEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}';
 
         const response = await this.get <Environment>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -86,9 +81,7 @@ export class EnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'unarchiveEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/unarchive' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/unarchive';
 
         const response = await this.post <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -104,13 +97,12 @@ export class EnvironmentsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'updateEnvironment');
         }
+
         if (environmentUpdate === null || environmentUpdate === undefined) {
             throw new ArgumentNullException('environmentUpdate', 'updateEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}';
 
         const response = await this.put <void, EnvironmentUpdate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), environmentUpdate);
         return new ApiResponse(response);

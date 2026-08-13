@@ -38,6 +38,10 @@ class NetworkRulesApiService(DevopnessBaseService):
         """
         Add a Network Rule to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            network_rule_environment_create (Union[NetworkRuleEnvironmentCreate, NetworkRuleEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +62,9 @@ class NetworkRulesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given Network Rule
+
+        Attributes:
+            network_rule_id (int): The ID of the network rule.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -84,6 +91,10 @@ class NetworkRulesApiService(DevopnessBaseService):
         """
         Deploy a Network Rule
 
+        Attributes:
+            network_rule_id (int): The ID of the network rule.
+            network_rule_deploy (Union[NetworkRuleDeploy, NetworkRuleDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -104,6 +115,9 @@ class NetworkRulesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[NetworkRule]:
         """
         Get a Network Rule by ID
+
+        Attributes:
+            network_rule_id (int): The ID of the network rule.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -128,6 +142,11 @@ class NetworkRulesApiService(DevopnessBaseService):
         """
         Return a list of all Network Rules belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -142,7 +161,7 @@ class NetworkRulesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/network-rules",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -160,6 +179,10 @@ class NetworkRulesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network Rule
+
+        Attributes:
+            network_rule_id (int): The ID of the network rule.
+            network_rule_update (Union[NetworkRuleUpdate, NetworkRuleUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -192,6 +215,10 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a Network Rule to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            network_rule_environment_create (Union[NetworkRuleEnvironmentCreate, NetworkRuleEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -212,6 +239,9 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given Network Rule
+
+        Attributes:
+            network_rule_id (int): The ID of the network rule.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -238,6 +268,10 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Deploy a Network Rule
 
+        Attributes:
+            network_rule_id (int): The ID of the network rule.
+            network_rule_deploy (Union[NetworkRuleDeploy, NetworkRuleDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -258,6 +292,9 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[NetworkRule]:
         """
         Get a Network Rule by ID
+
+        Attributes:
+            network_rule_id (int): The ID of the network rule.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -282,6 +319,11 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all Network Rules belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -296,7 +338,7 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/network-rules",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -314,6 +356,10 @@ class NetworkRulesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Network Rule
+
+        Attributes:
+            network_rule_id (int): The ID of the network rule.
+            network_rule_update (Union[NetworkRuleUpdate, NetworkRuleUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

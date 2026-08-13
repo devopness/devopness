@@ -37,6 +37,11 @@ class PipelinesApiService(DevopnessBaseService):
         """
         Add a Pipeline to a resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to add a pipeline to.
+            pipeline_create (Union[PipelineCreate, PipelineCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +63,9 @@ class PipelinesApiService(DevopnessBaseService):
         """
         Delete a given Pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -78,6 +86,9 @@ class PipelinesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Pipeline]:
         """
         Get a Pipeline by ID
+
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -103,6 +114,12 @@ class PipelinesApiService(DevopnessBaseService):
         """
         Return a list of pipelines to a resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get pipelines from.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -117,7 +134,7 @@ class PipelinesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/pipelines/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -135,6 +152,10 @@ class PipelinesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline
+
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            pipeline_update (Union[PipelineUpdate, PipelineUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -168,6 +189,11 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a Pipeline to a resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to add a pipeline to.
+            pipeline_create (Union[PipelineCreate, PipelineCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -189,6 +215,9 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given Pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -209,6 +238,9 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Pipeline]:
         """
         Get a Pipeline by ID
+
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -234,6 +266,12 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of pipelines to a resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get pipelines from.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -248,7 +286,7 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/pipelines/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -266,6 +304,10 @@ class PipelinesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline
+
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            pipeline_update (Union[PipelineUpdate, PipelineUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

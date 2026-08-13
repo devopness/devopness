@@ -26,6 +26,12 @@ class ResourceLinksApiService(DevopnessBaseService):
         """
         Link the given resources
 
+        Attributes:
+            child_id (int): The child resource ID.
+            child_type (str): The resource type of the child resource.
+            resource_id (int): The parent resource ID.
+            resource_type (str): The resource type of the parent resource.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -50,6 +56,12 @@ class ResourceLinksApiService(DevopnessBaseService):
         """
         List linked resources of the given resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get linked resources.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -64,7 +76,7 @@ class ResourceLinksApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/resource-links/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -84,6 +96,14 @@ class ResourceLinksApiService(DevopnessBaseService):
         """
         List resources linked to a base resource.
 
+        Attributes:
+            link_type (str): The link type of resources to be retrieved: &#x60;child&#x60; or &#x60;parent&#x60;.
+            resource_id (int): The ID of the base resource
+            resource_type (str): The base resource type used from which linked resources will be retrieved.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            linked_resource_type (Optional[str]): Filter only linked resources of this resource type.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -99,7 +119,7 @@ class ResourceLinksApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/resource-links/{resource_type}/{resource_id}/{link_type}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -116,6 +136,12 @@ class ResourceLinksApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given resource link
+
+        Attributes:
+            child_id (int): The child resource ID.
+            child_type (str): The resource type of the child resource.
+            resource_id (int): The parent resource ID.
+            resource_type (str): The resource type of the parent resource.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -147,6 +173,12 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Link the given resources
 
+        Attributes:
+            child_id (int): The child resource ID.
+            child_type (str): The resource type of the child resource.
+            resource_id (int): The parent resource ID.
+            resource_type (str): The resource type of the parent resource.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -171,6 +203,12 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List linked resources of the given resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get linked resources.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -185,7 +223,7 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/resource-links/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -205,6 +243,14 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List resources linked to a base resource.
 
+        Attributes:
+            link_type (str): The link type of resources to be retrieved: &#x60;child&#x60; or &#x60;parent&#x60;.
+            resource_id (int): The ID of the base resource
+            resource_type (str): The base resource type used from which linked resources will be retrieved.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            linked_resource_type (Optional[str]): Filter only linked resources of this resource type.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -220,7 +266,7 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/resource-links/{resource_type}/{resource_id}/{link_type}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -237,6 +283,12 @@ class ResourceLinksApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given resource link
+
+        Attributes:
+            child_id (int): The child resource ID.
+            child_type (str): The resource type of the child resource.
+            resource_id (int): The parent resource ID.
+            resource_type (str): The resource type of the parent resource.
 
         Raises:
             DevopnessApiError: If an API request error occurs.

@@ -34,6 +34,10 @@ class PipelinesStepsApiService(DevopnessBaseService):
         """
         Add a step to a pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            step_pipeline_create (Union[StepPipelineCreate, StepPipelineCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -56,6 +60,10 @@ class PipelinesStepsApiService(DevopnessBaseService):
         """
         Link a step to a Pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            step_id (int): The ID of the step.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -77,6 +85,10 @@ class PipelinesStepsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Unlink a step from a Pipeline
+
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            step_id (int): The ID of the step.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -103,6 +115,11 @@ class PipelinesStepsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline Step
+
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            step_id (int): The ID of the step.
+            step_pipeline_update (Union[StepPipelineUpdate, StepPipelineUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -135,6 +152,10 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a step to a pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            step_pipeline_create (Union[StepPipelineCreate, StepPipelineCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -157,6 +178,10 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Link a step to a Pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            step_id (int): The ID of the step.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -178,6 +203,10 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Unlink a step from a Pipeline
+
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            step_id (int): The ID of the step.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -204,6 +233,11 @@ class PipelinesStepsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Pipeline Step
+
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            step_id (int): The ID of the step.
+            step_pipeline_update (Union[StepPipelineUpdate, StepPipelineUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

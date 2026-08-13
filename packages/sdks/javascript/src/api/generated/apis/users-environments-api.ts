@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { EnvironmentRelation } from '../../generated/models';
 
@@ -34,17 +35,13 @@ export class UsersEnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('userId', 'listUserEnvironments');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, subscription_id: subscriptionId, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'subscription_id': subscriptionId,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/users/{user_id}/environments' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/{user_id}/environments' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<EnvironmentRelation>>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);

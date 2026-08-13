@@ -34,6 +34,10 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         """
         Create a new subnet for the given network
 
+        Attributes:
+            network_id (int): The ID of the network.
+            subnet_network_create (Union[SubnetNetworkCreate, SubnetNetworkCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -59,6 +63,13 @@ class NetworksSubnetsApiService(DevopnessBaseService):
         """
         Return a list of all subnets belonging to a network
 
+        Attributes:
+            network_id (int): The ID of the network.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            region (Optional[str]): Filter by subnet&#39;s region.
+            zone (Optional[str]): Filter by subnet&#39;s zone.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -75,7 +86,7 @@ class NetworksSubnetsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/networks/{network_id}/subnets",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -99,6 +110,10 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Subnet]:
         """
         Create a new subnet for the given network
+
+        Attributes:
+            network_id (int): The ID of the network.
+            subnet_network_create (Union[SubnetNetworkCreate, SubnetNetworkCreatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -125,6 +140,13 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all subnets belonging to a network
 
+        Attributes:
+            network_id (int): The ID of the network.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            region (Optional[str]): Filter by subnet&#39;s region.
+            zone (Optional[str]): Filter by subnet&#39;s zone.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -141,7 +163,7 @@ class NetworksSubnetsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/networks/{network_id}/subnets",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

@@ -6,8 +6,16 @@ Note:
     https://openapi-generator.tech
 """
 
+from typing import Union
+
 from .. import DevopnessBaseService, DevopnessBaseServiceAsync, DevopnessResponse
-from ..models import Action, ActionRelation, ActionRetryResponse
+from ..models import (
+    Action,
+    ActionRelation,
+    ActionRetryResponse,
+    ListActionsFilterParameter,
+    ListActionsFilterParameterPlain,
+)
 from ..utils import parse_query_string
 
 
@@ -22,6 +30,9 @@ class ActionsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Action]:
         """
         Get an action by ID
+
+        Attributes:
+            action_id (int): The ID of the action.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -41,9 +52,16 @@ class ActionsApiService(DevopnessBaseService):
         self,
         page: int | None = None,
         per_page: int | None = None,
+        filter: Union[ListActionsFilterParameter, ListActionsFilterParameterPlain]
+        | None = None,
     ) -> DevopnessResponse[list[ActionRelation]]:
         """
         Return a list of all actions belonging to current user
+
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            filter (Optional[Union[ListActionsFilterParameter, ListActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -54,12 +72,13 @@ class ActionsApiService(DevopnessBaseService):
             {
                 "page": page,
                 "per_page": per_page,
+                "filter": filter,
             }
         )
 
         endpoint_parts = [
             "/actions",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -77,6 +96,12 @@ class ActionsApiService(DevopnessBaseService):
         """
         List resource actions of an action type
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get related actions.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -91,7 +116,7 @@ class ActionsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/actions/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -109,6 +134,12 @@ class ActionsApiService(DevopnessBaseService):
         """
         List actions triggered to a given action target resource
 
+        Attributes:
+            target_resource_id (int): The resource ID of the action target.
+            target_resource_type (str): The resource type of the action target on which this action will be executed to perform operations on the action resource.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -123,7 +154,7 @@ class ActionsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/actions/targets/{target_resource_type}/{target_resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -137,6 +168,9 @@ class ActionsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[ActionRetryResponse]:
         """
         Retry an action
+
+        Attributes:
+            action_id (int): The ID of the action.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -165,6 +199,9 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get an action by ID
 
+        Attributes:
+            action_id (int): The ID of the action.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -183,9 +220,16 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         self,
         page: int | None = None,
         per_page: int | None = None,
+        filter: Union[ListActionsFilterParameter, ListActionsFilterParameterPlain]
+        | None = None,
     ) -> DevopnessResponse[list[ActionRelation]]:
         """
         Return a list of all actions belonging to current user
+
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            filter (Optional[Union[ListActionsFilterParameter, ListActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -196,12 +240,13 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
             {
                 "page": page,
                 "per_page": per_page,
+                "filter": filter,
             }
         )
 
         endpoint_parts = [
             "/actions",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -219,6 +264,12 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List resource actions of an action type
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get related actions.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -233,7 +284,7 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/actions/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -251,6 +302,12 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List actions triggered to a given action target resource
 
+        Attributes:
+            target_resource_id (int): The resource ID of the action target.
+            target_resource_type (str): The resource type of the action target on which this action will be executed to perform operations on the action resource.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -265,7 +322,7 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/actions/targets/{target_resource_type}/{target_resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -279,6 +336,9 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[ActionRetryResponse]:
         """
         Retry an action
+
+        Attributes:
+            action_id (int): The ID of the action.
 
         Raises:
             DevopnessApiError: If an API request error occurs.

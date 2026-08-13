@@ -35,6 +35,9 @@ class OrganizationsApiService(DevopnessBaseService):
         """
         Create a new organization
 
+        Attributes:
+            organization_create (Union[OrganizationCreate, OrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -56,6 +59,9 @@ class OrganizationsApiService(DevopnessBaseService):
         """
         Delete a given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -76,6 +82,9 @@ class OrganizationsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Organization]:
         """
         Get an organization by ID or URL Slug
+
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -99,6 +108,10 @@ class OrganizationsApiService(DevopnessBaseService):
         """
         List all organizations of authenticated user
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -113,7 +126,7 @@ class OrganizationsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             "/organizations",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -131,6 +144,10 @@ class OrganizationsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing organization
+
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            organization_update (Union[OrganizationUpdate, OrganizationUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -162,6 +179,9 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new organization
 
+        Attributes:
+            organization_create (Union[OrganizationCreate, OrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -183,6 +203,9 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -203,6 +226,9 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Organization]:
         """
         Get an organization by ID or URL Slug
+
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -226,6 +252,10 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List all organizations of authenticated user
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -240,7 +270,7 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             "/organizations",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -258,6 +288,10 @@ class OrganizationsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing organization
+
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            organization_update (Union[OrganizationUpdate, OrganizationUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
