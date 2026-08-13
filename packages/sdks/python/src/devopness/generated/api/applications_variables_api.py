@@ -35,6 +35,10 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
         """
         Create a new variable linked to an application
 
+        Attributes:
+            application_id (int): The ID of the application.
+            variable_application_create (Union[VariableApplicationCreate, VariableApplicationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -66,6 +70,11 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
         """
         Return a list of variables belonging to an application
 
+        Attributes:
+            application_id (int): The ID of the application.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -88,7 +97,7 @@ class ApplicationsVariablesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/applications/{application_id}/variables",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -112,6 +121,10 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to an application
+
+        Attributes:
+            application_id (int): The ID of the application.
+            variable_application_create (Union[VariableApplicationCreate, VariableApplicationCreatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -144,6 +157,11 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of variables belonging to an application
 
+        Attributes:
+            application_id (int): The ID of the application.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -166,7 +184,7 @@ class ApplicationsVariablesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/applications/{application_id}/variables",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

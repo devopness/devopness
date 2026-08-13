@@ -25,6 +25,11 @@ class ApplicationsHooksApiService(DevopnessBaseService):
         """
         List all hooks in an application
 
+        Attributes:
+            application_id (int): The ID of the application.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -39,7 +44,7 @@ class ApplicationsHooksApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/applications/{application_id}/hooks",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -62,6 +67,11 @@ class ApplicationsHooksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List all hooks in an application
 
+        Attributes:
+            application_id (int): The ID of the application.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -76,7 +86,7 @@ class ApplicationsHooksApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/applications/{application_id}/hooks",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

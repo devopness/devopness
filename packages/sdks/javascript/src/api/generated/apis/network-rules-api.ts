@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { NetworkRule } from '../../generated/models';
 import { NetworkRuleDeploy } from '../../generated/models';
@@ -35,13 +36,12 @@ export class NetworkRulesApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentNetworkRule');
         }
+
         if (networkRuleEnvironmentCreate === null || networkRuleEnvironmentCreate === undefined) {
             throw new ArgumentNullException('networkRuleEnvironmentCreate', 'addEnvironmentNetworkRule');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/network-rules' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/network-rules';
 
         const response = await this.post <NetworkRule, NetworkRuleEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), networkRuleEnvironmentCreate);
         return new ApiResponse(response);
@@ -57,9 +57,7 @@ export class NetworkRulesApiService extends ApiBaseService {
             throw new ArgumentNullException('networkRuleId', 'deleteNetworkRule');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/network-rules/{network_rule_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))));
         return new ApiResponse(response);
@@ -75,13 +73,12 @@ export class NetworkRulesApiService extends ApiBaseService {
         if (networkRuleId === null || networkRuleId === undefined) {
             throw new ArgumentNullException('networkRuleId', 'deployNetworkRule');
         }
+
         if (networkRuleDeploy === null || networkRuleDeploy === undefined) {
             throw new ArgumentNullException('networkRuleDeploy', 'deployNetworkRule');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/network-rules/{network_rule_id}/deploy' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/network-rules/{network_rule_id}/deploy';
 
         const response = await this.post <void, NetworkRuleDeploy>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))), networkRuleDeploy);
         return new ApiResponse(response);
@@ -97,9 +94,7 @@ export class NetworkRulesApiService extends ApiBaseService {
             throw new ArgumentNullException('networkRuleId', 'getNetworkRule');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/network-rules/{network_rule_id}';
 
         const response = await this.get <NetworkRule>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))));
         return new ApiResponse(response);
@@ -117,17 +112,12 @@ export class NetworkRulesApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentNetworkRules');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/network-rules' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/network-rules' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<NetworkRuleRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -143,13 +133,12 @@ export class NetworkRulesApiService extends ApiBaseService {
         if (networkRuleId === null || networkRuleId === undefined) {
             throw new ArgumentNullException('networkRuleId', 'updateNetworkRule');
         }
+
         if (networkRuleUpdate === null || networkRuleUpdate === undefined) {
             throw new ArgumentNullException('networkRuleUpdate', 'updateNetworkRule');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/network-rules/{network_rule_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/network-rules/{network_rule_id}';
 
         const response = await this.put <void, NetworkRuleUpdate>(requestUrl.replace(`{${"network_rule_id"}}`, encodeURIComponent(String(networkRuleId))), networkRuleUpdate);
         return new ApiResponse(response);

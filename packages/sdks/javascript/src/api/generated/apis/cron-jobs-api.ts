@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { CronJob } from '../../generated/models';
 import { CronJobDeploy } from '../../generated/models';
@@ -35,13 +36,12 @@ export class CronJobsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentCronJob');
         }
+
         if (cronJobEnvironmentCreate === null || cronJobEnvironmentCreate === undefined) {
             throw new ArgumentNullException('cronJobEnvironmentCreate', 'addEnvironmentCronJob');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/cron-jobs' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/cron-jobs';
 
         const response = await this.post <CronJob, CronJobEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), cronJobEnvironmentCreate);
         return new ApiResponse(response);
@@ -57,9 +57,7 @@ export class CronJobsApiService extends ApiBaseService {
             throw new ArgumentNullException('cronJobId', 'deleteCronJob');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/cron-jobs/{cron_job_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
@@ -75,13 +73,12 @@ export class CronJobsApiService extends ApiBaseService {
         if (cronJobId === null || cronJobId === undefined) {
             throw new ArgumentNullException('cronJobId', 'deployCronJob');
         }
+
         if (cronJobDeploy === null || cronJobDeploy === undefined) {
             throw new ArgumentNullException('cronJobDeploy', 'deployCronJob');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/cron-jobs/{cron_job_id}/deploy' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/cron-jobs/{cron_job_id}/deploy';
 
         const response = await this.post <void, CronJobDeploy>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))), cronJobDeploy);
         return new ApiResponse(response);
@@ -97,9 +94,7 @@ export class CronJobsApiService extends ApiBaseService {
             throw new ArgumentNullException('cronJobId', 'getCronJob');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/cron-jobs/{cron_job_id}';
 
         const response = await this.get <CronJob>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))));
         return new ApiResponse(response);
@@ -117,17 +112,12 @@ export class CronJobsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentCronJobs');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/cron-jobs' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/cron-jobs' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<CronJobRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -143,13 +133,12 @@ export class CronJobsApiService extends ApiBaseService {
         if (cronJobId === null || cronJobId === undefined) {
             throw new ArgumentNullException('cronJobId', 'updateCronJob');
         }
+
         if (cronJobUpdate === null || cronJobUpdate === undefined) {
             throw new ArgumentNullException('cronJobUpdate', 'updateCronJob');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/cron-jobs/{cron_job_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/cron-jobs/{cron_job_id}';
 
         const response = await this.put <void, CronJobUpdate>(requestUrl.replace(`{${"cron_job_id"}}`, encodeURIComponent(String(cronJobId))), cronJobUpdate);
         return new ApiResponse(response);

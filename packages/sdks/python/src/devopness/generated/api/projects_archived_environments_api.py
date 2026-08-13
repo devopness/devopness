@@ -25,6 +25,11 @@ class ProjectsArchivedEnvironmentsApiService(DevopnessBaseService):
         """
         Return a list of all archived environments belonging to a project
 
+        Attributes:
+            project_id (int): The ID of the project.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -39,7 +44,7 @@ class ProjectsArchivedEnvironmentsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/projects/{project_id}/environments/archived",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -62,6 +67,11 @@ class ProjectsArchivedEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all archived environments belonging to a project
 
+        Attributes:
+            project_id (int): The ID of the project.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -76,7 +86,7 @@ class ProjectsArchivedEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/projects/{project_id}/environments/archived",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

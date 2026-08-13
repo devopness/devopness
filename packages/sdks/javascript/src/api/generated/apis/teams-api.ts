@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { MembershipRelation } from '../../generated/models';
 import { Team } from '../../generated/models';
@@ -39,13 +40,12 @@ export class TeamsApiService extends ApiBaseService {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'addOrganizationTeam');
         }
+
         if (teamOrganizationCreate === null || teamOrganizationCreate === undefined) {
             throw new ArgumentNullException('teamOrganizationCreate', 'addOrganizationTeam');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}/teams' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/teams';
 
         const response = await this.post <Team, TeamOrganizationCreate>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))), teamOrganizationCreate);
         return new ApiResponse(response);
@@ -61,9 +61,7 @@ export class TeamsApiService extends ApiBaseService {
             throw new ArgumentNullException('teamId', 'deleteTeam');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/teams/{team_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
@@ -79,9 +77,7 @@ export class TeamsApiService extends ApiBaseService {
             throw new ArgumentNullException('teamId', 'getTeam');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/teams/{team_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}';
 
         const response = await this.get <Team>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
@@ -98,16 +94,16 @@ export class TeamsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'linkTeamToEnvironment');
         }
+
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'linkTeamToEnvironment');
         }
+
         if (teamEnvironmentLink === null || teamEnvironmentLink === undefined) {
             throw new ArgumentNullException('teamEnvironmentLink', 'linkTeamToEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/teams/{team_id}/link' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/teams/{team_id}/link';
 
         const response = await this.post <void, TeamEnvironmentLink>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), teamEnvironmentLink);
         return new ApiResponse(response);
@@ -124,16 +120,16 @@ export class TeamsApiService extends ApiBaseService {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'linkTeamToOrganization');
         }
+
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'linkTeamToOrganization');
         }
+
         if (teamOrganizationLink === null || teamOrganizationLink === undefined) {
             throw new ArgumentNullException('teamOrganizationLink', 'linkTeamToOrganization');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}/teams/{team_id}/link' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/teams/{team_id}/link';
 
         const response = await this.post <void, TeamOrganizationLink>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))).replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), teamOrganizationLink);
         return new ApiResponse(response);
@@ -150,16 +146,16 @@ export class TeamsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'linkTeamToProject');
         }
+
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'linkTeamToProject');
         }
+
         if (teamProjectLink === null || teamProjectLink === undefined) {
             throw new ArgumentNullException('teamProjectLink', 'linkTeamToProject');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}/teams/{team_id}/link' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/teams/{team_id}/link';
 
         const response = await this.post <void, TeamProjectLink>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))).replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), teamProjectLink);
         return new ApiResponse(response);
@@ -177,17 +173,12 @@ export class TeamsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentTeamMemberships');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/team-memberships' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/team-memberships' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<TeamMembershipRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -205,17 +196,12 @@ export class TeamsApiService extends ApiBaseService {
             throw new ArgumentNullException('organizationId', 'listOrganizationTeamMemberships');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/organizations/{organization_id}/team-memberships' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/team-memberships' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<TeamMembershipRelation>>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
         return new ApiResponse(response);
@@ -233,17 +219,12 @@ export class TeamsApiService extends ApiBaseService {
             throw new ArgumentNullException('organizationId', 'listOrganizationTeams');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/organizations/{organization_id}/teams' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/teams' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<TeamRelation>>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
         return new ApiResponse(response);
@@ -261,17 +242,12 @@ export class TeamsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectTeamMemberships');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/projects/{project_id}/team-memberships' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/team-memberships' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<TeamMembershipRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
@@ -290,17 +266,13 @@ export class TeamsApiService extends ApiBaseService {
             throw new ArgumentNullException('teamId', 'listTeamMemberships');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, filter_by: filterBy, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'filter_by': filterBy,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/teams/{team_id}/memberships' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/memberships' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<MembershipRelation>>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
@@ -316,13 +288,12 @@ export class TeamsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'unlinkTeamFromEnvironment');
         }
+
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'unlinkTeamFromEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/teams/{team_id}/unlink' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/teams/{team_id}/unlink';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
@@ -338,13 +309,12 @@ export class TeamsApiService extends ApiBaseService {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'unlinkTeamFromOrganization');
         }
+
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'unlinkTeamFromOrganization');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}/teams/{team_id}/unlink' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/teams/{team_id}/unlink';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))).replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
@@ -360,13 +330,12 @@ export class TeamsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'unlinkTeamFromProject');
         }
+
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'unlinkTeamFromProject');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}/teams/{team_id}/unlink' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/teams/{team_id}/unlink';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))).replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
@@ -382,13 +351,12 @@ export class TeamsApiService extends ApiBaseService {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'updateTeam');
         }
+
         if (teamUpdate === null || teamUpdate === undefined) {
             throw new ArgumentNullException('teamUpdate', 'updateTeam');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/teams/{team_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}';
 
         const response = await this.put <void, TeamUpdate>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), teamUpdate);
         return new ApiResponse(response);

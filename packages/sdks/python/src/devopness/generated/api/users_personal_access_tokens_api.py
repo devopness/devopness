@@ -36,6 +36,9 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
         """
         Create a new personal access token for the authenticated user.
 
+        Attributes:
+            personal_access_token_user_create (Union[PersonalAccessTokenUserCreate, PersonalAccessTokenUserCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -56,6 +59,9 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
     ) -> DevopnessResponse[PersonalAccessToken]:
         """
         Get details of a specific personal access token.
+
+        Attributes:
+            personal_access_token_id (str): The ID of the personal access token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -79,6 +85,10 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
         """
         List the personal access tokens of authenticated user.
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -93,7 +103,7 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
 
         endpoint_parts = [
             "/users/personal-access-tokens",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -107,6 +117,9 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Revoke a specific personal access token.
+
+        Attributes:
+            personal_access_token_id (str): The ID of the personal access token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -132,6 +145,10 @@ class UsersPersonalAccessTokensApiService(DevopnessBaseService):
     ) -> DevopnessResponse[PersonalAccessTokenRotateResponse]:
         """
         Rotate a specific personal access token.
+
+        Attributes:
+            personal_access_token_id (str): The ID of the personal access token.
+            personal_access_token_user_rotate (Union[PersonalAccessTokenUserRotate, PersonalAccessTokenUserRotatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -163,6 +180,9 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new personal access token for the authenticated user.
 
+        Attributes:
+            personal_access_token_user_create (Union[PersonalAccessTokenUserCreate, PersonalAccessTokenUserCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -183,6 +203,9 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[PersonalAccessToken]:
         """
         Get details of a specific personal access token.
+
+        Attributes:
+            personal_access_token_id (str): The ID of the personal access token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -206,6 +229,10 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List the personal access tokens of authenticated user.
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -220,7 +247,7 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             "/users/personal-access-tokens",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -236,6 +263,9 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Revoke a specific personal access token.
+
+        Attributes:
+            personal_access_token_id (str): The ID of the personal access token.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -261,6 +291,10 @@ class UsersPersonalAccessTokensApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[PersonalAccessTokenRotateResponse]:
         """
         Rotate a specific personal access token.
+
+        Attributes:
+            personal_access_token_id (str): The ID of the personal access token.
+            personal_access_token_user_rotate (Union[PersonalAccessTokenUserRotate, PersonalAccessTokenUserRotatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

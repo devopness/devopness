@@ -41,6 +41,10 @@ class ApplicationsApiService(DevopnessBaseService):
         """
         Trigger a new deployment for current application
 
+        Attributes:
+            application_id (int): The ID of the application.
+            deployment_application_create (Union[DeploymentApplicationCreate, DeploymentApplicationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -65,6 +69,10 @@ class ApplicationsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Application]:
         """
         Create an application
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            application_environment_create (Union[ApplicationEnvironmentCreate, ApplicationEnvironmentCreatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -91,6 +99,10 @@ class ApplicationsApiService(DevopnessBaseService):
         """
         Create applications from a template
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            application_environment_apply_template (Union[ApplicationEnvironmentApplyTemplate, ApplicationEnvironmentApplyTemplatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -112,6 +124,9 @@ class ApplicationsApiService(DevopnessBaseService):
         """
         Delete a given application
 
+        Attributes:
+            application_id (int): The ID of the application.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -132,6 +147,9 @@ class ApplicationsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Application]:
         """
         Get an application by ID
+
+        Attributes:
+            application_id (int): The ID of the application.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -156,6 +174,11 @@ class ApplicationsApiService(DevopnessBaseService):
         """
         List applications in an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -170,7 +193,7 @@ class ApplicationsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/applications",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -188,6 +211,10 @@ class ApplicationsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing application
+
+        Attributes:
+            application_id (int): The ID of the application.
+            application_update (Union[ApplicationUpdate, ApplicationUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -220,6 +247,10 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Trigger a new deployment for current application
 
+        Attributes:
+            application_id (int): The ID of the application.
+            deployment_application_create (Union[DeploymentApplicationCreate, DeploymentApplicationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -244,6 +275,10 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Application]:
         """
         Create an application
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            application_environment_create (Union[ApplicationEnvironmentCreate, ApplicationEnvironmentCreatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -270,6 +305,10 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create applications from a template
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            application_environment_apply_template (Union[ApplicationEnvironmentApplyTemplate, ApplicationEnvironmentApplyTemplatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -293,6 +332,9 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given application
 
+        Attributes:
+            application_id (int): The ID of the application.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -313,6 +355,9 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Application]:
         """
         Get an application by ID
+
+        Attributes:
+            application_id (int): The ID of the application.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -337,6 +382,11 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List applications in an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -351,7 +401,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/applications",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -369,6 +419,10 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing application
+
+        Attributes:
+            application_id (int): The ID of the application.
+            application_update (Union[ApplicationUpdate, ApplicationUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

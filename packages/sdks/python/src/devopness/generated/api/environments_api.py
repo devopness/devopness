@@ -24,6 +24,9 @@ class EnvironmentsApiService(DevopnessBaseService):
         """
         Archive an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -44,6 +47,9 @@ class EnvironmentsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given environment
+
+        Attributes:
+            environment_id (int): The ID of the environment.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -66,6 +72,9 @@ class EnvironmentsApiService(DevopnessBaseService):
         """
         Get an environment by ID
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -86,6 +95,9 @@ class EnvironmentsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Unarchive an environment
+
+        Attributes:
+            environment_id (int): The ID of the environment.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -111,6 +123,10 @@ class EnvironmentsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update a given environment
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            environment_update (Union[EnvironmentUpdate, EnvironmentUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -139,6 +155,9 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Archive an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -159,6 +178,9 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given environment
+
+        Attributes:
+            environment_id (int): The ID of the environment.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -181,6 +203,9 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get an environment by ID
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -201,6 +226,9 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Unarchive an environment
+
+        Attributes:
+            environment_id (int): The ID of the environment.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -226,6 +254,10 @@ class EnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update a given environment
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            environment_update (Union[EnvironmentUpdate, EnvironmentUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

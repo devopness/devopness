@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Invitation } from '../../generated/models';
 import { InvitationRelation } from '../../generated/models';
@@ -33,13 +34,12 @@ export class TeamsInvitationsApiService extends ApiBaseService {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'addTeamInvitation');
         }
+
         if (invitationTeamCreate === null || invitationTeamCreate === undefined) {
             throw new ArgumentNullException('invitationTeamCreate', 'addTeamInvitation');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/teams/{team_id}/invitations' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/invitations';
 
         const response = await this.post <Invitation, InvitationTeamCreate>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))), invitationTeamCreate);
         return new ApiResponse(response);
@@ -57,17 +57,12 @@ export class TeamsInvitationsApiService extends ApiBaseService {
             throw new ArgumentNullException('teamId', 'listTeamInvitations');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/teams/{team_id}/invitations' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/invitations' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<InvitationRelation>>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);

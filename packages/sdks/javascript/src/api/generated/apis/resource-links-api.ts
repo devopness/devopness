@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { ResourceLinkRelation } from '../../generated/models';
 
@@ -33,19 +34,20 @@ export class ResourceLinksApiService extends ApiBaseService {
         if (childId === null || childId === undefined) {
             throw new ArgumentNullException('childId', 'linkResourceLinkToResourceLink');
         }
+
         if (childType === null || childType === undefined) {
             throw new ArgumentNullException('childType', 'linkResourceLinkToResourceLink');
         }
+
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'linkResourceLinkToResourceLink');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'linkResourceLinkToResourceLink');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/link' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/link';
 
         const response = await this.post <void>(requestUrl.replace(`{${"child_id"}}`, encodeURIComponent(String(childId))).replace(`{${"child_type"}}`, encodeURIComponent(String(childType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
@@ -63,21 +65,17 @@ export class ResourceLinksApiService extends ApiBaseService {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'listResourceLinksByResourceType');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listResourceLinksByResourceType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/resource-links/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/resource-links/{resource_type}/{resource_id}' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ResourceLinkRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
@@ -97,24 +95,22 @@ export class ResourceLinksApiService extends ApiBaseService {
         if (linkType === null || linkType === undefined) {
             throw new ArgumentNullException('linkType', 'listResourceLinksByResourceTypeAndLinkType');
         }
+
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'listResourceLinksByResourceTypeAndLinkType');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listResourceLinksByResourceTypeAndLinkType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, linked_resource_type: linkedResourceType, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'linked_resource_type': linkedResourceType,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/resource-links/{resource_type}/{resource_id}/{link_type}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/resource-links/{resource_type}/{resource_id}/{link_type}' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ResourceLinkRelation>>(requestUrl.replace(`{${"link_type"}}`, encodeURIComponent(String(linkType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
@@ -132,19 +128,20 @@ export class ResourceLinksApiService extends ApiBaseService {
         if (childId === null || childId === undefined) {
             throw new ArgumentNullException('childId', 'unlinkResourceLinkFromResourceLink');
         }
+
         if (childType === null || childType === undefined) {
             throw new ArgumentNullException('childType', 'unlinkResourceLinkFromResourceLink');
         }
+
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'unlinkResourceLinkFromResourceLink');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'unlinkResourceLinkFromResourceLink');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/unlink' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/resource-links/{resource_type}/{resource_id}/{child_type}/{child_id}/unlink';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"child_id"}}`, encodeURIComponent(String(childId))).replace(`{${"child_type"}}`, encodeURIComponent(String(childType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);

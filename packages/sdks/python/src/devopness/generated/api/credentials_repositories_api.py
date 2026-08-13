@@ -25,6 +25,11 @@ class CredentialsRepositoriesApiService(DevopnessBaseService):
         """
         Get details of a repository by its name
 
+        Attributes:
+            credential_id (int): The ID of the credential.
+            repository_name (str): The repository name
+            repository_owner (str): The owner of the repository
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -48,6 +53,11 @@ class CredentialsRepositoriesApiService(DevopnessBaseService):
         """
         Return a list of all repositories belonging to the source provider linked to the credential
 
+        Attributes:
+            credential_id (int): The ID of the credential.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -62,7 +72,7 @@ class CredentialsRepositoriesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/credentials/{credential_id}/repositories",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -84,6 +94,11 @@ class CredentialsRepositoriesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Repository]:
         """
         Get details of a repository by its name
+
+        Attributes:
+            credential_id (int): The ID of the credential.
+            repository_name (str): The repository name
+            repository_owner (str): The owner of the repository
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -108,6 +123,11 @@ class CredentialsRepositoriesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all repositories belonging to the source provider linked to the credential
 
+        Attributes:
+            credential_id (int): The ID of the credential.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -122,7 +142,7 @@ class CredentialsRepositoriesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/credentials/{credential_id}/repositories",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Server } from '../../generated/models';
 import { ServerCommand } from '../../generated/models';
@@ -35,13 +36,12 @@ export class ServersApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentServer');
         }
+
         if (serverEnvironmentCreate === null || serverEnvironmentCreate === undefined) {
             throw new ArgumentNullException('serverEnvironmentCreate', 'addEnvironmentServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/servers';
 
         const response = await this.post <Server, ServerEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), serverEnvironmentCreate);
         return new ApiResponse(response);
@@ -57,13 +57,12 @@ export class ServersApiService extends ApiBaseService {
         if (activationToken === null || activationToken === undefined) {
             throw new ArgumentNullException('activationToken', 'connectServer');
         }
+
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'connectServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}/connect/{activation_token}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}/connect/{activation_token}';
 
         const response = await this.post <string>(requestUrl.replace(`{${"activation_token"}}`, encodeURIComponent(String(activationToken))).replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -80,17 +79,11 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'deleteServer');
         }
 
-        let queryString = '';
-        const queryParams = { destroy_server_disks: destroyServerDisks, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'destroy_server_disks': destroyServerDisks,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}' + (queryString ? `?${queryString}` : '');
 
         const response = await this.delete <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -106,9 +99,7 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'deployServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}/deploy' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}/deploy';
 
         const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -124,9 +115,7 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'getServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}';
 
         const response = await this.get <Server>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -142,9 +131,7 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'getServerCommands');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}/commands' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}/commands';
 
         const response = await this.get <ServerCommand>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -160,9 +147,7 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'getStatusServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}/get-status' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}/get-status';
 
         const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -180,17 +165,12 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentServers');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/servers' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/servers' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ServerRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -206,9 +186,7 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'restartServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}/restart' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}/restart';
 
         const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -224,9 +202,7 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'rotateKeyServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}/rotate-key' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}/rotate-key';
 
         const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -242,9 +218,7 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'startServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}/start' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}/start';
 
         const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -260,9 +234,7 @@ export class ServersApiService extends ApiBaseService {
             throw new ArgumentNullException('serverId', 'stopServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}/stop' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}/stop';
 
         const response = await this.post <void>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))));
         return new ApiResponse(response);
@@ -278,13 +250,12 @@ export class ServersApiService extends ApiBaseService {
         if (serverId === null || serverId === undefined) {
             throw new ArgumentNullException('serverId', 'updateServer');
         }
+
         if (serverUpdate === null || serverUpdate === undefined) {
             throw new ArgumentNullException('serverUpdate', 'updateServer');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/servers/{server_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/servers/{server_id}';
 
         const response = await this.put <void, ServerUpdate>(requestUrl.replace(`{${"server_id"}}`, encodeURIComponent(String(serverId))), serverUpdate);
         return new ApiResponse(response);

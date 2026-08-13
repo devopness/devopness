@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { PasswordResetResponse } from '../../generated/models';
 import { PasswordUserReset } from '../../generated/models';
@@ -33,9 +34,7 @@ export class UsersPasswordsApiService extends ApiBaseService {
             throw new ArgumentNullException('passwordUserReset', 'resetUserPassword');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/password/reset' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/password/reset';
 
         const response = await this.post <PasswordResetResponse, PasswordUserReset>(requestUrl, passwordUserReset);
         return new ApiResponse(response);
@@ -47,10 +46,7 @@ export class UsersPasswordsApiService extends ApiBaseService {
      * @summary Send the password reset link to user\'s email
      */
     public async sendResetLinkUserPassword(): Promise<ApiResponse<void>> {
-
-        let queryString = '';
-
-        const requestUrl = '/users/password/send-reset-link' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/password/send-reset-link';
 
         const response = await this.post <void>(requestUrl);
         return new ApiResponse(response);

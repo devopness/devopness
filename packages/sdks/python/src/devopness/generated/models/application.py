@@ -43,7 +43,7 @@ class Application(DevopnessBaseModel):
         repository_name (str): The name part of a repository full name (&#x60;repository_owner/repository_name&#x60;)
         repository_owner (str): The owner part of a repository full name (&#x60;repository_owner/repository_name&#x60;)
         default_branch (str): The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
-        programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be &#x60;html&#x60;.
+        programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be &#x60;nodejs&#x60; and the framework should be &#x60;html&#x60;.
         programming_language_human_readable (str): The human readable version of the programming language of the application.
         engine_version (str): The language runtime engine version to be used to execute this application on the deployed servers
         framework (str): The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment
@@ -102,7 +102,7 @@ class Application(DevopnessBaseModel):
         json_schema_extra={"examples": ["main"]},
     )
     programming_language: StrictStr = Field(
-        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.",
         json_schema_extra={"examples": ["python"]},
     )
     programming_language_human_readable: StrictStr = Field(
