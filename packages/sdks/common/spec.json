@@ -45,6 +45,17 @@
           },
           {
             "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "required": false,
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/ListActionsFilterParameter"
+            }
           }
         ],
         "responses": {
@@ -2152,6 +2163,17 @@
               "type": "integer",
               "minimum": 1
             }
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "required": false,
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/ListEnvironmentActionsFilterParameter"
+            }
           }
         ],
         "responses": {
@@ -2208,6 +2230,17 @@
             "schema": {
               "type": "integer",
               "minimum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "required": false,
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/ListEnvironmentActionsByResourceTypeFilterParameter"
             }
           },
           {
@@ -16012,7 +16045,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.",
             "example": "python",
             "type": "string"
           },
@@ -16177,7 +16210,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.",
             "example": "python",
             "type": "string"
           },
@@ -16306,7 +16339,7 @@
           },
           "template": {
             "description": "Raw YAML for a custom template manifest. Must not be greater than 21504 characters.",
-            "example": "        apiVersion: templates.devopness.io/v1\n        kind: DevopnessTemplate\n\n        metadata:\n          name: simple-app\n          title: Simple Application Template\n\n        spec:\n          inputs:\n            - name: application_name\n              description: The name of the application Devopness will create.\n              type: string\n              required: true\n              default: simple-app\n\n            - name: database_password\n              type: string\n              required: true\n              hidden: true\n              description: The password used to connect to the database.\n\n          resources:\n            applications:\n              - name: \"{{ inputs.application_name }}\"\n                repository: devopness/devopness\n                default_branch: main\n                credential_id: 1\n                programming_language: html\n                framework: none\n                engine_version: none\n                root_directory: /\n                deployments_keep: 1\n\n                configuration_files:\n                  - key: .env\n                    target: resource-config-file\n                    type: file\n                    value: |-\n                      DB_HOST=127.0.0.1\n                      DB_PORT=5432\n                      DB_USER=devopness\n                      DB_PASSWORD={{ inputs.database_password }}",
+            "example": "        apiVersion: templates.devopness.io/v1\n        kind: DevopnessTemplate\n\n        metadata:\n          name: simple-app\n          title: Simple Application Template\n\n        spec:\n          inputs:\n            - name: application_name\n              description: The name of the application Devopness will create.\n              type: string\n              required: true\n              default: simple-app\n\n            - name: database_password\n              type: string\n              required: true\n              hidden: true\n              description: The password used to connect to the database.\n\n          resources:\n            applications:\n              - name: \"{{ inputs.application_name }}\"\n                repository: devopness/devopness\n                default_branch: main\n                credential_id: 1\n                programming_language: nodejs\n                framework: html\n                engine_version: \"22.23\"\n                root_directory: /\n                deployments_keep: 1\n\n                configuration_files:\n                  - key: .env\n                    target: resource-config-file\n                    type: file\n                    value: |-\n                      DB_HOST=127.0.0.1\n                      DB_PORT=5432\n                      DB_USER=devopness\n                      DB_PASSWORD={{ inputs.database_password }}",
             "type": "string"
           },
           "dry_run": {
@@ -16346,7 +16379,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`. Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -16505,7 +16538,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.",
             "example": "python",
             "type": "string"
           },
@@ -16620,7 +16653,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`. Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -26983,6 +27016,91 @@
           "id",
           "name"
         ]
+      },
+      "ListActionsFilterParameter": {
+        "type": "object",
+        "properties": {
+          "organization_id": {
+            "description": "Organization ID.\n\nExample: `?filter[organization_id]=123`",
+            "example": 123,
+            "type": "integer"
+          },
+          "project_id": {
+            "description": "Project ID.\n\nExample: `?filter[project_id]=456`",
+            "example": 456,
+            "type": "integer"
+          },
+          "environment_id": {
+            "description": "Environment ID.\n\nExample: `?filter[environment_id]=789`",
+            "example": 789,
+            "type": "integer"
+          },
+          "resource_type": {
+            "description": "Resource type.\n\nExample: `?filter[resource_type]=application`",
+            "example": "application",
+            "type": "string"
+          },
+          "resource_id": {
+            "description": "Resource ID.\n\nExample: `?filter[resource_id]=321`",
+            "example": 321,
+            "type": "integer"
+          },
+          "status": {
+            "description": "Action status. Supported values: pending, waiting, skipped, queued, in-progress, completed, failed.\n\nExample: `?filter[status]=queued`",
+            "example": "queued",
+            "type": "string"
+          },
+          "operation": {
+            "description": "Action operation name.\n\nExample: `?filter[operation]=deploy`",
+            "example": "deploy",
+            "type": "string"
+          }
+        }
+      },
+      "ListEnvironmentActionsFilterParameter": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "description": "Resource type.\n\nExample: `?filter[resource_type]=application`",
+            "example": "application",
+            "type": "string"
+          },
+          "resource_id": {
+            "description": "Resource ID.\n\nExample: `?filter[resource_id]=321`",
+            "example": 321,
+            "type": "integer"
+          },
+          "status": {
+            "description": "Action status. Supported values: pending, waiting, skipped, queued, in-progress, completed, failed.\n\nExample: `?filter[status]=queued`",
+            "example": "queued",
+            "type": "string"
+          },
+          "operation": {
+            "description": "Action operation name.\n\nExample: `?filter[operation]=deploy`",
+            "example": "deploy",
+            "type": "string"
+          }
+        }
+      },
+      "ListEnvironmentActionsByResourceTypeFilterParameter": {
+        "type": "object",
+        "properties": {
+          "resource_id": {
+            "description": "Resource ID.\n\nExample: `?filter[resource_id]=321`",
+            "example": 321,
+            "type": "integer"
+          },
+          "status": {
+            "description": "Action status. Supported values: pending, waiting, skipped, queued, in-progress, completed, failed.\n\nExample: `?filter[status]=queued`",
+            "example": "queued",
+            "type": "string"
+          },
+          "operation": {
+            "description": "Action operation name.\n\nExample: `?filter[operation]=deploy`",
+            "example": "deploy",
+            "type": "string"
+          }
+        }
       }
     },
     "responses": {
