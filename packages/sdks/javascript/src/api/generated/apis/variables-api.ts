@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Variable } from '../../generated/models';
 import { VariableCreate } from '../../generated/models';
@@ -35,16 +36,16 @@ export class VariablesApiService extends ApiBaseService {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'addVariable');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'addVariable');
         }
+
         if (variableCreate === null || variableCreate === undefined) {
             throw new ArgumentNullException('variableCreate', 'addVariable');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/variables/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/variables/{resource_type}/{resource_id}';
 
         const response = await this.post <Variable, VariableCreate>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))), variableCreate);
         return new ApiResponse(response);
@@ -60,9 +61,7 @@ export class VariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('variableId', 'deleteVariable');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/variables/{variable_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
         return new ApiResponse(response);
@@ -78,9 +77,7 @@ export class VariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('variableId', 'getVariable');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/variables/{variable_id}';
 
         const response = await this.get <Variable>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))));
         return new ApiResponse(response);
@@ -100,21 +97,19 @@ export class VariablesApiService extends ApiBaseService {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'listVariablesByResourceType');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listVariablesByResourceType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, include_virtual_variables: includeVirtualVariables, variable_target: variableTarget, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'include_virtual_variables': includeVirtualVariables,
+          'variable_target': variableTarget,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/variables/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/variables/{resource_type}/{resource_id}' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<VariableRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
@@ -130,13 +125,12 @@ export class VariablesApiService extends ApiBaseService {
         if (variableId === null || variableId === undefined) {
             throw new ArgumentNullException('variableId', 'updateVariable');
         }
+
         if (variableUpdate === null || variableUpdate === undefined) {
             throw new ArgumentNullException('variableUpdate', 'updateVariable');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/variables/{variable_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/variables/{variable_id}';
 
         const response = await this.put <void, VariableUpdate>(requestUrl.replace(`{${"variable_id"}}`, encodeURIComponent(String(variableId))), variableUpdate);
         return new ApiResponse(response);

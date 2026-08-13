@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { HookRequest } from '../../generated/models';
 
@@ -31,9 +32,7 @@ export class HookRequestsApiService extends ApiBaseService {
             throw new ArgumentNullException('hookRequestId', 'getHookRequest');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/hook-requests/{hook_request_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hook-requests/{hook_request_id}';
 
         const response = await this.get <HookRequest>(requestUrl.replace(`{${"hook_request_id"}}`, encodeURIComponent(String(hookRequestId))));
         return new ApiResponse(response);

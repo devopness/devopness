@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { User } from '../../generated/models';
 import { UserActivity } from '../../generated/models';
@@ -35,10 +36,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Sign up/register a new user
      */
     public async addUser(): Promise<ApiResponse<void>> {
-
-        let queryString = '';
-
-        const requestUrl = '/users' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users';
 
         const response = await this.post <void>(requestUrl);
         return new ApiResponse(response);
@@ -54,9 +52,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userId', 'getUser');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/{user_id}';
 
         const response = await this.get <User>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
@@ -72,9 +68,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userId', 'getUserActivity');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/{user_id}/activity' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/{user_id}/activity';
 
         const response = await this.get <UserActivity>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
@@ -85,10 +79,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get current user\'s billing info for active subscription
      */
     public async getUserBilling(): Promise<ApiResponse<UserBilling>> {
-
-        let queryString = '';
-
-        const requestUrl = '/users/billing' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/billing';
 
         const response = await this.get <UserBilling>(requestUrl);
         return new ApiResponse(response);
@@ -100,10 +91,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Logout/revoke an existing token
      */
     public async getUserLogout(): Promise<ApiResponse<void>> {
-
-        let queryString = '';
-
-        const requestUrl = '/users/logout' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/logout';
 
         const response = await this.get <void>(requestUrl);
         return new ApiResponse(response);
@@ -114,10 +102,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get details of the current user
      */
     public async getUserMe(): Promise<ApiResponse<UserMe>> {
-
-        let queryString = '';
-
-        const requestUrl = '/users/me' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/me';
 
         const response = await this.get <UserMe>(requestUrl);
         return new ApiResponse(response);
@@ -128,10 +113,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Get the authenticated user\'s URLs
      */
     public async getUserUrls(): Promise<ApiResponse<UserUrl>> {
-
-        let queryString = '';
-
-        const requestUrl = '/users/urls' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/urls';
 
         const response = await this.get <UserUrl>(requestUrl);
         return new ApiResponse(response);
@@ -143,10 +125,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Login/create a new token for the given credentials
      */
     public async loginUser(): Promise<ApiResponse<UserLoginResponse>> {
-
-        let queryString = '';
-
-        const requestUrl = '/users/login' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/login';
 
         const response = await this.post <UserLoginResponse>(requestUrl);
         return new ApiResponse(response);
@@ -163,9 +142,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userRefreshToken', 'refreshTokenUser');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/refresh-token' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/refresh-token';
 
         const response = await this.post <UserRefreshTokenResponse, UserRefreshToken>(requestUrl, userRefreshToken);
         return new ApiResponse(response);
@@ -181,9 +158,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userResendVerification', 'resendVerificationUser');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/account/resend-verification' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/account/resend-verification';
 
         const response = await this.post <void, UserResendVerification>(requestUrl, userResendVerification);
         return new ApiResponse(response);
@@ -200,9 +175,7 @@ export class UsersApiService extends ApiBaseService {
             throw new ArgumentNullException('userId', 'updateUser');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/{user_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/{user_id}';
 
         const response = await this.put <void>(requestUrl.replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
@@ -214,10 +187,7 @@ export class UsersApiService extends ApiBaseService {
      * @summary Activate the user account
      */
     public async verifyUser(): Promise<ApiResponse<void>> {
-
-        let queryString = '';
-
-        const requestUrl = '/users/account/verify' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/account/verify';
 
         const response = await this.post <void>(requestUrl);
         return new ApiResponse(response);

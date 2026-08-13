@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Repository } from '../../generated/models';
 import { RepositoryRelation } from '../../generated/models';
@@ -33,16 +34,16 @@ export class CredentialsRepositoriesApiService extends ApiBaseService {
         if (credentialId === null || credentialId === undefined) {
             throw new ArgumentNullException('credentialId', 'getCredentialRepository');
         }
+
         if (repositoryName === null || repositoryName === undefined) {
             throw new ArgumentNullException('repositoryName', 'getCredentialRepository');
         }
+
         if (repositoryOwner === null || repositoryOwner === undefined) {
             throw new ArgumentNullException('repositoryOwner', 'getCredentialRepository');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/credentials/{credential_id}/repositories/{repository_owner}/{repository_name}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/credentials/{credential_id}/repositories/{repository_owner}/{repository_name}';
 
         const response = await this.get <Repository>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))).replace(`{${"repository_name"}}`, encodeURIComponent(String(repositoryName))).replace(`{${"repository_owner"}}`, encodeURIComponent(String(repositoryOwner))));
         return new ApiResponse(response);
@@ -60,17 +61,12 @@ export class CredentialsRepositoriesApiService extends ApiBaseService {
             throw new ArgumentNullException('credentialId', 'listCredentialRepositories');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/credentials/{credential_id}/repositories' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/credentials/{credential_id}/repositories' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<RepositoryRelation>>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))));
         return new ApiResponse(response);

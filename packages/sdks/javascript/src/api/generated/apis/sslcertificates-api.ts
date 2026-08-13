@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { SslCertificate } from '../../generated/models';
 import { SslCertificateDeploy } from '../../generated/models';
@@ -34,13 +35,12 @@ export class SSLCertificatesApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentSslCertificate');
         }
+
         if (sslCertificateEnvironmentCreate === null || sslCertificateEnvironmentCreate === undefined) {
             throw new ArgumentNullException('sslCertificateEnvironmentCreate', 'addEnvironmentSslCertificate');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/ssl-certificates';
 
         const response = await this.post <SslCertificate, SslCertificateEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), sslCertificateEnvironmentCreate);
         return new ApiResponse(response);
@@ -56,9 +56,7 @@ export class SSLCertificatesApiService extends ApiBaseService {
             throw new ArgumentNullException('sslCertificateId', 'deleteSslCertificate');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/ssl-certificates/{ssl_certificate_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
         return new ApiResponse(response);
@@ -74,13 +72,12 @@ export class SSLCertificatesApiService extends ApiBaseService {
         if (sslCertificateId === null || sslCertificateId === undefined) {
             throw new ArgumentNullException('sslCertificateId', 'deploySslCertificate');
         }
+
         if (sslCertificateDeploy === null || sslCertificateDeploy === undefined) {
             throw new ArgumentNullException('sslCertificateDeploy', 'deploySslCertificate');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/ssl-certificates/{ssl_certificate_id}/deploy' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/ssl-certificates/{ssl_certificate_id}/deploy';
 
         const response = await this.post <void, SslCertificateDeploy>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))), sslCertificateDeploy);
         return new ApiResponse(response);
@@ -96,9 +93,7 @@ export class SSLCertificatesApiService extends ApiBaseService {
             throw new ArgumentNullException('sslCertificateId', 'getSslCertificate');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/ssl-certificates/{ssl_certificate_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/ssl-certificates/{ssl_certificate_id}';
 
         const response = await this.get <SslCertificate>(requestUrl.replace(`{${"ssl_certificate_id"}}`, encodeURIComponent(String(sslCertificateId))));
         return new ApiResponse(response);
@@ -116,17 +111,12 @@ export class SSLCertificatesApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentSslCertificates');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/ssl-certificates' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/ssl-certificates' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<SslCertificateRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);

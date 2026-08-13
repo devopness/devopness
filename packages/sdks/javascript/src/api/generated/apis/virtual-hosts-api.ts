@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { VirtualHost } from '../../generated/models';
 import { VirtualHostDeploy } from '../../generated/models';
@@ -36,13 +37,12 @@ export class VirtualHostsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentVirtualHost');
         }
+
         if (virtualHostEnvironmentCreate === null || virtualHostEnvironmentCreate === undefined) {
             throw new ArgumentNullException('virtualHostEnvironmentCreate', 'addEnvironmentVirtualHost');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/virtual-hosts' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/virtual-hosts';
 
         const response = await this.post <VirtualHost, VirtualHostEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), virtualHostEnvironmentCreate);
         return new ApiResponse(response);
@@ -58,9 +58,7 @@ export class VirtualHostsApiService extends ApiBaseService {
             throw new ArgumentNullException('virtualHostId', 'deleteVirtualHost');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/virtual-hosts/{virtual_host_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/virtual-hosts/{virtual_host_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))));
         return new ApiResponse(response);
@@ -76,13 +74,12 @@ export class VirtualHostsApiService extends ApiBaseService {
         if (virtualHostId === null || virtualHostId === undefined) {
             throw new ArgumentNullException('virtualHostId', 'deployVirtualHost');
         }
+
         if (virtualHostDeploy === null || virtualHostDeploy === undefined) {
             throw new ArgumentNullException('virtualHostDeploy', 'deployVirtualHost');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/virtual-hosts/{virtual_host_id}/deploy' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/virtual-hosts/{virtual_host_id}/deploy';
 
         const response = await this.post <void, VirtualHostDeploy>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))), virtualHostDeploy);
         return new ApiResponse(response);
@@ -98,13 +95,12 @@ export class VirtualHostsApiService extends ApiBaseService {
         if (virtualHostId === null || virtualHostId === undefined) {
             throw new ArgumentNullException('virtualHostId', 'getStatusVirtualHost');
         }
+
         if (virtualHostGetStatus === null || virtualHostGetStatus === undefined) {
             throw new ArgumentNullException('virtualHostGetStatus', 'getStatusVirtualHost');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/virtual-hosts/{virtual_host_id}/get-status' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/virtual-hosts/{virtual_host_id}/get-status';
 
         const response = await this.post <void, VirtualHostGetStatus>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))), virtualHostGetStatus);
         return new ApiResponse(response);
@@ -120,9 +116,7 @@ export class VirtualHostsApiService extends ApiBaseService {
             throw new ArgumentNullException('virtualHostId', 'getVirtualHost');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/virtual-hosts/{virtual_host_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/virtual-hosts/{virtual_host_id}';
 
         const response = await this.get <VirtualHost>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))));
         return new ApiResponse(response);
@@ -140,17 +134,12 @@ export class VirtualHostsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentVirtualHosts');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/virtual-hosts' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/virtual-hosts' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<VirtualHostRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -166,13 +155,12 @@ export class VirtualHostsApiService extends ApiBaseService {
         if (virtualHostId === null || virtualHostId === undefined) {
             throw new ArgumentNullException('virtualHostId', 'updateVirtualHost');
         }
+
         if (virtualHostUpdate === null || virtualHostUpdate === undefined) {
             throw new ArgumentNullException('virtualHostUpdate', 'updateVirtualHost');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/virtual-hosts/{virtual_host_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/virtual-hosts/{virtual_host_id}';
 
         const response = await this.put <void, VirtualHostUpdate>(requestUrl.replace(`{${"virtual_host_id"}}`, encodeURIComponent(String(virtualHostId))), virtualHostUpdate);
         return new ApiResponse(response);

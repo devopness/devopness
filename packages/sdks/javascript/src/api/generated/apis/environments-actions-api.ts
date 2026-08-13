@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ActionRelation } from '../../generated/models';
 import { ListEnvironmentActionsByResourceTypeFilterParameter } from '../../generated/models';
 import { ListEnvironmentActionsFilterParameter } from '../../generated/models';
@@ -35,19 +36,15 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentActions');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, filter: filter, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'filter': filter,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
+        const requestUrl = '/environments/{environment_id}/actions' + (queryString ? `?${queryString}` : '');
 
-        const requestUrl = '/environments/{environment_id}/actions' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Array<ActionRelation>, ListEnvironmentActionsFilterParameter>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), filter);
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
     }
 
@@ -64,23 +61,20 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentActionsByResourceType');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listEnvironmentActionsByResourceType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, filter: filter, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'filter': filter,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
+        const requestUrl = '/environments/{environment_id}/actions/{resource_type}' + (queryString ? `?${queryString}` : '');
 
-        const requestUrl = '/environments/{environment_id}/actions/{resource_type}' + (queryString? `?${queryString}` : '');
-
-        const response = await this.get <Array<ActionRelation>, ListEnvironmentActionsByResourceTypeFilterParameter>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))), filter);
+        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
     }
 }

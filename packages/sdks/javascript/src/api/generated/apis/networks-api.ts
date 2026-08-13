@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Network } from '../../generated/models';
 import { NetworkEnvironmentCreate } from '../../generated/models';
@@ -34,13 +35,12 @@ export class NetworksApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentNetwork');
         }
+
         if (networkEnvironmentCreate === null || networkEnvironmentCreate === undefined) {
             throw new ArgumentNullException('networkEnvironmentCreate', 'addEnvironmentNetwork');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/networks' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/networks';
 
         const response = await this.post <Network, NetworkEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), networkEnvironmentCreate);
         return new ApiResponse(response);
@@ -56,9 +56,7 @@ export class NetworksApiService extends ApiBaseService {
             throw new ArgumentNullException('networkId', 'deleteNetwork');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/networks/{network_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/networks/{network_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))));
         return new ApiResponse(response);
@@ -74,9 +72,7 @@ export class NetworksApiService extends ApiBaseService {
             throw new ArgumentNullException('networkId', 'getNetwork');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/networks/{network_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/networks/{network_id}';
 
         const response = await this.get <Network>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))));
         return new ApiResponse(response);
@@ -92,9 +88,7 @@ export class NetworksApiService extends ApiBaseService {
             throw new ArgumentNullException('networkId', 'getStatusNetwork');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/networks/{network_id}/get-status' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/networks/{network_id}/get-status';
 
         const response = await this.post <void>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))));
         return new ApiResponse(response);
@@ -115,17 +109,15 @@ export class NetworksApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentNetworks');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, include_default_network: includeDefaultNetwork, provider_name: providerName, region: region, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'include_default_network': includeDefaultNetwork,
+          'provider_name': providerName,
+          'region': region,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/networks' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/networks' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<NetworkRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -141,13 +133,12 @@ export class NetworksApiService extends ApiBaseService {
         if (networkId === null || networkId === undefined) {
             throw new ArgumentNullException('networkId', 'updateNetwork');
         }
+
         if (networkUpdate === null || networkUpdate === undefined) {
             throw new ArgumentNullException('networkUpdate', 'updateNetwork');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/networks/{network_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/networks/{network_id}';
 
         const response = await this.put <void, NetworkUpdate>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))), networkUpdate);
         return new ApiResponse(response);

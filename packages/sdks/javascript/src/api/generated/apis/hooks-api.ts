@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
 import { HookTriggerResponse } from '../../generated/models';
@@ -34,13 +35,12 @@ export class HooksApiService extends ApiBaseService {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'deleteHook');
         }
+
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'deleteHook');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/hooks/{hook_type}/{hook_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/{hook_type}/{hook_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))).replace(`{${"hook_type"}}`, encodeURIComponent(String(hookType))));
         return new ApiResponse(response);
@@ -56,13 +56,12 @@ export class HooksApiService extends ApiBaseService {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'getHook');
         }
+
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'getHook');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/hooks/{hook_type}/{hook_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/{hook_type}/{hook_id}';
 
         const response = await this.get <Hook>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))).replace(`{${"hook_type"}}`, encodeURIComponent(String(hookType))));
         return new ApiResponse(response);
@@ -78,9 +77,7 @@ export class HooksApiService extends ApiBaseService {
             throw new ArgumentNullException('hookId', 'triggerHook');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/hooks/{hook_id}/trigger' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/{hook_id}/trigger';
 
         const response = await this.post <HookTriggerResponse>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
         return new ApiResponse(response);
@@ -97,16 +94,16 @@ export class HooksApiService extends ApiBaseService {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'updateHook');
         }
+
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'updateHook');
         }
+
         if (hookUpdate === null || hookUpdate === undefined) {
             throw new ArgumentNullException('hookUpdate', 'updateHook');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/hooks/{hook_type}/{hook_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/{hook_type}/{hook_id}';
 
         const response = await this.put <void, HookUpdate>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))).replace(`{${"hook_type"}}`, encodeURIComponent(String(hookType))), hookUpdate);
         return new ApiResponse(response);

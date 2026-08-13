@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { Member } from '../../generated/models';
 import { MemberRelation } from '../../generated/models';
 
@@ -31,13 +32,12 @@ export class TeamsMembersApiService extends ApiBaseService {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'deleteTeamMember');
         }
+
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'deleteTeamMember');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/teams/{team_id}/members/{user_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/members/{user_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))).replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
@@ -53,13 +53,12 @@ export class TeamsMembersApiService extends ApiBaseService {
         if (teamId === null || teamId === undefined) {
             throw new ArgumentNullException('teamId', 'getTeamMember');
         }
+
         if (userId === null || userId === undefined) {
             throw new ArgumentNullException('userId', 'getTeamMember');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/teams/{team_id}/members/{user_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/members/{user_id}';
 
         const response = await this.get <Member>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))).replace(`{${"user_id"}}`, encodeURIComponent(String(userId))));
         return new ApiResponse(response);
@@ -77,17 +76,12 @@ export class TeamsMembersApiService extends ApiBaseService {
             throw new ArgumentNullException('teamId', 'listTeamMembers');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/teams/{team_id}/members' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/teams/{team_id}/members' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<MemberRelation>>(requestUrl.replace(`{${"team_id"}}`, encodeURIComponent(String(teamId))));
         return new ApiResponse(response);
