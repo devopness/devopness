@@ -68,4 +68,10 @@ def _parse_filter_query_string(
 
 def _is_empty(value: QueryStringParam) -> bool:
     """Return whether a query parameter value should be omitted."""
-    return value is None or value is False or value == "" or value == [] or value == {}
+    return (
+        value is None
+        or value is False
+        or value == ""  # ruff: ignore[compare-to-empty-string]
+        or value == []
+        or value == {}
+    )
