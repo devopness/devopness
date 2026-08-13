@@ -1,5 +1,5 @@
 ---
-"devopness": minor
+"@devopness/sdk-python": minor
 ---
 
 Added support for `filter` query parameters in list endpoints for **Actions** and **Environment Actions**.
