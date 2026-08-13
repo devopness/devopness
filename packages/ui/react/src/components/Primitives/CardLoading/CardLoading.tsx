@@ -1,6 +1,5 @@
 import {
   AvatarLoading,
-  LoadingIcon,
   LoadingBar,
   LoadingBarLink,
   Container,
@@ -28,7 +27,6 @@ const CardLoading = () => (
       </Grid>
     </Header>
     <Footer>
-      <LoadingIcon />
       <LoadingBarLink />
     </Footer>
   </Container>
