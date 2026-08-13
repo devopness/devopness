@@ -15,6 +15,8 @@ import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { ActionRelation } from '../../generated/models';
+import { ListEnvironmentActionsByResourceTypeFilterParameter } from '../../generated/models';
+import { ListEnvironmentActionsFilterParameter } from '../../generated/models';
 
 /**
  * EnvironmentsActionsApiService - Auto-generated
@@ -26,14 +28,15 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
      * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {ListEnvironmentActionsFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
      */
-    public async listEnvironmentActions(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+    public async listEnvironmentActions(environmentId: number, page?: number, perPage?: number, filter?: ListEnvironmentActionsFilterParameter): Promise<ApiResponse<Array<ActionRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentActions');
         }
 
         let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        const queryParams = { page: page, per_page: perPage, filter: filter, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;
@@ -44,7 +47,7 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
 
         const requestUrl = '/environments/{environment_id}/actions' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
+        const response = await this.get <Array<ActionRelation>, ListEnvironmentActionsFilterParameter>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), filter);
         return new ApiResponse(response);
     }
 
@@ -55,8 +58,9 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
      * @param {string} resourceType The resource type to get related actions.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {ListEnvironmentActionsByResourceTypeFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
      */
-    public async listEnvironmentActionsByResourceType(environmentId: number, resourceType: string, page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+    public async listEnvironmentActionsByResourceType(environmentId: number, resourceType: string, page?: number, perPage?: number, filter?: ListEnvironmentActionsByResourceTypeFilterParameter): Promise<ApiResponse<Array<ActionRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentActionsByResourceType');
         }
@@ -65,7 +69,7 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
         }
 
         let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        const queryParams = { page: page, per_page: perPage, filter: filter, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;
@@ -76,7 +80,7 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
 
         const requestUrl = '/environments/{environment_id}/actions/{resource_type}' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ActionRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
+        const response = await this.get <Array<ActionRelation>, ListEnvironmentActionsByResourceTypeFilterParameter>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))), filter);
         return new ApiResponse(response);
     }
 }

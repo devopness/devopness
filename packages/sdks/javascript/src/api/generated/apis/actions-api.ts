@@ -18,6 +18,7 @@ import { Action } from '../../generated/models';
 import { ActionRelation } from '../../generated/models';
 import { ActionRetryResponse } from '../../generated/models';
 import { ApiError } from '../../generated/models';
+import { ListActionsFilterParameter } from '../../generated/models';
 
 /**
  * ActionsApiService - Auto-generated
@@ -46,11 +47,12 @@ export class ActionsApiService extends ApiBaseService {
      * @summary Return a list of all actions belonging to current user
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {ListActionsFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
      */
-    public async listActions(page?: number, perPage?: number): Promise<ApiResponse<Array<ActionRelation>>> {
+    public async listActions(page?: number, perPage?: number, filter?: ListActionsFilterParameter): Promise<ApiResponse<Array<ActionRelation>>> {
 
         let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
+        const queryParams = { page: page, per_page: perPage, filter: filter, } as { [key: string]: any };
         for (const key in queryParams) {
             if (queryParams[key] === undefined || queryParams[key] === null) {
                 continue;
@@ -61,7 +63,7 @@ export class ActionsApiService extends ApiBaseService {
 
         const requestUrl = '/actions' + (queryString? `?${queryString}` : '');
 
-        const response = await this.get <Array<ActionRelation>>(requestUrl);
+        const response = await this.get <Array<ActionRelation>, ListActionsFilterParameter>(requestUrl, filter);
         return new ApiResponse(response);
     }
 
