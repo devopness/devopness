@@ -5,7 +5,7 @@
 
         endpoint_parts = [
             {{#hasPathParams}}f{{/hasPathParams}}"{{{path}}}",
-            {{#hasQueryParams}}f"?{query_string}",{{/hasQueryParams}}
+            {{#hasQueryParams}}f"?{query_string}" if query_string else "",{{/hasQueryParams}}
         ]
 
         endpoint: str = "".join(endpoint_parts)
