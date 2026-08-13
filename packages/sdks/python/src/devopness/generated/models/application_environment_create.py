@@ -28,7 +28,7 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
         build_command (str, optional): The optional command that should be executed once during deployment to build the source code and get the application in a ready state.
         engine_version (str): The language runtime engine version to be used to execute this application on the deployed servers. Must be at least 1 character. Must not be greater than 10 characters.
         framework (str): The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment. Must not be greater than 30 characters.
-        programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be &#x60;html&#x60;. Must not be greater than 30 characters.
+        programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be &#x60;nodejs&#x60; and the framework should be &#x60;html&#x60;. Must not be greater than 30 characters.
         repository (str): The full name of a repository (&#x60;repository_owner/repository_name&#x60;) containing the application source code. Must not be greater than 100 characters.
         credential_id (int): Numeric ID of the credential to source provider where the repository is hosted.
         root_directory (str, optional): The relative directory where package manager&#39;s manifest files (&#x60;package.json&#x60;, &#x60;composer.json&#x60;, &#x60;yarn.lock&#x60;, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of &lt;code&gt;/&lt;/code&gt; Must not be greater than 255 characters.
@@ -62,7 +62,7 @@ class ApplicationEnvironmentCreate(DevopnessBaseModel):
         json_schema_extra={"examples": ["none"]},
     )
     programming_language: StrictStr = Field(
-        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.",
+        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`. Must not be greater than 30 characters.",
         json_schema_extra={"examples": ["python"]},
     )
     repository: StrictStr = Field(

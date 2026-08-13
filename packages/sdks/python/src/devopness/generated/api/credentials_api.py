@@ -37,6 +37,10 @@ class CredentialsApiService(DevopnessBaseService):
         """
         Add a Credential to the given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            credential_organization_create (Union[CredentialOrganizationCreate, CredentialOrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +62,9 @@ class CredentialsApiService(DevopnessBaseService):
         """
         Delete a given credential
 
+        Attributes:
+            credential_id (int): The ID of the credential.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -78,6 +85,9 @@ class CredentialsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Credential]:
         """
         Get a credential by ID
+
+        Attributes:
+            credential_id (int): The ID of the credential.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -102,6 +112,11 @@ class CredentialsApiService(DevopnessBaseService):
         """
         Return provider settings
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            provider_code (str): The code of the provider.
+            state (Optional[str]): Optional base64-encoded JSON state to be included in connect URLs.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -115,7 +130,7 @@ class CredentialsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/credentials/{provider_code}/settings",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -132,6 +147,11 @@ class CredentialsApiService(DevopnessBaseService):
         """
         Return provider settings
 
+        Attributes:
+            organization_id (str): The ID or slug of the organization.
+            provider_code (str): The code of the provider.
+            state (Optional[str]): Optional base64-encoded JSON state to be included in connect URLs.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -145,7 +165,7 @@ class CredentialsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/credentials/{provider_code}/settings",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -159,6 +179,9 @@ class CredentialsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Get current status of a credential on its provider
+
+        Attributes:
+            credential_id (int): The ID of the credential.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -181,6 +204,10 @@ class CredentialsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Link a credential to an environment
+
+        Attributes:
+            credential_id (int): The credential ID.
+            environment_id (int): The environment ID.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -207,6 +234,13 @@ class CredentialsApiService(DevopnessBaseService):
         """
         Return a list of all Credentials linked to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            provider_code (Optional[str]): Filter credentials by provider code.
+            provider_type (Optional[str]): Filter credentials by provider type.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -223,7 +257,7 @@ class CredentialsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/credentials",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -242,6 +276,13 @@ class CredentialsApiService(DevopnessBaseService):
         """
         Return a list of all Credentials belonging to an organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            provider_code (Optional[str]): Filter credentials by provider code.
+            provider_type (Optional[str]): Filter credentials by provider type.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -258,7 +299,7 @@ class CredentialsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/credentials",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -273,6 +314,10 @@ class CredentialsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Unlink a credential from an environment
+
+        Attributes:
+            credential_id (int): The credential ID.
+            environment_id (int): The environment ID.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -298,6 +343,10 @@ class CredentialsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Credential
+
+        Attributes:
+            credential_id (int): The ID of the credential.
+            credential_update (Union[CredentialUpdate, CredentialUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -330,6 +379,10 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a Credential to the given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            credential_organization_create (Union[CredentialOrganizationCreate, CredentialOrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -351,6 +404,9 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given credential
 
+        Attributes:
+            credential_id (int): The ID of the credential.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -371,6 +427,9 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Credential]:
         """
         Get a credential by ID
+
+        Attributes:
+            credential_id (int): The ID of the credential.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -395,6 +454,11 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return provider settings
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            provider_code (str): The code of the provider.
+            state (Optional[str]): Optional base64-encoded JSON state to be included in connect URLs.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -408,7 +472,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/credentials/{provider_code}/settings",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -425,6 +489,11 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return provider settings
 
+        Attributes:
+            organization_id (str): The ID or slug of the organization.
+            provider_code (str): The code of the provider.
+            state (Optional[str]): Optional base64-encoded JSON state to be included in connect URLs.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -438,7 +507,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/credentials/{provider_code}/settings",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -452,6 +521,9 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Get current status of a credential on its provider
+
+        Attributes:
+            credential_id (int): The ID of the credential.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -474,6 +546,10 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Link a credential to an environment
+
+        Attributes:
+            credential_id (int): The credential ID.
+            environment_id (int): The environment ID.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -500,6 +576,13 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all Credentials linked to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            provider_code (Optional[str]): Filter credentials by provider code.
+            provider_type (Optional[str]): Filter credentials by provider type.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -516,7 +599,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/credentials",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -535,6 +618,13 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all Credentials belonging to an organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            provider_code (Optional[str]): Filter credentials by provider code.
+            provider_type (Optional[str]): Filter credentials by provider type.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -551,7 +641,7 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/credentials",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -566,6 +656,10 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Unlink a credential from an environment
+
+        Attributes:
+            credential_id (int): The credential ID.
+            environment_id (int): The environment ID.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -591,6 +685,10 @@ class CredentialsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Credential
+
+        Attributes:
+            credential_id (int): The ID of the credential.
+            credential_update (Union[CredentialUpdate, CredentialUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

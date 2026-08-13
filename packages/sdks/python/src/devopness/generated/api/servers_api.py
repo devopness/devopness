@@ -37,6 +37,10 @@ class ServersApiService(DevopnessBaseService):
         """
         Creates a server and link it to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            server_environment_create (Union[ServerEnvironmentCreate, ServerEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +62,10 @@ class ServersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[str]:
         """
         Connect a server to devopness platform
+
+        Attributes:
+            activation_token (str): The server activation token.
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -81,6 +89,10 @@ class ServersApiService(DevopnessBaseService):
         """
         Delete a given server
 
+        Attributes:
+            server_id (int): The ID of the server.
+            destroy_server_disks (Optional[bool]): Indicates whether disks associated with a cloud server should be deleted after the server is destroyed
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -94,7 +106,7 @@ class ServersApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/servers/{server_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -108,6 +120,9 @@ class ServersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Deploy a Server
+
+        Attributes:
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -130,6 +145,9 @@ class ServersApiService(DevopnessBaseService):
         """
         Get a server by ID
 
+        Attributes:
+            server_id (int): The ID of the server.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -151,6 +169,9 @@ class ServersApiService(DevopnessBaseService):
         """
         Get commands to be executed on the given server
 
+        Attributes:
+            server_id (int): The ID of the server.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -171,6 +192,9 @@ class ServersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Get current status of the server on the cloud provider
+
+        Attributes:
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -195,6 +219,11 @@ class ServersApiService(DevopnessBaseService):
         """
         Return a list of all servers belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -209,7 +238,7 @@ class ServersApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/servers",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -223,6 +252,9 @@ class ServersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Restart a current running server
+
+        Attributes:
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -245,6 +277,9 @@ class ServersApiService(DevopnessBaseService):
         """
         Rotate the key used to access the server
 
+        Attributes:
+            server_id (int): The ID of the server.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -266,6 +301,9 @@ class ServersApiService(DevopnessBaseService):
         """
         Start a previously stopped server
 
+        Attributes:
+            server_id (int): The ID of the server.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -286,6 +324,9 @@ class ServersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Stop a running server
+
+        Attributes:
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -311,6 +352,10 @@ class ServersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing server
+
+        Attributes:
+            server_id (int): The ID of the server.
+            server_update (Union[ServerUpdate, ServerUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -343,6 +388,10 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Creates a server and link it to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            server_environment_create (Union[ServerEnvironmentCreate, ServerEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -364,6 +413,10 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[str]:
         """
         Connect a server to devopness platform
+
+        Attributes:
+            activation_token (str): The server activation token.
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -387,6 +440,10 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given server
 
+        Attributes:
+            server_id (int): The ID of the server.
+            destroy_server_disks (Optional[bool]): Indicates whether disks associated with a cloud server should be deleted after the server is destroyed
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -400,7 +457,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/servers/{server_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -414,6 +471,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Deploy a Server
+
+        Attributes:
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -436,6 +496,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get a server by ID
 
+        Attributes:
+            server_id (int): The ID of the server.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -457,6 +520,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get commands to be executed on the given server
 
+        Attributes:
+            server_id (int): The ID of the server.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -477,6 +543,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Get current status of the server on the cloud provider
+
+        Attributes:
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -501,6 +570,11 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all servers belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -515,7 +589,7 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/servers",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -529,6 +603,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Restart a current running server
+
+        Attributes:
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -551,6 +628,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Rotate the key used to access the server
 
+        Attributes:
+            server_id (int): The ID of the server.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -572,6 +652,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Start a previously stopped server
 
+        Attributes:
+            server_id (int): The ID of the server.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -592,6 +675,9 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Stop a running server
+
+        Attributes:
+            server_id (int): The ID of the server.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -617,6 +703,10 @@ class ServersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing server
+
+        Attributes:
+            server_id (int): The ID of the server.
+            server_update (Union[ServerUpdate, ServerUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

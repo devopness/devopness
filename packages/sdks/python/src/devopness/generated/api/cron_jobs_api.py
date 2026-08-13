@@ -38,6 +38,10 @@ class CronJobsApiService(DevopnessBaseService):
         """
         Add a Cron Job to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            cron_job_environment_create (Union[CronJobEnvironmentCreate, CronJobEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +62,9 @@ class CronJobsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given Cron Job
+
+        Attributes:
+            cron_job_id (int): The ID of the cron job.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -84,6 +91,10 @@ class CronJobsApiService(DevopnessBaseService):
         """
         Deploy a Cron Job
 
+        Attributes:
+            cron_job_id (int): The ID of the cron job.
+            cron_job_deploy (Union[CronJobDeploy, CronJobDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -104,6 +115,9 @@ class CronJobsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[CronJob]:
         """
         Get a Cron Job by ID
+
+        Attributes:
+            cron_job_id (int): The ID of the cron job.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -128,6 +142,11 @@ class CronJobsApiService(DevopnessBaseService):
         """
         Return a list of all Cron Jobs belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -142,7 +161,7 @@ class CronJobsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/cron-jobs",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -160,6 +179,10 @@ class CronJobsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Cron Job
+
+        Attributes:
+            cron_job_id (int): The ID of the cron job.
+            cron_job_update (Union[CronJobUpdate, CronJobUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -192,6 +215,10 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a Cron Job to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            cron_job_environment_create (Union[CronJobEnvironmentCreate, CronJobEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -212,6 +239,9 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given Cron Job
+
+        Attributes:
+            cron_job_id (int): The ID of the cron job.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -238,6 +268,10 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Deploy a Cron Job
 
+        Attributes:
+            cron_job_id (int): The ID of the cron job.
+            cron_job_deploy (Union[CronJobDeploy, CronJobDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -258,6 +292,9 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[CronJob]:
         """
         Get a Cron Job by ID
+
+        Attributes:
+            cron_job_id (int): The ID of the cron job.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -282,6 +319,11 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all Cron Jobs belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -296,7 +338,7 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/cron-jobs",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -314,6 +356,10 @@ class CronJobsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Cron Job
+
+        Attributes:
+            cron_job_id (int): The ID of the cron job.
+            cron_job_update (Union[CronJobUpdate, CronJobUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

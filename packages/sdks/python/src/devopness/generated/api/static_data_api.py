@@ -37,6 +37,8 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List `Application` resource options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +60,9 @@ class StaticDataApiService(DevopnessBaseService):
         """
         Get details of a single `Cloud Provider Service`
 
+        Attributes:
+            cloud_provider_service_code (str): The cloud provider service code.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -77,6 +82,8 @@ class StaticDataApiService(DevopnessBaseService):
     ) -> DevopnessResponse[CredentialOptions]:
         """
         List `Credential` resource options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -98,6 +105,8 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List `CronJob` resource options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -117,6 +126,8 @@ class StaticDataApiService(DevopnessBaseService):
     ) -> DevopnessResponse[EnvironmentOptions]:
         """
         List `Environment` options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -138,6 +149,8 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List `Network Rule` options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -157,6 +170,8 @@ class StaticDataApiService(DevopnessBaseService):
     ) -> DevopnessResponse[ServerOptions]:
         """
         List `Server` options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -178,6 +193,8 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List `Service` resource options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -198,6 +215,8 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List `User profile` options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -217,6 +236,8 @@ class StaticDataApiService(DevopnessBaseService):
     ) -> DevopnessResponse[VirtualHostOptions]:
         """
         List `Virtual Host` options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -240,6 +261,10 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List `Billing Plans` options
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -254,7 +279,7 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint_parts = [
             "/static/billing-plans-options",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -272,6 +297,12 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List `Cloud Provider Service` instance types by region
 
+        Attributes:
+            cloud_provider_service_code (str): The cloud provider service code.
+            region_code (str): The region of the cloud provider to get related instances.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -286,7 +317,7 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -302,6 +333,10 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List available `Role` permissions
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -316,7 +351,7 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint_parts = [
             "/static/permissions",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -332,6 +367,10 @@ class StaticDataApiService(DevopnessBaseService):
         """
         List available resource types
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -346,7 +385,7 @@ class StaticDataApiService(DevopnessBaseService):
 
         endpoint_parts = [
             "/static/resource-types",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -365,6 +404,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[ApplicationOptions]:
         """
         List `Application` resource options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -387,6 +428,9 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get details of a single `Cloud Provider Service`
 
+        Attributes:
+            cloud_provider_service_code (str): The cloud provider service code.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -406,6 +450,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[CredentialOptions]:
         """
         List `Credential` resource options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -427,6 +473,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List `CronJob` resource options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -446,6 +494,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[EnvironmentOptions]:
         """
         List `Environment` options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -467,6 +517,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List `Network Rule` options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -486,6 +538,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[ServerOptions]:
         """
         List `Server` options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -507,6 +561,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List `Service` resource options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -527,6 +583,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List `User profile` options
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -546,6 +604,8 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[VirtualHostOptions]:
         """
         List `Virtual Host` options
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -569,6 +629,10 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List `Billing Plans` options
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -583,7 +647,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             "/static/billing-plans-options",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -603,6 +667,12 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List `Cloud Provider Service` instance types by region
 
+        Attributes:
+            cloud_provider_service_code (str): The cloud provider service code.
+            region_code (str): The region of the cloud provider to get related instances.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -617,7 +687,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -633,6 +703,10 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List available `Role` permissions
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -647,7 +721,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             "/static/permissions",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -663,6 +737,10 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List available resource types
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -677,7 +755,7 @@ class StaticDataApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             "/static/resource-types",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

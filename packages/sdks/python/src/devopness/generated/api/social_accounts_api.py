@@ -34,6 +34,9 @@ class SocialAccountsApiService(DevopnessBaseService):
         """
         Add a social account
 
+        Attributes:
+            social_account_create (Union[SocialAccountCreate, SocialAccountCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -54,6 +57,9 @@ class SocialAccountsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given social account
+
+        Attributes:
+            social_account_id (int): The ID of the social account.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -76,6 +82,9 @@ class SocialAccountsApiService(DevopnessBaseService):
         """
         Get a social account by provider name
 
+        Attributes:
+            social_account_provider (str): The social account provider name.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -96,6 +105,9 @@ class SocialAccountsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[SocialAccountStatus]:
         """
         Get status of a social account
+
+        Attributes:
+            social_account_provider (str): The social account provider name.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -119,6 +131,10 @@ class SocialAccountsApiService(DevopnessBaseService):
         """
         Return a list of all social accounts of the current user
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -133,7 +149,7 @@ class SocialAccountsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             "/social-accounts",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -157,6 +173,9 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a social account
 
+        Attributes:
+            social_account_create (Union[SocialAccountCreate, SocialAccountCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -177,6 +196,9 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given social account
+
+        Attributes:
+            social_account_id (int): The ID of the social account.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -199,6 +221,9 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get a social account by provider name
 
+        Attributes:
+            social_account_provider (str): The social account provider name.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -219,6 +244,9 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[SocialAccountStatus]:
         """
         Get status of a social account
+
+        Attributes:
+            social_account_provider (str): The social account provider name.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -242,6 +270,10 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all social accounts of the current user
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -256,7 +288,7 @@ class SocialAccountsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             "/social-accounts",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

@@ -31,6 +31,12 @@ class HooksRequestsApiService(DevopnessBaseService):
         """
         Returns a list of all hook requests belonging to a hook
 
+        Attributes:
+            hook_id (str): The ID of the hook.
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -45,7 +51,7 @@ class HooksRequestsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/hooks/{hook_type}/{hook_id}/requests",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -72,6 +78,12 @@ class HooksRequestsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Returns a list of all hook requests belonging to a hook
 
+        Attributes:
+            hook_id (str): The ID of the hook.
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -86,7 +98,7 @@ class HooksRequestsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/hooks/{hook_type}/{hook_id}/requests",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

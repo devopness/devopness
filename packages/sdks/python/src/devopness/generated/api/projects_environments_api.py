@@ -34,6 +34,10 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
         """
         Create a new environment on the current project
 
+        Attributes:
+            project_id (int): The ID of the project.
+            environment_project_create (Union[EnvironmentProjectCreate, EnvironmentProjectCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -57,6 +61,11 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
         """
         Return a list of all environments belonging to a project
 
+        Attributes:
+            project_id (int): The ID of the project.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -71,7 +80,7 @@ class ProjectsEnvironmentsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/projects/{project_id}/environments",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -96,6 +105,10 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new environment on the current project
 
+        Attributes:
+            project_id (int): The ID of the project.
+            environment_project_create (Union[EnvironmentProjectCreate, EnvironmentProjectCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -119,6 +132,11 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all environments belonging to a project
 
+        Attributes:
+            project_id (int): The ID of the project.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -133,7 +151,7 @@ class ProjectsEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/projects/{project_id}/environments",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

@@ -36,6 +36,8 @@ class UsersApiService(DevopnessBaseService):
         """
         Sign up/register a new user
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -65,6 +67,9 @@ class UsersApiService(DevopnessBaseService):
         """
         Get public details of a user
 
+        Attributes:
+            user_id (str): The URL Slug of a user.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -86,6 +91,9 @@ class UsersApiService(DevopnessBaseService):
         """
         Get activity information for a user
 
+        Attributes:
+            user_id (str): The numeric ID or URL Slug of a user.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -106,6 +114,8 @@ class UsersApiService(DevopnessBaseService):
         """
         Get current user's billing info for active subscription
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -125,6 +135,8 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Logout/revoke an existing token
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -154,6 +166,8 @@ class UsersApiService(DevopnessBaseService):
         """
         Get details of the current user
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -174,6 +188,8 @@ class UsersApiService(DevopnessBaseService):
         """
         Get the authenticated user's URLs
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -193,6 +209,8 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -226,6 +244,9 @@ class UsersApiService(DevopnessBaseService):
         """
         Refresh an existing user access token
 
+        Attributes:
+            user_refresh_token (Union[UserRefreshToken, UserRefreshTokenPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -258,6 +279,9 @@ class UsersApiService(DevopnessBaseService):
         """
         Resend the verification email
 
+        Attributes:
+            user_resend_verification (Union[UserResendVerification, UserResendVerificationPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -278,6 +302,9 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing user
+
+        Attributes:
+            user_id (str): The ID of the user.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -306,6 +333,8 @@ class UsersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Activate the user account
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -341,6 +370,8 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Sign up/register a new user
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -370,6 +401,9 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get public details of a user
 
+        Attributes:
+            user_id (str): The URL Slug of a user.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -391,6 +425,9 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get activity information for a user
 
+        Attributes:
+            user_id (str): The numeric ID or URL Slug of a user.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -411,6 +448,8 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get current user's billing info for active subscription
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -430,6 +469,8 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Logout/revoke an existing token
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -459,6 +500,8 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get details of the current user
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -479,6 +522,8 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get the authenticated user's URLs
 
+        Attributes:
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -498,6 +543,8 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[UserLoginResponse]:
         """
         Login/create a new token for the given credentials
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -531,6 +578,9 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Refresh an existing user access token
 
+        Attributes:
+            user_refresh_token (Union[UserRefreshToken, UserRefreshTokenPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -563,6 +613,9 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Resend the verification email
 
+        Attributes:
+            user_resend_verification (Union[UserResendVerification, UserResendVerificationPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -583,6 +636,9 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing user
+
+        Attributes:
+            user_id (str): The ID of the user.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -611,6 +667,8 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Activate the user account
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.

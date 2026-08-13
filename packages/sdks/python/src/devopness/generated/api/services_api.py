@@ -48,6 +48,10 @@ class ServicesApiService(DevopnessBaseService):
         """
         Add a Service to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            service_environment_create (Union[ServiceEnvironmentCreate, ServiceEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -68,6 +72,9 @@ class ServicesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given service
+
+        Attributes:
+            service_id (int): The ID of the service.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -94,6 +101,10 @@ class ServicesApiService(DevopnessBaseService):
         """
         Deploy a Service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            service_deploy (Union[ServiceDeploy, ServiceDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -114,6 +125,9 @@ class ServicesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Service]:
         """
         Get details of a single service
+
+        Attributes:
+            service_id (int): The ID of the service.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -140,6 +154,10 @@ class ServicesApiService(DevopnessBaseService):
         """
         Get current status of a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            service_get_status (Union[ServiceGetStatus, ServiceGetStatusPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -163,6 +181,11 @@ class ServicesApiService(DevopnessBaseService):
         """
         Return a list of all services belonging to a environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -177,7 +200,7 @@ class ServicesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/services",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -195,6 +218,10 @@ class ServicesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Reload a service
+
+        Attributes:
+            service_id (int): The ID of the service.
+            service_reload (Union[ServiceReload, ServiceReloadPlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -221,6 +248,10 @@ class ServicesApiService(DevopnessBaseService):
         """
         Restart a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            service_restart (Union[ServiceRestart, ServiceRestartPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -245,6 +276,10 @@ class ServicesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Start a service
+
+        Attributes:
+            service_id (int): The ID of the service.
+            service_start (Union[ServiceStart, ServiceStartPlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -271,6 +306,10 @@ class ServicesApiService(DevopnessBaseService):
         """
         Stop a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            service_stop (Union[ServiceStop, ServiceStopPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -295,6 +334,10 @@ class ServicesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing service
+
+        Attributes:
+            service_id (int): The ID of the service.
+            service_update (Union[ServiceUpdate, ServiceUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -327,6 +370,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a Service to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            service_environment_create (Union[ServiceEnvironmentCreate, ServiceEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -347,6 +394,9 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given service
+
+        Attributes:
+            service_id (int): The ID of the service.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -373,6 +423,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Deploy a Service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            service_deploy (Union[ServiceDeploy, ServiceDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -393,6 +447,9 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Service]:
         """
         Get details of a single service
+
+        Attributes:
+            service_id (int): The ID of the service.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -419,6 +476,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get current status of a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            service_get_status (Union[ServiceGetStatus, ServiceGetStatusPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -442,6 +503,11 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all services belonging to a environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -456,7 +522,7 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/services",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -474,6 +540,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Reload a service
+
+        Attributes:
+            service_id (int): The ID of the service.
+            service_reload (Union[ServiceReload, ServiceReloadPlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -500,6 +570,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Restart a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            service_restart (Union[ServiceRestart, ServiceRestartPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -524,6 +598,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Start a service
+
+        Attributes:
+            service_id (int): The ID of the service.
+            service_start (Union[ServiceStart, ServiceStartPlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -550,6 +628,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Stop a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            service_stop (Union[ServiceStop, ServiceStopPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -574,6 +656,10 @@ class ServicesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing service
+
+        Attributes:
+            service_id (int): The ID of the service.
+            service_update (Union[ServiceUpdate, ServiceUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
