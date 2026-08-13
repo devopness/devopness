@@ -35,15 +35,8 @@ const LoadingBar = styled.div`
   ${skeleton}
 `
 
-const LoadingIcon = styled.div`
-  width: 25px;
-  height: 25px;
-  border-radius: 20px;
-  ${skeleton}
-`
-
 const LoadingBarLink = styled.div`
-  width: 20%;
+  width: 100%;
   height: 14px;
   border-radius: 2px;
   ${skeleton}
@@ -103,5 +96,4 @@ export {
   Header,
   LoadingBar,
   LoadingBarLink,
-  LoadingIcon,
 }
