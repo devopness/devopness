@@ -875,3 +875,9 @@ VirtualHostType:
   $ref: ./auto-generated/models/virtual-host-type.yaml
 VirtualHostUpdate:
   $ref: ./auto-generated/models/virtual-host-update.yaml
+ListActionsFilterParameter:
+  $ref: ./auto-generated/models/list-actions-filter-parameter.yaml
+ListEnvironmentActionsFilterParameter:
+  $ref: ./auto-generated/models/list-environment-actions-filter-parameter.yaml
+ListEnvironmentActionsByResourceTypeFilterParameter:
+  $ref: ./auto-generated/models/list-environment-actions-by-resource-type-filter-parameter.yaml

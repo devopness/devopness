@@ -16,6 +16,15 @@ parameters:
     $ref: '#/components/parameters/pageNumber'
   -
     $ref: '#/components/parameters/pageSize'
+  -
+    in: query
+    name: filter
+    description: "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`"
+    required: false
+    style: deepObject
+    explode: true
+    schema:
+      $ref: '#/components/schemas/ListActionsFilterParameter'
 responses:
   200:
     description: Ok

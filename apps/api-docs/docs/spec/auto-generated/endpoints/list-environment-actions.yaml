@@ -25,6 +25,15 @@ parameters:
     schema:
       type: integer
       minimum: 1
+  -
+    in: query
+    name: filter
+    description: "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`"
+    required: false
+    style: deepObject
+    explode: true
+    schema:
+      $ref: '#/components/schemas/ListEnvironmentActionsFilterParameter'
 responses:
   200:
     description: Ok

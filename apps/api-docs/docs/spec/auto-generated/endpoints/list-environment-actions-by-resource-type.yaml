@@ -26,6 +26,15 @@ parameters:
       type: integer
       minimum: 1
   -
+    in: query
+    name: filter
+    description: "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`"
+    required: false
+    style: deepObject
+    explode: true
+    schema:
+      $ref: '#/components/schemas/ListEnvironmentActionsByResourceTypeFilterParameter'
+  -
     in: path
     name: resource_type
     description: 'The resource type to get related actions.'

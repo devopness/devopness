@@ -38,7 +38,7 @@ properties:
     example: main
     type: string
   programming_language:
-    description: 'The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.'
+    description: 'The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.'
     example: python
     type: string
   programming_language_human_readable:
