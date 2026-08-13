@@ -1,0 +1,2 @@
+Attributes:{{#allParams}}{{^isHeaderParam}}
+    {{paramName}} ({{^required}}Optional[{{/required}}{{#isModel}}Union[{{/isModel}}{{#isEnumRef}}Union[{{/isEnumRef}}{{dataType}}{{#isModel}}, {{dataType}}Plain,{{/isModel}}{{#isEnumRef}},{{dataType}}Plain,{{/isEnumRef}}{{#isModel}}]{{/isModel}}{{#isEnumRef}}]{{/isEnumRef}}{{^required}}]{{/required}}): {{description}}{{/isHeaderParam}}{{/allParams}}

@@ -200,25 +200,19 @@ export class ApiBaseService {
     return this.api.defaults.baseURL ? this.api.defaults.baseURL : "";
   }
 
-  protected async post<T, B = undefined, R = AxiosResponse<T>>(
-    endpoint: string,
-    data?: B,
-  ): Promise<R> {
-    return this.api.post<T, R>(endpoint, data);
+  protected async post<T, B = undefined>(endpoint: string, data?: B): Promise<AxiosResponse<T>> {
+    return this.api.post<T, AxiosResponse<T>, B>(endpoint, data);
   }
 
-  protected async put<T, B = undefined, R = AxiosResponse<T>>(
-    endpoint: string,
-    data?: B,
-  ): Promise<R> {
-    return this.api.put<T, R>(endpoint, data);
+  protected async put<T, B = undefined>(endpoint: string, data?: B): Promise<AxiosResponse<T>> {
+    return this.api.put<T, AxiosResponse<T>, B>(endpoint, data);
   }
 
-  protected delete<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
-    return this.api.delete<T, R>(endpoint);
+  protected delete<T>(endpoint: string): Promise<AxiosResponse<T>> {
+    return this.api.delete<T, AxiosResponse<T>>(endpoint);
   }
 
-  protected get<T, R = AxiosResponse<T>>(endpoint: string): Promise<R> {
-    return this.api.get<T, R>(endpoint);
+  protected get<T>(endpoint: string): Promise<AxiosResponse<T>> {
+    return this.api.get<T, AxiosResponse<T>>(endpoint);
   }
 }
