@@ -116,14 +116,14 @@ export class DevopnessApiClient {
   }
 
   public set accessToken(accessToken: string) {
-    const MIN_TOKEN_LENGHT = 100;
+    const MIN_TOKEN_LENGTH = 100;
 
     /**
      * As a complete access token validation rule might be too much to be implemented here, we
      * at least check for min length and return a substring of it to help users identify the
      * issue when first initializing this SDK from their apps
      */
-    if (accessToken && accessToken.length < MIN_TOKEN_LENGHT) {
+    if (accessToken && accessToken.length < MIN_TOKEN_LENGTH) {
       throw new Error(
         `"${accessToken.substring(0, 10)} ..." doesn't seem to be a valid access token issued by Devopness API.`,
       );

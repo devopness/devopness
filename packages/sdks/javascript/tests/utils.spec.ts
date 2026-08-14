@@ -10,6 +10,7 @@ test("parseQueryString keeps scalar values and omits empty ones", () => {
     boolean: true,
     falseValue: false,
     nullValue: null,
+    undefinedValue: undefined,
     emptyString: "",
     emptyArray: [],
     emptyObject: {},
