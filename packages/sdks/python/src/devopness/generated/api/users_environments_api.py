@@ -26,6 +26,12 @@ class UsersEnvironmentsApiService(DevopnessBaseService):
         """
         Return a list of all environments owned by a user
 
+        Attributes:
+            user_id (str): The numeric ID or URL Slug of a user.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            subscription_id (Optional[int]): ID of a user subscription to calculate the amount of credits used from that subscription on each user environment. If provided, and being a valid subscription belonging to current user, the &#39;used_credits&#39; field will be added to the response.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -41,7 +47,7 @@ class UsersEnvironmentsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/users/{user_id}/environments",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -65,6 +71,12 @@ class UsersEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all environments owned by a user
 
+        Attributes:
+            user_id (str): The numeric ID or URL Slug of a user.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            subscription_id (Optional[int]): ID of a user subscription to calculate the amount of credits used from that subscription on each user environment. If provided, and being a valid subscription belonging to current user, the &#39;used_credits&#39; field will be added to the response.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -80,7 +92,7 @@ class UsersEnvironmentsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/users/{user_id}/environments",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

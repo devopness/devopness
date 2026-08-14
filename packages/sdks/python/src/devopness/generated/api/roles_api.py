@@ -36,6 +36,10 @@ class RolesApiService(DevopnessBaseService):
         """
         Create a role to a given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            role_organization_create (Union[RoleOrganizationCreate, RoleOrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -57,6 +61,9 @@ class RolesApiService(DevopnessBaseService):
         """
         Delete a given role
 
+        Attributes:
+            role_id (int): The ID of a role.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -77,6 +84,9 @@ class RolesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Role]:
         """
         Get a role by ID
+
+        Attributes:
+            role_id (int): The ID of a role.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -101,6 +111,11 @@ class RolesApiService(DevopnessBaseService):
         """
         List all roles from a organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -115,7 +130,7 @@ class RolesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/roles",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -133,6 +148,10 @@ class RolesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing role
+
+        Attributes:
+            role_id (int): The ID of a role.
+            role_update (Union[RoleUpdate, RoleUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -165,6 +184,10 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a role to a given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            role_organization_create (Union[RoleOrganizationCreate, RoleOrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -186,6 +209,9 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given role
 
+        Attributes:
+            role_id (int): The ID of a role.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -206,6 +232,9 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Role]:
         """
         Get a role by ID
+
+        Attributes:
+            role_id (int): The ID of a role.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -230,6 +259,11 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List all roles from a organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -244,7 +278,7 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/roles",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -262,6 +296,10 @@ class RolesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing role
+
+        Attributes:
+            role_id (int): The ID of a role.
+            role_update (Union[RoleUpdate, RoleUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

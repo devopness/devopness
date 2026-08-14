@@ -16,10 +16,7 @@ const meta: Meta<typeof Cover> = {
   argTypes: {
     logo: {
       control: 'select',
-      options: [
-        'colored',
-        'white',
-      ],
+      options: ['colored', 'white'],
     },
     backgroundColor: { control: 'text' },
     minWidth: { control: 'text' },

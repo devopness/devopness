@@ -24,6 +24,10 @@ class TeamsMembersApiService(DevopnessBaseService):
         """
         Remove a member from a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            user_id (int): The ID of the user.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -45,6 +49,10 @@ class TeamsMembersApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Member]:
         """
         Get a member of team by ID
+
+        Attributes:
+            team_id (int): The ID of the team.
+            user_id (int): The ID of the user.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -69,6 +77,11 @@ class TeamsMembersApiService(DevopnessBaseService):
         """
         Return a list of all members belonging to a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -83,7 +96,7 @@ class TeamsMembersApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/teams/{team_id}/members",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -104,6 +117,10 @@ class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Remove a member from a team
+
+        Attributes:
+            team_id (int): The ID of the team.
+            user_id (int): The ID of the user.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -126,6 +143,10 @@ class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Member]:
         """
         Get a member of team by ID
+
+        Attributes:
+            team_id (int): The ID of the team.
+            user_id (int): The ID of the user.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -150,6 +171,11 @@ class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all members belonging to a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -164,7 +190,7 @@ class TeamsMembersApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/teams/{team_id}/members",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

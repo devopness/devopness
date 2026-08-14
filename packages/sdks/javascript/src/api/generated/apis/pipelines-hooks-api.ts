@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
 import { HookPipelineCreate } from '../../generated/models';
@@ -35,16 +36,16 @@ export class PipelinesHooksApiService extends ApiBaseService {
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'addPipelineHook');
         }
+
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'addPipelineHook');
         }
+
         if (hookPipelineCreate === null || hookPipelineCreate === undefined) {
             throw new ArgumentNullException('hookPipelineCreate', 'addPipelineHook');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/pipelines/{pipeline_id}/hooks/{hook_type}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}/hooks/{hook_type}';
 
         const response = await this.post <Hook, HookPipelineCreate>(requestUrl.replace(`{${"hook_type"}}`, encodeURIComponent(String(hookType))).replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))), hookPipelineCreate);
         return new ApiResponse(response);
@@ -62,17 +63,12 @@ export class PipelinesHooksApiService extends ApiBaseService {
             throw new ArgumentNullException('pipelineId', 'listPipelineHooks');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/pipelines/{pipeline_id}/hooks' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}/hooks' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<HookRelation>>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))));
         return new ApiResponse(response);

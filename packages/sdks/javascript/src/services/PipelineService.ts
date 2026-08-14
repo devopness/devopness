@@ -4,7 +4,7 @@ import { PipelinesStepsApiService } from "../api/generated/apis/pipelines-steps-
 import { PipelinesApiService } from "../api/generated/apis/pipelines-api";
 
 export class PipelineService extends PipelinesApiService {
-    public actions = new PipelinesActionsApiService();
-    public hooks = new PipelinesHooksApiService();
-    public steps = new PipelinesStepsApiService();
+  public actions = new PipelinesActionsApiService();
+  public hooks = new PipelinesHooksApiService();
+  public steps = new PipelinesStepsApiService();
 }

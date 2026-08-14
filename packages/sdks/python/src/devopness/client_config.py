@@ -27,8 +27,8 @@ def get_user_agent(
     platform_version = python_version()
     platform_system = system()
 
-    # Example: devopness-sdk-python/1.0.0 +https://github.com/devopness/devopness (python/3.13.0 Linux)               # noqa: E501
-    return f"{product_name}/{product_version} +{product_home_url} ({platform}/{platform_version} {platform_system})"  # noqa: E501
+    # Example: devopness-sdk-python/1.0.0 +https://github.com/devopness/devopness (python/3.13.0 Linux)               # ruff:ignore[line-too-long]
+    return f"{product_name}/{product_version} +{product_home_url} ({platform}/{platform_version} {platform_system})"  # ruff:ignore[line-too-long]
 
 
 class DevopnessClientConfig(DevopnessBaseModel):
@@ -58,7 +58,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
     debug: bool = False
     strict_validation_mode: bool = True
     default_encoding: str = "utf-8"
-    headers: dict[str, str] = {  # noqa: RUF012
+    headers: dict[str, str] = {  # ruff:ignore[mutable-class-default]
         "Accept": "application/json",
         "Content-Type": "application/json",
         "User-Agent": get_user_agent(),
@@ -80,7 +80,7 @@ class DevopnessClientConfig(DevopnessBaseModel):
         return value
 
     @model_validator(mode="after")
-    def validate_api_token_auto_refresh(self, values: ValidationInfo) -> Any:  # noqa: ANN401
+    def validate_api_token_auto_refresh(self, values: ValidationInfo) -> Any:  # ruff:ignore[any-type]
         if self.api_token and self.auto_refresh_token:
             warnings.warn(
                 (

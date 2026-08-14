@@ -17,6 +17,7 @@ class VariableType(str, Enum):
     """
 
     FILE = "file"
+    SYMLINK = "symlink"
     VARIABLE = "variable"
 
     def __str__(self) -> str:
@@ -32,5 +33,6 @@ class VariableType(str, Enum):
 # The plain version of VariableType
 VariableTypePlain = Literal[
     "file",
+    "symlink",
     "variable",
 ]

@@ -24,8 +24,8 @@ class VariableApplicationCreate(DevopnessBaseModel):
     VariableApplicationCreate
 
     Attributes:
-        key (str): The unique key used to identify the variable on the target.                 When variable is of type &#x60;file&#x60;, this is the relative path                 to the file within the application directory. Must not be greater than 100 characters.
-        value (str): The value to be assigned to this variable when deployed to its target.                 When variable is of type &#x60;file&#x60;, this is the file content. Must not be greater than 21504 characters.
+        key (str): The unique key used to identify the variable on the target.                 For &#x60;resource-config-file&#x60;, use a relative path such as &#x60;.env&#x60; or &#x60;storage/oauth-public.key&#x60;.                 For &#x60;resource-symlink&#x60;, &#x60;key&#x60; is the link path and &#x60;value&#x60; is the destination path, for example &#x60;node_modules&#x60; -&gt; &#x60;${APP_SHARED_DIR}/node_modules&#x60;. Must not be greater than 100 characters.
+        value (str): The value to be assigned to this variable when deployed to its target.                 When variable is of type &#x60;file&#x60;, this is the file content.                 When variable is of type &#x60;symlink&#x60;, this is the destination path, for example &#x60;${APP_SHARED_DIR}/node_modules&#x60;. Must not be greater than 21504 characters.
         description (str, optional): A text describing the variable, provided by the end user.
         target (VariableTarget):
         type (VariableType):
@@ -33,11 +33,11 @@ class VariableApplicationCreate(DevopnessBaseModel):
     """
 
     key: StrictStr = Field(
-        description="The unique key used to identify the variable on the target.                 When variable is of type `file`, this is the relative path                 to the file within the application directory. Must not be greater than 100 characters.",
+        description="The unique key used to identify the variable on the target.                 For `resource-config-file`, use a relative path such as `.env` or `storage/oauth-public.key`.                 For `resource-symlink`, `key` is the link path and `value` is the destination path, for example `node_modules` -> `${APP_SHARED_DIR}/node_modules`. Must not be greater than 100 characters.",
         json_schema_extra={"examples": ["APP_URL"]},
     )
     value: StrictStr = Field(
-        description="The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.",
+        description="The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content.                 When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.",
         json_schema_extra={"examples": ["https://staging.devopness.com"]},
     )
     description: StrictStr | None = Field(

@@ -23,6 +23,9 @@ class SubnetsApiService(DevopnessBaseService):
         """
         Delete a given subnet
 
+        Attributes:
+            subnet_id (int): The ID of the subnet.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -43,6 +46,9 @@ class SubnetsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Subnet]:
         """
         Get a subnet by ID
+
+        Attributes:
+            subnet_id (int): The ID of the subnet.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -67,6 +73,11 @@ class SubnetsApiService(DevopnessBaseService):
         """
         Return a list of all subnets belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -81,7 +92,7 @@ class SubnetsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/subnets",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -101,6 +112,9 @@ class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given subnet
+
+        Attributes:
+            subnet_id (int): The ID of the subnet.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -122,6 +136,9 @@ class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Subnet]:
         """
         Get a subnet by ID
+
+        Attributes:
+            subnet_id (int): The ID of the subnet.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -146,6 +163,11 @@ class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all subnets belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -160,7 +182,7 @@ class SubnetsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/subnets",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

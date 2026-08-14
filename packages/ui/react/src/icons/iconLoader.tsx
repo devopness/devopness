@@ -256,10 +256,7 @@ const iconList = [
 const deprecatedToNewIconMap = iconList
   // Step 1: Filter to only get deprecated icons
   .filter((icon): icon is DeprecatedIcon =>
-    [
-      'deprecated-icon',
-      'deprecated-image',
-    ].includes(icon.type)
+    ['deprecated-icon', 'deprecated-image'].includes(icon.type)
   )
   // Step 2: Create an object from the filtered list
   .reduce<DeprecatedToNewIconMap>(

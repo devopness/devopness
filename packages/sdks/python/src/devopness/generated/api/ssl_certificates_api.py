@@ -36,6 +36,10 @@ class SSLCertificatesApiService(DevopnessBaseService):
         """
         Create a new ssl certificate
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            ssl_certificate_environment_create (Union[SslCertificateEnvironmentCreate, SslCertificateEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -56,6 +60,9 @@ class SSLCertificatesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given SSL Certificate
+
+        Attributes:
+            ssl_certificate_id (int): The ID of the ssl certificate.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -82,6 +89,10 @@ class SSLCertificatesApiService(DevopnessBaseService):
         """
         Deploy a SSL Certificate
 
+        Attributes:
+            ssl_certificate_id (int): The ID of the ssl certificate.
+            ssl_certificate_deploy (Union[SslCertificateDeploy, SslCertificateDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -102,6 +113,9 @@ class SSLCertificatesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[SslCertificate]:
         """
         Get details of a single SSL certificate
+
+        Attributes:
+            ssl_certificate_id (int): The ID of the ssl certificate.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -126,6 +140,11 @@ class SSLCertificatesApiService(DevopnessBaseService):
         """
         Return a list of all SSL Certificates belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -140,7 +159,7 @@ class SSLCertificatesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/ssl-certificates",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -165,6 +184,10 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new ssl certificate
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            ssl_certificate_environment_create (Union[SslCertificateEnvironmentCreate, SslCertificateEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -185,6 +208,9 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given SSL Certificate
+
+        Attributes:
+            ssl_certificate_id (int): The ID of the ssl certificate.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -211,6 +237,10 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Deploy a SSL Certificate
 
+        Attributes:
+            ssl_certificate_id (int): The ID of the ssl certificate.
+            ssl_certificate_deploy (Union[SslCertificateDeploy, SslCertificateDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -231,6 +261,9 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[SslCertificate]:
         """
         Get details of a single SSL certificate
+
+        Attributes:
+            ssl_certificate_id (int): The ID of the ssl certificate.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -255,6 +288,11 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all SSL Certificates belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -269,7 +307,7 @@ class SSLCertificatesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/ssl-certificates",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

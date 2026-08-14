@@ -9,35 +9,19 @@ export default {
     layout: 'centered',
     useRadixTheme: true,
   },
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
   argTypes: {
     accentColor: {
       control: 'select',
-      options: [
-        'devopness',
-        'red',
-        'blue',
-        'green',
-        'purple',
-        'mint',
-        'aqua',
-      ],
+      options: ['devopness', 'red', 'blue', 'green', 'purple', 'mint', 'aqua'],
     },
     appearance: {
       control: 'radio',
-      options: [
-        'light',
-        'dark',
-      ],
+      options: ['light', 'dark'],
     },
     panelBackground: {
       control: 'radio',
-      options: [
-        'solid',
-        'translucent',
-      ],
+      options: ['solid', 'translucent'],
     },
   },
 }

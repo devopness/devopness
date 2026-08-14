@@ -92,10 +92,7 @@ const Tooltip = ({
   children,
   ...props
 }: TooltipComponentProps) => {
-  const [
-    isOverflowed,
-    setIsOverflowed,
-  ] = useState(false)
+  const [isOverflowed, setIsOverflowed] = useState(false)
   const isControlled = props.open !== undefined
   const contentChildrenRef = useRef<HTMLSpanElement>(null)
 
@@ -114,13 +111,15 @@ const Tooltip = ({
 
     if (!refValue) return
 
+    const updateOverflow = () => checkOverflow(refValue)
+
     // Initial check
-    checkOverflow(refValue)
+    updateOverflow()
 
     let resizeObserver: ResizeObserver | null = null
 
     if (typeof ResizeObserver !== 'undefined') {
-      resizeObserver = new ResizeObserver(checkOverflow.bind(null, refValue))
+      resizeObserver = new ResizeObserver(updateOverflow)
 
       try {
         resizeObserver.observe(refValue)
@@ -130,15 +129,13 @@ const Tooltip = ({
     }
 
     // as a fallback listen to window resize
-    window.addEventListener('resize', checkOverflow.bind(null, refValue))
+    window.addEventListener('resize', updateOverflow)
 
     return () => {
-      window.removeEventListener('resize', checkOverflow.bind(null, refValue))
+      window.removeEventListener('resize', updateOverflow)
       if (resizeObserver) resizeObserver.disconnect()
     }
-  }, [
-    contentChildrenRef,
-  ])
+  }, [contentChildrenRef])
 
   return (
     <StyledTooltip

@@ -14,9 +14,11 @@
 
 import { ApplicationLastDeployments } from './application-last-deployments';
 import { CredentialRelation } from './credential-relation';
+import { CronJobRelation } from './cron-job-relation';
 import { DaemonRelation } from './daemon-relation';
 import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
+import { ServiceRelation } from './service-relation';
 import { UserRelation } from './user-relation';
 import { VirtualHostRelation } from './virtual-host-relation';
 
@@ -81,7 +83,7 @@ export interface Application {
      */
     default_branch: string;
     /**
-     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.
+     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.
      * @type {string}
      * @memberof Application
      */
@@ -164,6 +166,18 @@ export interface Application {
      * @memberof Application
      */
     credential: CredentialRelation | null;
+    /**
+     * 
+     * @type {Array<ServiceRelation>}
+     * @memberof Application
+     */
+    services: Array<ServiceRelation>;
+    /**
+     * 
+     * @type {Array<CronJobRelation>}
+     * @memberof Application
+     */
+    cronjobs: Array<CronJobRelation>;
     /**
      * 
      * @type {Array<VirtualHostRelation>}

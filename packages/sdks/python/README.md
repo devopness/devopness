@@ -68,7 +68,7 @@ You can provide a custom configuration when initializing the client:
 ```python
 from devopness import DevopnessClient, DevopnessClientAsync, DevopnessClientConfig
 
-config = DevopnessClientConfig(base_url='https://api.devopness.com', timeout=10)
+config = DevopnessClientConfig(base_url="https://api.devopness.com", timeout=10)
 
 devopness = DevopnessClient(config)
 devopness_async = DevopnessClientAsync(config)
@@ -120,16 +120,18 @@ import asyncio
 from devopness import DevopnessClientAsync, DevopnessClientConfig
 
 # Option 1: Pass token during initialization
-config = DevopnessClientConfig(api_token='your-personal-access-token-here')
+config = DevopnessClientConfig(api_token="your-personal-access-token-here")
 devopness = DevopnessClientAsync(config)
 
 # Option 2: Set token after initialization
 devopness = DevopnessClientAsync()
-devopness.api_token = 'your-personal-access-token-here'
+devopness.api_token = "your-personal-access-token-here"
+
 
 async def main():
     current_user = await devopness.users.get_user_me()
-    print(f'User ID: {current_user.data.id}')
+    print(f"User ID: {current_user.data.id}")
+
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -141,16 +143,18 @@ if __name__ == "__main__":
 from devopness import DevopnessClient, DevopnessClientConfig
 
 # Option 1: Pass token during initialization
-config = DevopnessClientConfig(api_token='your-personal-access-token-here')
+config = DevopnessClientConfig(api_token="your-personal-access-token-here")
 devopness = DevopnessClient(config)
 
 # Option 2: Set token after initialization
 devopness = DevopnessClient()
-devopness.api_token = 'your-personal-access-token-here'
+devopness.api_token = "your-personal-access-token-here"
+
 
 def main():
     current_user = devopness.users.get_user_me()
-    print(f'User ID: {current_user.data.id}')
+    print(f"User ID: {current_user.data.id}")
+
 
 if __name__ == "__main__":
     main()
@@ -167,11 +171,13 @@ import asyncio
 from devopness import DevopnessClientAsync
 
 devopness = DevopnessClientAsync()
-devopness.api_token = 'your-project-api-token-here'
+devopness.api_token = "your-project-api-token-here"
+
 
 async def main():
     project = await devopness.projects.get_project(project_id=123)
-    print(f'Project name: {project.data.name}')
+    print(f"Project name: {project.data.name}")
+
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -183,11 +189,13 @@ if __name__ == "__main__":
 from devopness import DevopnessClient
 
 devopness = DevopnessClient()
-devopness.api_token = 'your-project-api-token-here'
+devopness.api_token = "your-project-api-token-here"
+
 
 def main():
     project = devopness.projects.get_project(project_id=123)
-    print(f'Project name: {project.data.name}')
+    print(f"Project name: {project.data.name}")
+
 
 if __name__ == "__main__":
     main()
@@ -209,17 +217,19 @@ import os
 from devopness import DevopnessClientAsync, DevopnessClientConfig
 from devopness.core import DevopnessSdkError
 
-config = DevopnessClientConfig(api_token=os.getenv('DEVOPNESS_API_TOKEN'))
+config = DevopnessClientConfig(api_token=os.getenv("DEVOPNESS_API_TOKEN"))
 devopness = DevopnessClientAsync(config)
+
 
 async def get_user_profile():
     try:
         # Retrieve current user details
         current_user = await devopness.users.get_user_me()
-        print(f'User ID: {current_user.data.id}')
+        print(f"User ID: {current_user.data.id}")
 
     except DevopnessSdkError as error:
-        print(f'Error: {error}')
+        print(f"Error: {error}")
+
 
 if __name__ == "__main__":
     asyncio.run(get_user_profile())
@@ -232,17 +242,19 @@ import os
 from devopness import DevopnessClient, DevopnessClientConfig
 from devopness.core import DevopnessSdkError
 
-config = DevopnessClientConfig(api_token=os.getenv('DEVOPNESS_API_TOKEN'))
+config = DevopnessClientConfig(api_token=os.getenv("DEVOPNESS_API_TOKEN"))
 devopness = DevopnessClient(config)
+
 
 def get_user_profile():
     try:
         # Retrieve current user details
         current_user = devopness.users.get_user_me()
-        print(f'User ID: {current_user.data.id}')
+        print(f"User ID: {current_user.data.id}")
 
     except DevopnessSdkError as error:
-        print(f'Error: {error}')
+        print(f"Error: {error}")
+
 
 if __name__ == "__main__":
     get_user_profile()

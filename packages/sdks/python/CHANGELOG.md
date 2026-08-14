@@ -1,5 +1,72 @@
 # @devopness/sdk-python
 
+## 2.7.0
+
+### Minor Changes
+
+- [#3451](https://github.com/devopness/devopness/pull/3451) [`dd6955b`](https://github.com/devopness/devopness/commit/dd6955b5f0575c4e3e236a2e4ba05fc440366984) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added support for `filter` query parameters in list endpoints for **Actions** and **Environment Actions**.
+
+  ### Example Usage
+
+  ```python
+  from devopness import DevopnessClient
+
+  devopness = DevopnessClient()
+
+  actions = devopness.actions.list_actions(
+      page=1,
+      per_page=20,
+      filter={
+          "organization_id": 123,
+          "project_id": 456,
+          "status": "queued",
+      },
+  )
+
+  environment_actions = devopness.environments_actions.list_environment_actions(
+      environment_id=environment_id,
+      page=1,
+      per_page=20,
+      filter={
+          "resource_type": "application",
+          "resource_id": 321,
+          "status": "completed",
+      },
+  )
+  ```
+
+  If the filter object is omitted, the methods keep their previous behavior and return the unfiltered list.
+
+## 2.6.5
+
+### Patch Changes
+
+- [#3397](https://github.com/devopness/devopness/pull/3397) [`1e995bc`](https://github.com/devopness/devopness/commit/1e995bce4389aa8558de00ccf8c263e800f551fc) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support for applying application templates by template ID or raw template manifest, including dry-run validation.
+
+## 2.6.4
+
+### Patch Changes
+
+- [#3385](https://github.com/devopness/devopness/pull/3385) [`9d21f3d`](https://github.com/devopness/devopness/commit/9d21f3d25a4a80ef3149648fd84a0900aa5adf88) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fix the "Add Application" method and add a specific method to create an application using templates (applyTemplateEnvironmentApplication).
+
+## 2.6.3
+
+### Patch Changes
+
+- [#3352](https://github.com/devopness/devopness/pull/3352) [`983ace3`](https://github.com/devopness/devopness/commit/983ace3d58148c108096f2438f3222805090fdf8) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Add support for Application Templates
+
+## 2.6.2
+
+### Patch Changes
+
+- [#3286](https://github.com/devopness/devopness/pull/3286) [`9a611b2`](https://github.com/devopness/devopness/commit/9a611b27362e36ed90fe0987cb4d5ac4a17475c4) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Expose the Action Context - Organization, Project, Environment - in endpoints that return a list of actions like GET /actions
+
+## 2.6.1
+
+### Patch Changes
+
+- [#3273](https://github.com/devopness/devopness/pull/3273) [`5800c26`](https://github.com/devopness/devopness/commit/5800c26746f35759a6cd0b6ccfc8d0d4ada8714c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Add support for Symlink Variables
+
 ## 2.6.0
 
 ### Minor Changes
@@ -43,13 +110,16 @@
   **Create a credential at organization level:**
 
   ```python
-  credential = devopness.credentials.add_organization_credential(organization_id, {
-      "name": "My Cloud Provider",
-      "provider_code": "aws",  # or 'azure', 'gcp', 'digitalocean', etc.
-      "settings": {
-          # Provider-specific configuration
-      }
-  })
+  credential = devopness.credentials.add_organization_credential(
+      organization_id,
+      {
+          "name": "My Cloud Provider",
+          "provider_code": "aws",  # or 'azure', 'gcp', 'digitalocean', etc.
+          "settings": {
+              # Provider-specific configuration
+          },
+      },
+  )
   ```
 
   ### Environment credential linking
@@ -124,6 +194,7 @@
 ### Patch Changes
 
 - [#2745](https://github.com/devopness/devopness/pull/2745) [`53e6454`](https://github.com/devopness/devopness/commit/53e6454ccd72f1c52f2ed107b207cfaff150b64b) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+
   - Added a method to list all subnets belonging to an environment:
 
     ```python
@@ -143,6 +214,7 @@
   Previously, deploying resources required a multi-step process: listing pipelines, finding the deploy pipeline, and triggering an action. Now, dedicated `deploy()` methods provide direct deployment capabilities.
 
   **Affected resources:**
+
   - Cron Jobs
   - Daemons
   - Network Rules
@@ -167,16 +239,12 @@
 
   # Old multi-step approach
   pipelines = devopness.pipelines.list_resource_pipelines(
-      environment_id,
-      resource_type,
-      resource_id
+      environment_id, resource_type, resource_id
   )
 
   deploy_pipeline = next(p for p in pipelines.data if p.type == "deploy")
 
-  devopness.actions.trigger_pipeline_action(deploy_pipeline.id, {
-      "servers": [server_id]
-  })
+  devopness.actions.trigger_pipeline_action(deploy_pipeline.id, {"servers": [server_id]})
   ```
 
   **After:**
@@ -187,9 +255,7 @@
   devopness = DevopnessClient()
 
   # New simplified approach
-  devopness.cron_jobs.deploy_cron_job(cron_job_id, {
-      "servers": [server_id]
-  })
+  devopness.cron_jobs.deploy_cron_job(cron_job_id, {"servers": [server_id]})
 
   # Other examples:
   devopness.daemons.deploy_daemon(daemon_id, {"servers": [server_id]})
@@ -312,7 +378,9 @@
   response = devopness.teams.list_team_memberships(team_id)
 
   for membership in response.data:
-      print(f"Access to environment {membership.environment.name} with role {membership.role.name}")
+      print(
+          f"Access to environment {membership.environment.name} with role {membership.role.name}"
+      )
   ```
 
 ## 2.0.1

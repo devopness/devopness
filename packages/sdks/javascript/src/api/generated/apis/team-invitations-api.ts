@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 
 /**
@@ -31,17 +32,11 @@ export class TeamInvitationsApiService extends ApiBaseService {
             throw new ArgumentNullException('teamInvitationId', 'acceptTeamInvitation');
         }
 
-        let queryString = '';
-        const queryParams = { token: token, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'token': token,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/team-invitations/{team_invitation_id}/accept' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/team-invitations/{team_invitation_id}/accept' + (queryString ? `?${queryString}` : '');
 
         const response = await this.post <void>(requestUrl.replace(`{${"team_invitation_id"}}`, encodeURIComponent(String(teamInvitationId))));
         return new ApiResponse(response);
@@ -57,9 +52,7 @@ export class TeamInvitationsApiService extends ApiBaseService {
             throw new ArgumentNullException('teamInvitationId', 'deleteTeamInvitation');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/team-invitations/{team_invitation_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/team-invitations/{team_invitation_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"team_invitation_id"}}`, encodeURIComponent(String(teamInvitationId))));
         return new ApiResponse(response);
@@ -75,9 +68,7 @@ export class TeamInvitationsApiService extends ApiBaseService {
             throw new ArgumentNullException('teamInvitationId', 'rejectTeamInvitation');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/team-invitations/{team_invitation_id}/reject' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/team-invitations/{team_invitation_id}/reject';
 
         const response = await this.post <void>(requestUrl.replace(`{${"team_invitation_id"}}`, encodeURIComponent(String(teamInvitationId))));
         return new ApiResponse(response);

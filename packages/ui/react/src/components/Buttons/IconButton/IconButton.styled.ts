@@ -18,12 +18,10 @@ type StyledProps = {
    *
    * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
    */
-  [
-    Key in keyof Pick<
-      IconButtonProps,
-      'backgroundColor' | 'borderColor' | 'color' | 'padding' | 'size'
-    > as `$${Key}`
-  ]: IconButtonProps[Key]
+  [Key in keyof Pick<
+    IconButtonProps,
+    'backgroundColor' | 'borderColor' | 'color' | 'padding' | 'size'
+  > as `$${Key}`]: IconButtonProps[Key]
 } & {
   $variant: IconButtonVariant
 }

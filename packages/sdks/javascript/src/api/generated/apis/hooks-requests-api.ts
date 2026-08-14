@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { HookTypeParam } from '../../generated/models';
 import { RequestRelation } from '../../generated/models';
 
@@ -33,21 +34,17 @@ export class HooksRequestsApiService extends ApiBaseService {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'listHookRequestsByHookType');
         }
+
         if (hookType === null || hookType === undefined) {
             throw new ArgumentNullException('hookType', 'listHookRequestsByHookType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/hooks/{hook_type}/{hook_id}/requests' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/hooks/{hook_type}/{hook_id}/requests' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<RequestRelation>>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))).replace(`{${"hook_type"}}`, encodeURIComponent(String(hookType))));
         return new ApiResponse(response);

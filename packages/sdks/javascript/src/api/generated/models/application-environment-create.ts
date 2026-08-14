@@ -51,7 +51,7 @@ export interface ApplicationEnvironmentCreate {
      */
     framework: string;
     /**
-     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.
+     * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`. Must not be greater than 30 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */
@@ -69,7 +69,7 @@ export interface ApplicationEnvironmentCreate {
      */
     credential_id: number;
     /**
-     * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code>.
+     * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository. Must start with one of <code>/</code> Must not be greater than 255 characters.
      * @type {string}
      * @memberof ApplicationEnvironmentCreate
      */

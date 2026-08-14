@@ -20,19 +20,35 @@ Stop a token from being used after it is no longer needed or has been exposed.
 Revoking a token is permanent. A revoked token cannot be restored.
 :::
 
-## Steps
+## What you need
+
+- The Personal Access Token you want to revoke
+- Confirmation that the token is no longer needed, because revocation is permanent
+
+To revoke it:
 
 1. Open `Personal Access Tokens`
 2. Select the token you want to revoke
 3. Click `REVOKE`
 4. Confirm `REVOKE TOKEN`
 
-## Result
+## Using Devopness MCP
+
+Try these prompts in Devopness MCP:
+
+- "Revoke the `ci-deploy` personal access token for my Devopness account."
+- "Revoke the personal access token named `ci-deploy` and then confirm it is no longer active."
+
+## Verify
 
 - The token can no longer authenticate requests
-- Its status changes to revoked
+- Its status changes to revoked in the list
 
 ## Common issues
 
 - You cannot revoke it: confirm you have permission to manage the token
-- Revoked token still appears active: refresh the list
+- A revoked token still appears active: refresh the list
+
+## What to do next
+
+- [Add a Personal Access Token](/docs/api-tokens/personal-access-tokens/add-personal-access-token) to replace a revoked token

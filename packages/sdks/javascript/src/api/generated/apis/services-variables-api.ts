@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Variable } from '../../generated/models';
 import { VariableRelation } from '../../generated/models';
@@ -34,13 +35,12 @@ export class ServicesVariablesApiService extends ApiBaseService {
         if (serviceId === null || serviceId === undefined) {
             throw new ArgumentNullException('serviceId', 'addServiceVariable');
         }
+
         if (variableServiceCreate === null || variableServiceCreate === undefined) {
             throw new ArgumentNullException('variableServiceCreate', 'addServiceVariable');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/services/{service_id}/variables' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/services/{service_id}/variables';
 
         const response = await this.post <Variable, VariableServiceCreate>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))), variableServiceCreate);
         return new ApiResponse(response);
@@ -59,17 +59,12 @@ export class ServicesVariablesApiService extends ApiBaseService {
             throw new ArgumentNullException('serviceId', 'listServiceVariables');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/services/{service_id}/variables' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/services/{service_id}/variables' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<VariableRelation>>(requestUrl.replace(`{${"service_id"}}`, encodeURIComponent(String(serviceId))));
         return new ApiResponse(response);

@@ -130,5 +130,28 @@ const WithIcons: Story = {
   },
 }
 
+const EmptyContentOverride: Story = {
+  args: {
+    data: [
+      {
+        label: 'User Info',
+        items: [
+          {
+            label: 'Default fallback',
+            value: undefined,
+            navigationComponent: MockNavigationLink,
+          },
+          {
+            label: 'Custom fallback',
+            value: undefined,
+            emptyContent: 'N/A',
+            navigationComponent: MockNavigationLink,
+          },
+        ],
+      },
+    ],
+  },
+}
+
 export default meta
-export { Default, Loading, HiddenContent, WithIcons }
+export { Default, Loading, HiddenContent, WithIcons, EmptyContentOverride }

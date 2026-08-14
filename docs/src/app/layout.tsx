@@ -1,17 +1,15 @@
-import type { ReactNode } from 'react';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { RootProvider } from 'fumadocs-ui/provider/next';
+import type { ReactNode } from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { RootProvider } from "fumadocs-ui/provider/next";
 
-import { SiteFooter } from '@/components/footer';
-import { siteConfig } from '@/lib/constants';
+import { SiteFooter } from "@/components/footer";
+import { siteConfig } from "@/lib/constants";
 
-import './global.css';
+import "./global.css";
 
 const inter = Inter({
-  subsets: [
-    'latin',
-  ],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -28,16 +26,10 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={inter.className}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         {/* '/docs/api/search' must stay in sync with basePath in next.config.mjs */}
-        <RootProvider
-          search={{ options: { type: 'static', api: '/docs/api/search' } }}
-        >
+        <RootProvider search={{ options: { type: "static", api: "/docs/api/search" } }}>
           {children}
           <SiteFooter />
         </RootProvider>

@@ -1,5 +1,75 @@
 # @devopness/ui-react
 
+## 2.198.0
+
+### Minor Changes
+
+- [#3441](https://github.com/devopness/devopness/pull/3441) [`b822d99`](https://github.com/devopness/devopness/commit/b822d99ce4b9da426bd6cff33ed7414674c0e5ef) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Improve `RadioSelectCards` RadioSelectCards component to allow grouped items with and without radio select button visible
+
+## 2.197.0
+
+### Minor Changes
+
+- [#3420](https://github.com/devopness/devopness/pull/3420) [`eb5b648`](https://github.com/devopness/devopness/commit/eb5b648fc6a357a696148ad558b9f8749405bbfd) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Expose the new `ResourceDataCard` family on `@devopness/ui-react`, including `ResourceDataCardList`, `ResourceDataCard`, and related card composition helpers used by the web app.
+
+### Patch Changes
+
+- [#3418](https://github.com/devopness/devopness/pull/3418) [`0d87ef1`](https://github.com/devopness/devopness/commit/0d87ef1a6f81f6d217ce8382eebbee0f8db1c1e8) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Bump `jsdom` to `30.0.1` for the `@devopness/ui-react` test environment.
+
+## 2.196.0
+
+### Minor Changes
+
+- [#3327](https://github.com/devopness/devopness/pull/3327) [`1896614`](https://github.com/devopness/devopness/commit/1896614619279067bc0e8b3ceacf0a59f4263b23) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `emptyContent` prop to `ViewDetailsContent` to override the default empty-value fallback
+
+  `ViewDetailsContent` previously hardcoded an em dash (`—`) as the fallback for an empty/undefined `value`, with no way for consumers to override it. A new optional `emptyContent` prop lets consumers pass their own fallback content (e.g. `-`, `N/A`) instead.
+
+## 2.195.3
+
+### Patch Changes
+
+- [#3325](https://github.com/devopness/devopness/pull/3325) [`9ac2091`](https://github.com/devopness/devopness/commit/9ac2091f295ebab50f0365b471028f82dbcf38d0) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Fix `ViewDetailsContent`'s `IconProps` being silently shadowed by an unrelated same-named type
+
+  The package exported two different types both named `IconProps` (one from `Icon`, one from `ViewDetailsContent`), and TypeScript's explicit named re-export for `Icon`'s `IconProps` always won over the wildcard re-export of `ViewDetailsContent`'s, with no compile error. `ViewDetailsContent`'s icon type is now exported as `DetailsIconProps` instead, resolving the ambiguity.
+
+## 2.195.2
+
+### Patch Changes
+
+- [#3313](https://github.com/devopness/devopness/pull/3313) [`625fbb0`](https://github.com/devopness/devopness/commit/625fbb04f8df4f631ffd2a0bc07b1028b42c6016) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add a mobile-responsive layout to `ViewDetails`/`ViewDetailsContent`: the container grid collapses to a single column below `768px`, the label/value question-mark tooltips are hidden below `600px`, and `CopyToClipboard` becomes always-visible (instead of hover-only) below `600px` — parity with the local implementation this component is meant to replace.
+
+## 2.195.1
+
+### Patch Changes
+
+- [#3302](https://github.com/devopness/devopness/pull/3302) [`5812aec`](https://github.com/devopness/devopness/commit/5812aec39db2c86aa9df8c210eb0cf87c82dc221) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add a mobile-responsive layout to `RadioSelectCards` (`@media (max-width: 600px)`: 2-column grid, horizontal card layout, constrained icon size, truncated label), and fix it passing both `checked` and `defaultChecked` to the same radio `<input>` when a data item, or the shared `inputProps`, sets both.
+
+## 2.195.0
+
+### Minor Changes
+
+- [#3297](https://github.com/devopness/devopness/pull/3297) [`3c97505`](https://github.com/devopness/devopness/commit/3c975059d3d5c7958ca5055f026d7970d33c80c7) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `ResourceCardGrid`, a composed component combining `CardGrid`, `ResourceCard` and `Pagination` with an always-first "create resource" tile — the layout used by resource-listing pages (projects, environments, organizations) instead of assembling those primitives by hand.
+
+## 2.194.1
+
+### Patch Changes
+
+- [#3294](https://github.com/devopness/devopness/pull/3294) [`a02014e`](https://github.com/devopness/devopness/commit/a02014e21f9b41d42a9b3336cdd2444c37ee2df8) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Fix `CardList`'s grid to use a fluid `auto-fill`/`minmax(250px, 1fr)` layout instead of a fixed 1/2/3-column breakpoint grid. The fixed grid capped the desktop layout at 3 columns regardless of viewport width, wasting horizontal space and wrapping cards to a new row even on very wide screens.
+
+## 2.194.0
+
+### Minor Changes
+
+- [#3288](https://github.com/devopness/devopness/pull/3288) [`1b32e90`](https://github.com/devopness/devopness/commit/1b32e90a6bc67b5d83dc35c1f226c759db132b57) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Export `CardList` and `CardContent` components. `CardContent` gained a `linkAs` prop to render its internal links through a custom component (e.g. a router's `Link`) instead of a plain `<a>`.
+
+  Also fixed `Button`'s deprecated `noMargin` prop leaking onto the underlying DOM `<button>` element, and added an `as` prop to `Link` so it can render as a custom component (with `to` forwarded to it) instead of a plain `<a>`.
+
+## 2.193.0
+
+### Minor Changes
+
+- [#3282](https://github.com/devopness/devopness/pull/3282) [`3035c9b`](https://github.com/devopness/devopness/commit/3035c9bf950f16d5ad10c393b209c2fc0bf6396a) Thanks [@jpsoaresXy](https://github.com/jpsoaresXy)! - Add `ResourceCard` primitive, a card summarizing a resource (name, organization and creation date) for use as a tile inside `CardGrid`
+
 ## 2.192.5
 
 ### Patch Changes
@@ -68,6 +138,7 @@
 - [#3137](https://github.com/devopness/devopness/pull/3137) [`681e807`](https://github.com/devopness/devopness/commit/681e8070b9892315edcab74cbbb969a57287f78c) Thanks [@alexsandersarmento](https://github.com/alexsandersarmento)! - Fix `TimerCounter` showing stale values and leaking intervals on prop transitions
 
   Two problems were fixed:
+
   1. The component was early-returning to `00:00` whenever `shouldStartTimer`
      was `false`, even when `shouldStopTimer` was `true` — which froze the
      timer at `00:00` for any finished action (`Completed`, `Failed`,
@@ -87,6 +158,7 @@
   memoize it.
 
   Behavior matrix across status combinations:
+
   - `Pending` / `Waiting` / `Queued` (no start date) → `00:00`
   - `InProgress` → live ticking
   - `Completed` / `Failed` → final duration (no flicker on transition)
@@ -133,6 +205,7 @@
   states in routes (e.g., OAuth failures, missing parameters, API errors).
 
   Features:
+
   - Title and description for error context
   - Optional `errorDetail` field for technical information
   - Optional `action` prop with label and href for user recovery paths
@@ -200,6 +273,7 @@
   Introduce a new `IconButton` component for icon-only actions. Renders a
   circular button wrapping a `<Icon>` from the Devopness icon set, with
   three variants tuned for different action weights:
+
   - `primary` — filled purple circle with a white icon, for primary actions.
   - `ghost` — no background or border, just the icon, with a subtle hover
     tint, for inline/quiet actions like help, avatar or navigation triggers.
@@ -250,6 +324,7 @@
 ### Patch Changes
 
 - [#2792](https://github.com/devopness/devopness/pull/2792) [`0b25d34`](https://github.com/devopness/devopness/commit/0b25d343cd28443b3dacb8dc46a2ddd5e2203c38) Thanks [@AladinoBorges](https://github.com/AladinoBorges)!
+
   - Add `alwaysVisible` prop to `CopyToClipboard` component to allow the copy icon to remain permanently visible with full opacity.
   - Pass optional `alwaysVisible` prop through the component to styled elements;
   - Update `CopyToClipboard` styled components to conditionally disable hover effects and set initial opacity;
@@ -275,6 +350,7 @@
 ### Patch Changes
 
 - [#2491](https://github.com/devopness/devopness/pull/2491) [`b269715`](https://github.com/devopness/devopness/commit/b2697150754e92db05763ba25d23e52c264e0fd6) Thanks [@AladinoBorges](https://github.com/AladinoBorges)! - Guard custom element registration and prevent server-side DOM access so the package is safe to import using Next.js framework with `App Router`.
+
   - Mark client-only components as `use client` where appropriate to keep them out of server bundles and to ensure runtime-only APIs run only in the browser.
   - Ensure React remains a peer dependency and avoid bundling multiple React runtimes;
   - Prefer `sideEffects: false` and rebuild artifacts to produce consistent ESM and CJS outputs.
@@ -565,10 +641,7 @@
   <Autocomplete
     inputProps={{ placeholder: 'Type something' }}
     autocompleteProps={{
-      options: [
-        'Option 1',
-        'Option 2',
-      ],
+      options: ['Option 1', 'Option 2'],
       value: '',
       onChange: (event, value) => console.log(value),
     }}
@@ -890,10 +963,7 @@
   ```tsx
   <Dropdown
     id="example-dropdown"
-    options={[
-      { label: 'Option 1' },
-      { label: 'Option 2' },
-    ]}
+    options={[{ label: 'Option 1' }, { label: 'Option 2' }]}
     anchorType="button"
     label="Open Menu"
     popoverProps={{
@@ -1190,6 +1260,7 @@
   "DOMException: Failed to execute 'createElement' on 'Document': The tag name provided is not a valid name."
 
   This change:
+
   - Updates the shieldLock icon type from 'icon' to 'image', to correctly render it as an <img> element
   - Fixes the runtime error when using the `shieldLock` icon
   - Maintains backward compatibility - the icon name and usage remain the same
@@ -1238,6 +1309,7 @@
   ### Migration Guide
 
   Old icon names are deprecated but will continue to work during runtime. There are two ways to handle deprecated icons:
+
   1. Update to the new icon name (Recommended)
 
   ```tsx
@@ -1364,6 +1436,7 @@
   ### Test Utilities
 
   Added new test utilities to help write consistent and maintainable tests:
+
   - `testHoverTooltip`: Standardizes testing of tooltip hover interactions
   - Additional utilities can be added to the `test-utils` directory
 
@@ -1386,7 +1459,7 @@ Example usage:
 ```typescript
 <Input
   // Focus will be automatically applied when error prop is present
-  error={{ message: 'This field is required' }}
+  error={{ message: "This field is required" }}
 />
 ```
 
@@ -1561,11 +1634,11 @@ This change helps users quickly identify and fix form validation issues by autom
   This resulted in props like `ButtonProps.icon` being `any`
 
   ```ts
-  import { Button } from '@devopness/ui-react'
+  import { Button } from "@devopness/ui-react";
 
   // ...
 
-  <Button icon="non-existing-icon" /> // => no errors, accepts any value
+  <Button icon="non-existing-icon" />; // => no errors, accepts any value
   ```
 
   AFTER:
@@ -1577,9 +1650,9 @@ This change helps users quickly identify and fix form validation issues by autom
   ```
 
   ```ts
-  import { Button } from '@devopness/ui-react'
+  import { Button } from "@devopness/ui-react";
 
   // ...
 
-  <Button icon="non-existing-icon" /> // => error TS2322: Type '"non-existing-icon"' is not assignable to type '"html" | "link" | ...
+  <Button icon="non-existing-icon" />; // => error TS2322: Type '"non-existing-icon"' is not assignable to type '"html" | "link" | ...
   ```

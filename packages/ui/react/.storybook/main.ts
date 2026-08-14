@@ -17,6 +17,10 @@ function getAbsolutePath(packageName: string) {
 }
 
 const config: StorybookConfig = {
+  core: {
+    enableCrashReports: false,
+  },
+
   stories: [
     '../src/components/**/*.stories.@(ts|tsx)',
     '../src/radix/**/*.stories.@(ts|tsx)',
@@ -34,26 +38,7 @@ const config: StorybookConfig = {
 
   typescript: {
     check: false,
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) => {
-        if (prop.parent) {
-          return !prop.parent.fileName.includes('node_modules')
-        }
-        return true
-      },
-      // Process all TS/TSX files in src/, except stories, tests, and CSS
-      // (they don't export React components, so docgen would waste time and show warnings)
-      include: [
-        '**/src/**/*.{ts,tsx}',
-      ],
-      exclude: [
-        '**/*.stories.{ts,tsx}',
-        '**/*.test.{ts,tsx}',
-        '**/*.css',
-      ],
-    },
+    reactDocgen: 'react-docgen',
   },
 
   docs: {},

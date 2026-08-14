@@ -31,6 +31,7 @@ export enum VariableTarget {
     PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf',
     RedisConf = 'redis-conf',
     ResourceConfigFile = 'resource-config-file',
+    ResourceSymlink = 'resource-symlink',
     SupervisordConf = 'supervisord-conf',
     SysctlConf = 'sysctl-conf'
 }

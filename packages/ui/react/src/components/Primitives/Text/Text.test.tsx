@@ -52,6 +52,6 @@ describe('Text', () => {
     )
 
     const text = screen.getByText('Small text')
-    expect(text).toHaveStyle('font-size: 0.8em')
+    expect(text).toHaveStyle('font-size: 12.8px')
   })
 })

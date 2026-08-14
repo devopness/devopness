@@ -9,28 +9,15 @@ export default {
     layout: 'centered',
     useRadixTheme: true,
   },
-  tags: [
-    'autodocs',
-  ],
+  tags: ['autodocs'],
   argTypes: {
     size: {
       control: 'select',
-      options: [
-        '1',
-        '2',
-        '3',
-        '4',
-      ],
+      options: ['1', '2', '3', '4'],
     },
     variant: {
       control: 'select',
-      options: [
-        'solid',
-        'soft',
-        'surface',
-        'outline',
-        'ghost',
-      ],
+      options: ['solid', 'soft', 'surface', 'outline', 'ghost'],
     },
     loading: {
       control: 'boolean',

@@ -26,6 +26,12 @@ class ProjectsActionsApiService(DevopnessBaseService):
         """
         List project actions of a resource type
 
+        Attributes:
+            project_id (int): The ID of the project.
+            resource_type (str): The resource type to get related actions.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -40,7 +46,7 @@ class ProjectsActionsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/projects/{project_id}/actions/{resource_type}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -64,6 +70,12 @@ class ProjectsActionsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List project actions of a resource type
 
+        Attributes:
+            project_id (int): The ID of the project.
+            resource_type (str): The resource type to get related actions.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -78,7 +90,7 @@ class ProjectsActionsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/projects/{project_id}/actions/{resource_type}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

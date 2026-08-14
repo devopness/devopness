@@ -85,7 +85,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseService._access_token = "dp-token123"  # noqa: S105
+        DevopnessBaseService._access_token = "dp-token123"  # ruff:ignore[hardcoded-password-string]
 
         mock.return_value = self.dummy_response
         self.service._delete("/resource/123")
@@ -104,7 +104,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseService._config.api_token = "devopness_api_token"  # noqa: S105
+        DevopnessBaseService._config.api_token = "devopness_api_token"  # ruff:ignore[hardcoded-password-string]
 
         mock.return_value = self.dummy_response
         self.service._get("/resource/123")
@@ -319,7 +319,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseServiceAsync._access_token = "dp-token123"  # noqa: S105
+        DevopnessBaseServiceAsync._access_token = "dp-token123"  # ruff:ignore[hardcoded-password-string]
 
         mock.return_value = self.dummy_response
         await self.service._delete("/resource/123")
@@ -338,7 +338,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseServiceAsync._config.api_token = "devopness_api_token"  # noqa: S105
+        DevopnessBaseServiceAsync._config.api_token = "devopness_api_token"  # ruff:ignore[hardcoded-password-string]
 
         mock.return_value = self.dummy_response
         await self.service._delete("/resource/123")

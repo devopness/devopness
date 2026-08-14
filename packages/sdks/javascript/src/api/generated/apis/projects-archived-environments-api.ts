@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { ArchivedEnvironmentRelation } from '../../generated/models';
 
@@ -33,17 +34,12 @@ export class ProjectsArchivedEnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectArchivedEnvironments');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/projects/{project_id}/environments/archived' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/environments/archived' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ArchivedEnvironmentRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);

@@ -117,7 +117,6 @@ function emptyResourceChildren(label: string) {
       <Button
         buttonType="outlinedSecondary"
         color={getColor('purple.800')}
-        noMargin
         style={{
           alignItems: 'start',
           cursor: 'pointer',
@@ -596,7 +595,7 @@ const WithAddUrl: StoryObj<CardListStoryArgs> = {
 export { AllResources, AllZero, Default, Error, Loading, WithAddUrl }
 
 const meta = {
-  title: 'Components/CardList',
+  title: 'Components/CardList/CardList',
   component: CardList,
   argTypes: {
     cardsCount: {

@@ -16,14 +16,28 @@ Review one project token's settings and status.
 
 Validate what a token can access before using it in production.
 
-## Steps
+## What you see
 
-1. Open the target project
-2. Open `API Tokens` and `VIEW ALL`
-3. Select the token you want to inspect
-4. Review name, role, expiration, and usage details
+- The token's name, role, and expiration
+- Its usage details, so you can tell whether it is still in use
+- Its scope within the project
 
-## Result
+## Using Devopness MCP
 
-- You can confirm whether the token has the right scope
+Try these prompts in Devopness MCP:
+
+- "In organization `acme-inc`, project `acme-platform`, show the details of the `ci-pipeline` project API token."
+- "In organization `acme-inc`, project `acme-platform`, tell me what the `ci-pipeline` project API token is allowed to do."
+
+## Verify
+
+- You can confirm whether the token has the right scope and role
 - You can decide whether to keep it or revoke it
+
+## Common issues
+
+- You cannot open the token: confirm you have permission and are looking at the right project
+
+## What to do next
+
+- [Revoke a Project API Token](/docs/api-tokens/project-api-tokens/revoke-project-api-token) when the token is no longer needed

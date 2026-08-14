@@ -31,25 +31,21 @@
  * symlinks. A real copy works everywhere.
  */
 
-import { cpSync, mkdirSync, readdirSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { cpSync, mkdirSync, readdirSync } from "fs";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 
-const buildOutputDir = join(
-  dirname(fileURLToPath(import.meta.url)),
-  '..',
-  'out'
-);
-const buildOutputDocsDir = join(buildOutputDir, 'docs');
+const buildOutputDir = join(dirname(fileURLToPath(import.meta.url)), "..", "out");
+const buildOutputDocsDir = join(buildOutputDir, "docs");
 
 mkdirSync(buildOutputDocsDir, { recursive: true });
 
 for (const entry of readdirSync(buildOutputDir)) {
-  if (entry === 'docs') continue;
+  if (entry === "docs") continue;
   cpSync(join(buildOutputDir, entry), join(buildOutputDocsDir, entry), {
     recursive: true,
   });
 }
 
 // eslint-disable-next-line no-console
-console.log('post-build: copied out/ contents into out/docs/');
+console.log("post-build: copied out/ contents into out/docs/");

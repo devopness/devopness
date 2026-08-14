@@ -56,10 +56,7 @@ const TimerCounter = ({
   formatDurationTime,
   formatDateTime,
 }: TimerCounterProps) => {
-  const [
-    timerState,
-    setTimerState,
-  ] = useState<string>('—')
+  const [timerState, setTimerState] = useState<string>('—')
 
   const formatDurationRef = useRef(formatDurationTime)
 
@@ -111,11 +108,7 @@ const TimerCounter = ({
         <div>Finished at: {formatDateTime(timerFinalDate)}</div>
       </div>
     ),
-    [
-      timerStartDate,
-      timerFinalDate,
-      formatDateTime,
-    ]
+    [timerStartDate, timerFinalDate, formatDateTime]
   )
 
   return (

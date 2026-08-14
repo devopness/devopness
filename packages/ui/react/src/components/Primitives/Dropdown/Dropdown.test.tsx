@@ -140,9 +140,7 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[
-            option,
-          ]}
+          options={[option]}
           onSelect={onSelect}
         />
       )
@@ -161,9 +159,7 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[
-            { label: 'Option' },
-          ]}
+          options={[{ label: 'Option' }]}
           onToggle={onToggle}
         />
       )
@@ -182,9 +178,7 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[
-            { label: 'Custom Click', onClick },
-          ]}
+          options={[{ label: 'Custom Click', onClick }]}
           onSelect={onSelect}
         />
       )
@@ -204,9 +198,7 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[
-            { label: 'Disabled Option', isDisabled: true },
-          ]}
+          options={[{ label: 'Disabled Option', isDisabled: true }]}
           onSelect={onSelect}
         />
       )
@@ -515,9 +507,7 @@ describe('Dropdown', () => {
           id="test-dropdown"
           anchorType="button"
           label="Menu"
-          options={[
-            { label: longText },
-          ]}
+          options={[{ label: longText }]}
         />
       )
 

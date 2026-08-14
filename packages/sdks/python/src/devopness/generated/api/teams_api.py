@@ -44,6 +44,10 @@ class TeamsApiService(DevopnessBaseService):
         """
         Add a team to the given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            team_organization_create (Union[TeamOrganizationCreate, TeamOrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -65,6 +69,9 @@ class TeamsApiService(DevopnessBaseService):
         """
         Delete a given team
 
+        Attributes:
+            team_id (int): The ID of the team.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -85,6 +92,9 @@ class TeamsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Team]:
         """
         Get a team by ID
+
+        Attributes:
+            team_id (int): The ID of the team.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -112,6 +122,11 @@ class TeamsApiService(DevopnessBaseService):
         """
         Link the given team to an environment with a specific role
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            team_id (int): The ID of the team.
+            team_environment_link (Union[TeamEnvironmentLink, TeamEnvironmentLinkPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -137,6 +152,11 @@ class TeamsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Link the given team to an organization with a specific role
+
+        Attributes:
+            organization_id (str): The ID of the organization.
+            team_id (int): The ID of the team.
+            team_organization_link (Union[TeamOrganizationLink, TeamOrganizationLinkPlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -164,6 +184,11 @@ class TeamsApiService(DevopnessBaseService):
         """
         Link the given team to a project with a specific role
 
+        Attributes:
+            project_id (int): The ID of the project.
+            team_id (int): The ID of the team.
+            team_project_link (Union[TeamProjectLink, TeamProjectLinkPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -187,6 +212,11 @@ class TeamsApiService(DevopnessBaseService):
         """
         Return a list of teams with access to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -201,7 +231,7 @@ class TeamsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/team-memberships",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -218,6 +248,11 @@ class TeamsApiService(DevopnessBaseService):
         """
         Return a list of teams with access to an organization
 
+        Attributes:
+            organization_id (str): The ID of the organization.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -232,7 +267,7 @@ class TeamsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/team-memberships",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -249,6 +284,11 @@ class TeamsApiService(DevopnessBaseService):
         """
         Return a list of all teams belonging to an organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -263,7 +303,7 @@ class TeamsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/teams",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -280,6 +320,11 @@ class TeamsApiService(DevopnessBaseService):
         """
         Return a list of teams with access to a project
 
+        Attributes:
+            project_id (int): The ID of the project.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -294,7 +339,7 @@ class TeamsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/projects/{project_id}/team-memberships",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -312,6 +357,12 @@ class TeamsApiService(DevopnessBaseService):
         """
         Return a list of all memberships of a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            filter_by (Optional[str]): Returns only memberships associated with the given link type.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -327,7 +378,7 @@ class TeamsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/teams/{team_id}/memberships",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -342,6 +393,10 @@ class TeamsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Unlink the given team from an environment
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            team_id (int): The ID of the team.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -365,6 +420,10 @@ class TeamsApiService(DevopnessBaseService):
         """
         Unlink the given team from an organization
 
+        Attributes:
+            organization_id (str): The ID of the organization.
+            team_id (int): The ID of the team.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -386,6 +445,10 @@ class TeamsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Unlink the given team from a project
+
+        Attributes:
+            project_id (int): The ID of the project.
+            team_id (int): The ID of the team.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -411,6 +474,10 @@ class TeamsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing team
+
+        Attributes:
+            team_id (int): The ID of the team.
+            team_update (Union[TeamUpdate, TeamUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -443,6 +510,10 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a team to the given organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            team_organization_create (Union[TeamOrganizationCreate, TeamOrganizationCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -464,6 +535,9 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given team
 
+        Attributes:
+            team_id (int): The ID of the team.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -484,6 +558,9 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Team]:
         """
         Get a team by ID
+
+        Attributes:
+            team_id (int): The ID of the team.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -511,6 +588,11 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Link the given team to an environment with a specific role
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            team_id (int): The ID of the team.
+            team_environment_link (Union[TeamEnvironmentLink, TeamEnvironmentLinkPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -536,6 +618,11 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Link the given team to an organization with a specific role
+
+        Attributes:
+            organization_id (str): The ID of the organization.
+            team_id (int): The ID of the team.
+            team_organization_link (Union[TeamOrganizationLink, TeamOrganizationLinkPlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -563,6 +650,11 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Link the given team to a project with a specific role
 
+        Attributes:
+            project_id (int): The ID of the project.
+            team_id (int): The ID of the team.
+            team_project_link (Union[TeamProjectLink, TeamProjectLinkPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -586,6 +678,11 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of teams with access to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -600,7 +697,7 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/team-memberships",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -619,6 +716,11 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of teams with access to an organization
 
+        Attributes:
+            organization_id (str): The ID of the organization.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -633,7 +735,7 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/team-memberships",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -652,6 +754,11 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all teams belonging to an organization
 
+        Attributes:
+            organization_id (str): The numeric ID or URL Slug of an organization.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -666,7 +773,7 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/organizations/{organization_id}/teams",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -683,6 +790,11 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of teams with access to a project
 
+        Attributes:
+            project_id (int): The ID of the project.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -697,7 +809,7 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/projects/{project_id}/team-memberships",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -717,6 +829,12 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all memberships of a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            filter_by (Optional[str]): Returns only memberships associated with the given link type.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -732,7 +850,7 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/teams/{team_id}/memberships",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -747,6 +865,10 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Unlink the given team from an environment
+
+        Attributes:
+            environment_id (int): The ID of the environment.
+            team_id (int): The ID of the team.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -770,6 +892,10 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Unlink the given team from an organization
 
+        Attributes:
+            organization_id (str): The ID of the organization.
+            team_id (int): The ID of the team.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -791,6 +917,10 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Unlink the given team from a project
+
+        Attributes:
+            project_id (int): The ID of the project.
+            team_id (int): The ID of the team.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -816,6 +946,10 @@ class TeamsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing team
+
+        Attributes:
+            team_id (int): The ID of the team.
+            team_update (Union[TeamUpdate, TeamUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

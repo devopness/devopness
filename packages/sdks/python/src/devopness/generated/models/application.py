@@ -20,9 +20,11 @@ from .application_last_deployments import (
     ApplicationLastDeploymentsPlain,
 )
 from .credential_relation import CredentialRelation, CredentialRelationPlain
+from .cron_job_relation import CronJobRelation, CronJobRelationPlain
 from .daemon_relation import DaemonRelation, DaemonRelationPlain
 from .environment_relation import EnvironmentRelation, EnvironmentRelationPlain
 from .server_relation import ServerRelation, ServerRelationPlain
+from .service_relation import ServiceRelation, ServiceRelationPlain
 from .user_relation import UserRelation, UserRelationPlain
 from .virtual_host_relation import VirtualHostRelation, VirtualHostRelationPlain
 
@@ -41,7 +43,7 @@ class Application(DevopnessBaseModel):
         repository_name (str): The name part of a repository full name (&#x60;repository_owner/repository_name&#x60;)
         repository_owner (str): The owner part of a repository full name (&#x60;repository_owner/repository_name&#x60;)
         default_branch (str): The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
-        programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be &#x60;html&#x60;.
+        programming_language (str): The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be &#x60;nodejs&#x60; and the framework should be &#x60;html&#x60;.
         programming_language_human_readable (str): The human readable version of the programming language of the application.
         engine_version (str): The language runtime engine version to be used to execute this application on the deployed servers
         framework (str): The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment
@@ -55,6 +57,8 @@ class Application(DevopnessBaseModel):
         environment (EnvironmentRelation, optional, nullable):
         servers (List[ServerRelation]):
         credential (CredentialRelation, optional, nullable):
+        services (List[ServiceRelation]):
+        cronjobs (List[CronJobRelation]):
         virtual_hosts (List[VirtualHostRelation]):
         daemons (List[DaemonRelation]):
         created_at (str): The date and time when the record was created
@@ -98,7 +102,7 @@ class Application(DevopnessBaseModel):
         json_schema_extra={"examples": ["main"]},
     )
     programming_language: StrictStr = Field(
-        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+        description="The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.",
         json_schema_extra={"examples": ["python"]},
     )
     programming_language_human_readable: StrictStr = Field(
@@ -138,6 +142,8 @@ class Application(DevopnessBaseModel):
     environment: EnvironmentRelation | None
     servers: list[ServerRelation | None]
     credential: CredentialRelation | None
+    services: list[ServiceRelation | None]
+    cronjobs: list[CronJobRelation | None]
     virtual_hosts: list[VirtualHostRelation | None]
     daemons: list[DaemonRelation | None]
     created_at: StrictStr = Field(
@@ -190,6 +196,22 @@ class ApplicationPlain(TypedDict, total=False):
         ]
     ]
     credential: Union[CredentialRelation, CredentialRelationPlain] | None
+    services: Required[
+        list[
+            Union[
+                ServiceRelation,
+                ServiceRelationPlain,
+            ]
+        ]
+    ]
+    cronjobs: Required[
+        list[
+            Union[
+                CronJobRelation,
+                CronJobRelationPlain,
+            ]
+        ]
+    ]
     virtual_hosts: Required[
         list[
             Union[

@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { TeamInvitationRelation } from '../../generated/models';
 
 /**
@@ -27,18 +28,12 @@ export class UsersTeamInvitationsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listUserTeamInvitations(page?: number, perPage?: number): Promise<ApiResponse<Array<TeamInvitationRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/users/team-invitations' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/team-invitations' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<TeamInvitationRelation>>(requestUrl);
         return new ApiResponse(response);

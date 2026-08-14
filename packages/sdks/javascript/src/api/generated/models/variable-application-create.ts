@@ -22,13 +22,13 @@ import { VariableType } from './variable-type';
  */
 export interface VariableApplicationCreate {
     /**
-     * The unique key used to identify the variable on the target.                 When variable is of type `file`, this is the relative path                 to the file within the application directory. Must not be greater than 100 characters.
+     * The unique key used to identify the variable on the target.                 For `resource-config-file`, use a relative path such as `.env` or `storage/oauth-public.key`.                 For `resource-symlink`, `key` is the link path and `value` is the destination path, for example `node_modules` -> `${APP_SHARED_DIR}/node_modules`. Must not be greater than 100 characters.
      * @type {string}
      * @memberof VariableApplicationCreate
      */
     key: string;
     /**
-     * The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.
+     * The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content.                 When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.
      * @type {string}
      * @memberof VariableApplicationCreate
      */

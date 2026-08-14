@@ -20,6 +20,7 @@
  */
 export enum VariableType {
     File = 'file',
+    Symlink = 'symlink',
     Variable = 'variable'
 }
 

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 
 import { RadioSelectCards } from './RadioSelectCards'
 
@@ -10,6 +10,37 @@ const sampleData = [
     value: 'option2',
     label: 'Option 2',
     icon: { name: 'icon2', color: 'blue' },
+  },
+]
+
+const groupedStackGroups = [
+  {
+    data: [
+      {
+        value: 'docker',
+        label: 'Docker',
+        icon: 'docker',
+        description: 'Use the runtime defaults without framework helpers.',
+      },
+    ],
+  },
+  {
+    label: '.NET (C#/F#)',
+    description: 'Choose the framework and runtime used to build your app.',
+    data: [
+      {
+        value: 'dotnetcore',
+        label: '.NET (C#/F#)',
+        icon: 'dotnetcore',
+        description: 'Use the runtime defaults without framework helpers.',
+      },
+      {
+        value: 'dotnetcore-aspnetcore',
+        label: 'ASP.NET Core',
+        icon: 'dotnetcore-aspnetcore',
+        description: 'Framework defaults will be applied automatically.',
+      },
+    ],
   },
 ]
 
@@ -72,5 +103,76 @@ describe('RadioSelectCards', () => {
     fireEvent.click(option2)
     expect(option1.checked).toBe(false)
     expect(option2.checked).toBe(true)
+  })
+
+  it('renders grouped gallery cards with helper text', () => {
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        groups={groupedStackGroups}
+        showSelectionIndicator={false}
+        density="compact"
+      />
+    )
+
+    expect(screen.getAllByText('.NET (C#/F#)')).toHaveLength(2)
+    expect(
+      screen.getByText(
+        'Choose the framework and runtime used to build your app.'
+      )
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText('Framework defaults will be applied automatically.')
+    ).toBeInTheDocument()
+
+    const aspNetCore = screen.getByRole('radio', {
+      name: 'ASP.NET Core',
+    }) as HTMLInputElement
+
+    fireEvent.click(aspNetCore)
+    expect(aspNetCore.checked).toBe(true)
+  })
+
+  it('keeps the default square layout by default', () => {
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        data={sampleData}
+      />
+    )
+
+    expect(screen.getByText('Option 1')).toBeInTheDocument()
+    expect(screen.getByText('Option 2')).toBeInTheDocument()
+    expect(screen.queryByText('.NET (C#/F#)')).not.toBeInTheDocument()
+  })
+
+  it('does not warn when a data item sets both checked and defaultChecked', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(vi.fn())
+
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        inputProps={{ onChange: vi.fn() }}
+        data={[
+          {
+            value: 'option1',
+            label: 'Option 1',
+            icon: 'icon1',
+            checked: true,
+            defaultChecked: false,
+          },
+          {
+            value: 'option2',
+            label: 'Option 2',
+            icon: 'icon2',
+            checked: false,
+            defaultChecked: true,
+          },
+        ]}
+      />
+    )
+
+    expect(errorSpy).not.toHaveBeenCalled()
+    errorSpy.mockRestore()
   })
 })

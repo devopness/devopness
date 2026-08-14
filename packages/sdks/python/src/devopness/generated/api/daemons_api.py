@@ -46,6 +46,10 @@ class DaemonsApiService(DevopnessBaseService):
         """
         Add a Daemon to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            daemon_environment_create (Union[DaemonEnvironmentCreate, DaemonEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -66,6 +70,9 @@ class DaemonsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given Daemon
+
+        Attributes:
+            daemon_id (int): The ID of the daemon.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -92,6 +99,10 @@ class DaemonsApiService(DevopnessBaseService):
         """
         Deploy a Daemon
 
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_deploy (Union[DaemonDeploy, DaemonDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -112,6 +123,9 @@ class DaemonsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Daemon]:
         """
         Get a Daemon by ID
+
+        Attributes:
+            daemon_id (int): The ID of the daemon.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -138,6 +152,10 @@ class DaemonsApiService(DevopnessBaseService):
         """
         Get current status of a daemon
 
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_get_status (Union[DaemonGetStatus, DaemonGetStatusPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -161,6 +179,11 @@ class DaemonsApiService(DevopnessBaseService):
         """
         Return a list of all Daemons belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -175,7 +198,7 @@ class DaemonsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/daemons",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -193,6 +216,10 @@ class DaemonsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Restart a Daemon
+
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_restart (Union[DaemonRestart, DaemonRestartPlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -219,6 +246,10 @@ class DaemonsApiService(DevopnessBaseService):
         """
         Start a Daemon
 
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_start (Union[DaemonStart, DaemonStartPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -244,6 +275,10 @@ class DaemonsApiService(DevopnessBaseService):
         """
         Stop a Daemon
 
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_stop (Union[DaemonStop, DaemonStopPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -268,6 +303,10 @@ class DaemonsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Daemon
+
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_update (Union[DaemonUpdate, DaemonUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -300,6 +339,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Add a Daemon to the given environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            daemon_environment_create (Union[DaemonEnvironmentCreate, DaemonEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -320,6 +363,9 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given Daemon
+
+        Attributes:
+            daemon_id (int): The ID of the daemon.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -346,6 +392,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Deploy a Daemon
 
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_deploy (Union[DaemonDeploy, DaemonDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -366,6 +416,9 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Daemon]:
         """
         Get a Daemon by ID
+
+        Attributes:
+            daemon_id (int): The ID of the daemon.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -392,6 +445,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get current status of a daemon
 
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_get_status (Union[DaemonGetStatus, DaemonGetStatusPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -415,6 +472,11 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all Daemons belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -429,7 +491,7 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/daemons",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -447,6 +509,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Restart a Daemon
+
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_restart (Union[DaemonRestart, DaemonRestartPlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -473,6 +539,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Start a Daemon
 
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_start (Union[DaemonStart, DaemonStartPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -498,6 +568,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Stop a Daemon
 
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_stop (Union[DaemonStop, DaemonStopPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -522,6 +596,10 @@ class DaemonsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing Daemon
+
+        Attributes:
+            daemon_id (int): The ID of the daemon.
+            daemon_update (Union[DaemonUpdate, DaemonUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

@@ -26,6 +26,9 @@ from .action_summary import ActionSummary, ActionSummaryPlain
 from .action_target import ActionTarget, ActionTargetPlain
 from .action_triggered_from import ActionTriggeredFrom, ActionTriggeredFromPlain
 from .action_type import ActionType, ActionTypePlain
+from .environment_relation import EnvironmentRelation, EnvironmentRelationPlain
+from .organization_relation import OrganizationRelation, OrganizationRelationPlain
+from .project_relation import ProjectRelation, ProjectRelationPlain
 
 
 class ActionRelation(DevopnessBaseModel):
@@ -45,6 +48,9 @@ class ActionRelation(DevopnessBaseModel):
         action_data (ActionData, optional, nullable):
         triggered_from (ActionTriggeredFrom):
         resource (ActionResource):
+        organization (OrganizationRelation, optional, nullable):
+        project (ProjectRelation, optional, nullable):
+        environment (EnvironmentRelation, optional, nullable):
         summary (ActionSummary, optional):
         targets (List[ActionTarget], optional): List of actions dispatched to cloud resource targets
         started_at (str, optional, nullable): The date and time when the action started execution (i.e., left the &#x60;pending/queued&#x60; status)
@@ -87,6 +93,9 @@ class ActionRelation(DevopnessBaseModel):
     action_data: ActionData | None = None
     triggered_from: ActionTriggeredFrom
     resource: ActionResource
+    organization: OrganizationRelation | None
+    project: ProjectRelation | None
+    environment: EnvironmentRelation | None
     summary: ActionSummary | None = None
     targets: list[ActionTarget] | None = Field(
         default=None, description="List of actions dispatched to cloud resource targets"
@@ -151,6 +160,9 @@ class ActionRelationPlain(TypedDict, total=False):
             ActionResourcePlain,
         ]
     ]
+    organization: Union[OrganizationRelation, OrganizationRelationPlain] | None
+    project: Union[ProjectRelation, ProjectRelationPlain] | None
+    environment: Union[EnvironmentRelation, EnvironmentRelationPlain] | None
     summary: Union[ActionSummary, ActionSummaryPlain] | None
     targets: list[Union[ActionTarget, ActionTargetPlain]] | None
     started_at: str | None

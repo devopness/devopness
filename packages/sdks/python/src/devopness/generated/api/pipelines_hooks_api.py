@@ -40,6 +40,11 @@ class PipelinesHooksApiService(DevopnessBaseService):
         """
         Create a hook to a specific pipeline
 
+        Attributes:
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+            pipeline_id (int): The ID of the pipeline that will be executed by the created action
+            hook_pipeline_create (Union[HookPipelineCreate, HookPipelineCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -63,6 +68,11 @@ class PipelinesHooksApiService(DevopnessBaseService):
         """
         List all hooks in a pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -77,7 +87,7 @@ class PipelinesHooksApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/pipelines/{pipeline_id}/hooks",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -106,6 +116,11 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a hook to a specific pipeline
 
+        Attributes:
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+            pipeline_id (int): The ID of the pipeline that will be executed by the created action
+            hook_pipeline_create (Union[HookPipelineCreate, HookPipelineCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -129,6 +144,11 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List all hooks in a pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -143,7 +163,7 @@ class PipelinesHooksApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/pipelines/{pipeline_id}/hooks",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

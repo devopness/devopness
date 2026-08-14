@@ -34,6 +34,10 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         """
         Create a new invitation for a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            invitation_team_create (Union[InvitationTeamCreate, InvitationTeamCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -57,6 +61,11 @@ class TeamsInvitationsApiService(DevopnessBaseService):
         """
         Return a list of invitations belonging to a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -71,7 +80,7 @@ class TeamsInvitationsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/teams/{team_id}/invitations",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -96,6 +105,10 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new invitation for a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            invitation_team_create (Union[InvitationTeamCreate, InvitationTeamCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -119,6 +132,11 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of invitations belonging to a team
 
+        Attributes:
+            team_id (int): The ID of the team.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -133,7 +151,7 @@ class TeamsInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/teams/{team_id}/invitations",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

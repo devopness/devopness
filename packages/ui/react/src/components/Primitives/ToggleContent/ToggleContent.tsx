@@ -55,10 +55,7 @@ const ToggleContent = ({
   buttonProps,
   children,
 }: PropsWithChildren<ToggleContentProps>) => {
-  const [
-    isContentVisible,
-    setIsContentVisible,
-  ] = useState(false)
+  const [isContentVisible, setIsContentVisible] = useState(false)
   const showContent = isContentVisible || !isSensitiveContent
   const shouldShowHiddenPlaceholder =
     isSensitiveContent && showHiddenContentPlaceholder
