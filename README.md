@@ -12,8 +12,6 @@
 
 # Devopness
 
-TEMP
-
 Deploy apps and **provision cloud infrastructure from scratch** on AWS, Azure, GCP, DigitalOcean, and Hetzner: in accounts you control.
 
 One platform to replace many tools: Terraform + Ansible + Jenkins + PaaS (Vercel, Heroku, etc), and stack-specific server panels.
