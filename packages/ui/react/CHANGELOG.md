@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.198.1
+
+### Patch Changes
+
+- [#3450](https://github.com/devopness/devopness/pull/3450) [`06f0aa0`](https://github.com/devopness/devopness/commit/06f0aa01ec460e5a4183bc608c55b816d790a4e2) Thanks [@therealrinku](https://github.com/therealrinku)! - improve the card loading component(CardLoading.tsx) footer skeleton style to match the actual rendered ui style.
+
 ## 2.198.0
 
 ### Minor Changes
