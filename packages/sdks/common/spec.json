@@ -17306,6 +17306,26 @@
           }
         }
       },
+      "CloudResourceInstanceSpec": {
+        "type": "object",
+        "description": "Hardware spec of the selected instance type.",
+        "properties": {
+          "memory": {
+            "type": "integer",
+            "description": "The RAM memory size (in MB) of the selected instance type",
+            "example": 8192
+          },
+          "vcpus": {
+            "type": "integer",
+            "description": "The number of virtual CPUs of the selected instance type",
+            "example": 2
+          }
+        },
+        "required": [
+          "memory",
+          "vcpus"
+        ]
+      },
       "CloudResourceType": {
         "type": "string",
         "description": "The name of a cloud resource type",
@@ -17339,6 +17359,10 @@
             "type": "string",
             "description": "Human readable version of the server region",
             "example": "US East (N. Virginia) us-east-1"
+          },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
           },
           "storage_size": {
             "type": "integer",
@@ -17374,6 +17398,10 @@
             "description": "Human readable version of the server region",
             "example": "(South America) Brazil South brazilsouth"
           },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
+          },
           "storage_size": {
             "type": "integer",
             "description": "The storage's size of the cloud instance",
@@ -17408,6 +17436,10 @@
             "description": "Human readable version of the server region",
             "example": "New York nyc1"
           },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
+          },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
           }
@@ -17435,6 +17467,10 @@
             "type": "string",
             "description": "Human readable version of the server region",
             "example": "US East (N. Virginia) us-east1"
+          },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
           },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
@@ -17464,6 +17500,10 @@
             "description": "Human readable version of the server region",
             "example": "(USA) Ashburn, VA ash"
           },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
+          },
           "storage_size": {
             "type": "integer",
             "description": "The storage's size of the cloud instance",
@@ -17485,6 +17525,10 @@
         "properties": {
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
+          },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
           }
         },
         "required": [
@@ -23413,7 +23457,7 @@
             "$ref": "#/components/schemas/ServerCloudServiceCode"
           },
           "settings": {
-            "description": "The configurations used to cloud service",
+            "description": "Configuration used to provision the cloud resource.",
             "anyOf": [
               {
                 "$ref": "#/components/schemas/CloudServiceSettingsAwsEc2"

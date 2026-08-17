@@ -39,7 +39,7 @@ export interface ServerProvisionInput {
      */
     cloud_service_code: ServerCloudServiceCode;
     /**
-     * The configurations used to cloud service
+     * Configuration used to provision the cloud resource.
      * @type {CloudServiceSettingsAwsEc2 | CloudServiceSettingsAzureRm | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsHetznerHcloud | CloudServiceSettingsSelfHostedCustom}
      * @memberof ServerProvisionInput
      */
