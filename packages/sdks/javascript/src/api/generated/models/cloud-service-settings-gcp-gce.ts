@@ -13,6 +13,7 @@
 
 
 import { CloudOsVersionCode } from './cloud-os-version-code';
+import { CloudResourceInstanceSpec } from './cloud-resource-instance-spec';
 
 /**
  * 
@@ -38,6 +39,12 @@ export interface CloudServiceSettingsGcpGce {
      * @memberof CloudServiceSettingsGcpGce
      */
     region_human_readable?: string;
+    /**
+     * 
+     * @type {CloudResourceInstanceSpec}
+     * @memberof CloudServiceSettingsGcpGce
+     */
+    instance_spec?: CloudResourceInstanceSpec;
     /**
      * 
      * @type {CloudOsVersionCode}

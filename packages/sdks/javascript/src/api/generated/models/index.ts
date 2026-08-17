@@ -62,6 +62,7 @@ export * from './cloud-provider-service-resource-type';
 export * from './cloud-provider-service-resource-type-scope';
 export * from './cloud-provider-settings';
 export * from './cloud-provider-settings-list';
+export * from './cloud-resource-instance-spec';
 export * from './cloud-resource-type';
 export * from './cloud-service-settings-aws-ec2';
 export * from './cloud-service-settings-azure-rm';
