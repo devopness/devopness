@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "jsdom": "^30.0.1",
-    "vite-plus": "0.2.8"
+    "vite-plus": "0.2.9"
   },
   "overrides": {
     "babel-plugin-istanbul": {
