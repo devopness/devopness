@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.7.1
+
+### Patch Changes
+
+- [#3470](https://github.com/devopness/devopness/pull/3470) [`0223644`](https://github.com/devopness/devopness/commit/0223644911db56c8cca54f66480edd6825e17fb3) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Expose the new server instance spec fields, `memory` and `vcpus`, in the generated SDK models so clients can inspect the selected machine shape when provisioning servers.
+
 ## 2.7.0
 
 ### Minor Changes

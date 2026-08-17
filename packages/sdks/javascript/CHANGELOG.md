@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.6.1
+
+### Patch Changes
+
+- [#3470](https://github.com/devopness/devopness/pull/3470) [`0223644`](https://github.com/devopness/devopness/commit/0223644911db56c8cca54f66480edd6825e17fb3) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Expose the new server instance spec fields, `memory` and `vcpus`, in the generated SDK models so clients can inspect the selected machine shape when provisioning servers.
+
 ## 3.6.0
 
 ### Minor Changes
@@ -18,23 +24,22 @@
       organization_id: 123,
       project_id: 456,
       status: "queued",
-    }
+    },
   );
 
-  const environmentActions =
-    await devopness.environmentsActions.listEnvironmentActions(
-      /* environmentId */
-      environmentId,
-      /* page */
-      1,
-      /* perPage */
-      20,
-      {
-        resource_type: "application",
-        resource_id: 321,
-        status: "completed",
-      }
-    );
+  const environmentActions = await devopness.environmentsActions.listEnvironmentActions(
+    /* environmentId */
+    environmentId,
+    /* page */
+    1,
+    /* perPage */
+    20,
+    {
+      resource_type: "application",
+      resource_id: 321,
+      status: "completed",
+    },
+  );
   ```
 
   If the filter object is omitted, the methods keep their previous behavior and return the unfiltered list.
@@ -106,24 +111,19 @@
   **List all credentials in your organization:**
 
   ```javascript
-  const credentials = await devopness.credentials.listOrganizationCredentials(
-    organizationId
-  );
+  const credentials = await devopness.credentials.listOrganizationCredentials(organizationId);
   ```
 
   **Create a credential at organization level:**
 
   ```javascript
-  const credential = await devopness.credentials.addOrganizationCredential(
-    organizationId,
-    {
-      name: "My Cloud Provider",
-      provider_code: "aws", // or 'azure', 'gcp', 'digitalocean', etc.
-      settings: {
-        // Provider-specific configuration
-      },
-    }
-  );
+  const credential = await devopness.credentials.addOrganizationCredential(organizationId, {
+    name: "My Cloud Provider",
+    provider_code: "aws", // or 'azure', 'gcp', 'digitalocean', etc.
+    settings: {
+      // Provider-specific configuration
+    },
+  });
   ```
 
   ### Environment credential linking
@@ -131,24 +131,16 @@
   **Link a credential to an environment:**
 
   ```javascript
-  await devopness.credentials.linkCredentialToEnvironment(
-    environmentId,
-    credentialId,
-    {}
-  );
+  await devopness.credentials.linkCredentialToEnvironment(environmentId, credentialId, {});
   ```
 
   **Unlink a credential from an environment:**
 
   ```javascript
-  await devopness.credentials.unlinkCredentialFromEnvironment(
-    environmentId,
-    credentialId
-  );
+  await devopness.credentials.unlinkCredentialFromEnvironment(environmentId, credentialId);
   ```
 
   ## What Stays the Same?
-
   - **Listing environment credentials** - `listEnvironmentCredentials()` still works
   - **Getting credential details** - `getCredential()` unchanged
   - **Updating credentials** - `updateCredential()` unchanged
@@ -205,9 +197,7 @@
   await devopness.environments.teams.linkTeamToEnvironment(envId, teamId, data);
 
   // Listing environment team memberships
-  await devopness.environments.teamMemberships.listEnvironmentTeamMemberships(
-    envId
-  );
+  await devopness.environments.teamMemberships.listEnvironmentTeamMemberships(envId);
 
   // Managing project roles
   await devopness.projects.roles.addProjectRole(projectId, roleData);
@@ -228,7 +218,6 @@
   ## New Features
 
   ### Organization-level team management
-
   - `addOrganizationTeam(organizationId, data)` - Create team at organization level
   - `listOrganizationTeams(organizationId)` - List all teams in an organization
   - `listOrganizationTeamMemberships(organizationId)` - List team memberships in organization
@@ -236,14 +225,12 @@
   - `unlinkTeamFromOrganization(organizationId, teamId)` - Remove team from organization
 
   ### Enhanced team linking
-
   - `linkTeamToProject(projectId, teamId, data)` - Link team to project with role
   - `unlinkTeamFromProject(projectId, teamId)` - Remove team from project
   - `listProjectTeamMemberships(projectId)` - List team memberships in project
   - `listTeamMemberships(teamId)` - List all memberships of a specific team
 
   ### Organization-level role management
-
   - `addOrganizationRole(organizationId, data)` - Create custom role at organization level
   - `listOrganizationRoles(organizationId)` - List all roles in an organization
 
@@ -303,7 +290,7 @@
   const pipelines = await devopness.pipelines.listResourcePipelines(
     environmentId,
     resourceType,
-    resourceId
+    resourceId,
   );
 
   const deployPipeline = pipelines.data.find((p) => p.type === "deploy");
@@ -438,7 +425,7 @@
 
   for (const membership of response.data) {
     console.log(
-      `Access to environment ${membership.environment.name} with role ${membership.role.name}`
+      `Access to environment ${membership.environment.name} with role ${membership.role.name}`,
     );
   }
   ```
@@ -450,7 +437,6 @@
 - [#2282](https://github.com/devopness/devopness/pull/2282) [`9932dc9`](https://github.com/devopness/devopness/commit/9932dc991ed985e2148ac2ffffdf2bcaf0aeb603) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   ## Changes
-
   - Added a dedicated method to create projects under an organization: `devopnessClient.projects.addOrganizationProject`
   - Removed the `organization_id` parameter from `devopnessClient.projects.addProject`, as organization-specific project creation is now handled by the new method.
 
@@ -461,17 +447,14 @@
 - [#2272](https://github.com/devopness/devopness/pull/2272) [`35bf25d`](https://github.com/devopness/devopness/commit/35bf25df929890ef8fd439b99a95d4a365f73e6f) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   ## Changes
-
   - Added support for **Public Team Invitations**, allowing teams to generate shareable links that let any user with the link join the team.
 
   ### ⚠️ Breaking change
-
   - The structure used to create team invitations has changed to include a new field defining the type of invitation (`"private"` or `"public"`).
   - The email address is now optional and only required for private invitations.
   - This change affects any process or integration that creates team invitations and requires adjustments to align with the new format.
 
   ### Additionally
-
   - The process for accepting invitations now supports authorization via a token when handling public invitations.
 
 ## 2.164.10
@@ -481,11 +464,9 @@
 - [#2243](https://github.com/devopness/devopness/pull/2243) [`2f12356`](https://github.com/devopness/devopness/commit/2f12356b41ac52cc9478f6f05f5117862bfd5bfd) Thanks [@Diegiwg](https://github.com/Diegiwg)!
 
   ## Added
-
   - New method in the `static` service to **list available subscription plans** in Devopness.
 
   ## Deprecated
-
   - User management methods (`create`, `update`, `etc`) and authentication methods (`login`, `logout`, `refresh-token`, `etc`) are now **deprecated**.
     - They always return **403 Forbidden**.
     - Their signatures have been simplified to **accept no arguments**.
@@ -522,22 +503,17 @@
   });
 
   // Example: use Personal Access Token to list projects
-  const project = await devopness.projects
-    .listProjects()
-    .then((res) => res.data[0]);
+  const project = await devopness.projects.listProjects().then((res) => res.data[0]);
   const role = await devopness.projects.roles
     .listProjectRoles(project.id)
     .then((res) => res.data[0]);
 
   // Create a new Project API Token
-  const projectToken = await devopness.apiTokens.addProjectApiToken(
-    project.id,
-    {
-      name: "My Project Token",
-      expires_in: SdkModels.ApiTokenAllowedExpiration._7Days,
-      role_id: role.id,
-    }
-  );
+  const projectToken = await devopness.apiTokens.addProjectApiToken(project.id, {
+    name: "My Project Token",
+    expires_in: SdkModels.ApiTokenAllowedExpiration._7Days,
+    role_id: role.id,
+  });
 
   // Switch to the new token at runtime
   devopness.apiToken = projectToken.data.token;
@@ -656,8 +632,7 @@
 
   ```ts
   const apiClient = new DevopnessApiClient();
-  const options =
-    await apiClient.environment.application.addEnvironmentApplication();
+  const options = await apiClient.environment.application.addEnvironmentApplication();
   ```
 
   ### New usage example
@@ -720,8 +695,7 @@
 
   ```ts
   const apiClient = new DevopnessApiClient();
-  const options =
-    await apiClient.static.applicationOptions.getStaticApplicationOptions();
+  const options = await apiClient.static.applicationOptions.getStaticApplicationOptions();
   ```
 
   ### How should it be used now?
