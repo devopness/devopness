@@ -153,6 +153,8 @@ CloudProviderSettings:
   $ref: ./auto-generated/models/cloud-provider-settings.yaml
 CloudProviderSettingsList:
   $ref: ./auto-generated/models/cloud-provider-settings-list.yaml
+CloudResourceInstanceSpec:
+  $ref: ./auto-generated/models/cloud-resource-instance-spec.yaml
 CloudResourceType:
   $ref: ./auto-generated/models/cloud-resource-type.yaml
 CloudResourceTypeList:

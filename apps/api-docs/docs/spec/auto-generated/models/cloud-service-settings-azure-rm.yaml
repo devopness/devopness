@@ -13,6 +13,9 @@ properties:
     type: string
     description: 'Human readable version of the server region'
     example: '(South America) Brazil South brazilsouth'
+  instance_spec:
+    $ref: '#/components/schemas/CloudResourceInstanceSpec'
+    nullable: true
   storage_size:
     type: integer
     description: "The storage's size of the cloud instance"

@@ -9,7 +9,7 @@ properties:
   cloud_service_code:
     $ref: '#/components/schemas/ServerCloudServiceCode'
   settings:
-    description: 'The configurations used to cloud service'
+    description: 'Configuration used to provision the cloud resource.'
     anyOf:
       -
         $ref: '#/components/schemas/CloudServiceSettingsAwsEc2'
