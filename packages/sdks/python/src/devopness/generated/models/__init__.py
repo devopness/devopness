@@ -141,6 +141,10 @@ from .cloud_provider_settings_list import (
     CloudProviderSettingsList,
     CloudProviderSettingsListPlain,
 )
+from .cloud_resource_instance_spec import (
+    CloudResourceInstanceSpec,
+    CloudResourceInstanceSpecPlain,
+)
 from .cloud_resource_type import CloudResourceType, CloudResourceTypePlain
 from .cloud_service_settings_aws_ec2 import (
     CloudServiceSettingsAwsEc2,
@@ -823,6 +827,8 @@ __all__ = [
     "CloudProviderSettingsList",
     "CloudProviderSettingsListPlain",
     "CloudProviderSettingsPlain",
+    "CloudResourceInstanceSpec",
+    "CloudResourceInstanceSpecPlain",
     "CloudResourceType",
     "CloudResourceTypePlain",
     "CloudServiceSettingsAwsEc2",
