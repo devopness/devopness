@@ -41,4 +41,14 @@ describe('FormText', () => {
     const subtitle = screen.getByText('Custom Color Subtitle')
     expect(subtitle).toHaveStyle('color: rgb(239, 68, 68)')
   })
+
+  it('renders line by default', () => {
+    renderWithTheme(<FormText title="Main Title" />)
+    expect(screen.queryByTestId('formtext-line')).toBeInTheDocument()
+  })
+
+  it('does not render line when showLine is false', () => {
+    renderWithTheme(<FormText title="Main Title" showLine={false} />)
+    expect(screen.queryByTestId('formtext-line')).toBeNull()
+  })
 })
