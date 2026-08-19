@@ -32,6 +32,12 @@ const sampleData = [
   },
 ]
 
+const sampleCompactFlatData = [
+  { value: 'github', label: 'GitHub', icon: { name: 'github', color: 'blue' } },
+  { value: 'gitlab', label: 'GitLab', icon: 'gitlab' },
+  { value: 'bitbucket', label: 'Bitbucket', icon: 'bitbucket' },
+]
+
 const sampleGroupedGroups = [
   {
     data: [
@@ -39,21 +45,26 @@ const sampleGroupedGroups = [
         value: 'docker',
         label: 'Docker',
         icon: 'docker',
+        description: 'Use the runtime defaults.',
       },
     ],
   },
   {
     label: '.NET (C#/F#)',
+    description: 'Choose the framework and runtime used to build your app.',
     data: [
       {
         value: 'dotnetcore',
         label: '.NET (C#/F#)',
         icon: 'dotnetcore',
+        description:
+          'Use the runtime defaults without framework helpers or project-specific overrides.',
       },
       {
         value: 'dotnetcore-aspnetcore',
         label: 'ASP.NET Core',
         icon: 'dotnetcore-aspnetcore',
+        description: 'Framework defaults will be applied automatically.',
       },
     ],
   },
@@ -63,6 +74,7 @@ const sampleGroupedGroups = [
         value: 'html',
         label: 'HTML (static)',
         icon: 'html',
+        description: 'A static site without extra platform helpers.',
       },
     ],
   },
@@ -72,6 +84,7 @@ const sampleGroupedGroups = [
         value: 'java',
         label: 'Java',
         icon: 'java',
+        description: 'Run a standard JVM application.',
       },
     ],
   },
@@ -82,11 +95,13 @@ const sampleGroupedGroups = [
         value: 'nodejs',
         label: 'Node.js',
         icon: 'nodejs',
+        description: 'Use the default Node.js runtime configuration.',
       },
       {
         value: 'nodejs-nextjs',
         label: 'Next.js',
         icon: 'nodejs-nextjs',
+        description: 'Optimized for the Next.js app router.',
       },
     ],
   },
@@ -97,11 +112,13 @@ const sampleGroupedGroups = [
         value: 'php',
         label: 'PHP',
         icon: 'php',
+        description: 'Use the baseline PHP runtime.',
       },
       {
         value: 'php-laravel',
         label: 'Laravel',
         icon: 'php-laravel',
+        description: 'Includes Laravel-specific helpers and defaults.',
       },
     ],
   },
@@ -112,26 +129,31 @@ const sampleGroupedGroups = [
         value: 'python',
         label: 'Python',
         icon: 'python',
+        description: 'Use the standard Python runtime.',
       },
       {
         value: 'python-django',
         label: 'Django',
         icon: 'python-django',
+        description: 'Adds Django-specific runtime defaults.',
       },
       {
         value: 'python-fastapi',
         label: 'FastAPI',
         icon: 'python-fastapi',
+        description: 'Optimized for FastAPI applications.',
       },
       {
         value: 'python-fastmcp',
         label: 'FastMCP',
         icon: 'python-fastmcp',
+        description: 'Tailored for FastMCP services.',
       },
       {
         value: 'python-flask',
         label: 'Flask',
         icon: 'python-flask',
+        description: 'Defaults for a lightweight Flask app.',
       },
     ],
   },
@@ -142,11 +164,13 @@ const sampleGroupedGroups = [
         value: 'ruby',
         label: 'Ruby',
         icon: 'ruby',
+        description: 'Use the generic Ruby runtime.',
       },
       {
         value: 'ruby-rails',
         label: 'Ruby on Rails',
         icon: 'ruby-rails',
+        description: 'Adds Rails-specific defaults and helpers.',
       },
     ],
   },
@@ -175,6 +199,18 @@ const Loading: Story = {
   },
 }
 
+const FlatCompactCards: Story = {
+  args: {
+    name: 'sourceProvider',
+    data: sampleCompactFlatData,
+    density: 'compact',
+    showSelectionIndicator: false,
+  },
+  parameters: {
+    layout: 'padded',
+  },
+}
+
 const GroupedCards: Story = {
   args: {
     name: 'stackGallery',
@@ -193,4 +229,4 @@ const GroupedCards: Story = {
 }
 
 export default meta
-export { Default, GroupedCards, Loading, WithError }
+export { Default, FlatCompactCards, GroupedCards, Loading, WithError }

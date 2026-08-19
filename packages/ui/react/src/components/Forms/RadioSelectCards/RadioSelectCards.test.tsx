@@ -13,6 +13,12 @@ const sampleData = [
   },
 ]
 
+const compactFlatData = [
+  { value: 'github', label: 'GitHub', icon: { name: 'github', color: 'blue' } },
+  { value: 'gitlab', label: 'GitLab', icon: 'gitlab' },
+  { value: 'bitbucket', label: 'Bitbucket', icon: 'bitbucket' },
+]
+
 const groupedStackGroups = [
   {
     data: [
@@ -20,7 +26,7 @@ const groupedStackGroups = [
         value: 'docker',
         label: 'Docker',
         icon: 'docker',
-        description: 'Use the runtime defaults without framework helpers.',
+        description: 'Use the runtime defaults.',
       },
     ],
   },
@@ -32,7 +38,8 @@ const groupedStackGroups = [
         value: 'dotnetcore',
         label: '.NET (C#/F#)',
         icon: 'dotnetcore',
-        description: 'Use the runtime defaults without framework helpers.',
+        description:
+          'Use the runtime defaults without framework helpers or project-specific overrides.',
       },
       {
         value: 'dotnetcore-aspnetcore',
@@ -121,6 +128,12 @@ describe('RadioSelectCards', () => {
         'Choose the framework and runtime used to build your app.'
       )
     ).toBeInTheDocument()
+    expect(screen.getByText('Use the runtime defaults.')).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        'Use the runtime defaults without framework helpers or project-specific overrides.'
+      )
+    ).toBeInTheDocument()
     expect(
       screen.getByText('Framework defaults will be applied automatically.')
     ).toBeInTheDocument()
@@ -131,6 +144,22 @@ describe('RadioSelectCards', () => {
 
     fireEvent.click(aspNetCore)
     expect(aspNetCore.checked).toBe(true)
+  })
+
+  it('renders compact flat cards without requiring groups', () => {
+    render(
+      <RadioSelectCards
+        name="sourceProvider"
+        data={compactFlatData}
+        density="compact"
+        showSelectionIndicator={false}
+      />
+    )
+
+    expect(screen.getByText('GitHub')).toBeInTheDocument()
+    expect(screen.getByText('GitLab')).toBeInTheDocument()
+    expect(screen.getByText('Bitbucket')).toBeInTheDocument()
+    expect(screen.getAllByRole('radio')).toHaveLength(3)
   })
 
   it('keeps the default square layout by default', () => {

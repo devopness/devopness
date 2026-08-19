@@ -5,12 +5,21 @@ import { getFont } from 'src/fonts'
 
 type Density = 'default' | 'compact'
 
-const StyledLabel = styled.label`
+const getFlatCardPadding = (density: Density) =>
+  density === 'compact' ? '0.75rem' : '1.25rem'
+
+const getFlatCardGap = (density: Density) =>
+  density === 'compact' ? '1rem' : '1.75rem'
+
+const getFlatCardMaxWidth = (density: Density) =>
+  density === 'compact' ? '9rem' : '10rem'
+
+const StyledLabel = styled.label<{ $density: Density }>`
   background-color: ${getColor('white')};
   border-radius: 0.5rem;
   box-sizing: border-box;
-  padding: 1.25rem;
-  max-width: 10rem;
+  padding: ${({ $density }) => getFlatCardPadding($density)};
+  max-width: ${({ $density }) => getFlatCardMaxWidth($density)};
   cursor: pointer;
 
   @media (max-width: 600px) {
@@ -89,10 +98,10 @@ const RadioGrid = styled.div<{ $hasError?: boolean }>`
   }
 `
 
-const CardContent = styled.div`
+const CardContent = styled.div<{ $density: Density }>`
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: ${({ $density }) => getFlatCardGap($density)};
 
   @media (max-width: 600px) {
     flex-direction: row;
@@ -152,7 +161,7 @@ const getGridGap = (density: Density) =>
   density === 'compact' ? '0.5rem' : '0.75rem'
 
 const getGridMinWidth = (density: Density) =>
-  density === 'compact' ? '12.5rem' : '12.5rem'
+  density === 'compact' ? '10rem' : '12.5rem'
 
 const getIconSize = (density: Density) =>
   density === 'compact' ? '2.5rem' : '2.75rem'
@@ -262,17 +271,19 @@ const StyledCardLabel = styled.label<{
   }
 `
 
-const StyledCardHeader = styled.div`
+const StyledCardHeader = styled.div<{ $hasDescription?: boolean }>`
   display: flex;
-  align-items: center;
+  align-items: ${({ $hasDescription }) =>
+    $hasDescription ? 'flex-start' : 'center'};
   justify-content: space-between;
   gap: 0.75rem;
   min-width: 0;
 `
 
-const StyledCardLead = styled.div`
+const StyledCardLead = styled.div<{ $hasDescription?: boolean }>`
   display: flex;
-  align-items: center;
+  align-items: ${({ $hasDescription }) =>
+    $hasDescription ? 'flex-start' : 'center'};
   gap: 0.75rem;
   min-width: 0;
   flex: 1;
@@ -317,6 +328,7 @@ const StyledCardDescription = styled.span`
   font-size: 0.8125rem;
   line-height: 1.45;
   color: ${getColor('slate.600')};
+  min-height: 2.375rem;
 `
 
 const StyledCardMeta = styled.span`
