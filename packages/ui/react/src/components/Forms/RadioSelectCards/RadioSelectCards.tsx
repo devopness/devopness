@@ -143,6 +143,7 @@ type RadioSelectCardsOptionProps = RadioSelectCardsItem & {
 type RadioSelectCardsGalleryOptionProps = RadioSelectCardsItem & {
   $density: RadioSelectCardsDensity
   $showSelectionIndicator: boolean
+  $hasDescription?: boolean
   inputId: string
   name: string
   sharedInputProps?: RadioSelectCardsInputProps
@@ -241,6 +242,7 @@ const GalleryRadioSelectCard = ({
   const descriptionId = description ? `${inputId}-description` : undefined
   const metaId = meta ? `${inputId}-meta` : undefined
   const ariaDescribedBy = [descriptionId, metaId].filter(Boolean).join(' ')
+  const hasDescription = Boolean(description)
 
   const resolvedChecked = inputProps?.checked ?? checked
   const resolvedDefaultChecked = inputProps?.defaultChecked ?? defaultChecked
@@ -251,8 +253,8 @@ const GalleryRadioSelectCard = ({
 
   return (
     <StyledCardLabel $density={$density}>
-      <StyledCardHeader>
-        <StyledCardLead>
+      <StyledCardHeader $hasDescription={hasDescription}>
+        <StyledCardLead $hasDescription={hasDescription}>
           {icon ? (
             <StyledCardIcon
               $density={$density}

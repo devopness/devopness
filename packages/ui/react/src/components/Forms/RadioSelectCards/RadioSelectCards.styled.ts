@@ -271,17 +271,19 @@ const StyledCardLabel = styled.label<{
   }
 `
 
-const StyledCardHeader = styled.div`
+const StyledCardHeader = styled.div<{ $hasDescription?: boolean }>`
   display: flex;
-  align-items: flex-start;
+  align-items: ${({ $hasDescription }) =>
+    $hasDescription ? 'flex-start' : 'center'};
   justify-content: space-between;
   gap: 0.75rem;
   min-width: 0;
 `
 
-const StyledCardLead = styled.div`
+const StyledCardLead = styled.div<{ $hasDescription?: boolean }>`
   display: flex;
-  align-items: flex-start;
+  align-items: ${({ $hasDescription }) =>
+    $hasDescription ? 'flex-start' : 'center'};
   gap: 0.75rem;
   min-width: 0;
   flex: 1;
