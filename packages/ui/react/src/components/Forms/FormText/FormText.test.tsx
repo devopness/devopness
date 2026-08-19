@@ -48,7 +48,12 @@ describe('FormText', () => {
   })
 
   it('does not render line when showLine is false', () => {
-    renderWithTheme(<FormText title="Main Title" showLine={false} />)
+    renderWithTheme(
+      <FormText
+        title="Main Title"
+        showLine={false}
+      />
+    )
     expect(screen.queryByTestId('formtext-line')).toBeNull()
   })
 })

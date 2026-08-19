@@ -26,7 +26,12 @@ type FormTextProps = {
  * />
  * ```
  */
-const FormText = ({ title, subTitle, subTitleColor, showLine = true }: FormTextProps) => (
+const FormText = ({
+  title,
+  subTitle,
+  subTitleColor,
+  showLine = true,
+}: FormTextProps) => (
   <Wrapper>
     <Title>{title}</Title>
     {subTitle && (
