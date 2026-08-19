@@ -32,6 +32,12 @@ const sampleData = [
   },
 ]
 
+const sampleCompactFlatData = [
+  { value: 'github', label: 'GitHub', icon: { name: 'github', color: 'blue' } },
+  { value: 'gitlab', label: 'GitLab', icon: 'gitlab' },
+  { value: 'bitbucket', label: 'Bitbucket', icon: 'bitbucket' },
+]
+
 const sampleGroupedGroups = [
   {
     data: [
@@ -193,6 +199,18 @@ const Loading: Story = {
   },
 }
 
+const FlatCompactCards: Story = {
+  args: {
+    name: 'sourceProvider',
+    data: sampleCompactFlatData,
+    density: 'compact',
+    showSelectionIndicator: false,
+  },
+  parameters: {
+    layout: 'padded',
+  },
+}
+
 const GroupedCards: Story = {
   args: {
     name: 'stackGallery',
@@ -211,4 +229,4 @@ const GroupedCards: Story = {
 }
 
 export default meta
-export { Default, GroupedCards, Loading, WithError }
+export { Default, FlatCompactCards, GroupedCards, Loading, WithError }

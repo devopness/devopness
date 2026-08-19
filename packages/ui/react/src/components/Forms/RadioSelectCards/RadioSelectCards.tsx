@@ -111,15 +111,13 @@ type RadioSelectCardsProps = Unwrap<
        */
       groups?: RadioSelectCardsGroup[]
       /**
-       * Compact spacing for the grouped gallery presentation.
-       *
-       * This has no effect in the default flat layout.
+       * Compact spacing for both flat and grouped card presentations.
        */
       density?: RadioSelectCardsDensity
       /**
-       * Whether to display the native radio indicator in the grouped gallery presentation.
+       * Whether to display the native radio indicator in flat and grouped card presentations.
        *
-       * Defaults to `true`. This only affects the grouped gallery presentation.
+       * Defaults to `true`.
        */
       showSelectionIndicator?: boolean
       /** Loader state */
@@ -135,6 +133,8 @@ type RadioSelectCardsInputProps = Omit<
 >
 
 type RadioSelectCardsOptionProps = RadioSelectCardsItem & {
+  $density: RadioSelectCardsDensity
+  $showSelectionIndicator: boolean
   inputId: string
   name: string
   sharedInputProps?: RadioSelectCardsInputProps
@@ -151,6 +151,8 @@ type RadioSelectCardsGalleryOptionProps = RadioSelectCardsItem & {
 const RadioSelectCard = ({
   icon,
   label,
+  $density,
+  $showSelectionIndicator,
   inputId,
   name,
   value,
@@ -166,33 +168,52 @@ const RadioSelectCard = ({
   const isDisabled = Boolean(
     sharedInputProps?.disabled ?? inputProps?.disabled ?? disabled
   )
+  const flatIconSize = $density === 'compact' ? 42 : ICON_SIZE
 
   return (
-    <StyledLabel htmlFor={inputId}>
-      <CardContent>
+    <StyledLabel
+      $density={$density}
+      htmlFor={inputId}
+    >
+      <CardContent $density={$density}>
         <IconWrapper>
           {typeof icon === 'string' && (
-            <>{iconLoader(icon as Icon, ICON_SIZE)}</>
+            <>{iconLoader(icon as Icon, flatIconSize)}</>
           )}
           {typeof icon === 'object' && 'name' in icon && (
-            <>{iconLoader(icon.name as Icon, ICON_SIZE, icon.color)}</>
+            <>{iconLoader(icon.name as Icon, flatIconSize, icon.color)}</>
           )}
-          <input
-            type="radio"
-            id={inputId}
-            style={{
-              margin: '0.75rem',
-              height: '0.875rem',
-              ...inputProps?.style,
-            }}
-            {...inputProps}
-            {...sharedInputProps}
-            checked={isControlled ? Boolean(resolvedChecked) : undefined}
-            defaultChecked={isControlled ? undefined : resolvedDefaultChecked}
-            disabled={isDisabled}
-            name={name}
-            value={value}
-          />
+          {$showSelectionIndicator ? (
+            <input
+              type="radio"
+              id={inputId}
+              style={{
+                margin: '0.75rem',
+                height: '0.875rem',
+                ...inputProps?.style,
+              }}
+              {...inputProps}
+              {...sharedInputProps}
+              checked={isControlled ? Boolean(resolvedChecked) : undefined}
+              defaultChecked={isControlled ? undefined : resolvedDefaultChecked}
+              disabled={isDisabled}
+              name={name}
+              value={value}
+            />
+          ) : (
+            <StyledCardRadio
+              $showIndicator={false}
+              {...inputProps}
+              {...sharedInputProps}
+              checked={isControlled ? Boolean(resolvedChecked) : undefined}
+              defaultChecked={isControlled ? undefined : resolvedDefaultChecked}
+              disabled={isDisabled}
+              id={inputId}
+              name={name}
+              type="radio"
+              value={value}
+            />
+          )}
         </IconWrapper>
         <LabelText>{label}</LabelText>
       </CardContent>
@@ -325,6 +346,8 @@ const RadioSelectCards = ({
               return (
                 <RadioSelectCard
                   key={String(props.value)}
+                  $density={density}
+                  $showSelectionIndicator={showSelectionIndicator}
                   inputId={props.id ?? String(props.value)}
                   name={name}
                   sharedInputProps={sharedInputProps}

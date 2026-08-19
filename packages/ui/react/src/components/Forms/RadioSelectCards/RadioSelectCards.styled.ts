@@ -5,12 +5,21 @@ import { getFont } from 'src/fonts'
 
 type Density = 'default' | 'compact'
 
-const StyledLabel = styled.label`
+const getFlatCardPadding = (density: Density) =>
+  density === 'compact' ? '0.75rem' : '1.25rem'
+
+const getFlatCardGap = (density: Density) =>
+  density === 'compact' ? '1rem' : '1.75rem'
+
+const getFlatCardMaxWidth = (density: Density) =>
+  density === 'compact' ? '9rem' : '10rem'
+
+const StyledLabel = styled.label<{ $density: Density }>`
   background-color: ${getColor('white')};
   border-radius: 0.5rem;
   box-sizing: border-box;
-  padding: 1.25rem;
-  max-width: 10rem;
+  padding: ${({ $density }) => getFlatCardPadding($density)};
+  max-width: ${({ $density }) => getFlatCardMaxWidth($density)};
   cursor: pointer;
 
   @media (max-width: 600px) {
@@ -89,10 +98,10 @@ const RadioGrid = styled.div<{ $hasError?: boolean }>`
   }
 `
 
-const CardContent = styled.div`
+const CardContent = styled.div<{ $density: Density }>`
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: ${({ $density }) => getFlatCardGap($density)};
 
   @media (max-width: 600px) {
     flex-direction: row;

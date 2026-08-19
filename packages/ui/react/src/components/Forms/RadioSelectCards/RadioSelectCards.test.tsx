@@ -13,6 +13,12 @@ const sampleData = [
   },
 ]
 
+const compactFlatData = [
+  { value: 'github', label: 'GitHub', icon: { name: 'github', color: 'blue' } },
+  { value: 'gitlab', label: 'GitLab', icon: 'gitlab' },
+  { value: 'bitbucket', label: 'Bitbucket', icon: 'bitbucket' },
+]
+
 const groupedStackGroups = [
   {
     data: [
@@ -138,6 +144,22 @@ describe('RadioSelectCards', () => {
 
     fireEvent.click(aspNetCore)
     expect(aspNetCore.checked).toBe(true)
+  })
+
+  it('renders compact flat cards without requiring groups', () => {
+    render(
+      <RadioSelectCards
+        name="sourceProvider"
+        data={compactFlatData}
+        density="compact"
+        showSelectionIndicator={false}
+      />
+    )
+
+    expect(screen.getByText('GitHub')).toBeInTheDocument()
+    expect(screen.getByText('GitLab')).toBeInTheDocument()
+    expect(screen.getByText('Bitbucket')).toBeInTheDocument()
+    expect(screen.getAllByRole('radio')).toHaveLength(3)
   })
 
   it('keeps the default square layout by default', () => {
