@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.199.0
+
+### Minor Changes
+
+- [#3477](https://github.com/devopness/devopness/pull/3477) [`39d7efc`](https://github.com/devopness/devopness/commit/39d7efc99a4c77cc6b96a6452802a3989ca2553a) Thanks [@therealrinku](https://github.com/therealrinku)! - added optional showLine prop to `FormText` component to handle conditional rendering of the bottom line
+
 ## 2.198.1
 
 ### Patch Changes
