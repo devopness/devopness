@@ -1,5 +1,17 @@
 # @devopness/ui-react
 
+## 2.200.0
+
+### Minor Changes
+
+- [#3479](https://github.com/devopness/devopness/pull/3479) [`289df06`](https://github.com/devopness/devopness/commit/289df06e7ecef185026d215c1a26a34e45f3a356) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Add a compact flat `RadioSelectCards` presentation that renders the gallery-style cards without requiring grouped sections, and document it with a new Storybook variant.
+
+- [#3479](https://github.com/devopness/devopness/pull/3479) [`289df06`](https://github.com/devopness/devopness/commit/289df06e7ecef185026d215c1a26a34e45f3a356) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Add a compact flat `RadioSelectCards` presentation with configurable radio selection indicator visibility.
+
+### Patch Changes
+
+- [#3479](https://github.com/devopness/devopness/pull/3479) [`289df06`](https://github.com/devopness/devopness/commit/289df06e7ecef185026d215c1a26a34e45f3a356) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Improve grouped `RadioSelectCards` alignment and compact card density by reserving consistent space for card descriptions, keeping the card header top-aligned, and allowing more cards to fit per row on medium-width screens.
+
 ## 2.199.0
 
 ### Minor Changes
