@@ -34,7 +34,7 @@ from .cloud_service_settings_self_hosted_custom import (
 )
 
 #: AnyOf Type
-#: The configurations used to cloud service
+#: Configuration used to provision the cloud resource.
 ServerProvisionInputSettings = Union[
     CloudServiceSettingsAwsEc2,
     CloudServiceSettingsAzureRm,

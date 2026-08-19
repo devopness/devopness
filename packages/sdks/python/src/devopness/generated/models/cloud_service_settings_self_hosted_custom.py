@@ -13,6 +13,10 @@ from typing import (
 
 from .. import DevopnessBaseModel
 from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
+from .cloud_resource_instance_spec import (
+    CloudResourceInstanceSpec,
+    CloudResourceInstanceSpecPlain,
+)
 
 
 class CloudServiceSettingsSelfHostedCustom(DevopnessBaseModel):
@@ -21,9 +25,11 @@ class CloudServiceSettingsSelfHostedCustom(DevopnessBaseModel):
 
     Attributes:
         os_version_code (CloudOsVersionCode, optional, nullable):
+        instance_spec (CloudResourceInstanceSpec, optional):
     """
 
     os_version_code: CloudOsVersionCode | None
+    instance_spec: CloudResourceInstanceSpec | None = None
 
 
 class CloudServiceSettingsSelfHostedCustomPlain(TypedDict, total=False):
@@ -32,3 +38,6 @@ class CloudServiceSettingsSelfHostedCustomPlain(TypedDict, total=False):
     """
 
     os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None
+    instance_spec: (
+        Union[CloudResourceInstanceSpec, CloudResourceInstanceSpecPlain] | None
+    )

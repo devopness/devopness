@@ -24,6 +24,10 @@ class UsersTeamInvitationsApiService(DevopnessBaseService):
         """
         Return a list of all pending team invitations for the authenticated user
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -38,7 +42,7 @@ class UsersTeamInvitationsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             "/users/team-invitations",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -60,6 +64,10 @@ class UsersTeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all pending team invitations for the authenticated user
 
+        Attributes:
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -74,7 +82,7 @@ class UsersTeamInvitationsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             "/users/team-invitations",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

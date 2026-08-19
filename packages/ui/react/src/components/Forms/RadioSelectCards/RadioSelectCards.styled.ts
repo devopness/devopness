@@ -264,7 +264,7 @@ const StyledCardLabel = styled.label<{
 
 const StyledCardHeader = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
   min-width: 0;
@@ -272,7 +272,7 @@ const StyledCardHeader = styled.div`
 
 const StyledCardLead = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   min-width: 0;
   flex: 1;
@@ -317,6 +317,7 @@ const StyledCardDescription = styled.span`
   font-size: 0.8125rem;
   line-height: 1.45;
   color: ${getColor('slate.600')};
+  min-height: 2.375rem;
 `
 
 const StyledCardMeta = styled.span`

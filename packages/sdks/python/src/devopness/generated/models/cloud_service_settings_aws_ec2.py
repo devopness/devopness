@@ -16,6 +16,10 @@ from pydantic import Field, StrictInt, StrictStr
 
 from .. import DevopnessBaseModel
 from .cloud_os_version_code import CloudOsVersionCode, CloudOsVersionCodePlain
+from .cloud_resource_instance_spec import (
+    CloudResourceInstanceSpec,
+    CloudResourceInstanceSpecPlain,
+)
 
 
 class CloudServiceSettingsAwsEc2(DevopnessBaseModel):
@@ -26,6 +30,7 @@ class CloudServiceSettingsAwsEc2(DevopnessBaseModel):
         instance_type (str): The instance type to be launched on the cloud provider
         region (str): Datacenter region where the cloud instance will be launched
         region_human_readable (str, optional): Human readable version of the server region
+        instance_spec (CloudResourceInstanceSpec, optional):
         storage_size (int): The storage&#39;s size of the cloud instance
         os_version_code (CloudOsVersionCode, optional, nullable):
     """
@@ -43,6 +48,7 @@ class CloudServiceSettingsAwsEc2(DevopnessBaseModel):
         description="Human readable version of the server region",
         json_schema_extra={"examples": ["US East (N. Virginia) us-east-1"]},
     )
+    instance_spec: CloudResourceInstanceSpec | None = None
     storage_size: StrictInt = Field(
         description="The storage's size of the cloud instance",
         json_schema_extra={"examples": [32]},
@@ -58,5 +64,8 @@ class CloudServiceSettingsAwsEc2Plain(TypedDict, total=False):
     instance_type: Required[str]
     region: Required[str]
     region_human_readable: str | None
+    instance_spec: (
+        Union[CloudResourceInstanceSpec, CloudResourceInstanceSpecPlain] | None
+    )
     storage_size: Required[int]
     os_version_code: Union[CloudOsVersionCode, CloudOsVersionCodePlain] | None

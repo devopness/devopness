@@ -141,6 +141,10 @@ from .cloud_provider_settings_list import (
     CloudProviderSettingsList,
     CloudProviderSettingsListPlain,
 )
+from .cloud_resource_instance_spec import (
+    CloudResourceInstanceSpec,
+    CloudResourceInstanceSpecPlain,
+)
 from .cloud_resource_type import CloudResourceType, CloudResourceTypePlain
 from .cloud_service_settings_aws_ec2 import (
     CloudServiceSettingsAwsEc2,
@@ -308,6 +312,18 @@ from .linked_resource_data import LinkedResourceData, LinkedResourceDataPlain
 from .linked_resource_summary_field import (
     LinkedResourceSummaryField,
     LinkedResourceSummaryFieldPlain,
+)
+from .list_actions_filter_parameter import (
+    ListActionsFilterParameter,
+    ListActionsFilterParameterPlain,
+)
+from .list_environment_actions_by_resource_type_filter_parameter import (
+    ListEnvironmentActionsByResourceTypeFilterParameter,
+    ListEnvironmentActionsByResourceTypeFilterParameterPlain,
+)
+from .list_environment_actions_filter_parameter import (
+    ListEnvironmentActionsFilterParameter,
+    ListEnvironmentActionsFilterParameterPlain,
 )
 from .log import Log, LogPlain
 from .member import Member, MemberPlain
@@ -811,6 +827,8 @@ __all__ = [
     "CloudProviderSettingsList",
     "CloudProviderSettingsListPlain",
     "CloudProviderSettingsPlain",
+    "CloudResourceInstanceSpec",
+    "CloudResourceInstanceSpecPlain",
     "CloudResourceType",
     "CloudResourceTypePlain",
     "CloudServiceSettingsAwsEc2",
@@ -979,6 +997,12 @@ __all__ = [
     "LinkedResourceDataPlain",
     "LinkedResourceSummaryField",
     "LinkedResourceSummaryFieldPlain",
+    "ListActionsFilterParameter",
+    "ListActionsFilterParameterPlain",
+    "ListEnvironmentActionsByResourceTypeFilterParameter",
+    "ListEnvironmentActionsByResourceTypeFilterParameterPlain",
+    "ListEnvironmentActionsFilterParameter",
+    "ListEnvironmentActionsFilterParameterPlain",
     "Log",
     "LogPlain",
     "Member",

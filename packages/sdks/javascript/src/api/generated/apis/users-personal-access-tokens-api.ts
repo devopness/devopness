@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { PersonalAccessToken } from '../../generated/models';
 import { PersonalAccessTokenRelation } from '../../generated/models';
@@ -35,9 +36,7 @@ export class UsersPersonalAccessTokensApiService extends ApiBaseService {
             throw new ArgumentNullException('personalAccessTokenUserCreate', 'addUserPersonalAccessToken');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/personal-access-tokens' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/personal-access-tokens';
 
         const response = await this.post <PersonalAccessToken, PersonalAccessTokenUserCreate>(requestUrl, personalAccessTokenUserCreate);
         return new ApiResponse(response);
@@ -53,9 +52,7 @@ export class UsersPersonalAccessTokensApiService extends ApiBaseService {
             throw new ArgumentNullException('personalAccessTokenId', 'getUserPersonalAccessToken');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/personal-access-tokens/{personal_access_token_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/personal-access-tokens/{personal_access_token_id}';
 
         const response = await this.get <PersonalAccessToken>(requestUrl.replace(`{${"personal_access_token_id"}}`, encodeURIComponent(String(personalAccessTokenId))));
         return new ApiResponse(response);
@@ -68,18 +65,12 @@ export class UsersPersonalAccessTokensApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listUserPersonalAccessTokens(page?: number, perPage?: number): Promise<ApiResponse<Array<PersonalAccessTokenRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/users/personal-access-tokens' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/personal-access-tokens' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<PersonalAccessTokenRelation>>(requestUrl);
         return new ApiResponse(response);
@@ -95,9 +86,7 @@ export class UsersPersonalAccessTokensApiService extends ApiBaseService {
             throw new ArgumentNullException('personalAccessTokenId', 'revokeUserPersonalAccessToken');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/personal-access-tokens/{personal_access_token_id}/revoke' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/personal-access-tokens/{personal_access_token_id}/revoke';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"personal_access_token_id"}}`, encodeURIComponent(String(personalAccessTokenId))));
         return new ApiResponse(response);
@@ -113,13 +102,12 @@ export class UsersPersonalAccessTokensApiService extends ApiBaseService {
         if (personalAccessTokenId === null || personalAccessTokenId === undefined) {
             throw new ArgumentNullException('personalAccessTokenId', 'rotateUserPersonalAccessToken');
         }
+
         if (personalAccessTokenUserRotate === null || personalAccessTokenUserRotate === undefined) {
             throw new ArgumentNullException('personalAccessTokenUserRotate', 'rotateUserPersonalAccessToken');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/users/personal-access-tokens/{personal_access_token_id}/rotate' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/users/personal-access-tokens/{personal_access_token_id}/rotate';
 
         const response = await this.post <PersonalAccessTokenRotateResponse, PersonalAccessTokenUserRotate>(requestUrl.replace(`{${"personal_access_token_id"}}`, encodeURIComponent(String(personalAccessTokenId))), personalAccessTokenUserRotate);
         return new ApiResponse(response);

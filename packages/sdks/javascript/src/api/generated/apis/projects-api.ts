@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Project } from '../../generated/models';
 import { ProjectOrganizationCreate } from '../../generated/models';
@@ -34,13 +35,12 @@ export class ProjectsApiService extends ApiBaseService {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'addOrganizationProject');
         }
+
         if (projectOrganizationCreate === null || projectOrganizationCreate === undefined) {
             throw new ArgumentNullException('projectOrganizationCreate', 'addOrganizationProject');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}/projects' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/projects';
 
         const response = await this.post <Project, ProjectOrganizationCreate>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))), projectOrganizationCreate);
         return new ApiResponse(response);
@@ -52,10 +52,7 @@ export class ProjectsApiService extends ApiBaseService {
      * @summary Create a project for the authenticated user
      */
     public async addProject(): Promise<ApiResponse<Project>> {
-
-        let queryString = '';
-
-        const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects';
 
         const response = await this.post <Project>(requestUrl);
         return new ApiResponse(response);
@@ -71,9 +68,7 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'deleteProject');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
@@ -89,9 +84,7 @@ export class ProjectsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'getProject');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}';
 
         const response = await this.get <Project>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);
@@ -105,18 +98,13 @@ export class ProjectsApiService extends ApiBaseService {
      * @param {string} [owner] Filter by project\&#39;s owner ID or URL Slug. If not provided, projects accessible by currently authenticated user are returned.
      */
     public async listProjects(page?: number, perPage?: number, owner?: string): Promise<ApiResponse<Array<ProjectRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'owner': owner,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, owner: owner, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/projects' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ProjectRelation>>(requestUrl);
         return new ApiResponse(response);
@@ -132,13 +120,12 @@ export class ProjectsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'updateProject');
         }
+
         if (projectUpdate === null || projectUpdate === undefined) {
             throw new ArgumentNullException('projectUpdate', 'updateProject');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}';
 
         const response = await this.put <void, ProjectUpdate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), projectUpdate);
         return new ApiResponse(response);

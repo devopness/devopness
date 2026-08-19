@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Subnet } from '../../generated/models';
 import { SubnetNetworkCreate } from '../../generated/models';
@@ -33,13 +34,12 @@ export class NetworksSubnetsApiService extends ApiBaseService {
         if (networkId === null || networkId === undefined) {
             throw new ArgumentNullException('networkId', 'addNetworkSubnet');
         }
+
         if (subnetNetworkCreate === null || subnetNetworkCreate === undefined) {
             throw new ArgumentNullException('subnetNetworkCreate', 'addNetworkSubnet');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/networks/{network_id}/subnets' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/networks/{network_id}/subnets';
 
         const response = await this.post <Subnet, SubnetNetworkCreate>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))), subnetNetworkCreate);
         return new ApiResponse(response);
@@ -59,17 +59,14 @@ export class NetworksSubnetsApiService extends ApiBaseService {
             throw new ArgumentNullException('networkId', 'listNetworkSubnets');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, region: region, zone: zone, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'region': region,
+          'zone': zone,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/networks/{network_id}/subnets' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/networks/{network_id}/subnets' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<SubnetRelation>>(requestUrl.replace(`{${"network_id"}}`, encodeURIComponent(String(networkId))));
         return new ApiResponse(response);

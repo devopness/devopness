@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApplicationOptions } from '../../generated/models';
 import { BillingPlansOptionsRelation } from '../../generated/models';
 import { CloudInstanceRelation } from '../../generated/models';
@@ -38,10 +39,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `Application` resource options
      */
     public async getStaticApplicationOptions(): Promise<ApiResponse<ApplicationOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/application-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/application-options';
 
         const response = await this.get <ApplicationOptions>(requestUrl);
         return new ApiResponse(response);
@@ -57,9 +55,7 @@ export class StaticDataApiService extends ApiBaseService {
             throw new ArgumentNullException('cloudProviderServiceCode', 'getStaticCloudProviderService');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/static/cloud-provider-service-options/{cloud_provider_service_code}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/cloud-provider-service-options/{cloud_provider_service_code}';
 
         const response = await this.get <CloudProviderService>(requestUrl.replace(`{${"cloud_provider_service_code"}}`, encodeURIComponent(String(cloudProviderServiceCode))));
         return new ApiResponse(response);
@@ -70,10 +66,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `Credential` resource options
      */
     public async getStaticCredentialOptions(): Promise<ApiResponse<CredentialOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/credential-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/credential-options';
 
         const response = await this.get <CredentialOptions>(requestUrl);
         return new ApiResponse(response);
@@ -84,10 +77,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `CronJob` resource options
      */
     public async getStaticCronJobOptions(): Promise<ApiResponse<CronJobOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/cronjob-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/cronjob-options';
 
         const response = await this.get <CronJobOptions>(requestUrl);
         return new ApiResponse(response);
@@ -98,10 +88,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `Environment` options
      */
     public async getStaticEnvironmentOptions(): Promise<ApiResponse<EnvironmentOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/environment-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/environment-options';
 
         const response = await this.get <EnvironmentOptions>(requestUrl);
         return new ApiResponse(response);
@@ -112,10 +99,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `Network Rule` options
      */
     public async getStaticNetworkRuleOptions(): Promise<ApiResponse<NetworkRuleOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/network-rule-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/network-rule-options';
 
         const response = await this.get <NetworkRuleOptions>(requestUrl);
         return new ApiResponse(response);
@@ -126,10 +110,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `Server` options
      */
     public async getStaticServerOptions(): Promise<ApiResponse<ServerOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/server-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/server-options';
 
         const response = await this.get <ServerOptions>(requestUrl);
         return new ApiResponse(response);
@@ -140,10 +121,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `Service` resource options
      */
     public async getStaticServiceOptions(): Promise<ApiResponse<ServiceOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/service-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/service-options';
 
         const response = await this.get <ServiceOptions>(requestUrl);
         return new ApiResponse(response);
@@ -154,10 +132,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `User profile` options
      */
     public async getStaticUserProfileOptions(): Promise<ApiResponse<UserProfileOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/user-profile-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/user-profile-options';
 
         const response = await this.get <UserProfileOptions>(requestUrl);
         return new ApiResponse(response);
@@ -168,10 +143,7 @@ export class StaticDataApiService extends ApiBaseService {
      * @summary List `Virtual Host` options
      */
     public async getStaticVirtualHostOptions(): Promise<ApiResponse<VirtualHostOptions>> {
-
-        let queryString = '';
-
-        const requestUrl = '/static/virtual-host-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/virtual-host-options';
 
         const response = await this.get <VirtualHostOptions>(requestUrl);
         return new ApiResponse(response);
@@ -184,18 +156,12 @@ export class StaticDataApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listStaticBillingPlansOptions(page?: number, perPage?: number): Promise<ApiResponse<Array<BillingPlansOptionsRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/static/billing-plans-options' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/billing-plans-options' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<BillingPlansOptionsRelation>>(requestUrl);
         return new ApiResponse(response);
@@ -213,21 +179,17 @@ export class StaticDataApiService extends ApiBaseService {
         if (cloudProviderServiceCode === null || cloudProviderServiceCode === undefined) {
             throw new ArgumentNullException('cloudProviderServiceCode', 'listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode');
         }
+
         if (regionCode === null || regionCode === undefined) {
             throw new ArgumentNullException('regionCode', 'listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/cloud-provider-service-options/{cloud_provider_service_code}/regions/{region_code}/instances' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<CloudInstanceRelation>>(requestUrl.replace(`{${"cloud_provider_service_code"}}`, encodeURIComponent(String(cloudProviderServiceCode))).replace(`{${"region_code"}}`, encodeURIComponent(String(regionCode))));
         return new ApiResponse(response);
@@ -240,18 +202,12 @@ export class StaticDataApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listStaticPermissions(page?: number, perPage?: number): Promise<ApiResponse<Array<PermissionRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/static/permissions' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/permissions' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<PermissionRelation>>(requestUrl);
         return new ApiResponse(response);
@@ -264,18 +220,12 @@ export class StaticDataApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listStaticResourceTypes(page?: number, perPage?: number): Promise<ApiResponse<Array<ResourceTypeRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/static/resource-types' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/static/resource-types' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ResourceTypeRelation>>(requestUrl);
         return new ApiResponse(response);

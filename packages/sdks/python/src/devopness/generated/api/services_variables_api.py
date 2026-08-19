@@ -35,6 +35,10 @@ class ServicesVariablesApiService(DevopnessBaseService):
         """
         Create a new variable linked to a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            variable_service_create (Union[VariableServiceCreate, VariableServiceCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -66,6 +70,11 @@ class ServicesVariablesApiService(DevopnessBaseService):
         """
         Return a list of variables belonging to a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -88,7 +97,7 @@ class ServicesVariablesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/services/{service_id}/variables",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -112,6 +121,10 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Variable]:
         """
         Create a new variable linked to a service
+
+        Attributes:
+            service_id (int): The ID of the service.
+            variable_service_create (Union[VariableServiceCreate, VariableServiceCreatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -144,6 +157,11 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of variables belonging to a service
 
+        Attributes:
+            service_id (int): The ID of the service.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -166,7 +184,7 @@ class ServicesVariablesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/services/{service_id}/variables",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

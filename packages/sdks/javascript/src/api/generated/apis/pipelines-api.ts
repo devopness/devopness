@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Pipeline } from '../../generated/models';
 import { PipelineCreate } from '../../generated/models';
@@ -35,16 +36,16 @@ export class PipelinesApiService extends ApiBaseService {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'addPipeline');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'addPipeline');
         }
+
         if (pipelineCreate === null || pipelineCreate === undefined) {
             throw new ArgumentNullException('pipelineCreate', 'addPipeline');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/pipelines/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{resource_type}/{resource_id}';
 
         const response = await this.post <Pipeline, PipelineCreate>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))), pipelineCreate);
         return new ApiResponse(response);
@@ -60,9 +61,7 @@ export class PipelinesApiService extends ApiBaseService {
             throw new ArgumentNullException('pipelineId', 'deletePipeline');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/pipelines/{pipeline_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))));
         return new ApiResponse(response);
@@ -78,9 +77,7 @@ export class PipelinesApiService extends ApiBaseService {
             throw new ArgumentNullException('pipelineId', 'getPipeline');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/pipelines/{pipeline_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}';
 
         const response = await this.get <Pipeline>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))));
         return new ApiResponse(response);
@@ -98,21 +95,17 @@ export class PipelinesApiService extends ApiBaseService {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'listPipelinesByResourceType');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listPipelinesByResourceType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/pipelines/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{resource_type}/{resource_id}' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<PipelineRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
@@ -128,13 +121,12 @@ export class PipelinesApiService extends ApiBaseService {
         if (pipelineId === null || pipelineId === undefined) {
             throw new ArgumentNullException('pipelineId', 'updatePipeline');
         }
+
         if (pipelineUpdate === null || pipelineUpdate === undefined) {
             throw new ArgumentNullException('pipelineUpdate', 'updatePipeline');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/pipelines/{pipeline_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/pipelines/{pipeline_id}';
 
         const response = await this.put <void, PipelineUpdate>(requestUrl.replace(`{${"pipeline_id"}}`, encodeURIComponent(String(pipelineId))), pipelineUpdate);
         return new ApiResponse(response);

@@ -35,6 +35,10 @@ class HooksApiService(DevopnessBaseService):
         """
         Delete a given hook
 
+        Attributes:
+            hook_id (str): The ID of the hook.
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -60,6 +64,10 @@ class HooksApiService(DevopnessBaseService):
         """
         Get a hook by ID
 
+        Attributes:
+            hook_id (str): The ID of the hook.
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -80,6 +88,9 @@ class HooksApiService(DevopnessBaseService):
     ) -> DevopnessResponse[HookTriggerResponse]:
         """
         Trigger an incoming hook associated action
+
+        Attributes:
+            hook_id (str): The ID of the hook.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -109,6 +120,11 @@ class HooksApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing hook
+
+        Attributes:
+            hook_id (str): The ID of the hook.
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+            hook_update (Union[HookUpdate, HookUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -141,6 +157,10 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a given hook
 
+        Attributes:
+            hook_id (str): The ID of the hook.
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -166,6 +186,10 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get a hook by ID
 
+        Attributes:
+            hook_id (str): The ID of the hook.
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -186,6 +210,9 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[HookTriggerResponse]:
         """
         Trigger an incoming hook associated action
+
+        Attributes:
+            hook_id (str): The ID of the hook.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -215,6 +242,11 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing hook
+
+        Attributes:
+            hook_id (str): The ID of the hook.
+            hook_type (Union[HookTypeParam,HookTypeParamPlain,]): The type of the hook.
+            hook_update (Union[HookUpdate, HookUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

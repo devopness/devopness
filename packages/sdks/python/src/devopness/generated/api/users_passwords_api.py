@@ -28,6 +28,9 @@ class UsersPasswordsApiService(DevopnessBaseService):
         """
         Reset the user password
 
+        Attributes:
+            password_user_reset (Union[PasswordUserReset, PasswordUserResetPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -55,6 +58,8 @@ class UsersPasswordsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Send the password reset link to user's email
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -94,6 +99,9 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Reset the user password
 
+        Attributes:
+            password_user_reset (Union[PasswordUserReset, PasswordUserResetPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -121,6 +129,8 @@ class UsersPasswordsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Send the password reset link to user's email
+
+        Attributes:
 
         Raises:
             DevopnessApiError: If an API request error occurs.

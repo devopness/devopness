@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "devopness"
-version = "2.6.5"
+version = "2.7.1"
 description = "Devopness API Python SDK - Painless essential DevOps to everyone"
 license = "Apache-2.0"
 readme = "README.md"
@@ -68,8 +68,8 @@ exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = { version = "7.24.0", markers = "python_version < '4.0'" }
-ruff = "^0.16.1"
-mypy = "^2.3.0"
+ruff = "^0.16.3"
+mypy = "^2.3.1"
 
 [tool.ruff]
 line-length = 88
@@ -107,6 +107,7 @@ ignore = [
 "src/devopness/generated/**/*" = [
   "line-too-long",                 # Line too long
   "non-pep604-annotation-union",   # Use `X | Y` for type annotations (auto-generated code uses Union)
+  "builtin-argument-shadowing",    # Shadowing builtin argument
 ]
 "src/devopness/generated/**/__init__.py" = [
   "unused-import", # Module imported but unused

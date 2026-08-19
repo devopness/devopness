@@ -7,6 +7,8 @@ type FormTextProps = {
   subTitle?: React.ReactNode
   /** Optional custom color for subtitle */
   subTitleColor?: string
+  /** Optional, whether to show line at the bottom @default true */
+  showLine?: boolean
 }
 
 /**
@@ -24,13 +26,18 @@ type FormTextProps = {
  * />
  * ```
  */
-const FormText = ({ title, subTitle, subTitleColor }: FormTextProps) => (
+const FormText = ({
+  title,
+  subTitle,
+  subTitleColor,
+  showLine = true,
+}: FormTextProps) => (
   <Wrapper>
     <Title>{title}</Title>
     {subTitle && (
       <Paragraph $subtitleColor={subTitleColor}>{subTitle}</Paragraph>
     )}
-    <Line />
+    {showLine && <Line data-testid="formtext-line" />}
   </Wrapper>
 )
 

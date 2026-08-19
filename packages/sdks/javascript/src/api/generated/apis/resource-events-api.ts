@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { ResourceEvent } from '../../generated/models';
 import { ResourceEventRelation } from '../../generated/models';
@@ -32,13 +33,12 @@ export class ResourceEventsApiService extends ApiBaseService {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'addResourceEvent');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'addResourceEvent');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/events/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/events/{resource_type}/{resource_id}';
 
         const response = await this.post <ResourceEvent>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);
@@ -56,21 +56,17 @@ export class ResourceEventsApiService extends ApiBaseService {
         if (resourceId === null || resourceId === undefined) {
             throw new ArgumentNullException('resourceId', 'listResourceEventsByResourceType');
         }
+
         if (resourceType === null || resourceType === undefined) {
             throw new ArgumentNullException('resourceType', 'listResourceEventsByResourceType');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/events/{resource_type}/{resource_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/events/{resource_type}/{resource_id}' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<ResourceEventRelation>>(requestUrl.replace(`{${"resource_id"}}`, encodeURIComponent(String(resourceId))).replace(`{${"resource_type"}}`, encodeURIComponent(String(resourceType))));
         return new ApiResponse(response);

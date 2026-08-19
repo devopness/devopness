@@ -13,6 +13,7 @@
 
 
 import { CloudOsVersionCode } from './cloud-os-version-code';
+import { CloudResourceInstanceSpec } from './cloud-resource-instance-spec';
 
 /**
  * 
@@ -38,6 +39,12 @@ export interface CloudServiceSettingsAwsEc2 {
      * @memberof CloudServiceSettingsAwsEc2
      */
     region_human_readable?: string;
+    /**
+     * 
+     * @type {CloudResourceInstanceSpec}
+     * @memberof CloudServiceSettingsAwsEc2
+     */
+    instance_spec?: CloudResourceInstanceSpec;
     /**
      * The storage\'s size of the cloud instance
      * @type {number}

@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { Log } from '../../generated/models';
 
 /**
@@ -31,16 +32,16 @@ export class ActionsLogsApiService extends ApiBaseService {
         if (actionId === null || actionId === undefined) {
             throw new ArgumentNullException('actionId', 'getActionLog');
         }
+
         if (actionStepOrder === null || actionStepOrder === undefined) {
             throw new ArgumentNullException('actionStepOrder', 'getActionLog');
         }
+
         if (actionTargetId === null || actionTargetId === undefined) {
             throw new ArgumentNullException('actionTargetId', 'getActionLog');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/actions/{action_id}/targets/{action_target_id}/steps/{action_step_order}/logs' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/actions/{action_id}/targets/{action_target_id}/steps/{action_step_order}/logs';
 
         const response = await this.get <Log>(requestUrl.replace(`{${"action_id"}}`, encodeURIComponent(String(actionId))).replace(`{${"action_step_order"}}`, encodeURIComponent(String(actionStepOrder))).replace(`{${"action_target_id"}}`, encodeURIComponent(String(actionTargetId))));
         return new ApiResponse(response);

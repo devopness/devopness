@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Environment } from '../../generated/models';
 import { EnvironmentProjectCreate } from '../../generated/models';
@@ -33,13 +34,12 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
         if (projectId === null || projectId === undefined) {
             throw new ArgumentNullException('projectId', 'addProjectEnvironment');
         }
+
         if (environmentProjectCreate === null || environmentProjectCreate === undefined) {
             throw new ArgumentNullException('environmentProjectCreate', 'addProjectEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/projects/{project_id}/environments' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/environments';
 
         const response = await this.post <Environment, EnvironmentProjectCreate>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))), environmentProjectCreate);
         return new ApiResponse(response);
@@ -57,17 +57,12 @@ export class ProjectsEnvironmentsApiService extends ApiBaseService {
             throw new ArgumentNullException('projectId', 'listProjectEnvironments');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/projects/{project_id}/environments' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/projects/{project_id}/environments' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<EnvironmentRelation>>(requestUrl.replace(`{${"project_id"}}`, encodeURIComponent(String(projectId))));
         return new ApiResponse(response);

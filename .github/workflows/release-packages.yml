@@ -40,10 +40,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-        with:
-          # Disable the default credential helper so the PAT remote rewrite below is the sole
-          # credential in effect for git pushes.
-          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -66,27 +62,14 @@ jobs:
           EOF
           chmod +x /tmp/cs-version.sh
 
-      - name: Configure git remote to use PAT
-        # Pushes made with GITHUB_TOKEN do not trigger downstream workflows (GitHub suppresses them
-        # to prevent loops), so sync-package-versions.yml would never fire when changesets updates
-        # the release branch. Embedding the PAT in the remote URL takes precedence over the action's
-        # credential helper, so git pushes use the PAT while changesets/action's API calls use the
-        # workflow token passed via the github-token input below.
-        run: git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
-
       - name: Create Release Pull Request or Publish Packages
-        # TODO: remove this pin once changesets/action fixes the missing-prettier regression in v1.9.0+.
-        # v1.8.0 keeps the release hook working until that upstream bug is fixed.
-        uses: changesets/action@v1.8.0
-        env:
-          # @changesets/changelog-github reads GITHUB_TOKEN from the environment while
-          # `npx changeset version` runs inside the custom version hook.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: changesets/action@v2
         with:
-          title: 'chore: version packages'
-          version: /tmp/cs-version.sh
-          publish: npx changeset publish
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          pr-title: 'chore: version packages'
+          version-script: /tmp/cs-version.sh
+          publish-script: npx changeset publish
+          push-with-git-cli: true
 
   release-pypi-packages:
     name: Release PyPI Packages

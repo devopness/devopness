@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/ui-react",
-  "version": "2.197.0",
+  "version": "2.199.0",
   "description": "Devopness Design System React Components - Painless essential DevOps to everyone",
   "keywords": [
     "Cloud Engineering",
@@ -73,19 +73,19 @@
     "react-icons": "^5.7.0",
     "react-select": "^5.10.2",
     "react-spinners": "^0.17.0",
-    "styled-components": "^6.5.0"
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
     "@emotion/styled": "^11.14.1",
     "@eslint/js": "^10.0.1",
-    "@storybook/addon-a11y": "10.5.7",
-    "@storybook/addon-docs": "10.5.7",
-    "@storybook/react-vite": "10.5.7",
+    "@storybook/addon-a11y": "10.5.8",
+    "@storybook/addon-docs": "10.5.8",
+    "@storybook/react-vite": "10.5.8",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.3",
+    "@testing-library/user-event": "^14.6.4",
     "@types/lodash": "^4.17.25",
-    "@types/node": "^26.1.2",
+    "@types/node": "^26.2.0",
     "@types/path-browserify": "^1.0.3",
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.0",
@@ -94,11 +94,11 @@
     "jsdom": "^30.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "storybook": "10.5.7",
+    "storybook": "10.5.8",
     "typescript": "^7.0.2",
     "vite": "^8.2.1",
     "vite-plugin-dts": "^5.0.3",
-    "vite-plus": "0.2.7",
+    "vite-plus": "0.2.9",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.10"
   },

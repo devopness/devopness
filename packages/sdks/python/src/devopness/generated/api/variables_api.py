@@ -37,6 +37,11 @@ class VariablesApiService(DevopnessBaseService):
         """
         Create a new variable linked to a resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get variables from.
+            variable_create (Union[VariableCreate, VariableCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -58,6 +63,9 @@ class VariablesApiService(DevopnessBaseService):
         """
         Delete a variable by ID
 
+        Attributes:
+            variable_id (int): The ID of the variable.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -78,6 +86,9 @@ class VariablesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[Variable]:
         """
         Get a variable by ID
+
+        Attributes:
+            variable_id (int): The ID of the variable.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -105,6 +116,14 @@ class VariablesApiService(DevopnessBaseService):
         """
         Return a list of variables belonging to a resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get variables from.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            include_virtual_variables (Optional[bool]): If true, include all &#x60;virtual variables&#x60; in the list. Defaults to true.
+            variable_target (Optional[str]): Filter by variable&#39;s target.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -121,7 +140,7 @@ class VariablesApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/variables/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -139,6 +158,10 @@ class VariablesApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing variable
+
+        Attributes:
+            variable_id (int): The ID of the variable.
+            variable_update (Union[VariableUpdate, VariableUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -172,6 +195,11 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new variable linked to a resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get variables from.
+            variable_create (Union[VariableCreate, VariableCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -193,6 +221,9 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Delete a variable by ID
 
+        Attributes:
+            variable_id (int): The ID of the variable.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -213,6 +244,9 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Variable]:
         """
         Get a variable by ID
+
+        Attributes:
+            variable_id (int): The ID of the variable.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -240,6 +274,14 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of variables belonging to a resource
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get variables from.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+            include_virtual_variables (Optional[bool]): If true, include all &#x60;virtual variables&#x60; in the list. Defaults to true.
+            variable_target (Optional[str]): Filter by variable&#39;s target.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -256,7 +298,7 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/variables/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -274,6 +316,10 @@ class VariablesApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing variable
+
+        Attributes:
+            variable_id (int): The ID of the variable.
+            variable_update (Union[VariableUpdate, VariableUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

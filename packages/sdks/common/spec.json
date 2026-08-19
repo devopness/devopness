@@ -45,6 +45,17 @@
           },
           {
             "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "required": false,
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/ListActionsFilterParameter"
+            }
           }
         ],
         "responses": {
@@ -2152,6 +2163,17 @@
               "type": "integer",
               "minimum": 1
             }
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "required": false,
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/ListEnvironmentActionsFilterParameter"
+            }
           }
         ],
         "responses": {
@@ -2208,6 +2230,17 @@
             "schema": {
               "type": "integer",
               "minimum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "required": false,
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/ListEnvironmentActionsByResourceTypeFilterParameter"
             }
           },
           {
@@ -16012,7 +16045,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.",
             "example": "python",
             "type": "string"
           },
@@ -16177,7 +16210,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.",
             "example": "python",
             "type": "string"
           },
@@ -16306,7 +16339,7 @@
           },
           "template": {
             "description": "Raw YAML for a custom template manifest. Must not be greater than 21504 characters.",
-            "example": "        apiVersion: templates.devopness.io/v1\n        kind: DevopnessTemplate\n\n        metadata:\n          name: simple-app\n          title: Simple Application Template\n\n        spec:\n          inputs:\n            - name: application_name\n              description: The name of the application Devopness will create.\n              type: string\n              required: true\n              default: simple-app\n\n            - name: database_password\n              type: string\n              required: true\n              hidden: true\n              description: The password used to connect to the database.\n\n          resources:\n            applications:\n              - name: \"{{ inputs.application_name }}\"\n                repository: devopness/devopness\n                default_branch: main\n                credential_id: 1\n                programming_language: html\n                framework: none\n                engine_version: none\n                root_directory: /\n                deployments_keep: 1\n\n                configuration_files:\n                  - key: .env\n                    target: resource-config-file\n                    type: file\n                    value: |-\n                      DB_HOST=127.0.0.1\n                      DB_PORT=5432\n                      DB_USER=devopness\n                      DB_PASSWORD={{ inputs.database_password }}",
+            "example": "        apiVersion: templates.devopness.io/v1\n        kind: DevopnessTemplate\n\n        metadata:\n          name: simple-app\n          title: Simple Application Template\n\n        spec:\n          inputs:\n            - name: application_name\n              description: The name of the application Devopness will create.\n              type: string\n              required: true\n              default: simple-app\n\n            - name: database_password\n              type: string\n              required: true\n              hidden: true\n              description: The password used to connect to the database.\n\n          resources:\n            applications:\n              - name: \"{{ inputs.application_name }}\"\n                repository: devopness/devopness\n                default_branch: main\n                credential_id: 1\n                programming_language: nodejs\n                framework: html\n                engine_version: \"22.23\"\n                root_directory: /\n                deployments_keep: 1\n\n                configuration_files:\n                  - key: .env\n                    target: resource-config-file\n                    type: file\n                    value: |-\n                      DB_HOST=127.0.0.1\n                      DB_PORT=5432\n                      DB_USER=devopness\n                      DB_PASSWORD={{ inputs.database_password }}",
             "type": "string"
           },
           "dry_run": {
@@ -16346,7 +16379,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`. Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -16505,7 +16538,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.",
             "example": "python",
             "type": "string"
           },
@@ -16620,7 +16653,7 @@
             "type": "string"
           },
           "programming_language": {
-            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js, but should be served statically (a SPA application, for instance) then this field value should be `html`. Must not be greater than 30 characters.",
+            "description": "The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`. Must not be greater than 30 characters.",
             "example": "python",
             "type": "string"
           },
@@ -17273,6 +17306,26 @@
           }
         }
       },
+      "CloudResourceInstanceSpec": {
+        "type": "object",
+        "description": "Hardware spec of the selected instance type.",
+        "properties": {
+          "memory": {
+            "type": "integer",
+            "description": "The RAM memory size (in MB) of the selected instance type",
+            "example": 8192
+          },
+          "vcpus": {
+            "type": "integer",
+            "description": "The number of virtual CPUs of the selected instance type",
+            "example": 2
+          }
+        },
+        "required": [
+          "memory",
+          "vcpus"
+        ]
+      },
       "CloudResourceType": {
         "type": "string",
         "description": "The name of a cloud resource type",
@@ -17306,6 +17359,10 @@
             "type": "string",
             "description": "Human readable version of the server region",
             "example": "US East (N. Virginia) us-east-1"
+          },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
           },
           "storage_size": {
             "type": "integer",
@@ -17341,6 +17398,10 @@
             "description": "Human readable version of the server region",
             "example": "(South America) Brazil South brazilsouth"
           },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
+          },
           "storage_size": {
             "type": "integer",
             "description": "The storage's size of the cloud instance",
@@ -17375,6 +17436,10 @@
             "description": "Human readable version of the server region",
             "example": "New York nyc1"
           },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
+          },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
           }
@@ -17402,6 +17467,10 @@
             "type": "string",
             "description": "Human readable version of the server region",
             "example": "US East (N. Virginia) us-east1"
+          },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
           },
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
@@ -17431,6 +17500,10 @@
             "description": "Human readable version of the server region",
             "example": "(USA) Ashburn, VA ash"
           },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
+          },
           "storage_size": {
             "type": "integer",
             "description": "The storage's size of the cloud instance",
@@ -17452,6 +17525,10 @@
         "properties": {
           "os_version_code": {
             "$ref": "#/components/schemas/CloudOsVersionCode"
+          },
+          "instance_spec": {
+            "$ref": "#/components/schemas/CloudResourceInstanceSpec",
+            "nullable": true
           }
         },
         "required": [
@@ -23380,7 +23457,7 @@
             "$ref": "#/components/schemas/ServerCloudServiceCode"
           },
           "settings": {
-            "description": "The configurations used to cloud service",
+            "description": "Configuration used to provision the cloud resource.",
             "anyOf": [
               {
                 "$ref": "#/components/schemas/CloudServiceSettingsAwsEc2"
@@ -26750,7 +26827,7 @@
             "$ref": "#/components/schemas/ApplicationRelation"
           },
           "root_directory": {
-            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
+            "description": "The document root location served by this virtual host. When the virtual host is linked to an application, the value is relative to that application directory. When no application is linked, the value is an absolute path",
             "example": "public",
             "type": "string",
             "nullable": true
@@ -26821,7 +26898,7 @@
             "type": "string"
           },
           "root_directory": {
-            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
+            "description": "The document root location to be served for this virtual host. When the virtual host is linked to an application, the value must be a relative path within that application directory. When no application is linked, the value must be an absolute path. Must start with one of <code>/</code> Must not be greater than 255 characters.",
             "example": "public",
             "type": "string"
           },
@@ -26832,7 +26909,7 @@
             "nullable": true
           },
           "application_id": {
-            "description": "The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
+            "description": "The ID of the application to be associated with the virtual host. When set, the value of `root_directory` will be relative to this application directory.",
             "example": 1,
             "type": "integer",
             "nullable": true
@@ -26897,7 +26974,7 @@
             "$ref": "#/components/schemas/ApplicationRelation"
           },
           "root_directory": {
-            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host",
+            "description": "The document root location served by this virtual host. When the virtual host is linked to an application, the value is relative to that application directory. When no application is linked, the value is an absolute path",
             "example": "public",
             "type": "string",
             "nullable": true
@@ -26962,7 +27039,7 @@
             "type": "string"
           },
           "root_directory": {
-            "description": "The document root location, within the application directory, that contains the public files to be served when a user visits the domain name associated with this virtual host. Must not be greater than 255 characters.",
+            "description": "The document root location to be served for this virtual host. When the virtual host is linked to an application, the value must be a relative path within that application directory. When no application is linked, the value must be an absolute path. Must start with one of <code>/</code> Must not be greater than 255 characters.",
             "example": "public",
             "type": "string"
           },
@@ -26973,7 +27050,7 @@
             "nullable": true
           },
           "application_id": {
-            "description": "The ID of the application to be associated with the virtual host. The value of `root_directory` will be relative to this application directory.",
+            "description": "The ID of the application to be associated with the virtual host. When set, the value of `root_directory` will be relative to this application directory.",
             "example": 1,
             "type": "integer",
             "nullable": true
@@ -26983,6 +27060,91 @@
           "id",
           "name"
         ]
+      },
+      "ListActionsFilterParameter": {
+        "type": "object",
+        "properties": {
+          "organization_id": {
+            "description": "Organization ID.\n\nExample: `?filter[organization_id]=123`",
+            "example": 123,
+            "type": "integer"
+          },
+          "project_id": {
+            "description": "Project ID.\n\nExample: `?filter[project_id]=456`",
+            "example": 456,
+            "type": "integer"
+          },
+          "environment_id": {
+            "description": "Environment ID.\n\nExample: `?filter[environment_id]=789`",
+            "example": 789,
+            "type": "integer"
+          },
+          "resource_type": {
+            "description": "Resource type.\n\nExample: `?filter[resource_type]=application`",
+            "example": "application",
+            "type": "string"
+          },
+          "resource_id": {
+            "description": "Resource ID.\n\nExample: `?filter[resource_id]=321`",
+            "example": 321,
+            "type": "integer"
+          },
+          "status": {
+            "description": "Action status. Supported values: pending, waiting, skipped, queued, in-progress, completed, failed.\n\nExample: `?filter[status]=queued`",
+            "example": "queued",
+            "type": "string"
+          },
+          "operation": {
+            "description": "Action operation name.\n\nExample: `?filter[operation]=deploy`",
+            "example": "deploy",
+            "type": "string"
+          }
+        }
+      },
+      "ListEnvironmentActionsFilterParameter": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "description": "Resource type.\n\nExample: `?filter[resource_type]=application`",
+            "example": "application",
+            "type": "string"
+          },
+          "resource_id": {
+            "description": "Resource ID.\n\nExample: `?filter[resource_id]=321`",
+            "example": 321,
+            "type": "integer"
+          },
+          "status": {
+            "description": "Action status. Supported values: pending, waiting, skipped, queued, in-progress, completed, failed.\n\nExample: `?filter[status]=queued`",
+            "example": "queued",
+            "type": "string"
+          },
+          "operation": {
+            "description": "Action operation name.\n\nExample: `?filter[operation]=deploy`",
+            "example": "deploy",
+            "type": "string"
+          }
+        }
+      },
+      "ListEnvironmentActionsByResourceTypeFilterParameter": {
+        "type": "object",
+        "properties": {
+          "resource_id": {
+            "description": "Resource ID.\n\nExample: `?filter[resource_id]=321`",
+            "example": 321,
+            "type": "integer"
+          },
+          "status": {
+            "description": "Action status. Supported values: pending, waiting, skipped, queued, in-progress, completed, failed.\n\nExample: `?filter[status]=queued`",
+            "example": "queued",
+            "type": "string"
+          },
+          "operation": {
+            "description": "Action operation name.\n\nExample: `?filter[operation]=deploy`",
+            "example": "deploy",
+            "type": "string"
+          }
+        }
       }
     },
     "responses": {

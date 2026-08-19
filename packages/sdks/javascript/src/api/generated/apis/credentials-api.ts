@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Credential } from '../../generated/models';
 import { CredentialOrganizationCreate } from '../../generated/models';
@@ -35,13 +36,12 @@ export class CredentialsApiService extends ApiBaseService {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'addOrganizationCredential');
         }
+
         if (credentialOrganizationCreate === null || credentialOrganizationCreate === undefined) {
             throw new ArgumentNullException('credentialOrganizationCreate', 'addOrganizationCredential');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/organizations/{organization_id}/credentials' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/credentials';
 
         const response = await this.post <Credential, CredentialOrganizationCreate>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))), credentialOrganizationCreate);
         return new ApiResponse(response);
@@ -57,9 +57,7 @@ export class CredentialsApiService extends ApiBaseService {
             throw new ArgumentNullException('credentialId', 'deleteCredential');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/credentials/{credential_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))));
         return new ApiResponse(response);
@@ -75,9 +73,7 @@ export class CredentialsApiService extends ApiBaseService {
             throw new ArgumentNullException('credentialId', 'getCredential');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/credentials/{credential_id}';
 
         const response = await this.get <Credential>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))));
         return new ApiResponse(response);
@@ -94,21 +90,16 @@ export class CredentialsApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'getEnvironmentCredentialSettings');
         }
+
         if (providerCode === null || providerCode === undefined) {
             throw new ArgumentNullException('providerCode', 'getEnvironmentCredentialSettings');
         }
 
-        let queryString = '';
-        const queryParams = { state: state, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'state': state,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/credentials/{provider_code}/settings' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/credentials/{provider_code}/settings' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <CredentialSetting>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))).replace(`{${"provider_code"}}`, encodeURIComponent(String(providerCode))));
         return new ApiResponse(response);
@@ -125,21 +116,16 @@ export class CredentialsApiService extends ApiBaseService {
         if (organizationId === null || organizationId === undefined) {
             throw new ArgumentNullException('organizationId', 'getOrganizationCredentialSettings');
         }
+
         if (providerCode === null || providerCode === undefined) {
             throw new ArgumentNullException('providerCode', 'getOrganizationCredentialSettings');
         }
 
-        let queryString = '';
-        const queryParams = { state: state, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'state': state,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/organizations/{organization_id}/credentials/{provider_code}/settings' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/credentials/{provider_code}/settings' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <CredentialSetting>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))).replace(`{${"provider_code"}}`, encodeURIComponent(String(providerCode))));
         return new ApiResponse(response);
@@ -155,9 +141,7 @@ export class CredentialsApiService extends ApiBaseService {
             throw new ArgumentNullException('credentialId', 'getStatusCredential');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/credentials/{credential_id}/get-status' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/credentials/{credential_id}/get-status';
 
         const response = await this.post <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))));
         return new ApiResponse(response);
@@ -173,13 +157,12 @@ export class CredentialsApiService extends ApiBaseService {
         if (credentialId === null || credentialId === undefined) {
             throw new ArgumentNullException('credentialId', 'linkCredentialToEnvironment');
         }
+
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'linkCredentialToEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/credentials/{credential_id}/link' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/credentials/{credential_id}/link';
 
         const response = await this.post <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))).replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -199,17 +182,14 @@ export class CredentialsApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentCredentials');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, provider_code: providerCode, provider_type: providerType, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'provider_code': providerCode,
+          'provider_type': providerType,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/credentials' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/credentials' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<CredentialRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -229,17 +209,14 @@ export class CredentialsApiService extends ApiBaseService {
             throw new ArgumentNullException('organizationId', 'listOrganizationCredentials');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, provider_code: providerCode, provider_type: providerType, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+          'provider_code': providerCode,
+          'provider_type': providerType,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/organizations/{organization_id}/credentials' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/organizations/{organization_id}/credentials' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<CredentialRelation>>(requestUrl.replace(`{${"organization_id"}}`, encodeURIComponent(String(organizationId))));
         return new ApiResponse(response);
@@ -255,13 +232,12 @@ export class CredentialsApiService extends ApiBaseService {
         if (credentialId === null || credentialId === undefined) {
             throw new ArgumentNullException('credentialId', 'unlinkCredentialFromEnvironment');
         }
+
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'unlinkCredentialFromEnvironment');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/credentials/{credential_id}/unlink' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/credentials/{credential_id}/unlink';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))).replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -277,13 +253,12 @@ export class CredentialsApiService extends ApiBaseService {
         if (credentialId === null || credentialId === undefined) {
             throw new ArgumentNullException('credentialId', 'updateCredential');
         }
+
         if (credentialUpdate === null || credentialUpdate === undefined) {
             throw new ArgumentNullException('credentialUpdate', 'updateCredential');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/credentials/{credential_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/credentials/{credential_id}';
 
         const response = await this.put <void, CredentialUpdate>(requestUrl.replace(`{${"credential_id"}}`, encodeURIComponent(String(credentialId))), credentialUpdate);
         return new ApiResponse(response);

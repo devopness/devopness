@@ -196,9 +196,11 @@ const BaseButton = styled.button<
       background-color: ${resolvedBackgroundColor};
       height: ${resolvedHeight};
       margin: 0;
-      padding: ${$noPadding
-        ? '0'
-        : `${getSpacing('button.paddingY')} ${getSpacing('button.paddingX')}`};
+      padding: ${
+        $noPadding
+          ? '0'
+          : `${getSpacing('button.paddingY')} ${getSpacing('button.paddingX')}`
+      };
       user-select: none;
 
       /** Flex Layout */

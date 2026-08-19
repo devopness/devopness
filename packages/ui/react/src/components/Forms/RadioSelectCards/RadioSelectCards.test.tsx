@@ -20,7 +20,7 @@ const groupedStackGroups = [
         value: 'docker',
         label: 'Docker',
         icon: 'docker',
-        description: 'Use the runtime defaults without framework helpers.',
+        description: 'Use the runtime defaults.',
       },
     ],
   },
@@ -32,7 +32,8 @@ const groupedStackGroups = [
         value: 'dotnetcore',
         label: '.NET (C#/F#)',
         icon: 'dotnetcore',
-        description: 'Use the runtime defaults without framework helpers.',
+        description:
+          'Use the runtime defaults without framework helpers or project-specific overrides.',
       },
       {
         value: 'dotnetcore-aspnetcore',
@@ -121,6 +122,12 @@ describe('RadioSelectCards', () => {
         'Choose the framework and runtime used to build your app.'
       )
     ).toBeInTheDocument()
+    expect(screen.getByText('Use the runtime defaults.')).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        'Use the runtime defaults without framework helpers or project-specific overrides.'
+      )
+    ).toBeInTheDocument()
     expect(
       screen.getByText('Framework defaults will be applied automatically.')
     ).toBeInTheDocument()
@@ -131,6 +138,28 @@ describe('RadioSelectCards', () => {
 
     fireEvent.click(aspNetCore)
     expect(aspNetCore.checked).toBe(true)
+  })
+
+  it('reserves consistent description height in grouped cards', () => {
+    render(
+      <RadioSelectCards
+        name="exampleRadio"
+        groups={groupedStackGroups}
+        showSelectionIndicator={false}
+        density="compact"
+      />
+    )
+
+    expect(screen.getByText('Use the runtime defaults.')).toHaveStyle({
+      minHeight: '2.375rem',
+    })
+    expect(
+      screen.getByText(
+        'Use the runtime defaults without framework helpers or project-specific overrides.'
+      )
+    ).toHaveStyle({
+      minHeight: '2.375rem',
+    })
   })
 
   it('keeps the default square layout by default', () => {

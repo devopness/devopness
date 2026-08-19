@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { SocialAccount } from '../../generated/models';
 import { SocialAccountCreate } from '../../generated/models';
@@ -34,9 +35,7 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('socialAccountCreate', 'addSocialAccount');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts';
 
         const response = await this.post <SocialAccount, SocialAccountCreate>(requestUrl, socialAccountCreate);
         return new ApiResponse(response);
@@ -52,9 +51,7 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('socialAccountId', 'deleteSocialAccount');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/social-accounts/{social_account_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts/{social_account_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"social_account_id"}}`, encodeURIComponent(String(socialAccountId))));
         return new ApiResponse(response);
@@ -70,9 +67,7 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('socialAccountProvider', 'getSocialAccount');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/social-accounts/{social_account_provider}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts/{social_account_provider}';
 
         const response = await this.get <SocialAccount>(requestUrl.replace(`{${"social_account_provider"}}`, encodeURIComponent(String(socialAccountProvider))));
         return new ApiResponse(response);
@@ -88,9 +83,7 @@ export class SocialAccountsApiService extends ApiBaseService {
             throw new ArgumentNullException('socialAccountProvider', 'getSocialAccountStatus');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/social-accounts/{social_account_provider}/status' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts/{social_account_provider}/status';
 
         const response = await this.get <SocialAccountStatus>(requestUrl.replace(`{${"social_account_provider"}}`, encodeURIComponent(String(socialAccountProvider))));
         return new ApiResponse(response);
@@ -103,18 +96,12 @@ export class SocialAccountsApiService extends ApiBaseService {
      * @param {number} [perPage] Number of items returned per page
      */
     public async listSocialAccounts(page?: number, perPage?: number): Promise<ApiResponse<Array<SocialAccountRelation>>> {
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
-
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/social-accounts' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/social-accounts' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<SocialAccountRelation>>(requestUrl);
         return new ApiResponse(response);

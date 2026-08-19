@@ -1,5 +1,23 @@
 # @devopness/ui-react
 
+## 2.199.0
+
+### Minor Changes
+
+- [#3477](https://github.com/devopness/devopness/pull/3477) [`39d7efc`](https://github.com/devopness/devopness/commit/39d7efc99a4c77cc6b96a6452802a3989ca2553a) Thanks [@therealrinku](https://github.com/therealrinku)! - added optional showLine prop to `FormText` component to handle conditional rendering of the bottom line
+
+## 2.198.1
+
+### Patch Changes
+
+- [#3450](https://github.com/devopness/devopness/pull/3450) [`06f0aa0`](https://github.com/devopness/devopness/commit/06f0aa01ec460e5a4183bc608c55b816d790a4e2) Thanks [@therealrinku](https://github.com/therealrinku)! - improve the card loading component(CardLoading.tsx) footer skeleton style to match the actual rendered ui style.
+
+## 2.198.0
+
+### Minor Changes
+
+- [#3441](https://github.com/devopness/devopness/pull/3441) [`b822d99`](https://github.com/devopness/devopness/commit/b822d99ce4b9da426bd6cff33ed7414674c0e5ef) Thanks [@jfoliveira](https://github.com/jfoliveira)! - Improve `RadioSelectCards` RadioSelectCards component to allow grouped items with and without radio select button visible
+
 ## 2.197.0
 
 ### Minor Changes

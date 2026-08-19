@@ -1,5 +1,48 @@
 # @devopness/sdk-python
 
+## 2.7.1
+
+### Patch Changes
+
+- [#3470](https://github.com/devopness/devopness/pull/3470) [`0223644`](https://github.com/devopness/devopness/commit/0223644911db56c8cca54f66480edd6825e17fb3) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Expose the new server instance spec fields, `memory` and `vcpus`, in the generated SDK models so clients can inspect the selected machine shape when provisioning servers.
+
+## 2.7.0
+
+### Minor Changes
+
+- [#3451](https://github.com/devopness/devopness/pull/3451) [`dd6955b`](https://github.com/devopness/devopness/commit/dd6955b5f0575c4e3e236a2e4ba05fc440366984) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added support for `filter` query parameters in list endpoints for **Actions** and **Environment Actions**.
+
+  ### Example Usage
+
+  ```python
+  from devopness import DevopnessClient
+
+  devopness = DevopnessClient()
+
+  actions = devopness.actions.list_actions(
+      page=1,
+      per_page=20,
+      filter={
+          "organization_id": 123,
+          "project_id": 456,
+          "status": "queued",
+      },
+  )
+
+  environment_actions = devopness.environments_actions.list_environment_actions(
+      environment_id=environment_id,
+      page=1,
+      per_page=20,
+      filter={
+          "resource_type": "application",
+          "resource_id": 321,
+          "status": "completed",
+      },
+  )
+  ```
+
+  If the filter object is omitted, the methods keep their previous behavior and return the unfiltered list.
+
 ## 2.6.5
 
 ### Patch Changes

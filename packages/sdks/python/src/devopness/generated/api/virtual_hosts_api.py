@@ -40,6 +40,10 @@ class VirtualHostsApiService(DevopnessBaseService):
         """
         Create a new virtual host
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            virtual_host_environment_create (Union[VirtualHostEnvironmentCreate, VirtualHostEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -60,6 +64,9 @@ class VirtualHostsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Delete a given virtual host
+
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -86,6 +93,10 @@ class VirtualHostsApiService(DevopnessBaseService):
         """
         Deploy a Virtual Host
 
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
+            virtual_host_deploy (Union[VirtualHostDeploy, VirtualHostDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -111,6 +122,10 @@ class VirtualHostsApiService(DevopnessBaseService):
         """
         Get current status of a virtual host
 
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
+            virtual_host_get_status (Union[VirtualHostGetStatus, VirtualHostGetStatusPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -131,6 +146,9 @@ class VirtualHostsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[VirtualHost]:
         """
         Get a virtual host by ID
+
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -155,6 +173,11 @@ class VirtualHostsApiService(DevopnessBaseService):
         """
         Return a list of all Virtual Hosts belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -169,7 +192,7 @@ class VirtualHostsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/environments/{environment_id}/virtual-hosts",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -187,6 +210,10 @@ class VirtualHostsApiService(DevopnessBaseService):
     ) -> DevopnessResponse[None]:
         """
         Update an existing virtual host
+
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
+            virtual_host_update (Union[VirtualHostUpdate, VirtualHostUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -219,6 +246,10 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create a new virtual host
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            virtual_host_environment_create (Union[VirtualHostEnvironmentCreate, VirtualHostEnvironmentCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -239,6 +270,9 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Delete a given virtual host
+
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -265,6 +299,10 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Deploy a Virtual Host
 
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
+            virtual_host_deploy (Union[VirtualHostDeploy, VirtualHostDeployPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -290,6 +328,10 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Get current status of a virtual host
 
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
+            virtual_host_get_status (Union[VirtualHostGetStatus, VirtualHostGetStatusPlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -310,6 +352,9 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[VirtualHost]:
         """
         Get a virtual host by ID
+
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -334,6 +379,11 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of all Virtual Hosts belonging to an environment
 
+        Attributes:
+            environment_id (int): The ID of the environment.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -348,7 +398,7 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/environments/{environment_id}/virtual-hosts",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -366,6 +416,10 @@ class VirtualHostsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[None]:
         """
         Update an existing virtual host
+
+        Attributes:
+            virtual_host_id (int): The ID of the virtual host.
+            virtual_host_update (Union[VirtualHostUpdate, VirtualHostUpdatePlain,]): A JSON object containing the resource data
 
         Raises:
             DevopnessApiError: If an API request error occurs.

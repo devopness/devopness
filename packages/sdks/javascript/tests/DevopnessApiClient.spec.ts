@@ -67,3 +67,13 @@ test("expired access_token should trigger callback function", async () => {
   expect(mockRefreshTokenCallback).toHaveBeenCalled();
   expect(mockRefreshTokenCallback.mock.calls).toHaveLength(1);
 });
+
+test("too short access token should throw error", async () => {
+  const apiClient = new DevopnessApiClient();
+
+  const accessToken = "too_short_access_token";
+
+  expect(() => (apiClient.accessToken = accessToken)).toThrow(
+    `"${accessToken.substring(0, 10)} ..." doesn't seem to be a valid access token issued by Devopness API.`,
+  );
+});

@@ -14,6 +14,7 @@
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
+import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { SshKey } from '../../generated/models';
 import { SshKeyDeploy } from '../../generated/models';
@@ -35,13 +36,12 @@ export class SSHKeysApiService extends ApiBaseService {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'addEnvironmentSshKey');
         }
+
         if (sshKeyEnvironmentCreate === null || sshKeyEnvironmentCreate === undefined) {
             throw new ArgumentNullException('sshKeyEnvironmentCreate', 'addEnvironmentSshKey');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/environments/{environment_id}/ssh-keys' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/ssh-keys';
 
         const response = await this.post <SshKey, SshKeyEnvironmentCreate>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))), sshKeyEnvironmentCreate);
         return new ApiResponse(response);
@@ -57,9 +57,7 @@ export class SSHKeysApiService extends ApiBaseService {
             throw new ArgumentNullException('sshKeyId', 'deleteSshKey');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/ssh-keys/{ssh_key_id}';
 
         const response = await this.delete <void>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
         return new ApiResponse(response);
@@ -75,13 +73,12 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'deploySshKey');
         }
+
         if (sshKeyDeploy === null || sshKeyDeploy === undefined) {
             throw new ArgumentNullException('sshKeyDeploy', 'deploySshKey');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/ssh-keys/{ssh_key_id}/deploy' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/ssh-keys/{ssh_key_id}/deploy';
 
         const response = await this.post <void, SshKeyDeploy>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))), sshKeyDeploy);
         return new ApiResponse(response);
@@ -97,9 +94,7 @@ export class SSHKeysApiService extends ApiBaseService {
             throw new ArgumentNullException('sshKeyId', 'getSshKey');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/ssh-keys/{ssh_key_id}';
 
         const response = await this.get <SshKey>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))));
         return new ApiResponse(response);
@@ -117,17 +112,12 @@ export class SSHKeysApiService extends ApiBaseService {
             throw new ArgumentNullException('environmentId', 'listEnvironmentSshKeys');
         }
 
-        let queryString = '';
-        const queryParams = { page: page, per_page: perPage, } as { [key: string]: any };
-        for (const key in queryParams) {
-            if (queryParams[key] === undefined || queryParams[key] === null) {
-                continue;
-            }
+        let queryString = parseQueryString({
+          'page': page,
+          'per_page': perPage,
+        });
 
-            queryString += (queryString? '&' : '') + `${key}=${encodeURI(queryParams[key])}`;
-        }
-
-        const requestUrl = '/environments/{environment_id}/ssh-keys' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/environments/{environment_id}/ssh-keys' + (queryString ? `?${queryString}` : '');
 
         const response = await this.get <Array<SshKeyRelation>>(requestUrl.replace(`{${"environment_id"}}`, encodeURIComponent(String(environmentId))));
         return new ApiResponse(response);
@@ -143,13 +133,12 @@ export class SSHKeysApiService extends ApiBaseService {
         if (sshKeyId === null || sshKeyId === undefined) {
             throw new ArgumentNullException('sshKeyId', 'updateSshKey');
         }
+
         if (sshKeyUpdate === null || sshKeyUpdate === undefined) {
             throw new ArgumentNullException('sshKeyUpdate', 'updateSshKey');
         }
 
-        let queryString = '';
-
-        const requestUrl = '/ssh-keys/{ssh_key_id}' + (queryString? `?${queryString}` : '');
+        const requestUrl = '/ssh-keys/{ssh_key_id}';
 
         const response = await this.put <void, SshKeyUpdate>(requestUrl.replace(`{${"ssh_key_id"}}`, encodeURIComponent(String(sshKeyId))), sshKeyUpdate);
         return new ApiResponse(response);

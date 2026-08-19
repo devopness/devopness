@@ -24,6 +24,10 @@ class ResourceEventsApiService(DevopnessBaseService):
         """
         Process event for a resource
 
+        Attributes:
+            resource_id (str): The resource ID.
+            resource_type (str): The resource type to create events for.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -48,6 +52,12 @@ class ResourceEventsApiService(DevopnessBaseService):
         """
         List events of a resource type
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get related events.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -62,7 +72,7 @@ class ResourceEventsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/events/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -83,6 +93,10 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[ResourceEvent]:
         """
         Process event for a resource
+
+        Attributes:
+            resource_id (str): The resource ID.
+            resource_type (str): The resource type to create events for.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -108,6 +122,12 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         List events of a resource type
 
+        Attributes:
+            resource_id (int): The resource ID.
+            resource_type (str): The resource type to get related events.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -122,7 +142,7 @@ class ResourceEventsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/events/{resource_type}/{resource_id}",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

@@ -34,6 +34,10 @@ class PipelinesActionsApiService(DevopnessBaseService):
         """
         Create an action to run a Pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline that will be executed by the created action
+            action_pipeline_create (Union[ActionPipelineCreate, ActionPipelineCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -57,6 +61,11 @@ class PipelinesActionsApiService(DevopnessBaseService):
         """
         Return a list of pipeline's actions
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -71,7 +80,7 @@ class PipelinesActionsApiService(DevopnessBaseService):
 
         endpoint_parts = [
             f"/pipelines/{pipeline_id}/actions",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)
@@ -96,6 +105,10 @@ class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Create an action to run a Pipeline
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline that will be executed by the created action
+            action_pipeline_create (Union[ActionPipelineCreate, ActionPipelineCreatePlain,]): A JSON object containing the resource data
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -119,6 +132,11 @@ class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
         """
         Return a list of pipeline's actions
 
+        Attributes:
+            pipeline_id (int): The ID of the pipeline.
+            page (Optional[int]): Number of the page to be retrieved
+            per_page (Optional[int]): Number of items returned per page
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -133,7 +151,7 @@ class PipelinesActionsApiServiceAsync(DevopnessBaseServiceAsync):
 
         endpoint_parts = [
             f"/pipelines/{pipeline_id}/actions",
-            f"?{query_string}",
+            f"?{query_string}" if query_string else "",
         ]
 
         endpoint: str = "".join(endpoint_parts)

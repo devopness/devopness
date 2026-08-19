@@ -24,6 +24,11 @@ class ActionsLogsApiService(DevopnessBaseService):
         """
         Get action target step log
 
+        Attributes:
+            action_id (int): The ID of the action.
+            action_step_order (int): The action step order.
+            action_target_id (int): The ID of the action target.
+
         Raises:
             DevopnessApiError: If an API request error occurs.
             DevopnessNetworkError: If a network error occurs.
@@ -52,6 +57,11 @@ class ActionsLogsApiServiceAsync(DevopnessBaseServiceAsync):
     ) -> DevopnessResponse[Log]:
         """
         Get action target step log
+
+        Attributes:
+            action_id (int): The ID of the action.
+            action_step_order (int): The action step order.
+            action_target_id (int): The ID of the action target.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
