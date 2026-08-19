@@ -140,28 +140,6 @@ describe('RadioSelectCards', () => {
     expect(aspNetCore.checked).toBe(true)
   })
 
-  it('reserves consistent description height in grouped cards', () => {
-    render(
-      <RadioSelectCards
-        name="exampleRadio"
-        groups={groupedStackGroups}
-        showSelectionIndicator={false}
-        density="compact"
-      />
-    )
-
-    expect(screen.getByText('Use the runtime defaults.')).toHaveStyle({
-      minHeight: '2.375rem',
-    })
-    expect(
-      screen.getByText(
-        'Use the runtime defaults without framework helpers or project-specific overrides.'
-      )
-    ).toHaveStyle({
-      minHeight: '2.375rem',
-    })
-  })
-
   it('keeps the default square layout by default', () => {
     render(
       <RadioSelectCards

@@ -152,7 +152,7 @@ const getGridGap = (density: Density) =>
   density === 'compact' ? '0.5rem' : '0.75rem'
 
 const getGridMinWidth = (density: Density) =>
-  density === 'compact' ? '12.5rem' : '12.5rem'
+  density === 'compact' ? '10rem' : '12.5rem'
 
 const getIconSize = (density: Density) =>
   density === 'compact' ? '2.5rem' : '2.75rem'
