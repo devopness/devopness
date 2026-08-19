@@ -2,4 +2,4 @@
 '@devopness/ui-react': minor
 ---
 
-Improve `RadioSelectCards` RadioSelectCards component to allow grouped items with and without radio select button visible
+Add a compact flat `RadioSelectCards` presentation with configurable radio selection indicator visibility.
