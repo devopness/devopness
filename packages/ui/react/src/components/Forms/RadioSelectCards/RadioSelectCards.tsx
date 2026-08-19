@@ -319,6 +319,7 @@ const RadioSelectCards = ({
           },
         ]
       : [])
+  const shouldRenderGalleryCards = Boolean(groups) || density === 'compact'
 
   if (isLoading) {
     return (
@@ -332,7 +333,7 @@ const RadioSelectCards = ({
     )
   }
 
-  if (!groups) {
+  if (!shouldRenderGalleryCards) {
     return (
       <>
         <RadioGrid
