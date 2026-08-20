@@ -30,7 +30,7 @@ const WrapperContent = styled.section<StyledProps>`
   grid-column: 4 / 10;
 
   @media (max-width: 768px) {
-    grid-column: 1 / 14;
+    grid-column: 1 / 13;
   }
 
   background: ${({ styles }) =>
