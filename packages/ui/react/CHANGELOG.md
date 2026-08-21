@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.201.0
+
+### Minor Changes
+
+- [#3488](https://github.com/devopness/devopness/pull/3488) [`f485387`](https://github.com/devopness/devopness/commit/f48538729c6c3eb7d06d4c93efbdee5b4ee82808) Thanks [@therealrinku](https://github.com/therealrinku)! - Added new `TokenStatus` primitive component that shows token status with appropriate icon and color
+
 ## 2.200.1
 
 ### Patch Changes
