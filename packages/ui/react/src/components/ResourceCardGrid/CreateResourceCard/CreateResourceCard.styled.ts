@@ -11,6 +11,54 @@ const CardContainer = styled.div`
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 `
 
+const CardContainer = styled.div<{ $disabled?: boolean }>`
+  height: 160px;
+  min-height: 160px;
+  max-height: 160px;
+  width: 100%;
+  min-width: 0;
+  cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+`
+// From here on, these are styling changes to make the card button look disabled as well
+const CardInner = styled.div<{ $disabled?: boolean }>`
+  height: 100%;
+  min-height: 0;
+  border: 2px dashed #d1d5db;
+  background-color: #f9fafb;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
+
+  ${({ $disabled }) =>
+    !$disabled &&
+    css`
+      &:hover {
+        border-color: #94a3b8;
+        background-color: #f3f4f6;
+        transform: translateY(-4px);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+    `}
+
+  ${CardContainer}:focus-visible & {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+    border-color: #6366f1;
+  }
+`
+
 const CardInner = styled.div`
   height: 100%;
   min-height: 0;
@@ -79,5 +127,7 @@ const Label = styled.span`
     color: #64748b;
   }
 `
+
+
 
 export { CardContainer, CardInner, CreateIconWrapper, Label }

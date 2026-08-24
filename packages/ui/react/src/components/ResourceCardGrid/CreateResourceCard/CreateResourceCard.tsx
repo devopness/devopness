@@ -9,6 +9,7 @@ import {
 
 type CreateResourceCardProps = {
   resourceType: string
+  disabled?: boolean //  I'll check whether it's disabled or not
   onClick?: () => void
 }
 
@@ -19,19 +20,27 @@ type CreateResourceCardProps = {
 const CreateResourceCard = ({
   resourceType,
   onClick,
+  disabled,
 }: CreateResourceCardProps) => {
+  const handleClick = () => {
+    if (disabled) return
+    onClick?.()
+  }
+
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key !== 'Enter' && event.key !== ' ') return
     event.preventDefault()
+    if (disabled) return
     onClick?.()
   }
 
   return (
     <CardContainer
-      onClick={onClick}
+      onClick={handleClick}
       onKeyDown={handleKeyDown}
       role="button"
-      tabIndex={0}
+      tabIndex ={disabled?-1:0} // for keyboard navigation
+      aria-disabled = {disabled}  // For screen reader users
     >
       <CardInner>
         <CreateIconWrapper>+</CreateIconWrapper>
