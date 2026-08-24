@@ -179,7 +179,6 @@ const Select = <TOption,>({
       .length === 1
 
   useEffect(() => {
-    if (!isDefined(restProps.name)) return
     if (!shouldGetFirstOption) return
 
     const option = options.at(0) as OptionProps<TOption>
