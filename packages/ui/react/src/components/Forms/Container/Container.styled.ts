@@ -19,7 +19,9 @@ const ContainerStyled = styled.div<StyledProps>`
   padding-left: 30px;
   padding-right: 30px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
+    padding-left: 16px;
+    padding-right: 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -28,7 +30,7 @@ const WrapperContent = styled.section<StyledProps>`
   grid-column: 4 / 10;
 
   @media (max-width: 768px) {
-    grid-column: 2 / 12;
+    grid-column: 1 / 13;
   }
 
   background: ${({ styles }) =>
