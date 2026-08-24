@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import type {
   Props as SelectPropsBase,
   GroupBase,
@@ -19,8 +19,8 @@ import {
 } from './CustomComponents'
 import { ReactSelect, Container, ReactCreatableSelect } from './Select.styled'
 import { ErrorMessage } from 'src/components/Primitives'
-import { typedMemo } from 'src/components/type-guards'
 import type { Icon } from 'src/icons'
+import { isDefined, typedMemo } from 'src/utils/type-guards'
 
 /** Option type for the Select component. */
 type OptionProps<T = unknown> = {
@@ -66,6 +66,14 @@ type SelectProps<TOption> = Omit<
     onCreateOption?: (inputValue: string) => void
     /** Class name to be applied to the select container */
     className?: string
+    /** When enabled, will set defaultValue if a single option is available
+      *
+      * Note that if using a default value, in useForm hook, it needs to be
+      * a falsy value; otherwise the auto select behavior will not be applied
+
+      * @default true
+    */
+    shouldAutoSelectSingleOption?: boolean
   }
 
 type SelectComponentProps<TOption> = SelectProps<TOption> & {
@@ -109,6 +117,7 @@ const Select = <TOption,>({
   isCreatable,
   noOptionsMessage,
   className,
+  shouldAutoSelectSingleOption = true,
   ...restProps
 }: SelectProps<TOption>) => {
   const customStyles: StylesConfig<OptionProps<TOption>> = {
@@ -162,6 +171,29 @@ const Select = <TOption,>({
     trim: true,
     matchFrom: 'any',
   })
+
+  const shouldGetFirstOption =
+    shouldAutoSelectSingleOption &&
+    !isReadOnly &&
+    options.filter((option) => !(option as OptionProps<TOption>).isCreateLink)
+      .length === 1
+
+  useEffect(() => {
+    if (!isDefined(restProps.name)) return
+    if (!shouldGetFirstOption) return
+
+    const option = options.at(0) as OptionProps<TOption>
+
+    if (!isDefined(option)) return
+    if (option.isCreateLink) return
+
+    if (restProps.value) return
+
+    restProps.onChange?.(option, {
+      action: 'select-option',
+      option: option,
+    })
+  }, [options, shouldGetFirstOption])
 
   const SelectComponent = (
     isCreatable && !isReadOnly ? ReactCreatableSelect : ReactSelect
