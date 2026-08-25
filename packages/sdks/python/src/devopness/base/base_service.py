@@ -43,7 +43,7 @@ class DevopnessBaseService:
         """
         Initializes the API base service with the provided configuration.
         """
-        if DevopnessBaseService._config is None:
+        if getattr(DevopnessBaseService, "_config", None) is None:
             raise DevopnessSdkError("DevopnessBaseService is not initialized")
 
         self._client = httpx.Client(
@@ -217,7 +217,7 @@ class DevopnessBaseServiceAsync:
         """
         Initializes the API base service with the provided configuration.
         """
-        if DevopnessBaseServiceAsync._config is None:
+        if getattr(DevopnessBaseServiceAsync, "_config", None) is None:
             raise DevopnessSdkError("DevopnessBaseServiceAsync is not initialized")
 
         self._client = httpx.AsyncClient(
@@ -435,15 +435,22 @@ def parse_payload(
                                                                 payload.
 
     Returns:
-        str: The payload as a string.
+        Optional[dict[str, Any]]: The payload for the request.
+
+    Raises:
+        DevopnessSdkError: If the payload type is not supported.
     """
     if data is None:
         return None
 
     if isinstance(data, DevopnessBaseModel):
-        payload = data.model_dump(exclude_unset=True)
+        return data.model_dump(exclude_unset=True)
 
     if isinstance(data, dict):
-        payload = data
+        return data
 
-    return payload
+    raise DevopnessSdkError(
+        "\nDevopness SDK Error: Invalid request body."
+        "\nExpected a dict or a DevopnessBaseModel subclass, but received: "
+        f"'{type(data).__name__}'."
+    )

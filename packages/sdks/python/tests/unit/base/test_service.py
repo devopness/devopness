@@ -16,6 +16,8 @@ from devopness.base import (
     DevopnessBaseService,
     DevopnessBaseServiceAsync,
 )
+from devopness.base.base_service import parse_payload
+from devopness.core import DevopnessSdkError
 
 
 class DummyModel(DevopnessBaseModel):
@@ -518,3 +520,61 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
             r"\(python/\d+\.\d+\.\d+ [A-Za-z0-9_\-]+\)"
         )
         self.assertRegex(user_agent, pattern)
+
+
+class TestDevopnessBaseServiceNotInitialized(unittest.TestCase):
+    def setUp(self) -> None:
+        self.sync_config = getattr(DevopnessBaseService, "_config", None)
+        self.async_config = getattr(DevopnessBaseServiceAsync, "_config", None)
+
+        for service_cls in (DevopnessBaseService, DevopnessBaseServiceAsync):
+            if hasattr(service_cls, "_config"):
+                del service_cls._config
+
+    def tearDown(self) -> None:
+        if self.sync_config is not None:
+            DevopnessBaseService._config = self.sync_config
+
+        if self.async_config is not None:
+            DevopnessBaseServiceAsync._config = self.async_config
+
+    def test_service_without_config_raises_sdk_error(self) -> None:
+        with self.assertRaises(DevopnessSdkError) as ctx:
+            DevopnessBaseService()
+
+        self.assertIn("DevopnessBaseService is not initialized", str(ctx.exception))
+
+    def test_async_service_without_config_raises_sdk_error(self) -> None:
+        with self.assertRaises(DevopnessSdkError) as ctx:
+            DevopnessBaseServiceAsync()
+
+        self.assertIn(
+            "DevopnessBaseServiceAsync is not initialized",
+            str(ctx.exception),
+        )
+
+
+class TestParsePayload(unittest.TestCase):
+    def test_parse_payload_returns_none_for_empty_payload(self) -> None:
+        self.assertIsNone(parse_payload(None))
+
+    def test_parse_payload_keeps_dict_payload_unchanged(self) -> None:
+        payload = {"name": "dummy"}
+
+        self.assertEqual(parse_payload(payload), payload)
+
+    def test_parse_payload_omits_model_fields_that_were_not_set(self) -> None:
+        payload = DummyModel(name="dummy")
+
+        self.assertEqual(parse_payload(payload), {"name": "dummy"})
+
+    def test_parse_payload_raises_sdk_error_for_unsupported_payload(self) -> None:
+        for payload in ([1, 2, 3], "dummy", 42):
+            with self.assertRaises(DevopnessSdkError):
+                parse_payload(payload)  # type: ignore[arg-type]
+
+    def test_parse_payload_error_names_the_received_type(self) -> None:
+        with self.assertRaises(DevopnessSdkError) as ctx:
+            parse_payload([1, 2, 3])  # type: ignore[arg-type]
+
+        self.assertIn("'list'", str(ctx.exception))
