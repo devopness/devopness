@@ -13,8 +13,17 @@ type AutocompleteProps = {
   inputProps: Omit<ComponentPropsWithoutRef<typeof Input>, 'type'>
   /** Props passed directly to MUI Autocomplete component */
   autocompleteProps: Pick<
-    ComponentPropsWithoutRef<typeof MuiAutocomplete>,
-    'options' | 'onInputChange' | 'onChange' | 'onBlur' | 'value' | 'open'
+    ComponentPropsWithoutRef<
+      typeof MuiAutocomplete<unknown, undefined, undefined, true>
+    >,
+    | 'options'
+    | 'onInputChange'
+    | 'onChange'
+    | 'onBlur'
+    | 'value'
+    | 'open'
+    | 'getOptionLabel'
+    | 'renderOption'
   >
 }
 
