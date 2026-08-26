@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.7.2
+
+### Patch Changes
+
+- [#3504](https://github.com/devopness/devopness/pull/3504) [`c26fa57`](https://github.com/devopness/devopness/commit/c26fa571f33f7d237aecca78f945d7f4db728e25) Thanks [@sirelves](https://github.com/sirelves)! - Report Devopness SDK errors instead of `AttributeError` and `UnboundLocalError` when the SDK is used before a client is created, or when a request body has an unsupported type.
+
 ## 2.7.1
 
 ### Patch Changes
