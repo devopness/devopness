@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.202.1
+
+### Patch Changes
+
+- [#3505](https://github.com/devopness/devopness/pull/3505) [`eb83938`](https://github.com/devopness/devopness/commit/eb839388046cd00e60ec3ec88ca6e40434cd1c9f) Thanks [@therealrinku](https://github.com/therealrinku)! - Update the type of `AutocompleteProps` for Autocomplete component for support of autoCompleteProps like getOptionLabel and renderOption
+
 ## 2.202.0
 
 ### Minor Changes
