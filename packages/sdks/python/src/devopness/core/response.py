@@ -3,7 +3,6 @@ Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
 import json
-import sys
 from typing import Any, Generic, TypeVar, cast, get_args, get_origin
 from urllib.parse import parse_qs, urlparse
 from warnings import warn
@@ -12,6 +11,7 @@ import httpx
 from pydantic import ValidationError
 
 from devopness.base import DevopnessBaseModel
+from devopness.client_state import DEVOPNESS_CLIENT_STATE_EXTENSION_KEY
 
 __all__ = ["DevopnessResponse"]
 
@@ -48,6 +48,7 @@ class DevopnessResponse(Generic[T]):
     data: T
     page_count: int
     action_id: int | None
+    _config: object | None
 
     def __init__(
         self,
@@ -66,6 +67,7 @@ class DevopnessResponse(Generic[T]):
         """
         self._is_async_response = False
         self.status = response.status_code
+        self._config = self._extract_config(response)
         self.data = cast(T, self._parse_data(response, model_cls))
         self.page_count = self._extract_last_page_number(response)
         self.action_id = self._parse_action_id(response)
@@ -90,6 +92,7 @@ class DevopnessResponse(Generic[T]):
 
         result._is_async_response = True
         result.status = response.status_code
+        result._config = result._extract_config(response)
         result.data = cast(T, await result._async_parse_data(response, model_cls))
         result.page_count = result._extract_last_page_number(response)
         result.action_id = result._parse_action_id(response)
@@ -276,22 +279,35 @@ class DevopnessResponse(Generic[T]):
     def _model_name(model_cls: type[DevopnessBaseModel] | type | None) -> str:
         return getattr(model_cls, "__name__", repr(model_cls)) if model_cls else "None"
 
-    def _config(self) -> object | None:
-        base_service_module = sys.modules.get("devopness.base.base_service")
-        service_name = (
-            "DevopnessBaseServiceAsync"
-            if self._is_async_response
-            else "DevopnessBaseService"
-        )
-        service = getattr(base_service_module, service_name, None)
+    def _extract_config(self, response: httpx.Response) -> object | None:
+        """
+        Extract the client config attached to the originating request.
+        """
+        request = getattr(response, "request", None)
+        if request is None:
+            return None
 
-        return getattr(service, "_config", None)
+        extensions = getattr(request, "extensions", None)
+        if not isinstance(extensions, dict):
+            return None
+
+        state = extensions.get(DEVOPNESS_CLIENT_STATE_EXTENSION_KEY)
+        config = getattr(state, "config", None)
+        return config
 
     def _is_strict_validation_mode(self) -> bool:
-        return getattr(self._config(), "strict_validation_mode", True)
+        """
+        Check whether response validation should raise on model mismatch.
+        """
+        strict_validation_mode = getattr(self._config, "strict_validation_mode", True)
+        return strict_validation_mode
 
     def _is_debug_mode(self) -> bool:
-        return getattr(self._config(), "debug", False)
+        """
+        Check whether debug warnings should be emitted during parsing.
+        """
+        debug_mode = getattr(self._config, "debug", False)
+        return debug_mode
 
     @staticmethod
     def _safe_validation_error_details(error: ValidationError) -> str:
