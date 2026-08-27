@@ -305,11 +305,11 @@ class TestDevopnessResponseAsync(unittest.IsolatedAsyncioTestCase):
     ) -> None:
         response = httpx.Response(200, content=b'{"id":123}')
 
+        parsed_response_value: DevopnessResponse[DummyModel]
         parsed_response_value = await DevopnessResponse.from_async(
             response,
             DummyModel,
         )
-        parsed_response: DevopnessResponse[DummyModel] = parsed_response_value
 
-        assert isinstance(parsed_response.data, DummyModel)
-        assert parsed_response.data.id == 123
+        assert isinstance(parsed_response_value.data, DummyModel)
+        assert parsed_response_value.data.id == 123
