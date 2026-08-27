@@ -1,5 +1,13 @@
 # @devopness/sdk-python
 
+## 2.8.0
+
+### Minor Changes
+
+- [#3511](https://github.com/devopness/devopness/pull/3511) [`7db7787`](https://github.com/devopness/devopness/commit/7db7787884e7359c572296f3e1bf3819bf81f48f) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix client state sharing in `DevopnessClient`.
+
+  You can now create multiple clients in the same runtime, and each one keeps its own runtime state.
+
 ## 2.7.2
 
 ### Patch Changes
