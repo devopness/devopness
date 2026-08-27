@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react-vite'
 import { ResourceCard } from './ResourceCard'
 
 const meta: Meta<typeof ResourceCard> = {
-  title: 'Primitives/ResourceCard/ResourceCard',
+  title: 'Primitives/ResourceCard',
   component: ResourceCard,
   args: {
     name: 'production-api',
