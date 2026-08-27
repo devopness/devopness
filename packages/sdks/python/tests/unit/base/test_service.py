@@ -529,35 +529,29 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertRegex(user_agent, pattern)
 
 
-class TestDevopnessBaseServiceNotInitialized(unittest.TestCase):
-    def setUp(self) -> None:
-        self.sync_config = getattr(DevopnessBaseService, "_config", None)
-        self.async_config = getattr(DevopnessBaseServiceAsync, "_config", None)
+class TestDevopnessBaseServiceDefaults(unittest.TestCase):
+    def test_service_without_config_uses_default_state(self) -> None:
+        service = DevopnessBaseService()
+        default_config = DevopnessClientConfig()
 
-        for service_cls in (DevopnessBaseService, DevopnessBaseServiceAsync):
-            if hasattr(service_cls, "_config"):
-                del service_cls._config
+        self.assertIsNotNone(service._state)
+        self.assertEqual(service._state.config.base_url, default_config.base_url)
+        self.assertEqual(service._state.config.timeout, default_config.timeout)
+        self.assertEqual(
+            service._state.config.default_encoding,
+            default_config.default_encoding,
+        )
 
-    def tearDown(self) -> None:
-        if self.sync_config is not None:
-            DevopnessBaseService._config = self.sync_config
+    def test_async_service_without_config_uses_default_state(self) -> None:
+        service = DevopnessBaseServiceAsync()
+        default_config = DevopnessClientConfig()
 
-        if self.async_config is not None:
-            DevopnessBaseServiceAsync._config = self.async_config
-
-    def test_service_without_config_raises_sdk_error(self) -> None:
-        with self.assertRaises(DevopnessSdkError) as ctx:
-            DevopnessBaseService()
-
-        self.assertIn("DevopnessBaseService is not initialized", str(ctx.exception))
-
-    def test_async_service_without_config_raises_sdk_error(self) -> None:
-        with self.assertRaises(DevopnessSdkError) as ctx:
-            DevopnessBaseServiceAsync()
-
-        self.assertIn(
-            "DevopnessBaseServiceAsync is not initialized",
-            str(ctx.exception),
+        self.assertIsNotNone(service._state)
+        self.assertEqual(service._state.config.base_url, default_config.base_url)
+        self.assertEqual(service._state.config.timeout, default_config.timeout)
+        self.assertEqual(
+            service._state.config.default_encoding,
+            default_config.default_encoding,
         )
 
 

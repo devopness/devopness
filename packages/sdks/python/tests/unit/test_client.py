@@ -37,7 +37,8 @@ EXPECTED_SERVICES = build_expected_services()
 class TestDevopnessClient(unittest.TestCase):
     def test_client_has_expected_services(self) -> None:
         devopness = DevopnessClient()
-        client_services = set(devopness.__annotations__)
+        client_annotations = type(devopness).__annotations__
+        client_services = set(client_annotations)
 
         missing_services = EXPECTED_SERVICES - client_services
         if missing_services:
@@ -53,9 +54,9 @@ class TestDevopnessClient(unittest.TestCase):
                 f"{sorted(unexpected_services)}"
             )
 
-        for service_name in devopness.__annotations__:
+        for service_name in client_annotations:
             service = getattr(devopness, service_name)
-            self.assertIsInstance(service, devopness.__annotations__[service_name])
+            self.assertIsInstance(service, client_annotations[service_name])
 
     def test_config_is_isolated_across_services(self) -> None:
         config = DevopnessClientConfig(base_url="https://test.local", debug=True)
@@ -64,7 +65,9 @@ class TestDevopnessClient(unittest.TestCase):
         self.assertEqual(devopness.actions._state.config.base_url, config.base_url)
         self.assertEqual(devopness.actions._state.config.debug, config.debug)
 
-        for service_name in devopness.__annotations__:
+        client_annotations = type(devopness).__annotations__
+
+        for service_name in client_annotations:
             service = getattr(devopness, service_name)
             self.assertIs(service._state, devopness.actions._state)
 
@@ -167,7 +170,8 @@ class TestDevopnessClient(unittest.TestCase):
 class TestDevopnessClientAsync(unittest.IsolatedAsyncioTestCase):
     async def test_client_has_expected_services(self) -> None:
         devopness = DevopnessClientAsync()
-        client_services = set(devopness.__annotations__)
+        client_annotations = type(devopness).__annotations__
+        client_services = set(client_annotations)
 
         missing_services = EXPECTED_SERVICES - client_services
         if missing_services:
@@ -183,9 +187,9 @@ class TestDevopnessClientAsync(unittest.IsolatedAsyncioTestCase):
                 f" {sorted(unexpected_services)}"
             )
 
-        for service_name in devopness.__annotations__:
+        for service_name in client_annotations:
             service = getattr(devopness, service_name)
-            self.assertIsInstance(service, devopness.__annotations__[service_name])
+            self.assertIsInstance(service, client_annotations[service_name])
 
     def test_config_is_isolated_across_services(self) -> None:
         config = DevopnessClientConfig(base_url="https://test.local", debug=True)
@@ -194,7 +198,9 @@ class TestDevopnessClientAsync(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(devopness.actions._state.config.base_url, config.base_url)
         self.assertEqual(devopness.actions._state.config.debug, config.debug)
 
-        for service_name in devopness.__annotations__:
+        client_annotations = type(devopness).__annotations__
+
+        for service_name in client_annotations:
             service = getattr(devopness, service_name)
             self.assertIs(service._state, devopness.actions._state)
 

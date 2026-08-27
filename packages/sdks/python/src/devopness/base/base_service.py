@@ -21,6 +21,7 @@ from ..core.network_error import (
     handle_network_errors,
     handle_network_errors_sync,
 )
+from ..core.sdk_error import DevopnessSdkError
 
 __all__ = [
     "DevopnessBaseService",
