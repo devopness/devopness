@@ -7,10 +7,12 @@ from typing import Any
 
 import httpx
 
-from devopness.core.sdk_error import DevopnessSdkError
-
 from ..base import DevopnessBaseModel
 from ..client_config import DevopnessClientConfig
+from ..client_state import (
+    DEVOPNESS_CLIENT_STATE_EXTENSION_KEY,
+    DevopnessClientState,
+)
 from ..core.api_error import (
     raise_devopness_api_error,
     raise_devopness_api_error_sync,
@@ -19,10 +21,12 @@ from ..core.network_error import (
     handle_network_errors,
     handle_network_errors_sync,
 )
+from ..core.sdk_error import DevopnessSdkError
 
 __all__ = [
     "DevopnessBaseService",
     "DevopnessBaseServiceAsync",
+    "DevopnessClientState",
 ]
 
 
@@ -33,24 +37,22 @@ class DevopnessBaseService:
     """
 
     _client: httpx.Client
-    _config: DevopnessClientConfig
+    _state: DevopnessClientState
 
-    _access_token: str | None = None
-    _refresh_token: str | None = None
-    _token_expires_at: datetime | None = None
-
-    def __init__(self) -> None:
+    def __init__(self, state: DevopnessClientState | None = None) -> None:
         """
         Initializes the API base service with the provided configuration.
         """
-        if getattr(DevopnessBaseService, "_config", None) is None:
-            raise DevopnessSdkError("DevopnessBaseService is not initialized")
+        if state is None:
+            state = DevopnessClientState(config=DevopnessClientConfig())
+
+        self._state = state
 
         self._client = httpx.Client(
-            base_url=self._config.base_url,
-            timeout=self._config.timeout,
-            default_encoding=self._config.default_encoding,
-            headers=self._config.headers,
+            base_url=self._state.config.base_url,
+            timeout=self._state.config.timeout,
+            default_encoding=self._state.config.default_encoding,
+            headers=dict(self._state.config.headers),
             event_hooks={
                 "request": [self._on_request_callback],
                 "response": [self._on_response_callback],
@@ -119,7 +121,7 @@ class DevopnessBaseService:
         """
         response = self._post(
             "/users/refresh-token",
-            {"refresh_token": DevopnessBaseService._refresh_token},
+            {"refresh_token": self._state.refresh_token},
         )
 
         self._save_access_token(response)
@@ -138,9 +140,9 @@ class DevopnessBaseService:
         expires_in: int = data["expires_in"]
         expires_at = now + timedelta(seconds=expires_in)
 
-        DevopnessBaseService._access_token = data["access_token"]
-        DevopnessBaseService._refresh_token = data["refresh_token"]
-        DevopnessBaseService._token_expires_at = expires_at
+        self._state.access_token = data["access_token"]
+        self._state.refresh_token = data["refresh_token"]
+        self._state.token_expires_at = expires_at
 
     def _on_request_callback(self, request: httpx.Request) -> None:
         """
@@ -150,15 +152,17 @@ class DevopnessBaseService:
         Args:
             request (httpx.Request): The outgoing HTTP request.
         """
+        request.extensions[DEVOPNESS_CLIENT_STATE_EXTENSION_KEY] = self._state
+
         if (
-            DevopnessBaseService._config.auto_refresh_token
-            and is_access_token_expired(DevopnessBaseService)
+            self._state.config.auto_refresh_token
+            and is_access_token_expired(self._state)
             and not is_token_change_request(request.url.path)
         ):
             self._refresh_access_token()
 
-        api_token = DevopnessBaseService._config.api_token
-        access_token = DevopnessBaseService._access_token
+        api_token = self._state.config.api_token
+        access_token = self._state.access_token
 
         if api_token:
             request.headers["Authorization"] = f"Bearer {api_token}"
@@ -169,7 +173,7 @@ class DevopnessBaseService:
         elif "Authorization" in request.headers:
             del request.headers["Authorization"]
 
-        if DevopnessBaseService._config.debug:
+        if self._state.config.debug:
             debug_request(request)
 
     def _on_response_callback(self, response: httpx.Response) -> httpx.Response:
@@ -185,13 +189,12 @@ class DevopnessBaseService:
         try:
             response.raise_for_status()
 
-            if (
-                DevopnessBaseService._config.auto_refresh_token
-                and is_token_change_request(response.url.path)
+            if self._state.config.auto_refresh_token and is_token_change_request(
+                response.url.path
             ):
                 self._save_access_token(response)
 
-            if DevopnessBaseService._config.debug:
+            if self._state.config.debug:
                 debug_response(response)
 
         except httpx.HTTPStatusError as e:
@@ -207,24 +210,22 @@ class DevopnessBaseServiceAsync:
     """
 
     _client: httpx.AsyncClient
-    _config: DevopnessClientConfig
+    _state: DevopnessClientState
 
-    _access_token: str | None = None
-    _refresh_token: str | None = None
-    _token_expires_at: datetime | None = None
-
-    def __init__(self) -> None:
+    def __init__(self, state: DevopnessClientState | None = None) -> None:
         """
         Initializes the API base service with the provided configuration.
         """
-        if getattr(DevopnessBaseServiceAsync, "_config", None) is None:
-            raise DevopnessSdkError("DevopnessBaseServiceAsync is not initialized")
+        if state is None:
+            state = DevopnessClientState(config=DevopnessClientConfig())
+
+        self._state = state
 
         self._client = httpx.AsyncClient(
-            base_url=self._config.base_url,
-            timeout=self._config.timeout,
-            default_encoding=self._config.default_encoding,
-            headers=self._config.headers,
+            base_url=self._state.config.base_url,
+            timeout=self._state.config.timeout,
+            default_encoding=self._state.config.default_encoding,
+            headers=dict(self._state.config.headers),
             event_hooks={
                 "request": [self._on_request_callback],
                 "response": [self._on_response_callback],
@@ -293,7 +294,7 @@ class DevopnessBaseServiceAsync:
         """
         response = await self._post(
             "/users/refresh-token",
-            {"refresh_token": DevopnessBaseServiceAsync._refresh_token},
+            {"refresh_token": self._state.refresh_token},
         )
 
         await self._save_access_token(response)
@@ -312,9 +313,9 @@ class DevopnessBaseServiceAsync:
         expires_in: int = data["expires_in"]
         expires_at = now + timedelta(seconds=expires_in)
 
-        DevopnessBaseServiceAsync._access_token = data["access_token"]
-        DevopnessBaseServiceAsync._refresh_token = data["refresh_token"]
-        DevopnessBaseServiceAsync._token_expires_at = expires_at
+        self._state.access_token = data["access_token"]
+        self._state.refresh_token = data["refresh_token"]
+        self._state.token_expires_at = expires_at
 
     async def _on_request_callback(self, request: httpx.Request) -> None:
         """
@@ -324,15 +325,17 @@ class DevopnessBaseServiceAsync:
         Args:
             request (httpx.Request): The outgoing HTTP request.
         """
+        request.extensions[DEVOPNESS_CLIENT_STATE_EXTENSION_KEY] = self._state
+
         if (
-            DevopnessBaseServiceAsync._config.auto_refresh_token
-            and is_access_token_expired(DevopnessBaseServiceAsync)
+            self._state.config.auto_refresh_token
+            and is_access_token_expired(self._state)
             and not is_token_change_request(request.url.path)
         ):
             await self._refresh_access_token()
 
-        api_token = DevopnessBaseServiceAsync._config.api_token
-        access_token = DevopnessBaseServiceAsync._access_token
+        api_token = self._state.config.api_token
+        access_token = self._state.access_token
 
         if api_token:
             request.headers["Authorization"] = f"Bearer {api_token}"
@@ -343,7 +346,7 @@ class DevopnessBaseServiceAsync:
         elif "Authorization" in request.headers:
             del request.headers["Authorization"]
 
-        if DevopnessBaseServiceAsync._config.debug:
+        if self._state.config.debug:
             debug_request(request)
 
     async def _on_response_callback(self, response: httpx.Response) -> httpx.Response:
@@ -359,13 +362,12 @@ class DevopnessBaseServiceAsync:
         try:
             response.raise_for_status()
 
-            if (
-                DevopnessBaseServiceAsync._config.auto_refresh_token
-                and is_token_change_request(response.url.path)
+            if self._state.config.auto_refresh_token and is_token_change_request(
+                response.url.path
             ):
                 await self._save_access_token(response)
 
-            if DevopnessBaseServiceAsync._config.debug:
+            if self._state.config.debug:
                 debug_response(response)
 
         except httpx.HTTPStatusError as e:
@@ -400,13 +402,11 @@ def debug_response(response: httpx.Response) -> None:
     print(f"[Devopness SDK] <-- [Response] {r_status_code} {r_reason_phrase}")
 
 
-def is_access_token_expired(
-    service_cls: type[DevopnessBaseService] | type[DevopnessBaseServiceAsync],
-) -> bool:
+def is_access_token_expired(state: DevopnessClientState) -> bool:
     """
     Checks if the access token has expired.
     """
-    expires_at = service_cls._token_expires_at
+    expires_at = state.token_expires_at
     if expires_at is None:
         return True
 

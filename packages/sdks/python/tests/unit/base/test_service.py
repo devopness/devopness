@@ -15,6 +15,7 @@ from devopness.base import (
     DevopnessBaseModel,
     DevopnessBaseService,
     DevopnessBaseServiceAsync,
+    DevopnessClientState,
 )
 from devopness.base.base_service import parse_payload
 from devopness.core import DevopnessSdkError
@@ -55,21 +56,24 @@ class DummyAsyncStream(AsyncByteStream):
 
 
 class TestDevopnessBaseService(unittest.TestCase):
-    DevopnessBaseService._config = DevopnessClientConfig(
-        base_url="https://test.local",
-        auto_refresh_token=False,
-    )
-    service = DevopnessBaseService()
-
     dummy_request = httpx.Request("", "")
     dummy_response = httpx.Response(200, request=dummy_request)
+
+    def setUp(self) -> None:
+        self.state = DevopnessClientState(
+            config=DevopnessClientConfig(
+                base_url="https://test.local",
+                auto_refresh_token=False,
+            )
+        )
+        self.service = DevopnessBaseService(self.state)
 
     @patch("httpx.Client._send_single_request")
     def test_unauthenticated_request_omits_auth_header(
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseService._access_token = None
+        self.state.access_token = None
 
         mock.return_value = self.dummy_response
         self.service._get("/resource")
@@ -87,7 +91,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseService._access_token = "dp-token123"  # ruff:ignore[hardcoded-password-string]
+        self.state.access_token = "dp-token123"  # ruff:ignore[hardcoded-password-string]
 
         mock.return_value = self.dummy_response
         self.service._delete("/resource/123")
@@ -106,7 +110,7 @@ class TestDevopnessBaseService(unittest.TestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseService._config.api_token = "devopness_api_token"  # ruff:ignore[hardcoded-password-string]
+        self.state.config.api_token = "devopness_api_token"  # ruff:ignore[hardcoded-password-string]
 
         mock.return_value = self.dummy_response
         self.service._get("/resource/123")
@@ -250,12 +254,12 @@ class TestDevopnessBaseService(unittest.TestCase):
         now = datetime.now(UTC)
         self.service._save_access_token(response)
 
-        self.assertEqual(DevopnessBaseService._access_token, "abc")
-        self.assertEqual(DevopnessBaseService._refresh_token, "def")
-        self.assertIsNotNone(DevopnessBaseService._token_expires_at)
+        self.assertEqual(self.state.access_token, "abc")
+        self.assertEqual(self.state.refresh_token, "def")
+        self.assertIsNotNone(self.state.token_expires_at)
 
         expected = now + timedelta(seconds=3600)
-        actual = DevopnessBaseService._token_expires_at
+        actual = self.state.token_expires_at
 
         delta_seconds = abs((expected - actual).total_seconds())  # type: ignore
         self.assertLess(
@@ -289,21 +293,24 @@ class TestDevopnessBaseService(unittest.TestCase):
 
 
 class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
-    DevopnessBaseServiceAsync._config = DevopnessClientConfig(
-        base_url="https://test.local",
-        auto_refresh_token=False,
-    )
-    service = DevopnessBaseServiceAsync()
-
     dummy_request = httpx.Request("", "")
     dummy_response = httpx.Response(200, request=dummy_request)
+
+    async def asyncSetUp(self) -> None:
+        self.state = DevopnessClientState(
+            config=DevopnessClientConfig(
+                base_url="https://test.local",
+                auto_refresh_token=False,
+            )
+        )
+        self.service = DevopnessBaseServiceAsync(self.state)
 
     @patch("httpx.AsyncClient._send_single_request")
     async def test_unauthenticated_request_omits_auth_header(
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseServiceAsync._access_token = None
+        self.state.access_token = None
 
         mock.return_value = self.dummy_response
         await self.service._get("/resource")
@@ -321,7 +328,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseServiceAsync._access_token = "dp-token123"  # ruff:ignore[hardcoded-password-string]
+        self.state.access_token = "dp-token123"  # ruff:ignore[hardcoded-password-string]
 
         mock.return_value = self.dummy_response
         await self.service._delete("/resource/123")
@@ -340,7 +347,7 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self,
         mock: Mock,
     ) -> None:
-        DevopnessBaseServiceAsync._config.api_token = "devopness_api_token"  # ruff:ignore[hardcoded-password-string]
+        self.state.config.api_token = "devopness_api_token"  # ruff:ignore[hardcoded-password-string]
 
         mock.return_value = self.dummy_response
         await self.service._delete("/resource/123")
@@ -484,12 +491,12 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         now = datetime.now(UTC)
         await self.service._save_access_token(response)
 
-        self.assertEqual(DevopnessBaseServiceAsync._access_token, "abc")
-        self.assertEqual(DevopnessBaseServiceAsync._refresh_token, "def")
-        self.assertIsNotNone(DevopnessBaseServiceAsync._token_expires_at)
+        self.assertEqual(self.state.access_token, "abc")
+        self.assertEqual(self.state.refresh_token, "def")
+        self.assertIsNotNone(self.state.token_expires_at)
 
         expected = now + timedelta(seconds=3600)
-        actual = DevopnessBaseServiceAsync._token_expires_at
+        actual = self.state.token_expires_at
 
         delta_seconds = abs((expected - actual).total_seconds())  # type: ignore
         self.assertLess(
@@ -522,35 +529,29 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
         self.assertRegex(user_agent, pattern)
 
 
-class TestDevopnessBaseServiceNotInitialized(unittest.TestCase):
-    def setUp(self) -> None:
-        self.sync_config = getattr(DevopnessBaseService, "_config", None)
-        self.async_config = getattr(DevopnessBaseServiceAsync, "_config", None)
+class TestDevopnessBaseServiceDefaults(unittest.TestCase):
+    def test_service_without_config_uses_default_state(self) -> None:
+        service = DevopnessBaseService()
+        default_config = DevopnessClientConfig()
 
-        for service_cls in (DevopnessBaseService, DevopnessBaseServiceAsync):
-            if hasattr(service_cls, "_config"):
-                del service_cls._config
+        self.assertIsNotNone(service._state)
+        self.assertEqual(service._state.config.base_url, default_config.base_url)
+        self.assertEqual(service._state.config.timeout, default_config.timeout)
+        self.assertEqual(
+            service._state.config.default_encoding,
+            default_config.default_encoding,
+        )
 
-    def tearDown(self) -> None:
-        if self.sync_config is not None:
-            DevopnessBaseService._config = self.sync_config
+    def test_async_service_without_config_uses_default_state(self) -> None:
+        service = DevopnessBaseServiceAsync()
+        default_config = DevopnessClientConfig()
 
-        if self.async_config is not None:
-            DevopnessBaseServiceAsync._config = self.async_config
-
-    def test_service_without_config_raises_sdk_error(self) -> None:
-        with self.assertRaises(DevopnessSdkError) as ctx:
-            DevopnessBaseService()
-
-        self.assertIn("DevopnessBaseService is not initialized", str(ctx.exception))
-
-    def test_async_service_without_config_raises_sdk_error(self) -> None:
-        with self.assertRaises(DevopnessSdkError) as ctx:
-            DevopnessBaseServiceAsync()
-
-        self.assertIn(
-            "DevopnessBaseServiceAsync is not initialized",
-            str(ctx.exception),
+        self.assertIsNotNone(service._state)
+        self.assertEqual(service._state.config.base_url, default_config.base_url)
+        self.assertEqual(service._state.config.timeout, default_config.timeout)
+        self.assertEqual(
+            service._state.config.default_encoding,
+            default_config.default_encoding,
         )
 
 
