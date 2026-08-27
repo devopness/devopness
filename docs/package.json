@@ -28,10 +28,10 @@
     "@types/mdx": "^2.0.14",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
+    "@types/react-dom": "^19.2.5",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.2.4",
     "typescript": "^7.0.2",
-    "vite-plus": "0.2.9"
+    "vite-plus": "0.3.0"
   }
 }
