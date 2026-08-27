@@ -283,16 +283,20 @@ class DevopnessResponse(Generic[T]):
         """
         Extract the client config attached to the originating request.
         """
-        request = getattr(response, "request", None)
-        if request is None:
-            return None
+        config: object | None = None
+        request: httpx.Request | None
 
-        extensions = getattr(request, "extensions", None)
-        if not isinstance(extensions, dict):
-            return None
+        try:
+            request = response.request
+        except RuntimeError:
+            request = None
 
-        state = extensions.get(DEVOPNESS_CLIENT_STATE_EXTENSION_KEY)
-        config = getattr(state, "config", None)
+        if request is not None:
+            extensions = getattr(request, "extensions", None)
+            if isinstance(extensions, dict):
+                state = extensions.get(DEVOPNESS_CLIENT_STATE_EXTENSION_KEY)
+                config = getattr(state, "config", None)
+
         return config
 
     def _is_strict_validation_mode(self) -> bool:

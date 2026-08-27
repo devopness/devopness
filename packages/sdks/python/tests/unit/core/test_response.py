@@ -135,6 +135,17 @@ class TestDevopnessResponse(unittest.TestCase):
 
         assert response.data is None
 
+    def test_devopness_response_without_originating_request(self) -> None:
+        response = httpx.Response(200, content=b'{"id":123}')
+
+        parsed_response: DevopnessResponse[DummyModel] = DevopnessResponse(
+            response,
+            DummyModel,
+        )
+
+        assert isinstance(parsed_response.data, DummyModel)
+        assert parsed_response.data.id == 123
+
     def test_devopness_response_with_action_id(self) -> None:
         response: DevopnessResponse[None] = DevopnessResponse(
             build_response(
@@ -288,3 +299,16 @@ class TestDevopnessResponseAsync(unittest.IsolatedAsyncioTestCase):
         assert data.id == "not-an-int"
         assert data.name == "Sample user"
         assert data["name"] == "Sample user"
+
+    async def test_devopness_response_async_without_originating_request(
+        self,
+    ) -> None:
+        response = httpx.Response(200, content=b'{"id":123}')
+
+        parsed_response: DevopnessResponse[DummyModel] = await DevopnessResponse.from_async(
+            response,
+            DummyModel,
+        )
+
+        assert isinstance(parsed_response.data, DummyModel)
+        assert parsed_response.data.id == 123
