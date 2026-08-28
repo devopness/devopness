@@ -14,10 +14,12 @@ type StyledProps = {
    *
    * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
    */
-  [Key in keyof Pick<
-    DropdownOption,
-    'activeBackgroundColor' | 'brokenSequence' | 'isActive' | 'color'
-  > as `$${Key}`]: DropdownOption[Key]
+  [
+    Key in keyof Pick<
+      DropdownOption,
+      'activeBackgroundColor' | 'brokenSequence' | 'isActive' | 'color'
+    > as `$${Key}`
+  ]: DropdownOption[Key]
 } & {
   disabled: DropdownOption['isDisabled']
 }
@@ -99,10 +101,12 @@ type ContentBadgeProps = {
    *
    * @see {@link https://styled-components.com/docs/api#transient-props | Styled Components - Transient props}
    */
-  [Key in keyof Pick<
-    NonNullable<DropdownOption['badge']>,
-    'backgroundColor'
-  > as `$${Key}`]: NonNullable<DropdownOption['badge']>[Key]
+  [
+    Key in keyof Pick<
+      NonNullable<DropdownOption['badge']>,
+      'backgroundColor'
+    > as `$${Key}`
+  ]: NonNullable<DropdownOption['badge']>[Key]
 }
 
 const ContentBadge = styled.span<Pick<ContentBadgeProps, '$backgroundColor'>>`
