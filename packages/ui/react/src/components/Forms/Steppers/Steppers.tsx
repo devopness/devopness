@@ -31,20 +31,31 @@ type StepperErrorResponseData = {
 }
 
 /**
- * Minimal subset of `react-hook-form` (v6) `UseFormMethods` used by this component.
- *
- * Declared locally so the design system stays free of a `react-hook-form`
- * dependency, while remaining structurally compatible with it.
+ * Generic function type for setting form field errors.
+ * Compatible with react-hook-form and other form libraries.
  */
-type StepperFormMethods<T> = {
-  formState: { errors: Record<string, unknown> }
-  getValues: () => T
-  handleSubmit: (
-    onValid: (data: T) => void
-  ) => (event?: React.BaseSyntheticEvent) => void | Promise<void>
-  setError: (name: any, error: { type: string; message: string }) => void
-  trigger: (name?: string | string[]) => Promise<boolean>
-}
+type SetErrorFunction =
+  | ((...args: any[]) => void)
+  | ((...args: never[]) => void)
+
+/**
+ * Generic function type for triggering field validation.
+ * Compatible with react-hook-form and other form libraries.
+ */
+type TriggerFunction = (fields?: any) => Promise<boolean>
+
+/**
+ * Generic function type for getting form values.
+ */
+type GetValuesFunction<T> = () => any
+
+/**
+ * Generic function type for handling form submission.
+ */
+type HandleSubmitFunction<T> = (
+  onValid: (data: any) => void,
+  onInvalid?: any
+) => (event?: React.BaseSyntheticEvent) => void | Promise<void>
 
 /**
  * Names of the events reported through `onTrackEvent`.
@@ -77,16 +88,35 @@ type StepperDataProps<T> = {
    * This property, which receives a list of field names that make up part of
    * each step of the form, is used to validate the fields for each step.
    */
-  validateFields: readonly (keyof T & string)[]
+  validateFields: readonly string[]
 }
 
 type StepFormProps<T> = {
-  /** [!] The features of this property belong to the `useForm` method
-   *
-   * This property is used to receive the methods and values that make up the
-   * context of the form.
+  /**
+   * Function to get all form values.
+   * Compatible with react-hook-form's getValues, Formik's values, or custom implementations.
    */
-  useFormMethods: StepperFormMethods<T>
+  getValues: GetValuesFunction<T>
+  /**
+   * Function to trigger field validation.
+   * Compatible with react-hook-form's trigger, Formik's validateForm, or custom implementations.
+   */
+  trigger: TriggerFunction
+  /**
+   * Function to set field errors.
+   * Compatible with react-hook-form's setError, Formik's setFieldError, or custom implementations.
+   */
+  setError?: SetErrorFunction
+  /**
+   * Object containing field errors.
+   * Compatible with react-hook-form's formState.errors, Formik's errors, or custom implementations.
+   */
+  errors: Record<string, unknown>
+  /**
+   * Function to handle form submission with validation.
+   * Compatible with react-hook-form's handleSubmit, Formik's handleSubmit, or custom implementations.
+   */
+  handleSubmit: HandleSubmitFunction<T>
   /**
    * This property is used to receive the list of steps in the form.
    */
@@ -233,7 +263,11 @@ const StepForm = <T,>({
   disabledCancel = false,
   hiddenCancelButton,
   submitting = false,
-  useFormMethods,
+  getValues,
+  trigger,
+  setError,
+  errors,
+  handleSubmit,
   error = null,
   success = null,
   externalStepValidation,
@@ -254,8 +288,7 @@ const StepForm = <T,>({
   const [fieldList, setFieldList] = useState<string[]>([])
   const [stepWithError, setStepWithError] = useState<boolean>(false)
 
-  const hasSomeInputError =
-    Object.keys(useFormMethods.formState.errors).length > 0
+  const hasSomeInputError = Object.keys(errors).length > 0
 
   const trackEvent = (event: StepperTrackEvent) => {
     if (!trackEvents) return
@@ -274,10 +307,13 @@ const StepForm = <T,>({
       const parsedName = splittedName[splittedName.length - 1]
 
       if (fieldList.includes(parsedName)) {
-        useFormMethods.setError(parsedName, {
-          type: 'api',
-          message: message[0],
-        })
+        setError?.(
+          parsedName as never,
+          {
+            type: 'api',
+            message: message[0],
+          } as never
+        )
       }
     })
   }, [error])
@@ -310,7 +346,7 @@ const StepForm = <T,>({
   }
 
   const getStepFieldsError = (stepFields: string[]) => {
-    const listKeysError = Object.keys(useFormMethods.formState.errors)
+    const listKeysError = Object.keys(errors)
 
     const verifyStepFieldsError = listKeysError.filter((fieldName) =>
       stepFields.includes(fieldName)
@@ -328,7 +364,7 @@ const StepForm = <T,>({
 
   const validateFormBeforeExecuteAction = async (action: () => void) => {
     const stepFields = getStepFields()
-    let isValid = await useFormMethods.trigger(stepFields)
+    let isValid = await trigger(stepFields)
 
     if (isValid && externalStepValidation) {
       isValid = externalStepValidation(stepCurrent)
@@ -438,7 +474,9 @@ const StepForm = <T,>({
 
   const handleDisplayAlertError = (errors: StepperErrorResponseData) => {
     if (errors?.message) {
-      const formattedErrors: Array<[string, string[]]> = isDefined(errors.errors)
+      const formattedErrors: Array<[string, string[]]> = isDefined(
+        errors.errors
+      )
         ? Array.isArray(errors.errors)
           ? errors.errors.reduce<Array<[string, string[]]>>(
               (accumulator, error) =>
@@ -491,9 +529,8 @@ const StepForm = <T,>({
     if (error?.errors && !Array.isArray(error.errors)) {
       for (const key in error.errors) {
         const splittedName = key.split('.')
-        const parsedName = splittedName[
-          splittedName.length - 1
-        ] as keyof T & string
+        const parsedName = splittedName[splittedName.length - 1] as keyof T &
+          string
 
         if (fieldList.includes(parsedName)) {
           const index = steppersData.findIndex((step) =>
@@ -510,7 +547,7 @@ const StepForm = <T,>({
 
   useEffect(() => {
     handleActionButtonInErrorStep()
-  }, [useFormMethods.formState, stepCurrent])
+  }, [errors, stepCurrent])
 
   useEffect(() => {
     if (error !== null) {
@@ -528,7 +565,7 @@ const StepForm = <T,>({
       throw new Error(`This component has a limit of ${MAX_STEPS} steps.`)
     } else {
       const fieldList: string[] = Object.keys(
-        useFormMethods.getValues() as Record<string, unknown>
+        getValues() as Record<string, unknown>
       )
       setFieldList(fieldList)
     }
@@ -536,7 +573,7 @@ const StepForm = <T,>({
 
   return (
     <StepperContainer>
-      <form onSubmit={useFormMethods.handleSubmit(onSubmitValidate)}>
+      <form onSubmit={handleSubmit(onSubmitValidate)}>
         {!isSingleStep && (
           <Stepper
             activeStep={stepCurrent}
@@ -611,6 +648,5 @@ export type {
   StepFormProps,
   StepperDataProps,
   StepperErrorResponseData,
-  StepperFormMethods,
   StepperTrackEvent,
 }

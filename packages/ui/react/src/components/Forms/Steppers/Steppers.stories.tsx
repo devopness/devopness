@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { StepForm } from './Steppers'
-import type { StepFormProps, StepperFormMethods } from './Steppers'
+import type { StepFormProps } from './Steppers'
 
 type FormValues = {
   name: string
@@ -11,34 +11,23 @@ type FormValues = {
 
 const values: FormValues = { name: '', email: '', token: '' }
 
-/**
- * Minimal in-memory stand-in for `react-hook-form`'s `useForm`, so the story
- * stays free of a form library dependency while exercising the real component.
- */
-const createFormMethods = (
-  errors: Record<string, unknown> = {}
-): StepperFormMethods<FormValues> => ({
-  formState: { errors },
-  getValues: () => values,
-  handleSubmit: (onValid) => (event) => {
-    event?.preventDefault()
-    onValid(values)
-  },
-  setError: () => {},
-  trigger: () => Promise.resolve(true),
-})
-
 const StepFormStory = (
   props: Partial<StepFormProps<FormValues>> & {
-    errors?: Record<string, unknown>
+    mockErrors?: Record<string, unknown>
   }
 ) => {
-  const { errors, ...stepFormProps } = props
-  const useFormMethods = createFormMethods(errors)
+  const { mockErrors = {}, ...stepFormProps } = props
 
   return (
     <StepForm<FormValues>
-      useFormMethods={useFormMethods}
+      getValues={() => values}
+      trigger={() => Promise.resolve(true)}
+      setError={() => {}}
+      errors={mockErrors}
+      handleSubmit={(onValid) => (event) => {
+        event?.preventDefault()
+        onValid(values)
+      }}
       steppersData={[
         {
           label: 'Account',

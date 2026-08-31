@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components'
 import { describe, expect, it, vi } from 'vitest'
 
 import { StepForm } from './Steppers'
-import type { StepperDataProps, StepperFormMethods } from './Steppers'
+import type { StepperDataProps } from './Steppers'
 
 type FormValues = {
   name: string
@@ -18,17 +18,27 @@ const theme = {}
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={theme}>{ui}</ThemeProvider>)
 
-const createFormMethods = (
-  overrides: Partial<StepperFormMethods<FormValues>> = {}
-): StepperFormMethods<FormValues> => ({
-  formState: { errors: {} },
+type FormMethodsOverrides = {
+  getValues?: () => FormValues
+  trigger?: (fields?: any) => Promise<boolean>
+  setError?: (...args: any[]) => void
+  errors?: Record<string, unknown>
+  handleSubmit?: (
+    onValid: (data: FormValues) => void
+  ) => (event?: React.BaseSyntheticEvent) => void | Promise<void>
+}
+
+const createFormMethods = (overrides: FormMethodsOverrides = {}) => ({
   getValues: () => ({ name: '', email: '', token: '' }),
-  handleSubmit: (onValid) => (event) => {
-    event?.preventDefault()
-    onValid({ name: '', email: '', token: '' })
-  },
-  setError: vi.fn(),
   trigger: vi.fn().mockResolvedValue(true),
+  setError: vi.fn(),
+  errors: {},
+  handleSubmit:
+    (onValid: (data: FormValues) => void) =>
+    (event?: React.BaseSyntheticEvent) => {
+      event?.preventDefault()
+      onValid({ name: '', email: '', token: '' })
+    },
   ...overrides,
 })
 
@@ -52,9 +62,10 @@ const steppersData: StepperDataProps<FormValues>[] = [
 
 describe('Steppers', () => {
   it('renders every step label', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
       />
     )
@@ -65,9 +76,10 @@ describe('Steppers', () => {
   })
 
   it('renders all step bodies, hiding the inactive ones', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
       />
     )
@@ -78,9 +90,10 @@ describe('Steppers', () => {
   })
 
   it('does not render the stepper header for a single step form', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={[steppersData[0]]}
       />
     )
@@ -89,9 +102,10 @@ describe('Steppers', () => {
   })
 
   it('shows Next on non-final steps and Confirm on the last step', () => {
+    const methods = createFormMethods()
     const { rerender } = renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
       />
     )
@@ -101,7 +115,7 @@ describe('Steppers', () => {
     rerender(
       <ThemeProvider theme={theme}>
         <StepForm<FormValues>
-          useFormMethods={createFormMethods()}
+          {...methods}
           steppersData={steppersData}
           initialStep={2}
         />
@@ -111,9 +125,10 @@ describe('Steppers', () => {
   })
 
   it('does not render the Previous button on the first step', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
       />
     )
@@ -122,9 +137,10 @@ describe('Steppers', () => {
   })
 
   it('advances to the next step when Next is clicked', async () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
       />
     )
@@ -138,9 +154,10 @@ describe('Steppers', () => {
   })
 
   it('goes back to the previous step when Previous is clicked', async () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         initialStep={1}
       />
@@ -154,13 +171,12 @@ describe('Steppers', () => {
   })
 
   it('does not advance when step validation fails', async () => {
-    const useFormMethods = createFormMethods({
-      trigger: vi.fn().mockResolvedValue(false),
-    })
+    const trigger = vi.fn().mockResolvedValue(false)
+    const methods = createFormMethods({ trigger })
 
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={useFormMethods}
+        {...methods}
         steppersData={steppersData}
       />
     )
@@ -168,17 +184,18 @@ describe('Steppers', () => {
     await userEvent.click(screen.getByText('Next'))
 
     await waitFor(() => {
-      expect(useFormMethods.trigger).toHaveBeenCalled()
+      expect(trigger).toHaveBeenCalled()
     })
     expect(screen.getByTestId('step2')).toHaveStyle('display: none')
   })
 
   it('does not advance when externalStepValidation returns false', async () => {
+    const methods = createFormMethods()
     const externalStepValidation = vi.fn().mockReturnValue(false)
 
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         externalStepValidation={externalStepValidation}
       />
@@ -193,11 +210,12 @@ describe('Steppers', () => {
   })
 
   it('calls onSubmit when the form is confirmed on the last step', async () => {
+    const methods = createFormMethods()
     const onSubmit = vi.fn()
 
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         initialStep={2}
         onSubmit={onSubmit}
@@ -216,11 +234,12 @@ describe('Steppers', () => {
   })
 
   it('calls onCancel when Cancel is clicked', async () => {
+    const methods = createFormMethods()
     const onCancel = vi.fn()
 
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         onCancel={onCancel}
       />
@@ -232,9 +251,10 @@ describe('Steppers', () => {
   })
 
   it('renders a Waiting button when waitingMode is enabled', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         initialStep={2}
         waitingMode
@@ -246,9 +266,10 @@ describe('Steppers', () => {
   })
 
   it('disables the Next and Cancel buttons through props', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         disabledNext
         disabledCancel
@@ -260,9 +281,10 @@ describe('Steppers', () => {
   })
 
   it('uses custom confirm button label and colors', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         initialStep={2}
         confirmButton={{ value: 'Create', backgroundColor: '#57b261' }}
@@ -273,9 +295,10 @@ describe('Steppers', () => {
   })
 
   it('uses the forward button label as fallback for Next', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         forwardButton={{
           value: 'Continue',
@@ -289,9 +312,10 @@ describe('Steppers', () => {
   })
 
   it('renders an alert with the API error message', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         error={{ message: 'Something went wrong' }}
       />
@@ -301,9 +325,10 @@ describe('Steppers', () => {
   })
 
   it('includes non form field errors in the alert', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         error={{
           message: 'Validation failed',
@@ -317,9 +342,10 @@ describe('Steppers', () => {
   })
 
   it('redirects to the step containing the errored field', async () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         error={{
           message: 'Validation failed',
@@ -335,10 +361,11 @@ describe('Steppers', () => {
 
   it('maps API field errors onto the form through setError', async () => {
     const setError = vi.fn()
+    const methods = createFormMethods({ setError })
 
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods({ setError })}
+        {...methods}
         steppersData={steppersData}
         error={{
           message: 'Validation failed',
@@ -356,24 +383,27 @@ describe('Steppers', () => {
   })
 
   it('hides the Cancel button when hiddenCancelButton is set', () => {
+    const methods = createFormMethods()
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         hiddenCancelButton
       />
     )
 
-    expect(screen.getByText('Cancel').closest('div')?.parentElement)
-      .toHaveStyle('display: none')
+    expect(
+      screen.getByText('Cancel').closest('div')?.parentElement
+    ).toHaveStyle('display: none')
   })
 
   it('notifies the current step through updateCurrentStep', async () => {
+    const methods = createFormMethods()
     const updateCurrentStep = vi.fn()
 
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         updateCurrentStep={updateCurrentStep}
       />
@@ -389,11 +419,12 @@ describe('Steppers', () => {
   })
 
   it('reports tracked events when trackEvents is enabled', async () => {
+    const methods = createFormMethods()
     const onTrackEvent = vi.fn()
 
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         onTrackEvent={onTrackEvent}
       />
@@ -415,11 +446,12 @@ describe('Steppers', () => {
   })
 
   it('does not report button events when trackEvents is disabled', async () => {
+    const methods = createFormMethods()
     const onTrackEvent = vi.fn()
 
     renderWithTheme(
       <StepForm<FormValues>
-        useFormMethods={createFormMethods()}
+        {...methods}
         steppersData={steppersData}
         trackEvents={false}
         onTrackEvent={onTrackEvent}
