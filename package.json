@@ -8,14 +8,14 @@
   ],
   "dependencies": {
     "@changesets/changelog-github": "^1.0.0",
-    "@changesets/cli": "^3.0.0"
+    "@changesets/cli": "^3.0.1"
   },
   "scripts": {
     "format:changelogs": "vp fmt \"packages/*/*/CHANGELOG.md\""
   },
   "devDependencies": {
     "jsdom": "^30.0.1",
-    "vite-plus": "0.2.9"
+    "vite-plus": "0.3.0"
   },
   "overrides": {
     "babel-plugin-istanbul": {

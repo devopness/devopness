@@ -61,16 +61,16 @@
     "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.40.1",
+    "@openapitools/openapi-generator-cli": "^2.41.0",
     "axios-mock-adapter": "^2.1.0",
     "husky": "9.1.7",
-    "vite-plus": "0.2.9",
+    "vite-plus": "0.3.0",
     "typescript": "^7.0.2",
     "typedoc": "^0.28.20"
   },
   "dependencies": {
     "@types/parse-link-header": "^2.0.3",
-    "axios": "^1.19.0",
+    "axios": "^1.20.0",
     "parse-link-header": "^2.0.0"
   }
 }

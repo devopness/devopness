@@ -2,6 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
+from ..base import DevopnessClientState
 from ..generated.api.team_invitations_api import (
     TeamInvitationsApiService,
     TeamInvitationsApiServiceAsync,
@@ -50,11 +51,14 @@ class TeamService(
     invitations: TeamInvitationService
     members: TeamsMembersApiService
 
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, state: DevopnessClientState | None = None) -> None:
+        """
+        Bind the team service and its nested services to one client state.
+        """
+        super().__init__(state)
 
-        self.invitations = TeamInvitationService()
-        self.members = TeamsMembersApiService()
+        self.invitations = TeamInvitationService(self._state)
+        self.members = TeamsMembersApiService(self._state)
 
 
 class TeamServiceAsync(
@@ -65,8 +69,11 @@ class TeamServiceAsync(
     invitations: TeamInvitationServiceAsync
     members: TeamsMembersApiServiceAsync
 
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, state: DevopnessClientState | None = None) -> None:
+        """
+        Bind the async team service and its nested services to one client state.
+        """
+        super().__init__(state)
 
-        self.invitations = TeamInvitationServiceAsync()
-        self.members = TeamsMembersApiServiceAsync()
+        self.invitations = TeamInvitationServiceAsync(self._state)
+        self.members = TeamsMembersApiServiceAsync(self._state)

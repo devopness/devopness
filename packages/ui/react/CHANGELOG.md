@@ -1,5 +1,29 @@
 # @devopness/ui-react
 
+## 2.202.1
+
+### Patch Changes
+
+- [#3505](https://github.com/devopness/devopness/pull/3505) [`eb83938`](https://github.com/devopness/devopness/commit/eb839388046cd00e60ec3ec88ca6e40434cd1c9f) Thanks [@therealrinku](https://github.com/therealrinku)! - Update the type of `AutocompleteProps` for Autocomplete component for support of autoCompleteProps like getOptionLabel and renderOption
+
+## 2.202.0
+
+### Minor Changes
+
+- [#3496](https://github.com/devopness/devopness/pull/3496) [`8924bed`](https://github.com/devopness/devopness/commit/8924bedae250c301d8ef89956854286590c7c516) Thanks [@therealrinku](https://github.com/therealrinku)! - Added behaviour to auto select first option if there is only one option in `Select` component and additional `shouldAutoSelectSingleOption` prop to control that behaviour
+
+## 2.201.0
+
+### Minor Changes
+
+- [#3488](https://github.com/devopness/devopness/pull/3488) [`f485387`](https://github.com/devopness/devopness/commit/f48538729c6c3eb7d06d4c93efbdee5b4ee82808) Thanks [@therealrinku](https://github.com/therealrinku)! - Added new `TokenStatus` primitive component that shows token status with appropriate icon and color
+
+## 2.200.1
+
+### Patch Changes
+
+- [#3482](https://github.com/devopness/devopness/pull/3482) [`9850b05`](https://github.com/devopness/devopness/commit/9850b054503a2e428b54f3b7eef34a07db2230d3) Thanks [@therealrinku](https://github.com/therealrinku)! - Decrease the horizontal padding to 16px from 30px for mobile view (screen width < 768px) for `Container` component and make the grid container more wider as well.
+
 ## 2.200.0
 
 ### Minor Changes

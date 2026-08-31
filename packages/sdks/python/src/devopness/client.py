@@ -2,10 +2,7 @@
 Devopness API Python SDK - Painless essential DevOps to everyone
 """
 
-from .base import (
-    DevopnessBaseService,
-    DevopnessBaseServiceAsync,
-)
+from .base import DevopnessClientState
 from .client_config import (
     DevopnessClientConfig,
     DevopnessClientConfigDict,
@@ -159,56 +156,82 @@ class DevopnessClient:
         self,
         config: DevopnessClientConfig | DevopnessClientConfigDict | None = None,
     ) -> None:
+        """
+        Build a synchronous Devopness client with isolated per-instance state.
+        """
+        self._state = self._build_state(config)
+
+        self.actions = ActionService(self._state)
+        self.api_tokens = APITokenService(self._state)
+        self.applications = ApplicationService(self._state)
+        self.credentials = CredentialService(self._state)
+        self.cron_jobs = CronJobService(self._state)
+        self.daemons = DaemonService(self._state)
+        self.environments = EnvironmentService(self._state)
+        self.hooks = HookService(self._state)
+        self.network_rules = NetworkRuleService(self._state)
+        self.networks = NetworkService(self._state)
+        self.organizations = OrganizationService(self._state)
+        self.pipelines = PipelineService(self._state)
+        self.projects = ProjectService(self._state)
+        self.resource_events = ResourceEventService(self._state)
+        self.resource_links = ResourceLinkService(self._state)
+        self.roles = RoleService(self._state)
+        self.servers = ServerService(self._state)
+        self.services = ServiceService(self._state)
+        self.social_accounts = SocialAccountService(self._state)
+        self.ssh_keys = SSHKeyService(self._state)
+        self.ssl_certificates = SSLCertificateService(self._state)
+        self.static = StaticService(self._state)
+        self.subnets = SubnetService(self._state)
+        self.teams = TeamService(self._state)
+        self.users = UserService(self._state)
+        self.variables = VariableService(self._state)
+        self.virtual_hosts = VirtualHostService(self._state)
+
+    @staticmethod
+    def _build_state(
+        config: DevopnessClientConfig | DevopnessClientConfigDict | None,
+    ) -> DevopnessClientState:
+        """
+        Normalize user input into an isolated client state object.
+        """
         if config is None:
-            config = DevopnessClientConfig()
+            normalized_config = DevopnessClientConfig()
         elif isinstance(config, dict):
-            config = DevopnessClientConfig.from_dict(config)
+            normalized_config = DevopnessClientConfig.from_dict(config)
+        else:
+            normalized_config = config
 
-        DevopnessBaseService._config = config
-
-        self.actions = ActionService()
-        self.api_tokens = APITokenService()
-        self.applications = ApplicationService()
-        self.credentials = CredentialService()
-        self.cron_jobs = CronJobService()
-        self.daemons = DaemonService()
-        self.environments = EnvironmentService()
-        self.hooks = HookService()
-        self.network_rules = NetworkRuleService()
-        self.networks = NetworkService()
-        self.organizations = OrganizationService()
-        self.pipelines = PipelineService()
-        self.projects = ProjectService()
-        self.resource_events = ResourceEventService()
-        self.resource_links = ResourceLinkService()
-        self.roles = RoleService()
-        self.servers = ServerService()
-        self.services = ServiceService()
-        self.social_accounts = SocialAccountService()
-        self.ssh_keys = SSHKeyService()
-        self.ssl_certificates = SSLCertificateService()
-        self.static = StaticService()
-        self.subnets = SubnetService()
-        self.teams = TeamService()
-        self.users = UserService()
-        self.variables = VariableService()
-        self.virtual_hosts = VirtualHostService()
+        normalized_config = normalized_config.model_copy(deep=True)
+        state = DevopnessClientState(config=normalized_config)
+        return state
 
     def __set_api_token(self, api_token: str) -> None:
-        # pylint: disable=protected-access
-        DevopnessBaseService._config.api_token = api_token
+        """
+        Update the API token for this client instance.
+        """
+        self._state.config.api_token = api_token
 
     def __get_api_token(self) -> str | None:
-        # pylint: disable=protected-access
-        return DevopnessBaseService._config.api_token
+        """
+        Return the API token for this client instance.
+        """
+        api_token = self._state.config.api_token
+        return api_token
 
     def __set_access_token(self, access_token: str) -> None:
-        # pylint: disable=protected-access
-        DevopnessBaseService._access_token = access_token
+        """
+        Update the access token for this client instance.
+        """
+        self._state.access_token = access_token
 
     def __get_access_token(self) -> str | None:
-        # pylint: disable=protected-access
-        return DevopnessBaseService._access_token
+        """
+        Return the access token for this client instance.
+        """
+        access_token = self._state.access_token
+        return access_token
 
     api_token = property(fset=__set_api_token, fget=__get_api_token)
     access_token = property(fset=__set_access_token, fget=__get_access_token)
@@ -251,56 +274,50 @@ class DevopnessClientAsync:
         self,
         config: DevopnessClientConfig | DevopnessClientConfigDict | None = None,
     ) -> None:
-        if config is None:
-            config = DevopnessClientConfig()
-        elif isinstance(config, dict):
-            config = DevopnessClientConfig.from_dict(config)
+        """
+        Build an asynchronous Devopness client with isolated per-instance state.
+        """
+        self._state = DevopnessClient._build_state(config)
 
-        DevopnessBaseServiceAsync._config = config
-
-        self.actions = ActionServiceAsync()
-        self.api_tokens = APITokenServiceAsync()
-        self.applications = ApplicationServiceAsync()
-        self.credentials = CredentialServiceAsync()
-        self.cron_jobs = CronJobServiceAsync()
-        self.daemons = DaemonServiceAsync()
-        self.environments = EnvironmentServiceAsync()
-        self.hooks = HookServiceAsync()
-        self.network_rules = NetworkRuleServiceAsync()
-        self.networks = NetworkServiceAsync()
-        self.organizations = OrganizationServiceAsync()
-        self.pipelines = PipelineServiceAsync()
-        self.projects = ProjectServiceAsync()
-        self.resource_events = ResourceEventServiceAsync()
-        self.resource_links = ResourceLinkServiceAsync()
-        self.roles = RoleServiceAsync()
-        self.servers = ServerServiceAsync()
-        self.services = ServiceServiceAsync()
-        self.social_accounts = SocialAccountServiceAsync()
-        self.ssh_keys = SSHKeyServiceAsync()
-        self.ssl_certificates = SSLCertificateServiceAsync()
-        self.static = StaticServiceAsync()
-        self.subnets = SubnetServiceAsync()
-        self.teams = TeamServiceAsync()
-        self.users = UserServiceAsync()
-        self.variables = VariableServiceAsync()
-        self.virtual_hosts = VirtualHostServiceAsync()
+        self.actions = ActionServiceAsync(self._state)
+        self.api_tokens = APITokenServiceAsync(self._state)
+        self.applications = ApplicationServiceAsync(self._state)
+        self.credentials = CredentialServiceAsync(self._state)
+        self.cron_jobs = CronJobServiceAsync(self._state)
+        self.daemons = DaemonServiceAsync(self._state)
+        self.environments = EnvironmentServiceAsync(self._state)
+        self.hooks = HookServiceAsync(self._state)
+        self.network_rules = NetworkRuleServiceAsync(self._state)
+        self.networks = NetworkServiceAsync(self._state)
+        self.organizations = OrganizationServiceAsync(self._state)
+        self.pipelines = PipelineServiceAsync(self._state)
+        self.projects = ProjectServiceAsync(self._state)
+        self.resource_events = ResourceEventServiceAsync(self._state)
+        self.resource_links = ResourceLinkServiceAsync(self._state)
+        self.roles = RoleServiceAsync(self._state)
+        self.servers = ServerServiceAsync(self._state)
+        self.services = ServiceServiceAsync(self._state)
+        self.social_accounts = SocialAccountServiceAsync(self._state)
+        self.ssh_keys = SSHKeyServiceAsync(self._state)
+        self.ssl_certificates = SSLCertificateServiceAsync(self._state)
+        self.static = StaticServiceAsync(self._state)
+        self.subnets = SubnetServiceAsync(self._state)
+        self.teams = TeamServiceAsync(self._state)
+        self.users = UserServiceAsync(self._state)
+        self.variables = VariableServiceAsync(self._state)
+        self.virtual_hosts = VirtualHostServiceAsync(self._state)
 
     def __set_api_token(self, api_token: str) -> None:
-        # pylint: disable=protected-access
-        DevopnessBaseServiceAsync._config.api_token = api_token
+        self._state.config.api_token = api_token
 
     def __get_api_token(self) -> str | None:
-        # pylint: disable=protected-access
-        return DevopnessBaseServiceAsync._config.api_token
+        return self._state.config.api_token
 
     def __set_access_token(self, access_token: str) -> None:
-        # pylint: disable=protected-access
-        DevopnessBaseServiceAsync._access_token = access_token
+        self._state.access_token = access_token
 
     def __get_access_token(self) -> str | None:
-        # pylint: disable=protected-access
-        return DevopnessBaseServiceAsync._access_token
+        return self._state.access_token
 
     api_token = property(fset=__set_api_token, fget=__get_api_token)
     access_token = property(fset=__set_access_token, fget=__get_access_token)
