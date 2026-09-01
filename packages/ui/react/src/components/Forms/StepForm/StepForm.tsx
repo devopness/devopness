@@ -308,8 +308,14 @@ const StepForm = <T,>({
 
   // Reset to valid step if steppersData changes and current step becomes invalid
   useEffect(() => {
-    if (stepCurrent >= steppersData.length && steppersData.length > 0) {
-      setStepCurrent(steppersData.length - 1)
+    if (stepCurrent >= steppersData.length) {
+      // If there are steps available, go to the last one
+      if (steppersData.length > 0) {
+        setStepCurrent(steppersData.length - 1)
+      } else {
+        // If steps array is empty, reset to 0 to prevent infinite increment
+        setStepCurrent(0)
+      }
     }
   }, [steppersData.length, stepCurrent])
 
@@ -395,6 +401,8 @@ const StepForm = <T,>({
   }
 
   const handleNext = () => {
+    if (steppersData.length === 0) return
+
     trackEvent({
       name: 'Next Step',
       stepName: getCurrentStepLabel(),
@@ -419,6 +427,9 @@ const StepForm = <T,>({
 
   const handleNextAndConfirmButton = () => {
     const numberSteps = steppersData.length
+
+    if (numberSteps === 0) return null
+
     const isLastStep = stepCurrent + 1 === numberSteps || numberSteps === 1
     const confirmButton = (
       <FormActionButton
@@ -619,7 +630,7 @@ const StepForm = <T,>({
             </FormActionButton>
           </CancelButton>
           <PreviousButtons>
-            {stepCurrent > 0 && (
+            {stepCurrent > 0 && steppersData.length > 0 && (
               <FormActionButton
                 key="back"
                 type="button"
