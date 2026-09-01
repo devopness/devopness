@@ -534,7 +534,7 @@ const StepForm = <T,>({
     } else if (!hasSomeInputError) {
       setFormError(null)
     }
-  }, [error, success, hasSomeInputError])
+  }, [error, success, hasSomeInputError, fieldList])
 
   useEffect(() => {
     if (steppersData.length > MAX_STEPS) {
