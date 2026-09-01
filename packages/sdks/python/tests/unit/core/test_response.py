@@ -120,13 +120,16 @@ class TestDevopnessResponse(unittest.TestCase):
         assert response.data == 42
 
     def test_devopness_response_with_float(self) -> None:
+        expected_value = float("3.14")
         response: DevopnessResponse[float] = DevopnessResponse(
-            build_response(b"3.14", state=self.strict_state),
+            build_response(
+                str(expected_value).encode("utf-8"), state=self.strict_state
+            ),
             float,
         )
 
         assert isinstance(response.data, float)
-        assert math.isclose(response.data, 3.14)
+        assert math.isclose(response.data, expected_value)
 
     def test_devopness_response_with_empty_body(self) -> None:
         response: DevopnessResponse[None] = DevopnessResponse(

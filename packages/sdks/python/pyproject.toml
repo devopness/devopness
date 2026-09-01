@@ -68,7 +68,7 @@ exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
 [tool.poetry.group.dev.dependencies]
 openapi-generator-cli = { version = "7.25.0", markers = "python_version < '4.0'" }
-ruff = "^0.16.4"
+ruff = "^0.16.5"
 mypy = "^2.3.1"
 
 [tool.ruff]
@@ -108,6 +108,7 @@ ignore = [
   "line-too-long",                 # Line too long
   "non-pep604-annotation-union",   # Use `X | Y` for type annotations (auto-generated code uses Union)
   "builtin-argument-shadowing",    # Shadowing builtin argument
+  "replace-str-enum",              # Generated enums intentionally inherit from str and Enum
 ]
 "src/devopness/generated/**/__init__.py" = [
   "unused-import", # Module imported but unused
