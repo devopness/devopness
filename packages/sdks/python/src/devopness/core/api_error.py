@@ -87,9 +87,7 @@ class DevopnessApiError(DevopnessSdkError):
             lines.append("Errors:")
 
             for field, errors in self.errors.items():
-                lines.extend(
-                    [f"  - {field}:", *[f"      {error}" for error in errors]]
-                )
+                lines.extend([f"  - {field}:", *[f"      {error}" for error in errors]])
 
         return "\n".join(lines)
 

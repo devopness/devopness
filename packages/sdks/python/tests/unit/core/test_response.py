@@ -122,7 +122,9 @@ class TestDevopnessResponse(unittest.TestCase):
     def test_devopness_response_with_float(self) -> None:
         expected_value = float("3.14")
         response: DevopnessResponse[float] = DevopnessResponse(
-            build_response(str(expected_value).encode("utf-8"), state=self.strict_state),
+            build_response(
+                str(expected_value).encode("utf-8"), state=self.strict_state
+            ),
             float,
         )
 
