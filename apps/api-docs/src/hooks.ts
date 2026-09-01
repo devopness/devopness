@@ -368,13 +368,16 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
             const body = JSON.parse(transaction.request.body);
             if (body.hostname) {
                 transaction.request.body = "";
-                const project = fixtures.get<Identifiable>('project');
-                if (project) {
-                    const path = `/dev-tests/fake-server/${project.id}/${body.hostname}`;
+                const environment = fixtures.get<Identifiable>('environment');
+                if (environment) {
+                    const path = `/internal/test-fixtures/server-fixture`;
                     hooks.log(`${tag} rewrite path '${transaction.fullPath}' => '${path}'`);
                     transaction.fullPath = path;
+                    transaction.request.body = JSON.stringify({
+                        environment_id: environment.id,
+                    });
                 } else {
-                    hooks.log(`${tag} transaction '${transaction.id}' requires 'project' fixture`);
+                    hooks.log(`${tag} transaction '${transaction.id}' requires 'environment' fixture`);
                 }
             }
         }
@@ -448,9 +451,10 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         transaction.expected.body = "";
         transaction.expected.bodySchema = {};
 
-        transaction.fullPath = `/dev-tests/fake-credentials/organization/${organization.id}`;
+        transaction.fullPath = `/internal/test-fixtures/credential-fixture`;
 
         transaction.request.body = JSON.stringify({
+          organization_id: organization.id,
           cloud: {
             name: "fake-cloud-credential",
             access_key: env.CREDENTIAL_AWS_ACCESS_KEY_ID,
@@ -466,8 +470,8 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         hooks.log(`:: ${tag} creating credentials...`);
     }
 
-    // After creating credentials, we need to save them in the fixture. The endpoint
-    // dev-tests/fake-credentials returns two credentials: one for the source provider
+    // After creating credentials, we need to save them in the fixture.
+    // The endpoint returns two credentials: one for the source provider
     // and another for the cloud provider. The first one in the array is the cloud-
     // provider credential, which is also used to update the credential.
     const afterCreateCredential = (transaction: Transaction) => {
