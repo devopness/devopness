@@ -271,6 +271,13 @@ const StepForm = <T,>({
     onTrackEvent?.(event)
   }
 
+  const getCurrentStepLabel = () => {
+    const currentStep = steppersData[stepCurrent]
+    if (!currentStep) return `step-${stepCurrent}`
+
+    return currentStep.label
+  }
+
   /**
    * Maps API field errors onto the form fields, mirroring the
    * `useFormError` hook behavior.
@@ -295,9 +302,9 @@ const StepForm = <T,>({
   }, [error, fieldList, setError])
 
   useEffect(() => {
-    onTrackEvent?.({
+    trackEvent({
       name: 'Show Step',
-      stepName: steppersData[stepCurrent].label,
+      stepName: getCurrentStepLabel(),
     })
     updateCurrentStep && updateCurrentStep(stepCurrent)
   }, [stepCurrent, updateCurrentStep])
@@ -354,7 +361,7 @@ const StepForm = <T,>({
   const handleCancel = () => {
     trackEvent({
       name: 'Cancel Form',
-      stepName: steppersData[stepCurrent].label,
+      stepName: getCurrentStepLabel(),
     })
     onCancel()
   }
@@ -362,7 +369,7 @@ const StepForm = <T,>({
   const handlePrev = () => {
     trackEvent({
       name: 'Previous Step',
-      stepName: steppersData[stepCurrent].label,
+      stepName: getCurrentStepLabel(),
     })
     setStepCurrent((stepCurrent) => stepCurrent - 1)
   }
@@ -378,7 +385,7 @@ const StepForm = <T,>({
   const handleNext = () => {
     trackEvent({
       name: 'Next Step',
-      stepName: steppersData[stepCurrent].label,
+      stepName: getCurrentStepLabel(),
     })
     const next = () => setStepCurrent((stepCurrent: number) => stepCurrent + 1)
     validateFormBeforeExecuteAction(next)
@@ -477,7 +484,7 @@ const StepForm = <T,>({
         ))
       trackEvent({
         name: 'Form Error',
-        stepName: steppersData[stepCurrent].label,
+        stepName: getCurrentStepLabel(),
         errorMessage: errors.message || 'An error occurred!',
       })
       return (
