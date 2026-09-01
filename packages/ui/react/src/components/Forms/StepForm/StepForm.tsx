@@ -256,8 +256,13 @@ const StepForm = <T,>({
   onTrackEvent,
 }: StepFormProps<T>): JSX.Element => {
   const isSingleStep = steppersData.length === 1
-  /** Step controls */
-  const [stepCurrent, setStepCurrent] = useState<number>(initialStep)
+
+  const validatedInitialStep = Math.max(
+    0,
+    Math.min(initialStep, steppersData.length - 1)
+  )
+
+  const [stepCurrent, setStepCurrent] = useState<number>(validatedInitialStep)
   const [formError, setFormError] = useState<StepperErrorResponseData | null>(
     error
   )
@@ -300,6 +305,13 @@ const StepForm = <T,>({
       }
     })
   }, [error, fieldList, setError])
+
+  // Reset to valid step if steppersData changes and current step becomes invalid
+  useEffect(() => {
+    if (stepCurrent >= steppersData.length && steppersData.length > 0) {
+      setStepCurrent(steppersData.length - 1)
+    }
+  }, [steppersData.length, stepCurrent])
 
   useEffect(() => {
     trackEvent({
