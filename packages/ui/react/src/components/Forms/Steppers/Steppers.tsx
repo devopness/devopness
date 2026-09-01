@@ -47,13 +47,13 @@ type TriggerFunction = (fields?: any) => Promise<boolean>
 /**
  * Generic function type for getting form values.
  */
-type GetValuesFunction<T> = () => any
+type GetValuesFunction<T = any> = () => T
 
 /**
  * Generic function type for handling form submission.
  */
-type HandleSubmitFunction<T> = (
-  onValid: (data: any) => void,
+type HandleSubmitFunction<T = any> = (
+  onValid: (data: T) => void,
   onInvalid?: any
 ) => (event?: React.BaseSyntheticEvent) => void | Promise<void>
 
@@ -73,7 +73,7 @@ type StyleStepIconProps = {
   icon: React.ReactNode
 }
 
-type StepperDataProps<T> = {
+type StepperDataProps<T = any> = {
   /**
    * This property receives a description below the stage number,
    * helping to identify the stage of the form.
@@ -88,7 +88,7 @@ type StepperDataProps<T> = {
    * This property, which receives a list of field names that make up part of
    * each step of the form, is used to validate the fields for each step.
    */
-  validateFields: readonly string[]
+  validateFields: T extends Record<string, any> ? readonly (keyof T | string)[] : readonly string[]
 }
 
 type StepFormProps<T> = {
@@ -290,6 +290,11 @@ const StepForm = <T,>({
 
   const hasSomeInputError = Object.keys(errors).length > 0
 
+  const getCurrentStepLabel = (): string => {
+    const currentStepData = steppersData[stepCurrent]
+    return currentStepData?.label || `Step ${stepCurrent + 1}`
+  }
+
   const trackEvent = (event: StepperTrackEvent) => {
     if (!trackEvents) return
     onTrackEvent?.(event)
@@ -301,6 +306,7 @@ const StepForm = <T,>({
    */
   useEffect(() => {
     if (!isDefined(error?.errors) || Array.isArray(error.errors)) return
+    if (fieldList.length === 0) return
 
     Object.entries(error.errors).forEach(([name, message]) => {
       const splittedName = name.split('.')
@@ -316,13 +322,16 @@ const StepForm = <T,>({
         )
       }
     })
-  }, [error])
+  }, [error, fieldList])
 
   useEffect(() => {
-    onTrackEvent?.({
-      name: 'Show Step',
-      stepName: steppersData[stepCurrent].label,
-    })
+    const currentStepData = steppersData[stepCurrent]
+    if (currentStepData) {
+      trackEvent({
+        name: 'Show Step',
+        stepName: currentStepData.label,
+      })
+    }
     updateCurrentStep && updateCurrentStep(stepCurrent)
   }, [stepCurrent, updateCurrentStep])
 
@@ -338,9 +347,9 @@ const StepForm = <T,>({
 
     const { validateFields } = currentStepData
 
-    const stepFields: string[] = validateFields.filter((fieldName) =>
-      fieldList.includes(fieldName)
-    )
+    const stepFields = validateFields.filter((fieldName) =>
+      fieldList.includes(String(fieldName))
+    ) as string[]
 
     return stepFields
   }
@@ -378,7 +387,7 @@ const StepForm = <T,>({
   const handleCancel = () => {
     trackEvent({
       name: 'Cancel Form',
-      stepName: steppersData[stepCurrent].label,
+      stepName: getCurrentStepLabel(),
     })
     onCancel()
   }
@@ -386,7 +395,7 @@ const StepForm = <T,>({
   const handlePrev = () => {
     trackEvent({
       name: 'Previous Step',
-      stepName: steppersData[stepCurrent].label,
+      stepName: getCurrentStepLabel(),
     })
     setStepCurrent((stepCurrent) => stepCurrent - 1)
   }
@@ -402,7 +411,7 @@ const StepForm = <T,>({
   const handleNext = () => {
     trackEvent({
       name: 'Next Step',
-      stepName: steppersData[stepCurrent].label,
+      stepName: getCurrentStepLabel(),
     })
     const next = () => setStepCurrent((stepCurrent: number) => stepCurrent + 1)
     validateFormBeforeExecuteAction(next)
@@ -501,7 +510,7 @@ const StepForm = <T,>({
         ))
       trackEvent({
         name: 'Form Error',
-        stepName: steppersData[stepCurrent].label,
+        stepName: getCurrentStepLabel(),
         errorMessage: errors.message || 'An error occurred!',
       })
       return (
