@@ -101,9 +101,9 @@ describe('Steppers', () => {
     expect(screen.queryByText('Account')).toBeNull()
   })
 
-  it('shows Next on non-final steps and Confirm on the last step', () => {
+  it('shows Next on non-final steps and Confirm on the last step', async () => {
     const methods = createFormMethods()
-    const { rerender } = renderWithTheme(
+    renderWithTheme(
       <StepForm<FormValues>
         {...methods}
         steppersData={steppersData}
@@ -112,16 +112,13 @@ describe('Steppers', () => {
     expect(screen.getByText('Next')).toBeInTheDocument()
     expect(screen.queryByText('Confirm')).toBeNull()
 
-    rerender(
-      <ThemeProvider theme={theme}>
-        <StepForm<FormValues>
-          {...methods}
-          steppersData={steppersData}
-          initialStep={2}
-        />
-      </ThemeProvider>
-    )
-    expect(screen.getByText('Confirm')).toBeInTheDocument()
+    // Navigate to the last step
+    await userEvent.click(screen.getByText('Next'))
+    await userEvent.click(screen.getByText('Next'))
+
+    await waitFor(() => {
+      expect(screen.getByText('Confirm')).toBeInTheDocument()
+    })
   })
 
   it('does not render the Previous button on the first step', () => {
@@ -342,7 +339,60 @@ describe('Steppers', () => {
   })
 
   it('redirects to the step containing the errored field', async () => {
-    const methods = createFormMethods()
+    const methods = createFormMethods({
+      getValues: () => ({
+        name: 'John',
+        email: 'john@example.com',
+        token: '123',
+      }),
+    })
+
+    // Start at the last step without error first
+    const { rerender } = renderWithTheme(
+      <StepForm<FormValues>
+        {...methods}
+        steppersData={steppersData}
+        initialStep={2}
+      />
+    )
+
+    // Verify we're on step 3
+    expect(screen.getByTestId('step3')).not.toHaveStyle('display: none')
+
+    // Now rerender with error to trigger redirect
+    rerender(
+      <ThemeProvider theme={theme}>
+        <StepForm<FormValues>
+          {...methods}
+          steppersData={steppersData}
+          initialStep={2}
+          error={{
+            message: 'Validation failed',
+            errors: { name: ['is invalid'] },
+          }}
+        />
+      </ThemeProvider>
+    )
+
+    // Should redirect back to step 1 (Contact) where name field is
+    await waitFor(() => {
+      expect(screen.getByTestId('step2')).toHaveStyle('display: none')
+    })
+    expect(screen.getByTestId('step1')).not.toHaveStyle('display: none')
+    expect(screen.getByTestId('step3')).toHaveStyle('display: none')
+  })
+
+  it('maps API field errors onto the form through setError', async () => {
+    const setError = vi.fn()
+    const methods = createFormMethods({
+      setError,
+      getValues: () => ({
+        name: 'John',
+        email: 'john@example.com',
+        token: '123',
+      }),
+    })
+
     renderWithTheme(
       <StepForm<FormValues>
         {...methods}
@@ -350,26 +400,6 @@ describe('Steppers', () => {
         error={{
           message: 'Validation failed',
           errors: { email: ['is invalid'] },
-        }}
-      />
-    )
-
-    await waitFor(() => {
-      expect(screen.getByTestId('step2')).not.toHaveStyle('display: none')
-    })
-  })
-
-  it('maps API field errors onto the form through setError', async () => {
-    const setError = vi.fn()
-    const methods = createFormMethods({ setError })
-
-    renderWithTheme(
-      <StepForm<FormValues>
-        {...methods}
-        steppersData={steppersData}
-        error={{
-          message: 'Validation failed',
-          errors: { 'user.email': ['is invalid'] },
         }}
       />
     )

@@ -292,7 +292,7 @@ const StepForm = <T,>({
         )
       }
     })
-  }, [error])
+  }, [error, fieldList, setError])
 
   useEffect(() => {
     onTrackEvent?.({
