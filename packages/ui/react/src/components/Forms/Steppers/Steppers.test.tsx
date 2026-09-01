@@ -42,7 +42,7 @@ const createFormMethods = (overrides: FormMethodsOverrides = {}) => ({
   ...overrides,
 })
 
-const steppersData: StepperDataProps<FormValues>[] = [
+const steppersData: StepperDataProps[] = [
   {
     label: 'Account',
     component: <div>Account step</div>,

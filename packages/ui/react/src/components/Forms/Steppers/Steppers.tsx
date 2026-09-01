@@ -31,33 +31,6 @@ type StepperErrorResponseData = {
 }
 
 /**
- * Generic function type for setting form field errors.
- * Compatible with react-hook-form and other form libraries.
- */
-type SetErrorFunction =
-  | ((...args: any[]) => void)
-  | ((...args: never[]) => void)
-
-/**
- * Generic function type for triggering field validation.
- * Compatible with react-hook-form and other form libraries.
- */
-type TriggerFunction = (fields?: any) => Promise<boolean>
-
-/**
- * Generic function type for getting form values.
- */
-type GetValuesFunction<T = any> = () => T
-
-/**
- * Generic function type for handling form submission.
- */
-type HandleSubmitFunction<T = any> = (
-  onValid: (data: T) => void,
-  onInvalid?: any
-) => (event?: React.BaseSyntheticEvent) => void | Promise<void>
-
-/**
  * Names of the events reported through `onTrackEvent`.
  */
 type StepperTrackEvent =
@@ -73,7 +46,7 @@ type StyleStepIconProps = {
   icon: React.ReactNode
 }
 
-type StepperDataProps<T = any> = {
+type StepperDataProps = {
   /**
    * This property receives a description below the stage number,
    * helping to identify the stage of the form.
@@ -88,7 +61,7 @@ type StepperDataProps<T = any> = {
    * This property, which receives a list of field names that make up part of
    * each step of the form, is used to validate the fields for each step.
    */
-  validateFields: T extends Record<string, any> ? readonly (keyof T | string)[] : readonly string[]
+  validateFields: readonly string[]
 }
 
 type StepFormProps<T> = {
@@ -96,17 +69,17 @@ type StepFormProps<T> = {
    * Function to get all form values.
    * Compatible with react-hook-form's getValues, Formik's values, or custom implementations.
    */
-  getValues: GetValuesFunction<T>
+  getValues: () => any
   /**
    * Function to trigger field validation.
    * Compatible with react-hook-form's trigger, Formik's validateForm, or custom implementations.
    */
-  trigger: TriggerFunction
+  trigger: (fields?: any) => Promise<boolean>
   /**
    * Function to set field errors.
    * Compatible with react-hook-form's setError, Formik's setFieldError, or custom implementations.
    */
-  setError?: SetErrorFunction
+  setError?: ((...args: any[]) => void) | ((...args: never[]) => void)
   /**
    * Object containing field errors.
    * Compatible with react-hook-form's formState.errors, Formik's errors, or custom implementations.
@@ -116,11 +89,14 @@ type StepFormProps<T> = {
    * Function to handle form submission with validation.
    * Compatible with react-hook-form's handleSubmit, Formik's handleSubmit, or custom implementations.
    */
-  handleSubmit: HandleSubmitFunction<T>
+  handleSubmit: (
+    onValid: (data: any) => void,
+    onInvalid?: any
+  ) => (event?: React.BaseSyntheticEvent) => void | Promise<void>
   /**
    * This property is used to receive the list of steps in the form.
    */
-  steppersData?: StepperDataProps<T>[]
+  steppersData?: StepperDataProps[]
   /**
    * This method is used for the submission of the form.
    */
@@ -290,11 +266,6 @@ const StepForm = <T,>({
 
   const hasSomeInputError = Object.keys(errors).length > 0
 
-  const getCurrentStepLabel = (): string => {
-    const currentStepData = steppersData[stepCurrent]
-    return currentStepData?.label || `Step ${stepCurrent + 1}`
-  }
-
   const trackEvent = (event: StepperTrackEvent) => {
     if (!trackEvents) return
     onTrackEvent?.(event)
@@ -306,7 +277,6 @@ const StepForm = <T,>({
    */
   useEffect(() => {
     if (!isDefined(error?.errors) || Array.isArray(error.errors)) return
-    if (fieldList.length === 0) return
 
     Object.entries(error.errors).forEach(([name, message]) => {
       const splittedName = name.split('.')
@@ -322,16 +292,13 @@ const StepForm = <T,>({
         )
       }
     })
-  }, [error, fieldList])
+  }, [error])
 
   useEffect(() => {
-    const currentStepData = steppersData[stepCurrent]
-    if (currentStepData) {
-      trackEvent({
-        name: 'Show Step',
-        stepName: currentStepData.label,
-      })
-    }
+    onTrackEvent?.({
+      name: 'Show Step',
+      stepName: steppersData[stepCurrent].label,
+    })
     updateCurrentStep && updateCurrentStep(stepCurrent)
   }, [stepCurrent, updateCurrentStep])
 
@@ -347,9 +314,9 @@ const StepForm = <T,>({
 
     const { validateFields } = currentStepData
 
-    const stepFields = validateFields.filter((fieldName) =>
-      fieldList.includes(String(fieldName))
-    ) as string[]
+    const stepFields: string[] = validateFields.filter((fieldName) =>
+      fieldList.includes(fieldName)
+    )
 
     return stepFields
   }
@@ -387,7 +354,7 @@ const StepForm = <T,>({
   const handleCancel = () => {
     trackEvent({
       name: 'Cancel Form',
-      stepName: getCurrentStepLabel(),
+      stepName: steppersData[stepCurrent].label,
     })
     onCancel()
   }
@@ -395,7 +362,7 @@ const StepForm = <T,>({
   const handlePrev = () => {
     trackEvent({
       name: 'Previous Step',
-      stepName: getCurrentStepLabel(),
+      stepName: steppersData[stepCurrent].label,
     })
     setStepCurrent((stepCurrent) => stepCurrent - 1)
   }
@@ -411,7 +378,7 @@ const StepForm = <T,>({
   const handleNext = () => {
     trackEvent({
       name: 'Next Step',
-      stepName: getCurrentStepLabel(),
+      stepName: steppersData[stepCurrent].label,
     })
     const next = () => setStepCurrent((stepCurrent: number) => stepCurrent + 1)
     validateFormBeforeExecuteAction(next)
@@ -510,7 +477,7 @@ const StepForm = <T,>({
         ))
       trackEvent({
         name: 'Form Error',
-        stepName: getCurrentStepLabel(),
+        stepName: steppersData[stepCurrent].label,
         errorMessage: errors.message || 'An error occurred!',
       })
       return (

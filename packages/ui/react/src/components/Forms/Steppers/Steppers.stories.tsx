@@ -12,7 +12,7 @@ type FormValues = {
 const values: FormValues = { name: '', email: '', token: '' }
 
 const StepFormStory = (
-  props: Partial<StepFormProps<FormValues>> & {
+  props: Partial<StepFormProps<any>> & {
     mockErrors?: Record<string, unknown>
   }
 ) => {
