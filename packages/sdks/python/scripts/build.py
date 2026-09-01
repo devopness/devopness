@@ -84,14 +84,12 @@ def export_sdk_models() -> None:
         model = item.replace(".py", "")
         model_name = snake_to_pascal(model)
 
-        names.append(model_name)
-        names.append(model_name + "Plain")
+        names.extend((model_name, model_name + "Plain"))
 
         lines.append(f"from .generated.models import {model_name}, {model_name}Plain")
 
     # Build the __all__ list
-    lines.append("\n")
-    lines.append("__all__ = [")
+    lines.extend(("\n", "__all__ = ["))
 
     names.sort()
     lines.extend(f'    "{name}",' for name in names)
