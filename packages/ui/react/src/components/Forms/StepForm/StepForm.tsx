@@ -257,10 +257,9 @@ const StepForm = <T,>({
 }: StepFormProps<T>): JSX.Element => {
   const isSingleStep = steppersData.length === 1
 
-  const validatedInitialStep = Math.max(
-    0,
-    Math.min(initialStep, steppersData.length - 1)
-  )
+  const validatedInitialStep = Number.isFinite(initialStep)
+    ? Math.max(0, Math.min(Math.trunc(initialStep), steppersData.length - 1))
+    : 0
 
   const [stepCurrent, setStepCurrent] = useState<number>(validatedInitialStep)
   const [formError, setFormError] = useState<StepperErrorResponseData | null>(
