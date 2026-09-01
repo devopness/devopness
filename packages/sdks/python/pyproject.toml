@@ -108,6 +108,7 @@ ignore = [
   "line-too-long",                 # Line too long
   "non-pep604-annotation-union",   # Use `X | Y` for type annotations (auto-generated code uses Union)
   "builtin-argument-shadowing",    # Shadowing builtin argument
+  "replace-str-enum",              # Generated enums intentionally inherit from str and Enum
 ]
 "src/devopness/generated/**/__init__.py" = [
   "unused-import", # Module imported but unused

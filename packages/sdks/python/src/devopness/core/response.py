@@ -18,7 +18,7 @@ __all__ = ["DevopnessResponse"]
 T = TypeVar("T")
 
 
-class _OpaqueResponseData(dict[str, Any]):
+class _OpaqueResponseData(dict[str, Any]):  # ruff:ignore[subclass-builtin]
     """Opaque wrapper for response payloads that fail model validation."""
 
     def __getattr__(self, key: str) -> Any:  # ruff:ignore[any-type]

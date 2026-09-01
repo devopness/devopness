@@ -76,15 +76,20 @@ class DevopnessApiError(DevopnessSdkError):
         if self.request_method and self.request_url:
             lines.append(f"Request: {self.request_method} {self.request_url}")
 
-        lines.append(f"Status Code: {self.status_code}")
-        lines.append(f"Message: {self.message}")
+        lines.extend(
+            [
+                f"Status Code: {self.status_code}",
+                f"Message: {self.message}",
+            ]
+        )
 
         if self.errors:
             lines.append("Errors:")
 
             for field, errors in self.errors.items():
-                lines.append(f"  - {field}:")
-                lines.extend(f"      {error}" for error in errors)
+                lines.extend(
+                    [f"  - {field}:", *[f"      {error}" for error in errors]]
+                )
 
         return "\n".join(lines)
 
