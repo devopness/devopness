@@ -221,12 +221,17 @@ const FormActionButton = (props: ButtonProps) => (
  * @example
  * ```tsx
  * <StepForm
- *   useFormMethods={useFormMethods}
+ *   getValues={form.getValues}
+ *   trigger={form.trigger}
+ *   setError={form.setError}
+ *   errors={form.formState.errors}
+ *   handleSubmit={form.handleSubmit}
  *   steppersData={[
  *     { label: 'Step 1', component: <FirstStep />, validateFields: ['name'] },
  *     { label: 'Step 2', component: <SecondStep />, validateFields: ['email'] },
  *   ]}
  *   onSubmit={handleSubmit}
+ *   onCancel={handleCancel}
  * />
  * ```
  */
