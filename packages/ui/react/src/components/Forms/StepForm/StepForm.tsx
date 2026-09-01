@@ -15,7 +15,7 @@ import {
   Stepper,
   StepperContainer,
   WrapperButton,
-} from './Steppers.styled'
+} from './StepForm.styled'
 import type { ButtonProps } from 'src/components/Buttons'
 import { Button } from 'src/components/Buttons'
 import { Alert } from 'src/components/Forms/Alert'
@@ -627,9 +627,4 @@ const StepForm = <T,>({
 }
 
 export { StepForm, FormActionButton }
-export type {
-  StepFormProps,
-  StepperDataProps,
-  StepperErrorResponseData,
-  StepperTrackEvent,
-}
+export type { StepFormProps, StepperDataProps }

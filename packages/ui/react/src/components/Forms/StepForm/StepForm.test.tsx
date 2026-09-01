@@ -4,8 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { ThemeProvider } from 'styled-components'
 import { describe, expect, it, vi } from 'vitest'
 
-import { StepForm } from './Steppers'
-import type { StepperDataProps } from './Steppers'
+import { StepForm, type StepperDataProps } from './StepForm'
 
 type FormValues = {
   name: string

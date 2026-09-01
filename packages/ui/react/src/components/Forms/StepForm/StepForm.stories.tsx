@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { StepForm } from './Steppers'
-import type { StepFormProps } from './Steppers'
+import { StepForm, type StepFormProps } from './StepForm'
 
 type FormValues = {
   name: string
@@ -53,7 +52,7 @@ const StepFormStory = (
 }
 
 const meta: Meta<typeof StepFormStory> = {
-  title: 'Form/Steppers',
+  title: 'Form/StepForm',
   component: StepFormStory,
 }
 
