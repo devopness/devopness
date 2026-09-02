@@ -15,7 +15,7 @@ import {
   Stepper,
   StepperContainer,
   WrapperButton,
-} from './StepForm.styled'
+} from './MultiStepForm.styled'
 import type { ButtonProps } from 'src/components/Buttons'
 import { Button } from 'src/components/Buttons'
 import { Alert } from 'src/components/Forms/Alert'
@@ -64,7 +64,7 @@ type StepperDataProps = {
   validateFields: readonly string[]
 }
 
-type StepFormProps<T> = {
+type MultiStepFormProps<T> = {
   /**
    * Function to get all form values.
    * Compatible with react-hook-form's getValues, Formik's values, or custom implementations.
@@ -213,14 +213,14 @@ const FormActionButton = (props: ButtonProps) => (
 )
 
 /**
- * StepForm Component
+ * MultiStepForm Component
  *
  * Renders a multi step form, handling per step field validation,
  * navigation buttons and API error reporting.
  *
  * @example
  * ```tsx
- * <StepForm
+ * <MultiStepForm
  *   getValues={form.getValues}
  *   trigger={form.trigger}
  *   setError={form.setError}
@@ -235,7 +235,7 @@ const FormActionButton = (props: ButtonProps) => (
  * />
  * ```
  */
-const StepForm = <T,>({
+const MultiStepForm = <T,>({
   steppersData = [],
   onSubmit,
   onCancel = () => {},
@@ -259,7 +259,7 @@ const StepForm = <T,>({
   initialStep = 0,
   trackEvents = true,
   onTrackEvent,
-}: StepFormProps<T>): JSX.Element => {
+}: MultiStepFormProps<T>): JSX.Element => {
   const isSingleStep = steppersData.length === 1
 
   const validatedInitialStep = Number.isFinite(initialStep)
@@ -653,5 +653,5 @@ const StepForm = <T,>({
   )
 }
 
-export { StepForm, FormActionButton }
-export type { StepFormProps, StepperDataProps }
+export { MultiStepForm, FormActionButton }
+export type { MultiStepFormProps, StepperDataProps }

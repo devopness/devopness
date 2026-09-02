@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { ThemeProvider } from 'styled-components'
 import { describe, expect, it, vi } from 'vitest'
 
-import { StepForm, type StepperDataProps } from './StepForm'
+import { MultiStepForm, type StepperDataProps } from './MultiStepForm'
 
 type FormValues = {
   name: string
@@ -63,7 +63,7 @@ describe('Steppers', () => {
   it('renders every step label', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
       />
@@ -77,7 +77,7 @@ describe('Steppers', () => {
   it('renders all step bodies, hiding the inactive ones', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
       />
@@ -91,7 +91,7 @@ describe('Steppers', () => {
   it('does not render the stepper header for a single step form', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={[steppersData[0]]}
       />
@@ -103,7 +103,7 @@ describe('Steppers', () => {
   it('shows Next on non-final steps and Confirm on the last step', async () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
       />
@@ -123,7 +123,7 @@ describe('Steppers', () => {
   it('does not render the Previous button on the first step', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
       />
@@ -135,7 +135,7 @@ describe('Steppers', () => {
   it('advances to the next step when Next is clicked', async () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
       />
@@ -152,7 +152,7 @@ describe('Steppers', () => {
   it('goes back to the previous step when Previous is clicked', async () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         initialStep={1}
@@ -171,7 +171,7 @@ describe('Steppers', () => {
     const methods = createFormMethods({ trigger })
 
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
       />
@@ -190,7 +190,7 @@ describe('Steppers', () => {
     const externalStepValidation = vi.fn().mockReturnValue(false)
 
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         externalStepValidation={externalStepValidation}
@@ -210,7 +210,7 @@ describe('Steppers', () => {
     const onSubmit = vi.fn()
 
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         initialStep={2}
@@ -234,7 +234,7 @@ describe('Steppers', () => {
     const onCancel = vi.fn()
 
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         onCancel={onCancel}
@@ -249,7 +249,7 @@ describe('Steppers', () => {
   it('renders a Waiting button when waitingMode is enabled', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         initialStep={2}
@@ -264,7 +264,7 @@ describe('Steppers', () => {
   it('disables the Next and Cancel buttons through props', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         disabledNext
@@ -279,7 +279,7 @@ describe('Steppers', () => {
   it('uses custom confirm button label and colors', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         initialStep={2}
@@ -293,7 +293,7 @@ describe('Steppers', () => {
   it('uses the forward button label as fallback for Next', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         forwardButton={{
@@ -310,7 +310,7 @@ describe('Steppers', () => {
   it('renders an alert with the API error message', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         error={{ message: 'Something went wrong' }}
@@ -323,7 +323,7 @@ describe('Steppers', () => {
   it('includes non form field errors in the alert', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         error={{
@@ -348,7 +348,7 @@ describe('Steppers', () => {
 
     // Start at the last step without error first
     const { rerender } = renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         initialStep={2}
@@ -361,7 +361,7 @@ describe('Steppers', () => {
     // Now rerender with error to trigger redirect
     rerender(
       <ThemeProvider theme={theme}>
-        <StepForm<FormValues>
+        <MultiStepForm<FormValues>
           {...methods}
           steppersData={steppersData}
           initialStep={2}
@@ -393,7 +393,7 @@ describe('Steppers', () => {
     })
 
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         error={{
@@ -414,7 +414,7 @@ describe('Steppers', () => {
   it('hides the Cancel button when hiddenCancelButton is set', () => {
     const methods = createFormMethods()
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         hiddenCancelButton
@@ -431,7 +431,7 @@ describe('Steppers', () => {
     const updateCurrentStep = vi.fn()
 
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         updateCurrentStep={updateCurrentStep}
@@ -452,7 +452,7 @@ describe('Steppers', () => {
     const onTrackEvent = vi.fn()
 
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         onTrackEvent={onTrackEvent}
@@ -479,7 +479,7 @@ describe('Steppers', () => {
     const onTrackEvent = vi.fn()
 
     renderWithTheme(
-      <StepForm<FormValues>
+      <MultiStepForm<FormValues>
         {...methods}
         steppersData={steppersData}
         trackEvents={false}

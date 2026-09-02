@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { StepForm, type StepFormProps } from './StepForm'
+import { MultiStepForm, type MultiStepFormProps } from './MultiStepForm'
 
 type FormValues = {
   name: string
@@ -10,15 +10,15 @@ type FormValues = {
 
 const values: FormValues = { name: '', email: '', token: '' }
 
-const StepFormStory = (
-  props: Partial<StepFormProps<any>> & {
+const MultiStepFormStory = (
+  props: Partial<MultiStepFormProps<any>> & {
     mockErrors?: Record<string, unknown>
   }
 ) => {
-  const { mockErrors = {}, ...stepFormProps } = props
+  const { mockErrors = {}, ...MultiStepFormProps } = props
 
   return (
-    <StepForm<FormValues>
+    <MultiStepForm<FormValues>
       getValues={() => values}
       trigger={() => Promise.resolve(true)}
       setError={() => {}}
@@ -46,17 +46,17 @@ const StepFormStory = (
       ]}
       onSubmit={() => {}}
       onCancel={() => {}}
-      {...stepFormProps}
+      {...MultiStepFormProps}
     />
   )
 }
 
-const meta: Meta<typeof StepFormStory> = {
-  title: 'Form/StepForm',
-  component: StepFormStory,
+const meta: Meta<typeof MultiStepFormStory> = {
+  title: 'Form/MultiStepForm',
+  component: MultiStepFormStory,
 }
 
-type Story = StoryObj<typeof StepFormStory>
+type Story = StoryObj<typeof MultiStepFormStory>
 
 const Default: Story = {}
 
