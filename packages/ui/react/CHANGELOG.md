@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.203.0
+
+### Minor Changes
+
+- [#3499](https://github.com/devopness/devopness/pull/3499) [`9d1b16b`](https://github.com/devopness/devopness/commit/9d1b16be7e33f318289e305fd31e4b5e19fce1cc) Thanks [@therealrinku](https://github.com/therealrinku)! - Added new `MultiStepForm` component in react ui library for navigating forms
+
 ## 2.202.1
 
 ### Patch Changes
