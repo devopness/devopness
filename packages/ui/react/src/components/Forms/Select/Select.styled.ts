@@ -137,7 +137,8 @@ const ReactSelect = styled(Select)`
 
   .devopness__option {
     color: ${getColor('blue.950')};
-    height: 34px;
+    min-height: 34px;
+    height: auto;
     padding: 0;
 
     &--is-selected,
@@ -212,7 +213,8 @@ const ReactCreatableSelect = styled(CreatableSelect)`
 
   .devopness__option {
     color: ${getColor('blue.950')};
-    height: 34px;
+    min-height: 34px;
+    height: auto;
     padding: 0;
 
     &--is-selected,

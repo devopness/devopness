@@ -7,14 +7,23 @@ import { OptionSelectedWrapper } from './styled'
 
 const SingleValue = ({
   data,
+  selectProps,
 }: SingleValueProps<OptionProps, boolean, GroupBase<OptionProps>>) => {
   const optionConfiguration = {
     iconName: data.icon,
-    iconSize: data.iconSize ?? 18,
+    iconSize: data.iconSize ?? 11,
     option: data.label,
+    labelDescription: data.labelDescription,
+    iconNameLabel: data.iconNameLabel,
+    iconNameLabelDescription: data.iconNameLabelDescription,
+    hideFirstIcon: (selectProps as any)?.hideFirstIcon,
+    hideSecondIcon: (selectProps as any)?.hideSecondIcon,
   }
+  
+  const hasDescription = data.labelDescription && data.labelDescription.trim() !== ''
+  
   return (
-    <OptionSelectedWrapper>
+    <OptionSelectedWrapper hasDescription={hasDescription}>
       <OptionBody optionConfiguration={optionConfiguration} />
     </OptionSelectedWrapper>
   )

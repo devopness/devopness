@@ -29,6 +29,13 @@ type OptionProps<T = unknown> = {
   value: T
   label: string
   isCreateLink?: boolean
+  // New properties for enhanced display
+  /** Optional description/subtitle shown below the label */
+  labelDescription?: string
+  /** Icon for the main label (first row) */
+  iconNameLabel?: string
+  /** Icon for the description (second row) */
+  iconNameLabelDescription?: string
 }
 
 /**
@@ -74,6 +81,10 @@ type SelectProps<TOption> = Omit<
       * @default true
     */
     shouldAutoSelectSingleOption?: boolean
+    /** Hide the first icon (label icon) */
+    hideFirstIcon?: boolean
+    /** Hide the second icon (description icon) */
+    hideSecondIcon?: boolean
   }
 
 type SelectComponentProps<TOption> = SelectProps<TOption> & {
@@ -124,6 +135,8 @@ const Select = <TOption,>({
     control: (base: CSSObjectWithLabel): CSSObjectWithLabel => ({
       ...base,
       boxShadow: 'none',
+      minHeight: '38px',
+      height: 'auto',
     }),
     menuList: (provided: CSSObjectWithLabel): CSSObjectWithLabel => ({
       ...provided,
@@ -145,6 +158,7 @@ const Select = <TOption,>({
       display: 'flex',
       flexWrap: 'nowrap',
       overflow: 'hidden',
+      padding: '6px 8px',
     }),
     input: (provided: CSSObjectWithLabel): CSSObjectWithLabel => ({
       ...provided,
@@ -165,11 +179,18 @@ const Select = <TOption,>({
     }
   }, [])
 
+  // Custom filter that searches both label and labelDescription
   const customFilter = createFilter({
     ignoreCase: true,
     ignoreAccents: true,
     trim: true,
     matchFrom: 'any',
+    stringify: (option) => {
+      const label = option.label || ''
+      const description = option.data.labelDescription || ''
+      // Combine label and description for searching
+      return `${label} ${description}`
+    },
   })
 
   const shouldGetFirstOption =
