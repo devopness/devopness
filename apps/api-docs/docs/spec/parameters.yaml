@@ -1,0 +1,44 @@
+acceptHeader:
+  name: Accept
+  in: header
+  required: true
+  schema:
+    type: string
+  description: application/json
+
+authHeader:
+  name: Authorization
+  in: header
+  required: true
+  schema:
+    type: string
+  description: Bearer {{access_token}}
+
+contentTypeHeader:
+  name: Content-Type
+  in: header
+  required: true
+  schema:
+    type: string
+  description: application/json
+
+pageNumber:
+  in: query
+  name: page
+  schema:
+    type: integer
+    minimum: 1
+  required: false
+  example: 1
+  description: Number of the page to be retrieved
+
+pageSize:
+  in: query
+  name: per_page
+  schema:
+    type: integer
+    minimum: 1
+    maximum: 100
+  required: false
+  example: 25
+  description: Number of items returned per page

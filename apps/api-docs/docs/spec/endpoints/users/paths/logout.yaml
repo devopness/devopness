@@ -1,0 +1,11 @@
+summary: 'Logout/revoke an existing token'
+operationId: logout
+tags:
+  - Users
+parameters:
+  - $ref: '#/components/parameters/acceptHeader'
+  - $ref: '#/components/parameters/authHeader'
+  - $ref: '#/components/parameters/contentTypeHeader'
+responses:
+  204:
+    $ref: '#/components/responses/NoContent'
