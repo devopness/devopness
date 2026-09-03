@@ -12,9 +12,15 @@ const SingleValue = ({
     iconName: data.icon,
     iconSize: data.iconSize ?? 18,
     option: data.label,
+    labelDescription: data.labelDescription,
+    labelDescriptionIconName: data.labelDescriptionIconName,
   }
+
+  const hasDescription =
+    data.labelDescription && data.labelDescription.trim() !== ''
+
   return (
-    <OptionSelectedWrapper>
+    <OptionSelectedWrapper hasDescription={!!hasDescription}>
       <OptionBody optionConfiguration={optionConfiguration} />
     </OptionSelectedWrapper>
   )

@@ -29,6 +29,10 @@ type OptionProps<T = unknown> = {
   value: T
   label: string
   isCreateLink?: boolean
+  /** Optional description shown below the label */
+  labelDescription?: string
+  /** Icon for the description */
+  labelDescriptionIconName?: Icon | Omit<string, Icon>
 }
 
 /**
@@ -124,6 +128,8 @@ const Select = <TOption,>({
     control: (base: CSSObjectWithLabel): CSSObjectWithLabel => ({
       ...base,
       boxShadow: 'none',
+      minHeight: '38px',
+      height: 'auto',
     }),
     menuList: (provided: CSSObjectWithLabel): CSSObjectWithLabel => ({
       ...provided,
@@ -145,6 +151,7 @@ const Select = <TOption,>({
       display: 'flex',
       flexWrap: 'nowrap',
       overflow: 'hidden',
+      padding: '6px 8px',
     }),
     input: (provided: CSSObjectWithLabel): CSSObjectWithLabel => ({
       ...provided,
@@ -170,6 +177,10 @@ const Select = <TOption,>({
     ignoreAccents: true,
     trim: true,
     matchFrom: 'any',
+    stringify: (option) => {
+      const data = option.data as OptionProps<TOption>
+      return `${option.label} ${data?.labelDescription || ''}`
+    },
   })
 
   const shouldGetFirstOption =

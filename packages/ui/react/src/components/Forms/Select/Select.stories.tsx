@@ -170,6 +170,193 @@ const WithIcons: StoryObj<typeof Select> = {
   ),
 }
 
+const optionsWithDescriptions: OptionProps<string>[] = [
+  {
+    icon: 'github',
+    labelDescriptionIconName: 'info',
+    value: 'GitHub',
+    label: 'GitHub',
+    labelDescription: 'Collaborate with Git version control',
+  },
+  {
+    icon: 'gitlab',
+    labelDescriptionIconName: 'info',
+    value: 'Gitlab',
+    label: 'GitLab',
+    labelDescription: 'Complete DevOps platform',
+  },
+  {
+    icon: 'bitbucket',
+    labelDescriptionIconName: 'info',
+    value: 'Bitbucket',
+    label: 'Bitbucket',
+    labelDescription: 'Git solution for teams using Jira',
+  },
+  {
+    icon: 'aws',
+    labelDescriptionIconName: 'info',
+    value: 'AWS',
+    label: 'AWS CodeCommit',
+    labelDescription: 'Fully managed source control service',
+  },
+]
+
+const WithDescriptions: StoryObj<typeof Select> = {
+  render: () => (
+    <StoryContainer>
+      <Select
+        options={optionsWithDescriptions}
+        placeholder="Select a provider..."
+      />
+    </StoryContainer>
+  ),
+}
+
+const optionsWithDescriptionsNoIcons: OptionProps<string>[] = [
+  {
+    value: 'github',
+    label: 'GitHub',
+    labelDescription: 'Fully managed source control service',
+  },
+  {
+    value: 'gitlab',
+    label: 'GitLab',
+    labelDescription: 'DevOps platform with CI/CD',
+  },
+  {
+    value: 'bitbucket',
+    label: 'Bitbucket',
+    labelDescription: 'Git solution with Jira integration',
+  },
+  {
+    value: 'aws',
+    label: 'AWS CodeCommit',
+    labelDescription: 'Fully managed source control service',
+  },
+]
+
+const optionsWithDescriptionsNoFirstIcon: OptionProps<string>[] = [
+  {
+    value: 'github',
+    label: 'GitHub',
+    labelDescription: 'Fully managed source control service',
+    labelDescriptionIconName: 'info',
+  },
+  {
+    value: 'gitlab',
+    label: 'GitLab',
+    labelDescription: 'DevOps platform with CI/CD',
+    labelDescriptionIconName: 'info',
+  },
+  {
+    value: 'bitbucket',
+    label: 'Bitbucket',
+    labelDescription: 'Git solution with Jira integration',
+    labelDescriptionIconName: 'info',
+  },
+  {
+    value: 'aws',
+    label: 'AWS CodeCommit',
+    labelDescription: 'Fully managed source control service',
+    labelDescriptionIconName: 'info',
+  },
+]
+
+const optionsWithDescriptionsNoSecondIcon: OptionProps<string>[] = [
+  {
+    value: 'github',
+    icon: 'github',
+    label: 'GitHub',
+    labelDescription: 'Fully managed source control service',
+  },
+  {
+    value: 'gitlab',
+    icon: 'gitlab',
+    label: 'GitLab',
+    labelDescription: 'DevOps platform with CI/CD',
+  },
+  {
+    value: 'bitbucket',
+    icon: 'bitbucket',
+    label: 'Bitbucket',
+    labelDescription: 'Git solution with Jira integration',
+  },
+  {
+    value: 'aws',
+    icon: 'aws',
+    label: 'AWS CodeCommit',
+    labelDescription: 'Fully managed source control service',
+  },
+]
+
+const WithDescriptionsNoIcons: StoryObj<typeof Select> = {
+  render: () => (
+    <StoryContainer>
+      <Select
+        options={optionsWithDescriptionsNoIcons}
+        placeholder="Select a provider (no icons)..."
+      />
+    </StoryContainer>
+  ),
+}
+
+const WithDescriptionsHideFirstIcon: StoryObj<typeof Select> = {
+  render: () => (
+    <StoryContainer>
+      <Select
+        options={optionsWithDescriptionsNoFirstIcon}
+        placeholder="Select a provider (only description icon)..."
+      />
+    </StoryContainer>
+  ),
+}
+
+const WithDescriptionsHideSecondIcon: StoryObj<typeof Select> = {
+  render: () => (
+    <StoryContainer>
+      <Select
+        options={optionsWithDescriptionsNoSecondIcon}
+        placeholder="Select a provider (only label icon)..."
+      />
+    </StoryContainer>
+  ),
+}
+
+const ControlledSelectWithDescriptions = () => {
+  const [value, setValue] = useState<
+    SingleValue<OptionProps<string>> | MultiValue<OptionProps<string>>
+  >(null)
+
+  const handleChange = (
+    newValue: MultiValue<OptionProps<string>> | SingleValue<OptionProps<string>>
+  ) => {
+    setValue(newValue)
+  }
+
+  return (
+    <StoryContainer>
+      <Select
+        options={optionsWithDescriptions}
+        value={value}
+        onChange={handleChange}
+        placeholder="Search by title or description..."
+      />
+      <div style={{ marginTop: 16, fontSize: 14, color: '#666' }}>
+        <p>Try searching:</p>
+        <ul>
+          <li>"GitHub" or "GitLab" - searches title</li>
+          <li>"DevOps" or "Jira" - searches description</li>
+          <li>"version control" - searches description</li>
+        </ul>
+      </div>
+    </StoryContainer>
+  )
+}
+
+const SearchableByDescription: StoryObj<typeof Select> = {
+  render: () => <ControlledSelectWithDescriptions />,
+}
+
 export default meta
 
 export {
@@ -180,4 +367,9 @@ export {
   CustomNoOptionsMessage,
   Multiselect,
   WithIcons,
+  WithDescriptions,
+  WithDescriptionsNoIcons,
+  WithDescriptionsHideFirstIcon,
+  WithDescriptionsHideSecondIcon,
+  SearchableByDescription,
 }
