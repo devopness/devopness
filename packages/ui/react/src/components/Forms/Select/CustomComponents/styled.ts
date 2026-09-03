@@ -72,7 +72,10 @@ const OptionWrapper = styled.div<OptionProps>`
     css`
       justify-content: center;
       border-top: 1px solid ${getColor('slate.300')};
-      font-weight: bold;
+
+      span {
+        font-weight: bold;
+      }
     `};
   height: 100%;
 

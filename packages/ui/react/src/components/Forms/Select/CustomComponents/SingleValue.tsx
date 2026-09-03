@@ -19,7 +19,8 @@ const SingleValue = ({
     hideSecondIcon: (selectProps as any)?.hideSecondIcon,
   }
 
-  const hasDescription = data.labelDescription && data.labelDescription.trim() !== ''
+  const hasDescription =
+    data.labelDescription && data.labelDescription.trim() !== ''
 
   return (
     <OptionSelectedWrapper hasDescription={!!hasDescription}>

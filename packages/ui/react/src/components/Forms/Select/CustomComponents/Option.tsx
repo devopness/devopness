@@ -6,7 +6,12 @@ import type {
 import { components } from 'react-select'
 
 import type { OptionProps } from '../index'
-import { OptionWrapper, OptionLabel, OptionRow, OptionDescription } from './styled'
+import {
+  OptionWrapper,
+  OptionLabel,
+  OptionRow,
+  OptionDescription,
+} from './styled'
 import { iconLoader } from 'src/icons'
 import type { Icon } from 'src/icons'
 
@@ -31,7 +36,6 @@ const OptionBody = ({ optionConfiguration }: OptionBodyProps) => {
     labelDescriptionIconName,
   } = optionConfiguration
 
-
   const hasDescription = labelDescription && labelDescription.trim() !== ''
 
   return (
@@ -49,7 +53,13 @@ const OptionBody = ({ optionConfiguration }: OptionBodyProps) => {
         <OptionRow>
           {labelDescriptionIconName &&
             typeof labelDescriptionIconName === 'string' &&
-            iconLoader(labelDescriptionIconName as Icon, iconSize ?? 11, '', 0.5, '')}
+            iconLoader(
+              labelDescriptionIconName as Icon,
+              iconSize ?? 11,
+              '',
+              0.5,
+              ''
+            )}
           <OptionDescription>{labelDescription}</OptionDescription>
         </OptionRow>
       )}
@@ -70,7 +80,8 @@ const Option = ({
     labelDescriptionIconName: data.labelDescriptionIconName,
   }
 
-  const hasDescription = data.labelDescription && data.labelDescription.trim() !== ''
+  const hasDescription =
+    data.labelDescription && data.labelDescription.trim() !== ''
 
   return (
     <components.Option
@@ -78,7 +89,10 @@ const Option = ({
       data={data}
       selectProps={selectProps}
     >
-      <OptionWrapper isCreateLink={data.isCreateLink} hasDescription={!!hasDescription}>
+      <OptionWrapper
+        isCreateLink={data.isCreateLink}
+        hasDescription={!!hasDescription}
+      >
         <OptionBody optionConfiguration={optionConfiguration} />
       </OptionWrapper>
     </components.Option>
