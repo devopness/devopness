@@ -1,0 +1,115 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI
+
+on:
+  pull_request_target:
+    branches:
+      - main
+
+jobs:
+  detect-changes:
+    name: Detect code changes
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'docs/spec/**'
+              - 'src/**'
+              - 'tests/**'
+              - 'package.json'
+              - 'package-lock.json'
+              - 'dredd.yml'
+              - 'tsconfig.json'
+              - '.env.example'
+              - '.github/workflows/ci.yml'
+
+  build:
+    name: Build and test
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Checkout the PR head ref for testing
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Create `.env` file
+        # DEV_API_DOCS_ENV_FILE: contents of a `.env` to be used when executing this job
+        run: |
+          echo "${{ secrets.DEV_API_DOCS_ENV_FILE }}" > .env
+
+      - name: Check if DEVOPNESS_DEV_API_HOST is set and modify `dredd` endpoint
+        run: |
+          if [ -n "${{ vars.DEVOPNESS_DEV_API_HOST }}" ]; then
+            echo "DEVOPNESS_DEV_API_HOST is set. Modifying dredd file..."
+            sed -i "s|endpoint: 'https://.*'|endpoint: 'https://${{ vars.DEVOPNESS_DEV_API_HOST }}'|g" ./dredd.yml
+          else
+            echo "DEVOPNESS_DEV_API_HOST is not set. Skipping modification."
+          fi
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download latest API generated docs
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+        run: npm run api-docs-zip-download
+
+      - name: Extract downloaded content
+        run: npm run api-docs-zip-extract
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        # Disabled for bot PRs (Dependabot) since we cannot push to their branches
+        # Enabled for regular user PRs to auto-commit updated generated files
+        if: github.event.pull_request.user.type != 'Bot'
+        with:
+          commit_message: "docs: Update API generated files"
+          file_pattern: "docs/spec/*"
+
+      - name: Build API Docs
+        run: npm run build
+
+  verify-build:
+    name: Verify build
+    needs: [build, detect-changes]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Fail if build did not succeed
+        run: |
+          if [ "${{ needs.build.result }}" = "failure" ] || [ "${{ needs.build.result }}" = "cancelled" ]; then
+            echo "❌ Build job failed or was cancelled"
+            exit 1
+          fi
+
+          echo "✅ Build job succeeded or was skipped"

@@ -1,0 +1,22 @@
+name: Vale Docs Linting
+on:
+  push:
+    paths:
+    - 'docs/spec/endpoints/applications/schemas/*'
+    - 'docs/spec/endpoints/cronjobs/schemas/*'
+
+jobs:
+  prose:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Run Vale linter
+      uses: errata-ai/vale-action@v1.4.3
+      with:
+        files: __onlyModified
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
