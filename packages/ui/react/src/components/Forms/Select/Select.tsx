@@ -78,10 +78,6 @@ type SelectProps<TOption> = Omit<
       * @default true
     */
     shouldAutoSelectSingleOption?: boolean
-    /** Hide the first icon (label icon) */
-    hideFirstIcon?: boolean
-    /** Hide the second icon (description icon) */
-    hideSecondIcon?: boolean
   }
 
 type SelectComponentProps<TOption> = SelectProps<TOption> & {

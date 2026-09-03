@@ -212,14 +212,89 @@ const WithDescriptions: StoryObj<typeof Select> = {
   ),
 }
 
+const optionsWithDescriptionsNoIcons: OptionProps<string>[] = [
+  {
+    value: 'github',
+    label: 'GitHub',
+    labelDescription: 'Fully managed source control service',
+  },
+  {
+    value: 'gitlab',
+    label: 'GitLab',
+    labelDescription: 'DevOps platform with CI/CD',
+  },
+  {
+    value: 'bitbucket',
+    label: 'Bitbucket',
+    labelDescription: 'Git solution with Jira integration',
+  },
+  {
+    value: 'aws',
+    label: 'AWS CodeCommit',
+    labelDescription: 'Fully managed source control service',
+  },
+]
+
+const optionsWithDescriptionsNoFirstIcon: OptionProps<string>[] = [
+  {
+    value: 'github',
+    label: 'GitHub',
+    labelDescription: 'Fully managed source control service',
+    labelDescriptionIconName: 'info',
+  },
+  {
+    value: 'gitlab',
+    label: 'GitLab',
+    labelDescription: 'DevOps platform with CI/CD',
+    labelDescriptionIconName: 'info',
+  },
+  {
+    value: 'bitbucket',
+    label: 'Bitbucket',
+    labelDescription: 'Git solution with Jira integration',
+    labelDescriptionIconName: 'info',
+  },
+  {
+    value: 'aws',
+    label: 'AWS CodeCommit',
+    labelDescription: 'Fully managed source control service',
+    labelDescriptionIconName: 'info',
+  },
+]
+
+const optionsWithDescriptionsNoSecondIcon: OptionProps<string>[] = [
+  {
+    value: 'github',
+    icon: 'github',
+    label: 'GitHub',
+    labelDescription: 'Fully managed source control service',
+  },
+  {
+    value: 'gitlab',
+    icon: 'gitlab',
+    label: 'GitLab',
+    labelDescription: 'DevOps platform with CI/CD',
+  },
+  {
+    value: 'bitbucket',
+    icon: 'bitbucket',
+    label: 'Bitbucket',
+    labelDescription: 'Git solution with Jira integration',
+  },
+  {
+    value: 'aws',
+    icon: 'aws',
+    label: 'AWS CodeCommit',
+    labelDescription: 'Fully managed source control service',
+  },
+]
+
 const WithDescriptionsNoIcons: StoryObj<typeof Select> = {
   render: () => (
     <StoryContainer>
       <Select
-        options={optionsWithDescriptions}
-        placeholder="Select a provider..."
-        hideFirstIcon
-        hideSecondIcon
+        options={optionsWithDescriptionsNoIcons}
+        placeholder="Select a provider (no icons)..."
       />
     </StoryContainer>
   ),
@@ -229,9 +304,8 @@ const WithDescriptionsHideFirstIcon: StoryObj<typeof Select> = {
   render: () => (
     <StoryContainer>
       <Select
-        options={optionsWithDescriptions}
-        placeholder="Select a provider..."
-        hideFirstIcon
+        options={optionsWithDescriptionsNoFirstIcon}
+        placeholder="Select a provider (only description icon)..."
       />
     </StoryContainer>
   ),
@@ -241,9 +315,8 @@ const WithDescriptionsHideSecondIcon: StoryObj<typeof Select> = {
   render: () => (
     <StoryContainer>
       <Select
-        options={optionsWithDescriptions}
-        placeholder="Select a provider..."
-        hideSecondIcon
+        options={optionsWithDescriptionsNoSecondIcon}
+        placeholder="Select a provider (only label icon)..."
       />
     </StoryContainer>
   ),

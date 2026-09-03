@@ -16,8 +16,6 @@ type OptionConfigurationProps = {
   iconSize?: number
   labelDescription?: string
   labelDescriptionIconName?: Icon | Omit<string, Icon>
-  hideFirstIcon?: boolean
-  hideSecondIcon?: boolean
 }
 
 type OptionBodyProps = {
@@ -31,20 +29,16 @@ const OptionBody = ({ optionConfiguration }: OptionBodyProps) => {
     option,
     labelDescription,
     labelDescriptionIconName,
-    hideFirstIcon,
-    hideSecondIcon,
   } = optionConfiguration
 
 
   const hasDescription = labelDescription && labelDescription.trim() !== ''
-  const hasFirstIcon = !hideFirstIcon && iconName
-  const hasSecondIcon = !hideSecondIcon && labelDescriptionIconName
 
   return (
     <>
       {/* First row: main label with icon */}
       <OptionRow>
-        {hasFirstIcon &&
+        {iconName &&
           typeof iconName === 'string' &&
           iconLoader(iconName as Icon, iconSize ?? 11, '', 0.5, '')}
         <OptionLabel hasDescription={!!hasDescription}>{option}</OptionLabel>
@@ -53,7 +47,7 @@ const OptionBody = ({ optionConfiguration }: OptionBodyProps) => {
       {/* Second row: description with icon (if provided) */}
       {hasDescription && (
         <OptionRow>
-          {hasSecondIcon &&
+          {labelDescriptionIconName &&
             typeof labelDescriptionIconName === 'string' &&
             iconLoader(labelDescriptionIconName as Icon, iconSize ?? 11, '', 0.5, '')}
           <OptionDescription>{labelDescription}</OptionDescription>
@@ -74,8 +68,6 @@ const Option = ({
     option: data.label,
     labelDescription: data.labelDescription,
     labelDescriptionIconName: data.labelDescriptionIconName,
-    hideFirstIcon: (selectProps as any)?.hideFirstIcon,
-    hideSecondIcon: (selectProps as any)?.hideSecondIcon,
   }
 
   const hasDescription = data.labelDescription && data.labelDescription.trim() !== ''
