@@ -143,17 +143,17 @@ const CustomNoOptionsMessage: StoryObj<typeof Select> = {
 
 const optionsWithIcons: OptionProps<string>[] = [
   {
-    iconName: 'github',
+    icon: 'github',
     value: 'GitHub',
     label: 'GitHub',
   },
   {
-    iconName: 'gitlab',
+    icon: 'gitlab',
     value: 'Gitlab',
     label: 'Gitlab',
   },
   {
-    iconName: 'bitbucket',
+    icon: 'bitbucket',
     value: 'Bitbucket',
     label: 'Bitbucket',
   },
@@ -172,28 +172,28 @@ const WithIcons: StoryObj<typeof Select> = {
 
 const optionsWithDescriptions: OptionProps<string>[] = [
   {
-    iconName: 'github',
+    icon: 'github',
     labelDescriptionIconName: 'info',
     value: 'GitHub',
     label: 'GitHub',
     labelDescription: 'Collaborate with Git version control',
   },
   {
-    iconName: 'gitlab',
+    icon: 'gitlab',
     labelDescriptionIconName: 'info',
     value: 'Gitlab',
     label: 'GitLab',
     labelDescription: 'Complete DevOps platform',
   },
   {
-    iconName: 'bitbucket',
+    icon: 'bitbucket',
     labelDescriptionIconName: 'info',
     value: 'Bitbucket',
     label: 'Bitbucket',
     labelDescription: 'Git solution for teams using Jira',
   },
   {
-    iconName: 'aws',
+    icon: 'aws',
     labelDescriptionIconName: 'info',
     value: 'AWS',
     label: 'AWS CodeCommit',

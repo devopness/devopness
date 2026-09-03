@@ -24,7 +24,7 @@ import { isDefined, typedMemo } from 'src/utils/type-guards'
 
 /** Option type for the Select component. */
 type OptionProps<T = unknown> = {
-  iconName?: Icon | Omit<string, Icon>
+  icon?: Icon | Omit<string, Icon>
   iconSize?: number
   value: T
   label: string

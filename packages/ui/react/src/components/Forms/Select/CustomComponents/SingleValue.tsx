@@ -10,7 +10,7 @@ const SingleValue = ({
   selectProps,
 }: SingleValueProps<OptionProps, boolean, GroupBase<OptionProps>>) => {
   const optionConfiguration = {
-    iconName: data.iconName,
+    iconName: data.icon,
     iconSize: data.iconSize ?? 11,
     option: data.label,
     labelDescription: data.labelDescription,

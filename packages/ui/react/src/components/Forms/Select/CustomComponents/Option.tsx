@@ -69,8 +69,8 @@ const Option = ({
   ...args
 }: OptionReactSelectProps<OptionProps, boolean, GroupBase<OptionProps>>) => {
   const optionConfiguration: OptionConfigurationProps = {
-    iconName: data.iconName,
-    iconSize: data.iconSize ?? 18,
+    iconName: data.icon,
+    iconSize: data.iconSize ?? 11,
     option: data.label,
     labelDescription: data.labelDescription,
     labelDescriptionIconName: data.labelDescriptionIconName,

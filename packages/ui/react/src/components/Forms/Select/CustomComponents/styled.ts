@@ -87,7 +87,6 @@ const OptionRow = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 6px;
   min-width: 0;
 `
 
