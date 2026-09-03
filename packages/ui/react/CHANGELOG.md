@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.204.0
+
+### Minor Changes
+
+- [#3540](https://github.com/devopness/devopness/pull/3540) [`9c28e84`](https://github.com/devopness/devopness/commit/9c28e846fbcde31422e19238633a263f4345569d) Thanks [@therealrinku](https://github.com/therealrinku)! - Added description and description icon support for `Select` component
+
 ## 2.203.0
 
 ### Minor Changes
