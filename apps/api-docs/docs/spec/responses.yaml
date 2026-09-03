@@ -1,0 +1,8 @@
+Ok: # HTTP Status Code: 200
+  description: 'Ok'
+  content:
+    application/json:
+      schema:
+        type: object
+NoContent: # HTTP Status Code: 204
+  description: No Content
