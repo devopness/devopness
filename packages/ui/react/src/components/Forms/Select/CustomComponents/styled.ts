@@ -93,8 +93,8 @@ const OptionRow = styled.div`
 
 const OptionLabel = styled.span<{ hasDescription?: boolean }>`
   padding-left: 6px;
-  ${({ hasDescription }) => hasDescription && css`font-weight: 500;`}
   ${ellipsisStyle}
+  font-weight: ${({ hasDescription }) => (hasDescription ? 600 : 400)};
 `
 
 const OptionDescription = styled.span`

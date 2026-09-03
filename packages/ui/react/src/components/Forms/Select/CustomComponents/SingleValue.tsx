@@ -10,20 +10,19 @@ const SingleValue = ({
   selectProps,
 }: SingleValueProps<OptionProps, boolean, GroupBase<OptionProps>>) => {
   const optionConfiguration = {
-    iconName: data.icon,
+    iconName: data.iconName,
     iconSize: data.iconSize ?? 11,
     option: data.label,
     labelDescription: data.labelDescription,
-    iconNameLabel: data.iconNameLabel,
-    iconNameLabelDescription: data.iconNameLabelDescription,
+    labelDescriptionIconName: data.labelDescriptionIconName,
     hideFirstIcon: (selectProps as any)?.hideFirstIcon,
     hideSecondIcon: (selectProps as any)?.hideSecondIcon,
   }
-  
+
   const hasDescription = data.labelDescription && data.labelDescription.trim() !== ''
-  
+
   return (
-    <OptionSelectedWrapper hasDescription={hasDescription}>
+    <OptionSelectedWrapper hasDescription={!!hasDescription}>
       <OptionBody optionConfiguration={optionConfiguration} />
     </OptionSelectedWrapper>
   )

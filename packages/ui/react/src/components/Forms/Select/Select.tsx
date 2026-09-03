@@ -24,18 +24,15 @@ import { isDefined, typedMemo } from 'src/utils/type-guards'
 
 /** Option type for the Select component. */
 type OptionProps<T = unknown> = {
-  icon?: Icon | Omit<string, Icon>
+  iconName?: Icon | Omit<string, Icon>
   iconSize?: number
   value: T
   label: string
   isCreateLink?: boolean
-  // New properties for enhanced display
-  /** Optional description/subtitle shown below the label */
+  /** Optional description shown below the label */
   labelDescription?: string
-  /** Icon for the main label (first row) */
-  iconNameLabel?: string
-  /** Icon for the description (second row) */
-  iconNameLabelDescription?: string
+  /** Icon for the description */
+  labelDescriptionIconName?: Icon | Omit<string, Icon>
 }
 
 /**
@@ -179,17 +176,14 @@ const Select = <TOption,>({
     }
   }, [])
 
-  // Custom filter that searches both label and labelDescription
   const customFilter = createFilter({
     ignoreCase: true,
     ignoreAccents: true,
     trim: true,
     matchFrom: 'any',
     stringify: (option) => {
-      const label = option.label || ''
-      const description = option.data.labelDescription || ''
-      // Combine label and description for searching
-      return `${label} ${description}`
+      const data = option.data as OptionProps<TOption>
+      return `${option.label} ${data?.labelDescription || ''}`
     },
   })
 
