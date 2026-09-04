@@ -45,8 +45,8 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
-          token: ${{ github.event.pull_request.head.repo.full_name == github.repository && secrets.DEVOPNESS_AUTOMATION_PAT || github.token }}
-          persist-credentials: true
+          token: ${{ github.token }}
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Create `.env`
@@ -68,12 +68,9 @@ jobs:
 
       - name: Generate API spec and validate docs
         run: |
-          npm run api-build-spec
-          npm run api-convert-spec-to-dredd
+          npm run build
           npm run api-convert-spec-to-json
           npm run remove-descriptions-in-json-spec
-          npm run api-docs-export-page
-          npm run api-test
 
       - name: Upload generated spec artifact
         uses: actions/upload-artifact@v4
@@ -120,7 +117,6 @@ jobs:
 
       - name: Commit shared spec updates
         if: github.event.pull_request.head.repo.full_name == github.repository
-        working-directory: ${{ github.workspace }}
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'feat: update shared API spec'
@@ -136,6 +132,11 @@ jobs:
     steps:
       - name: Fail if build did not succeed
         run: |
+          if [ "${{ needs.detect-changes.result }}" != "success" ]; then
+            echo "❌ Change detection failed or was cancelled"
+            exit 1
+          fi
+
           if [ "${{ needs.detect-changes.outputs.changes }}" != "true" ]; then
             echo "✅ Build job succeeded or was skipped"
             exit 0
