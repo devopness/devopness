@@ -58,9 +58,6 @@ jobs:
             git checkout -b feat/update-auto-generated-models
           fi
 
-      - name: Restore sync helpers from main
-        run: git checkout origin/main -- .github/scripts
-
       - name: Import auto generated models
         run: bash .github/scripts/sync-api-spec-import-auto-generated-models.sh
 
