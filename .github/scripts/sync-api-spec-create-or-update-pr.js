@@ -3,15 +3,16 @@
 /**
  * Create the pull request used by the API Docs sync workflow.
  *
- * This module is loaded by `.github/workflows/sync-api-spec.yml` through
- * `actions/github-script`. Keeping the PR title, branch name, and body here
- * makes the workflow easier to read and keeps the rules in one place.
+ * This script is executed directly by `.github/workflows/sync-api-spec.yml`
+ * with `node`. Keeping the PR title, branch name, and body here makes the
+ * workflow easier to read and keeps the rules in one place.
  *
  * Local usage:
- *   This file is normally executed through GitHub Actions.
+ *   GITHUB_TOKEN=... GITHUB_REPOSITORY=owner/repo node .github/scripts/sync-api-spec-create-or-update-pr.js
  *
- * @param {{ github: any, context: any, core: any }} params
- * @returns {Promise<void>}
+ * Required environment variables:
+ *   GITHUB_TOKEN
+ *   GITHUB_REPOSITORY
  */
 const BRANCH_NAME = "feat/update-auto-generated-models";
 const PR_BASE_BRANCH = "main";
@@ -28,29 +29,78 @@ function buildPullRequestTitle(now = new Date()) {
   return `feat: ${year}-${month}-${day} ${hours}:${minutes} - Update auto generated models`;
 }
 
-async function createOrUpdatePullRequest({ github, context, core }) {
-  const title = buildPullRequestTitle();
+function parseRepository() {
+  const repository = process.env.GITHUB_REPOSITORY;
 
-  const { data: existingPulls } = await github.rest.pulls.list({
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    state: "open",
-    head: `${context.repo.owner}:${BRANCH_NAME}`,
-    base: PR_BASE_BRANCH,
+  if (!repository || !repository.includes("/")) {
+    throw new Error("GITHUB_REPOSITORY must be set to owner/repo");
+  }
+
+  const [owner, repo] = repository.split("/", 2);
+  return { owner, repo };
+}
+
+async function githubRequest(path, options = {}) {
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!token) {
+    throw new Error("GITHUB_TOKEN must be set");
+  }
+
+  const response = await fetch(`https://api.github.com${path}`, {
+    ...options,
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${token}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...(options.headers || {}),
+    },
   });
 
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(
+      `GitHub API request failed for ${path}: ${response.status} ${response.statusText}\n${body}`,
+    );
+  }
+
+  if (response.status === 204) {
+    return null;
+  }
+
+  return response.json();
+}
+
+async function createOrUpdatePullRequest() {
+  const { owner, repo } = parseRepository();
+  const title = buildPullRequestTitle();
+
+  const existingPulls = await githubRequest(
+    `/repos/${owner}/${repo}/pulls?state=open&head=${encodeURIComponent(`${owner}:${BRANCH_NAME}`)}&base=${encodeURIComponent(PR_BASE_BRANCH)}`,
+  );
+
   if (existingPulls.length > 0) {
-    core.info(`PR already exists: #${existingPulls[0].number}`);
+    console.info(`PR already exists: #${existingPulls[0].number}`);
     return;
   }
 
-  await github.rest.pulls.create({
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    title,
-    head: BRANCH_NAME,
-    base: PR_BASE_BRANCH,
-    body: PR_BODY,
+  await githubRequest(`/repos/${owner}/${repo}/pulls`, {
+    method: "POST",
+    body: JSON.stringify({
+      owner,
+      repo,
+      title,
+      head: BRANCH_NAME,
+      base: PR_BASE_BRANCH,
+      body: PR_BODY,
+    }),
+  });
+}
+
+if (require.main === module) {
+  createOrUpdatePullRequest().catch((error) => {
+    console.error(error instanceof Error ? error.stack || error.message : error);
+    process.exit(1);
   });
 }
 
