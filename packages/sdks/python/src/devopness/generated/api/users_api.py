@@ -89,7 +89,7 @@ class UsersApiService(DevopnessBaseService):
         user_id: str,
     ) -> DevopnessResponse[UserActivity]:
         """
-        Get activity information for a user
+        Get activity summary for a user
 
         Attributes:
             user_id (str): The numeric ID or URL Slug of a user.
@@ -423,7 +423,7 @@ class UsersApiServiceAsync(DevopnessBaseServiceAsync):
         user_id: str,
     ) -> DevopnessResponse[UserActivity]:
         """
-        Get activity information for a user
+        Get activity summary for a user
 
         Attributes:
             user_id (str): The numeric ID or URL Slug of a user.
