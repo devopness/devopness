@@ -79,8 +79,17 @@ jobs:
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
+      - name: Detect automation branch state
+        id: branch
+        run: |
+          if [ "$(git rev-list --count origin/main..HEAD)" -gt 0 ]; then
+            echo "has_commits=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_commits=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create or update pull request
-        if: steps.changes.outputs.has_changes == 'true'
+        if: steps.branch.outputs.has_commits == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
