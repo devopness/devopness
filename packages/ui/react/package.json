@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@devopness/ui-react",
-  "version": "2.204.0",
+  "version": "2.204.1",
   "description": "Devopness Design System React Components - Painless essential DevOps to everyone",
   "keywords": [
     "Cloud Engineering",
@@ -97,7 +97,7 @@
     "storybook": "10.5.10",
     "typescript": "^7.0.2",
     "vite": "^8.2.2",
-    "vite-plugin-dts": "^5.0.3",
+    "vite-plugin-dts": "^5.1.0",
     "vite-plus": "0.3.0",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.11"
