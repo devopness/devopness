@@ -127,15 +127,12 @@ jobs:
       - name: Commit shared spec updates
         if: github.event.pull_request.head.repo.full_name == github.repository
         working-directory: ${{ github.workspace }}
-        run: |
-          if git diff --quiet -- packages/sdks/common/spec.json; then
-            echo "✅ Shared spec is already up to date."
-            exit 0
-          fi
-
-          git add packages/sdks/common/spec.json
-          git commit -m "feat: update shared API spec"
-          git push origin HEAD:${{ github.head_ref }}
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: 'feat: update shared API spec'
+          file_pattern: 'packages/sdks/common/spec.json'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   verify-build:
     name: Verify build of API Docs

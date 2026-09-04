@@ -56,28 +56,34 @@ jobs:
       - name: Copy shared spec into SDK folder
         run: cp docs/build/spec.json ../../packages/sdks/common/spec.json
 
+      - name: Detect shared spec changes
+        id: changes
+        working-directory: ${{ github.workspace }}
+        run: |
+          if git diff --quiet -- packages/sdks/common/spec.json; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "✅ Shared spec is already up to date."
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create sync branch
+        if: steps.changes.outputs.has_changes == 'true'
         working-directory: ${{ github.workspace }}
         run: |
           git checkout -B bot/sync-api-spec origin/${{ github.event.repository.default_branch }}
 
       - name: Commit and push spec changes
-        id: commit
-        working-directory: ${{ github.workspace }}
-        run: |
-          if git diff --quiet -- packages/sdks/common/spec.json; then
-            echo "✅ Shared spec is already up to date."
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          git add packages/sdks/common/spec.json
-          git commit -m "feat: sync shared API spec"
-          git push --force-with-lease origin bot/sync-api-spec
-          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: 'feat: sync shared API spec'
+          file_pattern: 'packages/sdks/common/spec.json'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
       - name: Create or update pull request
-        if: steps.commit.outputs.has_changes == 'true'
+        if: steps.changes.outputs.has_changes == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
