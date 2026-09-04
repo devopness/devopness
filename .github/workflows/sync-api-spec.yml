@@ -31,39 +31,43 @@ jobs:
         working-directory: apps/api-docs
         run: npm ci
 
-      - name: Resolve artifact coordinates
-        id: artifact
+      - name: Create `.env`
+        working-directory: apps/api-docs
         run: |
-          RUN_ID="${{ github.event.client_payload.run_id }}"
-          ARTIFACT_NAME="${{ github.event.client_payload.artifact_name || 'api-docs-zip' }}"
-
-          if [ -z "$RUN_ID" ]; then
-            echo "repository_dispatch must provide a run id"
-            exit 1
+          if [ -n "${{ secrets.DEV_API_DOCS_ENV_FILE }}" ]; then
+            printf '%s\n' "${{ secrets.DEV_API_DOCS_ENV_FILE }}" > .env
+          else
+            cp .env.example .env
           fi
-
-          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
-          echo "artifact_name=$ARTIFACT_NAME" >> "$GITHUB_OUTPUT"
-
-      - name: Download generated API docs artifact
-        uses: actions/download-artifact@v4
-        with:
-          github-token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
-          repository: ${{ github.repository }}
-          run-id: ${{ steps.artifact.outputs.run_id }}
-          name: ${{ steps.artifact.outputs.artifact_name }}
-          path: apps/api-docs/docs
 
       - name: Import auto generated models
         working-directory: apps/api-docs
-        run: bash ./import-models-from-zip.sh
+        run: |
+          # Sourcing the .env file so the AWS credentials from the secret are available.
+          set -a
+          . ./.env
+          set +a
+
+          export AWS_ACCESS_KEY_ID="$CREDENTIAL_AWS_ACCESS_KEY_ID"
+          export AWS_SECRET_ACCESS_KEY="$CREDENTIAL_AWS_SECRET_ACCESS_KEY"
+          export AWS_DEFAULT_REGION=us-east-1
+
+          npm run api-docs-zip-download
+          npm run api-docs-zip-extract
+          npm run api-docs-make-description-files
+
+      - name: Generate pull request title
+        id: pr-title
+        run: |
+          echo "title=feat: $(date -u '+%Y-%m-%d %H:%M UTC') - sync API spec" >> "$GITHUB_OUTPUT"
 
       - name: Create or update pull request
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
-          branch: feat/update-auto-generated-models
-          title: 'feat: update auto generated models'
+          branch: automation/sync-api-spec
+          base: main
+          title: ${{ steps.pr-title.outputs.title }}
           commit-message: 'feat: update auto generated models'
           body: |
             ## Description of changes
