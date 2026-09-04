@@ -50,20 +50,7 @@ jobs:
           fi
 
       - name: Import auto generated models
-        working-directory: apps/api-docs
-        run: |
-          # Sourcing the .env file so the AWS credentials from the secret are available.
-          set -a
-          . ./.env
-          set +a
-
-          export AWS_ACCESS_KEY_ID="$CREDENTIAL_AWS_ACCESS_KEY_ID"
-          export AWS_SECRET_ACCESS_KEY="$CREDENTIAL_AWS_SECRET_ACCESS_KEY"
-          export AWS_DEFAULT_REGION=us-east-1
-
-          npm run api-docs-zip-download
-          npm run api-docs-zip-extract
-          npm run api-docs-make-description-files
+        run: bash .github/scripts/sync-api-spec-import-auto-generated-models.sh
 
       - name: Detect generated changes
         id: changes
@@ -83,38 +70,13 @@ jobs:
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
-      - name: Generate pull request title
-        id: pr-title
-        run: |
-          echo "title=$(date +'feat: %Y-%m-%d %H:%M - Update auto generated models')" >> "$GITHUB_OUTPUT"
-
       - name: Create or update pull request
         if: steps.changes.outputs.has_changes == 'true'
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
           script: |
-            const title = `${{ steps.pr-title.outputs.title }}`;
-            const body = `This PR is auto generated to update auto generated models and endpoints.`;
+            const path = require('path');
+            const { createOrUpdatePullRequest } = require(path.join(process.env.GITHUB_WORKSPACE, '.github/scripts/sync-api-spec-create-or-update-pr.js'));
 
-            const { data: existingPulls } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              head: `${context.repo.owner}:feat/update-auto-generated-models`,
-              base: 'main',
-            });
-
-            if (existingPulls.length > 0) {
-              core.info(`PR already exists: #${existingPulls[0].number}`);
-              return;
-            }
-
-            await github.rest.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              head: 'feat/update-auto-generated-models',
-              base: 'main',
-              body,
-            });
+            await createOrUpdatePullRequest({ github, context, core });
