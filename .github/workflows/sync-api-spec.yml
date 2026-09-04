@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Node.js 24
+      - name: Setup Node Runtime
         uses: actions/setup-node@v6
         with:
           node-version: 24.x

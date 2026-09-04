@@ -57,7 +57,7 @@ jobs:
             cp .env.example .env
           fi
 
-      - name: Use Node.js
+      - name: Setup Node Runtime
         uses: actions/setup-node@v6
         with:
           node-version: 24.x
