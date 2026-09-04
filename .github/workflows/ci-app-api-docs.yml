@@ -45,6 +45,7 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
+          token: ${{ github.event.pull_request.head.repo.full_name == github.repository && secrets.DEVOPNESS_AUTOMATION_PAT || github.token }}
           persist-credentials: true
           fetch-depth: 0
 
@@ -102,13 +103,6 @@ jobs:
         with:
           name: api-docs-spec-json
           path: ${{ runner.temp }}/api-docs-spec-json
-
-      - name: Set up git identity
-        if: github.event.pull_request.head.repo.full_name == github.repository
-        run: |
-          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
-          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Copy shared spec into SDK folder
         working-directory: ${{ github.workspace }}

@@ -5,6 +5,16 @@ on:
     types:
       - sync-api-spec
   workflow_dispatch:
+    inputs:
+      run_id:
+        description: Workflow run id that uploaded the API docs spec artifact
+        required: true
+        type: string
+      artifact_name:
+        description: Artifact name that contains the generated API docs spec
+        required: false
+        default: api-docs-spec-json
+        type: string
 
 permissions:
   contents: write
@@ -16,49 +26,43 @@ jobs:
   sync-api-spec:
     name: Sync shared API spec
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/api-docs
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
-      - name: Set up git identity
-        run: |
-          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
-          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+      - name: Create sync branch
+        run: git checkout -B bot/sync-api-spec origin/${{ github.event.repository.default_branch }}
 
-      - name: Create `.env`
+      - name: Resolve artifact coordinates
+        id: artifact
         run: |
-          if [ -n "${{ secrets.DEV_API_DOCS_ENV_FILE }}" ]; then
-            printf '%s\n' "${{ secrets.DEV_API_DOCS_ENV_FILE }}" > .env
-          else
-            cp .env.example .env
+          RUN_ID="${{ github.event.client_payload.run_id || github.event.inputs.run_id }}"
+          ARTIFACT_NAME="${{ github.event.client_payload.artifact_name || github.event.inputs.artifact_name || 'api-docs-spec-json' }}"
+
+          if [ -z "$RUN_ID" ]; then
+            echo "repository_dispatch or workflow_dispatch must provide a run id"
+            exit 1
           fi
 
-      - name: Use Node.js 24
-        uses: actions/setup-node@v6
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "artifact_name=$ARTIFACT_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Download generated spec artifact
+        uses: actions/download-artifact@v4
         with:
-          node-version: 24.x
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Generate shared API spec
-        run: |
-          npm run api-build-spec
-          npm run api-convert-spec-to-json
-          npm run remove-descriptions-in-json-spec
+          github-token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.artifact.outputs.run_id }}
+          name: ${{ steps.artifact.outputs.artifact_name }}
+          path: ${{ runner.temp }}/api-docs-spec-json
 
       - name: Copy shared spec into SDK folder
-        run: cp docs/build/spec.json ../../packages/sdks/common/spec.json
+        run: cp "${{ runner.temp }}/api-docs-spec-json/spec.json" packages/sdks/common/spec.json
 
       - name: Detect shared spec changes
         id: changes
-        working-directory: ${{ github.workspace }}
         run: |
           if git diff --quiet -- packages/sdks/common/spec.json; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
@@ -66,12 +70,6 @@ jobs:
           else
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Create sync branch
-        if: steps.changes.outputs.has_changes == 'true'
-        working-directory: ${{ github.workspace }}
-        run: |
-          git checkout -B bot/sync-api-spec origin/${{ github.event.repository.default_branch }}
 
       - name: Commit and push spec changes
         if: steps.changes.outputs.has_changes == 'true'
