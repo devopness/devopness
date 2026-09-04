@@ -3,4 +3,4 @@
 "@devopness/sdk-python": patch
 ---
 
-- Minor text change to validate the build and publish flow in the API Docs and SDKs. 
+Update the description for the user activity endpoint in the API docs and SDKs.
