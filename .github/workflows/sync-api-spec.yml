@@ -26,6 +26,7 @@ jobs:
         run: |
           git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
           git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git config --global push.autoSetupRemote true
           git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Setup Node Runtime
