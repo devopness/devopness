@@ -13126,7 +13126,7 @@
     },
     "/users/{user_id}/activity": {
       "get": {
-        "summary": "Get activity information for a user",
+        "summary": "Get activity summary for a user",
         "operationId": "getUserActivity",
         "tags": [
           "Users"
