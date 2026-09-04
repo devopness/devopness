@@ -18,6 +18,15 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up git identity
+        # Push with the automation PAT so updates to an existing PR retrigger CI.
+        # GitHub suppresses downstream workflow events for pushes made with GITHUB_TOKEN.
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Setup Node Runtime
         uses: actions/setup-node@v6
