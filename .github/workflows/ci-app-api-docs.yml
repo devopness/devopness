@@ -1,0 +1,163 @@
+name: CI - API Docs
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+permissions:
+  contents: read
+
+concurrency: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+
+jobs:
+  detect-changes:
+    name: Detect changes in API Docs
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            changes:
+              - 'apps/api-docs/**'
+              - 'packages/sdks/common/spec.json'
+              - '.github/workflows/ci-app-api-docs.yml'
+              - '.github/workflows/sync-api-spec.yml'
+          base: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
+
+  build:
+    name: Build API Docs
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/api-docs
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Create `.env`
+        run: |
+          if [ -n "${{ secrets.DEV_API_DOCS_ENV_FILE }}" ]; then
+            printf '%s\n' "${{ secrets.DEV_API_DOCS_ENV_FILE }}" > .env
+          else
+            cp .env.example .env
+          fi
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate API spec and validate docs
+        run: |
+          npm run api-build-spec
+          npm run api-convert-spec-to-dredd
+          npm run api-convert-spec-to-json
+          npm run remove-descriptions-in-json-spec
+          npm run api-docs-export-page
+          npm run api-test
+
+      - name: Upload generated spec artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-docs-spec-json
+          path: apps/api-docs/docs/build/spec.json
+          if-no-files-found: error
+
+  sync-spec:
+    name: Sync shared API spec
+    needs: [build, detect-changes]
+    if: ${{ needs.detect-changes.outputs.changes == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Download generated spec artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-docs-spec-json
+          path: ${{ runner.temp }}/api-docs-spec-json
+
+      - name: Set up git identity
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
+
+      - name: Copy shared spec into SDK folder
+        working-directory: ${{ github.workspace }}
+        run: cp "${{ runner.temp }}/api-docs-spec-json/spec.json" packages/sdks/common/spec.json
+
+      - name: Fail if spec is out of sync on fork PRs
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        working-directory: ${{ github.workspace }}
+        run: |
+          if ! git diff --exit-code -- packages/sdks/common/spec.json; then
+            echo "❌ Generated spec.json differs from the committed file."
+            echo "Fork PRs cannot auto-commit generated output. Regenerate locally and push the result."
+            exit 1
+          fi
+
+      - name: Commit shared spec updates
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        working-directory: ${{ github.workspace }}
+        run: |
+          if git diff --quiet -- packages/sdks/common/spec.json; then
+            echo "✅ Shared spec is already up to date."
+            exit 0
+          fi
+
+          git add packages/sdks/common/spec.json
+          git commit -m "feat: update shared API spec"
+          git push origin HEAD:${{ github.head_ref }}
+
+  verify-build:
+    name: Verify build of API Docs
+    needs: [detect-changes, build, sync-spec]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if build did not succeed
+        run: |
+          if [ "${{ needs.detect-changes.outputs.changes }}" != "true" ]; then
+            echo "✅ Build job succeeded or was skipped"
+            exit 0
+          fi
+
+          if [ "${{ needs.build.result }}" = "failure" ] || [ "${{ needs.build.result }}" = "cancelled" ]; then
+            echo "❌ Build job failed or was cancelled"
+            exit 1
+          fi
+
+          if [ "${{ needs.sync-spec.result }}" = "failure" ] || [ "${{ needs.sync-spec.result }}" = "cancelled" ]; then
+            echo "❌ Sync job failed or was cancelled"
+            exit 1
+          fi
+
+          echo "✅ Build job succeeded or was skipped"
