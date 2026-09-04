@@ -3,9 +3,10 @@
 /**
  * Create the pull request used by the API Docs sync workflow.
  *
- * This script is executed directly by `.github/workflows/sync-api-spec.yml`
- * with `node`. Keeping the PR title, branch name, and body here makes the
- * workflow easier to read and keeps the rules in one place.
+ * This script is executed directly with `node` by
+ * `.github/workflows/sync-api-spec.yml`. Keeping the PR title, branch name,
+ * and body here makes the workflow easier to read and keeps the rules in one
+ * place.
  *
  * Local usage:
  *   GITHUB_TOKEN=... GITHUB_REPOSITORY=owner/repo node .github/scripts/sync-api-spec-create-or-update-pr.js
@@ -19,6 +20,12 @@ const PR_BASE_BRANCH = "main";
 const PR_BODY =
   "This PR is auto generated to update auto generated models and endpoints.";
 
+/**
+ * Build the PR title used by the API docs sync flow.
+ *
+ * @param {Date} [now=new Date()] - The timestamp to format.
+ * @returns {string} The PR title in the legacy timestamped format.
+ */
 function buildPullRequestTitle(now = new Date()) {
   const year = now.getUTCFullYear();
   const month = String(now.getUTCMonth() + 1).padStart(2, "0");
@@ -29,6 +36,12 @@ function buildPullRequestTitle(now = new Date()) {
   return `feat: ${year}-${month}-${day} ${hours}:${minutes} - Update auto generated models`;
 }
 
+/**
+ * Parse `GITHUB_REPOSITORY` into owner and repo names.
+ *
+ * @returns {{ owner: string, repo: string }} The repository parts.
+ * @throws {Error} If the repository variable is missing or malformed.
+ */
 function parseRepository() {
   const repository = process.env.GITHUB_REPOSITORY;
 
@@ -40,6 +53,14 @@ function parseRepository() {
   return { owner, repo };
 }
 
+/**
+ * Call the GitHub REST API with the configured token.
+ *
+ * @param {string} path - API path relative to `https://api.github.com`.
+ * @param {RequestInit} [options={}] - Fetch options.
+ * @returns {Promise<any>} The parsed JSON response, or `null` for 204.
+ * @throws {Error} If the token is missing or the API returns an error.
+ */
 async function githubRequest(path, options = {}) {
   const token = process.env.GITHUB_TOKEN;
 
@@ -71,6 +92,13 @@ async function githubRequest(path, options = {}) {
   return response.json();
 }
 
+/**
+ * Create the PR if it does not already exist.
+ *
+ * The workflow calls this after the generated spec changes are committed.
+ *
+ * @returns {Promise<void>}
+ */
 async function createOrUpdatePullRequest() {
   const { owner, repo } = parseRepository();
   const title = buildPullRequestTitle();
@@ -97,17 +125,18 @@ async function createOrUpdatePullRequest() {
   });
 }
 
-if (require.main === module) {
-  createOrUpdatePullRequest().catch((error) => {
+/**
+ * Script entrypoint.
+ *
+ * @returns {Promise<void>}
+ */
+async function main() {
+  try {
+    await createOrUpdatePullRequest();
+  } catch (error) {
     console.error(error instanceof Error ? error.stack || error.message : error);
     process.exit(1);
-  });
+  }
 }
 
-module.exports = {
-  buildPullRequestTitle,
-  createOrUpdatePullRequest,
-  BRANCH_NAME,
-  PR_BASE_BRANCH,
-  PR_BODY,
-};
+main();
