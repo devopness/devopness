@@ -1,0 +1,96 @@
+name: Sync - API Spec
+
+on:
+  repository_dispatch:
+    types: ['Automation: Import models to pull request']
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: ${{ github.workflow }}
+
+jobs:
+  sync-api-spec:
+    name: Import auto generated models
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up git identity
+        # Push with the automation PAT so updates to an existing PR retrigger CI.
+        # GitHub suppresses downstream workflow events for pushes made with GITHUB_TOKEN.
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
+
+      - name: Setup Node Runtime
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          cache: npm
+          cache-dependency-path: apps/api-docs/package-lock.json
+
+      - name: Install dependencies
+        working-directory: apps/api-docs
+        run: npm ci
+
+      - name: Create `.env`
+        working-directory: apps/api-docs
+        run: |
+          if [ -n "${{ secrets.API_DOCS_ENV_FILE }}" ]; then
+            printf '%s\n' "${{ secrets.API_DOCS_ENV_FILE }}" > .env
+          else
+            cp .env.example .env
+          fi
+
+      - name: Prepare automation branch
+        run: |
+          git fetch origin feat/update-auto-generated-models || true
+
+          if git show-ref --verify --quiet refs/remotes/origin/feat/update-auto-generated-models; then
+            git checkout -B feat/update-auto-generated-models origin/feat/update-auto-generated-models
+          else
+            git checkout -b feat/update-auto-generated-models
+          fi
+
+      - name: Import auto generated models
+        run: bash .github/scripts/sync-api-spec-import-auto-generated-models.sh
+
+      - name: Detect generated changes
+        id: changes
+        run: |
+          if git status --porcelain --untracked-files=normal -- apps/api-docs/docs/spec | grep -q .; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit generated changes
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: 'feat: update auto generated models'
+          file_pattern: 'apps/api-docs/docs/spec/**'
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+
+      - name: Detect automation branch changes
+        id: branch
+        run: |
+          if git diff --quiet origin/main -- apps/api-docs/docs/spec; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create or update pull request
+        if: steps.branch.outputs.has_changes == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node .github/scripts/sync-api-spec-create-or-update-pr.js
