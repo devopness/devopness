@@ -20,7 +20,7 @@ const SingleValue = ({
     data.labelDescription && data.labelDescription.trim() !== ''
 
   return (
-    <OptionSelectedWrapper hasDescription={!!hasDescription}>
+    <OptionSelectedWrapper $hasDescription={!!hasDescription}>
       <OptionBody optionConfiguration={optionConfiguration} />
     </OptionSelectedWrapper>
   )
