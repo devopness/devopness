@@ -51,8 +51,8 @@ jobs:
 
       - name: Create `.env`
         run: |
-          if [ -n "${{ secrets.DEV_API_DOCS_ENV_FILE }}" ]; then
-            printf '%s\n' "${{ secrets.DEV_API_DOCS_ENV_FILE }}" > .env
+          if [ -n "${{ secrets.API_DOCS_ENV_FILE }}" ]; then
+            printf '%s\n' "${{ secrets.API_DOCS_ENV_FILE }}" > .env
           else
             cp .env.example .env
           fi
