@@ -4,17 +4,6 @@ on:
   repository_dispatch:
     types:
       - sync-api-spec
-  workflow_dispatch:
-    inputs:
-      run_id:
-        description: Workflow run id that uploaded the API docs spec artifact
-        required: true
-        type: string
-      artifact_name:
-        description: Artifact name that contains the generated API docs spec
-        required: false
-        default: api-docs-spec-json
-        type: string
 
 permissions:
   contents: write
@@ -24,100 +13,69 @@ concurrency: ${{ github.workflow }}
 
 jobs:
   sync-api-spec:
-    name: Sync shared API spec
+    name: Import auto generated models
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
 
-      - name: Create sync branch
-        run: git checkout -B bot/sync-api-spec origin/${{ github.event.repository.default_branch }}
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          cache: npm
+          cache-dependency-path: apps/api-docs/package-lock.json
+
+      - name: Install dependencies
+        working-directory: apps/api-docs
+        run: npm ci
 
       - name: Resolve artifact coordinates
         id: artifact
         run: |
-          RUN_ID="${{ github.event.client_payload.run_id || github.event.inputs.run_id }}"
-          ARTIFACT_NAME="${{ github.event.client_payload.artifact_name || github.event.inputs.artifact_name || 'api-docs-spec-json' }}"
+          RUN_ID="${{ github.event.client_payload.run_id }}"
+          ARTIFACT_NAME="${{ github.event.client_payload.artifact_name || 'api-docs-zip' }}"
 
           if [ -z "$RUN_ID" ]; then
-            echo "repository_dispatch or workflow_dispatch must provide a run id"
+            echo "repository_dispatch must provide a run id"
             exit 1
           fi
 
           echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
           echo "artifact_name=$ARTIFACT_NAME" >> "$GITHUB_OUTPUT"
 
-      - name: Download generated spec artifact
+      - name: Download generated API docs artifact
         uses: actions/download-artifact@v4
         with:
           github-token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
           repository: ${{ github.repository }}
           run-id: ${{ steps.artifact.outputs.run_id }}
           name: ${{ steps.artifact.outputs.artifact_name }}
-          path: ${{ runner.temp }}/api-docs-spec-json
+          path: apps/api-docs/docs
 
-      - name: Copy shared spec into SDK folder
-        run: cp "${{ runner.temp }}/api-docs-spec-json/spec.json" packages/sdks/common/spec.json
-
-      - name: Detect shared spec changes
-        id: changes
-        run: |
-          if git diff --quiet -- packages/sdks/common/spec.json; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            echo "✅ Shared spec is already up to date."
-          else
-            echo "has_changes=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Commit and push spec changes
-        if: steps.changes.outputs.has_changes == 'true'
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: 'feat: sync shared API spec'
-          file_pattern: 'packages/sdks/common/spec.json'
-          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
-          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+      - name: Import auto generated models
+        working-directory: apps/api-docs
+        run: bash ./import-models-from-zip.sh
 
       - name: Create or update pull request
-        if: steps.changes.outputs.has_changes == 'true'
-        uses: actions/github-script@v7
+        uses: peter-evans/create-pull-request@v7
         with:
-          github-token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
-          script: |
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const head = 'bot/sync-api-spec';
-            const { data: prs } = await github.rest.pulls.list({
-              owner,
-              repo,
-              state: 'open',
-              head: `${owner}:${head}`,
-            });
+          token: ${{ secrets.DEVOPNESS_AUTOMATION_PAT }}
+          branch: feat/update-auto-generated-models
+          title: 'feat: update auto generated models'
+          commit-message: 'feat: update auto generated models'
+          body: |
+            ## Description of changes
+            - [x] Import the generated API docs archive into `apps/api-docs`.
 
-            if (prs.length > 0) {
-              core.info(`PR already exists: #${prs[0].number}`);
-              return;
-            }
+            ## GitHub issues resolved by this PR
+            N/A
 
-            await github.rest.pulls.create({
-              owner,
-              repo,
-              title: 'chore: sync shared API spec',
-              head,
-              base: context.payload.repository.default_branch,
-              body: [
-                '## Description of changes',
-                '- [x] Sync `packages/sdks/common/spec.json` from the current API Docs source.',
-                '',
-                '## GitHub issues resolved by this PR',
-                'N/A',
-                '',
-                '## Quality Assurance',
-                '- [x] `sync-api-spec.yml` completed successfully and pushed the updated `packages/sdks/common/spec.json` file.',
-                '',
-                '## More info',
-                '- Auto-generated by `sync-api-spec.yml`.',
-              ].join('\n'),
-            });
+            ## Quality Assurance
+            - [x] `sync-api-spec.yml` completed successfully and updated `apps/api-docs/docs/spec/**`.
+
+            ## More info
+            - Auto-generated by `sync-api-spec.yml`.
+          add-paths: |
+            apps/api-docs/docs/spec/**
