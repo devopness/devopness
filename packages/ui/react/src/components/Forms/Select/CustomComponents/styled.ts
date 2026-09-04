@@ -5,7 +5,7 @@ import { getColor } from 'src/colors'
 type OptionProps = {
   isOptionSelected?: boolean
   isCreateLink?: boolean
-  hasDescription?: boolean
+  $hasDescription?: boolean
 }
 
 const ellipsisStyle = css`
@@ -33,9 +33,9 @@ const NoOption = styled.div`
 `
 
 const OptionSelectedWrapper = styled.div<OptionProps>`
-  display: ${({ hasDescription }) => (hasDescription ? 'grid' : 'grid')};
-  ${({ hasDescription }) =>
-    hasDescription
+  display: ${({ $hasDescription }) => ($hasDescription ? 'grid' : 'grid')};
+  ${({ $hasDescription }) =>
+    $hasDescription
       ? css`
           grid-template-rows: auto auto;
           gap: 2px;
@@ -53,9 +53,9 @@ const OptionSelectedWrapper = styled.div<OptionProps>`
 `
 
 const OptionWrapper = styled.div<OptionProps>`
-  display: ${({ hasDescription }) => (hasDescription ? 'grid' : 'flex')};
-  ${({ hasDescription }) =>
-    hasDescription
+  display: ${({ $hasDescription }) => ($hasDescription ? 'grid' : 'flex')};
+  ${({ $hasDescription }) =>
+    $hasDescription
       ? css`
           grid-template-rows: auto auto;
           gap: 2px;
@@ -93,10 +93,10 @@ const OptionRow = styled.div`
   min-width: 0;
 `
 
-const OptionLabel = styled.span<{ hasDescription?: boolean }>`
+const OptionLabel = styled.span<{ $hasDescription?: boolean }>`
   padding-left: 6px;
   ${ellipsisStyle}
-  font-weight: ${({ hasDescription }) => (hasDescription ? 600 : 400)};
+  font-weight: ${({ $hasDescription }) => ($hasDescription ? 600 : 400)};
 `
 
 const OptionDescription = styled.span`

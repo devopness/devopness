@@ -45,7 +45,7 @@ const OptionBody = ({ optionConfiguration }: OptionBodyProps) => {
         {iconName &&
           typeof iconName === 'string' &&
           iconLoader(iconName as Icon, iconSize ?? 11, '', 0.5, '')}
-        <OptionLabel hasDescription={!!hasDescription}>{option}</OptionLabel>
+        <OptionLabel $hasDescription={!!hasDescription}>{option}</OptionLabel>
       </OptionRow>
 
       {/* Second row: description with icon (if provided) */}
@@ -91,7 +91,7 @@ const Option = ({
     >
       <OptionWrapper
         isCreateLink={data.isCreateLink}
-        hasDescription={!!hasDescription}
+        $hasDescription={!!hasDescription}
       >
         <OptionBody optionConfiguration={optionConfiguration} />
       </OptionWrapper>
