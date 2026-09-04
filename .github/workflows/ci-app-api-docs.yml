@@ -109,6 +109,13 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Set up git identity
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
+          git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
+          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
+
       - name: Download generated spec artifact
         uses: actions/download-artifact@v4
         with:
