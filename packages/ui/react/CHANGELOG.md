@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.204.1
+
+### Patch Changes
+
+- [#3547](https://github.com/devopness/devopness/pull/3547) [`5572cd9`](https://github.com/devopness/devopness/commit/5572cd9d167f75feed2a7b5d4e6620a094989182) Thanks [@therealrinku](https://github.com/therealrinku)! - Update internal prop name of `Select` component's internal components to resolve console warnings
+
 ## 2.204.0
 
 ### Minor Changes
