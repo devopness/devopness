@@ -66,9 +66,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate API spec and validate docs
+      - name: Build and test API spec
         run: |
-          npm run build
+          # Fork PRs run the full docs build except the credentialed Dredd test.
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" = "${{ github.repository }}" ]; then
+            npm run build
+          else
+            npm run api-build-spec
+            npm run api-convert-spec-to-dredd
+            npm run api-docs-export-page
+            npm run tsc
+            npm run test
+            npm run remove-descriptions
+            npm run ensure_index_file_is_on_size_limit
+          fi
+
+      - name: Export shared spec JSON
+        run: |
           npm run api-convert-spec-to-json
           npm run remove-descriptions-in-json-spec
 
