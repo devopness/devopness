@@ -1,6 +1,7 @@
 name: Sync - API Spec
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types:
       - sync-api-spec
