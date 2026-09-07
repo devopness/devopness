@@ -21,6 +21,7 @@ type FormMethodsOverrides = {
   getValues?: () => FormValues
   trigger?: (fields?: any) => Promise<boolean>
   setError?: (...args: any[]) => void
+  clearErrors?: (...args: any[]) => void
   errors?: Record<string, unknown>
   handleSubmit?: (
     onValid: (data: FormValues) => void
@@ -409,6 +410,54 @@ describe('Steppers', () => {
         message: 'is invalid',
       })
     })
+  })
+
+  it('clears the API error for a field when the field changes', async () => {
+    const clearErrors = vi.fn()
+    const methods = createFormMethods({
+      clearErrors,
+      errors: {
+        name: {
+          type: 'api',
+          message: 'is invalid',
+        },
+      },
+      getValues: () => ({
+        name: '',
+        email: '',
+        token: '',
+      }),
+    })
+
+    renderWithTheme(
+      <MultiStepForm<FormValues>
+        {...methods}
+        steppersData={[
+          {
+            label: 'Account',
+            component: (
+              <input
+                aria-label="name"
+                name="name"
+              />
+            ),
+            validateFields: ['name'],
+          },
+        ]}
+        error={{
+          message: 'Validation failed',
+          errors: { name: ['is invalid'] },
+        }}
+      />
+    )
+
+    expect(screen.getByRole('button', { name: 'Confirm' })).toBeDisabled()
+
+    await userEvent.type(screen.getByLabelText('name'), 'J')
+
+    expect(clearErrors).toHaveBeenCalledWith('name')
+    expect(screen.queryByText('Validation failed')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Confirm' })).not.toBeDisabled()
   })
 
   it('hides the Cancel button when hiddenCancelButton is set', () => {
