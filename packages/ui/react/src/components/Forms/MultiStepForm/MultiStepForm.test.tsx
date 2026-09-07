@@ -21,7 +21,6 @@ type FormMethodsOverrides = {
   getValues?: () => FormValues
   trigger?: (fields?: any) => Promise<boolean>
   setError?: (...args: any[]) => void
-  clearErrors?: (...args: any[]) => void
   errors?: Record<string, unknown>
   handleSubmit?: (
     onValid: (data: FormValues) => void
