@@ -81,11 +81,6 @@ type MultiStepFormProps<T> = {
    */
   setError?: ((...args: any[]) => void) | ((...args: never[]) => void)
   /**
-   * Function to clear field errors when a user edits a field.
-   * Compatible with react-hook-form's clearErrors or custom implementations.
-   */
-  clearErrors?: (...args: any[]) => void
-  /**
    * Object containing field errors.
    * Compatible with react-hook-form's formState.errors, Formik's errors, or custom implementations.
    */
@@ -229,7 +224,6 @@ const FormActionButton = (props: ButtonProps) => (
  *   getValues={form.getValues}
  *   trigger={form.trigger}
  *   setError={form.setError}
- *   clearErrors={form.clearErrors}
  *   errors={form.formState.errors}
  *   handleSubmit={form.handleSubmit}
  *   steppersData={[
@@ -253,7 +247,6 @@ const MultiStepForm = <T,>({
   getValues,
   trigger,
   setError,
-  clearErrors,
   errors,
   handleSubmit,
   error = null,
@@ -393,19 +386,6 @@ const MultiStepForm = <T,>({
       stepName: getCurrentStepLabel(),
     })
     onCancel()
-  }
-
-  const handleFieldChange = (event: React.ChangeEvent<HTMLFormElement>) => {
-    const fieldName = event.target?.name
-
-    if (fieldName) {
-      clearErrors?.(fieldName)
-      const remainingStepErrors = getStepFieldsError(getStepFields()).filter(
-        (errorFieldName) => errorFieldName !== fieldName
-      )
-      setStepWithError(remainingStepErrors.length > 0)
-      setFormError(null)
-    }
   }
 
   const handlePrev = () => {
@@ -577,7 +557,7 @@ const MultiStepForm = <T,>({
 
   useEffect(() => {
     handleActionButtonInErrorStep()
-  }, [errors, stepCurrent, fieldList])
+  }, [errors, stepCurrent])
 
   useEffect(() => {
     if (error !== null) {
@@ -603,10 +583,7 @@ const MultiStepForm = <T,>({
 
   return (
     <StepperContainer>
-      <form
-        onChange={handleFieldChange}
-        onSubmit={handleSubmit(onSubmitValidate)}
-      >
+      <form onSubmit={handleSubmit(onSubmitValidate)}>
         {!isSingleStep && (
           <Stepper
             activeStep={stepCurrent}
