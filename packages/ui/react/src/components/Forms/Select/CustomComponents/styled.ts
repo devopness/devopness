@@ -33,7 +33,7 @@ const NoOption = styled.div`
 `
 
 const OptionSelectedWrapper = styled.div<OptionProps>`
-  display: ${({ $hasDescription }) => ($hasDescription ? 'grid' : 'grid')};
+  display: grid;
   ${({ $hasDescription }) =>
     $hasDescription
       ? css`
@@ -101,7 +101,6 @@ const OptionLabel = styled.span<{ $hasDescription?: boolean }>`
 
 const OptionDescription = styled.span`
   padding-left: 6px;
-  font-size: 12px;
   ${ellipsisStyle}
 `
 
