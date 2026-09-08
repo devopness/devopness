@@ -70,9 +70,12 @@
     "lodash": "^4.18.1",
     "material-ui-popup-state": "^5.3.7",
     "path-browserify": "^1.0.1",
+    "react-dnd": "16.0.1",
+    "react-dnd-html5-backend": "16.0.1",
     "react-icons": "^5.7.0",
     "react-select": "^5.10.2",
     "react-spinners": "^0.17.0",
+    "react-table": "^7.8.0",
     "styled-components": "^6.5.3"
   },
   "devDependencies": {
@@ -89,6 +92,7 @@
     "@types/path-browserify": "^1.0.3",
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.0",
+    "@types/react-table": "^7.7.20",
     "@typescript/typescript6": "^6.0.2",
     "@vitejs/plugin-react": "^6.1.1",
     "jsdom": "^30.0.1",
