@@ -1,4 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 import { useMediaQuery } from '@mui/material'
 import type { Variants } from 'framer-motion'
@@ -128,7 +133,12 @@ const CrumbLogo = ({
       placement="bottom-end"
       disableHover={!compact}
     >
-      <LogoContainer onClick={onClick}>
+      <LogoContainer
+        role="button"
+        tabIndex={0}
+        aria-label="Home"
+        onClick={onClick}
+      >
         <LogoContent>
           <LogoImage
             $src={urls.compact}
@@ -161,6 +171,23 @@ const Crumb = ({
   const [selectedCrumb, setSelectedCrumb] = useState<DropdownOption>(crumb)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const isPresent = useIsPresent()
+
+  const handleDropdownOptionSelect = useCallback(
+    async (option: DropdownOption) => {
+      setSelectedCrumb(option)
+      await option.onClick?.()
+    },
+    []
+  )
+
+  const dropdownOptions = useMemo(
+    () =>
+      crumb.list?.map((option) => ({
+        ...option,
+        onClick: () => handleDropdownOptionSelect(option),
+      })) ?? [],
+    [crumb.list, handleDropdownOptionSelect]
+  )
 
   useEffect(() => {
     setSelectedCrumb(crumb)
@@ -239,6 +266,7 @@ const Crumb = ({
       },
     },
   }
+  const handleCrumbClick = selectedCrumb.onClick ?? crumb.onClick
 
   return (
     <CrumbContainer
@@ -259,7 +287,10 @@ const Crumb = ({
               key={index + (crumb?.label || '')}
               $order={index}
               $zIndex={total - index}
-              onClick={crumb.onClick}
+              role="button"
+              tabIndex={0}
+              aria-label={label}
+              onClick={handleCrumbClick}
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -299,11 +330,11 @@ const Crumb = ({
               </AnimatePresence>
             </NodeContent>
           </Tooltip>
-          {!!crumb.list?.length && (
+          {dropdownOptions.length > 0 && (
             <ContentIconArrow $zIndex={total - index}>
               <Dropdown
                 id={`breadcrumb-dropdown-${index}`}
-                options={crumb.list}
+                options={dropdownOptions}
                 anchorType="content"
                 content={
                   <span>
@@ -314,7 +345,6 @@ const Crumb = ({
                   </span>
                 }
                 onToggle={({ isOpen }) => setIsDropdownOpen(isOpen)}
-                onSelect={setSelectedCrumb}
               />
             </ContentIconArrow>
           )}
@@ -324,7 +354,7 @@ const Crumb = ({
           style={{ display: 'contents' }}
         >
           <ArrowHead
-            onClick={crumb.onClick}
+            onClick={handleCrumbClick}
             fill="white"
             stroke="#c7cedb"
           />
