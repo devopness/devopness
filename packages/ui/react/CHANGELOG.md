@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.204.2
+
+### Patch Changes
+
+- [#3562](https://github.com/devopness/devopness/pull/3562) [`2da9be6`](https://github.com/devopness/devopness/commit/2da9be6b03fd51f3ec9b2820453fe5dcbe36383b) Thanks [@therealrinku](https://github.com/therealrinku)! - Adjust font size of description text in `Select` component to 13px from 12px.
+
 ## 2.204.1
 
 ### Patch Changes
