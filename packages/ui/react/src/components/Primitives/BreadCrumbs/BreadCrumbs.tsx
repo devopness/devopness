@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type KeyboardEvent,
+} from 'react'
 
 import { useMediaQuery } from '@mui/material'
 import type { Variants } from 'framer-motion'
@@ -30,6 +36,16 @@ import {
 } from './BreadCrumbs.styled'
 
 const DROPDOWN_ICON_SIZE = 24
+
+const handleKeyboardActivation = (
+  event: KeyboardEvent,
+  onClick: () => void | Promise<void>
+) => {
+  if (event.key !== 'Enter' && event.key !== ' ') return
+
+  event.preventDefault()
+  void onClick()
+}
 
 /** Available logo treatments for the leading breadcrumb. */
 enum BreadCrumbLogoTheme {
@@ -133,6 +149,7 @@ const CrumbLogo = ({
         tabIndex={0}
         aria-label="Home"
         onClick={onClick}
+        onKeyDown={(event) => handleKeyboardActivation(event, onClick)}
       >
         <LogoContent>
           <LogoImage
@@ -286,6 +303,9 @@ const Crumb = ({
               tabIndex={0}
               aria-label={label}
               onClick={handleCrumbClick}
+              onKeyDown={(event) =>
+                handleKeyboardActivation(event, handleCrumbClick)
+              }
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -350,6 +370,10 @@ const Crumb = ({
         >
           <ArrowHead
             onClick={handleCrumbClick}
+            onKeyDown={(event) =>
+              handleKeyboardActivation(event, handleCrumbClick)
+            }
+            aria-label={`Navigate to ${label}`}
             fill="white"
             stroke="#c7cedb"
           />

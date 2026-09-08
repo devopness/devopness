@@ -11,6 +11,10 @@ type ArrowHeadProps = {
    * Event handler called when the arrow is clicked.
    */
   onClick?: React.MouseEventHandler
+  /** Keyboard handler for interactive arrow separators. */
+  onKeyDown?: React.KeyboardEventHandler
+  /** Accessible name for interactive arrow separators. */
+  'aria-label'?: string
 }
 
 /**
@@ -22,8 +26,21 @@ type ArrowHeadProps = {
  *   stroke="#FFFFFF"
  * />
  */
-const ArrowHead = ({ fill, stroke, style, onClick }: ArrowHeadProps) => (
-  <Container onClick={onClick}>
+const ArrowHead = ({
+  fill,
+  stroke,
+  style,
+  onClick,
+  onKeyDown,
+  'aria-label': ariaLabel,
+}: ArrowHeadProps) => (
+  <Container
+    role={onClick ? 'button' : undefined}
+    tabIndex={onClick ? 0 : undefined}
+    aria-label={ariaLabel}
+    onClick={onClick}
+    onKeyDown={onKeyDown}
+  >
     <ArrowShape
       fill={fill}
       stroke={stroke}
