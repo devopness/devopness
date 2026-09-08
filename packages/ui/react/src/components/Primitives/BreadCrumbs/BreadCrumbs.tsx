@@ -1,9 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useMediaQuery } from '@mui/material'
 import type { Variants } from 'framer-motion'
