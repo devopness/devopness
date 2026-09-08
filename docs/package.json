@@ -29,7 +29,7 @@
     "@types/node": "^26.4.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
-    "postcss": "^8.5.26",
+    "postcss": "^8.5.28",
     "tailwindcss": "^4.2.4",
     "typescript": "^7.0.2",
     "vite-plus": "0.3.0"
