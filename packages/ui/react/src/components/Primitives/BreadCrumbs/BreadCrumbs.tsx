@@ -370,9 +370,6 @@ const Crumb = ({
         >
           <ArrowHead
             onClick={handleCrumbClick}
-            onKeyDown={(event) =>
-              handleKeyboardActivation(event, handleCrumbClick)
-            }
             aria-label={`Navigate to ${label}`}
             fill="white"
             stroke="#c7cedb"

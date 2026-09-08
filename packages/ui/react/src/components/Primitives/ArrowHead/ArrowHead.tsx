@@ -33,23 +33,40 @@ const ArrowHead = ({
   onClick,
   onKeyDown,
   'aria-label': ariaLabel,
-}: ArrowHeadProps) => (
-  <Container
-    role={onClick ? 'button' : undefined}
-    tabIndex={onClick ? 0 : undefined}
-    aria-label={ariaLabel}
-    onClick={onClick}
-    onKeyDown={onKeyDown}
-  >
-    <ArrowShape
-      fill={fill}
-      stroke={stroke}
-      style={style}
+}: ArrowHeadProps) => {
+  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
+    onKeyDown?.(event)
+
+    if (
+      !onClick ||
+      event.defaultPrevented ||
+      (event.key !== 'Enter' && event.key !== ' ')
+    ) {
+      return
+    }
+
+    event.preventDefault()
+    event.currentTarget.click()
+  }
+
+  return (
+    <Container
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      aria-label={ariaLabel}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
     >
-      <path d="M 0 0 L 0.84 0.42 Q 0.92 0.5 0.84 0.58 L 0 1 Z" />
-    </ArrowShape>
-  </Container>
-)
+      <ArrowShape
+        fill={fill}
+        stroke={stroke}
+        style={style}
+      >
+        <path d="M 0 0 L 0.84 0.42 Q 0.92 0.5 0.84 0.58 L 0 1 Z" />
+      </ArrowShape>
+    </Container>
+  )
+}
 
 export type { ArrowHeadProps }
 export { ArrowHead }
