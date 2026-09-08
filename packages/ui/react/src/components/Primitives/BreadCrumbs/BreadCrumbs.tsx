@@ -31,30 +31,51 @@ import {
 
 const DROPDOWN_ICON_SIZE = 24
 
+/** Available logo treatments for the leading breadcrumb. */
 enum BreadCrumbLogoTheme {
   Purple = 'purple',
   Dark = 'dark',
 }
 
+/**
+ * Describes a breadcrumb item and its optional dropdown alternatives.
+ *
+ * The UI package renders the breadcrumb and invokes `onClick`; route
+ * generation and navigation should remain in the consuming application.
+ */
 type BreadCrumbOption = DropdownOption & {
+  /** Alternative breadcrumb items displayed in the item's dropdown. */
   list?: DropdownOption[]
+  /** Called when the breadcrumb item or its separator is clicked. */
   onClick: () => void | Promise<void>
 }
 
+/** Breadcrumb item data enriched with animation and layering metadata. */
 type RenderedCrumb = BreadCrumbOption & {
+  /** Stagger position used by the entry animation. */
   queue: number
+  /** Layering order used when breadcrumb items overlap. */
   zIndex: number
 }
 
 type BreadCrumbsProps = {
+  /** Breadcrumb items rendered from left to right. */
   navigateCrumbs: BreadCrumbOption[]
+  /** Background color of the breadcrumb bar. */
   backgroundColor: string
+  /** Shrinks the logo to its compact form when breadcrumb navigation is active. */
   animationHideAndResizeImage?: boolean
+  /** Logo theme used by the leading breadcrumb. */
   theme?: BreadCrumbLogoTheme
+  /** Called when the leading logo breadcrumb is clicked. */
   imageOnClick: () => void
+  /** Displays the loading indicator below the breadcrumb bar. */
   isLoading?: boolean
+  /** Hides the leading logo breadcrumb when set to `false`. */
   showLogoCrumb?: boolean
+  /** Adds spacing for a brand displayed immediately before the breadcrumbs. */
   hasAdjacentBrand?: boolean
+  /** Builds tooltip text for each breadcrumb item. */
   getTooltipTitle?: (label: string, index: number) => string
 }
 
@@ -313,6 +334,36 @@ const Crumb = ({
   )
 }
 
+/**
+ * Animated breadcrumb navigation for hierarchical application routes.
+ *
+ * The component is presentation-focused: pass already-generated breadcrumb
+ * data and keep routing, route matching, and navigation handlers in the
+ * consuming application.
+ *
+ * @example
+ * ```tsx
+ * <BreadCrumbs
+ *   backgroundColor="#ffffff"
+ *   imageOnClick={() => navigate('/organizations')}
+ *   navigateCrumbs={[
+ *     {
+ *       label: 'Projects',
+ *       onClick: () => navigate('/projects'),
+ *     },
+ *     {
+ *       label: 'Production',
+ *       onClick: () => navigate('/projects/production'),
+ *       badge: {
+ *         icon: true,
+ *         name: 'server',
+ *         backgroundColor: '#4285f4',
+ *       },
+ *     },
+ *   ]}
+ * />
+ * ```
+ */
 const BreadCrumbs = ({
   navigateCrumbs,
   backgroundColor,
