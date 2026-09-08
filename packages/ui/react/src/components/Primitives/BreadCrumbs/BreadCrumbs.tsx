@@ -173,9 +173,51 @@ const Crumb = ({
     },
   }
 
-  const contentAnimation = isPresent ? 'show' : 'hide'
+  const contentAnimation = isPresent
+    ? 'show'
+    : {
+        opacity: 0,
+        transition: {
+          duration: 0.3,
+          delay: 0.2 * Math.max(total - index - 1, 0),
+        },
+      }
   const label = selectedCrumb.label ?? ''
   const badge = selectedCrumb.badge
+  const contentIconAnimationVariants: Variants = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        delay: 0.25 + 0.12 * crumb.queue,
+      },
+    },
+    hide: {
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  }
+  const contentLabelAnimationVariants: Variants = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        delay: 0.45 + 0.12 * crumb.queue,
+      },
+    },
+    hide: {
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  }
 
   return (
     <CrumbContainer
@@ -193,37 +235,47 @@ const Crumb = ({
         <NodeContentContainer>
           <Tooltip title={getTooltipTitle(label, index)}>
             <NodeContent
+              key={index + (crumb?.label || '')}
               $order={index}
               $zIndex={total - index}
               onClick={crumb.onClick}
             >
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={contentAnimation}
-                variants={{ show: { opacity: 1 }, hide: { opacity: 0 } }}
-              >
-                {badge &&
-                  (badge.icon ? (
-                    <ContentBadge $backgroundColor={badge.backgroundColor}>
-                      {iconLoader(badge.name, badge.size || 14)}
-                    </ContentBadge>
-                  ) : (
-                    <ContentBadge
-                      $backgroundColor={badge.backgroundColor}
-                      $color={badge.color}
-                    >
-                      {label[0] ?? null}
-                    </ContentBadge>
-                  ))}
-              </motion.div>
-              <motion.div
-                style={{ minWidth: 0 }}
-                initial={{ opacity: 0 }}
-                animate={contentAnimation}
-                variants={{ show: { opacity: 1 }, hide: { opacity: 0 } }}
-              >
-                <CrumbText>{label}</CrumbText>
-              </motion.div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`icon-${label}-${crumb?.label ?? ''}`}
+                  style={{ opacity: 0 }}
+                  variants={contentIconAnimationVariants}
+                  initial="hidden"
+                  animate={contentAnimation}
+                  exit="hide"
+                >
+                  {badge &&
+                    (badge.icon ? (
+                      <ContentBadge $backgroundColor={badge.backgroundColor}>
+                        {iconLoader(badge.name, badge.size || 14)}
+                      </ContentBadge>
+                    ) : (
+                      <ContentBadge
+                        $backgroundColor={badge.backgroundColor}
+                        $color={badge.color}
+                      >
+                        {label[0] ?? null}
+                      </ContentBadge>
+                    ))}
+                </motion.div>
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`label-${label}`}
+                  style={{ opacity: 0, minWidth: 0 }}
+                  variants={contentLabelAnimationVariants}
+                  initial="hidden"
+                  animate={contentAnimation}
+                  exit="hide"
+                >
+                  <CrumbText>{label}</CrumbText>
+                </motion.div>
+              </AnimatePresence>
             </NodeContent>
           </Tooltip>
           {!!crumb.list?.length && (
@@ -323,7 +375,7 @@ const BreadCrumbs = ({
         <AnimatePresence>
           {renderedCrumbs.map((crumb, index) => (
             <Crumb
-              key={`${crumb.label}-${index}`}
+              key={`crumb${index + 1}`}
               crumb={crumb}
               index={index + 1}
               total={
@@ -365,8 +417,5 @@ const BreadCrumbs = ({
 }
 
 export { BreadCrumbs }
-export {
-  BreadCrumbLogoTheme,
-  BreadCrumbLogoTheme as ImageThemes,
-}
+export { BreadCrumbLogoTheme, BreadCrumbLogoTheme as ImageThemes }
 export type { BreadCrumbOption, BreadCrumbsProps, RenderedCrumb }
