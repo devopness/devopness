@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.206.1
+
+### Patch Changes
+
+- [#3576](https://github.com/devopness/devopness/pull/3576) [`4e7e68f`](https://github.com/devopness/devopness/commit/4e7e68f5cf413a16adb234dc3c52652c6d4a5d9c) Thanks [@therealrinku](https://github.com/therealrinku)! - Update stroke color of `ArrowHead` in `BreadCrumbs` component
+
 ## 2.206.0
 
 ### Minor Changes
