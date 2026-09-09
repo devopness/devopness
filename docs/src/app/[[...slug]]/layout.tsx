@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import { DocsLayout } from "fumadocs-ui/layouts/notebook";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
 
-import { baseOptions } from "@/lib/layout.config";
+import { baseOptions, layoutTabs } from "@/lib/layout.config";
 import { source } from "@/lib/source";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <DocsLayout tree={source.getPageTree()} {...baseOptions()}>
+    <DocsLayout tabs={layoutTabs} tree={source.pageTree} {...baseOptions()}>
       {children}
     </DocsLayout>
   );
