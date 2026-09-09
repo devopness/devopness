@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/page";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 
@@ -19,20 +19,26 @@ type ApiPageData = {
 };
 
 /**
+ * Return the API section root page.
+ *
+ * The root should resolve to `docs/docs/api/index.md`, and the generated
+ * OpenAPI pages should follow it in the sidebar.
+ */
+function getRootApiPage(source: Awaited<ReturnType<typeof getApiReferenceSource>>) {
+  return source.getPages()[0];
+}
+
+/**
  * Render the API reference pages.
  */
 export default async function Page(props: { params: Promise<{ slug?: string[] }> }) {
   const params = await props.params;
   const source = await getApiReferenceSource();
+  const page = params.slug ? source.getPage(params.slug) : getRootApiPage(source);
 
-  if (!params.slug) {
-    const first = source.getPages()[0];
-    if (first) redirect(first.url);
+  if (!page) {
     notFound();
   }
-
-  const page = source.getPage(params.slug ?? []);
-  if (!page) notFound();
 
   const data = page.data as ApiPageData;
 
@@ -94,18 +100,11 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params;
   const source = await getApiReferenceSource();
-  if (!params.slug) {
-    const first = source.getPages()[0];
-    if (!first) notFound();
+  const page = params.slug ? source.getPage(params.slug) : getRootApiPage(source);
 
-    return {
-      title: first.data.title,
-      description: first.data.description,
-    };
+  if (!page) {
+    notFound();
   }
-
-  const page = source.getPage(params.slug);
-  if (!page) notFound();
 
   return {
     title: page.data.title,
