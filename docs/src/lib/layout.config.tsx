@@ -4,12 +4,14 @@ import { BookOpenIcon, CodeIcon } from "lucide-react";
 
 import { siteConfig } from "@/lib/constants";
 import { API_REFERENCE_BASE_URL } from "@/lib/openapi";
+import { source } from "@/lib/source";
 
 export const layoutTabs = [
   {
     title: "Documentation",
     description: "Guides and references",
     url: "/",
+    urls: new Set(source.getPages().map((page) => page.url)),
     icon: <BookOpenIcon className="size-4 text-blue-500" />,
   },
   {
