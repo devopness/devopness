@@ -1,0 +1,7 @@
+{
+  "title": "API",
+  "description": "Devopness API reference and generated endpoints.",
+  "root": true,
+  "icon": "Shapes",
+  "pages": ["...(generated)", "index"]
+}

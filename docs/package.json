@@ -14,6 +14,7 @@
     "dotenv-expand": "^1000.0.0",
     "fumadocs-core": "16.15.4",
     "fumadocs-mdx": "15.4.0",
+    "fumadocs-openapi": "^11.4.1",
     "fumadocs-ui": "16.15.4",
     "lucide-react": "^1.38.0",
     "next": "16.3.4",
