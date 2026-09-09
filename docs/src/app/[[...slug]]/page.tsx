@@ -1,13 +1,7 @@
 import type { ComponentProps } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  DocsBody,
-  DocsDescription,
-  DocsPage,
-  DocsTitle,
-  EditOnGitHub,
-} from "fumadocs-ui/layouts/notebook/page";
+import { DocsBody, DocsDescription, DocsPage, DocsTitle, EditOnGitHub } from "fumadocs-ui/page";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 
 import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
