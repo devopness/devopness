@@ -51,6 +51,7 @@ const moveArrayItem = <T,>(items: T[], fromIndex: number, toIndex: number) => {
  * Renders a table whose rows can be reordered with drag and drop.
  *
  * Rows should expose a stable `id` property so React Table can identify them.
+ * When an `id` is not provided, the row index is used as its identity.
  *
  * @example
  * ```tsx
@@ -77,9 +78,9 @@ function TableRowDragDrop<T extends object = {}>({
   }, [data])
 
   const [moving, setMoving] = useState<TableMovingDataParams | null>(null)
-  const getRowId = useCallback((row: T) => {
+  const getRowId = useCallback((row: T, index: number) => {
     const rowWithId = row as T & DragDropRowMetadata
-    return String(rowWithId.id)
+    return String(rowWithId.id ?? index);
   }, [])
 
   const {
@@ -204,7 +205,7 @@ function TableRow<T extends object>({
       const isDraggingUp = dragIndex > hoverIndex
 
       if (hoverClientY !== undefined) {
-        if (!isDraggingUp && hoverClientY > hoverMiddleY) return
+        if (!isDraggingUp && hoverClientY < hoverMiddleY) return
         if (isDraggingUp && hoverClientY > hoverMiddleY) return
       }
 

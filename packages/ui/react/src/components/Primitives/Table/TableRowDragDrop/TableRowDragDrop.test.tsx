@@ -90,4 +90,29 @@ describe('drag and drop table', () => {
       expect(within(tableHeader).getByText(Header as string)).toBeTruthy()
     })
   })
+
+  it('supports rows without ids', () => {
+    const onDrop = vi.fn()
+    const onDrag = vi.fn()
+    const data = [{ name: 'First' }, { name: 'Second' }]
+    const columns = [{ Header: 'Name', accessor: 'name' as const }]
+
+    const component = render(
+      <TableRowDragDrop
+        columns={columns}
+        data={data}
+        onDrop={onDrop}
+        onDrag={onDrag}
+      />
+    )
+    const draggableNodes = component.getAllByLabelText('drag row')
+    const rows = component.container.getElementsByTagName('tr')
+
+    dragAndDrop(draggableNodes[0], rows[2])
+
+    expect(onDrop).toHaveBeenCalledWith(
+      { fromIndex: 0, toIndex: 1 },
+      expect.anything()
+    )
+  })
 })

@@ -132,7 +132,7 @@ function TableLoading({ cells, lines = 5, smallContainer }: TableLoadingProps) {
   const linesList = createIntegerList(lines)
 
   return (
-    <TableWrapper>
+    <TableWrapper $smallContainer={Boolean(smallContainer)}>
       <BaseTable $smallContainer={Boolean(smallContainer)}>
         <thead>
           <tr>
