@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.206.0
+
+### Minor Changes
+
+- [#3569](https://github.com/devopness/devopness/pull/3569) [`d1414ce`](https://github.com/devopness/devopness/commit/d1414ce7f8d72c4c26a6531fa281d8b7e6fa0852) Thanks [@therealrinku](https://github.com/therealrinku)! - Added new primitive component `Table` along with related components like TableLoading, TableDragDrop and TableCellWrapper
+
 ## 2.205.0
 
 ### Minor Changes
