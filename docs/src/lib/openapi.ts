@@ -33,7 +33,7 @@ export const getApiReferenceSource = cache(async () => {
     groupBy: "tag",
     // `separator` keeps the generated tag groups as sidebar sections.
     // `folder` would nest them as actual folders instead.
-    meta: { folderStyle: "separator" },
+    meta: { folderStyle: "folder" },
   });
 
   const staticSource = apiRefCollection.toFumadocsSource();
@@ -90,9 +90,11 @@ function patchOpenapiRootMeta(files: OpenApiFile[], staticSlugs: string[]): Open
       continue;
     }
 
-    // The generated root meta file is typed as OpenAPI page data, but this is
-    // the one place where we need to treat it as a meta file so we can prepend
-    // the manual API page slugs.
+    /**
+    * The generated root meta file is typed as OpenAPI page data, but this is
+    * the one place where we need to treat it as a meta file so we can prepend
+    * the manual API page slugs.
+    */
     const rootMeta = file as RootMetaFile;
 
     /**
