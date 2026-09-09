@@ -6,7 +6,11 @@ import type { Icon as IconName } from "src/icons";
 import { iconLoader } from "src/icons";
 import { isDefined } from "src/components/type-guards";
 
-import { TableCellIcon, TableCellValue, TableCellWrapper as TableCellWrapperStyle } from "./styled";
+import {
+  TableCellIcon,
+  TableCellValue,
+  TableCellWrapper as TableCellWrapperStyle,
+} from "./TableCellWrapper.styled";
 
 /** Props for `TableCellWrapper`. */
 interface TableCellWrapperProps {

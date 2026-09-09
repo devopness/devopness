@@ -8,7 +8,7 @@ import { useTable } from "react-table";
 import { getColor } from "src/colors";
 import { iconLoader } from "src/icons";
 
-import { BaseTable, TableTr, TableWrapper } from "./Table.styled";
+import { BaseTable, TableTr, TableWrapper } from "../Table.styled";
 
 /** Source and destination indexes for a row move operation. */
 export interface TableMovingDataParams {

@@ -2,7 +2,13 @@ import { Fragment } from "react";
 
 import { Skeleton } from "src/components/Primitives/Skeleton";
 
-import { BaseTable, ButtonWrapper, LoadingWrapper, TableTr, TableWrapper } from "./styled";
+import {
+  BaseTable,
+  ButtonWrapper,
+  LoadingWrapper,
+  TableTr,
+  TableWrapper,
+} from "./TableLoading.styled";
 
 /** Skeleton layout used for loading table body cells. */
 enum TableRowVariation {

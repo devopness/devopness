@@ -236,11 +236,14 @@ export type { FixedLine, TableProps, TableRowMetadata };
 export { Table };
 export default React.memo(Table) as typeof Table;
 
-export { TableCellWrapper } from "./CellWrapper";
-export type { TableCellWrapperProps } from "./CellWrapper";
-export { TableLoading } from "./Loading";
-export { TableHeaderVariation, TableRowVariation } from "./Loading";
-export type { TableCellProps, TableLoadingProps } from "./Loading";
-export { default as TableRowDragDrop } from "./TableRowDragDrop";
-export type { TableMovingDataParams, TableRowDragDropProps } from "./TableRowDragDrop";
+export { TableCellWrapper } from "./TableCellWrapper/TableCellWrapper";
+export type { TableCellWrapperProps } from "./TableCellWrapper/TableCellWrapper";
+export { TableLoading } from "./TableLoading/TableLoading";
+export { TableHeaderVariation, TableRowVariation } from "./TableLoading/TableLoading";
+export type { TableCellProps, TableLoadingProps } from "./TableLoading/TableLoading";
+export { default as TableRowDragDrop } from "./TableRowDragDrop/TableRowDragDrop";
+export type {
+  TableMovingDataParams,
+  TableRowDragDropProps,
+} from "./TableRowDragDrop/TableRowDragDrop";
 export * from "./Table.styled";
