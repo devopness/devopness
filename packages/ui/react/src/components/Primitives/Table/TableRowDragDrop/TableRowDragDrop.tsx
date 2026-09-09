@@ -80,7 +80,7 @@ function TableRowDragDrop<T extends object = {}>({
   const [moving, setMoving] = useState<TableMovingDataParams | null>(null)
   const getRowId = useCallback((row: T, index: number) => {
     const rowWithId = row as T & DragDropRowMetadata
-    return String(rowWithId.id ?? index);
+    return String(rowWithId.id ?? index)
   }, [])
 
   const {
