@@ -4,29 +4,47 @@ import { Skeleton } from "src/components/Primitives/Skeleton";
 
 import { BaseTable, ButtonWrapper, LoadingWrapper, TableTr, TableWrapper } from "./styled";
 
+/** Skeleton layout used for loading table body cells. */
 enum TableRowVariation {
+  /** Two action button placeholders. */
   TWO_BUTTONS_EFFECT = "TWO_BUTTONS_EFFECT",
+  /** One action button placeholder. */
   ONE_BUTTON_EFFECT = "ONE_BUTTON_EFFECT",
+  /** Checkbox placeholder. */
   CHECKBOX_EFFECT = "CHECKBOX_EFFECT",
+  /** Checkbox and text bar placeholders. */
   CHECKBOX_EFFECT_WITH_BAR = "CHECKBOX_EFFECT_WITH_BAR",
+  /** Text bar placeholder. */
   BAR_EFFECT = "BAR_EFFECT",
 }
 
+/** Skeleton layout used for loading table header cells. */
 enum TableHeaderVariation {
+  /** Checkbox placeholder. */
   CHECKBOX_EFFECT = "CHECKBOX_EFFECT",
+  /** Text bar placeholder. */
   BAR_EFFECT = "BAR_EFFECT",
 }
 
+/** Describes one column in a `TableLoading` placeholder. */
 interface TableCellProps {
+  /** Header text shown when no header skeleton is configured. */
   name: string;
+  /** Skeleton layout rendered in body cells. */
   rowVariation: TableRowVariation;
+  /** Optional skeleton layout rendered in the header. */
   headerVariation?: TableHeaderVariation;
+  /** Aligns the column loading content to the end. */
   alignEnd?: boolean;
 }
 
+/** Props for `TableLoading`. */
 interface TableLoadingProps {
+  /** Placeholder column definitions. */
   cells: readonly TableCellProps[];
+  /** Number of loading rows to render. */
   lines?: number;
+  /** Uses compact table spacing. */
   smallContainer?: boolean;
 }
 
@@ -54,6 +72,23 @@ const LOADING_EFFECTS = {
 
 const createIntegerList = (size: number) => Array.from({ length: size }, (_, index) => index);
 
+/**
+ * Renders a table-shaped loading state using skeleton placeholders.
+ *
+ * @example
+ * ```tsx
+ * <TableLoading
+ *   cells={[
+ *     { name: "Name", rowVariation: TableRowVariation.BAR_EFFECT },
+ *     {
+ *       name: "Actions",
+ *       rowVariation: TableRowVariation.ONE_BUTTON_EFFECT,
+ *     },
+ *   ]}
+ *   lines={3}
+ * />
+ * ```
+ */
 function TableLoading({ cells, lines = 5, smallContainer }: TableLoadingProps) {
   const linesList = createIntegerList(lines);
 

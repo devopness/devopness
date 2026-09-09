@@ -3,20 +3,24 @@ import { styled } from "styled-components";
 import { getColor } from "src/colors";
 import { getFont } from "src/fonts";
 
+/** Styling props for the loading table container. */
 interface TableWrapperProps {
   $smallContainer?: boolean;
 }
 
+/** Styling props for the loading table element. */
 interface BaseTableProps {
   empty?: boolean;
   $smallContainer?: boolean;
   disabledTable?: boolean;
 }
 
+/** Styling props for loading cell content. */
 interface LoadingWrapperProps {
   $alignEnd?: boolean;
 }
 
+/** Styled container for the loading table. */
 const TableWrapper = styled.div<TableWrapperProps>`
   display: flex;
   justify-content: center;
@@ -26,6 +30,7 @@ const TableWrapper = styled.div<TableWrapperProps>`
   padding-bottom: ${({ $smallContainer }) => !$smallContainer && "42px"};
 `;
 
+/** Styled table element for loading placeholders. */
 const BaseTable = styled.table<BaseTableProps>`
   position: relative;
   width: 93%;
@@ -64,6 +69,7 @@ const BaseTable = styled.table<BaseTableProps>`
   }
 `;
 
+/** Styled row used by the loading table. */
 const TableTr = styled.tr<{ $numberOfColumns?: number }>`
   td {
     padding: 0 15px;
@@ -87,6 +93,7 @@ const TableTr = styled.tr<{ $numberOfColumns?: number }>`
   }
 `;
 
+/** Layout wrapper for loading action button placeholders. */
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -94,6 +101,7 @@ const ButtonWrapper = styled.div`
   gap: 15px;
 `;
 
+/** Wrapper controlling alignment of loading placeholders. */
 const LoadingWrapper = styled.div<LoadingWrapperProps>`
   display: flex;
   justify-content: ${({ $alignEnd }) => $alignEnd && "flex-end"};

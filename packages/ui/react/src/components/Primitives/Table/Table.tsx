@@ -19,34 +19,72 @@ import {
   TableWrapper,
 } from "./Table.styled";
 
+/** Configuration for the fixed background and hover line rendered around a row. */
 type FixedLine = {
+  /** Whether the line styling is enabled for the row. */
   activated?: boolean;
+  /** Background color applied to the row line. */
   lineBackgroundColor?: string;
+  /** Background color applied while hovering the row. */
   lineHoverColor?: string;
 };
 
+/** Optional metadata read from each row by `Table`. */
 type TableRowMetadata = {
+  /** Identifier used to reset expanded rows when the table changes. */
   tableId?: string | number;
+  /** Row type used by the indented layout. */
   rowType?: string;
+  /** Fixed line styling for the row. */
   fixedLine?: FixedLine;
+  /** Disables interaction with the row and renders it with reduced opacity. */
   disabled?: boolean;
 };
 
+/** Props accepted by the generic React Table wrapper. */
 type TableProps<T extends object = {}> = TableOptions<T> & {
+  /** Custom table content padding. */
   padding?: string;
+  /** Uses the compact table spacing. */
   smallContainer?: boolean;
+  /** Disables table interaction and dims the table. */
   disabledTable?: boolean;
+  /** Header text color. */
   headerColor?: string;
+  /** Aligns the final column to the end when enabled. */
   alignEndLastColumn?: boolean;
+  /** Maximum width for header cells. */
   headerMaxWidth?: string;
+  /** Maximum width for body cells. */
   cellMaxWidth?: string;
+  /** Allows cell content to render outside its clipped cell. */
   cellOverflowVisible?: boolean;
+  /** Explicit width for rendered cell values. */
   cellWidth?: string;
+  /** Row hover background color. */
   hoverColor?: string;
+  /** Enables the indented row layout. */
   layout?: "indented";
+  /** Renders custom content below an expanded row with no subrows. */
   customSubRowInjection?: (row: Row<T>) => ReactNode;
 };
 
+/**
+ * A generic table built on React Table v7 with Devopness styling and expansion support.
+ *
+ * @example
+ * ```tsx
+ * <Table
+ *   columns={[
+ *     { Header: "Name", accessor: "name" },
+ *     { Header: "Status", accessor: "status" },
+ *   ]}
+ *   data={[
+ *     { name: "Production", status: "Healthy" },
+ *   ]}
+ * />
+ * ```
+ */
 function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
   const [dataTable, setDataTable] = useState<T[]>([]);
 

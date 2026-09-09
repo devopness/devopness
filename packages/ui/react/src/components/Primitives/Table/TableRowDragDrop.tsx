@@ -10,8 +10,11 @@ import { iconLoader } from "src/icons";
 
 import { BaseTable, TableTr, TableWrapper } from "./Table.styled";
 
+/** Source and destination indexes for a row move operation. */
 export interface TableMovingDataParams {
+  /** Original row index. */
   fromIndex: number;
+  /** Destination row index. */
   toIndex: number;
 }
 
@@ -26,8 +29,11 @@ type DragDropRowMetadata = {
   disabled?: boolean;
 };
 
+/** Props for the sortable drag-and-drop table. */
 type TableRowDragDropProps<T extends object = {}> = Pick<TableOptions<T>, "columns" | "data"> & {
+  /** Called after a row is dropped with the new ordering. */
   onDrop: (moving: TableMovingDataParams, data: T[]) => void;
+  /** Called whenever a row starts or stops dragging. */
   onDrag: (isDragging: boolean) => void;
 };
 
@@ -38,6 +44,21 @@ const moveArrayItem = <T,>(items: T[], fromIndex: number, toIndex: number) => {
   return nextItems;
 };
 
+/**
+ * Renders a table whose rows can be reordered with drag and drop.
+ *
+ * Rows should expose a stable `id` property so React Table can identify them.
+ *
+ * @example
+ * ```tsx
+ * <TableRowDragDrop
+ *   columns={[{ Header: "Name", accessor: "name" }]}
+ *   data={[{ id: "one", name: "First" }, { id: "two", name: "Second" }]}
+ *   onDrag={(isDragging) => setDragging(isDragging)}
+ *   onDrop={(move, rows) => saveOrder(move, rows)}
+ * />
+ * ```
+ */
 function TableRowDragDrop<T extends object = {}>({
   columns,
   data,

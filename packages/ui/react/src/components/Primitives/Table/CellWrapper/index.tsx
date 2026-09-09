@@ -8,15 +8,30 @@ import { isDefined } from "src/components/type-guards";
 
 import { TableCellIcon, TableCellValue, TableCellWrapper as TableCellWrapperStyle } from "./styled";
 
+/** Props for `TableCellWrapper`. */
 interface TableCellWrapperProps {
+  /** An icon name or custom React node displayed before the value. */
   icon?: IconName | Exclude<ReactNode, string>;
+  /** Content displayed beside the icon. */
   value: ReactNode;
+  /** Pixel size used when rendering an icon by name. */
   iconSize?: number;
+  /** Color used when rendering an icon by name. */
   iconColor?: string;
+  /** Background color behind the icon. */
   iconBackgroundColor?: string;
+  /** Optional tooltip shown for an icon. */
   iconTooltip?: string;
 }
 
+/**
+ * Renders a consistently styled table cell value with optional icon content.
+ *
+ * @example
+ * ```tsx
+ * <TableCellWrapper icon="check" value="Healthy" iconColor="#16a34a" />
+ * ```
+ */
 function TableCellWrapper({
   icon,
   iconSize,

@@ -3,6 +3,11 @@ import { css, styled } from "styled-components";
 import { getColor } from "src/colors";
 import { getFont } from "src/fonts";
 
+/**
+ * Creates the pseudo-element styling used for rounded row borders.
+ *
+ * @param hoverColor - Background color applied to the generated border.
+ */
 const pseudoBorderStyled = (hoverColor?: string) => css`
   content: "";
   position: absolute;
@@ -15,11 +20,13 @@ const pseudoBorderStyled = (hoverColor?: string) => css`
   border-bottom: 1px solid ${getColor("slate.300")};
 `;
 
+/** Styling props for the outer table scroll container. */
 interface TableWrapperProps {
   $smallContainer?: boolean;
   $padding?: string;
 }
 
+/** Styling props for the base table element. */
 interface BaseTableProps {
   $smallContainer?: boolean;
   $disabledTable?: boolean;
@@ -28,6 +35,7 @@ interface BaseTableProps {
   $alignEndLastColumn?: boolean;
 }
 
+/** Styling props for table rows, including fixed-line and hover states. */
 interface TableTrProps {
   $lineBackgroundColor?: string;
   $lineHoverColor?: string;
@@ -39,6 +47,7 @@ interface TableTrProps {
   $alignEndLastColumn?: boolean;
 }
 
+/** Styled outer container used by the primary Table implementation. */
 const TableWrapper = styled.div<TableWrapperProps>`
   background-color: white;
   padding-top: 42px;
@@ -57,6 +66,7 @@ const TableWrapper = styled.div<TableWrapperProps>`
   }
 `;
 
+/** Styled table element shared by the primary and drag-and-drop tables. */
 const BaseTable = styled.table<BaseTableProps>`
   position: relative;
   width: 100%;
@@ -105,6 +115,7 @@ const BaseTable = styled.table<BaseTableProps>`
   }
 `;
 
+/** Styled table row supporting disabled, hover, and fixed-line states. */
 const TableTr = styled.tr<TableTrProps>`
   opacity: ${({ $disabledRow }) => ($disabledRow ? 0.3 : 1)};
   pointer-events: ${({ $disabledRow }) => ($disabledRow ? "none" : "auto")};
@@ -239,18 +250,21 @@ const TableTr = styled.tr<TableTrProps>`
   }
 `;
 
+/** Empty cell used to indent nested rows. */
 const TableIndentation = styled.td`
   width: 15px;
   padding: 0px;
   border-bottom: none !important;
 `;
 
+/** Flex container used for loading-state action placeholders. */
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
 `;
 
+/** Styled wrapper that controls table-cell content alignment and clipping. */
 const TableCellWrapper = styled.div<{
   $alignColumn?: "left" | "center" | "right";
 }>`
@@ -260,6 +274,7 @@ const TableCellWrapper = styled.div<{
   overflow: hidden;
 `;
 
+/** Styled value container used inside a table cell. */
 const TableCellValue = styled.div<{
   $overflowVisible?: boolean;
   width?: string;
