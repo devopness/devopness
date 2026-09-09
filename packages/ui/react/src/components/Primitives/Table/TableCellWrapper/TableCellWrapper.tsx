@@ -1,5 +1,4 @@
 import type { PropsWithChildren, ReactNode } from 'react'
-import { memo } from 'react'
 
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 import type { Icon as IconName } from 'src/icons'
@@ -81,4 +80,3 @@ function TableCellWrapper({
 
 export type { TableCellWrapperProps }
 export { TableCellWrapper }
-export default memo(TableCellWrapper)

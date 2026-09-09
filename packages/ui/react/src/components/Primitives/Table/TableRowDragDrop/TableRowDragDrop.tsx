@@ -281,4 +281,3 @@ function TableRow<T extends object>({
 
 export type { TableRowDragDropProps }
 export { TableRowDragDrop }
-export default TableRowDragDrop

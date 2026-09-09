@@ -174,4 +174,3 @@ function TableLoading({ cells, lines = 5, smallContainer }: TableLoadingProps) {
 
 export type { TableCellProps, TableLoadingProps }
 export { TableHeaderVariation, TableLoading, TableRowVariation }
-export default TableLoading
