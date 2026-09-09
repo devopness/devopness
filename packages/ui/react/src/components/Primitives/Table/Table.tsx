@@ -1,5 +1,5 @@
-import type { ReactElement, ReactNode } from "react";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import type { ReactElement, ReactNode } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import type {
   Cell,
   ColumnInstance,
@@ -7,8 +7,8 @@ import type {
   Row,
   TableInstance,
   TableOptions,
-} from "react-table";
-import { useExpanded, useTable } from "react-table";
+} from 'react-table'
+import { useExpanded, useTable } from 'react-table'
 
 import {
   BaseTable,
@@ -17,57 +17,57 @@ import {
   TableIndentation,
   TableTr,
   TableWrapper,
-} from "./Table.styled";
+} from './Table.styled'
 
 /** Configuration for the fixed background and hover line rendered around a row. */
 type FixedLine = {
   /** Whether the line styling is enabled for the row. */
-  activated?: boolean;
+  activated?: boolean
   /** Background color applied to the row line. */
-  lineBackgroundColor?: string;
+  lineBackgroundColor?: string
   /** Background color applied while hovering the row. */
-  lineHoverColor?: string;
-};
+  lineHoverColor?: string
+}
 
 /** Optional metadata read from each row by `Table`. */
 type TableRowMetadata = {
   /** Identifier used to reset expanded rows when the table changes. */
-  tableId?: string | number;
+  tableId?: string | number
   /** Row type used by the indented layout. */
-  rowType?: string;
+  rowType?: string
   /** Fixed line styling for the row. */
-  fixedLine?: FixedLine;
+  fixedLine?: FixedLine
   /** Disables interaction with the row and renders it with reduced opacity. */
-  disabled?: boolean;
-};
+  disabled?: boolean
+}
 
 /** Props accepted by the generic React Table wrapper. */
 type TableProps<T extends object = {}> = TableOptions<T> & {
   /** Custom table content padding. */
-  padding?: string;
+  padding?: string
   /** Uses the compact table spacing. */
-  smallContainer?: boolean;
+  smallContainer?: boolean
   /** Disables table interaction and dims the table. */
-  disabledTable?: boolean;
+  disabledTable?: boolean
   /** Header text color. */
-  headerColor?: string;
+  headerColor?: string
   /** Aligns the final column to the end when enabled. */
-  alignEndLastColumn?: boolean;
+  alignEndLastColumn?: boolean
   /** Maximum width for header cells. */
-  headerMaxWidth?: string;
+  headerMaxWidth?: string
   /** Maximum width for body cells. */
-  cellMaxWidth?: string;
+  cellMaxWidth?: string
   /** Allows cell content to render outside its clipped cell. */
-  cellOverflowVisible?: boolean;
+  cellOverflowVisible?: boolean
   /** Explicit width for rendered cell values. */
-  cellWidth?: string;
+  cellWidth?: string
   /** Row hover background color. */
-  hoverColor?: string;
+  hoverColor?: string
   /** Enables the indented row layout. */
-  layout?: "indented";
+  layout?: 'indented'
   /** Renders custom content below an expanded row with no subrows. */
-  customSubRowInjection?: (row: Row<T>) => ReactNode;
-};
+  customSubRowInjection?: (row: Row<T>) => ReactNode
+}
 
 /**
  * A generic table built on React Table v7 with Devopness styling and expansion support.
@@ -86,20 +86,20 @@ type TableProps<T extends object = {}> = TableOptions<T> & {
  * ```
  */
 function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
-  const [dataTable, setDataTable] = useState<T[]>([]);
+  const [dataTable, setDataTable] = useState<T[]>([])
 
-  const skipPageRef = useRef({ autoReset: false });
+  const skipPageRef = useRef({ autoReset: false })
 
   useEffect(() => {
     if (Array.isArray(props.data)) {
-      skipPageRef.current.autoReset = true;
-      setDataTable(props.data);
+      skipPageRef.current.autoReset = true
+      setDataTable(props.data)
     }
-  }, [props.data]);
+  }, [props.data])
 
   useEffect(() => {
-    skipPageRef.current.autoReset = false;
-  }, []);
+    skipPageRef.current.autoReset = false
+  }, [])
 
   const tableInstance: TableInstance<T> = useTable<T>(
     {
@@ -113,17 +113,20 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
       autoResetRowState: !skipPageRef.current.autoReset,
       autoResetExpanded: !skipPageRef.current.autoReset,
     } as TableOptions<T>,
-    useExpanded,
-  );
-  const isIndented = props.layout === "indented";
-  const tableId = (dataTable[0] as (T & TableRowMetadata) | undefined)?.tableId;
+    useExpanded
+  )
+  const isIndented = props.layout === 'indented'
+  const tableId = (dataTable[0] as (T & TableRowMetadata) | undefined)?.tableId
 
   useEffect(() => {
-    tableInstance.toggleAllRowsExpanded(false);
-  }, [tableId]);
+    tableInstance.toggleAllRowsExpanded(false)
+  }, [tableId])
 
   return (
-    <TableWrapper $padding={props.padding} $smallContainer={props.smallContainer}>
+    <TableWrapper
+      $padding={props.padding}
+      $smallContainer={props.smallContainer}
+    >
       <BaseTable
         $smallContainer={props.smallContainer}
         $disabledTable={props.disabledTable}
@@ -135,12 +138,15 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
         <thead>
           {tableInstance.headerGroups.map((headerGroup: HeaderGroup<T>) => {
             const { key: headerGroupKey, ...restOfHeaderGroupProps } =
-              headerGroup.getHeaderGroupProps();
+              headerGroup.getHeaderGroupProps()
             return (
-              <tr key={headerGroupKey} {...restOfHeaderGroupProps}>
+              <tr
+                key={headerGroupKey}
+                {...restOfHeaderGroupProps}
+              >
                 {headerGroup.headers.map((header: ColumnInstance<T>, i) => {
-                  const headerProps = header.getHeaderProps();
-                  const { key: headerKey, ...restOfHeaderProps } = headerProps;
+                  const headerProps = header.getHeaderProps()
+                  const { key: headerKey, ...restOfHeaderProps } = headerProps
 
                   return (
                     <th
@@ -150,22 +156,23 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                       {...(isIndented && i === 0 ? { colSpan: 2 } : {})}
                     >
                       <TableCellWrapper $alignColumn={header.alignColumn}>
-                        {header.render("Header")}
+                        {header.render('Header')}
                       </TableCellWrapper>
                     </th>
-                  );
+                  )
                 })}
               </tr>
-            );
+            )
           })}
         </thead>
 
         <tbody {...tableInstance.getTableBodyProps()}>
           {tableInstance.rows.map((row: Row<T>) => {
-            tableInstance.prepareRow(row);
-            const { key, ...restOfRowProps } = row.getRowProps();
-            const original = row.original as T & TableRowMetadata;
-            const isIndentedSubrow = isIndented && original.rowType?.toLowerCase() === "subrow";
+            tableInstance.prepareRow(row)
+            const { key, ...restOfRowProps } = row.getRowProps()
+            const original = row.original as T & TableRowMetadata
+            const isIndentedSubrow =
+              isIndented && original.rowType?.toLowerCase() === 'subrow'
 
             return (
               <Fragment key={key}>
@@ -178,19 +185,20 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                   $fixedLineEnabled={original.fixedLine?.activated}
                   $tdMaxWidth={props.cellMaxWidth}
                   $disabledRow={original.disabled || props.disabledTable}
-                  className={isIndentedSubrow ? "indented" : ""}
+                  className={isIndentedSubrow ? 'indented' : ''}
                   {...restOfRowProps}
                 >
                   {isIndentedSubrow ? <TableIndentation /> : null}
 
                   {row.cells.map((cell: Cell<T, unknown>, i) => {
-                    const { key: cellKey, ...restOfCellProps } = cell.getCellProps();
+                    const { key: cellKey, ...restOfCellProps } =
+                      cell.getCellProps()
                     return (
                       <td
                         key={cellKey}
                         className="translate normal-td"
                         {...restOfCellProps}
-                        {...(isIndented && original.rowType === "row" && i === 0
+                        {...(isIndented && original.rowType === 'row' && i === 0
                           ? { colSpan: 2 }
                           : {})}
                       >
@@ -202,48 +210,59 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                             $overflowVisible={props.cellOverflowVisible}
                             width={props.cellWidth}
                           >
-                            {cell.render("Cell")}
+                            {cell.render('Cell')}
                           </TableCellValue>
                         </TableCellWrapper>
                       </td>
-                    );
+                    )
                   })}
                 </TableTr>
 
-                {row.subRows?.length === 0 && row.isExpanded && props.customSubRowInjection && (
-                  <TableTr key={`expanded-tr-${row.index}`} className="expanded-tr">
-                    {isIndented ? <TableIndentation /> : null}
-
-                    <td
-                      key={`expanded-td-${row.index}`}
-                      colSpan={tableInstance.visibleColumns.length}
-                      className="expanded-td"
+                {row.subRows?.length === 0 &&
+                  row.isExpanded &&
+                  props.customSubRowInjection && (
+                    <TableTr
+                      key={`expanded-tr-${row.index}`}
+                      className="expanded-tr"
                     >
-                      {props.customSubRowInjection(row)}
-                    </td>
-                  </TableTr>
-                )}
+                      {isIndented ? <TableIndentation /> : null}
+
+                      <td
+                        key={`expanded-td-${row.index}`}
+                        colSpan={tableInstance.visibleColumns.length}
+                        className="expanded-td"
+                      >
+                        {props.customSubRowInjection(row)}
+                      </td>
+                    </TableTr>
+                  )}
               </Fragment>
-            );
+            )
           })}
         </tbody>
       </BaseTable>
     </TableWrapper>
-  );
+  )
 }
 
-export type { FixedLine, TableProps, TableRowMetadata };
-export { Table };
-export default React.memo(Table) as typeof Table;
+export type { FixedLine, TableProps, TableRowMetadata }
+export { Table }
+export default React.memo(Table) as typeof Table
 
-export { TableCellWrapper } from "./TableCellWrapper/TableCellWrapper";
-export type { TableCellWrapperProps } from "./TableCellWrapper/TableCellWrapper";
-export { TableLoading } from "./TableLoading/TableLoading";
-export { TableHeaderVariation, TableRowVariation } from "./TableLoading/TableLoading";
-export type { TableCellProps, TableLoadingProps } from "./TableLoading/TableLoading";
-export { default as TableRowDragDrop } from "./TableRowDragDrop/TableRowDragDrop";
+export { TableCellWrapper } from './TableCellWrapper/TableCellWrapper'
+export type { TableCellWrapperProps } from './TableCellWrapper/TableCellWrapper'
+export { TableLoading } from './TableLoading/TableLoading'
+export {
+  TableHeaderVariation,
+  TableRowVariation,
+} from './TableLoading/TableLoading'
+export type {
+  TableCellProps,
+  TableLoadingProps,
+} from './TableLoading/TableLoading'
+export { default as TableRowDragDrop } from './TableRowDragDrop/TableRowDragDrop'
 export type {
   TableMovingDataParams,
   TableRowDragDropProps,
-} from "./TableRowDragDrop/TableRowDragDrop";
-export * from "./Table.styled";
+} from './TableRowDragDrop/TableRowDragDrop'
+export * from './Table.styled'

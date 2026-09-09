@@ -1,1 +1,1 @@
-export * from "./TableCellWrapper";
+export * from './TableCellWrapper'
