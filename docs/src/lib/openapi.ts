@@ -5,6 +5,10 @@ import { loader } from "fumadocs-core/source";
 import { createOpenAPI, openapiPlugin, openapiSource } from "fumadocs-openapi/server";
 import { apiRefCollection } from "fumadocs-mdx:collections/server";
 
+/**
+ * TODO: Replace this local sample spec with the Devopness API OpenAPI file
+ * once the real schema is wired into the build.
+ */
 const openApiSpecPath = join(process.cwd(), "openapi.yml");
 
 export const API_REFERENCE_BASE_URL = "/api";
@@ -25,32 +29,103 @@ export const openapi = createOpenAPI({
  */
 export const getApiReferenceSource = cache(async () => {
   const generatedSource = await openapiSource(openapi, {
-    baseDir: "(generated)",
+    baseDir: "(generated-openapi)",
     groupBy: "tag",
+    // `separator` keeps the generated tag groups as sidebar sections.
+    // `folder` would nest them as actual folders instead.
     meta: { folderStyle: "separator" },
   });
+
   const staticSource = apiRefCollection.toFumadocsSource();
-  const staticSlugs = staticSource.files
-    .filter((file): file is typeof file & { type: "page" } => file.type === "page")
-    .map((file) => basename(file.path, extname(file.path)));
-  const patchedOpenapiFiles = generatedSource.files.map((file) => {
-    if (file.type !== "meta" || (file.path !== "meta.json" && file.path !== "/meta.json")) {
-      return file;
+
+  const staticSlugs: string[] = [];
+
+  for (const file of staticSource.files) {
+    if (file.type !== "page") {
+      continue;
     }
 
-    const data = file.data as { pages?: string[] };
-    return {
-      ...file,
-      data: {
-        ...data,
-        pages: [...staticSlugs, ...(data.pages ?? [])],
-      },
-    };
-  });
+    staticSlugs.push(basename(file.path, extname(file.path)));
+  }
 
+  const patchedOpenapiFiles = patchOpenapiRootMeta(generatedSource.files, staticSlugs);
+
+  /**
+   * Merge both file sets into one source object.
+   *
+   * Fumadocs reads this as one tree, so the API markdown pages stay at the
+   * top of the section and the generated OpenAPI pages follow them.
+   */
   return loader({
     baseUrl: API_REFERENCE_BASE_URL,
     source: { files: [...staticSource.files, ...patchedOpenapiFiles] },
     plugins: [openapiPlugin()],
   });
 });
+
+type OpenApiSource = Awaited<ReturnType<typeof openapiSource>>;
+
+type OpenApiFile = OpenApiSource["files"][number];
+
+type RootMetaData = {
+  pages?: string[];
+};
+
+type RootMetaFile = OpenApiFile & {
+  data: RootMetaData;
+};
+
+/**
+ * Patch the generated root meta file so the manual API pages stay first.
+ *
+ * We only rewrite the root `meta.json` file. Every other generated file is
+ * returned as-is.
+ */
+function patchOpenapiRootMeta(files: OpenApiFile[], staticSlugs: string[]): OpenApiFile[] {
+  const patchedFiles: OpenApiFile[] = [];
+
+  for (const file of files) {
+    if (!isRootMetaFile(file)) {
+      patchedFiles.push(file);
+      continue;
+    }
+
+    // The generated root meta file is typed as OpenAPI page data, but this is
+    // the one place where we need to treat it as a meta file so we can prepend
+    // the manual API page slugs.
+    const rootMeta = file as RootMetaFile;
+
+    /**
+     * Cast back to the source file union after adding the root `pages` list.
+     *
+     * The generated file shape is correct at runtime, but Fumadocs keeps the
+     * root meta file typed as a generic source file, so the patched object must
+     * be re-asserted once we expand its `pages` array.
+     */
+    const patchedRootMeta = {
+      ...rootMeta,
+      data: {
+        ...rootMeta.data,
+        pages: [...staticSlugs, ...(rootMeta.data.pages ?? [])],
+      },
+    } as OpenApiFile;
+
+    patchedFiles.push(patchedRootMeta);
+  }
+
+  return patchedFiles;
+}
+
+/**
+ * Narrow the generated OpenAPI root file.
+ *
+ * `openapiSource()` returns generic file data, so we narrow only the root meta
+ * file before we patch its `pages` list.
+ */
+function isRootMetaFile(file: OpenApiFile): file is OpenApiFile & { data: RootMetaData } {
+  if (file.type !== "meta") {
+    return false;
+  }
+
+  return file.path === "meta.json" || file.path === "/meta.json";
+}

@@ -3,5 +3,5 @@
   "description": "Devopness API reference and generated endpoints.",
   "root": true,
   "icon": "Shapes",
-  "pages": ["index", "...(generated)"]
+  "pages": ["index", "...(generated-openapi)"]
 }
