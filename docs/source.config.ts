@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { remarkDirectiveAdmonition } from "fumadocs-core/mdx-plugins/remark-directive-admonition";
+import { remarkDirectiveAdmonition } from "fumadocs-core/mdx-plugins";
 import { defineConfig, defineDocs, frontmatterSchema, metaSchema } from "fumadocs-mdx/config";
 import remarkDirective from "remark-directive";
 import { z } from "zod";
