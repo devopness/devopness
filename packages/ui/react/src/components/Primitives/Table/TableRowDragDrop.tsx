@@ -1,42 +1,45 @@
-import type { ReactElement } from "react";
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import { DndProvider, useDrag, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import type { Cell, ColumnInstance, Row, TableOptions } from "react-table";
-import { useTable } from "react-table";
+import type { ReactElement } from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import { DndProvider, useDrag, useDrop } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import type { Cell, ColumnInstance, Row, TableOptions } from 'react-table'
+import { useTable } from 'react-table'
 
-import { getColor } from "src/colors";
-import { iconLoader } from "src/icons";
+import { getColor } from 'src/colors'
+import { iconLoader } from 'src/icons'
 
-import { BaseTable, TableTr, TableWrapper } from "./styled";
+import { BaseTable, TableTr, TableWrapper } from './Table.styled'
 
 interface MovingDataParams {
-  fromIndex: number;
-  toIndex: number;
+  fromIndex: number
+  toIndex: number
 }
 
 type DragDropRowMetadata = {
-  id?: string | number;
-  blockDrag?: { message?: string } | false;
+  id?: string | number
+  blockDrag?: { message?: string } | false
   fixedLine?: {
-    activated?: boolean;
-    lineBackgroundColor?: string;
-    lineHoverColor?: string;
-  };
-  disabled?: boolean;
-};
+    activated?: boolean
+    lineBackgroundColor?: string
+    lineHoverColor?: string
+  }
+  disabled?: boolean
+}
 
-type TableRowDragDropProps<T extends object = {}> = Pick<TableOptions<T>, "columns" | "data"> & {
-  onDrop: (moving: MovingDataParams, data: T[]) => void;
-  onDrag: (isDragging: boolean) => void;
-};
+type TableRowDragDropProps<T extends object = {}> = Pick<
+  TableOptions<T>,
+  'columns' | 'data'
+> & {
+  onDrop: (moving: MovingDataParams, data: T[]) => void
+  onDrag: (isDragging: boolean) => void
+}
 
 const moveArrayItem = <T,>(items: T[], fromIndex: number, toIndex: number) => {
-  const nextItems = [...items];
-  const [item] = nextItems.splice(fromIndex, 1);
-  nextItems.splice(toIndex, 0, item);
-  return nextItems;
-};
+  const nextItems = [...items]
+  const [item] = nextItems.splice(fromIndex, 1)
+  nextItems.splice(toIndex, 0, item)
+  return nextItems
+}
 
 function TableRowDragDrop<T extends object = {}>({
   columns,
@@ -44,34 +47,42 @@ function TableRowDragDrop<T extends object = {}>({
   onDrop,
   onDrag,
 }: TableRowDragDropProps<T>): ReactElement {
-  const [sortedData, setSortedData] = useState<T[]>([]);
+  const [sortedData, setSortedData] = useState<T[]>([])
 
   useEffect(() => {
     if (Array.isArray(data)) {
-      setSortedData(data);
+      setSortedData(data)
     }
-  }, [data]);
+  }, [data])
 
-  const [moving, setMoving] = useState<MovingDataParams | null>(null);
+  const [moving, setMoving] = useState<MovingDataParams | null>(null)
   const getRowId = useCallback((row: T) => {
-    const rowWithId = row as T & DragDropRowMetadata;
-    return String(rowWithId.id);
-  }, []);
+    const rowWithId = row as T & DragDropRowMetadata
+    return String(rowWithId.id)
+  }, [])
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, visibleColumns } =
-    useTable<T>({
-      data: sortedData,
-      columns,
-      getRowId,
-    });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    visibleColumns,
+  } = useTable<T>({
+    data: sortedData,
+    columns,
+    getRowId,
+  })
 
   const moveRow = (dragIndex: number, hoverIndex: number) => {
     setMoving((currentMoving) => ({
       fromIndex: currentMoving?.fromIndex ?? dragIndex,
       toIndex: hoverIndex,
-    }));
-    setSortedData((currentData) => moveArrayItem(currentData, dragIndex, hoverIndex));
-  };
+    }))
+    setSortedData((currentData) =>
+      moveArrayItem(currentData, dragIndex, hoverIndex)
+    )
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -80,26 +91,33 @@ function TableRowDragDrop<T extends object = {}>({
           <thead>
             {headerGroups.map((headerGroup) => {
               const { key: headerGroupKey, ...headerGroupProps } =
-                headerGroup.getHeaderGroupProps();
+                headerGroup.getHeaderGroupProps()
               return (
-                <tr key={headerGroupKey} {...headerGroupProps}>
+                <tr
+                  key={headerGroupKey}
+                  {...headerGroupProps}
+                >
                   <th />
                   {headerGroup.headers.map((column) => {
-                    const { key: columnKey, ...columnProps } = column.getHeaderProps();
+                    const { key: columnKey, ...columnProps } =
+                      column.getHeaderProps()
                     return (
-                      <th key={columnKey} {...columnProps}>
-                        {column.render("Header")}
+                      <th
+                        key={columnKey}
+                        {...columnProps}
+                      >
+                        {column.render('Header')}
                       </th>
-                    );
+                    )
                   })}
                 </tr>
-              );
+              )
             })}
           </thead>
           <tbody {...getTableBodyProps()}>
             {rows.map((row, index) => {
-              prepareRow(row);
-              const { key: rowKey, ...rowProps } = row.getRowProps();
+              prepareRow(row)
+              const { key: rowKey, ...rowProps } = row.getRowProps()
               return (
                 <TableRow<T>
                   key={rowKey}
@@ -108,31 +126,31 @@ function TableRowDragDrop<T extends object = {}>({
                   row={row}
                   onDrag={onDrag}
                   onDrop={() => {
-                    if (!moving) return;
-                    onDrop(moving, sortedData);
-                    setMoving(null);
+                    if (!moving) return
+                    onDrop(moving, sortedData)
+                    setMoving(null)
                   }}
                   moveRow={moveRow}
                   {...rowProps}
                 />
-              );
+              )
             })}
           </tbody>
         </BaseTable>
       </TableWrapper>
     </DndProvider>
-  );
+  )
 }
 
-const DND_ITEM_TYPE = "row";
+const DND_ITEM_TYPE = 'row'
 
 interface TableRowParams<T extends object> {
-  row: Row<T>;
-  index: number;
-  visibleColumns: ColumnInstance<T>[];
-  moveRow(dragIndex: number, hoverIndex: number): void;
-  onDrop(): void;
-  onDrag(isDragging: boolean): void;
+  row: Row<T>
+  index: number
+  visibleColumns: ColumnInstance<T>[]
+  moveRow(dragIndex: number, hoverIndex: number): void
+  onDrop(): void
+  onDrag(isDragging: boolean): void
 }
 
 function TableRow<T extends object>({
@@ -143,33 +161,36 @@ function TableRow<T extends object>({
   onDrag,
   visibleColumns,
 }: TableRowParams<T>) {
-  const dropRef = useRef<HTMLTableRowElement>(null);
-  const dragRef = useRef<HTMLTableCellElement>(null);
+  const dropRef = useRef<HTMLTableRowElement>(null)
+  const dragRef = useRef<HTMLTableCellElement>(null)
   const [, drop] = useDrop({
     accept: DND_ITEM_TYPE,
     hover(item: { index: number }, monitor) {
-      if (!dropRef.current) return;
+      if (!dropRef.current) return
 
-      const dragIndex = item.index;
-      const hoverIndex = index;
-      if (dragIndex === hoverIndex) return;
+      const dragIndex = item.index
+      const hoverIndex = index
+      if (dragIndex === hoverIndex) return
 
-      const hoverBoundingRect = dropRef.current.getBoundingClientRect();
-      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset = monitor.getClientOffset();
+      const hoverBoundingRect = dropRef.current.getBoundingClientRect()
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+      const clientOffset = monitor.getClientOffset()
       const hoverClientY =
-        typeof clientOffset?.y === "number" ? clientOffset.y - hoverBoundingRect.top : undefined;
-      const isDraggingUp = dragIndex > hoverIndex;
+        typeof clientOffset?.y === 'number'
+          ? clientOffset.y - hoverBoundingRect.top
+          : undefined
+      const isDraggingUp = dragIndex > hoverIndex
 
       if (hoverClientY !== undefined) {
-        if (!isDraggingUp && hoverClientY > hoverMiddleY) return;
-        if (isDraggingUp && hoverClientY > hoverMiddleY) return;
+        if (!isDraggingUp && hoverClientY > hoverMiddleY) return
+        if (isDraggingUp && hoverClientY > hoverMiddleY) return
       }
 
-      moveRow(dragIndex, hoverIndex);
-      item.index = hoverIndex;
+      moveRow(dragIndex, hoverIndex)
+      item.index = hoverIndex
     },
-  });
+  })
   const [{ isDragging }, drag, preview] = useDrag({
     type: DND_ITEM_TYPE,
     item: {
@@ -180,21 +201,21 @@ function TableRow<T extends object>({
       isDragging: monitor.isDragging(),
     }),
     end: onDrop,
-  });
+  })
 
   useEffect(() => {
-    onDrag(isDragging);
-  }, [isDragging, onDrag]);
+    onDrag(isDragging)
+  }, [isDragging, onDrag])
 
-  preview(drop(dropRef));
-  drag(dragRef);
+  preview(drop(dropRef))
+  drag(dragRef)
 
-  const { key: rowPropsKey, ...rowPropsRest } = row.getRowProps();
-  const rowMetadata = row.original as T & DragDropRowMetadata;
+  const { key: rowPropsKey, ...rowPropsRest } = row.getRowProps()
+  const rowMetadata = row.original as T & DragDropRowMetadata
   const blockDrag =
-    rowMetadata.blockDrag && typeof rowMetadata.blockDrag === "object"
+    rowMetadata.blockDrag && typeof rowMetadata.blockDrag === 'object'
       ? rowMetadata.blockDrag
-      : undefined;
+      : undefined
 
   return (
     <Fragment key={`fragment-${rowPropsKey}`}>
@@ -209,31 +230,34 @@ function TableRow<T extends object>({
         {...rowPropsRest}
       >
         <td
-          title={blockDrag?.message || ""}
-          className={blockDrag ? "drag-cell-block" : "drag-cell"}
+          title={blockDrag?.message || ''}
+          className={blockDrag ? 'drag-cell-block' : 'drag-cell'}
           ref={blockDrag ? undefined : dragRef}
         >
           {iconLoader(
-            "dragHandle",
+            'dragHandle',
             18,
-            getColor(blockDrag ? "slate.300" : "gray.615"),
+            getColor(blockDrag ? 'slate.300' : 'gray.615'),
             1,
-            "drag row",
+            'drag row'
           )}
         </td>
         {row.cells.map((cell: Cell<T, unknown>) => {
-          const { key: cellKey, ...cellProps } = cell.getCellProps();
+          const { key: cellKey, ...cellProps } = cell.getCellProps()
           return (
-            <td key={cellKey} {...cellProps}>
-              {cell.render("Cell")}
+            <td
+              key={cellKey}
+              {...cellProps}
+            >
+              {cell.render('Cell')}
             </td>
-          );
+          )
         })}
       </TableTr>
     </Fragment>
-  );
+  )
 }
 
-export type { MovingDataParams, TableRowDragDropProps };
-export { TableRowDragDrop };
-export default TableRowDragDrop;
+export type { MovingDataParams, TableRowDragDropProps }
+export { TableRowDragDrop }
+export default TableRowDragDrop

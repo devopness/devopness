@@ -10,7 +10,7 @@ import { getColor } from 'src/colors'
 
 import CellWrapper from './CellWrapper'
 import LoadingTable, { RowVariation } from './Loading'
-import Table from './index'
+import Table from './Table'
 
 const Grid = ({ children }: { children: React.ReactNode }) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
@@ -409,6 +409,7 @@ function WithActionStates() {
 
 interface MediumRow {
   name: { value: string; icon: Icon }
+  actions?: React.ReactNode
 }
 
 function MediumSizeTableDefaultWithCheckbox() {
