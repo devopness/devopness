@@ -60,7 +60,7 @@ export class UsersApiService extends ApiBaseService {
 
     /**
      * 
-     * @summary Get activity information for a user
+     * @summary Get activity summary for a user
      * @param {string} userId The numeric ID or URL Slug of a user.
      */
     public async getUserActivity(userId: string): Promise<ApiResponse<UserActivity>> {

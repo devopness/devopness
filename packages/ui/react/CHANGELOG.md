@@ -1,5 +1,23 @@
 # @devopness/ui-react
 
+## 2.206.0
+
+### Minor Changes
+
+- [#3569](https://github.com/devopness/devopness/pull/3569) [`d1414ce`](https://github.com/devopness/devopness/commit/d1414ce7f8d72c4c26a6531fa281d8b7e6fa0852) Thanks [@therealrinku](https://github.com/therealrinku)! - Added new primitive component `Table` along with related components like TableLoading, TableDragDrop and TableCellWrapper
+
+## 2.205.0
+
+### Minor Changes
+
+- [#3565](https://github.com/devopness/devopness/pull/3565) [`34fddc8`](https://github.com/devopness/devopness/commit/34fddc8fd572ab748e6999bb5b1a8f39799c08d3) Thanks [@therealrinku](https://github.com/therealrinku)! - Added new customizable primitive component `BreadCrumbs` for breadcrumb ui
+
+## 2.204.2
+
+### Patch Changes
+
+- [#3562](https://github.com/devopness/devopness/pull/3562) [`2da9be6`](https://github.com/devopness/devopness/commit/2da9be6b03fd51f3ec9b2820453fe5dcbe36383b) Thanks [@therealrinku](https://github.com/therealrinku)! - Adjust font size of description text in `Select` component to 13px from 12px.
+
 ## 2.204.1
 
 ### Patch Changes

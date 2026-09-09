@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.6.2
+
+### Patch Changes
+
+- [#3551](https://github.com/devopness/devopness/pull/3551) [`a36c20a`](https://github.com/devopness/devopness/commit/a36c20a8c640383df91850881f6bead670069be2) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Update the description for the user activity endpoint in the API docs and SDKs.
+
 ## 3.6.1
 
 ### Patch Changes
