@@ -1,1 +1,1 @@
-export * from './TableLoading'
+export * from "./TableLoading";

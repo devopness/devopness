@@ -1,17 +1,14 @@
-import type { Meta } from '@storybook/react-vite'
+import type { Meta } from "@storybook/react-vite";
 
-import { TableRowDragDrop } from './TableRowDragDrop'
-import {
-  mockedTableColumns,
-  mockedTableData,
-} from './TableRowDragDrop.sample-data'
+import { TableRowDragDrop } from "./TableRowDragDrop";
+import { mockedTableColumns, mockedTableData } from "./TableRowDragDrop.sample-data";
 
 const meta = {
-  title: 'Primitives/Table/Drag and drop',
+  title: "Primitives/Table/Drag and drop",
   component: TableRowDragDrop,
-} satisfies Meta<typeof TableRowDragDrop>
+} satisfies Meta<typeof TableRowDragDrop>;
 
-export default meta
+export default meta;
 
 export const Default = {
   args: {
@@ -25,4 +22,4 @@ export const Default = {
     onDrop: () => undefined,
     onDrag: () => undefined,
   },
-}
+};

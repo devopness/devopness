@@ -1,31 +1,31 @@
-import type { PropsWithChildren, ReactNode } from 'react'
-import { memo } from 'react'
+import type { PropsWithChildren, ReactNode } from "react";
+import { memo } from "react";
 
-import { Tooltip } from 'src/components/Primitives/Tooltip'
-import type { Icon as IconName } from 'src/icons'
-import { iconLoader } from 'src/icons'
-import { isDefined } from 'src/components/type-guards'
+import { Tooltip } from "src/components/Primitives/Tooltip";
+import type { Icon as IconName } from "src/icons";
+import { iconLoader } from "src/icons";
+import { isDefined } from "src/components/type-guards";
 
 import {
   TableCellIcon,
   TableCellValue,
   TableCellWrapper as TableCellWrapperStyle,
-} from './TableCellWrapper.styled'
+} from "./TableCellWrapper.styled";
 
 /** Props for `TableCellWrapper`. */
 interface TableCellWrapperProps {
   /** An icon name or custom React node displayed before the value. */
-  icon?: IconName | Exclude<ReactNode, string>
+  icon?: IconName | Exclude<ReactNode, string>;
   /** Content displayed beside the icon. */
-  value: ReactNode
+  value: ReactNode;
   /** Pixel size used when rendering an icon by name. */
-  iconSize?: number
+  iconSize?: number;
   /** Color used when rendering an icon by name. */
-  iconColor?: string
+  iconColor?: string;
   /** Background color behind the icon. */
-  iconBackgroundColor?: string
+  iconBackgroundColor?: string;
   /** Optional tooltip shown for an icon. */
-  iconTooltip?: string
+  iconTooltip?: string;
 }
 
 /**
@@ -40,35 +40,27 @@ function TableCellWrapper({
   icon,
   iconSize,
   value,
-  iconBackgroundColor = 'transparent',
-  iconColor = 'white',
+  iconBackgroundColor = "transparent",
+  iconColor = "white",
   iconTooltip,
   children,
 }: PropsWithChildren<TableCellWrapperProps>) {
   return (
     <TableCellWrapperStyle>
       {children ? (
-        <TableCellIcon $iconBackgroundColor={iconBackgroundColor}>
-          {children}
-        </TableCellIcon>
+        <TableCellIcon $iconBackgroundColor={iconBackgroundColor}>{children}</TableCellIcon>
       ) : (
         icon && (
           <Tooltip
-            title={iconTooltip ?? ''}
+            title={iconTooltip ?? ""}
             disableHover={!isDefined(iconTooltip)}
             disableFocusListener={!isDefined(iconTooltip)}
             disableTouchListener={!isDefined(iconTooltip)}
             disableHoverListener={!isDefined(iconTooltip)}
           >
             <TableCellIcon $iconBackgroundColor={iconBackgroundColor}>
-              {typeof icon === 'string'
-                ? iconLoader(
-                    icon as IconName,
-                    iconSize || 12,
-                    iconColor,
-                    1,
-                    iconTooltip
-                  )
+              {typeof icon === "string"
+                ? iconLoader(icon as IconName, iconSize || 12, iconColor, 1, iconTooltip)
                 : icon}
             </TableCellIcon>
           </Tooltip>
@@ -76,9 +68,9 @@ function TableCellWrapper({
       )}
       <TableCellValue>{value}</TableCellValue>
     </TableCellWrapperStyle>
-  )
+  );
 }
 
-export type { TableCellWrapperProps }
-export { TableCellWrapper }
-export default memo(TableCellWrapper)
+export type { TableCellWrapperProps };
+export { TableCellWrapper };
+export default memo(TableCellWrapper);

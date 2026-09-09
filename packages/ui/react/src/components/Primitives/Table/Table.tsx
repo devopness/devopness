@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from 'react'
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import type {
   Cell,
   ColumnInstance,
@@ -245,24 +245,5 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
   )
 }
 
-export type { FixedLine, TableProps, TableRowMetadata }
+export type { TableProps, TableRowMetadata }
 export { Table }
-export default React.memo(Table) as typeof Table
-
-export { TableCellWrapper } from './TableCellWrapper/TableCellWrapper'
-export type { TableCellWrapperProps } from './TableCellWrapper/TableCellWrapper'
-export { TableLoading } from './TableLoading/TableLoading'
-export {
-  TableHeaderVariation,
-  TableRowVariation,
-} from './TableLoading/TableLoading'
-export type {
-  TableCellProps,
-  TableLoadingProps,
-} from './TableLoading/TableLoading'
-export { default as TableRowDragDrop } from './TableRowDragDrop/TableRowDragDrop'
-export type {
-  TableMovingDataParams,
-  TableRowDragDropProps,
-} from './TableRowDragDrop/TableRowDragDrop'
-export * from './Table.styled'
