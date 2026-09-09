@@ -1,100 +1,61 @@
-import { Fragment } from 'react'
+import { Fragment } from "react";
 
-import { Skeleton } from 'src/components/Primitives/Skeleton'
+import { Skeleton } from "src/components/Primitives/Skeleton";
 
-import {
-  BaseTable,
-  ButtonWrapper,
-  LoadingWrapper,
-  TableTr,
-  TableWrapper,
-} from './styled'
+import { BaseTable, ButtonWrapper, LoadingWrapper, TableTr, TableWrapper } from "./styled";
 
-enum RowVariation {
-  TWO_BUTTONS_EFFECT = 'TWO_BUTTONS_EFFECT',
-  ONE_BUTTON_EFFECT = 'ONE_BUTTON_EFFECT',
-  CHECKBOX_EFFECT = 'CHECKBOX_EFFECT',
-  CHECKBOX_EFFECT_WITH_BAR = 'CHECKBOX_EFFECT_WITH_BAR',
-  BAR_EFFECT = 'BAR_EFFECT',
+enum TableRowVariation {
+  TWO_BUTTONS_EFFECT = "TWO_BUTTONS_EFFECT",
+  ONE_BUTTON_EFFECT = "ONE_BUTTON_EFFECT",
+  CHECKBOX_EFFECT = "CHECKBOX_EFFECT",
+  CHECKBOX_EFFECT_WITH_BAR = "CHECKBOX_EFFECT_WITH_BAR",
+  BAR_EFFECT = "BAR_EFFECT",
 }
 
-enum HeaderVariation {
-  CHECKBOX_EFFECT = 'CHECKBOX_EFFECT',
-  BAR_EFFECT = 'BAR_EFFECT',
+enum TableHeaderVariation {
+  CHECKBOX_EFFECT = "CHECKBOX_EFFECT",
+  BAR_EFFECT = "BAR_EFFECT",
 }
 
-interface CellProps {
-  name: string
-  rowVariation: RowVariation
-  headerVariation?: HeaderVariation
-  alignEnd?: boolean
+interface TableCellProps {
+  name: string;
+  rowVariation: TableRowVariation;
+  headerVariation?: TableHeaderVariation;
+  alignEnd?: boolean;
 }
 
-interface LoadingProps {
-  cells: readonly CellProps[]
-  lines?: number
-  smallContainer?: boolean
+interface TableLoadingProps {
+  cells: readonly TableCellProps[];
+  lines?: number;
+  smallContainer?: boolean;
 }
 
 const LOADING_EFFECTS = {
-  CHECKBOX_EFFECT: (
-    <Skeleton
-      width={20}
-      height={20}
-      borderRadius={5}
-    />
-  ),
+  CHECKBOX_EFFECT: <Skeleton width={20} height={20} borderRadius={5} />,
   ONE_BUTTON_EFFECT: (
     <ButtonWrapper>
-      <Skeleton
-        width={80}
-        height={25}
-        borderRadius={25}
-      />
+      <Skeleton width={80} height={25} borderRadius={25} />
     </ButtonWrapper>
   ),
   TWO_BUTTONS_EFFECT: (
     <ButtonWrapper>
-      <Skeleton
-        width={80}
-        height={25}
-        borderRadius={25}
-      />
-      <Skeleton
-        width={80}
-        height={25}
-        borderRadius={25}
-      />
+      <Skeleton width={80} height={25} borderRadius={25} />
+      <Skeleton width={80} height={25} borderRadius={25} />
     </ButtonWrapper>
   ),
-  BAR_EFFECT: (
-    <Skeleton
-      widthPercent={80}
-      height={12}
-      borderRadius={2}
-    />
-  ),
+  BAR_EFFECT: <Skeleton widthPercent={80} height={12} borderRadius={2} />,
   CHECKBOX_EFFECT_WITH_BAR: (
     <Fragment>
-      <Skeleton
-        width={20}
-        height={20}
-        borderRadius={5}
-      />
-      <Skeleton
-        widthPercent={60}
-        height={12}
-        borderRadius={2}
-      />
+      <Skeleton width={20} height={20} borderRadius={5} />
+      <Skeleton widthPercent={60} height={12} borderRadius={2} />
     </Fragment>
   ),
-}
+};
 
-const createIntegerList = (size: number) =>
-  Array.from({ length: size }, (_, index) => index)
+const createIntegerList = (size: number) => Array.from({ length: size }, (_, index) => index);
 
-function Loading({ cells, lines = 5, smallContainer }: LoadingProps) {
-  const linesList = createIntegerList(lines)
+function TableLoading({ cells, lines = 5, smallContainer }: TableLoadingProps) {
+  const linesList = createIntegerList(lines);
 
   return (
     <TableWrapper>
@@ -102,14 +63,10 @@ function Loading({ cells, lines = 5, smallContainer }: LoadingProps) {
         <thead>
           <tr>
             {cells.map((header, index) => (
-              <th
-                key={index}
-                className="translate"
-              >
+              <th key={index} className="translate">
                 <LoadingWrapper $alignEnd={Boolean(header.alignEnd)}>
                   {!header.headerVariation && header.name}
-                  {header.headerVariation &&
-                    LOADING_EFFECTS[header.headerVariation]}
+                  {header.headerVariation && LOADING_EFFECTS[header.headerVariation]}
                 </LoadingWrapper>
               </th>
             ))}
@@ -118,10 +75,7 @@ function Loading({ cells, lines = 5, smallContainer }: LoadingProps) {
 
         <tbody>
           {linesList.map((_, rowIndex) => (
-            <TableTr
-              key={`row-${rowIndex}`}
-              $numberOfColumns={cells.length}
-            >
+            <TableTr key={`row-${rowIndex}`} $numberOfColumns={cells.length}>
               {cells.map((header, columnIndex) => (
                 <td key={`col-${columnIndex}`}>
                   <LoadingWrapper $alignEnd={Boolean(header.alignEnd)}>
@@ -134,9 +88,9 @@ function Loading({ cells, lines = 5, smallContainer }: LoadingProps) {
         </tbody>
       </BaseTable>
     </TableWrapper>
-  )
+  );
 }
 
-export type { CellProps, LoadingProps }
-export { HeaderVariation, Loading, RowVariation }
-export default Loading
+export type { TableCellProps, TableLoadingProps };
+export { TableHeaderVariation, TableLoading, TableRowVariation };
+export default TableLoading;
