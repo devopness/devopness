@@ -1,20 +1,20 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components'
 
-import { getColor } from "src/colors";
-import { getFont } from "src/fonts";
+import { getColor } from 'src/colors'
+import { getFont } from 'src/fonts'
 
 interface TableWrapperProps {
-  $smallContainer?: boolean;
+  $smallContainer?: boolean
 }
 
 interface BaseTableProps {
-  empty?: boolean;
-  $smallContainer?: boolean;
-  disabledTable?: boolean;
+  empty?: boolean
+  $smallContainer?: boolean
+  disabledTable?: boolean
 }
 
 interface LoadingWrapperProps {
-  $alignEnd?: boolean;
+  $alignEnd?: boolean
 }
 
 const TableWrapper = styled.div<TableWrapperProps>`
@@ -23,31 +23,31 @@ const TableWrapper = styled.div<TableWrapperProps>`
   flex-wrap: wrap;
   background-color: white;
   padding-top: 42px;
-  padding-bottom: ${({ $smallContainer }) => !$smallContainer && "42px"};
-`;
+  padding-bottom: ${({ $smallContainer }) => !$smallContainer && '42px'};
+`
 
 const BaseTable = styled.table<BaseTableProps>`
   position: relative;
   width: 93%;
   border-spacing: 0;
   font-size: 13px;
-  font-family: ${getFont("roboto")};
-  color: ${getColor("blue.950")};
+  font-family: ${getFont('roboto')};
+  color: ${getColor('blue.950')};
 
   thead {
     &:after {
       position: absolute;
-      border-bottom: 1px solid ${getColor("slate.300")};
+      border-bottom: 1px solid ${getColor('slate.300')};
       left: -3.7%;
       width: 107.4%;
-      content: "";
+      content: '';
     }
   }
 
   th {
     opacity: 0.3;
-    padding: ${({ $smallContainer }) => ($smallContainer ? "0px 15px" : "10px 15px")};
-    height: ${({ $smallContainer }) => ($smallContainer ? "42px" : "auto")};
+    padding: ${({ $smallContainer }) => ($smallContainer ? '0px 15px' : '10px 15px')};
+    height: ${({ $smallContainer }) => ($smallContainer ? '42px' : 'auto')};
     text-align: left;
     text-transform: uppercase;
     font-size: 13px !important;
@@ -62,13 +62,13 @@ const BaseTable = styled.table<BaseTableProps>`
       padding-right: 0;
     }
   }
-`;
+`
 
 const TableTr = styled.tr<{ $numberOfColumns?: number }>`
   td {
     padding: 0 15px;
     height: 42px;
-    border-bottom: 1px solid ${getColor("slate.300")};
+    border-bottom: 1px solid ${getColor('slate.300')};
     max-width: ${({ $numberOfColumns }) => ($numberOfColumns ? 100 / $numberOfColumns : 100)}vmax;
 
     &:first-child {
@@ -82,23 +82,23 @@ const TableTr = styled.tr<{ $numberOfColumns?: number }>`
 
   &:first-child {
     td {
-      border-top: 1px solid ${getColor("slate.300")};
+      border-top: 1px solid ${getColor('slate.300')};
     }
   }
-`;
+`
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: auto;
   gap: 15px;
-`;
+`
 
 const LoadingWrapper = styled.div<LoadingWrapperProps>`
   display: flex;
-  justify-content: ${({ $alignEnd }) => $alignEnd && "flex-end"};
+  justify-content: ${({ $alignEnd }) => $alignEnd && 'flex-end'};
   align-items: center;
   gap: 10px;
-`;
+`
 
-export { BaseTable, ButtonWrapper, LoadingWrapper, TableTr, TableWrapper };
+export { BaseTable, ButtonWrapper, LoadingWrapper, TableTr, TableWrapper }

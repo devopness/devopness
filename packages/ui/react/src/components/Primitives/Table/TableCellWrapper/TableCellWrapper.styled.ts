@@ -1,19 +1,19 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components'
 
 interface CellIconProps {
-  $iconBackgroundColor?: string;
+  $iconBackgroundColor?: string
 }
 
 const TableCellWrapper = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 const TableCellValue = styled.div`
   user-select: all;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
+`
 
 const TableCellIcon = styled.div<CellIconProps>`
   display: flex;
@@ -25,6 +25,6 @@ const TableCellIcon = styled.div<CellIconProps>`
   color: white;
   background-color: ${({ $iconBackgroundColor }) => $iconBackgroundColor};
   margin-right: 10px;
-`;
+`
 
-export { TableCellIcon, TableCellValue, TableCellWrapper };
+export { TableCellIcon, TableCellValue, TableCellWrapper }
