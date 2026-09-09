@@ -34,6 +34,7 @@ import {
   NodeContent,
   NodeContentContainer,
 } from './BreadCrumbs.styled'
+import { getColor } from 'src/colors'
 
 const DROPDOWN_ICON_SIZE = 24
 
@@ -160,7 +161,7 @@ const CrumbLogo = ({
         </LogoContent>
         <ArrowHead
           fill="white"
-          stroke="#c7cedb"
+          stroke={getColor('slate.300')}
         />
       </LogoContainer>
     </Tooltip>
@@ -372,7 +373,7 @@ const Crumb = ({
             onClick={handleCrumbClick}
             aria-label={`Navigate to ${label}`}
             fill="white"
-            stroke="#c7cedb"
+            stroke={getColor('slate.300')}
           />
         </div>
       </CrumbWrapper>

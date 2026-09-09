@@ -41,7 +41,21 @@ const docsSchema = frontmatterSchema.extend({
 export const docs = defineDocs({
   dir: "docs",
   docs: {
-    files: ["**/*.md", "**/*.mdx", "!**/README.md"],
+    files: ["**/*.md", "**/*.mdx", "!**/README.md", "!api/**"],
+    schema: docsSchema,
+    postprocess: {
+      includeProcessedMarkdown: true,
+    },
+  },
+  meta: {
+    schema: metaSchema,
+  },
+});
+
+export const apiRefCollection = defineDocs({
+  dir: "docs/api",
+  docs: {
+    files: ["**/*.md", "**/*.mdx"],
     schema: docsSchema,
     postprocess: {
       includeProcessedMarkdown: true,
