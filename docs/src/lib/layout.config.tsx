@@ -1,7 +1,24 @@
 import Image from "next/image";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import { BookOpenIcon, CodeIcon } from "lucide-react";
 
 import { siteConfig } from "@/lib/constants";
+import { API_REFERENCE_BASE_URL } from "@/lib/openapi";
+
+export const layoutTabs = [
+  {
+    title: "Documentation",
+    description: "Guides and references",
+    url: "/",
+    icon: <BookOpenIcon className="size-4 text-blue-500" />,
+  },
+  {
+    title: "API Reference",
+    description: "REST API endpoints",
+    url: API_REFERENCE_BASE_URL,
+    icon: <CodeIcon className="size-4 text-yellow-500" />,
+  },
+];
 
 interface BaseOptionsConfig {
   /**
