@@ -36,6 +36,7 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
   const params = await props.params;
   const source = await getApiReferenceSource();
   const page = params.slug ? source.getPage(params.slug) : getRootApiPage(source);
+  const isRootPage = !params.slug;
 
   if (!page) {
     notFound();
@@ -59,6 +60,7 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
 
     return (
       <DocsPage toc={data.toc}>
+        {isRootPage ? <CanonicalApiRoot /> : null}
         <DocsTitle>{page.data.title}</DocsTitle>
         {page.data.description && <DocsDescription>{page.data.description}</DocsDescription>}
         <div className="flex flex-row gap-2 items-center border-b pb-6">
@@ -85,7 +87,7 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
 
   return (
     <DocsPage>
-      {!params.slug ? <CanonicalApiRoot /> : null}
+      {isRootPage ? <CanonicalApiRoot /> : null}
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsBody>
         <OpenAPIPage {...apiPageProps} />
