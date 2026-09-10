@@ -1,11 +1,16 @@
 const fs = require("fs");
 const path = require("path");
 
-const inputFileName = "spec.json";
-const inputFilePath = path.join(__dirname, "./../../docs/build/", inputFileName);
+const inputFilePath = process.argv[2]
+  ? path.resolve(process.argv[2])
+  : path.join(__dirname, "./../../docs/build/spec.json");
+const outputFilePath = process.argv[3]
+  ? path.resolve(process.argv[3])
+  : path.join(__dirname, "./../../docs/build/openapi.json");
 const descriptionsDir = path.join(__dirname, "./../../docs/spec/descriptions");
-const outputFilePath = path.join(__dirname, "./../../docs/build/openapi.json");
+const inputFileName = path.basename(inputFilePath);
 
+// Inline description refs from the source tree into the docs JSON output.
 function readDescriptionFiles(dir, descriptionByPath, descriptionByName) {
   if (!fs.existsSync(dir)) {
     return;

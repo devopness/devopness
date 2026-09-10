@@ -14590,7 +14590,8 @@
         "in": "header",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "application/json"
         },
         "description": "application/json"
       },
@@ -14599,7 +14600,8 @@
         "in": "header",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "Bearer <your_api_token>"
         },
         "description": "Bearer {{access_token}}"
       },
@@ -14608,7 +14610,8 @@
         "in": "header",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "application/json"
         },
         "description": "application/json"
       },

@@ -4,6 +4,7 @@ acceptHeader:
   required: true
   schema:
     type: string
+    example: application/json
   description: application/json
 
 authHeader:
@@ -12,6 +13,7 @@ authHeader:
   required: true
   schema:
     type: string
+    example: Bearer <your_api_token>
   description: Bearer {{access_token}}
 
 contentTypeHeader:
@@ -20,6 +22,7 @@ contentTypeHeader:
   required: true
   schema:
     type: string
+    example: application/json
   description: application/json
 
 pageNumber:
