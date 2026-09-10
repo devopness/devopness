@@ -83,7 +83,7 @@ jobs:
         run: |
           npm run api-convert-spec-to-dredd
           npm run remove-descriptions
-          dredd
+          npx dredd
 
   sync-spec:
     name: Sync shared API spec
