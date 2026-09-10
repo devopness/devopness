@@ -14,6 +14,12 @@ export const source = loader({
   plugins: [lucideIconsPlugin(), acronymSpacingPlugin],
 });
 
+/**
+ * Build the OpenGraph image URL for a docs page.
+ *
+ * We keep the segments explicit so the image path matches the page slug and
+ * stays stable across route changes.
+ */
 export function getPageImage(page: InferPageType<typeof source>) {
   const segments = [...page.slugs, "image.png"];
 
@@ -23,6 +29,12 @@ export function getPageImage(page: InferPageType<typeof source>) {
   };
 }
 
+/**
+ * Build the LLM text version of a docs page.
+ *
+ * The processed body is the best source for downstream tools, and the intro
+ * stays separate so we can keep the page title and lead paragraph intact.
+ */
 export async function getLLMText(page: InferPageType<typeof source>) {
   const processed = await page.data.getText("processed");
   const intro = page.data.intro ? `${page.data.intro}\n\n` : "";

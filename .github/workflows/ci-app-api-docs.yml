@@ -113,18 +113,19 @@ jobs:
       - name: Build shared API spec from source
         working-directory: apps/api-docs
         run: |
-          # Build the shared JSON once, then send it to each consumer.
+          # Build one base spec here so both outputs use the same source data.
           npm run api-build-spec
           npm run api-convert-spec-to-json
           cp docs/build/spec.json "${{ runner.temp }}/api-docs-spec-base.json"
 
-      # Use the same spec for both outputs.
+      # The package copy keeps the shared JSON lean.
       - name: Copy shared API spec into packages
         working-directory: ${{ github.workspace }}
         run: |
           cp "${{ runner.temp }}/api-docs-spec-base.json" packages/sdks/common/spec.json
           node apps/api-docs/src/utils/remove-descriptions-in-json-spec.js packages/sdks/common/spec.json
 
+      # The docs copy keeps the markdown description refs inline for the site.
       - name: Copy docs OpenAPI into docs app
         working-directory: ${{ github.workspace }}
         run: |

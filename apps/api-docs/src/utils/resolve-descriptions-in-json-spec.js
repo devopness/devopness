@@ -1,3 +1,12 @@
+/**
+ * Build the docs-only OpenAPI JSON file with inline description text.
+ *
+ * The shared API spec stores description fields as file refs so the source
+ * tree stays maintainable. The docs app cannot render those refs directly, so
+ * this script resolves them into plain strings before `docs/openapi.json` is
+ * published. Without this step, the docs site would show broken or missing
+ * descriptions wherever the spec points to markdown files.
+ */
 const fs = require("fs");
 const path = require("path");
 
@@ -10,7 +19,12 @@ const outputFilePath = process.argv[3]
 const descriptionsDir = path.join(__dirname, "./../../docs/spec/descriptions");
 const inputFileName = path.basename(inputFilePath);
 
-// Inline description refs from the source tree into the docs JSON output.
+/**
+ * Read every description file under the docs tree.
+ *
+ * We scan recursively because the spec can grow new nested folders later and
+ * we do not want to update this script every time the tree changes.
+ */
 function readDescriptionFiles(dir, descriptionByPath, descriptionByName) {
   if (!fs.existsSync(dir)) {
     return;
@@ -39,6 +53,12 @@ function readDescriptionFiles(dir, descriptionByPath, descriptionByName) {
   }
 }
 
+/**
+ * Detect the exact shape used for description references.
+ *
+ * We only replace plain `{ "$ref": "..." }` values. Anything else is kept as
+ * is so unrelated JSON fields are never rewritten by mistake.
+ */
 function isDescriptionRef(value) {
   return (
     Boolean(value) &&
@@ -49,7 +69,16 @@ function isDescriptionRef(value) {
   );
 }
 
+/**
+ * Resolve one description reference into plain text.
+ *
+ * We try the exact path first, then the file name, and finally the resolved
+ * file path. That order keeps the lookup stable when the generated spec uses
+ * different relative paths for the same description file.
+ */
 function resolveDescription(ref, descriptionByPath, descriptionByName) {
+  // The JSON spec may point to a path relative to the generated spec file, not
+  // just to the descriptions folder, so we normalize it before matching.
   const absoluteRefPath = path.normalize(path.join(path.dirname(inputFilePath), ref));
   const relativeRefPath = path
     .relative(descriptionsDir, absoluteRefPath)
@@ -72,6 +101,12 @@ function resolveDescription(ref, descriptionByPath, descriptionByName) {
   throw new Error(`Failed to resolve description reference: ${ref}`);
 }
 
+/**
+ * Walk the whole JSON tree and inline every description reference.
+ *
+ * The OpenAPI file is deeply nested, so a shallow pass would miss items
+ * inside paths, responses, schemas, and arrays.
+ */
 function inlineDescriptions(node, descriptionByPath, descriptionByName) {
   if (Array.isArray(node)) {
     return node.map((item) => inlineDescriptions(item, descriptionByPath, descriptionByName));
@@ -95,7 +130,15 @@ function inlineDescriptions(node, descriptionByPath, descriptionByName) {
   return resolvedNode;
 }
 
+/**
+ * Read the source spec and write the docs-only OpenAPI JSON output.
+ *
+ * The workflow uses this as a copy step, so we always create the target file
+ * from the resolved source instead of mutating the input by accident.
+ */
 function main() {
+  // Keep this tool flexible so the workflow can reuse it for both the docs app
+  // output and any future copies that need the same inline description text.
   const input = JSON.parse(fs.readFileSync(inputFilePath, "utf8"));
   const descriptionByPath = new Map();
   const descriptionByName = new Map();
