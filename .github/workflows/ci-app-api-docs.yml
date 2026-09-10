@@ -110,6 +110,16 @@ jobs:
           git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
           git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
+      - name: Setup Node Runtime
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          cache: npm
+
+      - name: Install API docs dependencies
+        working-directory: apps/api-docs
+        run: npm ci
+
       - name: Build shared API spec from source
         working-directory: apps/api-docs
         run: |
