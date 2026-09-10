@@ -10,16 +10,8 @@
   },
   "servers": [
     {
-      "url": "http://devopness-api.local",
-      "description": "Local Dev server"
-    },
-    {
-      "url": "https://staging-api.devopness.com",
-      "description": "Staging server"
-    },
-    {
       "url": "https://api.devopness.com",
-      "description": "Production server"
+      "description": "Production API endpoint for Devopness"
     }
   ],
   "paths": {
@@ -14358,7 +14350,8 @@
         "in": "header",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "application/json"
         },
         "description": "application/json"
       },
@@ -14367,7 +14360,8 @@
         "in": "header",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "Bearer <your_api_token>"
         },
         "description": "Bearer {{access_token}}"
       },
@@ -14376,7 +14370,8 @@
         "in": "header",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "example": "application/json"
         },
         "description": "application/json"
       },
