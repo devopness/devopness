@@ -109,7 +109,6 @@ jobs:
         run: |
           git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
           git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Setup Node Runtime
         uses: actions/setup-node@v6
@@ -154,6 +153,10 @@ jobs:
             echo "Fork PRs cannot auto-commit generated output. Regenerate locally and push the result."
             exit 1
           fi
+
+      - name: Enable automation remote for commit
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Commit shared spec updates
         if: github.event.pull_request.head.repo.full_name == github.repository
