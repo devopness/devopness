@@ -63,6 +63,7 @@ jobs:
         with:
           node-version: 24.x
           cache: npm
+          cache-dependency-path: apps/api-docs/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -115,6 +116,7 @@ jobs:
         with:
           node-version: 24.x
           cache: npm
+          cache-dependency-path: apps/api-docs/package-lock.json
 
       - name: Install API docs dependencies
         working-directory: apps/api-docs
