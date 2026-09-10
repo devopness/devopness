@@ -84,6 +84,7 @@ jobs:
       - name: Export shared spec JSON
         run: |
           npm run api-convert-spec-to-json
+          npm run resolve-descriptions-in-json-spec
           npm run remove-descriptions-in-json-spec
 
       - name: Upload generated spec artifact
@@ -91,6 +92,13 @@ jobs:
         with:
           name: api-docs-spec-json
           path: apps/api-docs/docs/build/spec.json
+          if-no-files-found: error
+
+      - name: Upload generated docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-docs-openapi-json
+          path: apps/api-docs/docs/build/openapi.json
           if-no-files-found: error
 
   sync-spec:
@@ -125,16 +133,26 @@ jobs:
           name: api-docs-spec-json
           path: ${{ runner.temp }}/api-docs-spec-json
 
+      - name: Download generated docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-docs-openapi-json
+          path: ${{ runner.temp }}/api-docs-openapi-json
+
       - name: Copy shared spec into SDK folder
         working-directory: ${{ github.workspace }}
         run: cp "${{ runner.temp }}/api-docs-spec-json/spec.json" packages/sdks/common/spec.json
+
+      - name: Copy docs OpenAPI into docs app
+        working-directory: ${{ github.workspace }}
+        run: cp "${{ runner.temp }}/api-docs-openapi-json/openapi.json" docs/openapi.json
 
       - name: Fail if spec is out of sync on fork PRs
         if: github.event.pull_request.head.repo.full_name != github.repository
         working-directory: ${{ github.workspace }}
         run: |
-          if ! git diff --exit-code -- packages/sdks/common/spec.json; then
-            echo "❌ Generated spec.json differs from the committed file."
+          if ! git diff --exit-code -- packages/sdks/common/spec.json docs/openapi.json; then
+            echo "❌ Generated API docs JSON differs from the committed files."
             echo "Fork PRs cannot auto-commit generated output. Regenerate locally and push the result."
             exit 1
           fi
@@ -144,7 +162,9 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'feat: update shared API spec'
-          file_pattern: 'packages/sdks/common/spec.json'
+          file_pattern: |
+            packages/sdks/common/spec.json
+            docs/openapi.json
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 

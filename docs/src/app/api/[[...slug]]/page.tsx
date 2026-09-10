@@ -5,6 +5,7 @@ import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/page
 import { createRelativeLink } from "fumadocs-ui/mdx";
 
 import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
+import { CanonicalApiRoot } from "@/components/canonical-api-root";
 import { OpenAPIPage } from "@/components/openapi-page";
 import { getGithubDocsEditUrl, getGithubDocsRawUrl } from "@/lib/constants";
 import { isRedundantDocsHref, normalizeInternalDocUrl } from "@/lib/internal-doc-links";
@@ -41,7 +42,6 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
   }
 
   const data = page.data as ApiPageData;
-
   if (typeof data.body === "function" && data.getText) {
     const markdown = await data.getText("processed");
     const RelativeLink = createRelativeLink(source, page);
@@ -79,14 +79,16 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
     );
   }
 
-  if (!data.getAPIPageProps) notFound();
+  const apiPageProps = data.getAPIPageProps?.call(data);
+
+  if (!apiPageProps) notFound();
 
   return (
     <DocsPage>
+      {!params.slug ? <CanonicalApiRoot /> : null}
       <DocsTitle>{page.data.title}</DocsTitle>
-      {page.data.description && <DocsDescription>{page.data.description}</DocsDescription>}
       <DocsBody>
-        <OpenAPIPage {...data.getAPIPageProps()} />
+        <OpenAPIPage {...apiPageProps} />
       </DocsBody>
     </DocsPage>
   );

@@ -5,11 +5,7 @@ import { loader } from "fumadocs-core/source";
 import { createOpenAPI, openapiPlugin, openapiSource } from "fumadocs-openapi/server";
 import { apiRefCollection } from "fumadocs-mdx:collections/server";
 
-/**
- * TODO: Replace this local sample spec with the Devopness API OpenAPI file
- * once the real schema is wired into the build.
- */
-const openApiSpecPath = join(process.cwd(), "openapi.yml");
+const openApiSpecPath = join(process.cwd(), "openapi.json");
 
 export const API_REFERENCE_BASE_URL = "/api";
 
