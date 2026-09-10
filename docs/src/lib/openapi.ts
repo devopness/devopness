@@ -5,6 +5,8 @@ import { loader } from "fumadocs-core/source";
 import { createOpenAPI, openapiPlugin, openapiSource } from "fumadocs-openapi/server";
 import { apiRefCollection } from "fumadocs-mdx:collections/server";
 
+import { acronymSpacingPlugin } from "@/lib/page-tree";
+
 const openApiSpecPath = join(process.cwd(), "openapi.json");
 
 export const API_REFERENCE_BASE_URL = "/api";
@@ -55,7 +57,7 @@ export const getApiReferenceSource = cache(async () => {
   return loader({
     baseUrl: API_REFERENCE_BASE_URL,
     source: { files: [...staticSource.files, ...patchedOpenapiFiles] },
-    plugins: [openapiPlugin()],
+    plugins: [openapiPlugin(), acronymSpacingPlugin],
   });
 });
 

@@ -2,6 +2,8 @@ import { loader, type InferPageType } from "fumadocs-core/source";
 import { lucideIconsPlugin } from "fumadocs-core/source/lucide-icons";
 import { docs } from "fumadocs-mdx:collections/server";
 
+import { acronymSpacingPlugin } from "@/lib/page-tree";
+
 // See https://fumadocs.dev/docs/headless/source-api for more info
 export const source = loader({
   // baseUrl: Internal URL prefix for Fumadocs links (should be '/' when using Next.js basePath)
@@ -9,7 +11,7 @@ export const source = loader({
   // Fumadocs generates /actions/, then Next.js adds /docs/ → final URL: /docs/actions/
   baseUrl: "/",
   source: docs.toFumadocsSource(),
-  plugins: [lucideIconsPlugin()],
+  plugins: [lucideIconsPlugin(), acronymSpacingPlugin],
 });
 
 export function getPageImage(page: InferPageType<typeof source>) {
