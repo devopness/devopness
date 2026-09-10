@@ -26,6 +26,7 @@ jobs:
           filters: |
             changes:
               - 'apps/api-docs/**'
+              - 'docs/openapi.json'
               - 'packages/sdks/common/spec.json'
               - '.github/workflows/ci-app-api-docs.yml'
               - '.github/workflows/sync-api-spec.yml'
