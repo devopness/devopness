@@ -1,12 +1,11 @@
-/**
- * Build the docs-only OpenAPI JSON file with inline description text.
- *
- * The shared API spec stores description fields as file refs so the source
- * tree stays maintainable. The docs app cannot render those refs directly, so
- * this script resolves them into plain strings before `docs/openapi.json` is
- * published. Without this step, the docs site would show broken or missing
- * descriptions wherever the spec points to markdown files.
- */
+// Build the OpenAPI JSON file with inline description text.
+//
+// The shared API Spec stores description fields as file refs so the source
+// tree stays maintainable. The docs app cannot render those refs directly, so
+// this script resolves them into plain strings before `docs/openapi.json` is
+// published. Without this step, the docs site would show broken or missing
+// descriptions wherever the spec points to markdown files.
+
 const fs = require("fs");
 const path = require("path");
 
@@ -46,6 +45,7 @@ function readDescriptionFiles(dir, descriptionByPath, descriptionByName) {
       .relative(descriptionsDir, entryPath)
       .split(path.sep)
       .join("/");
+    
     const content = fs.readFileSync(entryPath, "utf8");
 
     descriptionByPath.set(relativePath, content);
@@ -80,10 +80,12 @@ function resolveDescription(ref, descriptionByPath, descriptionByName) {
   // The JSON spec may point to a path relative to the generated spec file, not
   // just to the descriptions folder, so we normalize it before matching.
   const absoluteRefPath = path.normalize(path.join(path.dirname(inputFilePath), ref));
+  
   const relativeRefPath = path
     .relative(descriptionsDir, absoluteRefPath)
     .split(path.sep)
     .join("/");
+  
   const fileName = path.basename(absoluteRefPath);
 
   if (descriptionByPath.has(relativeRefPath)) {
@@ -140,6 +142,7 @@ function main() {
   // Keep this tool flexible so the workflow can reuse it for both the docs app
   // output and any future copies that need the same inline description text.
   const input = JSON.parse(fs.readFileSync(inputFilePath, "utf8"));
+  
   const descriptionByPath = new Map();
   const descriptionByName = new Map();
 
