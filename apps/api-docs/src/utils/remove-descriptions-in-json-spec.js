@@ -1,8 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-const fileName = "spec.json";
-const filePath = path.join(__dirname, "./../../docs/build/", fileName);
+const filePath = process.argv[2]
+  ? path.resolve(process.argv[2])
+  : path.join(__dirname, "./../../docs/build/spec.json");
+const fileName = path.basename(filePath);
 
 let input = "";
 try {
@@ -10,7 +12,7 @@ try {
 } catch (error) {
   console.error(
     "ERROR:",
-    "File `" + fileName + "` not found in `docs/build` folder.",
+    "File `" + fileName + "` not found.",
     "Please run `npm run api-build-spec` and `npm run api-convert-spec-to-json`, then try again."
   );
   process.exit(1);
