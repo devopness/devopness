@@ -22,9 +22,6 @@ export const layoutTabs = [
   },
 ];
 
-interface BaseOptionsConfig {
-}
-
 /**
  * Build the shared Fumadocs layout options.
  */
