@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.207.0
+
+### Minor Changes
+
+- [#3584](https://github.com/devopness/devopness/pull/3584) [`252ecd6`](https://github.com/devopness/devopness/commit/252ecd65769c0451342d23e133ecae10c627aa07) Thanks [@therealrinku](https://github.com/therealrinku)! - Add react-table as peer dependency
+
 ## 2.206.1
 
 ### Patch Changes

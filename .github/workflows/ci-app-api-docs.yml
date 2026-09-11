@@ -26,6 +26,7 @@ jobs:
           filters: |
             changes:
               - 'apps/api-docs/**'
+              - 'docs/openapi.json'
               - 'packages/sdks/common/spec.json'
               - '.github/workflows/ci-app-api-docs.yml'
               - '.github/workflows/sync-api-spec.yml'
@@ -33,7 +34,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
 
   build:
-    name: Build API Docs
+    name: Build and Test API Docs
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ubuntu-latest
@@ -49,11 +50,13 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Create `.env`
+      - name: Set up `.env`
         run: |
           if [ -n "${{ secrets.API_DOCS_ENV_FILE }}" ]; then
             printf '%s\n' "${{ secrets.API_DOCS_ENV_FILE }}" > .env
           else
+            # For fork PRs, use the example file only to keep the structure
+            # without exposing project secrets.
             cp .env.example .env
           fi
 
@@ -62,36 +65,28 @@ jobs:
         with:
           node-version: 24.x
           cache: npm
+          cache-dependency-path: apps/api-docs/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and test API spec
+      - name: Build and run unit tests
         run: |
-          # Fork PRs run the full docs build except the credentialed Dredd test.
-          if [ "${{ github.event.pull_request.head.repo.full_name }}" = "${{ github.repository }}" ]; then
-            npm run build
-          else
-            npm run api-build-spec
-            npm run api-convert-spec-to-dredd
-            npm run api-docs-export-page
-            npm run tsc
-            npm run test
-            npm run remove-descriptions
-            npm run ensure_index_file_is_on_size_limit
-          fi
-
-      - name: Export shared spec JSON
-        run: |
+          npm run api-build-spec
           npm run api-convert-spec-to-json
-          npm run remove-descriptions-in-json-spec
+          npm run api-docs-export-page
+          npm run tsc
+          npm run test
+          npm run ensure_index_file_is_on_size_limit
 
-      - name: Upload generated spec artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: api-docs-spec-json
-          path: apps/api-docs/docs/build/spec.json
-          if-no-files-found: error
+      # We skip this step for fork PRs because it needs repository secrets.
+      # Forks do not have access to those secrets.
+      - name: Run API Docs tests
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          npm run api-convert-spec-to-dredd
+          npm run remove-descriptions
+          npx dredd
 
   sync-spec:
     name: Sync shared API spec
@@ -109,7 +104,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Checkout automation branch
+      - name: Check out PR branch
         run: git checkout -B "${{ github.head_ref }}"
 
       - name: Set up git identity
@@ -117,39 +112,66 @@ jobs:
         run: |
           git config --global user.email "${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}"
           git config --global user.name "${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}"
-          git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
-      - name: Download generated spec artifact
-        uses: actions/download-artifact@v4
+      - name: Setup Node Runtime
+        uses: actions/setup-node@v6
         with:
-          name: api-docs-spec-json
-          path: ${{ runner.temp }}/api-docs-spec-json
+          node-version: 24.x
+          cache: npm
+          cache-dependency-path: apps/api-docs/package-lock.json
 
-      - name: Copy shared spec into SDK folder
+      - name: Install dependencies
+        working-directory: apps/api-docs
+        run: npm ci
+
+      - name: Build shared API spec from source
+        working-directory: apps/api-docs
+        run: |
+          npm run api-build-spec
+          npm run api-convert-spec-to-json
+          cp docs/build/spec.json "${{ runner.temp }}/api-docs-spec-base.json"
+
+      - name: Copy shared API spec into SDK files
         working-directory: ${{ github.workspace }}
-        run: cp "${{ runner.temp }}/api-docs-spec-json/spec.json" packages/sdks/common/spec.json
+        run: |
+          cp "${{ runner.temp }}/api-docs-spec-base.json" packages/sdks/common/spec.json
+          node apps/api-docs/src/utils/remove-descriptions-in-json-spec.js \
+            packages/sdks/common/spec.json
+
+      - name: Copy shared API spec into docs app
+        working-directory: ${{ github.workspace }}
+        run: |
+          node apps/api-docs/src/utils/resolve-descriptions-in-json-spec.js \
+            "${{ runner.temp }}/api-docs-spec-base.json" \
+            docs/openapi.json
 
       - name: Fail if spec is out of sync on fork PRs
         if: github.event.pull_request.head.repo.full_name != github.repository
         working-directory: ${{ github.workspace }}
         run: |
-          if ! git diff --exit-code -- packages/sdks/common/spec.json; then
-            echo "❌ Generated spec.json differs from the committed file."
+          if ! git diff --exit-code -- packages/sdks/common/spec.json docs/openapi.json; then
+            echo "❌ Generated API docs spec JSON differs from the committed files."
             echo "Fork PRs cannot auto-commit generated output. Regenerate locally and push the result."
             exit 1
           fi
+
+      - name: Set up the Devopness Automation to auto-commit
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: git remote set-url origin https://x-access-token:${{ secrets.DEVOPNESS_AUTOMATION_PAT }}@github.com/${{ github.repository }}
 
       - name: Commit shared spec updates
         if: github.event.pull_request.head.repo.full_name == github.repository
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'feat: update shared API spec'
-          file_pattern: 'packages/sdks/common/spec.json'
+          file_pattern: |
+            packages/sdks/common/spec.json
+            docs/openapi.json
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   verify-build:
-    name: Verify build of API Docs
+    name: Verify API docs build
     needs: [detect-changes, build, sync-spec]
     if: always()
     runs-on: ubuntu-latest

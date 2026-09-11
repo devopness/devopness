@@ -19,6 +19,7 @@
       "get": {
         "summary": "Return a list of all actions belonging to current user",
         "operationId": "listActions",
+        "description": "",
         "tags": [
           "Actions"
         ],
@@ -76,6 +77,7 @@
       "get": {
         "summary": "List actions triggered to a given action target resource",
         "operationId": "listActionsByTargetResourceType",
+        "description": "",
         "tags": [
           "Actions"
         ],
@@ -143,6 +145,7 @@
       "get": {
         "summary": "Get an action by ID",
         "operationId": "getAction",
+        "description": "",
         "tags": [
           "Actions"
         ],
@@ -199,6 +202,7 @@
       "post": {
         "summary": "Retry an action",
         "operationId": "retryAction",
+        "description": "",
         "tags": [
           "Actions"
         ],
@@ -252,6 +256,7 @@
       "get": {
         "summary": "Get action target step log",
         "operationId": "getActionLog",
+        "description": "",
         "tags": [
           "Actions - Logs"
         ],
@@ -317,6 +322,7 @@
       "get": {
         "summary": "List resource actions of an action type",
         "operationId": "listActionsByResourceType",
+        "description": "",
         "tags": [
           "Actions"
         ],
@@ -384,6 +390,7 @@
       "delete": {
         "summary": "Delete a given application",
         "operationId": "deleteApplication",
+        "description": "",
         "tags": [
           "Applications"
         ],
@@ -436,6 +443,7 @@
       "get": {
         "summary": "Get an application by ID",
         "operationId": "getApplication",
+        "description": "",
         "tags": [
           "Applications"
         ],
@@ -487,6 +495,7 @@
       "put": {
         "summary": "Update an existing application",
         "operationId": "updateApplication",
+        "description": "",
         "tags": [
           "Applications"
         ],
@@ -544,6 +553,7 @@
       "post": {
         "summary": "Trigger a new deployment for current application",
         "operationId": "addApplicationDeployment",
+        "description": "",
         "tags": [
           "Applications"
         ],
@@ -619,6 +629,7 @@
       "get": {
         "summary": "List all hooks in an application",
         "operationId": "listApplicationHooks",
+        "description": "",
         "tags": [
           "Applications - Hooks"
         ],
@@ -676,6 +687,7 @@
       "get": {
         "summary": "Return a list of variables belonging to an application",
         "operationId": "listApplicationVariables",
+        "description": "",
         "tags": [
           "Applications - Variables"
         ],
@@ -732,6 +744,7 @@
       "post": {
         "summary": "Create a new variable linked to an application",
         "operationId": "addApplicationVariable",
+        "description": "",
         "tags": [
           "Applications - Variables"
         ],
@@ -807,6 +820,7 @@
       "delete": {
         "summary": "Delete a given credential",
         "operationId": "deleteCredential",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -844,6 +858,7 @@
       "get": {
         "summary": "Get a credential by ID",
         "operationId": "getCredential",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -888,6 +903,7 @@
       "put": {
         "summary": "Update an existing Credential",
         "operationId": "updateCredential",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -955,6 +971,7 @@
       "post": {
         "summary": "Get current status of a credential on its provider",
         "operationId": "getStatusCredential",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -1022,6 +1039,7 @@
       "get": {
         "summary": "Return a list of all repositories belonging to the source provider linked to the credential",
         "operationId": "listCredentialRepositories",
+        "description": "",
         "tags": [
           "Credentials - Repositories"
         ],
@@ -1081,6 +1099,7 @@
       "get": {
         "summary": "Get details of a repository by its name",
         "operationId": "getCredentialRepository",
+        "description": "",
         "tags": [
           "Credentials - Repositories"
         ],
@@ -1147,6 +1166,7 @@
       "delete": {
         "summary": "Delete a given Cron Job",
         "operationId": "deleteCronJob",
+        "description": "",
         "tags": [
           "Cron Jobs"
         ],
@@ -1199,6 +1219,7 @@
       "get": {
         "summary": "Get a Cron Job by ID",
         "operationId": "getCronJob",
+        "description": "",
         "tags": [
           "Cron Jobs"
         ],
@@ -1250,6 +1271,7 @@
       "put": {
         "summary": "Update an existing Cron Job",
         "operationId": "updateCronJob",
+        "description": "",
         "tags": [
           "Cron Jobs"
         ],
@@ -1317,6 +1339,7 @@
       "post": {
         "summary": "Deploy a Cron Job",
         "operationId": "deployCronJob",
+        "description": "",
         "tags": [
           "Cron Jobs"
         ],
@@ -1395,6 +1418,7 @@
       "delete": {
         "summary": "Delete a given Daemon",
         "operationId": "deleteDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -1450,6 +1474,7 @@
       "get": {
         "summary": "Get a Daemon by ID",
         "operationId": "getDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -1504,6 +1529,7 @@
       "put": {
         "summary": "Update an existing Daemon",
         "operationId": "updateDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -1574,6 +1600,7 @@
       "post": {
         "summary": "Deploy a Daemon",
         "operationId": "deployDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -1652,6 +1679,7 @@
       "post": {
         "summary": "Get current status of a daemon",
         "operationId": "getStatusDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -1730,6 +1758,7 @@
       "post": {
         "summary": "Restart a Daemon",
         "operationId": "restartDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -1808,6 +1837,7 @@
       "post": {
         "summary": "Start a Daemon",
         "operationId": "startDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -1886,6 +1916,7 @@
       "post": {
         "summary": "Stop a Daemon",
         "operationId": "stopDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -1964,6 +1995,7 @@
       "delete": {
         "summary": "Delete a given environment",
         "operationId": "deleteEnvironment",
+        "description": "",
         "tags": [
           "Environments"
         ],
@@ -2008,6 +2040,7 @@
       "get": {
         "summary": "Get an environment by ID",
         "operationId": "getEnvironment",
+        "description": "",
         "tags": [
           "Environments"
         ],
@@ -2059,6 +2092,7 @@
       "put": {
         "summary": "Update a given environment",
         "operationId": "updateEnvironment",
+        "description": "",
         "tags": [
           "Environments"
         ],
@@ -2126,6 +2160,7 @@
       "get": {
         "summary": "List environment actions",
         "operationId": "listEnvironmentActions",
+        "description": "",
         "tags": [
           "Environments - Actions"
         ],
@@ -2194,6 +2229,7 @@
       "get": {
         "summary": "List environment actions of a resource type",
         "operationId": "listEnvironmentActionsByResourceType",
+        "description": "",
         "tags": [
           "Environments - Actions"
         ],
@@ -2272,6 +2308,7 @@
       "get": {
         "summary": "List applications in an environment",
         "operationId": "listEnvironmentApplications",
+        "description": "",
         "tags": [
           "Applications"
         ],
@@ -2327,6 +2364,7 @@
       "post": {
         "summary": "Create an application",
         "operationId": "addEnvironmentApplication",
+        "description": "",
         "tags": [
           "Applications"
         ],
@@ -2391,6 +2429,7 @@
       "post": {
         "summary": "Create applications from a template",
         "operationId": "applyTemplateEnvironmentApplication",
+        "description": "",
         "tags": [
           "Applications"
         ],
@@ -2458,6 +2497,7 @@
       "post": {
         "summary": "Archive an environment",
         "operationId": "archiveEnvironment",
+        "description": "",
         "tags": [
           "Environments"
         ],
@@ -2504,6 +2544,7 @@
       "get": {
         "summary": "Return a list of all Credentials linked to an environment",
         "operationId": "listEnvironmentCredentials",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -2581,6 +2622,7 @@
       "post": {
         "summary": "Link a credential to an environment",
         "operationId": "linkCredentialToEnvironment",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -2648,6 +2690,7 @@
       "delete": {
         "summary": "Unlink a credential from an environment",
         "operationId": "unlinkCredentialFromEnvironment",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -2705,6 +2748,7 @@
       "get": {
         "summary": "Return provider settings",
         "operationId": "getEnvironmentCredentialSettings",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -2781,6 +2825,7 @@
       "get": {
         "summary": "Return a list of all Cron Jobs belonging to an environment",
         "operationId": "listEnvironmentCronJobs",
+        "description": "",
         "tags": [
           "Cron Jobs"
         ],
@@ -2836,6 +2881,7 @@
       "post": {
         "summary": "Add a Cron Job to the given environment",
         "operationId": "addEnvironmentCronJob",
+        "description": "",
         "tags": [
           "Cron Jobs"
         ],
@@ -2910,6 +2956,7 @@
       "get": {
         "summary": "Return a list of all Daemons belonging to an environment",
         "operationId": "listEnvironmentDaemons",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -2965,6 +3012,7 @@
       "post": {
         "summary": "Add a Daemon to the given environment",
         "operationId": "addEnvironmentDaemon",
+        "description": "",
         "tags": [
           "Daemons"
         ],
@@ -3039,6 +3087,7 @@
       "get": {
         "summary": "Return a list of all Network Rules belonging to an environment",
         "operationId": "listEnvironmentNetworkRules",
+        "description": "",
         "tags": [
           "Network Rules"
         ],
@@ -3094,6 +3143,7 @@
       "post": {
         "summary": "Add a Network Rule to the given environment",
         "operationId": "addEnvironmentNetworkRule",
+        "description": "",
         "tags": [
           "Network Rules"
         ],
@@ -3168,6 +3218,7 @@
       "get": {
         "summary": "Return a list of all networks belonging to an environment",
         "operationId": "listEnvironmentNetworks",
+        "description": "",
         "tags": [
           "Networks"
         ],
@@ -3253,6 +3304,7 @@
       "post": {
         "summary": "Create a new network for the given environment",
         "operationId": "addEnvironmentNetwork",
+        "description": "",
         "tags": [
           "Networks"
         ],
@@ -3335,6 +3387,7 @@
       "get": {
         "summary": "Return a list of all servers belonging to an environment",
         "operationId": "listEnvironmentServers",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -3390,6 +3443,7 @@
       "post": {
         "summary": "Creates a server and link it to the given environment",
         "operationId": "addEnvironmentServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -3472,6 +3526,7 @@
       "get": {
         "summary": "Return a list of all services belonging to a environment",
         "operationId": "listEnvironmentServices",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -3527,6 +3582,7 @@
       "post": {
         "summary": "Add a Service to the given environment",
         "operationId": "addEnvironmentService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -3601,6 +3657,7 @@
       "get": {
         "summary": "Return a list of all SSH keys added to an environment",
         "operationId": "listEnvironmentSshKeys",
+        "description": "",
         "tags": [
           "SSH Keys"
         ],
@@ -3666,6 +3723,7 @@
       "post": {
         "summary": "Create an SSH key and link it to the given environment",
         "operationId": "addEnvironmentSshKey",
+        "description": "",
         "tags": [
           "SSH Keys"
         ],
@@ -3740,6 +3798,7 @@
       "get": {
         "summary": "Return a list of all SSL Certificates belonging to an environment",
         "operationId": "listEnvironmentSslCertificates",
+        "description": "",
         "tags": [
           "SSL Certificates"
         ],
@@ -3795,6 +3854,7 @@
       "post": {
         "summary": "Create a new ssl certificate",
         "operationId": "addEnvironmentSslCertificate",
+        "description": "",
         "tags": [
           "SSL Certificates"
         ],
@@ -3869,6 +3929,7 @@
       "get": {
         "summary": "Return a list of all subnets belonging to an environment",
         "operationId": "listEnvironmentSubnets",
+        "description": "",
         "tags": [
           "Subnets"
         ],
@@ -3926,6 +3987,7 @@
       "get": {
         "summary": "Return a list of teams with access to an environment",
         "operationId": "listEnvironmentTeamMemberships",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -3983,6 +4045,7 @@
       "post": {
         "summary": "Link the given team to an environment with a specific role",
         "operationId": "linkTeamToEnvironment",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -4061,6 +4124,7 @@
       "delete": {
         "summary": "Unlink the given team from an environment",
         "operationId": "unlinkTeamFromEnvironment",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -4128,6 +4192,7 @@
       "post": {
         "summary": "Unarchive an environment",
         "operationId": "unarchiveEnvironment",
+        "description": "",
         "tags": [
           "Environments"
         ],
@@ -4174,6 +4239,7 @@
       "get": {
         "summary": "Return a list of all Virtual Hosts belonging to an environment",
         "operationId": "listEnvironmentVirtualHosts",
+        "description": "",
         "tags": [
           "Virtual Hosts"
         ],
@@ -4229,6 +4295,7 @@
       "post": {
         "summary": "Create a new virtual host",
         "operationId": "addEnvironmentVirtualHost",
+        "description": "",
         "tags": [
           "Virtual Hosts"
         ],
@@ -4303,6 +4370,7 @@
       "get": {
         "summary": "List events of a resource type",
         "operationId": "listResourceEventsByResourceType",
+        "description": "",
         "tags": [
           "Resource Events"
         ],
@@ -4368,6 +4436,7 @@
       "post": {
         "summary": "Process event for a resource",
         "operationId": "addResourceEvent",
+        "description": "",
         "tags": [
           "Resource Events"
         ],
@@ -4440,6 +4509,7 @@
       "get": {
         "summary": "Get a hook request by ID",
         "operationId": "getHookRequest",
+        "description": "",
         "tags": [
           "Hook Requests"
         ],
@@ -4495,6 +4565,7 @@
       "post": {
         "summary": "Trigger an incoming hook associated action",
         "operationId": "triggerHook",
+        "description": "",
         "tags": [
           "Hooks"
         ],
@@ -4565,6 +4636,7 @@
       "delete": {
         "summary": "Delete a given hook",
         "operationId": "deleteHook",
+        "description": "",
         "tags": [
           "Hooks"
         ],
@@ -4618,6 +4690,7 @@
       "get": {
         "summary": "Get a hook by ID",
         "operationId": "getHook",
+        "description": "",
         "tags": [
           "Hooks"
         ],
@@ -4678,6 +4751,7 @@
       "put": {
         "summary": "Update an existing hook",
         "operationId": "updateHook",
+        "description": "",
         "tags": [
           "Hooks"
         ],
@@ -4754,6 +4828,7 @@
       "get": {
         "summary": "Returns a list of all hook requests belonging to a hook",
         "operationId": "listHookRequestsByHookType",
+        "description": "",
         "tags": [
           "Hooks - Requests"
         ],
@@ -4820,6 +4895,7 @@
       "delete": {
         "summary": "Delete a given Network Rule",
         "operationId": "deleteNetworkRule",
+        "description": "",
         "tags": [
           "Network Rules"
         ],
@@ -4872,6 +4948,7 @@
       "get": {
         "summary": "Get a Network Rule by ID",
         "operationId": "getNetworkRule",
+        "description": "",
         "tags": [
           "Network Rules"
         ],
@@ -4923,6 +5000,7 @@
       "put": {
         "summary": "Update an existing Network Rule",
         "operationId": "updateNetworkRule",
+        "description": "",
         "tags": [
           "Network Rules"
         ],
@@ -4990,6 +5068,7 @@
       "post": {
         "summary": "Deploy a Network Rule",
         "operationId": "deployNetworkRule",
+        "description": "",
         "tags": [
           "Network Rules"
         ],
@@ -5068,6 +5147,7 @@
       "delete": {
         "summary": "Delete a given network",
         "operationId": "deleteNetwork",
+        "description": "",
         "tags": [
           "Networks"
         ],
@@ -5120,6 +5200,7 @@
       "get": {
         "summary": "Get a network by ID",
         "operationId": "getNetwork",
+        "description": "",
         "tags": [
           "Networks"
         ],
@@ -5171,6 +5252,7 @@
       "put": {
         "summary": "Update an existing Network",
         "operationId": "updateNetwork",
+        "description": "",
         "tags": [
           "Networks"
         ],
@@ -5238,6 +5320,7 @@
       "post": {
         "summary": "Get current status of a network",
         "operationId": "getStatusNetwork",
+        "description": "",
         "tags": [
           "Networks"
         ],
@@ -5305,6 +5388,7 @@
       "get": {
         "summary": "Return a list of all subnets belonging to a network",
         "operationId": "listNetworkSubnets",
+        "description": "",
         "tags": [
           "Networks - Subnets"
         ],
@@ -5380,6 +5464,7 @@
       "post": {
         "summary": "Create a new subnet for the given network",
         "operationId": "addNetworkSubnet",
+        "description": "",
         "tags": [
           "Networks - Subnets"
         ],
@@ -5462,6 +5547,7 @@
       "get": {
         "summary": "List all organizations of authenticated user",
         "operationId": "listOrganizations",
+        "description": "",
         "tags": [
           "Organizations"
         ],
@@ -5506,6 +5592,7 @@
       "post": {
         "summary": "Create a new organization",
         "operationId": "addOrganization",
+        "description": "",
         "tags": [
           "Organizations"
         ],
@@ -5569,6 +5656,7 @@
       "delete": {
         "summary": "Delete a given organization",
         "operationId": "deleteOrganization",
+        "description": "",
         "tags": [
           "Organizations"
         ],
@@ -5612,6 +5700,7 @@
       "get": {
         "summary": "Get an organization by ID or URL Slug",
         "operationId": "getOrganization",
+        "description": "",
         "tags": [
           "Organizations"
         ],
@@ -5662,6 +5751,7 @@
       "put": {
         "summary": "Update an existing organization",
         "operationId": "updateOrganization",
+        "description": "",
         "tags": [
           "Organizations"
         ],
@@ -5728,6 +5818,7 @@
       "get": {
         "summary": "Return a list of all Credentials belonging to an organization",
         "operationId": "listOrganizationCredentials",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -5802,6 +5893,7 @@
       "post": {
         "summary": "Add a Credential to the given organization",
         "operationId": "addOrganizationCredential",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -5875,6 +5967,7 @@
       "get": {
         "summary": "Return provider settings",
         "operationId": "getOrganizationCredentialSettings",
+        "description": "",
         "tags": [
           "Credentials"
         ],
@@ -5950,6 +6043,7 @@
       "post": {
         "summary": "Create a project to a given organization",
         "operationId": "addOrganizationProject",
+        "description": "",
         "tags": [
           "Projects"
         ],
@@ -6023,6 +6117,7 @@
       "get": {
         "summary": "List all roles from a organization",
         "operationId": "listOrganizationRoles",
+        "description": "",
         "tags": [
           "Roles"
         ],
@@ -6077,6 +6172,7 @@
       "post": {
         "summary": "Create a role to a given organization",
         "operationId": "addOrganizationRole",
+        "description": "",
         "tags": [
           "Roles"
         ],
@@ -6150,6 +6246,7 @@
       "get": {
         "summary": "Return a list of teams with access to an organization",
         "operationId": "listOrganizationTeamMemberships",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -6206,6 +6303,7 @@
       "get": {
         "summary": "Return a list of all teams belonging to an organization",
         "operationId": "listOrganizationTeams",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -6260,6 +6358,7 @@
       "post": {
         "summary": "Add a team to the given organization",
         "operationId": "addOrganizationTeam",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -6333,6 +6432,7 @@
       "post": {
         "summary": "Link the given team to an organization with a specific role",
         "operationId": "linkTeamToOrganization",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -6410,6 +6510,7 @@
       "delete": {
         "summary": "Unlink the given team from an organization",
         "operationId": "unlinkTeamFromOrganization",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -6476,6 +6577,7 @@
       "delete": {
         "summary": "Delete a given Pipeline",
         "operationId": "deletePipeline",
+        "description": "",
         "tags": [
           "Pipelines"
         ],
@@ -6523,6 +6625,7 @@
       "get": {
         "summary": "Get a Pipeline by ID",
         "operationId": "getPipeline",
+        "description": "",
         "tags": [
           "Pipelines"
         ],
@@ -6577,6 +6680,7 @@
       "put": {
         "summary": "Update an existing Pipeline",
         "operationId": "updatePipeline",
+        "description": "",
         "tags": [
           "Pipelines"
         ],
@@ -6647,6 +6751,7 @@
       "get": {
         "summary": "Return a list of pipeline's actions",
         "operationId": "listPipelineActions",
+        "description": "",
         "tags": [
           "Pipelines - Actions"
         ],
@@ -6702,6 +6807,7 @@
       "post": {
         "summary": "Create an action to run a Pipeline",
         "operationId": "addPipelineAction",
+        "description": "",
         "tags": [
           "Pipelines - Actions"
         ],
@@ -6779,6 +6885,7 @@
       "get": {
         "summary": "List all hooks in a pipeline",
         "operationId": "listPipelineHooks",
+        "description": "",
         "tags": [
           "Pipelines - Hooks"
         ],
@@ -6846,6 +6953,7 @@
       "post": {
         "summary": "Create a hook to a specific pipeline",
         "operationId": "addPipelineHook",
+        "description": "",
         "tags": [
           "Pipelines - Hooks"
         ],
@@ -6930,6 +7038,7 @@
       "post": {
         "summary": "Add a step to a pipeline",
         "operationId": "addPipelineStep",
+        "description": "",
         "tags": [
           "Pipelines - Steps"
         ],
@@ -7004,6 +7113,7 @@
       "put": {
         "summary": "Update an existing Pipeline Step",
         "operationId": "updatePipelineStep",
+        "description": "",
         "tags": [
           "Pipelines - Steps"
         ],
@@ -7082,6 +7192,7 @@
       "post": {
         "summary": "Link a step to a Pipeline",
         "operationId": "linkStepToPipeline",
+        "description": "",
         "tags": [
           "Pipelines - Steps"
         ],
@@ -7139,6 +7250,7 @@
       "delete": {
         "summary": "Unlink a step from a Pipeline",
         "operationId": "unlinkStepFromPipeline",
+        "description": "",
         "tags": [
           "Pipelines - Steps"
         ],
@@ -7196,6 +7308,7 @@
       "get": {
         "summary": "Return a list of pipelines to a resource",
         "operationId": "listPipelinesByResourceType",
+        "description": "",
         "tags": [
           "Pipelines"
         ],
@@ -7261,6 +7374,7 @@
       "post": {
         "summary": "Add a Pipeline to a resource",
         "operationId": "addPipeline",
+        "description": "",
         "tags": [
           "Pipelines"
         ],
@@ -7345,6 +7459,7 @@
       "get": {
         "summary": "Return a list of projects",
         "operationId": "listProjects",
+        "description": "",
         "tags": [
           "Projects"
         ],
@@ -7399,6 +7514,7 @@
       "post": {
         "summary": "Create a project for the authenticated user",
         "operationId": "addProject",
+        "description": "",
         "tags": [
           "Projects"
         ],
@@ -7452,6 +7568,7 @@
       "delete": {
         "summary": "Delete a given project",
         "operationId": "deleteProject",
+        "description": "",
         "tags": [
           "Projects"
         ],
@@ -7496,6 +7613,7 @@
       "get": {
         "summary": "Get a Project by ID",
         "operationId": "getProject",
+        "description": "",
         "tags": [
           "Projects"
         ],
@@ -7547,6 +7665,7 @@
       "put": {
         "summary": "Update an existing Project",
         "operationId": "updateProject",
+        "description": "",
         "tags": [
           "Projects"
         ],
@@ -7614,6 +7733,7 @@
       "get": {
         "summary": "List project actions of a resource type",
         "operationId": "listProjectActionsByResourceType",
+        "description": "",
         "tags": [
           "Projects - Actions"
         ],
@@ -7681,6 +7801,7 @@
       "get": {
         "summary": "Return a list of all environments belonging to a project",
         "operationId": "listProjectEnvironments",
+        "description": "",
         "tags": [
           "Projects - Environments"
         ],
@@ -7746,6 +7867,7 @@
       "post": {
         "summary": "Create a new environment on the current project",
         "operationId": "addProjectEnvironment",
+        "description": "",
         "tags": [
           "Projects - Environments"
         ],
@@ -7810,6 +7932,7 @@
       "get": {
         "summary": "Return a list of all archived environments belonging to a project",
         "operationId": "listProjectArchivedEnvironments",
+        "description": "",
         "tags": [
           "Projects - Archived Environments"
         ],
@@ -7877,6 +8000,7 @@
       "get": {
         "summary": "Return a list of teams with access to a project",
         "operationId": "listProjectTeamMemberships",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -7934,6 +8058,7 @@
       "post": {
         "summary": "Link the given team to a project with a specific role",
         "operationId": "linkTeamToProject",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -8012,6 +8137,7 @@
       "delete": {
         "summary": "Unlink the given team from a project",
         "operationId": "unlinkTeamFromProject",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -8079,6 +8205,7 @@
       "get": {
         "summary": "List the API tokens of specific project.",
         "operationId": "listProjectApiTokens",
+        "description": "",
         "tags": [
           "Projects - API Tokens"
         ],
@@ -8134,6 +8261,7 @@
       "post": {
         "summary": "Create a new API token for specific project.",
         "operationId": "addProjectApiToken",
+        "description": "",
         "tags": [
           "Projects - API Tokens"
         ],
@@ -8208,6 +8336,7 @@
       "get": {
         "summary": "Get details of a specific project API token.",
         "operationId": "getProjectApiToken",
+        "description": "",
         "tags": [
           "Projects - API Tokens"
         ],
@@ -8264,6 +8393,7 @@
       "delete": {
         "summary": "Revoke a specific project API token.",
         "operationId": "revokeProjectApiToken",
+        "description": "",
         "tags": [
           "Projects - API Tokens"
         ],
@@ -8323,6 +8453,7 @@
       "post": {
         "summary": "Rotate a specific project API token.",
         "operationId": "rotateProjectApiToken",
+        "description": "",
         "tags": [
           "Projects - API Tokens"
         ],
@@ -8400,6 +8531,7 @@
       "get": {
         "summary": "List linked resources of the given resource",
         "operationId": "listResourceLinksByResourceType",
+        "description": "",
         "tags": [
           "Resource Links"
         ],
@@ -8467,6 +8599,7 @@
       "post": {
         "summary": "Link the given resources",
         "operationId": "linkResourceLinkToResourceLink",
+        "description": "",
         "tags": [
           "Resource Links"
         ],
@@ -8554,6 +8687,7 @@
       "delete": {
         "summary": "Delete a given resource link",
         "operationId": "unlinkResourceLinkFromResourceLink",
+        "description": "",
         "tags": [
           "Resource Links"
         ],
@@ -8631,6 +8765,7 @@
       "get": {
         "summary": "List resources linked to a base resource.",
         "operationId": "listResourceLinksByResourceTypeAndLinkType",
+        "description": "",
         "tags": [
           "Resource Links"
         ],
@@ -8718,6 +8853,7 @@
       "delete": {
         "summary": "Delete a given role",
         "operationId": "deleteRole",
+        "description": "",
         "tags": [
           "Roles"
         ],
@@ -8765,6 +8901,7 @@
       "get": {
         "summary": "Get a role by ID",
         "operationId": "getRole",
+        "description": "",
         "tags": [
           "Roles"
         ],
@@ -8819,6 +8956,7 @@
       "put": {
         "summary": "Update an existing role",
         "operationId": "updateRole",
+        "description": "",
         "tags": [
           "Roles"
         ],
@@ -8879,6 +9017,7 @@
       "delete": {
         "summary": "Delete a given server",
         "operationId": "deleteServer",
+        "description": "If the server has been provisioned by Devopness, the server's instance will be\nremoved from the cloud provider too.\n",
         "tags": [
           "Servers"
         ],
@@ -8941,6 +9080,7 @@
       "get": {
         "summary": "Get a server by ID",
         "operationId": "getServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -8992,6 +9132,7 @@
       "put": {
         "summary": "Update an existing server",
         "operationId": "updateServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9059,6 +9200,7 @@
       "get": {
         "summary": "Get commands to be executed on the given server",
         "operationId": "getServerCommands",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9112,6 +9254,7 @@
       "post": {
         "summary": "Connect a server to devopness platform",
         "operationId": "connectServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9181,6 +9324,7 @@
       "post": {
         "summary": "Deploy a Server",
         "operationId": "deployServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9248,6 +9392,7 @@
       "post": {
         "summary": "Get current status of the server on the cloud provider",
         "operationId": "getStatusServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9302,6 +9447,7 @@
       "post": {
         "summary": "Restart a current running server",
         "operationId": "restartServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9356,6 +9502,7 @@
       "post": {
         "summary": "Rotate the key used to access the server",
         "operationId": "rotateKeyServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9413,6 +9560,7 @@
       "post": {
         "summary": "Start a previously stopped server",
         "operationId": "startServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9467,6 +9615,7 @@
       "post": {
         "summary": "Stop a running server",
         "operationId": "stopServer",
+        "description": "",
         "tags": [
           "Servers"
         ],
@@ -9521,6 +9670,7 @@
       "delete": {
         "summary": "Delete a given service",
         "operationId": "deleteService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -9576,6 +9726,7 @@
       "get": {
         "summary": "Get details of a single service",
         "operationId": "getService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -9630,6 +9781,7 @@
       "put": {
         "summary": "Update an existing service",
         "operationId": "updateService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -9697,6 +9849,7 @@
       "post": {
         "summary": "Deploy a Service",
         "operationId": "deployService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -9775,6 +9928,7 @@
       "post": {
         "summary": "Get current status of a service",
         "operationId": "getStatusService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -9843,6 +9997,7 @@
       "post": {
         "summary": "Reload a service",
         "operationId": "reloadService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -9921,6 +10076,7 @@
       "post": {
         "summary": "Restart a service",
         "operationId": "restartService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -9999,6 +10155,7 @@
       "post": {
         "summary": "Start a service",
         "operationId": "startService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -10077,6 +10234,7 @@
       "post": {
         "summary": "Stop a service",
         "operationId": "stopService",
+        "description": "",
         "tags": [
           "Services"
         ],
@@ -10155,6 +10313,7 @@
       "get": {
         "summary": "Return a list of variables belonging to a service",
         "operationId": "listServiceVariables",
+        "description": "",
         "tags": [
           "Services - Variables"
         ],
@@ -10211,6 +10370,7 @@
       "post": {
         "summary": "Create a new variable linked to a service",
         "operationId": "addServiceVariable",
+        "description": "",
         "tags": [
           "Services - Variables"
         ],
@@ -10286,6 +10446,7 @@
       "get": {
         "summary": "Return a list of all social accounts of the current user",
         "operationId": "listSocialAccounts",
+        "description": "",
         "tags": [
           "Social Accounts"
         ],
@@ -10330,6 +10491,7 @@
       "post": {
         "summary": "Add a social account",
         "operationId": "addSocialAccount",
+        "description": "",
         "tags": [
           "Social Accounts"
         ],
@@ -10383,6 +10545,7 @@
       "delete": {
         "summary": "Delete a given social account",
         "operationId": "deleteSocialAccount",
+        "description": "",
         "tags": [
           "Social Accounts"
         ],
@@ -10422,6 +10585,7 @@
       "get": {
         "summary": "Get a social account by provider name",
         "operationId": "getSocialAccount",
+        "description": "",
         "tags": [
           "Social Accounts"
         ],
@@ -10467,6 +10631,7 @@
       "get": {
         "summary": "Get status of a social account",
         "operationId": "getSocialAccountStatus",
+        "description": "",
         "tags": [
           "Social Accounts"
         ],
@@ -10512,6 +10677,7 @@
       "delete": {
         "summary": "Delete a given SSH key",
         "operationId": "deleteSshKey",
+        "description": "",
         "tags": [
           "SSH Keys"
         ],
@@ -10564,6 +10730,7 @@
       "get": {
         "summary": "Get a SSH key by ID",
         "operationId": "getSshKey",
+        "description": "",
         "tags": [
           "SSH Keys"
         ],
@@ -10615,6 +10782,7 @@
       "put": {
         "summary": "Update an existing SSH key",
         "operationId": "updateSshKey",
+        "description": "",
         "tags": [
           "SSH Keys"
         ],
@@ -10682,6 +10850,7 @@
       "post": {
         "summary": "Deploy a SSH Key",
         "operationId": "deploySshKey",
+        "description": "",
         "tags": [
           "SSH Keys"
         ],
@@ -10760,6 +10929,7 @@
       "delete": {
         "summary": "Delete a given SSL Certificate",
         "operationId": "deleteSslCertificate",
+        "description": "",
         "tags": [
           "SSL Certificates"
         ],
@@ -10812,6 +10982,7 @@
       "get": {
         "summary": "Get details of a single SSL certificate",
         "operationId": "getSslCertificate",
+        "description": "",
         "tags": [
           "SSL Certificates"
         ],
@@ -10865,6 +11036,7 @@
       "post": {
         "summary": "Deploy a SSL Certificate",
         "operationId": "deploySslCertificate",
+        "description": "",
         "tags": [
           "SSL Certificates"
         ],
@@ -10943,6 +11115,7 @@
       "get": {
         "summary": "List `Application` resource options",
         "operationId": "getStaticApplicationOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -10975,6 +11148,7 @@
       "get": {
         "summary": "List `Billing Plans` options",
         "operationId": "listStaticBillingPlansOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11013,6 +11187,7 @@
       "get": {
         "summary": "Get details of a single `Cloud Provider Service`",
         "operationId": "getStaticCloudProviderService",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11058,6 +11233,7 @@
       "get": {
         "summary": "List `Cloud Provider Service` instance types by region",
         "operationId": "listStaticCloudInstancesByCloudProviderServiceCodeAndRegionCode",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11116,6 +11292,7 @@
       "get": {
         "summary": "List `Credential` resource options",
         "operationId": "getStaticCredentialOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11148,6 +11325,7 @@
       "get": {
         "summary": "List `CronJob` resource options",
         "operationId": "getStaticCronJobOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11180,6 +11358,7 @@
       "get": {
         "summary": "List `Environment` options",
         "operationId": "getStaticEnvironmentOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11212,6 +11391,7 @@
       "get": {
         "summary": "List `Network Rule` options",
         "operationId": "getStaticNetworkRuleOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11244,6 +11424,7 @@
       "get": {
         "summary": "List available `Role` permissions",
         "operationId": "listStaticPermissions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11282,6 +11463,7 @@
       "get": {
         "summary": "List available resource types",
         "operationId": "listStaticResourceTypes",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11320,6 +11502,7 @@
       "get": {
         "summary": "List `Server` options",
         "operationId": "getStaticServerOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11352,6 +11535,7 @@
       "get": {
         "summary": "List `Service` resource options",
         "operationId": "getStaticServiceOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11384,6 +11568,7 @@
       "get": {
         "summary": "List `User profile` options",
         "operationId": "getStaticUserProfileOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11416,6 +11601,7 @@
       "get": {
         "summary": "List `Virtual Host` options",
         "operationId": "getStaticVirtualHostOptions",
+        "description": "",
         "tags": [
           "Static Data"
         ],
@@ -11448,6 +11634,7 @@
       "delete": {
         "summary": "Delete a given subnet",
         "operationId": "deleteSubnet",
+        "description": "",
         "tags": [
           "Subnets"
         ],
@@ -11500,6 +11687,7 @@
       "get": {
         "summary": "Get a subnet by ID",
         "operationId": "getSubnet",
+        "description": "",
         "tags": [
           "Subnets"
         ],
@@ -11553,6 +11741,7 @@
       "delete": {
         "summary": "Delete a pending team invitation",
         "operationId": "deleteTeamInvitation",
+        "description": "",
         "tags": [
           "Team Invitations"
         ],
@@ -11601,6 +11790,7 @@
       "post": {
         "summary": "Accept a team invitation",
         "operationId": "acceptTeamInvitation",
+        "description": "",
         "tags": [
           "Team Invitations"
         ],
@@ -11656,6 +11846,7 @@
       "post": {
         "summary": "Reject a pending private team invitation",
         "operationId": "rejectTeamInvitation",
+        "description": "",
         "tags": [
           "Team Invitations"
         ],
@@ -11704,6 +11895,7 @@
       "delete": {
         "summary": "Delete a given team",
         "operationId": "deleteTeam",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -11751,6 +11943,7 @@
       "get": {
         "summary": "Get a team by ID",
         "operationId": "getTeam",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -11805,6 +11998,7 @@
       "put": {
         "summary": "Update an existing team",
         "operationId": "updateTeam",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -11872,6 +12066,7 @@
       "get": {
         "summary": "Return a list of invitations belonging to a team",
         "operationId": "listTeamInvitations",
+        "description": "",
         "tags": [
           "Teams - Invitations"
         ],
@@ -11927,6 +12122,7 @@
       "post": {
         "summary": "Create a new invitation for a team",
         "operationId": "addTeamInvitation",
+        "description": "",
         "tags": [
           "Teams - Invitations"
         ],
@@ -12001,6 +12197,7 @@
       "get": {
         "summary": "Return a list of all members belonging to a team",
         "operationId": "listTeamMembers",
+        "description": "",
         "tags": [
           "Teams - Members"
         ],
@@ -12058,6 +12255,7 @@
       "delete": {
         "summary": "Remove a member from a team",
         "operationId": "deleteTeamMember",
+        "description": "",
         "tags": [
           "Teams - Members"
         ],
@@ -12106,6 +12304,7 @@
       "get": {
         "summary": "Get a member of team by ID",
         "operationId": "getTeamMember",
+        "description": "",
         "tags": [
           "Teams - Members"
         ],
@@ -12163,6 +12362,7 @@
       "get": {
         "summary": "Return a list of all memberships of a team",
         "operationId": "listTeamMemberships",
+        "description": "",
         "tags": [
           "Teams"
         ],
@@ -12243,6 +12443,7 @@
       "post": {
         "summary": "Sign up/register a new user",
         "operationId": "addUser",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -12276,6 +12477,7 @@
       "post": {
         "summary": "Resend the verification email",
         "operationId": "resendVerificationUser",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -12322,6 +12524,7 @@
       "post": {
         "summary": "Activate the user account",
         "operationId": "verifyUser",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -12365,6 +12568,7 @@
       "get": {
         "summary": "Get current user's billing info for active subscription",
         "operationId": "getUserBilling",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -12397,6 +12601,7 @@
       "post": {
         "summary": "Login/create a new token for the given credentials",
         "operationId": "loginUser",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -12457,6 +12662,7 @@
       "get": {
         "summary": "Logout/revoke an existing token",
         "operationId": "getUserLogout",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -12493,6 +12699,7 @@
       "get": {
         "summary": "Get details of the current user",
         "operationId": "getUserMe",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -12525,6 +12732,7 @@
       "post": {
         "summary": "Reset the user password",
         "operationId": "resetUserPassword",
+        "description": "",
         "tags": [
           "Users - Passwords"
         ],
@@ -12576,6 +12784,7 @@
       "post": {
         "summary": "Send the password reset link to user's email",
         "operationId": "sendResetLinkUserPassword",
+        "description": "",
         "tags": [
           "Users - Passwords"
         ],
@@ -12609,6 +12818,7 @@
       "get": {
         "summary": "List the personal access tokens of authenticated user.",
         "operationId": "listUserPersonalAccessTokens",
+        "description": "",
         "tags": [
           "Users - Personal Access Tokens"
         ],
@@ -12653,6 +12863,7 @@
       "post": {
         "summary": "Create a new personal access token for the authenticated user.",
         "operationId": "addUserPersonalAccessToken",
+        "description": "",
         "tags": [
           "Users - Personal Access Tokens"
         ],
@@ -12716,6 +12927,7 @@
       "get": {
         "summary": "Get details of a specific personal access token.",
         "operationId": "getUserPersonalAccessToken",
+        "description": "",
         "tags": [
           "Users - Personal Access Tokens"
         ],
@@ -12761,6 +12973,7 @@
       "delete": {
         "summary": "Revoke a specific personal access token.",
         "operationId": "revokeUserPersonalAccessToken",
+        "description": "",
         "tags": [
           "Users - Personal Access Tokens"
         ],
@@ -12809,6 +13022,7 @@
       "post": {
         "summary": "Rotate a specific personal access token.",
         "operationId": "rotateUserPersonalAccessToken",
+        "description": "",
         "tags": [
           "Users - Personal Access Tokens"
         ],
@@ -12875,6 +13089,7 @@
       "post": {
         "summary": "Refresh an existing user access token",
         "operationId": "refreshTokenUser",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -12936,6 +13151,7 @@
       "get": {
         "summary": "Return a list of all pending team invitations for the authenticated user",
         "operationId": "listUserTeamInvitations",
+        "description": "",
         "tags": [
           "Users - Team Invitations"
         ],
@@ -12982,6 +13198,7 @@
       "get": {
         "summary": "Get the authenticated user's URLs",
         "operationId": "getUserUrls",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -13014,6 +13231,7 @@
       "get": {
         "summary": "Get public details of a user",
         "operationId": "getUser",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -13064,6 +13282,7 @@
       "put": {
         "summary": "Update an existing user",
         "operationId": "updateUser",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -13120,6 +13339,7 @@
       "get": {
         "summary": "Get activity summary for a user",
         "operationId": "getUserActivity",
+        "description": "",
         "tags": [
           "Users"
         ],
@@ -13172,6 +13392,7 @@
       "get": {
         "summary": "Return a list of all environments owned by a user",
         "operationId": "listUserEnvironments",
+        "description": "",
         "tags": [
           "Users - Environments"
         ],
@@ -13240,6 +13461,7 @@
       "get": {
         "summary": "Return a list of all projects owned by a user",
         "operationId": "listUserProjects",
+        "description": "",
         "tags": [
           "Users - Projects"
         ],
@@ -13308,6 +13530,7 @@
       "get": {
         "summary": "Return a list of variables belonging to a resource",
         "operationId": "listVariablesByResourceType",
+        "description": "",
         "tags": [
           "Variables"
         ],
@@ -13393,6 +13616,7 @@
       "post": {
         "summary": "Create a new variable linked to a resource",
         "operationId": "addVariable",
+        "description": "",
         "tags": [
           "Variables"
         ],
@@ -13477,6 +13701,7 @@
       "delete": {
         "summary": "Delete a variable by ID",
         "operationId": "deleteVariable",
+        "description": "",
         "tags": [
           "Variables"
         ],
@@ -13521,6 +13746,7 @@
       "get": {
         "summary": "Get a variable by ID",
         "operationId": "getVariable",
+        "description": "",
         "tags": [
           "Variables"
         ],
@@ -13572,6 +13798,7 @@
       "put": {
         "summary": "Update an existing variable",
         "operationId": "updateVariable",
+        "description": "",
         "tags": [
           "Variables"
         ],
@@ -13639,6 +13866,7 @@
       "delete": {
         "summary": "Delete a given virtual host",
         "operationId": "deleteVirtualHost",
+        "description": "",
         "tags": [
           "Virtual Hosts"
         ],
@@ -13694,6 +13922,7 @@
       "get": {
         "summary": "Get a virtual host by ID",
         "operationId": "getVirtualHost",
+        "description": "",
         "tags": [
           "Virtual Hosts"
         ],
@@ -13748,6 +13977,7 @@
       "put": {
         "summary": "Update an existing virtual host",
         "operationId": "updateVirtualHost",
+        "description": "",
         "tags": [
           "Virtual Hosts"
         ],
@@ -13818,6 +14048,7 @@
       "post": {
         "summary": "Deploy a Virtual Host",
         "operationId": "deployVirtualHost",
+        "description": "",
         "tags": [
           "Virtual Hosts"
         ],
@@ -13896,6 +14127,7 @@
       "post": {
         "summary": "Get current status of a virtual host",
         "operationId": "getStatusVirtualHost",
+        "description": "",
         "tags": [
           "Virtual Hosts"
         ],
