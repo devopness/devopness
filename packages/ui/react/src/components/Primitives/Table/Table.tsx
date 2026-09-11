@@ -1,3 +1,7 @@
+// Note: This version of react-table is no longer maintained
+// Long term ideal solution would be to migrate to tanstack/react-table
+// Docs: https://tanstack.com/table/latest
+
 import type { ReactElement, ReactNode } from 'react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import type {
