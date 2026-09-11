@@ -6,7 +6,7 @@
 // We need this step because both the docs tree and the API tree use the same
 // sidebar renderer, and without it the same acronym bug would show up in both
 // places.
- 
+
 import type { Folder, Item, Node, Root, Separator } from "fumadocs-core/page-tree";
 import type { LoaderPlugin } from "fumadocs-core/source";
 
