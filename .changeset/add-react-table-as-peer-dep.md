@@ -1,5 +1,5 @@
 ---
-"@devopness/ui-react": major
+"@devopness/ui-react": minor
 ---
 
 Add react-table as peer dependency
