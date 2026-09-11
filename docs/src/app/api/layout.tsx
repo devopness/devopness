@@ -12,7 +12,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
       tabMode="navbar"
       tabs={layoutTabs}
       tree={apiSource.pageTree}
-      {...baseOptions({ includeCustomLinks: false })}
+      {...baseOptions()}
     >
       {children}
     </DocsLayout>
