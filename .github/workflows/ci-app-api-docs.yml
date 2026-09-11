@@ -81,7 +81,7 @@ jobs:
 
       # We skip this step for fork PRs because it needs repository secrets.
       # Forks do not have access to those secrets.
-      - name: Run integration tests
+      - name: Run API Docs tests
         if: github.event.pull_request.head.repo.full_name == github.repository
         run: |
           npm run api-convert-spec-to-dredd
