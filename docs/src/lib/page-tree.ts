@@ -1,13 +1,12 @@
-/**
- * Normalize page-tree labels before Fumadocs renders the sidebar.
- *
- * Fumadocs can split acronym names like `SSH` into `S S H` when they are
- * derived from IDs or folder names. That makes the sidebar hard to read, so
- * this plugin fixes only that broken spacing and leaves manual titles alone.
- * We need this step because both the docs tree and the API tree use the same
- * sidebar renderer, and without it the same acronym bug would show up in both
- * places.
- */
+// Normalize page-tree labels before Fumadocs renders the sidebar.
+//
+// Fumadocs can split acronym names like `SSH` into `S S H` when they are
+// derived from IDs or folder names. That makes the sidebar hard to read, so
+// this plugin fixes only that broken spacing and leaves manual titles alone.
+// We need this step because both the docs tree and the API tree use the same
+// sidebar renderer, and without it the same acronym bug would show up in both
+// places.
+ 
 import type { Folder, Item, Node, Root, Separator } from "fumadocs-core/page-tree";
 import type { LoaderPlugin } from "fumadocs-core/source";
 
@@ -20,6 +19,7 @@ import type { LoaderPlugin } from "fumadocs-core/source";
  */
 function normalizeAcronymSpacing(value: string): string {
   const words = value.split(" ");
+
   const normalizedWords: string[] = [];
 
   for (let index = 0; index < words.length; index += 1) {

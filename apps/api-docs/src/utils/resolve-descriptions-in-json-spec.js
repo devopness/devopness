@@ -12,9 +12,11 @@ const path = require("path");
 const inputFilePath = process.argv[2]
   ? path.resolve(process.argv[2])
   : path.join(__dirname, "./../../docs/build/spec.json");
+
 const outputFilePath = process.argv[3]
   ? path.resolve(process.argv[3])
   : path.join(__dirname, "./../../docs/build/openapi.json");
+
 const descriptionsDir = path.join(__dirname, "./../../docs/spec/descriptions");
 const inputFileName = path.basename(inputFilePath);
 
