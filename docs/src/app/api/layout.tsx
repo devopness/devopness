@@ -8,12 +8,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
   const apiSource = await getApiReferenceSource();
 
   return (
-    <DocsLayout
-      tabMode="navbar"
-      tabs={layoutTabs}
-      tree={apiSource.pageTree}
-      {...baseOptions()}
-    >
+    <DocsLayout tabs={layoutTabs} tree={apiSource.pageTree} {...baseOptions()}>
       {children}
     </DocsLayout>
   );

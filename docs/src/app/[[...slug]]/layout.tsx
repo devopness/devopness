@@ -6,12 +6,7 @@ import { source } from "@/lib/source";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <DocsLayout
-      tabMode="navbar"
-      tabs={layoutTabs}
-      tree={source.pageTree}
-      {...baseOptions()}
-    >
+    <DocsLayout tabs={layoutTabs} tree={source.pageTree} {...baseOptions()}>
       {children}
     </DocsLayout>
   );
