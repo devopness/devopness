@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.207.2
+
+### Patch Changes
+
+- [#3601](https://github.com/devopness/devopness/pull/3601) [`06db014`](https://github.com/devopness/devopness/commit/06db01477041174bfaec0deff83f1fbaf3f793f9) Thanks [@therealrinku](https://github.com/therealrinku)! - Update the type for clearErrors on MultiStepForm to be more loose for compatibility
+
 ## 2.207.1
 
 ### Patch Changes
