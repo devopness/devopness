@@ -44,7 +44,15 @@ const createFormMethods = (overrides: FormMethodsOverrides = {}) => ({
 const steppersData: StepperDataProps[] = [
   {
     label: 'Account',
-    component: <div>Account step</div>,
+    component: (
+      <div>
+        <h1>Account step</h1>
+        <input
+          aria-label="name"
+          name="name"
+        />
+      </div>
+    ),
     validateFields: ['name'],
   },
   {
@@ -409,6 +417,49 @@ describe('Steppers', () => {
         message: 'is invalid',
       })
     })
+  })
+
+  it('clears the api error when field value changes and advances to next step on clicking next', async () => {
+    const methods = createFormMethods({
+      getValues: () => ({
+        name: '',
+        email: '',
+        token: '',
+      }),
+    })
+
+    const { rerender } = renderWithTheme(
+      <MultiStepForm<FormValues>
+        {...methods}
+        steppersData={steppersData}
+      />
+    )
+
+    await userEvent.click(screen.getByText('Next'))
+    await userEvent.click(screen.getByText('Next'))
+
+    rerender(
+      <ThemeProvider theme={theme}>
+        <MultiStepForm<FormValues>
+          {...methods}
+          steppersData={steppersData}
+          error={{
+            message: 'Validation failed',
+            errors: { name: ['Name is already taken'] },
+          }}
+        />
+      </ThemeProvider>
+    )
+
+    expect(screen.getByText('Validation failed')).toBeInTheDocument()
+
+    await userEvent.type(screen.getByLabelText('name'), 'J')
+
+    expect(screen.queryByText('Validation failed')).not.toBeInTheDocument()
+
+    await userEvent.click(screen.getByText('Next'))
+
+    expect(screen.getByText('Previous')).toBeInTheDocument()
   })
 
   it('hides the Cancel button when hiddenCancelButton is set', () => {

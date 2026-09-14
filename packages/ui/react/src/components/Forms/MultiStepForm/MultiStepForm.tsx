@@ -308,7 +308,7 @@ const MultiStepForm = <T,>({
         )
       }
     })
-  }, [error, fieldList, setError])
+  }, [error, fieldList.length])
 
   // Reset to valid step if steppersData changes and current step becomes invalid
   useEffect(() => {
@@ -333,10 +333,6 @@ const MultiStepForm = <T,>({
 
   const getStepFields = () => {
     const currentStepData = steppersData[stepCurrent]
-    // This check is necessary to prevent a TypeError if the step data is unexpectedly undefined.
-    // This can happen if 'steppersData' changes structure (e.g., a step is removed)
-    // while 'stepCurrent' still points to an old, now invalid, index.
-    // Returning an empty array ensures the form validation process continues safely.
     if (!currentStepData) {
       return []
     }
@@ -555,6 +551,18 @@ const MultiStepForm = <T,>({
     }
   }
 
+  const handleFormChange = (event: React.ChangeEvent<HTMLFormElement>) => {
+    const fieldName = event.target?.name
+
+    if (fieldName) {
+      const remainingStepErrors = getStepFieldsError(getStepFields()).filter(
+        (errorFieldName) => errorFieldName !== fieldName
+      )
+      setStepWithError(remainingStepErrors.length > 0)
+      setFormError(null)
+    }
+  }
+
   useEffect(() => {
     handleActionButtonInErrorStep()
   }, [errors, stepCurrent])
@@ -568,7 +576,7 @@ const MultiStepForm = <T,>({
     } else if (!hasSomeInputError) {
       setFormError(null)
     }
-  }, [error, success, hasSomeInputError, fieldList])
+  }, [error, success, hasSomeInputError])
 
   useEffect(() => {
     if (steppersData.length > MAX_STEPS) {
@@ -583,7 +591,10 @@ const MultiStepForm = <T,>({
 
   return (
     <StepperContainer>
-      <form onSubmit={handleSubmit(onSubmitValidate)}>
+      <form
+        onChange={handleFormChange}
+        onSubmit={handleSubmit(onSubmitValidate)}
+      >
         {!isSingleStep && (
           <Stepper
             activeStep={stepCurrent}
