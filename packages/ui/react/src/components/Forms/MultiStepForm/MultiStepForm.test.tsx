@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -21,6 +22,7 @@ type FormMethodsOverrides = {
   getValues?: () => FormValues
   trigger?: (fields?: any) => Promise<boolean>
   setError?: (...args: any[]) => void
+  clearErrors?: (name?: string | string[]) => void
   errors?: Record<string, unknown>
   handleSubmit?: (
     onValid: (data: FormValues) => void
@@ -460,6 +462,86 @@ describe('Steppers', () => {
     await userEvent.click(screen.getByText('Next'))
 
     expect(screen.getByText('Previous')).toBeInTheDocument()
+  })
+
+  it('clears multiple api field errors as each field changes', async () => {
+    const trigger = vi.fn().mockResolvedValue(true)
+    const error = {
+      message: 'Validation failed',
+      errors: {
+        name: ['Name is already taken'],
+        email: ['Email is already taken'],
+      },
+    }
+    const methods = createFormMethods({ trigger })
+    const fieldsStep: StepperDataProps[] = [
+      {
+        label: 'Account',
+        component: (
+          <div>
+            <input
+              aria-label="name"
+              name="name"
+            />
+            <input
+              aria-label="email"
+              name="email"
+            />
+          </div>
+        ),
+        validateFields: ['name', 'email'],
+      },
+      {
+        label: 'Confirmation',
+        component: <div>Confirmation step</div>,
+        validateFields: ['token'],
+      },
+    ]
+
+    const FormWithApiErrors = () => {
+      const [errors, setErrors] = useState<Record<string, unknown>>({})
+
+      return (
+        <MultiStepForm<FormValues>
+          {...methods}
+          clearErrors={(name: string | string[] | undefined) => {
+            if (typeof name === 'string') {
+              setErrors((currentErrors) => {
+                const nextErrors = { ...currentErrors }
+                delete nextErrors[name]
+                return nextErrors
+              })
+            }
+          }}
+          errors={errors}
+          setError={(name: string) => {
+            setErrors((currentErrors) => ({
+              ...currentErrors,
+              [name]: { type: 'api' },
+            }))
+          }}
+          steppersData={fieldsStep}
+          error={error}
+        />
+      )
+    }
+
+    renderWithTheme(<FormWithApiErrors />)
+
+    await waitFor(() => {
+      expect(screen.getByText('Next').closest('button')).toBeDisabled()
+    })
+
+    await userEvent.type(screen.getByLabelText('name'), 'John')
+    expect(screen.getByText('Next').closest('button')).toBeDisabled()
+
+    await userEvent.type(screen.getByLabelText('email'), 'john@example.com')
+
+    await waitFor(() => {
+      expect(screen.getByText('Next').closest('button')).not.toBeDisabled()
+    })
+    await userEvent.click(screen.getByText('Next'))
+    expect(trigger).toHaveBeenCalledWith(['name', 'email'])
   })
 
   it('hides the Cancel button when hiddenCancelButton is set', () => {

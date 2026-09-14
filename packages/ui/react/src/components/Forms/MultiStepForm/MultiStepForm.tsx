@@ -81,6 +81,11 @@ type MultiStepFormProps<T> = {
    */
   setError?: ((...args: any[]) => void) | ((...args: never[]) => void)
   /**
+   * Function to clear a field error when its value changes.
+   * Compatible with react-hook-form's clearErrors or custom implementations.
+   */
+  clearErrors?: (name?: string | string[]) => void
+  /**
    * Object containing field errors.
    * Compatible with react-hook-form's formState.errors, Formik's errors, or custom implementations.
    */
@@ -247,6 +252,7 @@ const MultiStepForm = <T,>({
   getValues,
   trigger,
   setError,
+  clearErrors,
   errors,
   handleSubmit,
   error = null,
@@ -555,6 +561,7 @@ const MultiStepForm = <T,>({
     const fieldName = event.target?.name
 
     if (fieldName) {
+      clearErrors?.(fieldName)
       const remainingStepErrors = getStepFieldsError(getStepFields()).filter(
         (errorFieldName) => errorFieldName !== fieldName
       )
