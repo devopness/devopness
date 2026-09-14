@@ -51,7 +51,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rm -Rf dist && tsc -b && vp build",
+    "build": "rm -Rf dist && tsc -b && vite build",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
     "lint": "vp check",
     "lint:fix": "vp check --fix",

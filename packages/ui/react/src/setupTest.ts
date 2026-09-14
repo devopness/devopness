@@ -1,8 +1,8 @@
-import * as matchers from '@testing-library/jest-dom/matchers'
+// TODO: remove the jest-dom bridge once the suite no longer depends on DOM
+// matcher extensions that Vitest does not provide out of the box.
+import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
-import { expect, afterEach } from 'vitest'
-
-expect.extend(matchers)
+import { afterEach, expect } from 'vitest'
 
 // Add custom snapshot serializer to normalize dynamic class names
 expect.addSnapshotSerializer({
