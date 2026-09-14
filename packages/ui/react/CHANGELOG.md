@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.207.1
+
+### Patch Changes
+
+- [#3599](https://github.com/devopness/devopness/pull/3599) [`52e0b0e`](https://github.com/devopness/devopness/commit/52e0b0e8b30b02bb0220de7d608488ef59a82ad0) Thanks [@therealrinku](https://github.com/therealrinku)! - Fixed the bug in MultiStepForm component where api error wasn't being cleared preventing user to proceed to the next step
+
 ## 2.207.0
 
 ### Minor Changes
