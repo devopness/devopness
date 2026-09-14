@@ -64,6 +64,8 @@ type StepperDataProps = {
   validateFields: readonly string[]
 }
 
+type StringKeyOf<T> = Extract<keyof T, string>
+
 type MultiStepFormProps<T> = {
   /**
    * Function to get all form values.
@@ -84,7 +86,7 @@ type MultiStepFormProps<T> = {
    * Function to clear a field error when its value changes.
    * Compatible with react-hook-form's clearErrors or custom implementations.
    */
-  clearErrors?: (...args: any[]) => void
+  clearErrors?: (name?: StringKeyOf<T> | StringKeyOf<T>[]) => void
   /**
    * Object containing field errors.
    * Compatible with react-hook-form's formState.errors, Formik's errors, or custom implementations.
@@ -230,6 +232,7 @@ const FormActionButton = (props: ButtonProps) => (
  *   trigger={form.trigger}
  *   setError={form.setError}
  *   errors={form.formState.errors}
+ *   clearErrors={form.clearErrors}
  *   handleSubmit={form.handleSubmit}
  *   steppersData={[
  *     { label: 'Step 1', component: <FirstStep />, validateFields: ['name'] },
@@ -558,7 +561,7 @@ const MultiStepForm = <T,>({
   }
 
   const handleFormChange = (event: React.ChangeEvent<HTMLFormElement>) => {
-    const fieldName = event.target?.name
+    const fieldName = event.target?.name as StringKeyOf<T> | undefined
 
     if (fieldName) {
       clearErrors?.(fieldName)
