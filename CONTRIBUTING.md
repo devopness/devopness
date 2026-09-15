@@ -37,10 +37,14 @@ Please make sure to read and observe our [Contributor Code of Conduct](./CODE_OF
    - ❓ Ask questions and help other Devopness users with open [discussions](https://github.com/devopness/devopness/discussions)
 1. Find a [Good First Issue](https://github.com/devopness/devopness/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
    - **Good first issues** are a great way to start contributing to the project and get familiar with the codebase. Browse the list and choose an issue that interests you!
+   - **House rule: no assignments.** We do not assign issues. If you want to work on one, leave a short comment like `I’d like to work on this` or `I’m starting on this one`, then open a PR when you have it ready.
+   - This keeps things open for everyone and helps avoid issues being held by someone who may not finish them.
 
 ### Submitting a Pull Request
 
 1. **Open a pull request:** Once you've implemented a new feature or fix, open a pull request for review
+   - You do not need to wait for an issue to be assigned before opening a PR.
+   - For bigger changes or new ideas, it helps to open an issue first and discuss the proposal with the team before you spend too much time on the PR.
 1. **Review your own PR first:** Take a moment to review your own changes:
    - Ensure all automated checks are passing
    - Verify code quality and adherence to best practices
