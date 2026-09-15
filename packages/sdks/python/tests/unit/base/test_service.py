@@ -1,3 +1,4 @@
+import asyncio
 import time
 import unittest
 from collections.abc import AsyncGenerator, Iterator
@@ -66,6 +67,8 @@ class TestDevopnessBaseService(unittest.TestCase):
                 auto_refresh_token=False,
             )
         )
+        self.state.setup_http_client(False)
+        self.addCleanup(self.state.close)
         self.service = DevopnessBaseService(self.state)
 
     @patch("httpx.Client._send_single_request")
@@ -303,6 +306,8 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
                 auto_refresh_token=False,
             )
         )
+        self.state.setup_http_client(True)
+        self.addAsyncCleanup(self.state.aclose)
         self.service = DevopnessBaseServiceAsync(self.state)
 
     @patch("httpx.AsyncClient._send_single_request")
@@ -531,8 +536,12 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
 
 class TestDevopnessBaseServiceDefaults(unittest.TestCase):
     def test_service_without_config_uses_default_state(self) -> None:
-        service = DevopnessBaseService()
         default_config = DevopnessClientConfig()
+        default_state = DevopnessClientState(default_config)
+        default_state.setup_http_client(False)
+        self.addCleanup(default_state.close)
+
+        service = DevopnessBaseService(default_state)
 
         self.assertIsNotNone(service._state)
         self.assertEqual(service._state.config.base_url, default_config.base_url)
@@ -543,8 +552,12 @@ class TestDevopnessBaseServiceDefaults(unittest.TestCase):
         )
 
     def test_async_service_without_config_uses_default_state(self) -> None:
-        service = DevopnessBaseServiceAsync()
         default_config = DevopnessClientConfig()
+        default_state = DevopnessClientState(default_config)
+        default_state.setup_http_client(True)
+        self.addCleanup(lambda: asyncio.run(default_state.aclose()))
+
+        service = DevopnessBaseServiceAsync(default_state)
 
         self.assertIsNotNone(service._state)
         self.assertEqual(service._state.config.base_url, default_config.base_url)
