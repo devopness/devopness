@@ -280,7 +280,6 @@ const MultiStepForm = <T,>({
     error
   )
   const [fieldList, setFieldList] = useState<string[]>([])
-  const [stepWithError, setStepWithError] = useState<boolean>(false)
 
   const hasSomeInputError = Object.keys(errors).length > 0
 
@@ -365,12 +364,7 @@ const MultiStepForm = <T,>({
     return verifyStepFieldsError
   }
 
-  const handleActionButtonInErrorStep = () => {
-    const stepFields = getStepFields()
-    const stepFieldsError: string[] = getStepFieldsError(stepFields)
-
-    setStepWithError(stepFieldsError.length > 0)
-  }
+  const stepWithError = getStepFieldsError(getStepFields()).length > 0
 
   const validateFormBeforeExecuteAction = async (action: () => void) => {
     const stepFields = getStepFields()
@@ -565,17 +559,8 @@ const MultiStepForm = <T,>({
 
     if (fieldName) {
       clearErrors?.(fieldName)
-      const remainingStepErrors = getStepFieldsError(getStepFields()).filter(
-        (errorFieldName) => errorFieldName !== fieldName
-      )
-      setStepWithError(remainingStepErrors.length > 0)
-      setFormError(null)
     }
   }
-
-  useEffect(() => {
-    handleActionButtonInErrorStep()
-  }, [errors, stepCurrent])
 
   useEffect(() => {
     if (error !== null) {
