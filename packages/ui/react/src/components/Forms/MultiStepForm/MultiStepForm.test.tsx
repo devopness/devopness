@@ -457,6 +457,8 @@ describe('Steppers', () => {
 
     await userEvent.type(screen.getByLabelText('name'), 'J')
 
+    expect(screen.queryByText('Validation failed')).toBeInTheDocument()
+
     await userEvent.click(screen.getByText('Next'))
 
     expect(screen.getByText('Previous')).toBeInTheDocument()
