@@ -55,10 +55,14 @@ pip install devopness
 Import the SDK and create an instance of `DevopnessClient` or `DevopnessClientAsync`:
 
 ```python
+import asyncio
 from devopness import DevopnessClient, DevopnessClientAsync
 
 devopness = DevopnessClient()
 devopness_async = DevopnessClientAsync()
+
+devopness.close()
+asyncio.run(devopness_async.aclose())
 ```
 
 ### Custom Configuration
@@ -66,12 +70,16 @@ devopness_async = DevopnessClientAsync()
 You can provide a custom configuration when initializing the client:
 
 ```python
+import asyncio
 from devopness import DevopnessClient, DevopnessClientAsync, DevopnessClientConfig
 
 config = DevopnessClientConfig(base_url="https://api.devopness.com", timeout=10)
 
 devopness = DevopnessClient(config)
 devopness_async = DevopnessClientAsync(config)
+
+devopness.close()
+asyncio.run(devopness_async.aclose())
 ```
 
 Configuration options:
@@ -129,8 +137,11 @@ devopness.api_token = "your-personal-access-token-here"
 
 
 async def main():
-    current_user = await devopness.users.get_user_me()
-    print(f"User ID: {current_user.data.id}")
+    try:
+        current_user = await devopness.users.get_user_me()
+        print(f"User ID: {current_user.data.id}")
+    finally:
+        await devopness.aclose()
 
 
 if __name__ == "__main__":
@@ -152,8 +163,11 @@ devopness.api_token = "your-personal-access-token-here"
 
 
 def main():
-    current_user = devopness.users.get_user_me()
-    print(f"User ID: {current_user.data.id}")
+    try:
+        current_user = devopness.users.get_user_me()
+        print(f"User ID: {current_user.data.id}")
+    finally:
+        devopness.close()
 
 
 if __name__ == "__main__":
@@ -175,8 +189,11 @@ devopness.api_token = "your-project-api-token-here"
 
 
 async def main():
-    project = await devopness.projects.get_project(project_id=123)
-    print(f"Project name: {project.data.name}")
+    try:
+        project = await devopness.projects.get_project(project_id=123)
+        print(f"Project name: {project.data.name}")
+    finally:
+        await devopness.aclose()
 
 
 if __name__ == "__main__":
@@ -193,8 +210,11 @@ devopness.api_token = "your-project-api-token-here"
 
 
 def main():
-    project = devopness.projects.get_project(project_id=123)
-    print(f"Project name: {project.data.name}")
+    try:
+        project = devopness.projects.get_project(project_id=123)
+        print(f"Project name: {project.data.name}")
+    finally:
+        devopness.close()
 
 
 if __name__ == "__main__":
@@ -229,6 +249,8 @@ async def get_user_profile():
 
     except DevopnessSdkError as error:
         print(f"Error: {error}")
+    finally:
+        await devopness.aclose()
 
 
 if __name__ == "__main__":
@@ -254,6 +276,8 @@ def get_user_profile():
 
     except DevopnessSdkError as error:
         print(f"Error: {error}")
+    finally:
+        devopness.close()
 
 
 if __name__ == "__main__":
