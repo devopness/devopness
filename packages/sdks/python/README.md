@@ -84,41 +84,6 @@ Configuration options:
 | `debug`              | `False`                     | Prints HTTP debug output and validation warnings    |
 | `strict_validation_mode` | `True`                  | Raises Pydantic validation errors for API responses |
 
-### Client lifecycle
-
-The SDK owns one HTTP transport per client instance. Close it when you are done:
-
-```python
-import asyncio
-from devopness import DevopnessClient, DevopnessClientAsync
-
-devopness = DevopnessClient()
-devopness_async = DevopnessClientAsync()
-
-devopness.close()
-asyncio.run(devopness_async.aclose())
-```
-
-In application code, place the cleanup in `finally` so it always runs:
-
-```python
-import asyncio
-from devopness import DevopnessClientAsync
-
-devopness = DevopnessClientAsync()
-
-
-async def main():
-    try:
-        await devopness.users.get_user_me()
-    finally:
-        await devopness.aclose()
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
-
 #### Response validation mode
 
 The SDK validates API responses against generated Pydantic models by default. This
