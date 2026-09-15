@@ -92,10 +92,12 @@ Use the Storybook title to communicate the abstraction level of the component:
 
 Prefer nested titles that group related items by feature or family. For example:
 
-- `Primitives/ResourceCard/ResourceCard`
 - `Components/ResourceDataCard/ResourceDataCard`
 - `Components/ResourceDataCard/ResourceDataCardList`
-- `Templates/Card/Card`
+- `Components/CardList/CardList`
+- `Components/CardList/CardContent`
+
+When a folder holds a single component, don't repeat its name in the title: use `Primitives/ResourceCard`, not `Primitives/ResourceCard/ResourceCard`. Storybook derives the title from the file path when a story doesn't set one, and it already drops the repeated segment.
 
 Keep the category aligned with the component's role, not its visual appearance alone. A card that is mostly an atomic display surface belongs in `Primitives`; a card that includes list state, empty state, add/link actions, pagination, or resource-specific composition belongs in `Components`.
 
