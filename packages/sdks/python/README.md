@@ -55,14 +55,10 @@ pip install devopness
 Import the SDK and create an instance of `DevopnessClient` or `DevopnessClientAsync`:
 
 ```python
-import asyncio
 from devopness import DevopnessClient, DevopnessClientAsync
 
 devopness = DevopnessClient()
 devopness_async = DevopnessClientAsync()
-
-devopness.close()
-asyncio.run(devopness_async.aclose())
 ```
 
 ### Custom Configuration
@@ -70,16 +66,12 @@ asyncio.run(devopness_async.aclose())
 You can provide a custom configuration when initializing the client:
 
 ```python
-import asyncio
 from devopness import DevopnessClient, DevopnessClientAsync, DevopnessClientConfig
 
 config = DevopnessClientConfig(base_url="https://api.devopness.com", timeout=10)
 
 devopness = DevopnessClient(config)
 devopness_async = DevopnessClientAsync(config)
-
-devopness.close()
-asyncio.run(devopness_async.aclose())
 ```
 
 Configuration options:
@@ -92,6 +84,40 @@ Configuration options:
 | `debug`              | `False`                     | Prints HTTP debug output and validation warnings    |
 | `strict_validation_mode` | `True`                  | Raises Pydantic validation errors for API responses |
 
+### Client lifecycle
+
+The SDK owns one HTTP transport per client instance. Close it when you are done:
+
+```python
+import asyncio
+from devopness import DevopnessClient, DevopnessClientAsync
+
+devopness = DevopnessClient()
+devopness_async = DevopnessClientAsync()
+
+devopness.close()
+asyncio.run(devopness_async.aclose())
+```
+
+In application code, place the cleanup in `finally` so it always runs:
+
+```python
+import asyncio
+from devopness import DevopnessClientAsync
+
+devopness = DevopnessClientAsync()
+
+
+async def main():
+    try:
+        await devopness.users.get_user_me()
+    finally:
+        await devopness.aclose()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
 
 #### Response validation mode
 
