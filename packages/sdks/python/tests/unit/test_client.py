@@ -70,6 +70,9 @@ class TestDevopnessClient(unittest.TestCase):
         for service_name in client_annotations:
             service = getattr(devopness, service_name)
             self.assertIs(service._state, devopness.actions._state)
+            self.assertIs(service._client, devopness.actions._client)
+
+        self.assertIsNotNone(devopness.actions._state.http_client)
 
     def test_multiple_clients_keep_independent_state(self) -> None:
         config_one = DevopnessClientConfig(
@@ -166,6 +169,37 @@ class TestDevopnessClient(unittest.TestCase):
         self.assertEqual(request.url, "https://nested.local/teams/7/members")
         self.assertEqual(request.headers["Authorization"], "Bearer nested-token")
 
+    @patch("httpx.Client.close")
+    def test_close_closes_the_shared_http_client(
+        self,
+        mock_close: Mock,
+    ) -> None:
+        devopness = DevopnessClient()
+
+        http_client = devopness._state.http_client
+        self.assertIsNotNone(http_client)
+
+        devopness.close()
+
+        mock_close.assert_called_once()
+        self.assertIsNone(devopness._state.http_client)
+
+        devopness.close()
+        mock_close.assert_called_once()
+
+    def test_state_close_is_idempotent(self) -> None:
+        devopness = DevopnessClient()
+
+        state = devopness._state
+        http_client = state.http_client
+        self.assertIsNotNone(http_client)
+
+        state.close()
+        self.assertIsNone(state.http_client)
+
+        state.close()
+        self.assertIsNone(state.http_client)
+
 
 class TestDevopnessClientAsync(unittest.IsolatedAsyncioTestCase):
     async def test_client_has_expected_services(self) -> None:
@@ -203,6 +237,9 @@ class TestDevopnessClientAsync(unittest.IsolatedAsyncioTestCase):
         for service_name in client_annotations:
             service = getattr(devopness, service_name)
             self.assertIs(service._state, devopness.actions._state)
+            self.assertIs(service._client, devopness.actions._client)
+
+        self.assertIsNotNone(devopness.actions._state.http_client_async)
 
     def test_multiple_clients_keep_independent_state(self) -> None:
         config_one = DevopnessClientConfig(
@@ -298,3 +335,34 @@ class TestDevopnessClientAsync(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(request.url, "https://nested.local/teams/7/members")
         self.assertEqual(request.headers["Authorization"], "Bearer nested-token")
+
+    @patch("httpx.AsyncClient.aclose")
+    async def test_aclose_closes_the_shared_http_client(
+        self,
+        mock_aclose: Mock,
+    ) -> None:
+        devopness = DevopnessClientAsync()
+
+        http_client = devopness._state.http_client_async
+        self.assertIsNotNone(http_client)
+
+        await devopness.aclose()
+
+        mock_aclose.assert_called_once()
+        self.assertIsNone(devopness._state.http_client_async)
+
+        await devopness.aclose()
+        mock_aclose.assert_called_once()
+
+    async def test_state_aclose_is_idempotent(self) -> None:
+        devopness = DevopnessClientAsync()
+
+        state = devopness._state
+        http_client = state.http_client_async
+        self.assertIsNotNone(http_client)
+
+        await state.aclose()
+        self.assertIsNone(state.http_client_async)
+
+        await state.aclose()
+        self.assertIsNone(state.http_client_async)
