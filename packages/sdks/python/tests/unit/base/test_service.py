@@ -535,6 +535,13 @@ class TestDevopnessBaseServiceAsync(unittest.IsolatedAsyncioTestCase):
 
 
 class TestDevopnessBaseServiceDefaults(unittest.TestCase):
+    def test_service_requires_initialized_http_client(self) -> None:
+        default_config = DevopnessClientConfig()
+        default_state = DevopnessClientState(default_config)
+
+        with self.assertRaises(DevopnessSdkError):
+            DevopnessBaseService(default_state)
+
     def test_service_without_config_uses_default_state(self) -> None:
         default_config = DevopnessClientConfig()
         default_state = DevopnessClientState(default_config)
@@ -550,6 +557,13 @@ class TestDevopnessBaseServiceDefaults(unittest.TestCase):
             service._state.config.default_encoding,
             default_config.default_encoding,
         )
+
+    def test_async_service_requires_initialized_http_client(self) -> None:
+        default_config = DevopnessClientConfig()
+        default_state = DevopnessClientState(default_config)
+
+        with self.assertRaises(DevopnessSdkError):
+            DevopnessBaseServiceAsync(default_state)
 
     def test_async_service_without_config_uses_default_state(self) -> None:
         default_config = DevopnessClientConfig()
