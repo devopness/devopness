@@ -1,10 +1,9 @@
-import * as matchers from '@testing-library/jest-dom/matchers'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect } from 'vitest'
 
-expect.extend(matchers)
-
+// TODO: remove this dependency once the suite no longer relies on jest-dom
+// matchers for interaction assertions.
 type TestHoverTooltipOptions = {
   /** Element to hover over */
   element: HTMLElement
