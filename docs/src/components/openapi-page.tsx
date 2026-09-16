@@ -6,6 +6,12 @@ import { javascript } from "fumadocs-openapi/requests/generators/javascript";
 import { python } from "fumadocs-openapi/requests/generators/python";
 import { createOpenAPIPage } from "fumadocs-openapi/ui";
 
+/**
+ * Registry of example code tabs shown in the API docs.
+ *
+ * We keep this separate so the docs only expose the example languages we
+ * support and test.
+ */
 const codeUsages = createCodeUsageGeneratorRegistry();
 
 codeUsages.add("curl", curl);
