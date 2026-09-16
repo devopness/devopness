@@ -4,7 +4,9 @@
 
 ### Patch Changes
 
-- [#3605](https://github.com/devopness/devopness/pull/3605) [`63f05b4`](https://github.com/devopness/devopness/commit/63f05b4ba1603f94d17e3325f51a59b75907f320) Thanks [@Diegiwg](https://github.com/Diegiwg)! - ### Improved SDK resource management
+- [#3605](https://github.com/devopness/devopness/pull/3605) [`63f05b4`](https://github.com/devopness/devopness/commit/63f05b4ba1603f94d17e3325f51a59b75907f320) Thanks [@Diegiwg](https://github.com/Diegiwg)!
+  
+  #### Improved SDK resource management
 
   The SDK now reuses a shared HTTP connection across services, reducing memory usage and connection overhead.
 
