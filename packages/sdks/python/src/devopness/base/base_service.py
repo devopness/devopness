@@ -8,7 +8,6 @@ from typing import Any
 import httpx
 
 from ..base import DevopnessBaseModel
-from ..client_config import DevopnessClientConfig
 from ..client_state import (
     DEVOPNESS_CLIENT_STATE_EXTENSION_KEY,
     DevopnessClientState,
@@ -39,25 +38,20 @@ class DevopnessBaseService:
     _client: httpx.Client
     _state: DevopnessClientState
 
-    def __init__(self, state: DevopnessClientState | None = None) -> None:
+    def __init__(self, state: DevopnessClientState) -> None:
         """
         Initializes the API base service with the provided configuration.
         """
-        if state is None:
-            state = DevopnessClientState(config=DevopnessClientConfig())
-
         self._state = state
 
-        self._client = httpx.Client(
-            base_url=self._state.config.base_url,
-            timeout=self._state.config.timeout,
-            default_encoding=self._state.config.default_encoding,
-            headers=dict(self._state.config.headers),
-            event_hooks={
-                "request": [self._on_request_callback],
-                "response": [self._on_response_callback],
-            },
-        )
+        if self._state.http_client is None:
+            raise DevopnessSdkError("HTTP client is not initialized.")
+
+        self._client = self._state.http_client
+        self._client.event_hooks = {
+            "request": [self._on_request_callback],
+            "response": [self._on_response_callback],
+        }
 
     @handle_network_errors_sync
     def _get(self, endpoint: str) -> httpx.Response:
@@ -212,25 +206,20 @@ class DevopnessBaseServiceAsync:
     _client: httpx.AsyncClient
     _state: DevopnessClientState
 
-    def __init__(self, state: DevopnessClientState | None = None) -> None:
+    def __init__(self, state: DevopnessClientState) -> None:
         """
         Initializes the API base service with the provided configuration.
         """
-        if state is None:
-            state = DevopnessClientState(config=DevopnessClientConfig())
-
         self._state = state
 
-        self._client = httpx.AsyncClient(
-            base_url=self._state.config.base_url,
-            timeout=self._state.config.timeout,
-            default_encoding=self._state.config.default_encoding,
-            headers=dict(self._state.config.headers),
-            event_hooks={
-                "request": [self._on_request_callback],
-                "response": [self._on_response_callback],
-            },
-        )
+        if self._state.http_client_async is None:
+            raise DevopnessSdkError("HTTP client is not initialized.")
+
+        self._client = self._state.http_client_async
+        self._client.event_hooks = {
+            "request": [self._on_request_callback],
+            "response": [self._on_response_callback],
+        }
 
     @handle_network_errors
     async def _get(self, endpoint: str) -> httpx.Response:
