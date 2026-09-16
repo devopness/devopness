@@ -325,6 +325,10 @@ from .list_environment_actions_filter_parameter import (
     ListEnvironmentActionsFilterParameter,
     ListEnvironmentActionsFilterParameterPlain,
 )
+from .list_environment_applications_filter_parameter import (
+    ListEnvironmentApplicationsFilterParameter,
+    ListEnvironmentApplicationsFilterParameterPlain,
+)
 from .log import Log, LogPlain
 from .member import Member, MemberPlain
 from .member_relation import MemberRelation, MemberRelationPlain
@@ -1003,6 +1007,8 @@ __all__ = [
     "ListEnvironmentActionsByResourceTypeFilterParameterPlain",
     "ListEnvironmentActionsFilterParameter",
     "ListEnvironmentActionsFilterParameterPlain",
+    "ListEnvironmentApplicationsFilterParameter",
+    "ListEnvironmentApplicationsFilterParameterPlain",
     "Log",
     "LogPlain",
     "Member",

@@ -21,6 +21,8 @@ from ..models import (
     ApplicationUpdatePlain,
     DeploymentApplicationCreate,
     DeploymentApplicationCreatePlain,
+    ListEnvironmentApplicationsFilterParameter,
+    ListEnvironmentApplicationsFilterParameterPlain,
 )
 from ..utils import parse_query_string
 
@@ -170,6 +172,11 @@ class ApplicationsApiService(DevopnessBaseService):
         environment_id: int,
         page: int | None = None,
         per_page: int | None = None,
+        filter: Union[
+            ListEnvironmentApplicationsFilterParameter,
+            ListEnvironmentApplicationsFilterParameterPlain,
+        ]
+        | None = None,
     ) -> DevopnessResponse[list[ApplicationRelation]]:
         """
         List applications in an environment
@@ -178,6 +185,7 @@ class ApplicationsApiService(DevopnessBaseService):
             environment_id (int): The ID of the environment.
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
+            filter (Optional[Union[ListEnvironmentApplicationsFilterParameter, ListEnvironmentApplicationsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -188,6 +196,7 @@ class ApplicationsApiService(DevopnessBaseService):
             {
                 "page": page,
                 "per_page": per_page,
+                "filter": filter,
             }
         )
 
@@ -378,6 +387,11 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
         environment_id: int,
         page: int | None = None,
         per_page: int | None = None,
+        filter: Union[
+            ListEnvironmentApplicationsFilterParameter,
+            ListEnvironmentApplicationsFilterParameterPlain,
+        ]
+        | None = None,
     ) -> DevopnessResponse[list[ApplicationRelation]]:
         """
         List applications in an environment
@@ -386,6 +400,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
             environment_id (int): The ID of the environment.
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
+            filter (Optional[Union[ListEnvironmentApplicationsFilterParameter, ListEnvironmentApplicationsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -396,6 +411,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
             {
                 "page": page,
                 "per_page": per_page,
+                "filter": filter,
             }
         )
 
