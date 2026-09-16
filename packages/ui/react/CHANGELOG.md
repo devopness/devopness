@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.207.3
+
+### Patch Changes
+
+- [#3604](https://github.com/devopness/devopness/pull/3604) [`3df9b63`](https://github.com/devopness/devopness/commit/3df9b637ea3db07e5e7b87bc45bc3f886e92eeb1) Thanks [@therealrinku](https://github.com/therealrinku)! - Don't clear api error banner on multistepform when field changes and fix bug when next or confirm button staying disabled when required field is filled after required error is shown specifically on fields like select
+
 ## 2.207.2
 
 ### Patch Changes

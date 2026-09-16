@@ -159,7 +159,7 @@ class DevopnessClient:
         """
         Build a synchronous Devopness client with isolated per-instance state.
         """
-        self._state = self._build_state(config)
+        self._state = _build_state(config, is_async_client=False)
 
         self.actions = ActionService(self._state)
         self.api_tokens = APITokenService(self._state)
@@ -189,23 +189,16 @@ class DevopnessClient:
         self.variables = VariableService(self._state)
         self.virtual_hosts = VirtualHostService(self._state)
 
-    @staticmethod
-    def _build_state(
-        config: DevopnessClientConfig | DevopnessClientConfigDict | None,
-    ) -> DevopnessClientState:
+    def close(self) -> None:
         """
-        Normalize user input into an isolated client state object.
+        Close the underlying HTTP client.
         """
-        if config is None:
-            normalized_config = DevopnessClientConfig()
-        elif isinstance(config, dict):
-            normalized_config = DevopnessClientConfig.from_dict(config)
-        else:
-            normalized_config = config
+        http_client = self._state.http_client
 
-        normalized_config = normalized_config.model_copy(deep=True)
-        state = DevopnessClientState(config=normalized_config)
-        return state
+        if http_client is not None:
+            http_client.close()
+
+        self._state.http_client = None
 
     def __set_api_token(self, api_token: str) -> None:
         """
@@ -277,7 +270,7 @@ class DevopnessClientAsync:
         """
         Build an asynchronous Devopness client with isolated per-instance state.
         """
-        self._state = DevopnessClient._build_state(config)
+        self._state = _build_state(config, is_async_client=True)
 
         self.actions = ActionServiceAsync(self._state)
         self.api_tokens = APITokenServiceAsync(self._state)
@@ -307,6 +300,17 @@ class DevopnessClientAsync:
         self.variables = VariableServiceAsync(self._state)
         self.virtual_hosts = VirtualHostServiceAsync(self._state)
 
+    async def aclose(self) -> None:
+        """
+        Close the underlying HTTP client.
+        """
+        http_client = self._state.http_client_async
+
+        if http_client is not None:
+            await http_client.aclose()
+
+        self._state.http_client_async = None
+
     def __set_api_token(self, api_token: str) -> None:
         self._state.config.api_token = api_token
 
@@ -321,3 +325,27 @@ class DevopnessClientAsync:
 
     api_token = property(fset=__set_api_token, fget=__get_api_token)
     access_token = property(fset=__set_access_token, fget=__get_access_token)
+
+
+def _build_state(
+    config: DevopnessClientConfig | DevopnessClientConfigDict | None,
+    is_async_client: bool = False,
+) -> DevopnessClientState:
+    """
+    Build a runtime state for a Devopness Client.
+    """
+    if config is None:
+        normalized_config = DevopnessClientConfig()
+
+    elif isinstance(config, dict):
+        normalized_config = DevopnessClientConfig.from_dict(config)
+
+    else:
+        normalized_config = config
+
+    normalized_config = normalized_config.model_copy(deep=True)
+
+    state = DevopnessClientState(config=normalized_config)
+    state.setup_http_client(is_async_client)
+
+    return state

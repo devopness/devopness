@@ -51,7 +51,7 @@ class TeamService(
     invitations: TeamInvitationService
     members: TeamsMembersApiService
 
-    def __init__(self, state: DevopnessClientState | None = None) -> None:
+    def __init__(self, state: DevopnessClientState) -> None:
         """
         Bind the team service and its nested services to one client state.
         """
@@ -69,7 +69,7 @@ class TeamServiceAsync(
     invitations: TeamInvitationServiceAsync
     members: TeamsMembersApiServiceAsync
 
-    def __init__(self, state: DevopnessClientState | None = None) -> None:
+    def __init__(self, state: DevopnessClientState) -> None:
         """
         Bind the async team service and its nested services to one client state.
         """

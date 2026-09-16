@@ -84,7 +84,6 @@ Configuration options:
 | `debug`              | `False`                     | Prints HTTP debug output and validation warnings    |
 | `strict_validation_mode` | `True`                  | Raises Pydantic validation errors for API responses |
 
-
 #### Response validation mode
 
 The SDK validates API responses against generated Pydantic models by default. This
@@ -129,8 +128,11 @@ devopness.api_token = "your-personal-access-token-here"
 
 
 async def main():
-    current_user = await devopness.users.get_user_me()
-    print(f"User ID: {current_user.data.id}")
+    try:
+        current_user = await devopness.users.get_user_me()
+        print(f"User ID: {current_user.data.id}")
+    finally:
+        await devopness.aclose()
 
 
 if __name__ == "__main__":
@@ -152,8 +154,11 @@ devopness.api_token = "your-personal-access-token-here"
 
 
 def main():
-    current_user = devopness.users.get_user_me()
-    print(f"User ID: {current_user.data.id}")
+    try:
+        current_user = devopness.users.get_user_me()
+        print(f"User ID: {current_user.data.id}")
+    finally:
+        devopness.close()
 
 
 if __name__ == "__main__":
@@ -175,8 +180,11 @@ devopness.api_token = "your-project-api-token-here"
 
 
 async def main():
-    project = await devopness.projects.get_project(project_id=123)
-    print(f"Project name: {project.data.name}")
+    try:
+        project = await devopness.projects.get_project(project_id=123)
+        print(f"Project name: {project.data.name}")
+    finally:
+        await devopness.aclose()
 
 
 if __name__ == "__main__":
@@ -193,8 +201,11 @@ devopness.api_token = "your-project-api-token-here"
 
 
 def main():
-    project = devopness.projects.get_project(project_id=123)
-    print(f"Project name: {project.data.name}")
+    try:
+        project = devopness.projects.get_project(project_id=123)
+        print(f"Project name: {project.data.name}")
+    finally:
+        devopness.close()
 
 
 if __name__ == "__main__":
@@ -229,6 +240,8 @@ async def get_user_profile():
 
     except DevopnessSdkError as error:
         print(f"Error: {error}")
+    finally:
+        await devopness.aclose()
 
 
 if __name__ == "__main__":
@@ -254,6 +267,8 @@ def get_user_profile():
 
     except DevopnessSdkError as error:
         print(f"Error: {error}")
+    finally:
+        devopness.close()
 
 
 if __name__ == "__main__":
