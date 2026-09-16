@@ -12,17 +12,17 @@
   },
   "dependencies": {
     "dotenv-expand": "^1000.0.0",
-    "fumadocs-core": "16.15.9",
+    "fumadocs-core": "16.15.10",
     "fumadocs-mdx": "15.4.0",
     "fumadocs-openapi": "^11.4.2",
-    "fumadocs-ui": "16.15.9",
+    "fumadocs-ui": "16.15.10",
     "lucide-react": "^1.45.0",
     "next": "16.3.5",
     "react": "^19.2.8",
     "react-dom": "^19.3.0",
     "remark-directive": "^4.0.0",
-    "tailwind-merge": "^3.6.0",
-    "zod": "^4.6.2"
+    "tailwind-merge": "^3.7.0",
+    "zod": "^4.6.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
