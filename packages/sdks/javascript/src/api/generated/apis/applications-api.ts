@@ -23,6 +23,7 @@ import { ApplicationEnvironmentCreate } from '../../generated/models';
 import { ApplicationRelation } from '../../generated/models';
 import { ApplicationUpdate } from '../../generated/models';
 import { DeploymentApplicationCreate } from '../../generated/models';
+import { ListEnvironmentApplicationsFilterParameter } from '../../generated/models';
 
 /**
  * ApplicationsApiService - Auto-generated
@@ -129,8 +130,9 @@ export class ApplicationsApiService extends ApiBaseService {
      * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
+     * @param {ListEnvironmentApplicationsFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
      */
-    public async listEnvironmentApplications(environmentId: number, page?: number, perPage?: number): Promise<ApiResponse<Array<ApplicationRelation>>> {
+    public async listEnvironmentApplications(environmentId: number, page?: number, perPage?: number, filter?: ListEnvironmentApplicationsFilterParameter): Promise<ApiResponse<Array<ApplicationRelation>>> {
         if (environmentId === null || environmentId === undefined) {
             throw new ArgumentNullException('environmentId', 'listEnvironmentApplications');
         }
@@ -138,6 +140,7 @@ export class ApplicationsApiService extends ApiBaseService {
         let queryString = parseQueryString({
           'page': page,
           'per_page': perPage,
+          'filter': filter,
         });
 
         const requestUrl = '/environments/{environment_id}/applications' + (queryString ? `?${queryString}` : '');

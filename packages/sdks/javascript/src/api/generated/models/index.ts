@@ -143,6 +143,7 @@ export * from './linked-resource-summary-field';
 export * from './list-actions-filter-parameter';
 export * from './list-environment-actions-by-resource-type-filter-parameter';
 export * from './list-environment-actions-filter-parameter';
+export * from './list-environment-applications-filter-parameter';
 export * from './log';
 export * from './member';
 export * from './member-relation';
