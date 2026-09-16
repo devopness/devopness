@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.6.3
+
+### Patch Changes
+
+- [#3614](https://github.com/devopness/devopness/pull/3614) [`f6e5578`](https://github.com/devopness/devopness/commit/f6e55783f062df388f383ac6b5cfd1ef3475f23c) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added support for filtering by `name` in the Environment Application List endpoint (`/environments/<id>/applications?filter[name]=<value>`) and SDK methods.
+
 ## 3.6.2
 
 ### Patch Changes
