@@ -883,3 +883,5 @@ ListEnvironmentActionsFilterParameter:
   $ref: ./auto-generated/models/list-environment-actions-filter-parameter.yaml
 ListEnvironmentActionsByResourceTypeFilterParameter:
   $ref: ./auto-generated/models/list-environment-actions-by-resource-type-filter-parameter.yaml
+ListEnvironmentApplicationsFilterParameter:
+  $ref: ./auto-generated/models/list-environment-applications-filter-parameter.yaml
