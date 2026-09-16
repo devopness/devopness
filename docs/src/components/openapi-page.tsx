@@ -14,4 +14,7 @@ codeUsages.add("curl", curl);
 codeUsages.add("js", javascript);
 codeUsages.add("python", python);
 
+/**
+ * Client wrapper for the generated OpenAPI page component.
+ */
 export const OpenAPIPage = createOpenAPIPage({ codeUsages });
