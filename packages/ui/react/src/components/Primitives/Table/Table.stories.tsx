@@ -11,7 +11,7 @@ import type { Icon } from 'src/icons'
 import { getColor } from 'src/colors'
 
 import { TableCellWrapper } from './TableCellWrapper/TableCellWrapper'
-import { TableLoading, TableRowVariation } from './TableLoading/TableLoading'
+import { TableLoadingRowVariation } from './TableLoading/TableLoading'
 import { Table } from './Table'
 
 const Grid = ({ children }: { children: React.ReactNode }) => (
@@ -98,24 +98,30 @@ function Default() {
 
 function Loading() {
   return (
-    <TableLoading
-      cells={[
+    <Table
+      columns={[]}
+      isLoading={true}
+      loadingTableCells={[
         {
           name: 'Name',
-          rowVariation: TableRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+          rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
         },
-        { name: 'Framework', rowVariation: TableRowVariation.BAR_EFFECT },
-        { name: 'Language', rowVariation: TableRowVariation.BAR_EFFECT },
+        {
+          name: 'Framework',
+          rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+        },
+        { name: 'Language', rowVariation: TableLoadingRowVariation.BAR_EFFECT },
         {
           name: 'Public Directory',
-          rowVariation: TableRowVariation.BAR_EFFECT,
+          rowVariation: TableLoadingRowVariation.BAR_EFFECT,
         },
         {
           name: '',
-          rowVariation: TableRowVariation.ONE_BUTTON_EFFECT,
+          rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
           alignEnd: true,
         },
       ]}
+      data={[]}
     />
   )
 }
@@ -585,20 +591,21 @@ function MediumSizeTableDefaultWithCheckbox() {
 
 function MediumSizeTableLoading() {
   return (
-    <TableLoading
-      cells={[
+    <Table
+      columns={[]}
+      loadingTableCells={[
         {
           name: 'Name',
-          rowVariation: TableRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+          rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
         },
         {
           name: '',
-          rowVariation: TableRowVariation.ONE_BUTTON_EFFECT,
+          rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
           alignEnd: true,
         },
       ]}
-      lines={3}
-      smallContainer
+      isLoading={true}
+      data={[]}
     />
   )
 }
@@ -614,6 +621,25 @@ function MediumSizeTableEmpty() {
   )
 }
 
+function WithPagination() {
+  return (
+    <Table
+      columns={columnsDefault}
+      isLoading={true}
+      data={rowsDefault}
+      paginationData={{
+        pageCount: 10,
+        paginationProps: {
+          lastPaginateAction: () => alert('last page action'),
+          firstPaginateAction: () => alert('first page action'),
+          previousPaginateAction: () => alert('previous page action'),
+          nextPaginateAction: () => alert('next page action'),
+        },
+      }}
+    />
+  )
+}
+
 export {
   Default,
   Empty,
@@ -625,6 +651,7 @@ export {
   WithCheckbox,
   WithSteps,
   WithTooltip,
+  WithPagination,
 }
 
 const meta = {

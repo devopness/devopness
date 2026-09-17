@@ -39,7 +39,7 @@ interface TableTrProps {
   $alignEndLastColumn?: boolean
 }
 
-const TableWrapper = styled.div<TableWrapperProps>`
+const TableStyled = styled.div<TableWrapperProps>`
   background-color: white;
   padding-top: 42px;
   padding-left: 32px;
@@ -285,7 +285,7 @@ export {
   TableCellWrapper,
   TableIndentation,
   TableTr,
-  TableWrapper,
+  TableStyled,
 }
 
 export type { BaseTableProps, TableTrProps, TableWrapperProps }

@@ -14,13 +14,15 @@ import type {
 } from 'react-table'
 import { useExpanded, useTable } from 'react-table'
 
+import { TableWrapper, type TableWrapperProps } from './TableWrapper'
+
 import {
   BaseTable,
   TableCellValue,
   TableCellWrapper,
   TableIndentation,
   TableTr,
-  TableWrapper,
+  TableStyled,
 } from './Table.styled'
 
 /** Configuration for the fixed background and hover line rendered around a row. */
@@ -71,7 +73,7 @@ type TableProps<T extends object = {}> = TableOptions<T> & {
   layout?: 'indented'
   /** Renders custom content below an expanded row with no subrows. */
   customSubRowInjection?: (row: Row<T>) => ReactNode
-}
+} & TableWrapperProps
 
 /**
  * A generic table built on React Table v7 with Devopness styling and expansion support.
@@ -128,126 +130,149 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
 
   return (
     <TableWrapper
-      $padding={props.padding}
-      $smallContainer={props.smallContainer}
+      isLoading={props.isLoading}
+      loadingTableCells={props.loadingTableCells}
+      isEmpty={!props.data.length}
+      emptyData={{
+        image: props.emptyData?.image,
+        message: props.emptyData?.message,
+      }}
+      paginationData={
+        props.paginationData
+          ? {
+              pageCount: props.paginationData.pageCount ?? 1,
+              paginationProps: props.paginationData.paginationProps,
+            }
+          : undefined
+      }
+      height={props.height}
     >
-      <BaseTable
+      <TableStyled
+        $padding={props.padding}
         $smallContainer={props.smallContainer}
-        $disabledTable={props.disabledTable}
-        $thMaxWidth={props.headerMaxWidth}
-        $headerColor={props.headerColor}
-        $alignEndLastColumn={props.alignEndLastColumn ?? true}
-        {...tableInstance.getTableProps()}
       >
-        <thead>
-          {tableInstance.headerGroups.map((headerGroup: HeaderGroup<T>) => {
-            const { key: headerGroupKey, ...restOfHeaderGroupProps } =
-              headerGroup.getHeaderGroupProps()
-            return (
-              <tr
-                key={headerGroupKey}
-                {...restOfHeaderGroupProps}
-              >
-                {headerGroup.headers.map((header: ColumnInstance<T>, i) => {
-                  const headerProps = header.getHeaderProps()
-                  const { key: headerKey, ...restOfHeaderProps } = headerProps
-
-                  return (
-                    <th
-                      key={headerKey}
-                      className="translate"
-                      {...restOfHeaderProps}
-                      {...(isIndented && i === 0 ? { colSpan: 2 } : {})}
-                    >
-                      <TableCellWrapper $alignColumn={header.alignColumn}>
-                        {header.render('Header')}
-                      </TableCellWrapper>
-                    </th>
-                  )
-                })}
-              </tr>
-            )
-          })}
-        </thead>
-
-        <tbody {...tableInstance.getTableBodyProps()}>
-          {tableInstance.rows.map((row: Row<T>) => {
-            tableInstance.prepareRow(row)
-            const { key, ...restOfRowProps } = row.getRowProps()
-            const original = row.original as T & TableRowMetadata
-            const isIndentedSubrow =
-              isIndented && original.rowType?.toLowerCase() === 'subrow'
-
-            return (
-              <Fragment key={key}>
-                <TableTr
-                  $lineBackgroundColor={original.fixedLine?.lineBackgroundColor}
-                  $lineHoverColor={original.fixedLine?.lineHoverColor}
-                  $hoverColor={props.hoverColor}
-                  $alignEndLastColumn={props.alignEndLastColumn ?? true}
-                  $numberOfColumns={tableInstance.visibleColumns.length}
-                  $fixedLineEnabled={original.fixedLine?.activated}
-                  $tdMaxWidth={props.cellMaxWidth}
-                  $disabledRow={original.disabled || props.disabledTable}
-                  className={isIndentedSubrow ? 'indented' : ''}
-                  {...restOfRowProps}
+        <BaseTable
+          $smallContainer={props.smallContainer}
+          $disabledTable={props.disabledTable}
+          $thMaxWidth={props.headerMaxWidth}
+          $headerColor={props.headerColor}
+          $alignEndLastColumn={props.alignEndLastColumn ?? true}
+          {...tableInstance.getTableProps()}
+        >
+          <thead>
+            {tableInstance.headerGroups.map((headerGroup: HeaderGroup<T>) => {
+              const { key: headerGroupKey, ...restOfHeaderGroupProps } =
+                headerGroup.getHeaderGroupProps()
+              return (
+                <tr
+                  key={headerGroupKey}
+                  {...restOfHeaderGroupProps}
                 >
-                  {isIndentedSubrow ? <TableIndentation /> : null}
+                  {headerGroup.headers.map((header: ColumnInstance<T>, i) => {
+                    const headerProps = header.getHeaderProps()
+                    const { key: headerKey, ...restOfHeaderProps } = headerProps
 
-                  {row.cells.map((cell: Cell<T, unknown>, i) => {
-                    const { key: cellKey, ...restOfCellProps } =
-                      cell.getCellProps()
                     return (
-                      <td
-                        key={cellKey}
-                        className="translate normal-td"
-                        {...restOfCellProps}
-                        {...(isIndented && original.rowType === 'row' && i === 0
-                          ? { colSpan: 2 }
-                          : {})}
+                      <th
+                        key={headerKey}
+                        className="translate"
+                        {...restOfHeaderProps}
+                        {...(isIndented && i === 0 ? { colSpan: 2 } : {})}
                       >
-                        <TableCellWrapper
-                          $alignColumn={cell.column.alignColumn}
-                          className="cell-wrapper"
-                        >
-                          <TableCellValue
-                            $overflowVisible={props.cellOverflowVisible}
-                            width={props.cellWidth}
-                          >
-                            {cell.render('Cell')}
-                          </TableCellValue>
+                        <TableCellWrapper $alignColumn={header.alignColumn}>
+                          {header.render('Header')}
                         </TableCellWrapper>
-                      </td>
+                      </th>
                     )
                   })}
-                </TableTr>
+                </tr>
+              )
+            })}
+          </thead>
 
-                {row.subRows?.length === 0 &&
-                  row.isExpanded &&
-                  props.customSubRowInjection && (
-                    <TableTr
-                      key={`expanded-tr-${row.index}`}
-                      className="expanded-tr"
-                    >
-                      {isIndented ? <TableIndentation /> : null}
+          <tbody {...tableInstance.getTableBodyProps()}>
+            {tableInstance.rows.map((row: Row<T>) => {
+              tableInstance.prepareRow(row)
+              const { key, ...restOfRowProps } = row.getRowProps()
+              const original = row.original as T & TableRowMetadata
+              const isIndentedSubrow =
+                isIndented && original.rowType?.toLowerCase() === 'subrow'
 
-                      <td
-                        key={`expanded-td-${row.index}`}
-                        colSpan={tableInstance.visibleColumns.length}
-                        className="expanded-td"
+              return (
+                <Fragment key={key}>
+                  <TableTr
+                    $lineBackgroundColor={
+                      original.fixedLine?.lineBackgroundColor
+                    }
+                    $lineHoverColor={original.fixedLine?.lineHoverColor}
+                    $hoverColor={props.hoverColor}
+                    $alignEndLastColumn={props.alignEndLastColumn ?? true}
+                    $numberOfColumns={tableInstance.visibleColumns.length}
+                    $fixedLineEnabled={original.fixedLine?.activated}
+                    $tdMaxWidth={props.cellMaxWidth}
+                    $disabledRow={original.disabled || props.disabledTable}
+                    className={isIndentedSubrow ? 'indented' : ''}
+                    {...restOfRowProps}
+                  >
+                    {isIndentedSubrow ? <TableIndentation /> : null}
+
+                    {row.cells.map((cell: Cell<T, unknown>, i) => {
+                      const { key: cellKey, ...restOfCellProps } =
+                        cell.getCellProps()
+                      return (
+                        <td
+                          key={cellKey}
+                          className="translate normal-td"
+                          {...restOfCellProps}
+                          {...(isIndented &&
+                          original.rowType === 'row' &&
+                          i === 0
+                            ? { colSpan: 2 }
+                            : {})}
+                        >
+                          <TableCellWrapper
+                            $alignColumn={cell.column.alignColumn}
+                            className="cell-wrapper"
+                          >
+                            <TableCellValue
+                              $overflowVisible={props.cellOverflowVisible}
+                              width={props.cellWidth}
+                            >
+                              {cell.render('Cell')}
+                            </TableCellValue>
+                          </TableCellWrapper>
+                        </td>
+                      )
+                    })}
+                  </TableTr>
+
+                  {row.subRows?.length === 0 &&
+                    row.isExpanded &&
+                    props.customSubRowInjection && (
+                      <TableTr
+                        key={`expanded-tr-${row.index}`}
+                        className="expanded-tr"
                       >
-                        {props.customSubRowInjection(row)}
-                      </td>
-                    </TableTr>
-                  )}
-              </Fragment>
-            )
-          })}
-        </tbody>
-      </BaseTable>
+                        {isIndented ? <TableIndentation /> : null}
+
+                        <td
+                          key={`expanded-td-${row.index}`}
+                          colSpan={tableInstance.visibleColumns.length}
+                          className="expanded-td"
+                        >
+                          {props.customSubRowInjection(row)}
+                        </td>
+                      </TableTr>
+                    )}
+                </Fragment>
+              )
+            })}
+          </tbody>
+        </BaseTable>
+      </TableStyled>
     </TableWrapper>
   )
 }
 
-export type { TableProps, TableRowMetadata }
+export type { TableProps, TableRowMetadata, TableWrapperProps }
 export { Table }
