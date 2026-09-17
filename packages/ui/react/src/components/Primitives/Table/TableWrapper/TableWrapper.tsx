@@ -14,7 +14,10 @@ import {
   TableLoadingCellProps,
 } from 'src/components/Primitives/Table/TableLoading'
 
-import { TableGridWithPagination } from './TableWrapper.styled'
+import {
+  EmptyDataWrapper,
+  TableGridWithPagination,
+} from './TableWrapper.styled'
 
 interface TableWrapperProps {
   /** Indicates whether the table data is loading, used in conjuction with `loadingTableCells` */
@@ -43,7 +46,10 @@ function TableWrapper({
   children,
   height,
 }: PropsWithChildren<TableWrapperProps>) {
+  // this adds small delay before showing the table data once loading state is finished
+  // which helps in preventing flickering issue between that transition
   const delay = useDebounce<boolean>(isLoading, 500)
+
   if (children) {
     if ((isLoading || delay) && loadingTableCells?.length) {
       return <TableLoading cells={loadingTableCells} />
@@ -51,19 +57,13 @@ function TableWrapper({
       return (
         <Fragment>
           {children}
-          <div
-            style={{
-              padding: '0 16px',
-              boxSizing: 'border-box',
-              width: '100%',
-            }}
-          >
+          <EmptyDataWrapper>
             <EmptyData
               isSmallContainer={Boolean(emptyData?.isSmallContainer)}
               image={emptyData.image}
               message={emptyData.message || ''}
             />
-          </div>
+          </EmptyDataWrapper>
         </Fragment>
       )
     }
