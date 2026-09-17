@@ -7,7 +7,7 @@ import { CheckBox } from 'src/components/Primitives/CheckBox'
 import { Status } from 'src/components/Primitives/Status'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 import { ActionStatus } from 'src/constants'
-import type { Icon } from 'src/icons'
+import { iconLoader, type Icon } from 'src/icons'
 import { getColor } from 'src/colors'
 
 import { TableCellWrapper } from './TableCellWrapper/TableCellWrapper'
@@ -711,7 +711,9 @@ function WithCustomEmptyState() {
       columns={columnsDefault}
       isEmpty={true}
       emptyData={{
+        isSmallContainer: true,
         message: 'No data found.',
+        image: 'https://assets.devopness.com/images/logo-devopness-primary.svg',
       }}
       data={[]}
       paginationData={{
