@@ -7,13 +7,12 @@ import { CheckBox } from 'src/components/Primitives/CheckBox'
 import { Status } from 'src/components/Primitives/Status'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 import { ActionStatus } from 'src/constants'
-import { iconLoader, type Icon } from 'src/icons'
+import { type Icon } from 'src/icons'
 import { getColor } from 'src/colors'
 
 import { TableCellWrapper } from './TableCellWrapper/TableCellWrapper'
 import { TableLoadingRowVariation } from './TableLoading/TableLoading'
 import { Table } from './Table'
-import { PiPhoneIncomingThin } from 'react-icons/pi'
 
 const Grid = ({ children }: { children: React.ReactNode }) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
