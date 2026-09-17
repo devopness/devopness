@@ -69,15 +69,12 @@ function TableWrapper({
     }
     return (
       <Fragment>
-        {!paginationData && children}
-        {paginationData && (
           <TableGridWithPagination height={height}>
             {children}
-            {paginationData.pageCount > 1 && (
+            {paginationData && paginationData.pageCount > 1 && (
               <Pagination {...paginationData.paginationProps} />
             )}
           </TableGridWithPagination>
-        )}
       </Fragment>
     )
   }

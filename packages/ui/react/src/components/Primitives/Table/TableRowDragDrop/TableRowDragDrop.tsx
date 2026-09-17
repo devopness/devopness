@@ -124,6 +124,7 @@ function TableRowDragDrop<T extends object = {}>({
       loadingTableCells={loadingTableCells}
       isEmpty={isEmpty}
       emptyData={{
+        isSmallContainer: emptyData?.isSmallContainer,
         image: emptyData?.image,
         message: emptyData?.message,
       }}

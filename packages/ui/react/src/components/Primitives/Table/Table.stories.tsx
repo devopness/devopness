@@ -731,18 +731,9 @@ function WithCustomEmptyState() {
 function WithFixedHeight() {
   return (
     <Table
-      height="300px"
+      height="200px"
       columns={columnsDefault}
       data={rowsDefault}
-      paginationData={{
-        pageCount: 10,
-        paginationProps: {
-          lastPaginateAction: () => alert('last page action'),
-          firstPaginateAction: () => alert('first page action'),
-          previousPaginateAction: () => alert('previous page action'),
-          nextPaginateAction: () => alert('next page action'),
-        },
-      }}
     />
   )
 }
