@@ -13,9 +13,24 @@ import { getColor } from 'src/colors'
 import { TableCellWrapper } from './TableCellWrapper/TableCellWrapper'
 import { TableLoadingRowVariation } from './TableLoading/TableLoading'
 import { Table } from './Table'
+import { PiPhoneIncomingThin } from 'react-icons/pi'
 
 const Grid = ({ children }: { children: React.ReactNode }) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+    {children}
+  </div>
+)
+
+const ColumnWrapper = ({ children }: { children: React.ReactNode }) => (
+  <div
+    style={{
+      padding: '10px 0',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      gap: 5,
+    }}
+  >
     {children}
   </div>
 )
@@ -26,6 +41,9 @@ interface RowData {
   framework: string
   lang: string
   directory: string
+  buildCommand: string
+  createdAt: string
+  updatedAt: string
   actions?: React.ReactNode
 }
 
@@ -36,6 +54,9 @@ const rowsDefault: RowData[] = [
     framework: 'none',
     lang: 'nodejs',
     directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
   },
   {
     name: 'domain.com.br',
@@ -43,6 +64,9 @@ const rowsDefault: RowData[] = [
     framework: 'none',
     lang: 'golang',
     directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
   },
   {
     name: 'address.org',
@@ -50,6 +74,9 @@ const rowsDefault: RowData[] = [
     framework: 'none',
     lang: 'ruby',
     directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
   },
   {
     name: 'reference.gov.uk',
@@ -57,6 +84,19 @@ const rowsDefault: RowData[] = [
     framework: 'none',
     lang: 'python',
     directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
+  },
+  {
+    name: 'reference.gov.uk',
+    icon: 'digitalocean',
+    framework: 'none',
+    lang: 'python',
+    directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
   },
 ]
 
@@ -622,10 +662,76 @@ function MediumSizeTableEmpty() {
 }
 
 function WithPagination() {
+  const columns: Column<RowData>[] = [
+    ...columnsDefault.slice(0, -1),
+    { accessor: 'buildCommand', Header: 'Build Command' },
+    { accessor: 'createdAt', Header: 'Created At' },
+    {
+      accessor: 'actions',
+      Header: () => <Button icon="link">link ssh key</Button>,
+      Cell: () => (
+        <ColumnWrapper>
+          <Button typeSize="medium">Accept</Button>
+          <Button typeSize="medium">Deploy</Button>
+          <Button
+            noPadding
+            typeSize="medium"
+            icon="delete"
+            buttonType="borderless"
+            color={getColor('red.500')}
+            style={{ padding: '0 8px' }}
+          >
+            remove
+          </Button>
+        </ColumnWrapper>
+      ),
+    },
+  ]
+
+  return (
+    <Table
+      columns={columns}
+      data={rowsDefault}
+      paginationData={{
+        pageCount: 10,
+        paginationProps: {
+          lastPaginateAction: () => alert('last page action'),
+          firstPaginateAction: () => alert('first page action'),
+          previousPaginateAction: () => alert('previous page action'),
+          nextPaginateAction: () => alert('next page action'),
+        },
+      }}
+    />
+  )
+}
+
+function WithCustomEmptyState() {
   return (
     <Table
       columns={columnsDefault}
-      isLoading={true}
+      isEmpty={true}
+      emptyData={{
+        message: 'No data found.',
+      }}
+      data={[]}
+      paginationData={{
+        pageCount: 10,
+        paginationProps: {
+          lastPaginateAction: () => alert('last page action'),
+          firstPaginateAction: () => alert('first page action'),
+          previousPaginateAction: () => alert('previous page action'),
+          nextPaginateAction: () => alert('next page action'),
+        },
+      }}
+    />
+  )
+}
+
+function WithFixedHeight() {
+  return (
+    <Table
+      height="300px"
+      columns={columnsDefault}
       data={rowsDefault}
       paginationData={{
         pageCount: 10,
@@ -652,6 +758,8 @@ export {
   WithSteps,
   WithTooltip,
   WithPagination,
+  WithCustomEmptyState,
+  WithFixedHeight,
 }
 
 const meta = {

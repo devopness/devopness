@@ -132,7 +132,7 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
     <TableWrapper
       isLoading={props.isLoading}
       loadingTableCells={props.loadingTableCells}
-      isEmpty={!props.data.length}
+      isEmpty={props.isEmpty}
       emptyData={{
         image: props.emptyData?.image,
         message: props.emptyData?.message,
