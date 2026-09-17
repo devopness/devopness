@@ -133,19 +133,8 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
       isLoading={props.isLoading}
       loadingTableCells={props.loadingTableCells}
       isEmpty={props.isEmpty}
-      emptyData={{
-        isSmallContainer: props.emptyData?.isSmallContainer,
-        image: props.emptyData?.image,
-        message: props.emptyData?.message,
-      }}
-      paginationData={
-        props.paginationData
-          ? {
-              pageCount: props.paginationData.pageCount ?? 1,
-              paginationProps: props.paginationData.paginationProps,
-            }
-          : undefined
-      }
+      emptyData={props.emptyData}
+      paginationData={props.paginationData}
       height={props.height}
     >
       <TableStyled

@@ -123,19 +123,8 @@ function TableRowDragDrop<T extends object = {}>({
       isLoading={isLoading}
       loadingTableCells={loadingTableCells}
       isEmpty={isEmpty}
-      emptyData={{
-        isSmallContainer: emptyData?.isSmallContainer,
-        image: emptyData?.image,
-        message: emptyData?.message,
-      }}
-      paginationData={
-        paginationData
-          ? {
-              pageCount: paginationData.pageCount ?? 1,
-              paginationProps: paginationData.paginationProps,
-            }
-          : undefined
-      }
+      emptyData={emptyData}
+      paginationData={paginationData}
       height={height}
     >
       <DndProvider backend={HTML5Backend}>
