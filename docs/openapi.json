@@ -42,7 +42,7 @@
           {
             "in": "query",
             "name": "filter",
-            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[organization_id]=123&filter[project_id]=456`",
             "required": false,
             "style": "deepObject",
             "explode": true,
@@ -2194,7 +2194,7 @@
           {
             "in": "query",
             "name": "filter",
-            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[resource_id]=321`",
             "required": false,
             "style": "deepObject",
             "explode": true,
@@ -2263,7 +2263,7 @@
           {
             "in": "query",
             "name": "filter",
-            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_id]=321&filter[status]=queued`",
             "required": false,
             "style": "deepObject",
             "explode": true,
@@ -2337,6 +2337,17 @@
             "schema": {
               "type": "integer",
               "minimum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "description": "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[name]=app`",
+            "required": false,
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/ListEnvironmentApplicationsFilterParameter"
             }
           }
         ],
@@ -27369,6 +27380,16 @@
           "operation": {
             "description": "Action operation name.\n\nExample: `?filter[operation]=deploy`",
             "example": "deploy",
+            "type": "string"
+          }
+        }
+      },
+      "ListEnvironmentApplicationsFilterParameter": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Search applications by name. Case insensitive.\n\nExample: `?filter[name]=app`",
+            "example": "app",
             "type": "string"
           }
         }
