@@ -5,7 +5,7 @@ type ContainerProps = {
 }
 
 const loadingPage = css`
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - (105px + 42px));
 `
 
