@@ -9,10 +9,12 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import type { Cell, ColumnInstance, Row, TableOptions } from 'react-table'
 import { useTable } from 'react-table'
 
+import { TableWrapper, type TableWrapperProps } from '../TableWrapper'
+
 import { getColor } from 'src/colors'
 import { iconLoader } from 'src/icons'
 
-import { BaseTable, TableTr, TableWrapper } from '../Table.styled'
+import { BaseTable, TableTr, TableStyled } from '../Table.styled'
 
 /** Source and destination indexes for a row move operation. */
 export interface TableMovingDataParams {
@@ -42,7 +44,7 @@ type TableRowDragDropProps<T extends object = {}> = Pick<
   onDrop: (moving: TableMovingDataParams, data: T[]) => void
   /** Called whenever a row starts or stops dragging. */
   onDrag: (isDragging: boolean) => void
-}
+} & TableWrapperProps
 
 const moveArrayItem = <T,>(items: T[], fromIndex: number, toIndex: number) => {
   const nextItems = [...items]
@@ -72,6 +74,12 @@ function TableRowDragDrop<T extends object = {}>({
   data,
   onDrop,
   onDrag,
+  isLoading,
+  loadingTableCells,
+  height,
+  isEmpty,
+  emptyData,
+  paginationData,
 }: TableRowDragDropProps<T>): ReactElement {
   const [sortedData, setSortedData] = useState<T[]>([])
 
@@ -111,60 +119,69 @@ function TableRowDragDrop<T extends object = {}>({
   }
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <TableWrapper $smallContainer>
-        <BaseTable {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => {
-              const { key: headerGroupKey, ...headerGroupProps } =
-                headerGroup.getHeaderGroupProps()
-              return (
-                <tr
-                  key={headerGroupKey}
-                  {...headerGroupProps}
-                >
-                  <th />
-                  {headerGroup.headers.map((column) => {
-                    const { key: columnKey, ...columnProps } =
-                      column.getHeaderProps()
-                    return (
-                      <th
-                        key={columnKey}
-                        {...columnProps}
-                      >
-                        {column.render('Header')}
-                      </th>
-                    )
-                  })}
-                </tr>
-              )
-            })}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row, index) => {
-              prepareRow(row)
-              const { key: rowKey, ...rowProps } = row.getRowProps()
-              return (
-                <TableRow<T>
-                  key={rowKey}
-                  visibleColumns={visibleColumns}
-                  index={index}
-                  row={row}
-                  onDrag={onDrag}
-                  onDrop={() => {
-                    if (!moving) return
-                    onDrop(moving, sortedData)
-                    setMoving(null)
-                  }}
-                  moveRow={moveRow}
-                  {...rowProps}
-                />
-              )
-            })}
-          </tbody>
-        </BaseTable>
-      </TableWrapper>
-    </DndProvider>
+    <TableWrapper
+      isLoading={isLoading}
+      loadingTableCells={loadingTableCells}
+      isEmpty={isEmpty}
+      emptyData={emptyData}
+      paginationData={paginationData}
+      height={height}
+    >
+      <DndProvider backend={HTML5Backend}>
+        <TableStyled $smallContainer>
+          <BaseTable {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) => {
+                const { key: headerGroupKey, ...headerGroupProps } =
+                  headerGroup.getHeaderGroupProps()
+                return (
+                  <tr
+                    key={headerGroupKey}
+                    {...headerGroupProps}
+                  >
+                    <th />
+                    {headerGroup.headers.map((column) => {
+                      const { key: columnKey, ...columnProps } =
+                        column.getHeaderProps()
+                      return (
+                        <th
+                          key={columnKey}
+                          {...columnProps}
+                        >
+                          {column.render('Header')}
+                        </th>
+                      )
+                    })}
+                  </tr>
+                )
+              })}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row, index) => {
+                prepareRow(row)
+                const { key: rowKey, ...rowProps } = row.getRowProps()
+                return (
+                  <TableRow<T>
+                    key={rowKey}
+                    visibleColumns={visibleColumns}
+                    index={index}
+                    row={row}
+                    onDrag={onDrag}
+                    onDrop={() => {
+                      if (!moving) return
+                      onDrop(moving, sortedData)
+                      setMoving(null)
+                    }}
+                    moveRow={moveRow}
+                    {...rowProps}
+                  />
+                )
+              })}
+            </tbody>
+          </BaseTable>
+        </TableStyled>
+      </DndProvider>
+    </TableWrapper>
   )
 }
 

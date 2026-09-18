@@ -7,15 +7,29 @@ import { CheckBox } from 'src/components/Primitives/CheckBox'
 import { Status } from 'src/components/Primitives/Status'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 import { ActionStatus } from 'src/constants'
-import type { Icon } from 'src/icons'
+import { type Icon } from 'src/icons'
 import { getColor } from 'src/colors'
 
 import { TableCellWrapper } from './TableCellWrapper/TableCellWrapper'
-import { TableLoading, TableRowVariation } from './TableLoading/TableLoading'
+import { TableLoadingRowVariation } from './TableLoading/TableLoading'
 import { Table } from './Table'
 
 const Grid = ({ children }: { children: React.ReactNode }) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+    {children}
+  </div>
+)
+
+const ColumnWrapper = ({ children }: { children: React.ReactNode }) => (
+  <div
+    style={{
+      padding: '10px 0',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      gap: 5,
+    }}
+  >
     {children}
   </div>
 )
@@ -26,6 +40,9 @@ interface RowData {
   framework: string
   lang: string
   directory: string
+  buildCommand: string
+  createdAt: string
+  updatedAt: string
   actions?: React.ReactNode
 }
 
@@ -36,6 +53,9 @@ const rowsDefault: RowData[] = [
     framework: 'none',
     lang: 'nodejs',
     directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
   },
   {
     name: 'domain.com.br',
@@ -43,6 +63,9 @@ const rowsDefault: RowData[] = [
     framework: 'none',
     lang: 'golang',
     directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
   },
   {
     name: 'address.org',
@@ -50,6 +73,9 @@ const rowsDefault: RowData[] = [
     framework: 'none',
     lang: 'ruby',
     directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
   },
   {
     name: 'reference.gov.uk',
@@ -57,6 +83,19 @@ const rowsDefault: RowData[] = [
     framework: 'none',
     lang: 'python',
     directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
+  },
+  {
+    name: 'reference.gov.uk',
+    icon: 'digitalocean',
+    framework: 'none',
+    lang: 'python',
+    directory: '/public',
+    buildCommand: 'npm run build',
+    createdAt: '2021-09-01T00:00:00.000Z',
+    updatedAt: '2021-10-01T00:00:00.000Z',
   },
 ]
 
@@ -98,24 +137,30 @@ function Default() {
 
 function Loading() {
   return (
-    <TableLoading
-      cells={[
+    <Table
+      columns={[]}
+      isLoading={true}
+      loadingTableCells={[
         {
           name: 'Name',
-          rowVariation: TableRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+          rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
         },
-        { name: 'Framework', rowVariation: TableRowVariation.BAR_EFFECT },
-        { name: 'Language', rowVariation: TableRowVariation.BAR_EFFECT },
+        {
+          name: 'Framework',
+          rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+        },
+        { name: 'Language', rowVariation: TableLoadingRowVariation.BAR_EFFECT },
         {
           name: 'Public Directory',
-          rowVariation: TableRowVariation.BAR_EFFECT,
+          rowVariation: TableLoadingRowVariation.BAR_EFFECT,
         },
         {
           name: '',
-          rowVariation: TableRowVariation.ONE_BUTTON_EFFECT,
+          rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
           alignEnd: true,
         },
       ]}
+      data={[]}
     />
   )
 }
@@ -585,20 +630,21 @@ function MediumSizeTableDefaultWithCheckbox() {
 
 function MediumSizeTableLoading() {
   return (
-    <TableLoading
-      cells={[
+    <Table
+      columns={[]}
+      loadingTableCells={[
         {
           name: 'Name',
-          rowVariation: TableRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+          rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
         },
         {
           name: '',
-          rowVariation: TableRowVariation.ONE_BUTTON_EFFECT,
+          rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
           alignEnd: true,
         },
       ]}
-      lines={3}
-      smallContainer
+      isLoading={true}
+      data={[]}
     />
   )
 }
@@ -614,6 +660,84 @@ function MediumSizeTableEmpty() {
   )
 }
 
+function WithPagination() {
+  const columns: Column<RowData>[] = [
+    ...columnsDefault.slice(0, -1),
+    { accessor: 'buildCommand', Header: 'Build Command' },
+    { accessor: 'createdAt', Header: 'Created At' },
+    {
+      accessor: 'actions',
+      Header: () => <Button icon="link">link ssh key</Button>,
+      Cell: () => (
+        <ColumnWrapper>
+          <Button typeSize="medium">Accept</Button>
+          <Button typeSize="medium">Deploy</Button>
+          <Button
+            noPadding
+            typeSize="medium"
+            icon="delete"
+            buttonType="borderless"
+            color={getColor('red.500')}
+            style={{ padding: '0 8px' }}
+          >
+            remove
+          </Button>
+        </ColumnWrapper>
+      ),
+    },
+  ]
+
+  return (
+    <Table
+      columns={columns}
+      data={rowsDefault}
+      paginationData={{
+        pageCount: 10,
+        paginationProps: {
+          lastPaginateAction: () => alert('last page action'),
+          firstPaginateAction: () => alert('first page action'),
+          previousPaginateAction: () => alert('previous page action'),
+          nextPaginateAction: () => alert('next page action'),
+        },
+      }}
+    />
+  )
+}
+
+function WithCustomEmptyState() {
+  return (
+    <Table
+      columns={columnsDefault}
+      isEmpty={true}
+      emptyData={{
+        isSmallContainer: true,
+        message: 'No data found.',
+        image: 'https://assets.devopness.com/images/logo-devopness-primary.svg',
+      }}
+      data={[]}
+      paginationData={{
+        pageCount: 10,
+        paginationProps: {
+          lastPaginateAction: () => alert('last page action'),
+          firstPaginateAction: () => alert('first page action'),
+          previousPaginateAction: () => alert('previous page action'),
+          nextPaginateAction: () => alert('next page action'),
+        },
+      }}
+    />
+  )
+}
+
+function WithFixedHeight() {
+  return (
+    <Table
+      height="200px"
+      columns={columnsDefault}
+      data={rowsDefault}
+    />
+  )
+}
+
 export {
   Default,
   Empty,
@@ -625,6 +749,9 @@ export {
   WithCheckbox,
   WithSteps,
   WithTooltip,
+  WithPagination,
+  WithCustomEmptyState,
+  WithFixedHeight,
 }
 
 const meta = {

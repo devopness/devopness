@@ -11,7 +11,7 @@ import {
 } from './TableLoading.styled'
 
 /** Skeleton layout used for loading table body cells. */
-enum TableRowVariation {
+enum TableLoadingRowVariation {
   /** Two action button placeholders. */
   TWO_BUTTONS_EFFECT = 'TWO_BUTTONS_EFFECT',
   /** One action button placeholder. */
@@ -33,11 +33,11 @@ enum TableHeaderVariation {
 }
 
 /** Describes one column in a `TableLoading` placeholder. */
-interface TableCellProps {
+interface TableLoadingCellProps {
   /** Header text shown when no header skeleton is configured. */
   name: string
   /** Skeleton layout rendered in body cells. */
-  rowVariation: TableRowVariation
+  rowVariation: TableLoadingRowVariation
   /** Optional skeleton layout rendered in the header. */
   headerVariation?: TableHeaderVariation
   /** Aligns the column loading content to the end. */
@@ -47,7 +47,7 @@ interface TableCellProps {
 /** Props for `TableLoading`. */
 interface TableLoadingProps {
   /** Placeholder column definitions. */
-  cells: readonly TableCellProps[]
+  cells: readonly TableLoadingCellProps[]
   /** Number of loading rows to render. */
   lines?: number
   /** Uses compact table spacing. */
@@ -118,10 +118,10 @@ const createIntegerList = (size: number) =>
  * ```tsx
  * <TableLoading
  *   cells={[
- *     { name: "Name", rowVariation: TableRowVariation.BAR_EFFECT },
+ *     { name: "Name", rowVariation: TableLoadingRowVariation.BAR_EFFECT },
  *     {
  *       name: "Actions",
- *       rowVariation: TableRowVariation.ONE_BUTTON_EFFECT,
+ *       rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
  *     },
  *   ]}
  *   lines={3}
@@ -172,5 +172,5 @@ function TableLoading({ cells, lines = 5, smallContainer }: TableLoadingProps) {
   )
 }
 
-export type { TableCellProps, TableLoadingProps }
-export { TableHeaderVariation, TableLoading, TableRowVariation }
+export type { TableLoadingCellProps, TableLoadingProps }
+export { TableHeaderVariation, TableLoading, TableLoadingRowVariation }
