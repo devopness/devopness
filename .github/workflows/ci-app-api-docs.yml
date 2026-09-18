@@ -82,9 +82,7 @@ jobs:
       # We skip this step for fork PRs because it needs repository secrets.
       # Forks do not have access to those secrets.
       - name: Run API Docs tests
-        # Temporarily disabled because `dredd` adds a large amount of runtime
-        # and is not needed while we are debugging the spec sync flow.
-        if: ${{ false }}
+        if: github.event.pull_request.head.repo.full_name == github.repository
         run: |
           npm run api-convert-spec-to-dredd
           npm run remove-descriptions
