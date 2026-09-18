@@ -185,7 +185,7 @@ class ApplicationsApiService(DevopnessBaseService):
             environment_id (int): The ID of the environment.
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
-            filter (Optional[Union[ListEnvironmentApplicationsFilterParameter, ListEnvironmentApplicationsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
+            filter (Optional[Union[ListEnvironmentApplicationsFilterParameter, ListEnvironmentApplicationsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[name]&#x3D;app&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -400,7 +400,7 @@ class ApplicationsApiServiceAsync(DevopnessBaseServiceAsync):
             environment_id (int): The ID of the environment.
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
-            filter (Optional[Union[ListEnvironmentApplicationsFilterParameter, ListEnvironmentApplicationsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
+            filter (Optional[Union[ListEnvironmentApplicationsFilterParameter, ListEnvironmentApplicationsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[name]&#x3D;app&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
