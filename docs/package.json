@@ -22,7 +22,7 @@
     "react-dom": "^19.3.0",
     "remark-directive": "^4.0.0",
     "tailwind-merge": "^3.7.0",
-    "zod": "^4.6.4"
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
