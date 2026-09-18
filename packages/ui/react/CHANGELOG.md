@@ -1,5 +1,15 @@
 # @devopness/ui-react
 
+## 2.208.0
+
+### Minor Changes
+
+- [#3618](https://github.com/devopness/devopness/pull/3618) [`aca8d45`](https://github.com/devopness/devopness/commit/aca8d456c4fc0ee164fb4200639ee720fefa8323) Thanks [@therealrinku](https://github.com/therealrinku)! - Add support for custom loading and empty state ui, height and pagination button for `Table` component
+
+### Patch Changes
+
+- [#3624](https://github.com/devopness/devopness/pull/3624) [`e553c2b`](https://github.com/devopness/devopness/commit/e553c2b1b51b4cd47b840b72708064388bfb768b) Thanks [@therealrinku](https://github.com/therealrinku)! - Update LoadStarship component width to 100% of the container element instead of 100vw
+
 ## 2.207.3
 
 ### Patch Changes
