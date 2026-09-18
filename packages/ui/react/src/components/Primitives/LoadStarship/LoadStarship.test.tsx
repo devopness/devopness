@@ -23,7 +23,7 @@ describe('LoadStarship', () => {
       .map((style) => style.textContent ?? '')
       .join('\n')
 
-    expect(styles).toContain('width:100vw')
+    expect(styles).toContain('width:100%')
     expect(styles).toContain('height:calc(100vh - (105px + 42px))')
     expect(container.firstChild).not.toHaveStyle('position: fixed')
   })
