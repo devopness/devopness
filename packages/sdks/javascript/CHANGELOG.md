@@ -1,5 +1,11 @@
 # @devopness/sdk-js
 
+## 3.6.4
+
+### Patch Changes
+
+- [#3626](https://github.com/devopness/devopness/pull/3626) [`ff79526`](https://github.com/devopness/devopness/commit/ff79526de62978f36005315cb1eaafdec3f654cd) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Updated the `filter` field examples in methods that support filters so they only show real example values.
+
 ## 3.6.3
 
 ### Patch Changes
