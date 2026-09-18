@@ -147,16 +147,6 @@ jobs:
             "${{ runner.temp }}/api-docs-spec-base.json" \
             docs/openapi.json
 
-      - name: Debug generated spec status
-        working-directory: ${{ github.workspace }}
-        run: |
-          echo "git status --short:"
-          git status --short -- packages/sdks/common/spec.json docs/openapi.json
-          echo "git diff --stat:"
-          git diff --stat -- packages/sdks/common/spec.json docs/openapi.json
-          echo "git diff --name-only:"
-          git diff --name-only -- packages/sdks/common/spec.json docs/openapi.json
-
       - name: Fail if spec is out of sync on fork PRs
         if: github.event.pull_request.head.repo.full_name != github.repository
         working-directory: ${{ github.workspace }}
