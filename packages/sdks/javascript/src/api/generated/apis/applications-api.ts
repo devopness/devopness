@@ -130,7 +130,7 @@ export class ApplicationsApiService extends ApiBaseService {
      * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
-     * @param {ListEnvironmentApplicationsFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[name]&#x3D;app&#x60;
+     * @param {ListEnvironmentApplicationsFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
      */
     public async listEnvironmentApplications(environmentId: number, page?: number, perPage?: number, filter?: ListEnvironmentApplicationsFilterParameter): Promise<ApiResponse<Array<ApplicationRelation>>> {
         if (environmentId === null || environmentId === undefined) {

@@ -29,7 +29,7 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
      * @param {number} environmentId The ID of the environment.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
-     * @param {ListEnvironmentActionsFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[resource_id]&#x3D;321&#x60;
+     * @param {ListEnvironmentActionsFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
      */
     public async listEnvironmentActions(environmentId: number, page?: number, perPage?: number, filter?: ListEnvironmentActionsFilterParameter): Promise<ApiResponse<Array<ActionRelation>>> {
         if (environmentId === null || environmentId === undefined) {
@@ -55,7 +55,7 @@ export class EnvironmentsActionsApiService extends ApiBaseService {
      * @param {string} resourceType The resource type to get related actions.
      * @param {number} [page] Number of the page to be retrieved
      * @param {number} [perPage] Number of items returned per page
-     * @param {ListEnvironmentActionsByResourceTypeFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_id]&#x3D;321&amp;filter[status]&#x3D;queued&#x60;
+     * @param {ListEnvironmentActionsByResourceTypeFilterParameter} [filter] Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
      */
     public async listEnvironmentActionsByResourceType(environmentId: number, resourceType: string, page?: number, perPage?: number, filter?: ListEnvironmentActionsByResourceTypeFilterParameter): Promise<ApiResponse<Array<ActionRelation>>> {
         if (environmentId === null || environmentId === undefined) {
