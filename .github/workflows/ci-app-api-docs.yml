@@ -176,9 +176,10 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'feat: update shared API spec'
-          file_pattern: |
-            packages/sdks/common/spec.json
-            docs/openapi.json
+          # Use a single space-separated pattern list here.
+          # The action parses `file_pattern` as a shell word list; the multiline
+          # YAML block form can make the dirty check ignore later entries.
+          file_pattern: packages/sdks/common/spec.json docs/openapi.json
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
