@@ -61,7 +61,7 @@ class ActionsApiService(DevopnessBaseService):
         Attributes:
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
-            filter (Optional[Union[ListActionsFilterParameter, ListActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
+            filter (Optional[Union[ListActionsFilterParameter, ListActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[organization_id]&#x3D;123&amp;filter[project_id]&#x3D;456&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -229,7 +229,7 @@ class ActionsApiServiceAsync(DevopnessBaseServiceAsync):
         Attributes:
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
-            filter (Optional[Union[ListActionsFilterParameter, ListActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
+            filter (Optional[Union[ListActionsFilterParameter, ListActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[organization_id]&#x3D;123&amp;filter[project_id]&#x3D;456&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.

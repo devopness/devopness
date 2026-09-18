@@ -42,7 +42,7 @@ class EnvironmentsActionsApiService(DevopnessBaseService):
             environment_id (int): The ID of the environment.
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
-            filter (Optional[Union[ListEnvironmentActionsFilterParameter, ListEnvironmentActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
+            filter (Optional[Union[ListEnvironmentActionsFilterParameter, ListEnvironmentActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[resource_id]&#x3D;321&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -87,7 +87,7 @@ class EnvironmentsActionsApiService(DevopnessBaseService):
             resource_type (str): The resource type to get related actions.
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
-            filter (Optional[Union[ListEnvironmentActionsByResourceTypeFilterParameter, ListEnvironmentActionsByResourceTypeFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
+            filter (Optional[Union[ListEnvironmentActionsByResourceTypeFilterParameter, ListEnvironmentActionsByResourceTypeFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_id]&#x3D;321&amp;filter[status]&#x3D;queued&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -136,7 +136,7 @@ class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
             environment_id (int): The ID of the environment.
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
-            filter (Optional[Union[ListEnvironmentActionsFilterParameter, ListEnvironmentActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
+            filter (Optional[Union[ListEnvironmentActionsFilterParameter, ListEnvironmentActionsFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[resource_id]&#x3D;321&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -181,7 +181,7 @@ class EnvironmentsActionsApiServiceAsync(DevopnessBaseServiceAsync):
             resource_type (str): The resource type to get related actions.
             page (Optional[int]): Number of the page to be retrieved
             per_page (Optional[int]): Number of items returned per page
-            filter (Optional[Union[ListEnvironmentActionsByResourceTypeFilterParameter, ListEnvironmentActionsByResourceTypeFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_type]&#x3D;application&amp;filter[status]&#x3D;active&#x60;
+            filter (Optional[Union[ListEnvironmentActionsByResourceTypeFilterParameter, ListEnvironmentActionsByResourceTypeFilterParameterPlain,]]): Filter the results using the available fields. Multiple filters can be combined.  Example: &#x60;?filter[resource_id]&#x3D;321&amp;filter[status]&#x3D;queued&#x60;
 
         Raises:
             DevopnessApiError: If an API request error occurs.
