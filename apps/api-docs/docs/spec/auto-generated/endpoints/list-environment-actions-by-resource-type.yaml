@@ -28,7 +28,7 @@ parameters:
   -
     in: query
     name: filter
-    description: "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_type]=application&filter[status]=active`"
+    description: "Filter the results using the available fields.\nMultiple filters can be combined.\n\nExample: `?filter[resource_id]=321&filter[status]=queued`"
     required: false
     style: deepObject
     explode: true
