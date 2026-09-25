@@ -472,6 +472,10 @@ from .role_organization_create import (
 from .role_relation import RoleRelation, RoleRelationPlain
 from .role_update import RoleUpdate, RoleUpdatePlain
 from .script_runner import ScriptRunner, ScriptRunnerPlain
+from .search_resource_relation import (
+    SearchResourceRelation,
+    SearchResourceRelationPlain,
+)
 from .server import Server, ServerPlain
 from .server_blueprint import ServerBlueprint, ServerBlueprintPlain
 from .server_blueprint_spec import ServerBlueprintSpec, ServerBlueprintSpecPlain
@@ -1175,6 +1179,8 @@ __all__ = [
     "RoleUpdatePlain",
     "ScriptRunner",
     "ScriptRunnerPlain",
+    "SearchResourceRelation",
+    "SearchResourceRelationPlain",
     "Server",
     "ServerBlueprint",
     "ServerBlueprintPlain",

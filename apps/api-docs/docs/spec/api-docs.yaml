@@ -245,6 +245,7 @@ tags:
   - name: Projects - Environments
   - name: Resource Events
   - name: Resource Links
+  - name: Search
   - name: Roles
   - name: Servers
   - name: Services
@@ -336,6 +337,9 @@ x-tagGroups:
   - name: Resource Links
     tags:
       - Resource Links
+  - name: Search
+    tags:
+      - Search
   - name: Roles
     tags:
       - Roles

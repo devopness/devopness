@@ -17,6 +17,7 @@ import { ProjectService } from "./services/ProjectService";
 import { ResourceEventService } from "./services/ResourceEventService";
 import { ResourceLinkService } from "./services/ResourceLinkService";
 import { RoleService } from "./services/RoleService";
+import { SearchService } from "./services/SearchService";
 import { ServerService } from "./services/ServerService";
 import { ServiceService } from "./services/ServiceService";
 import { SocialAccountService } from "./services/SocialAccountService";
@@ -49,6 +50,7 @@ export class DevopnessApiClient {
   resourceEvents: ResourceEventService;
   resourceLinks: ResourceLinkService;
   roles: RoleService;
+  search: SearchService;
   servers: ServerService;
   services: ServiceService;
   socialAccounts: SocialAccountService;
@@ -86,6 +88,7 @@ export class DevopnessApiClient {
     this.resourceEvents = new ResourceEventService();
     this.resourceLinks = new ResourceLinkService();
     this.roles = new RoleService();
+    this.search = new SearchService();
     this.servers = new ServerService();
     this.services = new ServiceService();
     this.socialAccounts = new SocialAccountService();

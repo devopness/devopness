@@ -71,6 +71,10 @@ from .services.role_service import (
     RoleService,
     RoleServiceAsync,
 )
+from .services.search_service import (
+    SearchService,
+    SearchServiceAsync,
+)
 from .services.server_service import (
     ServerService,
     ServerServiceAsync,
@@ -140,6 +144,7 @@ class DevopnessClient:
     resource_events: ResourceEventService
     resource_links: ResourceLinkService
     roles: RoleService
+    search: SearchService
     servers: ServerService
     services: ServiceService
     social_accounts: SocialAccountService
@@ -177,6 +182,7 @@ class DevopnessClient:
         self.resource_events = ResourceEventService(self._state)
         self.resource_links = ResourceLinkService(self._state)
         self.roles = RoleService(self._state)
+        self.search = SearchService(self._state)
         self.servers = ServerService(self._state)
         self.services = ServiceService(self._state)
         self.social_accounts = SocialAccountService(self._state)
@@ -251,6 +257,7 @@ class DevopnessClientAsync:
     resource_events: ResourceEventServiceAsync
     resource_links: ResourceLinkServiceAsync
     roles: RoleServiceAsync
+    search: SearchServiceAsync
     servers: ServerServiceAsync
     services: ServiceServiceAsync
     social_accounts: SocialAccountServiceAsync
@@ -288,6 +295,7 @@ class DevopnessClientAsync:
         self.resource_events = ResourceEventServiceAsync(self._state)
         self.resource_links = ResourceLinkServiceAsync(self._state)
         self.roles = RoleServiceAsync(self._state)
+        self.search = SearchServiceAsync(self._state)
         self.servers = ServerServiceAsync(self._state)
         self.services = ServiceServiceAsync(self._state)
         self.social_accounts = SocialAccountServiceAsync(self._state)

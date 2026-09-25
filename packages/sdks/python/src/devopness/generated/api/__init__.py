@@ -126,6 +126,10 @@ from .roles_api import (
     RolesApiService,
     RolesApiServiceAsync,
 )
+from .search_api import (
+    SearchApiService,
+    SearchApiServiceAsync,
+)
 from .servers_api import (
     ServersApiService,
     ServersApiServiceAsync,
@@ -272,6 +276,8 @@ __all__ = [
     "SSHKeysApiServiceAsync",
     "SSLCertificatesApiService",
     "SSLCertificatesApiServiceAsync",
+    "SearchApiService",
+    "SearchApiServiceAsync",
     "ServersApiService",
     "ServersApiServiceAsync",
     "ServicesApiService",

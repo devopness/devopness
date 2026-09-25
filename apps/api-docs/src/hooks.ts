@@ -224,6 +224,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         ['addEnvironmentDaemon201', 'linkResourceLinkToResourceLink204'],
         ['getService200', 'getStatusService204'],
         ['deleteOrganization204', 'addOrganization201'],
+        ['addEnvironmentApplication201', 'listSearchResources200'],
     ]);
 
     let apiSpec = new OpenAPISpec(logger);
@@ -399,6 +400,7 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
     before('addEnvironmentApplication201', utils.rewriteTransactionRequestBody((body: any) => {
         const credential = fixtures.get<Identifiable>('credential_source_provider');
 
+        body['name'] = 'api-docs-app'
         body['entrypoint'] = 'index.html'
         body['credential_id'] = credential?.id ?? body.credential_id
     }))
@@ -409,6 +411,63 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         body['entrypoint'] = 'index.html'
         body['credential_id'] = credential?.id ?? body.credential_id
     }))
+
+    before('listSearchResources200', (transaction: Transaction) => {
+        const tag = `[search]`;
+        const organization = fixtures.get<Identifiable>('organization');
+        const application = fixtures.get<any>('application');
+
+        if (!organization || !application?.name) {
+            hooks.log(`${tag} missing required fixtures`);
+            transaction.fail = true;
+            return;
+        }
+
+        const [path, query = ''] = transaction.request.uri.split('?');
+        const params = new URLSearchParams(query);
+
+        params.set('organization_id', organization.id);
+        params.set('q', 'api-docs');
+        params.set('resource_type', 'application');
+
+        const rewrittenUri = `${path}?${params.toString()}`;
+        transaction.request.uri = rewrittenUri;
+        transaction.fullPath = rewrittenUri;
+        transaction.id = `${transaction.request.method} (${transaction.expected.statusCode}) ${rewrittenUri}`;
+
+        hooks.log(`${tag} rewrite uri '${transaction.origin.resourceName}' => '${rewrittenUri}'`);
+    });
+
+    after('listSearchResources200', (transaction: Transaction) => {
+        const tag = `[search]`;
+        const application = fixtures.get<any>('application');
+
+        if (!application || !transaction.test.valid || !transaction.real.body) {
+            return;
+        }
+
+        let results: Array<{ resource_id: number; resource_name: string; resource_type: string }>;
+
+        try {
+            results = JSON.parse(transaction.real.body);
+        } catch {
+            hooks.log(`${tag} unable to parse search response`);
+            transaction.fail = true;
+            return;
+        }
+
+        const matchesApplication = results.some((result) =>
+            result.resource_type === 'application' &&
+            (result.resource_id === application.id || result.resource_name === application.name)
+        );
+
+        if (!matchesApplication) {
+            hooks.log(
+                `${tag} search response did not include application '${application.name}' (id=${application.id})`
+            );
+            transaction.fail = true;
+        }
+    });
 
     const addValidExpiresAt = (body: any) => {
         body['expires_at'] = new Date(Date.now() + 60 * 60 * 1000).toISOString();
