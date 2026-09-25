@@ -225,6 +225,7 @@ export * from './role-organization-create';
 export * from './role-relation';
 export * from './role-update';
 export * from './script-runner';
+export * from './search-resource-relation';
 export * from './server';
 export * from './server-blueprint';
 export * from './server-blueprint-spec';
