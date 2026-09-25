@@ -14686,11 +14686,21 @@
   ],
   "components": {
     "securitySchemes": {
-      "BearerAuth": {
+      "DevopnessBearer": {
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT",
         "description": "Some few endpoints do not require authentication, but pretty much anything else will require you to be authenticated.\n\nTo become authenticated you will need an API Token. For more information go to the [API Tokens](#tag/API-Tokens) section.\n"
+      },
+      "DevopnessOAuth": {
+        "type": "oauth2",
+        "description": "Sign in with a Devopness account to authorize requests from this page.\n\nThis authorization code flow returns a bearer token that Devopness accepts on protected endpoints.\n",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "/oauth/authorize",
+            "tokenUrl": "/oauth/token"
+          }
+        }
       }
     },
     "parameters": {
