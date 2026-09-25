@@ -385,7 +385,7 @@ x-tagGroups:
 
 components:
   securitySchemes:
-    BearerAuth:
+    DevopnessBearer:
       type: http
       scheme: bearer
       bearerFormat: JWT
@@ -393,6 +393,16 @@ components:
         Some few endpoints do not require authentication, but pretty much anything else will require you to be authenticated.
 
         To become authenticated you will need an API Token. For more information go to the [API Tokens](#tag/API-Tokens) section.
+    DevopnessOAuth:
+      type: oauth2
+      description: |
+        Sign in with a Devopness account to authorize requests from this page.
+
+        This authorization code flow returns a bearer token that Devopness accepts on protected endpoints.
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
   parameters:
     $ref: ./parameters.yaml
   schemas:
