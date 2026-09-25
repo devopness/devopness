@@ -573,6 +573,10 @@ ScriptRunner:
   $ref: ./auto-generated/models/script-runner.yaml
 ScriptRunnerList:
   $ref: ./auto-generated/models/script-runner-list.yaml
+SearchResourceList:
+  $ref: ./auto-generated/models/search-resource-list.yaml
+SearchResourceRelation:
+  $ref: ./auto-generated/models/search-resource-relation.yaml
 Server:
   $ref: ./auto-generated/models/server.yaml
 ServerBlueprint:

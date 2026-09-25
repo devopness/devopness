@@ -367,6 +367,9 @@
     $ref: ./auto-generated/endpoints/get-role.yaml
   put:
     $ref: ./auto-generated/endpoints/update-role.yaml
+/search:
+  get:
+    $ref: ./auto-generated/endpoints/list-search-resources.yaml
 '/servers/{server_id}':
   delete:
     $ref: ./auto-generated/endpoints/delete-server.yaml
