@@ -1,8 +1,8 @@
 import get from 'lodash/get'
 
 const fonts = {
-  roboto: 'Roboto',
-  montserrat: 'Montserrat',
+  roboto: 'Roboto, sans-serif',
+  montserrat: 'Montserrat, sans-serif',
   mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 } as const
 
