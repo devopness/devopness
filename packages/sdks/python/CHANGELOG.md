@@ -1,5 +1,25 @@
 # @devopness/sdk-python
 
+## 2.8.5
+
+### Patch Changes
+
+- [#3644](https://github.com/devopness/devopness/pull/3644) [`ff70f0a`](https://github.com/devopness/devopness/commit/ff70f0aa2b6634d26bb38d1346aa5152633c45fc) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Added Search, which lets you find resources you can access by name inside a specific organization.
+
+  Configure your API token and organization slug, then try this right away:
+
+  ```py
+  from devopness import DevopnessClient
+
+  devopness = DevopnessClient({"api_token": "your-api-token"})
+
+  results = devopness.search.list_search_resources(
+      "your-organization-slug",
+      "app",
+      "application",
+  )
+  ```
+
 ## 2.8.4
 
 ### Patch Changes
