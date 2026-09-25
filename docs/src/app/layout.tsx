@@ -28,8 +28,8 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
-        {/* '/docs/api/search' must stay in sync with basePath in next.config.mjs */}
-        <RootProvider search={{ options: { type: "static", api: "/docs/api/search" } }}>
+        {/* '/docs/search' must stay in sync with basePath in next.config.mjs */}
+        <RootProvider search={{ options: { type: "static", api: "/docs/search" } }}>
           {children}
           <SiteFooter />
         </RootProvider>
