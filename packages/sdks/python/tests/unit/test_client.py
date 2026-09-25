@@ -10,6 +10,9 @@ import httpx
 
 from devopness import DevopnessClient, DevopnessClientAsync, DevopnessClientConfig
 
+NON_PLURAL_SERVICE_NAMES = {"static", "search"}
+"""Service names that stay singular in the client surface."""
+
 
 def build_expected_services() -> set[str]:
     """Get all service module names from the services directory."""
@@ -23,7 +26,7 @@ def build_expected_services() -> set[str]:
         name = service_file.stem
         name = name.replace("_service", "")
 
-        if name != "static":
+        if name not in NON_PLURAL_SERVICE_NAMES:
             name = name + "s"
 
         services.add(name)
