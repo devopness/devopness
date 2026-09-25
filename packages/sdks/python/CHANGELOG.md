@@ -11,9 +11,7 @@
   ```py
   from devopness import DevopnessClient
 
-  devopness = DevopnessClient({
-      "api_token": "your-api-token"
-  })
+  devopness = DevopnessClient({"api_token": "your-api-token"})
 
   results = devopness.search.list_search_resources(
       "your-organization-slug",
