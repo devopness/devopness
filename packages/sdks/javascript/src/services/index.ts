@@ -16,6 +16,7 @@ export * from "./ProjectService";
 export * from "./ResourceEventService";
 export * from "./ResourceLinkService";
 export * from "./RoleService";
+export * from "./SearchService";
 export * from "./ServerService";
 export * from "./ServiceService";
 export * from "./SocialAccountService";
