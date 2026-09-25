@@ -438,6 +438,37 @@ hooks.beforeAll((transactions: Transaction[], done: () => void) => {
         hooks.log(`${tag} rewrite uri '${transaction.origin.resourceName}' => '${rewrittenUri}'`);
     });
 
+    after('listSearchResources200', (transaction: Transaction) => {
+        const tag = `[search]`;
+        const application = fixtures.get<any>('application');
+
+        if (!application || !transaction.test.valid || !transaction.real.body) {
+            return;
+        }
+
+        let results: Array<{ resource_id: number; resource_name: string; resource_type: string }>;
+
+        try {
+            results = JSON.parse(transaction.real.body);
+        } catch {
+            hooks.log(`${tag} unable to parse search response`);
+            transaction.fail = true;
+            return;
+        }
+
+        const matchesApplication = results.some((result) =>
+            result.resource_type === 'application' &&
+            (result.resource_id === application.id || result.resource_name === application.name)
+        );
+
+        if (!matchesApplication) {
+            hooks.log(
+                `${tag} search response did not include application '${application.name}' (id=${application.id})`
+            );
+            transaction.fail = true;
+        }
+    });
+
     const addValidExpiresAt = (body: any) => {
         body['expires_at'] = new Date(Date.now() + 60 * 60 * 1000).toISOString();
     }
