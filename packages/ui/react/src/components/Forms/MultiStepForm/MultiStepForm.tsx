@@ -66,6 +66,25 @@ type StepperDataProps = {
 
 type StringKeyOf<T> = Extract<keyof T, string>
 
+const normalizeApiErrors = (
+  errors: StepperErrorResponseData['errors']
+): Array<[string, string[]]> => {
+  if (!errors) return []
+
+  if (Array.isArray(errors)) {
+    return errors.flatMap((error) =>
+      Object.entries(error).map(
+        ([key, message]) => [key, [message]] as [string, string[]]
+      )
+    )
+  }
+
+  return Object.entries(errors).map(
+    ([key, message]) =>
+      [key, Array.isArray(message) ? message : [message]] as [string, string[]]
+  )
+}
+
 type MultiStepFormProps<T> = {
   /**
    * Function to get all form values.
@@ -300,15 +319,12 @@ const MultiStepForm = <T,>({
    * `useFormError` hook behavior.
    */
   useEffect(() => {
-    if (!isDefined(error?.errors) || Array.isArray(error.errors)) return
+    const apiFieldErrors = normalizeApiErrors(error?.errors)
 
-    Object.entries(error.errors).forEach(([name, message]) => {
-      const splittedName = name.split('.')
-      const parsedName = splittedName[splittedName.length - 1]
-
-      if (fieldList.includes(parsedName)) {
+    apiFieldErrors.forEach(([name, message]) => {
+      if (fieldList.includes(name)) {
         setError?.(
-          parsedName as never,
+          name as never,
           {
             type: 'api',
             message: message[0],
@@ -483,22 +499,7 @@ const MultiStepForm = <T,>({
 
   const handleDisplayAlertError = (errors: StepperErrorResponseData) => {
     if (errors?.message) {
-      const formattedErrors: Array<[string, string[]]> = isDefined(
-        errors.errors
-      )
-        ? Array.isArray(errors.errors)
-          ? errors.errors.reduce<Array<[string, string[]]>>(
-              (accumulator, error) =>
-                accumulator.concat(
-                  Object.entries(error as Record<string, string>).map(
-                    ([key, errorMessage]) =>
-                      [key, [errorMessage]] as [string, string[]]
-                  )
-                ),
-              []
-            )
-          : Object.entries(errors.errors)
-        : []
+      const formattedErrors = normalizeApiErrors(errors.errors)
 
       const nonFormFieldErrorsMessage = formattedErrors
         .filter(([key]) => !fieldList.includes(key))
@@ -535,21 +536,17 @@ const MultiStepForm = <T,>({
   }
 
   const handleRedirectToStepWithError = (error: StepperErrorResponseData) => {
-    if (error?.errors && !Array.isArray(error.errors)) {
-      for (const key in error.errors) {
-        const splittedName = key.split('.')
-        const parsedName = splittedName[splittedName.length - 1] as keyof T &
-          string
+    const apiFieldErrors = normalizeApiErrors(error?.errors)
 
-        if (fieldList.includes(parsedName)) {
-          const index = steppersData.findIndex((step) =>
-            step.validateFields.includes(parsedName)
-          )
-          if (index > ELEMENT_NOT_FOUND) {
-            setStepCurrent(index)
-          }
-          break
+    for (const [key] of apiFieldErrors) {
+      if (fieldList.includes(key)) {
+        const index = steppersData.findIndex((step) =>
+          step.validateFields.includes(key)
+        )
+        if (index > ELEMENT_NOT_FOUND) {
+          setStepCurrent(index)
         }
+        break
       }
     }
   }
@@ -577,10 +574,11 @@ const MultiStepForm = <T,>({
     if (steppersData.length > MAX_STEPS) {
       throw new Error(`This component has a limit of ${MAX_STEPS} steps.`)
     } else {
-      const fieldList: string[] = Object.keys(
-        getValues() as Record<string, unknown>
-      )
-      setFieldList(fieldList)
+      const fieldList = [
+        ...Object.keys(getValues() as Record<string, unknown>),
+        ...steppersData.flatMap((step) => step.validateFields),
+      ]
+      setFieldList([...new Set(fieldList)])
     }
   }, [steppersData])
 
