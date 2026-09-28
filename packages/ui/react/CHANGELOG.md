@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.208.1
+
+### Patch Changes
+
+- [#3651](https://github.com/devopness/devopness/pull/3651) [`7aac2a8`](https://github.com/devopness/devopness/commit/7aac2a80258b9d42c16cebcc442a398baab1db1f) Thanks [@therealrinku](https://github.com/therealrinku)! - Fix `MultiStepForm` so step validation works with conditionally rendered fields.
+
 ## 2.208.0
 
 ### Minor Changes
