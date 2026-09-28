@@ -66,40 +66,6 @@ type StepperDataProps = {
 
 type StringKeyOf<T> = Extract<keyof T, string>
 
-const normalizeApiErrors = (
-  errors: StepperErrorResponseData['errors']
-): Array<[string, string[]]> => {
-  if (!errors) return []
-
-  if (Array.isArray(errors)) {
-    return errors.flatMap((error) =>
-      Object.entries(error).map(
-        ([key, message]) => [key, [message]] as [string, string[]]
-      )
-    )
-  }
-
-  return Object.entries(errors).map(
-    ([key, message]) =>
-      [key, Array.isArray(message) ? message : [message]] as [string, string[]]
-  )
-}
-
-const findMatchingFieldName = (
-  errorKey: string,
-  fieldNames: readonly string[]
-): string | undefined => {
-  const exactMatch = fieldNames.find((fieldName) => fieldName === errorKey)
-
-  if (exactMatch) {
-    return exactMatch
-  }
-
-  return [...fieldNames]
-    .sort((a, b) => b.length - a.length)
-    .find((fieldName) => errorKey.endsWith(`.${fieldName}`))
-}
-
 type MultiStepFormProps<T> = {
   /**
    * Function to get all form values.
@@ -334,14 +300,15 @@ const MultiStepForm = <T,>({
    * `useFormError` hook behavior.
    */
   useEffect(() => {
-    const apiFieldErrors = normalizeApiErrors(error?.errors)
+    if (!isDefined(error?.errors) || Array.isArray(error.errors)) return
 
-    apiFieldErrors.forEach(([name, message]) => {
-      const matchingFieldName = findMatchingFieldName(name, fieldList)
+    Object.entries(error.errors).forEach(([name, message]) => {
+      const splittedName = name.split('.')
+      const parsedName = splittedName[splittedName.length - 1]
 
-      if (matchingFieldName) {
+      if (fieldList.includes(parsedName)) {
         setError?.(
-          matchingFieldName as never,
+          parsedName as never,
           {
             type: 'api',
             message: message[0],
@@ -516,10 +483,25 @@ const MultiStepForm = <T,>({
 
   const handleDisplayAlertError = (errors: StepperErrorResponseData) => {
     if (errors?.message) {
-      const formattedErrors = normalizeApiErrors(errors.errors)
+      const formattedErrors: Array<[string, string[]]> = isDefined(
+        errors.errors
+      )
+        ? Array.isArray(errors.errors)
+          ? errors.errors.reduce<Array<[string, string[]]>>(
+              (accumulator, error) =>
+                accumulator.concat(
+                  Object.entries(error as Record<string, string>).map(
+                    ([key, errorMessage]) =>
+                      [key, [errorMessage]] as [string, string[]]
+                  )
+                ),
+              []
+            )
+          : Object.entries(errors.errors)
+        : []
 
       const nonFormFieldErrorsMessage = formattedErrors
-        .filter(([key]) => !findMatchingFieldName(key, fieldList))
+        .filter(([key]) => !fieldList.includes(key))
         .map(([key, errorMessages]) => (
           <Fragment key={key}>
             {key}: {errorMessages.join(', ')}
@@ -553,19 +535,21 @@ const MultiStepForm = <T,>({
   }
 
   const handleRedirectToStepWithError = (error: StepperErrorResponseData) => {
-    const apiFieldErrors = normalizeApiErrors(error?.errors)
+    if (error?.errors && !Array.isArray(error.errors)) {
+      for (const key in error.errors) {
+        const splittedName = key.split('.')
+        const parsedName = splittedName[splittedName.length - 1] as keyof T &
+          string
 
-    for (const [key] of apiFieldErrors) {
-      const matchingFieldName = findMatchingFieldName(key, fieldList)
-
-      if (matchingFieldName) {
-        const index = steppersData.findIndex((step) =>
-          step.validateFields.includes(matchingFieldName)
-        )
-        if (index > ELEMENT_NOT_FOUND) {
-          setStepCurrent(index)
+        if (fieldList.includes(parsedName)) {
+          const index = steppersData.findIndex((step) =>
+            step.validateFields.includes(parsedName)
+          )
+          if (index > ELEMENT_NOT_FOUND) {
+            setStepCurrent(index)
+          }
+          break
         }
-        break
       }
     }
   }
@@ -678,3 +662,4 @@ const MultiStepForm = <T,>({
 
 export { MultiStepForm, FormActionButton }
 export type { MultiStepFormProps, StepperDataProps }
+console.log('haha')
