@@ -662,4 +662,3 @@ const MultiStepForm = <T,>({
 
 export { MultiStepForm, FormActionButton }
 export type { MultiStepFormProps, StepperDataProps }
-console.log('haha')
