@@ -577,10 +577,11 @@ const MultiStepForm = <T,>({
     if (steppersData.length > MAX_STEPS) {
       throw new Error(`This component has a limit of ${MAX_STEPS} steps.`)
     } else {
-      const fieldList: string[] = Object.keys(
-        getValues() as Record<string, unknown>
-      )
-      setFieldList(fieldList)
+      const fieldList = [
+        ...Object.keys(getValues() as Record<string, unknown>),
+        ...steppersData.flatMap((step) => step.validateFields),
+      ]
+      setFieldList([...new Set(fieldList)])
     }
   }, [steppersData])
 

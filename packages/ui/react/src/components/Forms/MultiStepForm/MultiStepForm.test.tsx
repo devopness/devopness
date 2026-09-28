@@ -13,32 +13,41 @@ type FormValues = {
   token: string
 }
 
+type NestedRepositoryFormValues = {
+  repository: {
+    name: string
+    owner: string
+  }
+  token: string
+}
+
 const theme = {}
 
 const renderWithTheme = (ui: React.ReactElement) =>
   render(<ThemeProvider theme={theme}>{ui}</ThemeProvider>)
 
-type FormMethodsOverrides = {
-  getValues?: () => FormValues
+type FormMethodsOverrides<T = FormValues> = {
+  getValues?: () => T
   trigger?: (fields?: any) => Promise<boolean>
   setError?: (...args: any[]) => void
   clearErrors?: (name?: string | string[]) => void
   errors?: Record<string, unknown>
   handleSubmit?: (
-    onValid: (data: FormValues) => void
+    onValid: (data: T) => void
   ) => (event?: React.BaseSyntheticEvent) => void | Promise<void>
 }
 
-const createFormMethods = (overrides: FormMethodsOverrides = {}) => ({
-  getValues: () => ({ name: '', email: '', token: '' }),
+const createFormMethods = <T = FormValues,>(
+  overrides: FormMethodsOverrides<T> = {}
+) => ({
+  getValues: () => ({ name: '', email: '', token: '' }) as T,
   trigger: vi.fn().mockResolvedValue(true),
   setError: vi.fn(),
   errors: {},
   handleSubmit:
-    (onValid: (data: FormValues) => void) =>
-    (event?: React.BaseSyntheticEvent) => {
+    (onValid: (data: T) => void) => (event?: React.BaseSyntheticEvent) => {
       event?.preventDefault()
-      onValid({ name: '', email: '', token: '' })
+      onValid({ name: '', email: '', token: '' } as T)
     },
   ...overrides,
 })
@@ -419,6 +428,40 @@ describe('Steppers', () => {
         message: 'is invalid',
       })
     })
+  })
+
+  it('validates declared step fields even when they are not present in getValues', async () => {
+    const trigger = vi.fn().mockResolvedValue(false)
+    const methods = createFormMethods<NestedRepositoryFormValues>({
+      trigger,
+      getValues: () => ({ repository: { name: '', owner: '' }, token: '' }),
+    })
+    const nestedSteps: StepperDataProps[] = [
+      {
+        label: 'Repository',
+        component: <div>Repository step</div>,
+        validateFields: ['repository.name'],
+      },
+      {
+        label: 'Confirmation',
+        component: <div>Confirmation step</div>,
+        validateFields: ['token'],
+      },
+    ]
+
+    renderWithTheme(
+      <MultiStepForm<NestedRepositoryFormValues>
+        {...methods}
+        steppersData={nestedSteps}
+      />
+    )
+
+    await userEvent.click(screen.getByText('Next'))
+
+    await waitFor(() => {
+      expect(trigger).toHaveBeenCalledWith(['repository.name'])
+    })
+    expect(screen.getByTestId('step2')).toHaveStyle('display: none')
   })
 
   it('clears the api error when field value changes and advances to next step on clicking next', async () => {
