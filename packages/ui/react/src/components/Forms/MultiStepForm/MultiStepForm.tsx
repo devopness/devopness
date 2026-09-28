@@ -85,6 +85,21 @@ const normalizeApiErrors = (
   )
 }
 
+const findMatchingFieldName = (
+  errorKey: string,
+  fieldNames: readonly string[]
+): string | undefined => {
+  const exactMatch = fieldNames.find((fieldName) => fieldName === errorKey)
+
+  if (exactMatch) {
+    return exactMatch
+  }
+
+  return [...fieldNames]
+    .sort((a, b) => b.length - a.length)
+    .find((fieldName) => errorKey.endsWith(`.${fieldName}`))
+}
+
 type MultiStepFormProps<T> = {
   /**
    * Function to get all form values.
@@ -322,9 +337,11 @@ const MultiStepForm = <T,>({
     const apiFieldErrors = normalizeApiErrors(error?.errors)
 
     apiFieldErrors.forEach(([name, message]) => {
-      if (fieldList.includes(name)) {
+      const matchingFieldName = findMatchingFieldName(name, fieldList)
+
+      if (matchingFieldName) {
         setError?.(
-          name as never,
+          matchingFieldName as never,
           {
             type: 'api',
             message: message[0],
@@ -502,7 +519,7 @@ const MultiStepForm = <T,>({
       const formattedErrors = normalizeApiErrors(errors.errors)
 
       const nonFormFieldErrorsMessage = formattedErrors
-        .filter(([key]) => !fieldList.includes(key))
+        .filter(([key]) => !findMatchingFieldName(key, fieldList))
         .map(([key, errorMessages]) => (
           <Fragment key={key}>
             {key}: {errorMessages.join(', ')}
@@ -539,9 +556,11 @@ const MultiStepForm = <T,>({
     const apiFieldErrors = normalizeApiErrors(error?.errors)
 
     for (const [key] of apiFieldErrors) {
-      if (fieldList.includes(key)) {
+      const matchingFieldName = findMatchingFieldName(key, fieldList)
+
+      if (matchingFieldName) {
         const index = steppersData.findIndex((step) =>
-          step.validateFields.includes(key)
+          step.validateFields.includes(matchingFieldName)
         )
         if (index > ELEMENT_NOT_FOUND) {
           setStepCurrent(index)

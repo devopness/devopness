@@ -559,6 +559,71 @@ describe('Steppers', () => {
     expect(screen.getByTestId('step2')).toHaveStyle('display: none')
   })
 
+  it('maps nested API errors onto flat fields and redirects to the matching step', async () => {
+    const setError = vi.fn()
+    const methods = createFormMethods<FormValues>({
+      setError,
+      getValues: () => ({
+        name: 'devopness-web-app',
+        email: 'devopness@example.com',
+        token: '123',
+      }),
+    })
+    const flatSteps: StepperDataProps[] = [
+      {
+        label: 'Account',
+        component: (
+          <div>
+            <input
+              aria-label="name"
+              name="name"
+            />
+          </div>
+        ),
+        validateFields: ['name'],
+      },
+      {
+        label: 'Confirmation',
+        component: <div>Confirmation step</div>,
+        validateFields: ['token'],
+      },
+    ]
+
+    const { rerender } = renderWithTheme(
+      <MultiStepForm<FormValues>
+        {...methods}
+        steppersData={flatSteps}
+        initialStep={1}
+      />
+    )
+
+    rerender(
+      <ThemeProvider theme={theme}>
+        <MultiStepForm<FormValues>
+          {...methods}
+          steppersData={flatSteps}
+          initialStep={1}
+          error={{
+            message: 'Validation failed',
+            errors: [{ 'repository.name': 'is invalid' }],
+          }}
+        />
+      </ThemeProvider>
+    )
+
+    await waitFor(() => {
+      expect(setError).toHaveBeenCalledWith('name', {
+        type: 'api',
+        message: 'is invalid',
+      })
+    })
+
+    await waitFor(() => {
+      expect(screen.getByTestId('step1')).not.toHaveStyle('display: none')
+    })
+    expect(screen.getByTestId('step2')).toHaveStyle('display: none')
+  })
+
   it('redirects to the step containing a nested errored field', async () => {
     const methods = createFormMethods<NestedRepositoryFormValues>({
       getValues: () => ({
