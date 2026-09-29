@@ -90,7 +90,7 @@ const Link = ({
   ...props
 }: React.PropsWithChildren<LinkProps>) => (
   <StyledLink
-    as={isExternalUrl ? as : undefined}
+    as={as}
     rel={rel}
     {...(as || isExternalUrl ? { to: href } : { href })}
     target={isExternalUrl ? target : '_self'}
