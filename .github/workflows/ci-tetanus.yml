@@ -1,0 +1,148 @@
+name: CI - Tetanus
+
+# Enforcing engineering checks. Every step here fails the build when violated;
+# none of them is advisory. A metric that could not be measured exits non-zero,
+# because there is no path from "could not measure" to "pass".
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: tetanus-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  tetanus:
+    name: Engineering invariants
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tools/tetanus
+
+      - name: Build the substrate
+        working-directory: tools/tetanus
+        run: cargo build --locked --all-targets
+
+      - name: Unit tests
+        working-directory: tools/tetanus
+        run: cargo test --locked
+
+      - name: Clippy
+        working-directory: tools/tetanus
+        run: cargo clippy --locked --all-targets -- -D warnings
+
+      - name: Formatting
+        working-directory: tools/tetanus
+        run: cargo fmt --check
+
+      # The environment must be able to run every check. A substrate that cannot
+      # report on the repository is not enforcing anything.
+      - name: Doctor
+        run: ./tools/tetanus/target/debug/tetanus doctor
+
+      # Invariant 1: the generated-artifact registry matches the working tree.
+      # 1511 of 2798 tracked files are generated; every metric below depends on
+      # that segregation being correct.
+      - name: Classify generated artifacts
+        run: ./tools/tetanus/target/debug/tetanus classify
+
+      # Invariant 1b: the declared contract matches the implementation. The
+      # specs are what every other subsystem is held to, and nothing else
+      # compares them to the code. Eight false claims were found by reading, and
+      # seven of the eight had been written in the same change as the drift.
+      - name: Spec conformance
+        run: ./tools/tetanus/target/debug/tetanus specs
+
+      # Invariant 2: every module parses. A module that does not parse cannot be
+      # reasoned about, so every metric depending on it would be unknown.
+      - name: AST validity
+        run: ./tools/tetanus/target/debug/tetanus ast
+
+      # Invariant 3: the graph is deterministic. Builds twice with the cache
+      # disabled and compares digests. A nondeterministic graph makes every
+      # reachability and ratchet result untrustworthy.
+      - name: Graph determinism
+        run: ./tools/tetanus/target/debug/tetanus graph-verify
+
+      # Invariant 4: the test manifest is authoritative. An unregistered test
+      # file is a gap in the verification model, not a detail.
+      - name: Test manifest reconciliation
+        run: ./tools/tetanus/target/debug/tetanus test validate
+      - name: Test manifest completeness
+        run: ./tools/tetanus/target/debug/tetanus test reconcile
+
+      # Invariant 5: living.toml is the authoritative state, and the Markdown is
+      # derived from it rather than edited alongside it.
+      - name: Living state mirrors in sync
+        run: ./tools/tetanus/target/debug/tetanus living check
+
+      # Invariant 6: the committed baseline matches a real measurement. This is
+      # what stops "raise the baseline to go green".
+      - name: Ratchet baseline is a real measurement
+        run: ./tools/tetanus/target/debug/tetanus ratchet baseline-check
+
+      # Invariant 7: no metric has regressed against its baseline.
+      - name: Ratchet non-regression
+        run: ./tools/tetanus/target/debug/tetanus ratchet check
+
+      # Invariant 8: the dependency graph is complete, and every security metric
+      # is measured or explicitly declared unmeasurable. A lockfile that cannot
+      # be read fails here rather than contributing zeros, because an empty
+      # security report and an unreadable lockfile are otherwise identical.
+      - name: Dependency and security graph
+        run: ./tools/tetanus/target/debug/tetanus deps report
+
+      # A documentation-only change must not silently alter canonical state.
+      - name: Canonical state was updated
+        if: always()
+        run: ./tools/tetanus/target/debug/tetanus state check
+
+  summary:
+    name: Engineering summary
+    runs-on: ubuntu-latest
+    needs: tetanus
+    if: always()
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tools/tetanus
+      - name: Build
+        working-directory: tools/tetanus
+        run: cargo build --locked
+      - name: Report
+        if: needs.tetanus.result == 'success'
+        run: |
+          {
+            echo "## Engineering state"
+            echo
+            ./tools/tetanus/target/debug/tetanus ratchet check || true
+            echo
+            ./tools/tetanus/target/debug/tetanus graph || true
+            echo
+            ./tools/tetanus/target/debug/tetanus deps report || true
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Report failure
+        if: needs.tetanus.result != 'success'
+        run: |
+          {
+            echo "## Engineering checks failed"
+            echo
+            echo "See the \`tetanus\` job log. \`tetanus doctor\` reports which inputs are missing."
+          } >> "$GITHUB_STEP_SUMMARY"

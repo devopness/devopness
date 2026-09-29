@@ -1,27 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "devopness",
-  "packageManager": "npm@11.17.0",
-  "workspaces": [
-    "packages/sdks/*",
-    "packages/ui/*"
-  ],
+  "packageManager": "pnpm@12.6.0",
   "dependencies": {
     "@changesets/changelog-github": "^1.0.1",
     "@changesets/cli": "^3.0.3"
   },
   "scripts": {
-    "format:changelogs": "vp fmt \"packages/*/*/CHANGELOG.md\""
+    "audit": "turbo run audit",
+    "build": "turbo run build --filter=!devopness-api-docs",
+    "coverage": "turbo run coverage",
+    "deps": "pnpm run tetanus deps report",
+    "format:changelogs": "vp fmt \"packages/*/*/CHANGELOG.md\"",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:affected": "pnpm run --silent tetanus test affected --base ${BASE:-origin/main} --format turbo --emit-lists | xargs -r turbo run test:affected",
+    "test:affected:files": "pnpm run tetanus test affected --base ${BASE:-origin/main} --format files",
+    "test:affected:json": "pnpm run tetanus test affected --base ${BASE:-origin/main} --format json",
+    "tetanus": "cargo run --release --quiet --manifest-path tools/tetanus/Cargo.toml --",
+    "tetanus:check": "pnpm run tetanus doctor && pnpm run tetanus classify && pnpm run tetanus specs && pnpm run tetanus ast && pnpm run tetanus graph-verify && pnpm run tetanus test validate && pnpm run tetanus test reconcile && pnpm run tetanus living check && pnpm run tetanus bugs check && pnpm run tetanus ratchet baseline-check && pnpm run tetanus ratchet check && pnpm run tetanus deps report",
+    "typecheck": "turbo run typecheck",
+    "bugs:check": "pnpm run --silent tetanus bugs check",
+    "bugs:generate": "pnpm run --silent tetanus bugs generate",
+    "specs:check": "pnpm run --silent tetanus specs"
   },
   "devDependencies": {
-    "jsdom": "^30.0.1",
+    "jsdom": "30.0.1",
+    "turbo": "2.11.4",
     "vite-plus": "0.3.3"
-  },
-  "overrides": {
-    "babel-plugin-istanbul": {
-      "test-exclude": "^7.0.1"
-    },
-    "test-exclude": "^7.0.1",
-    "glob": "^11.0.0"
   }
 }

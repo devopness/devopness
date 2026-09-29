@@ -1,0 +1,67 @@
+version = 1
+
+[subsystem]
+name = "cache"
+
+# Tetanus declares the caching behaviour it needs and lets an implementation
+# satisfy it. It does not maintain a bespoke cache hierarchy, which keeps the
+# graph backend swappable and keeps any single cache optional rather than
+# load-bearing.
+#
+# Correctness rule: a cache hit must never return a stale value.
+#
+# The key is the content digest of the input, the parser version, and a context
+# digest covering the package layout, the generated-artifact registry and the
+# tracked-file list. This was previously documented as content plus version
+# only, which was wrong: two stale results were observed and fixed before this
+# line was corrected.
+#
+#   * Reassigning a file to a different package changes the analysis but not the
+#     content, so a content-only key returns the previous package's answer.
+#   * Adding or removing a file changes which specifiers resolve, so a
+#     content-only key returns an answer computed against a different set.
+#
+# A cache that can return a wrong answer is worse than no cache, which is why
+# the key covers the whole input set rather than the file in front of it.
+#
+# The consequence, learned the hard way twice in one session: the parse result
+# now carries derived findings, including the Power of Ten counts, so changing a
+# *rule* invalidates cached results exactly as changing the source does.
+# `PARSER_VERSION` must be bumped when extraction or rule behaviour changes, or
+# the previous answer is replayed and the fix looks like it did nothing.
+
+[providers]
+null = "default; stores nothing, because correctness must not depend on a cache"
+memory = "process-local, bounded"
+filesystem = "content-addressed on disk, survives across runs"
+the_six = "optional; falls back to filesystem when unconfigured"
+
+[default]
+provider = "filesystem"
+
+[the_six]
+crate = "thesix"
+version = "0.2.3"
+configured = true
+optional = true
+cargo_feature = "the_six"
+fallback = "filesystem"
+
+# Measured, not assumed: theSix is process-local and cannot be the persistence
+# layer. Its Cachelito control index lives in memory, and `CacheManager::get`
+# consults that index alone, so an entry the index does not know about is a
+# miss even when a lower tier holds the bytes.
+#
+#   set, reopen manager, get          -> Err(Miss)
+#   set, reopen manager, get_or_fetch -> Err(Timeout)
+#   set, reopen L4SledBackend, get    -> Ok(Some(bytes))
+#
+# It is a within-run accelerator: single-flight population, explicit policy
+# routing, and tier health tracking. Cross-run persistence is the filesystem
+# provider, which addresses entries by content digest and is trivially
+# discoverable. `provider` above therefore stays `filesystem`.
+
+# `DefaultPolicy` routes writes to L1, a stub, so every entry would be discarded
+# while still reporting hits. A custom policy selecting L4 is theSix's intended
+# extension point and is used instead.
+policy = "content_addressed_l4"

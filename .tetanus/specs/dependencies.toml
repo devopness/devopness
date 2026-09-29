@@ -1,0 +1,43 @@
+version = 1
+
+[subsystem]
+name = "dependencies"
+
+# One graph over every ecosystem in the repository, built from lockfiles.
+#
+# The point is not a list of packages. It is the ability to answer, for any
+# package, whether it can reach production code, and whether anything changed
+# underneath it. A dependency that exists only in a test scope is a different
+# risk from one on the runtime path, and a flat list cannot express that.
+
+[scope]
+tracked_ecosystems = ["npm", "pypi", "crates.io"]
+resolution = "lockfile_only"
+manifests_are_not_a_source = true
+
+[node]
+identity = "name, version, ecosystem"
+# Two versions of one name are two nodes, not one node with two values, because
+# they are two copies of the code and an advisory against one does not cover the
+# other.
+version_part_of_identity = true
+
+[edge]
+kinds = ["requires", "dev_requires"]
+# Dev edges are recorded rather than discarded so production reachability can be
+# computed by subtracting them, instead of requiring a second traversal to prove
+# a package is test-only.
+dev_edges_are_first_class = true
+
+[propagation]
+# A package is production-reachable if a non-dev edge path reaches it from a
+# published package. Conservative in one direction: a cycle of only dev edges
+# never makes a package production-reachable.
+production_root = "workspace packages that are published"
+algorithm = "forward traversal of non-dev edges from each production root"
+
+[consistency]
+# A direct dependency named in a manifest but absent from the lockfile means the
+# lockfile is stale. Reported as a failure, because the alternative is silently
+# measuring a tree that will not be installed.
+unresolved_direct_dependency_is_failure = true

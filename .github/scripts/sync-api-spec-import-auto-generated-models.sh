@@ -28,6 +28,6 @@ export AWS_ACCESS_KEY_ID="${CREDENTIAL_AWS_ACCESS_KEY_ID}"
 export AWS_SECRET_ACCESS_KEY="${CREDENTIAL_AWS_SECRET_ACCESS_KEY}"
 export AWS_DEFAULT_REGION=us-east-1
 
-npm run api-docs-zip-download
-npm run api-docs-zip-extract
-npm run api-docs-make-description-files
+pnpm run api-docs-zip-download
+pnpm run api-docs-zip-extract
+pnpm run api-docs-make-description-files

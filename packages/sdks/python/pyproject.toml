@@ -1,6 +1,17 @@
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+# hatchling, not uv_build and not poetry-core.
+#
+# The backend is the one thing in this package that a published artifact depends
+# on, so it is changed deliberately rather than by convenience. hatchling is the
+# conventional choice for a published library and reproduces poetry-core's
+# src-layout behaviour exactly, which keeps the wheel's top-level `devopness/`
+# and `devopness/py.typed` placement identical to what is already on PyPI.
+#
+# uv is used for the lockfile, the environment, lint, typecheck and tests. It is
+# not the build backend, because the backend and the package manager are
+# separate concerns and only one of them is on the release path.
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
 
 [project]
 name = "devopness"
@@ -51,25 +62,45 @@ dependencies = [
   # httpcore is a transitive dependency of httpx (which allows any 1.*),
   # but only httpcore >=1.0.9 guarantees h11 >=0.16 with the security fix.
   # Related issue: https://github.com/devopness/devopness/security/dependabot/63
-  "httpcore (>=1.0.9)",
-  "httpx (>=0.28.1,<0.29.0)",
-  "pydantic (>=2.13.5,<3.0.0)",
+  # Poetry's parenthesised range syntax is gone; PEP 508 spells it plainly.
+  "httpcore>=1.0.9",
+  "httpx>=0.28.1,<0.29.0",
+  "pydantic>=2.13.5,<3.0.0",
 ]
 
 [project.urls]
 homepage = "https://www.devopness.com"
 repository = "https://github.com/devopness/devopness"
 
-[tool.poetry]
-packages = [
-  { include = "devopness", from = "src", to = "." },
+# PEP 735 dependency group, replacing `[tool.poetry.group.dev.dependencies]`.
+# Poetry's caret ranges become lower bounds: the lockfile pins the exact version,
+# so encoding an upper bound here as well would only create a second place for
+# the version to be wrong.
+[dependency-groups]
+dev = [
+  "openapi-generator-cli>=7.25.0; python_version < '4.0'",
+  "ruff>=0.16.9",
+  "mypy>=2.3.1",
 ]
-exclude = ["src/devopness/generated/.openapi-generator-ignore"]
 
-[tool.poetry.group.dev.dependencies]
-openapi-generator-cli = { version = "7.25.0", markers = "python_version < '4.0'" }
-ruff = "^0.16.9"
-mypy = "^2.3.1"
+[tool.hatch.build.targets.wheel]
+# `src` layout, matching what poetry-core produced: the wheel contains
+# `devopness/` at the top level, not `src/devopness/`.
+packages = ["src/devopness"]
+# The generator's cache marker is not part of the distribution. It was excluded
+# under poetry and must stay excluded, or both the sdist and the wheel ship it.
+exclude = [
+  "src/devopness/generated/.openapi-generator-ignore",
+]
+
+# TestPiPy, migrated from `poetry.toml`. uv requires an explicit index, and
+# `explicit = true` is what stops packages that are not on TestPiPy from being
+# resolved from it: without it, the test index would shadow the real one for
+# every dependency.
+[[tool.uv.index]]
+name = "test-pypi"
+url = "https://test.pypi.org/legacy/"
+explicit = true
 
 [tool.ruff]
 line-length = 88

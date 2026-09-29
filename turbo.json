@@ -1,0 +1,151 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "stream",
+
+  // Inputs that invalidate every task when they change. `pnpm-lock.yaml` and
+  // `pnpm-workspace.yaml` because they decide what is installed, and the shared
+  // OpenAPI spec because it produces both SDKs' generated models: a change there
+  // invalidates the JS SDK build, the Python SDK build and anything importing
+  // them, and none of those changes touch those packages' own sources.
+  "globalDependencies": [
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "packages/sdks/common/spec.json"
+  ],
+  "globalEnv": ["NODE_ENV", "CI"],
+
+  "tasks": {
+    // Per-task configuration. Turbo runs a task for every package that declares
+    // the script, so a package whose build cannot run in a normal pull request
+    // has to opt out by name rather than by being forgotten.
+    //
+    // `devopness-api-docs` is excluded from `build` for three reasons, all
+    // concrete: its build needs repository secrets (an `.env` with API
+    // credentials) and runs Dredd against a live spec, so it cannot pass in an
+    // ordinary PR job; it has a dedicated secret-gated workflow for exactly that;
+    // and it currently fails on Node 24 in shelljs 0.8.5, inside code this change
+    // does not touch, which is a pre-existing break and not something a task
+    // graph should quietly absorb or hide.
+    //
+    // It still lints, typechecks and tests under Turbo. Only `build` is excluded,
+    // and only for `build`; the other tasks still run for it.
+    //
+    // The exclusion lives in the root `build:workspace` script, not here: Turbo
+    // 2.11.4 has no per-task package filter (its schema has neither
+    // `excludedPackages` nor `packages`), so a task cannot opt a package out.
+    "build": {
+      "dependsOn": ["codegen", "^build"],
+      "inputs": [
+        "src/**",
+        "tests/**",
+        "package.json",
+        "tsconfig*.json",
+        "vite.config.ts",
+        "vitest.config.ts",
+        "openapitools.json",
+        "!**/*.test.ts",
+        "!**/*.test.tsx",
+        "!**/*.spec.ts"
+      ],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+
+    // `test` does not depend on `^build`. The test runners compile from source
+    // through their own transform, so waiting for every upstream package to
+    // build first buys nothing and is the single largest source of avoidable CI
+    // time. `typecheck` is the task that genuinely needs the build output.
+    "test": {
+      "dependsOn": [],
+      "inputs": [
+        "src/**",
+        "tests/**",
+        "package.json",
+        "tsconfig*.json",
+        "vite.config.ts",
+        "vitest.config.ts"
+      ],
+      "outputs": []
+    },
+
+    "lint": {
+      "dependsOn": [],
+      "inputs": [
+        "src/**",
+        "tests/**",
+        "package.json",
+        "vite.config.ts",
+        "tsconfig*.json"
+      ],
+      "outputs": []
+    },
+
+    // `typecheck` depends on `codegen`, not on `^build`.
+    //
+    // A package that generates its own sources cannot typecheck on a fresh
+    // checkout until codegen has run, and `^build` is upstream builds only, so
+    // the dependency was simply absent and typecheck failed on 40 unresolved
+    // generated imports. Expressing codegen as its own task also makes it
+    // cacheable, which matters because it is the slowest step in the JS SDK build.
+    "codegen": {
+      "dependsOn": [],
+      "inputs": [
+        "src/api/generator/templates/**",
+        "openapitools.json",
+        "package.json",
+        "$TURBO_ROOT$/packages/sdks/common/spec.json"
+      ],
+      "outputs": ["src/api/generated/**"]
+    },
+
+    "typecheck": {
+      "dependsOn": ["codegen", "^build"],
+      "inputs": ["src/**", "package.json", "tsconfig*.json"],
+      "outputs": []
+    },
+
+    // Manifest-driven test selection.
+    //
+    // `test:affected` runs only the tests `testing/tests.toml` says a change set
+    // affects. The affected-file list is an explicit input via `$TURBO_ROOT$`,
+    // because a cached result is only correct for the list that produced it: a
+    // different list means a different test run, and without this the cache would
+    // replay "1 test passed" for a change that affects 400.
+    //
+    // `$TURBO_ROOT$` is the only way to reference a path outside the package,
+    // and it is what makes the list an input rather than an invisible one.
+    "test:affected": {
+      "dependsOn": [],
+      "inputs": [
+        "src/**",
+        "tests/**",
+        "package.json",
+        "tsconfig*.json",
+        "vite.config.ts",
+        "vitest.config.ts",
+        "$TURBO_ROOT$/.tetanus/affected/**"
+      ],
+      "outputs": []
+    },
+
+    "coverage": {
+      "dependsOn": [],
+      "outputs": ["coverage/**"]
+    },
+
+    "audit": {
+      "inputs": ["package.json", "pnpm-lock.yaml"],
+      "outputs": []
+    },
+
+    "graph": {
+      "dependsOn": ["^build"],
+      "inputs": ["src/**", "package.json"],
+      "outputs": []
+    },
+
+    "package": {
+      "dependsOn": ["build", "test"],
+      "outputs": []
+    }
+  }
+}

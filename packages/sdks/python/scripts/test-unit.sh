@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-# Script to run the test unit suite against the Devopness SDK - Python
+# Run the unit test suite against the Devopness API - Python
 
 set -euo pipefail
 
-echo "📦  Installing Devopness SDK - Python..."
-set +e
-  INSTALL_OUTPUT=$(poetry install 2>&1)
-  INSTALL_EXIT_CODE=$?
-set -e
-
-if [[ $INSTALL_EXIT_CODE -ne 0 ]]; then
-  echo "❌  An error occurred during installation:"
-  echo "$INSTALL_OUTPUT"
-  exit $INSTALL_EXIT_CODE
+echo "📦  Syncing Devopness API - Python..."
+# `--locked` fails if uv.lock and pyproject.toml have drifted, so CI cannot
+# silently resolve a different dependency set from the one committed.
+# `--inexact` keeps the generated models that `build-sdk-python` produced in the
+# working tree; a strict sync would remove them, because they are not part of the
+# sdist.
+if ! UV_OUTPUT=$(uv sync --locked --inexact 2>&1); then
+  echo "❌  An error occurred during sync:"
+  echo "$UV_OUTPUT"
+  exit 1
 fi
 
 echo "🧪  Running Unit Tests..."
-python -m unittest discover -vv -b -s tests/unit
+uv run --no-sync python -m unittest discover -vv -b -s tests/unit

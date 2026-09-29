@@ -1,0 +1,407 @@
+version = 1
+
+# TOML requires scalar keys to precede any table or array-of-tables header, so
+# `phase` is declared here rather than in its own section.
+phase = "foundation"
+
+# Canonical engineering state for the Devopness repository.
+#
+# CHANGELOG.md, HANDOVER.md and SESSION.md are rendered from this file by
+# `tetanus living generate` and checked by `tetanus living check`. Editing one
+# of those Markdown files by hand is editing generated output, and CI will say
+# so.
+#
+# Product release notes are a different thing entirely: they live in each
+# package's own CHANGELOG.md, which Changesets owns.
+
+[project]
+name = "devopness"
+cli_name = "devopness"
+engineering_substrate = "tetanus"
+description = "Open source packages and documentation for Devopness."
+
+# ---------------------------------------------------------------- objectives
+
+[[objective]]
+id = "obj-segregate-generated"
+statement = "Segregate generated code from hand-written code so every metric is meaningful."
+status = "done"
+
+[[objective]]
+id = "obj-deterministic-graph"
+statement = "Build a deterministic, reconstructable engineering graph over the repository."
+status = "done"
+
+[[objective]]
+id = "obj-authoritative-state"
+statement = "Make living.toml the single authoritative representation of engineering state."
+status = "done"
+
+[[objective]]
+id = "obj-test-manifest"
+statement = "Make the test manifest authoritative rather than relying on filesystem discovery."
+status = "active"
+
+[[objective]]
+id = "obj-ratchets"
+statement = "Ratchet every quality metric so regressions fail CI instead of accumulating."
+status = "active"
+
+[[objective]]
+id = "obj-security-graph"
+statement = "Build one dependency and security graph over every lockfile, and ratchet what it can measure."
+status = "done"
+
+[[objective]]
+id = "obj-task-graph"
+statement = "Make the manifest drive test selection, and make the task graph and its cache authoritative for CI."
+status = "done"
+
+[[objective]]
+id = "obj-toolchain-js"
+statement = "Consolidate JavaScript and TypeScript on a pnpm workspace with a Turborepo task graph."
+status = "done"
+
+[[objective]]
+id = "obj-toolchain-python"
+statement = "Move the Python SDK from Poetry to uv with a hatchling build backend."
+status = "done"
+
+# ---------------------------------------------------------------------- work
+
+[[work]]
+id = "w-tetanus-core"
+summary = "Rust substrate: stable identifiers, deterministic graph algorithms, ratchet semantics."
+status = "done"
+scope = ["tools/tetanus/crates/tetanus-core", "tools/tetanus/crates/tetanus-config"]
+notes = "Includes the metric-hash mechanism that stops a metric being redefined to hide a regression."
+
+[[work]]
+id = "w-generated-registry"
+summary = "Generated-artifact registry with classify enforcing registry/tree agreement."
+status = "done"
+scope = [".tetanus/generated.toml"]
+notes = "1511 of 2798 tracked files are generated. Segregating them is the prerequisite for every other metric."
+
+[[work]]
+id = "w-ast-engine"
+summary = "TypeScript and Python front ends lowering to one intermediate representation."
+status = "done"
+scope = ["tools/tetanus/crates/tetanus-ast"]
+notes = "oxc for TS/TSX (same parser family as vite-plus), rustpython-parser for Python. 1347 modules, 0 parse failures."
+
+[[work]]
+id = "w-graph"
+summary = "Engineering graph with reachability, cycles, fan-in/fan-out and digest determinism."
+status = "done"
+scope = ["tools/tetanus/crates/tetanus-graph", "tools/tetanus/crates/tetanus/src/workspace.rs"]
+
+[[work]]
+id = "w-cache"
+summary = "CacheProvider abstraction with null, memory and filesystem implementations."
+status = "done"
+scope = ["tools/tetanus/crates/tetanus-cache"]
+notes = "theSix is isolated behind one open() call and falls back to filesystem. Awaiting crate coordinates."
+
+[[work]]
+id = "w-task-graph"
+summary = "Wire the test manifest into Turborepo, with task caching and per-file affected-test selection."
+status = "done"
+scope = ["turbo.json", "package.json", "tools/test-affected/run.sh", ".github/workflows/ci-workspace.yml", ".github/workflows/ci-tetanus.yml"]
+notes = """
+The manifest and the task graph existed but nothing connected them. `turbo.json`
+was inert because turbo was not installed and no workflow invoked it, and the
+manifest's `affected_by` entries were largely non-functional: bare package names
+like `axios` that can never match a changed file, and bare relative specifiers
+like `src/services/Api` that never match
+`packages/sdks/javascript/src/services/Api.ts`. Selection matched nothing while
+appearing to work.
+
+Four defects found by running it rather than reading it:
+
+  1. The parse cache key was file content plus parser version. Reassigning a file
+     to a different package changes the analysis but not the key, so the cached
+     answer was returned. Adding the Python package to the manifest left every
+     already-cached module reporting the old package. The key now includes a
+     digest of every non-content input: the package layout, the registry, and the
+     file list. A cache that can return a wrong answer is worse than no cache.
+  2. A workspace node named by its directory basename collided with a real
+     package, so `packages/ui/react` produced a node called `react` that shadowed
+     the react dependency it depends on.
+  3. `affected_by` is now a transitive closure over *resolved* paths. The old
+     direct-import list would not have selected a test when something five modules
+     below it changed.
+  4. My own CI workflow swallowed an unresolvable base revision with `|| true`,
+     which would have skipped build, lint, typecheck and test and reported
+     success. A green build that ran nothing is the one outcome this system exists
+     to make impossible, and I had written it in.
+
+Measured effect, one component changed in a 403-test package: 1 package, 1 test
+file, 2 tests, 8.7s, against 3 packages / 403 tests / 50s for the full suite. A
+repeat run is 70ms off the task cache.
+
+The affected-test list is an explicit task input via `$TURBO_ROOT$`, so a changed
+list invalidates the cache. Without that, a run whose list was one file would
+replay "1 test passed" for a change that affects four hundred.
+
+`affected_test_precision` is measured and reported but deliberately not ratcheted.
+A committed baseline would have to come from whatever was in the working tree at
+capture time, which is every unrelated change at once and yields a number near
+zero that means nothing. It belongs in the CI summary, where the change set is
+the pull request.
+"""
+
+[[work]]
+id = "w-dependency-graph"
+summary = "Unified dependency and security graph over four lockfiles, with ratcheted metrics."
+status = "done"
+scope = ["tools/tetanus/crates/tetanus-deps", ".tetanus/specs/security.toml", ".tetanus/specs/dependencies.toml"]
+notes = """
+Reads pnpm-lock.yaml, uv.lock, Cargo.lock and docs/package-lock.json, because
+the repository has four package managers after the pnpm migration and reading
+only the pnpm lockfile would omit a project whose code is installed and built on
+every deploy.
+
+Three things the implementation got wrong first, each found by running rather
+than reading:
+
+  1. pnpm writes a two-document YAML stream. Reading it as one document is a
+     parse error, and reading only the first silently drops the resolution of
+     every package.
+  2. A workspace node named by its directory basename collides with a real
+     package: `packages/ui/react` produced a node called `react` that shadowed
+     the react dependency it depends on.
+  3. Deduplicating packages by identity kept the pnpm record of esbuild over the
+     npm one and lost `hasInstallScript`, so the install-script count came out
+     as zero. Records are now merged, and the merge prefers the entry that
+     actually carries the signal.
+
+pnpm lockfile v9 records no install-script flag at all, so that metric is
+genuinely unmeasurable for the largest part of the tree. It is reported with an
+availability breakdown rather than as zero, because zero reads as "no package
+runs code at install time", which is the most reassuring possible wrong answer,
+and it is deliberately not ratcheted: a partly-unknown gate would let the
+measurable part carry the whole thing.
+"""
+
+[[work]]
+id = "w-test-manifest"
+summary = "Author testing/tests.toml for all 73 test files and enforce completeness."
+status = "active"
+scope = ["testing/tests.toml"]
+notes = "target and affected_by must come from real coverage runs, not be hand-written"
+
+[[work]]
+id = "w-ratchet-baseline"
+summary = "Capture the first ratchet baseline from a real measurement run."
+status = "active"
+scope = [".tetanus/baseline.toml"]
+
+[[work]]
+id = "w-pnpm"
+summary = "Migrate the JavaScript and TypeScript projects to a pnpm workspace."
+status = "done"
+scope = ["pnpm-workspace.yaml", ".github/workflows", ".github/dependabot.yml"]
+notes = """
+Four of the five projects share one lockfile. `docs` is excluded on evidence, not
+preference: the workspace cannot hold both its React 19 and the design system's
+React 18 in one pnpm hidden hoist, and with `docs` included `tsc -b` in
+`packages/ui/react` reported 14 errors, every one of that single kind.
+
+Six undeclared dependencies surfaced, all of which resolved under npm only
+because hoisting happened to place a copy where the importer could see it. Every
+one is now declared in the package that imports it, rather than worked around:
+@testing-library/jest-dom and @storybook/react in ui-react, unist-util-visit and
+@types/unist in docs, js-yaml and json-refs in api-docs.
+
+jsdom is pinned to 30.0.1 in the root and in ui-react, because 30.1.1
+normalises `font-weight: bold` to `700` and breaks Review.test.tsx.
+"""
+
+[[work]]
+id = "w-turbo"
+summary = "Add a Turborepo task graph over the pnpm workspace."
+status = "done"
+scope = ["turbo.json"]
+notes = "Task graph is defined but CI still calls package scripts directly; switching the workflows over is a separate, mechanical change."
+
+[[work]]
+id = "w-python-uv"
+summary = "Move the Python SDK from Poetry to uv with a hatchling build backend."
+status = "done"
+scope = ["packages/sdks/python", ".github/workflows/ci-sdk-python.yml", ".github/workflows/sync-package-versions.yml"]
+notes = """
+Verified under podman: build-image, build-sdk-python, lint (ruff plus mypy over
+474 files), test-unit (86 tests), and package-sdk-python all pass.
+
+The wheel built by hatchling has a file list byte-identical to the 2.8.5 wheel
+currently on PyPI: 463 files, exact match, py.typed in place, generator cache
+marker excluded. That is the check that matters, because the backend swap is on
+the release path for a live package.
+
+Four things this cost that are worth knowing:
+
+  1. The Makefile hardcoded `docker` and `-u $(USER_ID)`. Rootless podman
+     remaps container uid 1000 to a subordinate uid that owns nothing in the
+     bind mount, so every write failed with EACCES. The engine is now a
+     variable and the identity flags are engine-specific.
+  2. The venv and uv cache had to move out of /sdk, because every target
+     bind-mounts the host directory over it and that hides the venv.
+  3. uv installed into $HOME/.local/bin, which is under /root, mode 700. The
+     unprivileged user the targets run as could not execute it, and the failure
+     read as "uv is not installed".
+  4. uv.lock records the project's own version, so a version bump makes the
+     committed lock stale and `uv sync --locked` fails. CI now regenerates it
+     after syncing the version. Poetry had no such coupling.
+
+CI pins CONTAINER_ENGINE=docker rather than auto-detecting. Auto-detection is
+right on a developer machine and wrong in CI, where the runner image ships both
+engines and a rootless-podman failure is much harder to diagnose.
+"""
+
+
+
+
+
+# ------------------------------------------------------------------ blockers
+
+# No active blockers. `docs` staying on npm is recorded as a decision rather
+# than a blocker because it has a working resolution: it builds and installs
+# today on npm, and nothing is waiting on it.
+
+# ----------------------------------------------------------------- decisions
+
+[[decision]]
+id = "d-cli-identity"
+title = "The engineering CLI is an unpublished Rust binary with a devopness alias"
+status = "accepted"
+rationale = "No user-facing CLI existed to preserve. DevOpness remains a product brand; tetanus is private engineering machinery, invoked as `tetanus <command>` or `devopness engineering <command>` through argv[0]. Nothing is published to npm or PyPI, so no release pipeline is touched."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-generated-first"
+title = "Generated-code segregation lands before any other metric"
+status = "accepted"
+rationale = "54% of lines are OpenAPI-generated. A ratchet baselined on unsgregated code is worse than no ratchet, because it reports a stable number that moves for the wrong reasons."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-metric-hash"
+title = "Ratchet baselines are pinned to a hash of the metric definition"
+status = "accepted"
+rationale = "Redefining a metric changes the hash, which invalidates the baseline and forces a re-capture. This makes 'do not lower a ratchet to accommodate a regression' mechanical instead of aspirational: the only ways to relax a ratchet are to fix the regression or record an exception with a reason and an expiry."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-changesets-ownership"
+title = "Changesets keeps ownership of the per-package changelogs"
+status = "accepted"
+rationale = "The root CHANGELOG.md generated from living.toml records engineering-state changes. The four per-package CHANGELOG.md files record product releases. They are different things with different owners, and the registry marks the latter foreign_generator so Tetanus never rewrites or drift-checks them."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-no-auto-deletion"
+title = "Reachability analysis reports evidence and never deletes code"
+status = "accepted"
+rationale = "Static reachability cannot see dynamic imports, reflection, or entry points added by a build step. The first implementation produces a report and a non-increasing ratchet. Removal requires a separate, explicitly reviewed policy change."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-hatchling-python"
+title = "Python uses hatchling for building and uv for everything else"
+status = "accepted"
+rationale = "uv manages the lockfile, environment, lint and test execution. hatchling is the build backend because it is the conventional choice for a published library and reproduces poetry-core's src-layout behaviour exactly, verified by comparing the built wheel's file list against the 2.8.5 wheel on PyPI: 463 files, identical. Poetry is removed entirely."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-docs-stays-on-npm"
+title = "docs stays on npm rather than moving to pnpm"
+status = "accepted"
+rationale = "Two verified reasons. Including it in the pnpm workspace gives packages/ui/react 14 tsc errors, because pnpm's hidden hoist hands React 19 types to a React 18 design system. Excluding it does not rescue the migration either: pnpm 12 refuses a standalone install in docs with ERR_PNPM_IGNORED_BUILDS for esbuild even though allowBuilds permits it. Loosening the install-script policy to get past that would trade a real security control for a package-manager preference. npm ci and npm run build both work, so docs stays on npm and the dependency graph covers four projects instead of five."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-container-engine"
+title = "The container engine is a variable, and identity flags are engine-specific"
+status = "accepted"
+rationale = "Docker is not installed everywhere. Rootless podman runs in a user namespace where container root maps to the invoking host user, so passing -u <uid> asks for a uid that owns nothing in the bind mount and every write fails with a permission error that reads like a broken mount. Docker needs -u <uid>:<gid> to avoid writing root-owned files. One flag cannot serve both."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-thesix-is-not-persistence"
+title = "theSix is a within-run accelerator, not the persistence layer"
+status = "accepted"
+rationale = "Measured, not assumed. theSix's Cachelito index is process-local and CacheManager::get consults it alone, so a fresh process reports Miss for an entry a lower tier still holds, and get_or_fetch times out. It is genuinely useful for single-flight population, explicit policy routing and tier health. Cross-run persistence stays with the content-addressed filesystem provider. A test pins the limitation so a future change cannot quietly make this provider look durable."
+date = "2026-09-27"
+
+[[decision]]
+id = "d-unmeasurable-is-not-zero"
+title = "A metric the lockfiles cannot supply is reported as unknown, and is not ratcheted"
+status = "accepted"
+rationale = "pnpm lockfile v9 carries no install-script flag, so build_script_packages is unmeasurable for the pnpm workspace and measurable for the docs npm lockfile. Reporting zero would read as the most reassuring possible wrong answer. The metric is reported with a per-lockfile availability breakdown, and left out of the ratchet: a partly-unknown gate would let the measurable part carry the whole thing while the unmeasurable part rots unnoticed."
+date = "2026-09-27"
+
+# -------------------------------------------------------------------- handover
+
+[handover]
+current_focus = "Close the loop on measurement: build the test manifest from real coverage runs, then capture the first ratchet baseline from a real measurement."
+next_actions = [
+  "Review the first dependency-graph numbers rather than treating them as free: 236 duplicated names and 1873 direct dependencies are both large, and both are now visible for the first time",
+  "Add coverage tooling so coverage and branch coverage become measurable and can be ratcheted",
+  "Enable Turborepo remote caching once a token exists. Local task caching is proven; remote caching is what makes it pay across runners",
+  "Decide whether the two React majors in the workspace can be aligned, which would remove the pnpm hidden-hoist hazard entirely",
+]
+cautions = [
+  "Do not lower a ratchet baseline to make a check pass. Use an [[exception]] with a reason and an expiry.",
+  "helix-db 3.0.0 as published exposes no embedded client, so the HelixDB backend currently falls back to in_memory. The report says so rather than claiming coverage it does not have.",
+  "theSix is process-local: its Cachelito index lives in memory and get consults it alone, so a fresh process reports a miss for an entry a lower tier still holds. It is a within-run accelerator, not the persistence layer. A test pins this.",
+  "tools/test-affected/run.sh must fail closed. An absent, empty or stale list falls back to the full suite. A bug in test selection may cost time; it may never cost coverage.",
+  "pnpm-lock.yaml is a two-document YAML stream. A lockfile reader that assumes one document either fails to parse or silently drops every package resolution.",
+  "A lockfile that cannot be read must fail the run. An empty security report and an unreadable lockfile are otherwise indistinguishable, and the first is the dangerous reading.",
+  "Three workflows use cache-dependency-path pointing at package-lock.json. Deleting those lockfiles during the pnpm migration breaks CI caching silently.",
+  "apps/api-docs installs with lifecycle scripts enabled on purpose; it downloads the OpenAPI Generator JRE. pnpm blocks dependency build scripts by default, so it needs an explicit allowlist.",
+]
+open_questions = [
+  "What are the theSix crate coordinates?",
+  "Should the pnpm migration also carry examples/** into the workspace, or leave those on npm?",
+]
+
+# -------------------------------------------------------------------- session
+
+[[session]]
+id = "s001"
+date = "2026-09-27"
+summary = "Built the Tetanus substrate and landed the first enforcing checks."
+scope = [
+  "tools/tetanus",
+  ".tetanus",
+  "living.toml",
+  ".gitignore",
+]
+touched = [
+  ".gitignore",
+  ".tetanus/generated.toml",
+  ".tetanus/manifests.toml",
+  ".tetanus/tetanus.toml",
+  "living.toml",
+  "tools/tetanus",
+]
+ratchet_outcome = { generated_files = "1511", modules = "10739", dependency_cycles = "1", unused_exports = "9", dead_code_candidates = "294" }
+notes = """
+Establishing the foundation, in the order the dependencies actually require.
+
+Generated-code segregation came first, and it immediately paid for itself: the
+first classify run reported 7179 tracked files, because `.gitignore` never
+covered Rust's `target/` directory and 4421 build artefacts were being counted
+as repository content. Fixing that brought the count to the correct 2798.
+
+The AST pass covers 1347 modules with zero parse failures, including all 404
+generated TypeScript models and 421 generated Python files.
+
+The graph pass surfaced one genuine import cycle, in the ui-react Loader
+components. Its first run also produced around 1500 unused-export findings, all
+of them false: the Python front end was marking variables inside functions as
+exports, and standalone scripts were being judged against an export surface
+nobody consumes. Both were fixed rather than baselined, because baselining noise
+is how a ratchet stops meaning anything. The count is now 9.
+"""

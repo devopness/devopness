@@ -1,0 +1,96 @@
+version = 1
+
+[subsystem]
+name = "ast"
+required = true
+
+# TypeScript goes through oxc, the same parser family `vite-plus` uses for
+# linting, so the AST Tetanus reasons about and the AST the linter sees come
+# from one implementation rather than two that can disagree.
+
+[parsing]
+typescript = true
+tsx = true
+javascript = true
+python = true
+typescript_parser = "oxc"
+python_parser = "rustpython-parser"
+# Bumping a parser version invalidates every cached parse, which is what makes a
+# parser upgrade safe without manual cache busting.
+#
+# The same bump is required when *extraction or rule behaviour* changes, not only
+# when the parser library is upgraded. The cached unit carries derived findings as
+# well as raw facts, so a new rule reading old counts is a silent no-op. See
+# `cache.toml` for the key and the two stale results that motivated the context
+# digest.
+versioned_cache = true
+version_covers_extraction_changes = true
+# Parse failures are collected rather than aborting the run, so one unparseable
+# file does not hide the state of the other thousand. The run still fails.
+collect_all_failures = true
+
+[graph]
+imports = true
+exports = true
+symbols = true
+calls = true
+reexports = true
+dynamic_imports = true
+side_effect_imports = true
+type_only_imports = true
+
+# A type-only import is recorded as an edge but is not a runtime dependency, so
+# it does not make a module reachable. Treating it as one would report most of a
+# TypeScript codebase as reachable for type reasons alone.
+type_only_is_runtime_edge = false
+
+[optimization]
+reachability = true
+tree_shaking = true
+dead_code_detection = true
+unused_exports = true
+entrypoint_analysis = true
+scc = true
+topological_sort = true
+fan_in = true
+fan_out = true
+
+# Static reachability cannot see dynamic imports, reflection, or entry points a
+# build step adds. The first implementation produces evidence. Deletion requires
+# a separate, explicitly reviewed policy change.
+auto_delete = false
+
+[semantics]
+# A module nothing imports is a script, not a library. Its top-level names are
+# its interface to the world, so they are not reported as dead exports. Getting
+# this wrong produced roughly 1500 false positives on the first run, which is
+# more than the 9 real ones underneath.
+script_modules_excluded_from_unused_exports = true
+# In Python, only module-level names are importable. A variable inside a
+# function is not an export however it is named.
+python_export_scope = "module_level_only"
+
+# A module that writes `__all__` has stated its public surface, and that
+# statement outranks the name-shape heuristic above. This was missing, and its
+# absence produced two distinct false-positive classes:
+#
+#   * `T` in `core/response.py` is a TypeVar used by the generic class in that
+#     same file. Its `__all__` lists one name and not it, so the module had said
+#     outright that `T` is not public and the analysis disagreed.
+#   * Module-private helpers used only by their own module read as unused
+#     public exports, because Python has no `export` keyword and every
+#     module-level name looks exported.
+#
+# A computed `__all__` is deliberately not followed. A name that cannot be read
+# statically is not evidence either way, and guessing would put private names
+# back into the public surface.
+python_dunder_all_defines_surface = true
+python_computed_dunder_all_is_not_followed = true
+
+[determinism]
+stable_ids = true
+stable_traversal = true
+stable_serialization = true
+# Enforced by `tetanus graph-verify`, which builds the graph twice with the
+# cache disabled and compares digests.
+verified_in_ci = true

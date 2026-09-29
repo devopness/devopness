@@ -24,7 +24,8 @@ jobs:
           filters: |
             changes:
               - 'package.json'
-              - 'package-lock.json'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
               - 'packages/sdks/common/**'
               - 'packages/sdks/python/**'
 
@@ -45,6 +46,13 @@ jobs:
 
     env:
       PYTHON_VERSION: ${{ matrix.python }}
+      # Pinned rather than auto-detected. The Makefile prefers podman and falls
+      # back to docker, which is right on a developer machine and wrong in CI:
+      # the runner image ships both, so the engine would change silently
+      # whenever the image does, and a rootless-podman failure on the runner is
+      # far harder to diagnose than a docker one. Changing this is a deliberate
+      # act, not a side effect of a base-image bump.
+      CONTAINER_ENGINE: docker
 
     steps:
       - uses: actions/checkout@v6

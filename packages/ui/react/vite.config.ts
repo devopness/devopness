@@ -30,8 +30,13 @@ export default defineConfig({
         'src/**/*.test.*',
         'src/**/*.stories.*',
         'src/setupTest.ts',
-        'src/test-utils/**/*.ts',
-        '.storybook/**/*.ts',
+        // `*.{ts,tsx}` rather than `*.ts`: `custom-render.tsx` is a test helper
+        // and was not being excluded, so the declaration pass tried to emit
+        // types for it and failed on a type it could not name portably. The
+        // directory is test scaffolding and has no business in a published
+        // package's types either way.
+        'src/test-utils/**/*.{ts,tsx}',
+        '.storybook/**/*.{ts,tsx}',
       ],
       entryRoot: 'src',
     }),

@@ -1,0 +1,124 @@
+version = 1
+
+[subsystem]
+name = "ratchet"
+mode = "never_regress"
+required = true
+
+# The anti-regression guarantee is structural, not social. There are exactly
+# three ways a baseline can change, and all three are visible in a diff:
+#
+#   1. Re-run a real measurement. `ratchet baseline-check` regenerates the
+#      baseline and requires the committed one to match exactly, so a hand-
+#      edited value fails.
+#   2. Redefine the metric. The baseline records a hash of the metric's
+#      definition; changing what a metric counts changes the hash, which
+#      invalidates the baseline and forces a re-capture.
+#   3. Record an exception, with a reason and an expiry.
+#
+# There is no fourth path, and in particular no path through "just bump the
+# number".
+#
+# `tetanus specs check` enforces that every metric gated here is declared in
+# some subsystem spec. A gate no spec describes is drift in the other direction:
+# the baseline enforces something the contract does not mention, so a reader of
+# the specs cannot tell what the gates are.
+#
+# A ratchet may additionally carry a burn-down schedule, which is a commitment
+# about when the baseline must move rather than a fourth way to change it. The
+# three paths above still describe every way the number changes; a schedule only
+# says by when it is no longer allowed to sit there. A schedule is anchored to
+# its own `from` and `started_at`, never to the current `baseline`, because
+# anchoring to the baseline restarts the clock on every improvement and so
+# rewards progress with a fresh schedule while charging nothing for stalling.
+#
+# `ratchet baseline` carries `target` and `burndown` across from the committed
+# file. It used to write `target: None` unconditionally, which meant refreshing
+# a baseline silently discarded every target and every schedule it had recorded.
+
+[evaluation]
+unknown_is_failure = true
+unknown_is_never_pass = true
+allow_explicit_exceptions = true
+exception_requires_reason = true
+exception_requires_expiry = true
+tolerance_widens_band = true
+# Tolerance widens the acceptable band rather than introducing a fourth verdict,
+# so the taxonomy stays closed at improvement / regression / invariant / unknown.
+
+[integrity]
+definition_hash = true
+baseline_must_match_measurement = true
+pin_measured_from_revision = true
+ratchet_the_ratchets = true
+
+[metrics]
+generated_files = { direction = "max", unit = "files" }
+modules = { direction = "max", unit = "nodes" }
+graph_edges = { direction = "max", unit = "edges" }
+dependency_cycles = { direction = "max", unit = "cycles" }
+dead_code_candidates = { direction = "max", unit = "modules" }
+unused_exports = { direction = "max", unit = "symbols" }
+# Dependency and security metrics, all burn-down. See `security.toml` for how
+# each is measured and which lockfile formats can measure it at all.
+dependency_surface = { direction = "max", unit = "direct dependencies" }
+transitive_dependencies = { direction = "max", unit = "packages" }
+duplicate_dependency_names = { direction = "max", unit = "package names" }
+duplicate_dependency_copies = { direction = "max", unit = "extra copies" }
+git_dependencies = { direction = "max", unit = "packages" }
+direct_url_dependencies = { direction = "max", unit = "packages" }
+unknown_dependency_sources = { direction = "max", unit = "packages" }
+unresolved_direct_dependencies = { direction = "max", unit = "packages" }
+test_only_dependencies = { direction = "max", unit = "packages" }
+
+# NASA/JPL Power of Ten, adapted for TypeScript and Python. Six of the ten rules
+# are mechanical; the other four are documented in `power-of-ten.toml` rather
+# than counted, because a metric nothing measures would carry a gate on its own.
+# See that spec for the thresholds and for why each adaptation is drawn where it
+# is.
+pot3_unbounded_loops = { direction = "max", unit = "loops" }
+pot5_function_length = { direction = "max", unit = "functions" }
+pot5_nesting_depth = { direction = "max", unit = "functions" }
+pot5_parameter_count = { direction = "max", unit = "functions" }
+pot6_raw_memory = { direction = "max", unit = "imports" }
+pot7_bare_handler = { direction = "max", unit = "handlers" }
+pot7_empty_handler = { direction = "max", unit = "handlers" }
+pot9_dynamic_eval = { direction = "max", unit = "calls" }
+
+# `affected_test_precision` is measured and reported per change set but is
+# deliberately not ratcheted. A committed baseline would have to be captured from
+# whatever happened to be in the working tree, which on a normal tree is every
+# unrelated change at once and yields a number near zero that means nothing. It
+# belongs in the CI summary, where the change set is the pull request.
+unmeasurable_or_context_dependent_metrics_are_not_ratcheted = true
+
+# `build_script_packages` is deliberately absent from the ratcheted set, and the
+# reason matters: pnpm lockfile v9 records no install-script flag, so the metric
+# is measurable for `docs/package-lock.json` and unknown for the pnpm workspace.
+# Ratcheting a partly-unknown number would let the measurable part carry the
+# whole gate while the unmeasurable part silently rots. `tetanus deps report`
+# prints the availability breakdown instead, so the blind spot is visible on
+# every run.
+unmeasurable_metrics_are_not_ratcheted = true
+
+# Not yet baselined, because the tooling to measure them does not exist yet.
+# Listed so the gap is recorded rather than forgotten. A metric that is listed
+# here and has no baseline is not silently passing; it is not yet a ratchet.
+[metrics.pending]
+build_script_packages = "unmeasurable for pnpm; measurable for the npm lockfile format"
+permitted_build_scripts = "unmeasurable for pnpm; measurable for the npm lockfile format"
+production_reachable_dependencies = "measurable, but not yet ratcheted: the first real number should be reviewed before it becomes a gate"
+test_count = "min"
+test_duration = "max"
+coverage = "min"
+branch_coverage = "min"
+# Superseded rather than implemented: `complexity` is now measured, as the
+# `pot5_*` metrics above, with thresholds stated in `power-of-ten.toml`. A
+# separate unbounded `complexity` metric would measure the same property twice
+# under two names and give the two a chance to disagree.
+# complexity = "max"
+rule_10_zero_warnings = "measured by the linter, not yet enforced: see the note in power-of-ten.toml and typescript.toml"
+dependency_fan_out = "max"
+duplicate_dependency_versions = "max"
+executable_lifecycle_scripts = "max"
+affected_test_precision = "min"

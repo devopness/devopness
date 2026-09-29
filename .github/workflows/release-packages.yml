@@ -47,7 +47,7 @@ jobs:
           node-version: '24.x'
 
       - name: Install SDK dependencies
-        run: npm ci --ignore-scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Prepare changeset version hook
         # `changesets/action` executes the version command before it stages the release PR.
@@ -58,7 +58,7 @@ jobs:
           # Keep the version step strict so the formatter failure surfaces immediately.
           set -e
           npx changeset version
-          npm run format:changelogs
+          pnpm run format:changelogs
           EOF
           chmod +x /tmp/cs-version.sh
 

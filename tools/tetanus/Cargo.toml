@@ -1,0 +1,48 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/tetanus",
+    "crates/tetanus-core",
+    "crates/tetanus-config",
+    "crates/tetanus-cache",
+    "crates/tetanus-ast",
+    "crates/tetanus-graph",
+  "crates/tetanus-deps",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "Apache-2.0"
+publish = false
+
+[workspace.dependencies]
+tetanus-core = { path = "crates/tetanus-core" }
+tetanus-config = { path = "crates/tetanus-config" }
+tetanus-cache = { path = "crates/tetanus-cache" }
+tetanus-ast = { path = "crates/tetanus-ast" }
+tetanus-graph = { path = "crates/tetanus-graph" }
+tetanus-deps = { path = "crates/tetanus-deps" }
+
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.9"
+# Lockfile readers. npm and pnpm lockfiles are YAML; uv and Cargo are TOML.
+# serde_yaml is unmaintained but is the only widely available YAML 1.2 reader
+# for this shape, and pnpm emits YAML 1.2 inline tables that a 1.1 parser
+# misreads.
+serde_yaml = "0.9"
+thiserror = "2"
+globset = "0.4"
+walkdir = "2"
+sha2 = "0.10"
+blake3 = "1"
+rayon = "1"
+tempfile = "3"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

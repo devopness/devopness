@@ -1,0 +1,30 @@
+version = 1
+
+# Workspace packages, declared once.
+#
+# Tetanus resolves package membership from this list rather than by walking for
+# `package.json` files. A file that is not reachable from a declared manifest is
+# not part of the workspace, which makes the boundary explicit instead of
+# incidental.
+
+[[package]]
+manifest = "package.json"
+
+[[package]]
+manifest = "docs/package.json"
+
+[[package]]
+manifest = "apps/api-docs/package.json"
+
+[[package]]
+manifest = "packages/sdks/javascript/package.json"
+
+[[package]]
+manifest = "packages/ui/react/package.json"
+
+# Present for Changesets versioning, and declared here so the Python SDK gets a
+# real package identity in the graph. Without it every Python file matched the
+# root package, whose directory is the empty string, so `max_by_key` on prefix
+# length selected the root and the Python SDK was attributed to `devopness`.
+[[package]]
+manifest = "packages/sdks/python/package.json"

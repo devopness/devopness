@@ -1,13 +1,17 @@
 version: 2
 updates:
+  # The pnpm workspace covers the root plus apps/api-docs,
+  # packages/sdks/javascript and packages/ui/react. Dependabot's npm ecosystem
+  # reads pnpm-lock.yaml, so one entry here replaces the three that existed when
+  # each package installed independently.
   - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: daily
     open-pull-requests-limit: 10
     groups:
-      # Group naming: unprefixed = repo-wide (workspace packages), ui-react-* / sdk-js-* = package-specific.
-      # Storybook first: eslint-plugin-storybook also matches eslint-* in linters.
+      # Group naming: unprefixed = repo-wide, sdk-js-* / ui-react-* =
+      # package-specific.
       linters:
         patterns:
           - "typescript-eslint"
@@ -15,9 +19,10 @@ updates:
           - "eslint"
           - "@eslint/*"
           - "eslint-*"
+          - "oxlint"
+          - "oxfmt"
           - "prettier"
           - "prettier-*"
-          - "@ianvs/prettier-plugin-sort-imports"
           - "typescript"
       sdk-js:
         patterns:
@@ -51,6 +56,9 @@ updates:
       interval: daily
     open-pull-requests-limit: 10
 
+  # `docs` is deliberately excluded from the pnpm workspace: the workspace
+  # cannot hold both its React 19 and the design system's React 18 in one
+  # resolution. It installs independently and keeps its own lockfile.
   - package-ecosystem: npm
     directory: "/docs"
     schedule:

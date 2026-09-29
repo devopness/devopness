@@ -1,0 +1,111 @@
+version = 1
+
+[subsystem]
+name = "power-of-ten"
+mode = "burn_down"
+required = true
+
+# NASA/JPL "Power of Ten" rules, adapted for TypeScript and Python.
+#
+# The source is Robert Holzmann et al., *The Power of Ten: Rules for Developing
+# Safety Critical Code* (JPL), written for C in a safety-critical context. This
+# repository is a TypeScript UI, a Python SDK and a documentation site, so the
+# rules are ported where the concept survives the port and documented where it
+# does not. Claiming all ten are enforced would be false; `[not_gated]` below
+# says which are not and why.
+#
+# Six are mechanical and are ratcheted. Counts are summed from the parse that
+# builds the module graph, so a gate and the graph can never describe different
+# trees.
+
+[adaptation]
+# Rule 3: a loop with no provable maximum iteration count. `while (true)` and
+# `for (;;)` with nothing that can leave them, and Python's `while True`.
+unbounded_loops = "pot3_unbounded_loops"
+# Rule 5: keep the code small and simple.
+function_length = "pot5_function_length"
+nesting_depth = "pot5_nesting_depth"
+parameter_count = "pot5_parameter_count"
+# Rule 6: restrict the use of pointers. Managed languages have no pointers, but
+# Python can still hand out raw addresses by name.
+raw_memory = "pot6_raw_memory"
+# Rule 7: isolate error-condition handling.
+bare_handler = "pot7_bare_handler"
+empty_handler = "pot7_empty_handler"
+# Rule 9: minimise language-specific features.
+dynamic_eval = "pot9_dynamic_eval"
+
+[thresholds]
+# JPL asks that a function fit on a page. Sixty lines is a page.
+max_function_lines = 60
+# JPL asks for shallow nesting. Four is already generous.
+#
+# Control-flow statements only. A function declared inside an `if` is not
+# nested control flow, and counting it would report every guard clause in the
+# repository. Indentation is not a proxy: a heavily formatted flat function is
+# not hard to reason about, and a four-deep function written with one-statement
+# lines is.
+max_nesting = 4
+# Past this a parameter list is doing a struct's job.
+max_parameters = 5
+
+[not_gated]
+# Recorded so the absence is a decision with a reason rather than an oversight.
+#
+# Rule 2, fixed-size data structures: vacuous without manual memory management.
+# No `malloc` to forbid, no pointer to bound. A managed list grows, and the
+# analogue that would bind, a declared maximum length enforced at runtime, is a
+# property of the value rather than of the syntax.
+rule_2 = "Not static. No manual allocation exists to constrain."
+
+# Rule 8, correctness before optimization: no static check distinguishes a
+# necessary optimization from a premature one. Both look identical and differ
+# only in a judgement about a runtime. Forbidding fast paths would be the
+# opposite of the rule's intent.
+rule_8 = "Not static. Enforcing it mechanically would mean banning optimization."
+
+# Rule 10, zero warnings: a gate on the compiler and linter rather than on the
+# AST, and **not currently enforced**. `vp check` prints lint warnings and exits
+# zero, so seven warnings pass today: four `no-unsafe-declaration-merging` in
+# `packages/sdks/javascript/tests/MergeSiblingClasses.spec.ts` and three in
+# `ui-react` (two `no-unused-vars`, one `no-unused-expressions`).
+#
+# This was previously written here as "already enforced by `turbo run lint` and
+# `turbo run typecheck`". That was false, and the parallel claim in
+# `typescript.toml` was false in the same way, which is how a spec becomes worse
+# than no spec. Enforcing it means dealing with the seven on their merits and
+# then making the linter fail on warnings; some of the seven may be real
+# findings, so the count is a to-do and not a number to suppress.
+#
+# Declaration emit is a second, separate gap in the same rule: `vite-plugin-dts`
+# reports TS2883 for `Radio.styled.tsx` and continues, so `turbo run build`
+# succeeds while logging errors. That residue is tracked as `build-002`.
+rule_10 = "Not enforced. The linter reports warnings without failing; seven pass today."
+
+[burndown]
+# Two metrics have existing violations, `pot5_function_length` at 5 and
+# `pot7_empty_handler` at 1, and both carry a schedule rather than a freeze.
+# The other six are at zero and are gated at zero, which is the strongest
+# position available: a new violation fails immediately with nothing to
+# negotiate.
+#
+# A schedule is anchored to its own `from` and `started_at`, never to the
+# current `baseline`. Anchoring to the baseline restarts the clock every time
+# the count drops, so progress would buy another full schedule and stalling
+# would cost nothing, which is the freeze the mechanism exists to replace.
+scheduled = ["pot5_function_length", "pot7_empty_handler"]
+gated_at_zero = [
+    "pot3_unbounded_loops",
+    "pot5_nesting_depth",
+    "pot5_parameter_count",
+    "pot6_raw_memory",
+    "pot7_bare_handler",
+    "pot9_dynamic_eval",
+]
+
+[interpretation]
+# The Power of Ten rules exist so a reviewer can hold a whole function in their
+# head. A violation is a request to make something legible, not a claim that it
+# is buggy. The same rule that keeps reachability analysis from deleting code
+# applies here: a finding is a prompt to look.
+meaning = "Legibility, not correctness. Never a reason to delete code."

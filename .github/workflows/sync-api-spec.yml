@@ -34,11 +34,11 @@ jobs:
         with:
           node-version: 24.x
           cache: npm
-          cache-dependency-path: apps/api-docs/package-lock.json
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         working-directory: apps/api-docs
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Create `.env`
         working-directory: apps/api-docs

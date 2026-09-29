@@ -1,0 +1,78 @@
+version = 1
+
+[subsystem]
+name = "graph"
+required = true
+
+# Both backends are valid and interchangeable. Neither is authoritative for
+# project state: the graph is always reconstructable from the repository, so a
+# backend may be swapped or removed without changing a single metric.
+#
+# The default build carries no native dependency and no runtime server. A
+# requested-but-unavailable backend falls back to in_memory and the report says
+# so, because a run that silently fell back must not claim graph-engine coverage
+# it does not have.
+
+[backend]
+default = "in_memory"
+in_memory = true
+oxigraph = true
+helixdb = true
+optional = true
+no_type_leakage = true
+# A fallback is recorded in the backend identity string, so it appears in the
+# report rather than being invisible.
+fallback_is_reported = true
+
+# helix-db 3.0.0 as published exposes no `embedded` feature, so the HelixDB
+# provider currently resolves to the in-memory fallback. Recorded here so the
+# limitation is visible rather than discovered later.
+[backend.availability]
+oxigraph = "compile-time feature"
+helixdb = "helix-db 3.0.0 publishes no embedded client"
+
+# Verified by `tetanus specs check` against the kinds the builder actually
+# produces, not against the enum. The enum declares eleven and the graph builds
+# five, so comparing to the definitions would pass a spec claiming six that do
+# not exist. `nodes_absent` is checked in the other direction too: recording a
+# kind as absent fails once the graph starts building it, so the spec cannot
+# fall behind the code unnoticed.
+#
+# The kinds the graph emits today. This list was previously longer and wrong:
+# it claimed `function`, `test`, `task`, `metric`, `ratchet` and `decision` nodes
+# that nothing creates. A spec that promises a richer graph than exists is worse
+# than one that admits the limit, because every reader then looks for the missing
+# nodes. Function-level granularity is carried by `Symbol`; per-test and
+# per-task nodes are the obvious next step and belong in a change, not a claim.
+[nodes]
+repository = true
+package = true
+module = true
+symbol = true
+dependency = true
+# Declared as intentions, not as emitted kinds. See above.
+nodes_absent = ["function", "test", "task", "metric", "ratchet", "decision"]
+
+# `EdgeKind` defines ten variants; the source-graph builder inserts five. The
+# rest belong to the other subsystems that share the type, which is why the enum
+# is wider than this graph.
+[edges]
+contains = true
+imports = true
+exports = true
+depends_on = true
+reexports = true
+# Defined on `EdgeKind`, not inserted by the source-graph builder.
+edges_defined_but_unused_here = [
+    "calls",
+    "covers",
+    "affected_by",
+    "violates",
+    "generated_from",
+]
+
+[identity]
+# Identifiers are content-addressed, never sequential. A sequential counter would
+# make output depend on traversal order, which is the failure
+# `tetanus graph-verify` exists to catch.
+content_addressed_ids = true

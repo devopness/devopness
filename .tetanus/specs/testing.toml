@@ -1,0 +1,103 @@
+version = 1
+
+[subsystem]
+name = "testing"
+manifest = "testing/tests.toml"
+required = true
+
+# Test frameworks execute tests. The manifest describes the verification model:
+# what each test covers, what invalidates it, what it depends on, what it costs.
+# Filesystem discovery cannot answer any of those, which is why the manifest is
+# authoritative and an unregistered test file fails the build.
+#
+# `target` and `affected_by` are derived from the parsed module by
+# `tetanus test generate`, not typed by hand. A hand-written target is a guess
+# about what a test covers; the imports the test file declares are evidence.
+
+[discovery]
+filesystem_discovery = false
+manifest_authoritative = true
+derived_from_graph = true
+require_target = true
+require_test_id = true
+require_unique_source = true
+
+# Scaffolding that lives beside tests is not itself a test: `__init__.py` makes
+# a directory importable and a `.snap` is a recorded artefact. Counting those
+# would inflate every number the manifest reports.
+exclude_scaffolding = ["__init__.py", "*.snap", "__snapshots__/**", "__mocks__/**"]
+
+[tiers]
+structural = true
+static = true
+unit = true
+component = true
+integration = true
+contract = true
+e2e = true
+property = true
+mutation = true
+performance = true
+security = true
+
+[graph]
+test_to_symbol = true
+symbol_to_test = true
+test_to_package = true
+test_to_dependency = true
+affected_tests = true
+order_by_execution_cost = true
+# `affected_by` is a *transitive* closure over resolved workspace imports, so a
+# change five modules below a test still selects it. A direct-import list would
+# under-select and produce a green build that tested nothing.
+transitive_closure = true
+
+[selection]
+# Over-selection is the only permitted failure mode. Selecting a test that would
+# have passed costs seconds; failing to select one that would have failed costs
+# correctness, and nothing downstream can detect it.
+fail_direction = "open"
+# Everything in `affected_by` is a real repository path. The first generated
+# manifest held bare package names and bare relative specifiers, neither of which
+# can match a changed file, so selection matched nothing and the mechanism was
+# inert while appearing to work.
+entries_are_resolved_paths = true
+# Imports that leave the workspace are recorded as `dependencies`, never as
+# invalidating paths: a dependency bump is not a source edit.
+external_imports_are_not_invalidation_paths = true
+
+[consumption]
+# The manifest is not documentation. It drives what CI runs, through two outputs:
+#   turbo   --filter arguments, so an unaffected package is not built or tested
+#   lists   one package-relative file list per package, so an affected package
+#           runs the affected test files rather than its whole suite
+drives = "tetanus test affected --format turbo|lists|files|json"
+
+# `--emit-lists` writes the per-package lists whatever `--format` prints.
+# Without it a caller needing both the `--filter` arguments and the lists had to
+# invoke the selector twice, which re-runs the diff and the graph and can
+# disagree with itself: a cache key computed from one diff and a test list
+# computed from another. One invocation, both outputs.
+helper = "tools/test-affected/run.sh"
+# The helper fails closed. An absent, empty or stale list falls back to the
+# package's full suite, because a bug in selection must cost time, never coverage.
+helper_fails_closed = true
+
+[quality]
+deterministic = true
+no_orphans = true
+no_untracked_tests = true
+no_missing_tests = true
+
+# Determinism is a human judgement, not something the analysis can measure. The
+# generator seeds `deterministic = true` for every test, so the field is
+# optimistic by default and carries no information until someone reads it.
+#
+# This was documented here as "asserted by a human, not inferred" with
+# `determinism_is_asserted = true`, while the generator in fact wrote `true`
+# unconditionally and all 73 entries said so. Nothing had been asserted.
+#
+# Corrected to describe what happens. The claim is only meaningful once the
+# default stops being an unexamined constant; tracked as `test-001`.
+determinism_is_seeded_optimistic = true
+determinism_is_asserted = false

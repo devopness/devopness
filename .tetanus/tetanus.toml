@@ -1,0 +1,60 @@
+version = 1
+
+# Deliberately boring. Everything with real content lives in `specs/`.
+#
+# The reason for splitting is control: a specification that grows large enough
+# is no longer reviewable as a whole, and a control that cannot be reviewed is
+# not a control. Each subsystem gets one file, one owner, one diff.
+
+[project]
+name = "devopness"
+engineering_substrate = "tetanus"
+cli_name = "devopness"
+mode = "ratchet"
+deterministic = true
+
+[architecture]
+package_manager = "pnpm"
+task_runner = "turborepo"
+rust_engine = true
+cache_layer = "filesystem"
+graph_backend = "in_memory"
+canonical_state = "living.toml"
+
+[analysis]
+reachability = true
+tree_shaking = true
+dead_code = true
+cycles = true
+scc = true
+deterministic = true
+
+[testing]
+manifest = "testing/tests.toml"
+require_manifest = true
+require_affected_tests = true
+allow_untracked_tests = false
+
+[ratchet]
+unknown_is_failure = true
+allow_explicit_exceptions = true
+baseline = ".tetanus/baseline.toml"
+
+[living]
+source = "living.toml"
+generated = ["CHANGELOG.md", "HANDOVER.md", "SESSION.md"]
+require_sync = true
+
+[security]
+require_locked_dependencies = true
+track_lifecycle_scripts = true
+track_git_dependencies = true
+track_duplicate_versions = true
+
+[ci]
+require_ast = true
+require_graph = true
+require_manifest = true
+require_tests = true
+require_ratchet = true
+require_living_sync = true

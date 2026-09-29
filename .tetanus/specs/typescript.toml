@@ -1,0 +1,66 @@
+version = 1
+
+[subsystem]
+name = "typescript"
+
+# An adaptation of the Power of Ten principles to the *hand-written analysis
+# code* in this subsystem, not a transliteration of the C originals. The C rules
+# were written around pointer aliasing and manual memory management, hazards
+# TypeScript and Rust do not have. Copying them literally would produce rules
+# that are either vacuous here or actively wrong.
+#
+# Scope: these are the principles applied by hand to `tools/tetanus`. The
+# product code in this repository is gated mechanically instead, by the
+# `pot*` ratchets, whose rules and thresholds are in `power-of-ten.toml`. Two
+# rule lists with the same name and different scope is a trap for the next
+# reader, so the split is stated here rather than left to be inferred.
+
+[rules]
+# 1. Avoid unnecessary recursion. -> iterative traversal in analysis code.
+# 2. Bounded iteration where the algorithm permits. -> the SCC and topological
+#    implementations are iterative for this reason.
+# 3. Avoid uncontrolled allocation in hot paths. -> the AST arena borrows.
+# 4. Small, single-responsibility functions.
+# 5. Assert invariants at trust boundaries: parser output, lockfile contents,
+#    manifest structure.
+# 6. Minimise scope; the collectors in the AST front ends hold no state that
+#    outlives one file.
+# 7. Never discard a Promise or error result silently.
+# 8. Prefer static analysis over metaprogramming.
+# 9. Minimise `any` and unchecked type assertions.
+# 10. Compiler and lint warnings are defects, not advice.
+
+[enforcement]
+strict = true
+no_implicit_any = true
+# Measured, not asserted. This was `true` and was not: `vp check` reports
+# warnings and still exits zero. As of this correction there are seven, four of
+# `no-unsafe-declaration-merging` in `tests/MergeSiblingClasses.spec.ts` and
+# three in `ui-react` (two `no-unused-vars`, one `no-unused-expressions`).
+#
+# Recording the measurement rather than the intention is the point of a spec. An
+# unbacked `true` here is what made Power of Ten rule 10 look enforced in
+# `power-of-ten.toml` when nothing was checking it. Flipping this to `true`
+# requires the seven warnings to be dealt with first, each on its merits: some
+# may be genuine findings rather than noise.
+warnings_are_errors = false
+# Enforced by the toolchain already in use: vite-plus bundles oxlint, oxfmt and
+# oxc, and the AST front end uses the same oxc.
+linter = "oxlint via vite-plus"
+formatter = "oxfmt via vite-plus"
+parser = "oxc"
+
+[analysis]
+import_cycles = true
+dead_code = true
+unused_exports = true
+export_surface_minimisation = true
+reachability = true
+bundle_size_ratchet = false
+module_size_ratchet = false
+
+# Not yet enforced. Recorded so the gap is visible rather than assumed absent.
+[analysis.pending]
+no_unbounded_promise_fanout = "requires a lint rule that does not exist yet"
+no_accidental_sequential_io = "requires call-graph evidence across modules"
+controlled_concurrency = "requires a runtime measurement, not a static one"
