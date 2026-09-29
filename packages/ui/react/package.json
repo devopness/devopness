@@ -53,11 +53,14 @@
   "scripts": {
     "build": "rm -Rf dist && tsc -b && vite build",
     "build-storybook": "NODE_ENV=production storybook build -c .storybook -o ./storybook-static",
+    "coverage": "vitest run --coverage",
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
     "storybook": "storybook dev -p 6006",
-    "test": "vitest"
+    "test": "vitest",
+    "test:affected": "bash \"$(git rev-parse --show-toplevel)/tools/test-affected/run.sh\" pnpm exec vitest run --",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@mui/icons-material": "9.4.0",
@@ -84,8 +87,10 @@
     "@eslint/js": "^10.0.1",
     "@storybook/addon-a11y": "10.6.0",
     "@storybook/addon-docs": "10.6.0",
+    "@storybook/react": "10.6.0",
     "@storybook/react-vite": "10.6.0",
     "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
     "@types/lodash": "^4.17.25",
@@ -95,7 +100,7 @@
     "@types/react-dom": "^18.3.0",
     "@typescript/typescript6": "^6.0.2",
     "@vitejs/plugin-react": "^6.1.1",
-    "jsdom": "^30.0.1",
+    "jsdom": "30.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "storybook": "10.6.0",

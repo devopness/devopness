@@ -115,6 +115,22 @@ __pycache__
 ## MyPy Cache
 .mypy_cache
 
+## Rust (Tetanus engineering substrate)
+target/
+**/*.rs.bk
+
+## Turborepo
+.turbo/
+
+## Tetanus local cache (reconstructable from repository state)
+.tetanus/cache/
+.tetanus/graph.json
+
+## Per-run affected-test lists, rewritten by every `tetanus test affected`.
+## Runtime state, not engineering state: committing it would make one change
+## set's test selection look like the repository's answer for all of them.
+.tetanus/affected/
+
 # misc
 .DS_Store
 _pull-requests/*

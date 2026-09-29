@@ -1,0 +1,34 @@
+[package]
+name = "tetanus-ast"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+tetanus-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[dependencies.oxc_allocator]
+version = "0.151"
+
+[dependencies.oxc_parser]
+version = "0.151"
+
+[dependencies.oxc_span]
+version = "0.151"
+
+[dependencies.oxc_ast]
+version = "0.151"
+
+[dependencies.oxc_diagnostics]
+version = "0.151"
+
+[dependencies.rustpython-parser]
+version = "0.4"
+
+[dependencies.rustpython-ast]
+version = "0.4"
+features = ["visitor", "all-nodes-with-ranges"]

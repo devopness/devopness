@@ -1,0 +1,89 @@
+version = 1
+
+[subsystem]
+name = "security"
+required = true
+
+# The dependency graph is assembled from lockfiles, not from manifests. A
+# manifest states intent; a lockfile states what will actually be installed.
+# Reading manifests would let a range resolve differently tomorrow without any
+# file changing.
+
+[dependencies]
+require_locked = true
+track_transitive = true
+track_duplicates = true
+track_git_sources = true
+track_registry_sources = true
+track_lifecycle_scripts = true
+track_production_reachability = true
+track_test_only_reachability = true
+prefer_registry_unless_excepted = true
+
+# Parsed lockfiles. Each is a different format and a different failure mode, so
+# each has its own reader rather than a lowest-common-denominator approximation.
+[lockfiles]
+javascript = { path = "pnpm-lock.yaml", format = "pnpm-9.0", ecosystem = "npm" }
+python = { path = "packages/sdks/python/uv.lock", format = "uv-1", ecosystem = "pypi" }
+rust = { path = "tools/tetanus/Cargo.lock", format = "cargo-v3", ecosystem = "crates.io" }
+# `docs` is excluded from the pnpm workspace and installs from its own npm
+# lockfile. It is read too, so the security graph covers what is actually
+# installed rather than what the workspace nominally contains.
+docs = { path = "docs/package-lock.json", format = "npm-lock-v3", ecosystem = "npm" }
+
+[scripted]
+# Package managers block dependency lifecycle scripts by default. That default
+# is not weakened here. An allowlist re-permits only the specific packages that
+# cannot work without a build script, and the reason is recorded next to each
+# entry.
+#
+# A dependency that needs a build script is a dependency that runs arbitrary code
+# at install time on every developer machine and every CI runner. The count of
+# permitted ones is therefore a security metric with a ratchet, not a build
+# configuration detail.
+javascript = "allowBuilds in pnpm-workspace.yaml"
+python = "PEP 517 builds run in an isolated environment; no sdist build is permitted for a locked dependency"
+rust = "build.rs is permitted and is reported; Cargo runs it inside the crate"
+
+[lifecycle_scripts]
+report = true
+allow_unknown = false
+# A script is a finding regardless of whether it is currently permitted, because
+# "permitted today" and "will still be permitted after the next bump" are
+# different questions.
+ratchet_permitted_count = true
+
+[git_dependencies]
+# A git dependency pins a commit but not a registry, and its build script runs
+# whatever is at that commit. Preferred registry sources are not a preference
+# here; they are the only source that gets vulnerability advisories.
+report = true
+require_exception = true
+
+[duplicates]
+# Two versions of one package means two copies of its code, and an advisory
+# against one does not cover the other.
+report = true
+ratchet = true
+
+[reachability]
+# A test-only dependency cannot reach production, so an advisory against it is
+# lower severity. It is still reported: `vitest` can read secrets.
+production = "reachable from a published package's runtime dependencies"
+test_only = "reachable only from devDependencies or dev groups"
+
+[metrics]
+dependency_surface = "direct dependencies across all lockfiles"
+transitive_dependencies = "distinct resolved packages"
+duplicate_dependency_versions = "packages resolved at more than one version"
+permitted_lifecycle_scripts = "dependencies allowed to run install scripts"
+git_dependencies = "dependencies resolved from a git source"
+non_registry_dependencies = "dependencies resolved from anywhere but a registry"
+production_reachable_dependencies = "packages reachable from production"
+test_only_dependencies = "packages reachable only from test scopes"
+
+[reporting]
+# A lockfile that cannot be read is a failure, not an empty result. An empty
+# security report and an unreadable lockfile look identical otherwise.
+missing_lockfile_is_failure = true
+parse_error_is_failure = true

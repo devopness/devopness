@@ -20,14 +20,18 @@
   "scripts": {
     "build": "rm -Rf ./dist && npm run build-api-models && npm run lint && tsc",
     "build-api-models": "rm -Rf ./src/api/generated && JAVA_OPTS=\"${JAVA_OPTS} -Dlog.level=warn\" openapi-generator-cli generate",
-    "docs-remove-service-index": "rm -f src/services/index.ts",
-    "docs-export-service-index": "find src/services/ ! -name 'index.ts' -name '*.ts' -type f | sort -k3 -t'/' | xargs -I'{}' bash -c 'echo \"export * from $(echo -e \"\\x27\")./$(basename $0 .ts)$(echo -e \"\\x27\")\" >> src/services/index.ts' {} \\;",
-    "docs-update-service-index": "npm run docs-remove-service-index && npm run docs-export-service-index",
+    "codegen": "pnpm run build-api-models",
+    "coverage": "vp test --run --coverage",
     "docs": "npm run docs-update-service-index && typedoc",
+    "docs-export-service-index": "find src/services/ ! -name 'index.ts' -name '*.ts' -type f | sort -k3 -t'/' | xargs -I'{}' bash -c 'echo \"export * from $(echo -e \"\\x27\")./$(basename $0 .ts)$(echo -e \"\\x27\")\" >> src/services/index.ts' {} \\;",
+    "docs-remove-service-index": "rm -f src/services/index.ts",
+    "docs-update-service-index": "npm run docs-remove-service-index && npm run docs-export-service-index",
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
-    "test": "vp test"
+    "test": "vp test",
+    "test:affected": "bash \"$(git rev-parse --show-toplevel)/tools/test-affected/run.sh\" pnpm exec vp test --run --",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

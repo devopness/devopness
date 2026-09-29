@@ -8,7 +8,7 @@ name: Sync - Package Versions
 # pyproject.toml file with the version managed by changesets in the package.json file.
 #
 # Additionally, to avoid errors during changeset operations, this workflow ensures that the
-# versions of these packages are also synchronized in the root package-lock.json file.
+# versions of these packages are also synchronized in the root pnpm-lock.yaml file.
 
 on:
   pull_request:
@@ -125,6 +125,14 @@ jobs:
           CHANGESET_PACKAGE_VERSION=$(jq -r .version "${{ matrix.path }}/package.json")
           sed -i "s/^version = \".*\"/version = \"${CHANGESET_PACKAGE_VERSION}\"/" "${{ matrix.path }}/pyproject.toml"
 
+      # uv.lock records the project's own version, so a version bump makes the
+      # committed lock stale and every `uv sync --locked` in the Python jobs
+      # fails. Poetry did not have this coupling, so the step is new rather than
+      # migrated, and the auto-commit below has to carry the regenerated lock.
+      - name: Refresh the uv lockfile
+        working-directory: ${{ matrix.path }}
+        run: uv lock
+
       - name: Run post-version-sync commands for '${{ matrix.name }}'
         if: matrix.post_version_sync_commands != ''
         working-directory: ${{ matrix.path }}
@@ -138,7 +146,7 @@ jobs:
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
   sync-main-lockfile:
-    name: Sync the package-lock.json
+    name: Sync the pnpm-lock.yaml
     # Runs after sync-pypi-package-versions to avoid parallel push races on the same branch
     needs: [detect-changes, sync-pypi-package-versions]
     # Skip fork PRs: GITHUB_TOKEN cannot push to a fork's branch, so these sync jobs would always fail
@@ -174,7 +182,7 @@ jobs:
           node-version: '24.x'
 
       - name: Sync workspace versions in lockfile
-        run: npm install --workspaces
+        run: pnpm install --lockfile-only
 
       - name: Rebase onto latest remote to avoid non-fast-forward push
         run: |
@@ -189,8 +197,8 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'chore: update package-lock.json'
-          file_pattern: 'package-lock.json'
+          commit_message: 'chore: update pnpm-lock.yaml'
+          file_pattern: 'pnpm-lock.yaml'
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
@@ -239,15 +247,15 @@ jobs:
         with:
           node-version: '24.x'
 
-      - name: Fail if package-lock.json is out of sync (fork PR)
+      - name: Fail if pnpm-lock.yaml is out of sync (fork PR)
         if: >
           needs.detect-changes.outputs.should_sync_lockfile == 'true' &&
           github.event_name == 'pull_request' &&
           github.event.pull_request.head.repo.full_name != github.repository
         run: |
-          npm install --workspaces
-          if ! git diff --exit-code package-lock.json; then
-            echo "❌ package-lock.json is out of sync — run 'npm install --workspaces' locally and commit the result"
+          pnpm install --lockfile-only
+          if ! git diff --exit-code pnpm-lock.yaml; then
+            echo "❌ pnpm-lock.yaml is out of sync — run 'pnpm install --lockfile-only' locally and commit the result"
             exit 1
           fi
 

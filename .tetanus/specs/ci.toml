@@ -1,0 +1,88 @@
+version = 1
+
+[subsystem]
+name = "ci"
+
+# Every item below is a check that fails when violated, not a report. A metric
+# that could not be measured exits non-zero, because there is no path from
+# "could not measure" to "pass".
+
+[required_checks]
+order = [
+  "lock_state",
+  "classify",
+  "ast",
+  "graph_verify",
+  "test_reconcile",
+  "living_check",
+  "ratchet_baseline_check",
+  "ratchet_check",
+  "dependency_graph",
+  "packages_build",
+  "lint",
+  "typecheck",
+  "test",
+]
+
+[blocking]
+classify = true
+ast = true
+graph_verify = true
+test_reconcile = true
+living_check = true
+ratchet_baseline_check = true
+ratchet_check = true
+dependency_graph = true
+
+[change_detection]
+# Directory-level change detection is a coarse gate, not a substitute for
+# dependency-aware execution. `tetanus scope` and `tetanus test affected` exist to
+# replace it, and the migration happened by job rather than all at once.
+prefer_graph = true
+migrated_incrementally = true
+
+# An unresolvable base revision is a failure, not an empty affected set. Swallowing
+# it would skip every affected check and report success, which is the one outcome
+# this system exists to make impossible.
+unresolvable_base_is_failure = true
+
+[task_graph]
+runner = "turborepo"
+# `test` does not depend on `^build`: the runners compile from source through
+# their own transform, so waiting for upstream builds buys nothing and was the
+# single largest source of avoidable CI time. `typecheck` is the task that
+# genuinely needs build output.
+test_depends_on_build = false
+typecheck_depends_on_build = true
+# `packages/sdks/common/spec.json` is a global dependency because it produces
+# both SDKs' generated models: a change there invalidates builds and tests in
+# packages whose own sources did not change.
+shared_codegen_input_is_global = "packages/sdks/common/spec.json"
+
+[caching]
+# Task hashes and replayable logs, so a repeat run is near-instant.
+turbo_cache = true
+# The package store, not node_modules: restoring the store lets pnpm link rather
+# than download, and linking is the cheap half of an install.
+cache_the_store_not_node_modules = true
+# The affected-test list is an explicit task input via `$TURBO_ROOT$`. A cached
+# result is only correct for the list that produced it; without this the cache
+# would replay "1 test passed" for a change that affects four hundred.
+affected_list_is_a_task_input = true
+
+[test_selection]
+# Pull requests run the full suite. Affected selection is for fast local
+# iteration and for the package-level skip, where it is safe. A pull request is
+# the one place where green has to mean the whole thing still works.
+pull_request_runs_full_suite = true
+local_affected_selection = "pnpm run test:affected"
+
+[ownership]
+# Each ecosystem keeps a workflow with constraints the task graph cannot express.
+python = "Docker via podman, three interpreter versions, uv lock"
+docs = "outside the pnpm workspace, installs with npm, needs a Next.js build"
+api_docs = "needs repository secrets and runs Dredd against a live spec"
+tetanus = "the engineering substrate itself"
+# The two SDK/UI workflows were replaced by one workspace workflow. One install
+# instead of two, task-level caching, and dependency-aware execution.
+javascript_typescript = "ci-workspace.yml"

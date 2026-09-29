@@ -1,0 +1,31 @@
+[package]
+name = "tetanus-cache"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+tetanus-core = { workspace = true }
+serde = { workspace = true }
+walkdir = { workspace = true }
+
+# theSix is optional so the default build carries no sled/LMDB native
+# dependency and no extra compile time. `tetanus --cache the_six` is the only
+# thing that pulls it in.
+[dependencies.thesix]
+version = "0.2.3"
+optional = true
+features = ["sled"]
+
+[dependencies.tokio]
+version = "1"
+features = ["rt"]
+
+[features]
+default = []
+the_six = ["dep:thesix"]
+
+[dev-dependencies]
+tempfile = { workspace = true }

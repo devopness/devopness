@@ -1,0 +1,121 @@
+# pnpm workspace.
+#
+# All five JavaScript/TypeScript projects join one workspace, so the repository
+# has one lockfile and one dependency graph instead of five. Previously
+# `docs/` and `apps/api-docs` were independent npm projects with their own
+# lockfiles.
+#
+# `docs` is excluded and stays on npm. It is private, unpublished, has no
+# workspace dependencies, and is the sole source of the React 19 types that
+# conflict with the design system's React 18. Two independent reasons, both
+# verified:
+#
+#   1. Including it, `tsc -b` in `packages/ui/react` reported 14 errors, every
+#      one of that single kind: pnpm's hidden hoist holds whichever
+#      `@types/react` landed there first, and `docs` was winning.
+#   2. Excluded, `pnpm install --ignore-workspace` inside `docs` still fails
+#      with ERR_PNPM_IGNORED_BUILDS for esbuild, even though `allowBuilds` is
+#      set to permit it and `pnpm config list` confirms the value is read. That
+#      is a pnpm 12 behaviour this repository cannot work around, and working
+#      around it by loosening the install-script policy would be the wrong
+#      trade: the policy blocks third-party install scripts for good reason.
+#
+# `npm ci --ignore-scripts` in `docs` works, and `npm run build` produces a
+# complete prerendered site, so the honest answer is that `docs` stays on npm.
+#
+# `examples/**` are also excluded. They are sample applications with their own
+# runtime, their own lockfiles, and their own release cadence. Folding them in
+# would put their transitive trees into the dependency security graph without
+# any of that code being part of what we publish.
+#
+# Resolution is pnpm's default, isolated.
+#
+# Hoisted resolution was tried and rejected on evidence. It reproduces npm's
+# flat layout, but this workspace holds two React majors: `docs` is on React 19
+# and `packages/ui/react` is on React 18. A flat tree can only hold one of them,
+# so hoisting produced "Invalid hook call ... more than one copy of React" at
+# runtime and failed BreadCrumbs.test.tsx. A dual-React workspace requires
+# isolated resolution, and isolated failed strictly fewer tests than hoisting
+# fixed: 402 of 403 passed, against a broken React runtime.
+#
+# The cost of isolation is that four undeclared dependencies stopped resolving.
+# All four are fixed at the source rather than worked around, by declaring them
+# in the package that imports them:
+#
+#   packages/ui/react   @testing-library/jest-dom, @storybook/react
+#   docs                unist-util-visit
+#   apps/api-docs       js-yaml, json-refs
+#
+# `jsdom` is pinned to 30.0.1 in both the root and `ui-react`, because 30.1.1
+# normalises `font-weight: bold` to `700` and breaks Review.test.tsx. A migration
+# should not change dependency versions; bumping jsdom belongs in its own change.
+
+packages:
+  - "!docs"
+  - "apps/api-docs"
+  - "packages/sdks/javascript"
+  - "packages/ui/react"
+
+# Dependency lifecycle scripts are blocked by default. That is the correct
+# default and it is not weakened. pnpm 12 uses `allowBuilds`, a map of package to
+# decision, rather than the older `onlyBuiltDependencies` list;
+# `pnpm approve-builds` maintains it.
+#
+# The denials are written out rather than left implicit, so that adding a
+# dependency with an install script shows up as a diff instead of a silent
+# failure. `core-js` and `jsonpath` are denied deliberately: their scripts are
+# funding banners, and allowing them would widen the install-time attack surface
+# for no benefit.
+allowBuilds:
+  # Downloads and runs the JRE-backed OpenAPI Generator. There is no way to
+  # produce the OpenAPI spec, and therefore no way to generate either SDK,
+  # without it. Only `apps/api-docs` needs it.
+  "@openapitools/openapi-generator-cli": true
+  # Installs a platform-native binary. Vite, Vitest and the TypeScript transform
+  # all require it; without the script the binary is absent and every build fails.
+  esbuild: true
+  core-js: false
+  jsonpath: false
+
+# Overrides, migrated from the npm top-level `overrides` field. pnpm 12 reads
+# them here rather than from package.json.
+#
+# `test-exclude` is pinned because a transitive copy pulls a vulnerable glob;
+# `glob` is pinned for the same reason. Both were already enforced under npm, and
+# losing them silently during the migration would reopen a known issue.
+overrides:
+  "babel-plugin-istanbul>test-exclude": "^7.0.1"
+  "test-exclude": "^7.0.1"
+  "glob": "^11.0.0"
+  # `@types/react` is scoped per importer rather than forced globally.
+  #
+  # `react-icons` declares `@types/react` as an *optional* peer, so pnpm installs
+  # nothing beside it and TypeScript falls through to pnpm's hidden hoist, which
+  # holds whichever major landed there first. Under npm this worked by accident,
+  # because hoisting put the React 18 types at the root and nested the React 19
+  # ones.
+  #
+  # Scoping to the importer keeps React 18 types from being pulled in beneath
+  # `ui-react` without affecting `docs`. A global override would break one of the
+  # two packages, which is worse than the original problem.
+  "@devopness/ui-react>@types/react": "^18.3.13"
+
+# Known limitation: one `tsc -b` error in packages/ui/react.
+#
+# `src/icons/iconLoader.tsx` fails with TS2786 because `react-icons` declares
+# `@types/react` as an *optional* peer. pnpm therefore installs nothing beside
+# it, and the type resolves through pnpm's hidden hoist, which holds React 19
+# types from `docs` while `ui-react` is on React 18.
+#
+# Excluding `@types/react` from the hidden hoist was tried and is worse: five
+# further files fail with implicit `any` because the optional peer genuinely is
+# not optional for those call sites. The hidden hoist is load-bearing here.
+#
+# Two real resolutions, both requiring a decision rather than a workaround:
+#
+#   1. Align the React majors. `docs` is a private Next.js app on React 19;
+#      `ui-react` is a published design system on React 18. They have no
+#      dependency relationship, so aligning them is a real piece of work.
+#   2. Give `docs` its own lockfile, excluded from the shared one. It is
+#      private, unpublished, and workspace-independent, so it gains nothing from
+#      sharing, and it is the sole source of the React 19 types.

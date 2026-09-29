@@ -1,0 +1,39 @@
+version = 1
+
+[subsystem]
+name = "living"
+required = true
+
+# One authoritative representation of engineering state. Everything else is a
+# projection of it.
+#
+# A human editing CHANGELOG.md, HANDOVER.md or SESSION.md is editing generated
+# output. `tetanus living check` says so, and the file carries a banner saying
+# so before anyone opens it.
+
+[source]
+file = "living.toml"
+format = "toml"
+strict_unknown_fields = true
+
+[generated]
+changelog = "CHANGELOG.md"
+handover = "HANDOVER.md"
+session = "SESSION.md"
+
+[invariants]
+markdown_is_derived = true
+detect_drift = true
+deterministic_render = true
+stable_order = true
+# A blocked work item with no recorded reason is a configuration error, because
+# a silent blocker is a blocker nobody is working on.
+blocked_items_require_a_reason = true
+objectives_required = true
+
+[scope]
+# Product release notes are a different thing with a different owner. They live
+# in each package's CHANGELOG.md, which Changesets owns, and the generated
+# registry marks those artifacts `foreign_generator` so Tetanus never rewrites
+# or drift-checks them.
+product_changelogs_owned_by = "changesets"

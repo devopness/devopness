@@ -1,0 +1,87 @@
+version = 1
+
+[subsystem]
+name = "python"
+
+[toolchain]
+manager = "uv"
+locked = true
+managed_python = true
+build_backend = "hatchling"
+poetry = "removed"
+
+# The container engine is a variable, not a hardcoded `docker`, because Docker
+# is not installed everywhere. Identity flags differ by engine and getting them
+# wrong fails as a bind-mount permission error rather than a user-mapping one:
+#
+#   rootful docker  ->  -u <uid>:<gid>
+#   rootless podman ->  --userns=keep-id
+#
+# Rootless podman always runs in a user namespace where container root maps to
+# the invoking host user. Passing `-u 1000` there asks for container uid 1000,
+# which maps to a subordinate uid owning nothing in the bind mount, so every
+# write fails with EACCES.
+container_engine = "auto"
+prefers_podman = true
+
+# The virtual environment and uv cache live outside the bind mount, because
+# every Make target mounts the host package directory over /sdk and would
+# otherwise hide /sdk/.venv at the moment it is needed.
+environment_path = "/opt/sdk-venv"
+cache_path = "/tmp/uv-cache"
+
+# uv.lock records the project's own version, so a version bump makes the
+# committed lock stale. CI therefore regenerates it after syncing the version,
+# a coupling Poetry did not have.
+lock_includes_project_version = true
+
+[analysis]
+linter = "ruff"
+type_checker = "mypy"
+strict = true
+complexity = true
+imports = true
+cycles = true
+dead_code = false
+
+# Decidable from the AST, and enforced as `pot*` ratchets by `tetanus power`.
+# See `power-of-ten.toml` for the thresholds and the full rule set.
+#
+# Three of the four named here are real and carry a metric. The fourth,
+# `no_global_mutable_state`, was claimed as enforced and never was: there is no
+# `global`/`nonlocal` rule in the analyzer. It is listed below as a gap rather
+# than left standing as a claim, because a rule nobody has written is not a rule
+# anyone is relying on.
+[static_rules]
+# bare `except:` catches BaseException, including KeyboardInterrupt and
+# SystemExit. Metric `pot7_bare_handler`.
+no_bare_except = true
+# An `except` body that does nothing detects an error and discards it. Metric
+# `pot7_empty_handler`.
+no_silent_exception = true
+# `eval`, `exec` and `__import__`. Metric `pot9_dynamic_eval`.
+no_dynamic_execution = true
+# Claimed here previously as enforced. It is not implemented.
+no_global_mutable_state = false
+
+[analysis.pending]
+dead_code = "vulture is not wired in; the AST unused-export check does cover Python, but only names, not whole unused functions"
+# Resolved. The module graph now extends across Python package boundaries: a
+# dotted index is built once per run so `from ..core.api_error import x` and
+# `from devopness.core import y` both resolve, and relative imports written
+# `.module` are normalised. Cycle detection is live for Python and currently
+# finds none, which is an answer rather than an absence.
+import_cycles = "resolved: Python package boundaries are in the graph, no cycles found"
+# Partly resolved. `pot5_function_length`, `pot5_nesting_depth` and
+# `pot5_parameter_count` are ratcheted shape limits, which is not the same as
+# cyclomatic complexity per function and does not catch a single function with
+# many decision points spread over few lines.
+complexity_ratchet = "partly: shape limits are ratcheted, cyclomatic complexity is not"
+
+[dependencies]
+lockfile = "uv.lock"
+audit = true
+tree = true
+workspace = true
+single_authoritative_lockfile = true
+never_hand_edit_lockfile = true

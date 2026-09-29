@@ -1,0 +1,205 @@
+name: CI - Workspace
+
+# One job for the pnpm workspace, replacing the per-package workflows for
+# `@devopness/sdk-js` and `@devopness/ui-react`.
+#
+# What this buys, concretely:
+#
+#   * One install instead of two. The previous shape installed the workspace
+#     twice, once per package workflow.
+#   * Task-level caching. A lint that has not changed replays from cache in
+#     about 60ms; measured locally, 3.4s cold against 60ms warm.
+#   * Dependency-aware execution. `turbo run` skips a package whose inputs did not
+#     change, which directory-level change detection could not do.
+#   * Manifest-driven test selection. `testing/tests.toml` is authoritative, so
+#     the tests that run are the tests the dependency graph says are affected,
+#     not the tests a path glob implies.
+#
+# What this deliberately does not do: it does not replace the Python workflow,
+# `docs` (which is outside the pnpm workspace and installs with npm), or
+# `apps/api-docs` (which needs secrets and runs Dredd). Those have constraints
+# this job cannot express.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: workspace-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  TURBO_TELEMETRY_DISABLED: 1
+  DO_NOT_TRACK: 1
+  NODE_VERSION: 24
+
+jobs:
+  workspace:
+    name: Build, lint, typecheck and test
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.scope.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # The generated models are auto-committed by the pipeline, and the
+          # fetch-depth matters for `tetanus scope`, which diffs against a base
+          # revision. A shallow clone would make the merge base unavailable and
+          # the affected-test computation would silently select everything.
+          fetch-depth: 0
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tools/tetanus
+          key: tetanus
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.6.0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # The package store, not node_modules. Restoring the store lets pnpm link
+      # rather than download, and linking is the cheap half of an install.
+      - name: Cache the pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/pnpm/store
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-
+
+      # Task hashes and replayable logs. Without this, `turbo run` recomputes
+      # every task on every run and the caching is only local.
+      - name: Cache the turbo task cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: turbo-${{ github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ github.ref_name }}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Build the engineering substrate
+        run: cargo build --release --manifest-path tools/tetanus/Cargo.toml
+
+      # Which packages a change set touches, from the dependency graph rather
+      # than from a path glob.
+      #
+      # A pull request is scoped to the affected packages. A push to main is not
+      # scoped at all, and the reason is specific: `github.base_ref` is empty for a
+      # push, so the base becomes `origin/main`, which on a push to main *is* HEAD.
+      # The diff is empty, nothing is affected, and scoping would skip the build,
+      # the lint, the typecheck and the tests. The commit that just landed would be
+      # verified by nothing. So on a push the scope is dropped and everything runs.
+      - name: Resolve affected packages
+        id: scope
+        run: |
+          set -euo pipefail
+          BASE="origin/${{ github.base_ref || 'main' }}"
+
+          if ! git rev-parse --verify --quiet "$BASE" >/dev/null; then
+            echo "::error::Base revision '$BASE' cannot be resolved, so the affected set is unknown. Refusing to skip the build."
+            exit 1
+          fi
+
+          # Deliberately not `|| true`. The command exits non-zero when the base
+          # cannot be resolved, and swallowing that would skip build, lint,
+          # typecheck and test and report success: a green build that ran
+          # nothing, which is the one outcome this whole system exists to make
+          # impossible. An unresolvable base is a real problem to report.
+          FILTERS=$(./tools/tetanus/target/release/tetanus test affected \
+            --base "$BASE" --format turbo | tr '\n' ' ')
+
+          if [ "${{ github.event_name }}" = "push" ]; then
+            FILTERS=''
+            echo "Push to ${{ github.ref_name }}: running every package rather than the affected subset."
+          fi
+
+          # An empty filter list is not the same as "skip". It means "run every
+          # package", which is what a push wants and what a change set touching
+          # only non-workspace files still deserves.
+          echo "packages=${FILTERS}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Affected packages"
+            echo
+            if [ -z "${FILTERS// /}" ]; then
+              echo "Every package will be verified."
+            else
+              echo '```'
+              echo "$FILTERS"
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # The root `build` script carries the `--filter=!devopness-api-docs`
+      # exclusion; the affected filters are appended to it here. Calling the
+      # script rather than `turbo run build` keeps that exclusion in one place.
+      - name: Build
+        run: pnpm run build ${{ steps.scope.outputs.packages }}
+
+      - name: Lint
+        run: pnpm exec turbo run lint ${{ steps.scope.outputs.packages }}
+
+      - name: Typecheck
+        run: pnpm exec turbo run typecheck ${{ steps.scope.outputs.packages }}
+
+      # The full suite, not the affected subset. A pull request is the one place
+      # where a green build has to mean the whole thing still works, and the
+      # affected selection is already covered above for fast local iteration.
+      - name: Test
+        run: pnpm exec turbo run test
+
+      # Regenerate the models and commit them if they moved. The generated output
+      # is committed to the repository, so a spec change that was not regenerated
+      # has to be visible rather than silently absent.
+      - name: Regenerate the JavaScript SDK models
+        working-directory: packages/sdks/javascript
+        run: pnpm run build-api-models
+
+      - name: Commit regenerated models
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: 'docs: Update auto generated models'
+          file_pattern: packages/sdks/javascript/src/api/generated/*
+          commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
+          commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
+
+      - name: Report
+        if: always()
+        run: |
+          {
+            echo "### Workspace tasks"
+            echo
+            ./tools/tetanus/target/release/tetanus graph || true
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  verify:
+    name: Verify build
+    needs: workspace
+    # Always runs, so a build failure is always visible as its own job rather
+    # than being hidden behind a skipped dependent.
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check that the build job succeeded
+        run: |
+          if [ "${{ needs.workspace.result }}" = "failure" ] || \
+             [ "${{ needs.workspace.result }}" = "cancelled" ]; then
+            echo "::error::The workspace job did not succeed (${{ needs.workspace.result }})"
+            exit 1
+          fi
+          echo "The workspace job reported ${{ needs.workspace.result }}"

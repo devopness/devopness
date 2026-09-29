@@ -1,0 +1,267 @@
+version = 1
+exception = []
+
+[[ratchet]]
+id = "dead_code_candidates"
+metric = "dead_code_candidates"
+metric_hash = "sha256:fa230baaa7ca726508297f06ed02dfc59ab5852d20efa273cdbfcc81145a51f1"
+direction = "max"
+baseline = 254.0
+tolerance = 0.0
+unit = "modules"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "dependency_cycles"
+metric = "dependency_cycles"
+metric_hash = "sha256:dfedc1dbf54af7e9ac2f4b1e91af920e9990c85c4527c32d2c2028093a37af97"
+direction = "max"
+baseline = 1.0
+tolerance = 0.0
+unit = "cycles"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "dependency_surface"
+metric = "dependency_surface"
+metric_hash = "sha256:080e6a82b6bbb82fe9fee0eddbe61e1b0c4409b220046443c627ce8f90d2a169"
+direction = "max"
+baseline = 1879.0
+tolerance = 0.0
+unit = "direct dependencies"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "direct_url_dependencies"
+metric = "direct_url_dependencies"
+metric_hash = "sha256:0bf103058032762db1dc00bf593b9d432ff898009f365e4a06c13f3f6dc73e12"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "packages"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "duplicate_dependency_copies"
+metric = "duplicate_dependency_copies"
+metric_hash = "sha256:8511345056e3f112f0c0bafe357f866f67fcbb94ae343c2af4748285f303d98e"
+direction = "max"
+baseline = 314.0
+tolerance = 0.0
+unit = "extra copies"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "duplicate_dependency_names"
+metric = "duplicate_dependency_names"
+metric_hash = "sha256:8abd90090016504b5895f31e68dd3ee7d173abe3af06b4ff2409eb3524478447"
+direction = "max"
+baseline = 236.0
+tolerance = 0.0
+unit = "package names"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "generated_files"
+metric = "generated_files"
+metric_hash = "sha256:2bbcd3e114d31bf22ff5ba7bc2ef072e45d6025fa90a2ce338b2075665f3c6c3"
+direction = "max"
+baseline = 1511.0
+tolerance = 0.0
+unit = "files"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "git_dependencies"
+metric = "git_dependencies"
+metric_hash = "sha256:6eb30d7d4fbb35d511d3be5249e000d52684f3505599980c07985bb7e66ef014"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "packages"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "graph_edges"
+metric = "graph_edges"
+metric_hash = "sha256:9c7fd424ad9476f27ce447540db98e092456710d54a461ba4fe1ce5b9a51b01e"
+direction = "max"
+baseline = 12592.0
+tolerance = 0.0
+unit = "edges"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "modules"
+metric = "modules"
+metric_hash = "sha256:14338143d3867c7b37169df3e341d1523d7d2e946f68ee7e1936af8f05a4620d"
+direction = "max"
+baseline = 10741.0
+tolerance = 0.0
+unit = "nodes"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "pot3_unbounded_loops"
+metric = "pot3_unbounded_loops"
+metric_hash = "sha256:5c0d18d6243a528779cd404e224deb01b12a60dce4ac3c85b15f53dadb10406f"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "loops"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "pot5_function_length"
+metric = "pot5_function_length"
+metric_hash = "sha256:286990070e7b2d9225e723b59f047bb68347a4c084507e323c13483c00cbad9c"
+direction = "max"
+baseline = 5.0
+tolerance = 0.0
+unit = "functions"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+target = 0.0
+# Power of Ten, with a burn-down schedule. The rest of the set is at zero
+# and is gated at zero. Anchored to `from` and `started_at`, never to
+# `baseline`: an anchored-to-baseline schedule restarts its clock every time
+# the count drops, so progress would buy another full schedule and stalling
+# would cost nothing.
+burndown = { from = 5, step = 1.0, per = "week", started_at = "2026-09-27", deadline = "2026-11-22" }
+[[ratchet]]
+id = "pot5_nesting_depth"
+metric = "pot5_nesting_depth"
+metric_hash = "sha256:24395be4759cb11973771b5446e60d2bb13cdff21815a412f7fad4b0473a2da0"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "functions"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "pot5_parameter_count"
+metric = "pot5_parameter_count"
+metric_hash = "sha256:791a013aa35a2958b4c4a73a30b03b2d8dd8b84f5526e5e738d11dee21fdeee1"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "functions"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "pot6_raw_memory"
+metric = "pot6_raw_memory"
+metric_hash = "sha256:e1275d2b14703a16109c1d3ca4233512fd46300cfe4796c7112666e2fce07205"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "imports"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "pot7_bare_handler"
+metric = "pot7_bare_handler"
+metric_hash = "sha256:4ed4f206697c0bf3564731ba47d2a3515b61b09e34421ba7ef0ed54c5ff33ccc"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "handlers"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "pot7_empty_handler"
+metric = "pot7_empty_handler"
+metric_hash = "sha256:16f16e8469de08dcbf2b9d820bf5b27d7e8d1ceec2668dbf5b2defa4eda93741"
+direction = "max"
+baseline = 1.0
+tolerance = 0.0
+unit = "handlers"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+target = 0.0
+# Power of Ten, with a burn-down schedule. The rest of the set is at zero
+# and is gated at zero. Anchored to `from` and `started_at`, never to
+# `baseline`: an anchored-to-baseline schedule restarts its clock every time
+# the count drops, so progress would buy another full schedule and stalling
+# would cost nothing.
+burndown = { from = 1, step = 1.0, per = "week", started_at = "2026-09-27", deadline = "2026-11-22" }
+[[ratchet]]
+id = "pot9_dynamic_eval"
+metric = "pot9_dynamic_eval"
+metric_hash = "sha256:5bad1adeb73a5c6dfda422327b0d75b3edbed2eb7521f5191cf1c792e19bf133"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "calls"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "test_only_dependencies"
+metric = "test_only_dependencies"
+metric_hash = "sha256:7fafbfdf54994ca49e38d04d0902e3bb9b7640a043219669175933c17b3557f8"
+direction = "max"
+baseline = 1910.0
+tolerance = 0.0
+unit = "packages"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "transitive_dependencies"
+metric = "transitive_dependencies"
+metric_hash = "sha256:8f549d13ac4e265b9d29a18c221784990c58b39e8da0552ab2e36c19132927fb"
+direction = "max"
+baseline = 2383.0
+tolerance = 0.0
+unit = "packages"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "unknown_dependency_sources"
+metric = "unknown_dependency_sources"
+metric_hash = "sha256:c82dd5f6727cdbc1fb8cbd4305f3d4534b3045b9b9a0f1839dc21f9a20a70dbb"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "packages"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "unresolved_direct_dependencies"
+metric = "unresolved_direct_dependencies"
+metric_hash = "sha256:c66fcf7efa644952eade2a7e004a0c2a83d191bb0ba44228b645cc13d8c21f3f"
+direction = "max"
+baseline = 0.0
+tolerance = 0.0
+unit = "packages"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
+
+[[ratchet]]
+id = "unused_exports"
+metric = "unused_exports"
+metric_hash = "sha256:ae2815c725e4128a85bebe33f32ebe032933df6bd46acf651527c9b8df8d2c9e"
+direction = "max"
+baseline = 4.0
+tolerance = 0.0
+unit = "symbols"
+measured_from = "aec616919c31f7a78ef08b6829b8ac4ddc0e371b"
+captured_at = "2026-09-27"
