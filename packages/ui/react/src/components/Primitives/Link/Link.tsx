@@ -92,17 +92,15 @@ const Link = ({
   <StyledLink
     as={isExternalUrl ? as : undefined}
     rel={rel}
-    {...((as || isExternalUrl) ? { to: href } : { href })}
+    {...(as || isExternalUrl ? { to: href } : { href })}
     target={isExternalUrl ? target : '_self'}
     color={getColor(color)}
     $showUnderline={!hideUnderline}
     $showUnderlineOnHover={!hideUnderlineOnHover}
     style={{
-      fontSize: '13px',
-      fontWeight: 'normal',
       ...style,
-      fontSize: style?.fontSize,
-      fontWeight: style?.fontWeight,
+      fontSize: style?.fontSize || '13px',
+      fontWeight: style?.fontWeight || 'normal',
     }}
     {...props}
   >
