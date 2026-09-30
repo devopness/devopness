@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Meta } from '@storybook/react-vite'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { Column } from 'react-table'
 
 import { Button } from 'src/components/Buttons'
@@ -125,14 +125,36 @@ const columnsDefault: Column<RowData>[] = [
   },
 ]
 
-function Default() {
-  return (
-    <Table<RowData>
-      columns={columnsDefault}
-      data={rowsDefault}
-      hoverColor={getColor('indigo.10')}
-    />
-  )
+const Default: StoryObj<typeof Table> = {
+  args: {
+    columns: columnsDefault,
+    data: rowsDefault,
+    hoverColor: getColor('indigo.10'),
+    isLoading: false,
+    loadingTableCells: [
+      {
+        name: 'Name',
+        rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+      },
+      {
+        name: 'Framework',
+        rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+      },
+      {
+        name: 'Language',
+        rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+      },
+      {
+        name: 'Public Directory',
+        rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+      },
+      {
+        name: '',
+        rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
+        alignEnd: true,
+      },
+    ],
+  },
 }
 
 function Loading() {
@@ -754,9 +776,13 @@ export {
   WithFixedHeight,
 }
 
-const meta = {
+const meta: Meta<typeof Table> = {
   title: 'Primitives/Table',
   component: Table,
-} satisfies Meta<typeof Table>
+  tags: ['autodocs'],
+  argTypes: {
+    isLoading: { control: 'boolean' },
+  },
+}
 
 export default meta
