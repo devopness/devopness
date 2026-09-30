@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { TableProps } from './Table'
 import type { Column } from 'react-table'
 
 import { Button } from 'src/components/Buttons'
@@ -125,7 +126,9 @@ const columnsDefault: Column<RowData>[] = [
   },
 ]
 
-const Default: StoryObj<typeof Table> = {
+type Story = StoryObj<TableProps<RowData>>
+
+const Default: Story = {
   args: {
     columns: columnsDefault,
     data: rowsDefault,
