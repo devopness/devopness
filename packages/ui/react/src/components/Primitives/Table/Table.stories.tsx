@@ -128,36 +128,38 @@ const columnsDefault: Column<RowData>[] = [
 
 type Story = StoryObj<TableProps<RowData>>
 
+const defaultStoryArgs: TableProps<RowData> = {
+  columns: columnsDefault,
+  data: rowsDefault,
+  hoverColor: getColor('indigo.10'),
+  isLoading: false,
+  loadingTableCells: [
+    {
+      name: 'Name',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+    },
+    {
+      name: 'Framework',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: 'Language',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: 'Public Directory',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: '',
+      rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
+      alignEnd: true,
+    },
+  ],
+}
+
 const Default: Story = {
-  args: {
-    columns: columnsDefault,
-    data: rowsDefault,
-    hoverColor: getColor('indigo.10'),
-    isLoading: false,
-    loadingTableCells: [
-      {
-        name: 'Name',
-        rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
-      },
-      {
-        name: 'Framework',
-        rowVariation: TableLoadingRowVariation.BAR_EFFECT,
-      },
-      {
-        name: 'Language',
-        rowVariation: TableLoadingRowVariation.BAR_EFFECT,
-      },
-      {
-        name: 'Public Directory',
-        rowVariation: TableLoadingRowVariation.BAR_EFFECT,
-      },
-      {
-        name: '',
-        rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
-        alignEnd: true,
-      },
-    ],
-  },
+  args: defaultStoryArgs,
 }
 
 function Loading() {
@@ -784,7 +786,87 @@ const meta: Meta<typeof Table> = {
   component: Table,
   tags: ['autodocs'],
   argTypes: {
-    isLoading: { control: 'boolean' },
+    columns: {
+      description: 'Columns rendered by the table. The default example uses the core demo columns.',
+      control: false,
+    },
+    data: {
+      description: 'Rows rendered by the default example table.',
+      control: false,
+    },
+    hoverColor: {
+      description: 'Row hover background color.',
+      control: 'color',
+    },
+    isLoading: {
+      description: 'Shows the loading placeholder table.',
+      control: 'boolean',
+    },
+    loadingTableCells: {
+      description: 'Loading skeleton layout used while the table is loading.',
+      control: false,
+    },
+    isEmpty: {
+      description: 'Switches the table into empty state rendering.',
+      control: 'boolean',
+    },
+    emptyData: {
+      description: 'Empty state content shown when the table has no data.',
+      control: false,
+    },
+    paginationData: {
+      description: 'Pagination metadata and callbacks used to render the footer controls.',
+      control: false,
+    },
+    height: {
+      description: 'Fixed height for the table wrapper.',
+      control: 'text',
+    },
+    smallContainer: {
+      description: 'Uses the compact table spacing.',
+      control: 'boolean',
+    },
+    disabledTable: {
+      description: 'Disables table interaction and dims the table.',
+      control: 'boolean',
+    },
+    headerColor: {
+      description: 'Header text color.',
+      control: 'color',
+    },
+    alignEndLastColumn: {
+      description: 'Aligns the final column to the end when enabled.',
+      control: 'boolean',
+    },
+    headerMaxWidth: {
+      description: 'Maximum width for header cells.',
+      control: 'text',
+    },
+    cellMaxWidth: {
+      description: 'Maximum width for body cells.',
+      control: 'text',
+    },
+    cellOverflowVisible: {
+      description: 'Allows cell content to render outside its clipped cell.',
+      control: 'boolean',
+    },
+    cellWidth: {
+      description: 'Explicit width for rendered cell values.',
+      control: 'text',
+    },
+    padding: {
+      description: 'Custom table content padding.',
+      control: 'text',
+    },
+    layout: {
+      description: 'Enables the indented row layout.',
+      control: 'inline-radio',
+      options: [undefined, 'indented'],
+    },
+    customSubRowInjection: {
+      description: 'Renders custom content below an expanded row with no subrows.',
+      control: false,
+    },
   },
 }
 
