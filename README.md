@@ -119,3 +119,4 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). If you use AI
 Like the project? **[Star this repo](https://github.com/devopness/devopness/stargazers)**: it helps others discover Devopness.
 
 Release notes: [GitHub Releases](https://github.com/devopness/devopness/releases). Licensed under [Apache License 2.0](LICENSE).
+
