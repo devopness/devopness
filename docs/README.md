@@ -32,7 +32,7 @@ This command generates an optimized production build that can be served using an
 2. Create a new application from this repository
 3. Deploy the application
 
-### Using AI Agents or an AI powered IDE (Claude, Cursor, VSCode, Windsurf, ...)
+### Using AI agents or an AI-powered IDE (Claude, Cursor, VSCode, Windsurf, ...)
 
 1. Install [Devopness MCP server](https://pypi.org/project/devopness-mcp-server/)
 2. Submit a prompt into the chat, using the IDE `Agent mode`. E.g.: https://docs.cursor.com/chat/agent
