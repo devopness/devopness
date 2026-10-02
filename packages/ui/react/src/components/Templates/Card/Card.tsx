@@ -286,6 +286,7 @@ const Card = ({ children, ...props }: CardProps) => (
           >
             <Link
               as={footer.linkAs}
+              target={footer.linkAs ? '_self' : undefined}
               hideExternalUrlIcon
               hideUnderline
               style={{
