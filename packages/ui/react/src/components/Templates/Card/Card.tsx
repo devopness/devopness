@@ -21,6 +21,34 @@ import { Link } from 'src/components/Primitives/Link'
 import type { TooltipProps } from 'src/components/Primitives/Tooltip'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 
+type CardFooterItem = {
+  /**
+   * Icon to display next to the label
+   */
+  icon?: IconProps['name'] | IconProps
+  /**
+   * Text to display in the footer item
+   */
+  label?:
+    | string
+    | {
+        content: string
+        style?: React.CSSProperties
+      }
+  /**
+   * Tooltip text to show on hover
+   */
+  tooltip?: string | Omit<TooltipProps, 'children'>
+  /**
+   * URL to navigate to when footer item is clicked
+   */
+  url?: LinkProps['to'] | Omit<LinkProps, 'style'>
+  /**
+   * Link component override used for in-site navigation
+   */
+  linkAs?: React.ElementType
+}
+
 type CardProps = React.PropsWithChildren<{
   /**
    * Props for the avatar wrapper
@@ -31,29 +59,7 @@ type CardProps = React.PropsWithChildren<{
   /**
    * Array of footer items to be rendered at the bottom of the card
    */
-  footer?: {
-    /**
-     * Icon to display next to the label
-     */
-    icon?: IconProps['name'] | IconProps
-    /**
-     * Text to display in the footer item
-     */
-    label?:
-      | string
-      | {
-          content: string
-          style?: React.CSSProperties
-        }
-    /**
-     * Tooltip text to show on hover
-     */
-    tooltip?: string | Omit<TooltipProps, 'children'>
-    /**
-     * URL to navigate to when footer item is clicked
-     */
-    url?: LinkProps['to'] | Omit<LinkProps, 'style'>
-  }[]
+  footer?: CardFooterItem[]
   /**
    * Props for the header
    */
@@ -279,6 +285,7 @@ const Card = ({ children, ...props }: CardProps) => (
             }
           >
             <Link
+              as={footer.linkAs}
               hideExternalUrlIcon
               hideUnderline
               style={{
