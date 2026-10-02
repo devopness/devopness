@@ -1,3 +1,4 @@
+import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { describe, expect, it } from 'vitest'
@@ -243,6 +244,40 @@ describe('Card', () => {
 
       const link = screen.getByText('view all').closest('a')
       expect(link).toHaveAttribute('href', '/projects')
+    })
+
+    it('passes footer linkAs through to the rendered link component', () => {
+      const FooterLink = ({
+        children,
+        to,
+        ...props
+      }: React.ComponentPropsWithoutRef<'a'> & { to?: string }) => (
+        <a
+          data-testid="footer-link-as"
+          href={to}
+          {...props}
+        >
+          {children}
+        </a>
+      )
+
+      render(
+        <Card
+          {...defaultProps}
+          footer={[
+            {
+              label: 'view all',
+              linkAs: FooterLink,
+              url: '/projects',
+            },
+          ]}
+        />
+      )
+
+      expect(screen.getByTestId('footer-link-as')).toHaveAttribute(
+        'href',
+        '/projects'
+      )
     })
   })
 
