@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.209.0
+
+### Minor Changes
+
+- [#3674](https://github.com/devopness/devopness/pull/3674) [`e33f350`](https://github.com/devopness/devopness/commit/e33f350f613c00cb29d43b49a38fadb1e617c390) Thanks [@therealrinku](https://github.com/therealrinku)! - Allow Card footer links to accept a custom `linkAs` component for client-side navigation.
+
 ## 2.208.1
 
 ### Patch Changes
