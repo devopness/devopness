@@ -247,15 +247,19 @@ describe('Card', () => {
     })
 
     it('passes footer linkAs through to the rendered link component', () => {
-      const footerLinkAsProps: Array<Record<string, unknown>> = []
       const FooterLink = ({
         children,
+        to,
         ...props
-      }: React.ComponentPropsWithoutRef<'a'>) => {
-        footerLinkAsProps.push(props)
-
-        return <a>{children}</a>
-      }
+      }: React.ComponentPropsWithoutRef<'a'> & { to?: string }) => (
+        <a
+          data-testid="footer-link-as"
+          href={to}
+          {...props}
+        >
+          {children}
+        </a>
+      )
 
       render(
         <Card
@@ -270,8 +274,9 @@ describe('Card', () => {
         />
       )
 
-      expect(footerLinkAsProps[0]).toEqual(
-        expect.objectContaining({ to: '/projects' })
+      expect(screen.getByTestId('footer-link-as')).toHaveAttribute(
+        'href',
+        '/projects'
       )
     })
   })
