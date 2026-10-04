@@ -33,11 +33,13 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Write JSON to Disk
+        env:
+          PR_DESCRIPTION_JSON: ${{ steps.markdown.outputs.data }}
         run: |
-          cat > .github/scripts/tmp-pr-description-data.json <<'PR_JSON_EOF'
-          ${{ steps.markdown.outputs.data }}
-          PR_JSON_EOF
+          printf '%s\n' "$PR_DESCRIPTION_JSON" > .github/scripts/tmp-pr-description-data.json
 
       - name: Validate PR Description Fields
+        env:
+          PR_DESCRIPTION_JSON: ${{ steps.markdown.outputs.data }}
         run: |-
           node .github/scripts/pr-validate-description.js
