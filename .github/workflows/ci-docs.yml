@@ -5,10 +5,6 @@ on:
       - opened
       - synchronize
 
-defaults:
-  run:
-    working-directory: docs
-
 jobs:
   detect-changes:
     name: Detect changes in Docs
@@ -34,6 +30,9 @@ jobs:
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: docs
 
     strategy:
       matrix:

@@ -5,10 +5,6 @@ on:
       - opened
       - synchronize
 
-defaults:
-  run:
-    working-directory: packages/sdks/python
-
 jobs:
   detect-changes:
     name: Detect changes in SDK-Python
@@ -33,6 +29,9 @@ jobs:
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: packages/sdks/python
 
     strategy:
       matrix:
