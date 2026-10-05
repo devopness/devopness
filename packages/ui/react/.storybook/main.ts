@@ -22,6 +22,7 @@ const config: StorybookConfig = {
   },
 
   stories: [
+    '../src/radix/Introduction.stories.@(ts|tsx)',
     '../src/components/**/*.stories.@(ts|tsx)',
     '../src/radix/**/*.stories.@(ts|tsx)',
   ],
