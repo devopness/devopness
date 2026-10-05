@@ -14,8 +14,8 @@ import {
   ExternalUrlIcon,
 } from './Dropdown.styled'
 import type { Color } from 'src/colors'
-import type { ButtonProps } from 'src/components/Buttons'
-import { Button } from 'src/components/Buttons'
+import type { ButtonProps } from 'src/components/Primitives/Button'
+import { Button } from 'src/components/Primitives/Button'
 import { ConditionalWrapper } from 'src/components/helpers'
 import type { IconProps } from 'src/components/Primitives/Icon'
 import { Icon } from 'src/components/Primitives/Icon'

@@ -1,2 +1,2 @@
-export * from './Button'
-export * from './IconButton'
+export * from '../Primitives/Button'
+export * from '../Primitives/IconButton'
