@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import type { PopoverProps as MaterialPopoverProps } from '@mui/material'
 
 import { Container, Footer, Header, Title, Content } from './Popover.styled'
-import { IconButton } from 'src/components/Buttons'
+import { IconButton } from 'src/components/Primitives/IconButton'
 import { ConditionalWrapper } from 'src/components/helpers'
 
 type PopoverProps = {

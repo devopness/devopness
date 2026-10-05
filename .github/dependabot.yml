@@ -3,7 +3,10 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: monday
+      time: "04:00"
+      timezone: UTC
     open-pull-requests-limit: 10
     groups:
       # Group naming: unprefixed = repo-wide (workspace packages), ui-react-* / sdk-js-* = package-specific.
@@ -48,13 +51,19 @@ updates:
     directories:
       - "/packages/sdks/python"
     schedule:
-      interval: daily
+      interval: weekly
+      day: tuesday
+      time: "04:00"
+      timezone: UTC
     open-pull-requests-limit: 10
 
   - package-ecosystem: npm
     directory: "/docs"
     schedule:
-      interval: daily
+      interval: weekly
+      day: wednesday
+      time: "04:00"
+      timezone: UTC
     open-pull-requests-limit: 10
     groups:
       # Group naming: docs-* = scoped to the /docs npm ecosystem.

@@ -1,5 +1,17 @@
 # @devopness/ui-react
 
+## 2.209.2
+
+### Patch Changes
+
+- [#3691](https://github.com/devopness/devopness/pull/3691) [`f4b7e8d`](https://github.com/devopness/devopness/commit/f4b7e8d4d07b5b4c6a88a1027d2df8a4ce3a43a4) Thanks [@therealrinku](https://github.com/therealrinku)! - Improve Storybook navigation by opening Introduction first and flattening several component story locations for easier discovery.
+
+## 2.209.1
+
+### Patch Changes
+
+- [#3688](https://github.com/devopness/devopness/pull/3688) [`718995a`](https://github.com/devopness/devopness/commit/718995a7da8326cf747f785567529f96a4d06261) Thanks [@therealrinku](https://github.com/therealrinku)! - Export `Button` and `IconButton` from `packages/ui/react/src/components/Primitives/index.ts` and remove the legacy `Buttons/index.ts` entrypoint.
+
 ## 2.209.0
 
 ### Minor Changes
@@ -257,6 +269,7 @@
 
   ```tsx
   import { CardGrid } from '@devopness/ui-react'
+
   ;<CardGrid rowHeight="160px">
     {items.map((item) => (
       <Card

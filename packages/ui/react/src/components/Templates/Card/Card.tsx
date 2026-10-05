@@ -13,7 +13,7 @@ import {
   StyledTitle,
 } from './Card.styled'
 import type { Color } from 'src/colors'
-import { Button } from 'src/components/Buttons/Button'
+import { Button } from 'src/components/Primitives/Button'
 import type { IconProps } from 'src/components/Primitives/Icon'
 import { Icon } from 'src/components/Primitives/Icon'
 import type { LinkProps } from 'src/components/Primitives/Link'

@@ -16,8 +16,8 @@ import {
   StepperContainer,
   WrapperButton,
 } from './MultiStepForm.styled'
-import type { ButtonProps } from 'src/components/Buttons'
-import { Button } from 'src/components/Buttons'
+import type { ButtonProps } from 'src/components/Primitives/Button'
+import { Button } from 'src/components/Primitives/Button'
 import { Alert } from 'src/components/Forms/Alert'
 
 /**
