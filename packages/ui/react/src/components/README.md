@@ -141,7 +141,7 @@ export * from './Category'
 
 #### Example Components
 
-- See [Button](../components/Buttons/Button/Button.tsx) for basic component structure
+- See [Button](../components/Primitives/Button/Button.tsx) for basic component structure
 - See [Input](../components/Forms/Input/Input.tsx) for form handling patterns
 - See [Alert](../components/Forms/Alert/Alert.tsx) for styled-components usage
 - See [Tooltip](../components/Primitives/Tooltip/Tooltip.tsx) for complex interactions

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Meta } from '@storybook/react-vite'
 import type { Column } from 'react-table'
 
-import { Button } from 'src/components/Buttons'
+import { Button } from 'src/components/Primitives/Button'
 import { CheckBox } from 'src/components/Primitives/CheckBox'
 import { Status } from 'src/components/Primitives/Status'
 import { Tooltip } from 'src/components/Primitives/Tooltip'

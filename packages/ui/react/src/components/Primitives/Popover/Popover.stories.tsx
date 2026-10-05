@@ -3,7 +3,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Popover, PopoverProps } from './Popover'
-import { Button } from 'src/components/Buttons'
+import { Button } from 'src/components/Primitives/Button'
 
 const meta: Meta<PopoverProps> = {
   title: 'Primitives/Popover',
