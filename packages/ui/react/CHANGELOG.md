@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.209.1
+
+### Patch Changes
+
+- [#3688](https://github.com/devopness/devopness/pull/3688) [`718995a`](https://github.com/devopness/devopness/commit/718995a7da8326cf747f785567529f96a4d06261) Thanks [@therealrinku](https://github.com/therealrinku)! - Export `Button` and `IconButton` from `packages/ui/react/src/components/Primitives/index.ts` and remove the legacy `Buttons/index.ts` entrypoint.
+
 ## 2.209.0
 
 ### Minor Changes
