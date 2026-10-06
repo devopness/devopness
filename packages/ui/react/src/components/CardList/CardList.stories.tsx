@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Button } from 'src/components/Buttons'
+import { Button } from 'src/components/Primitives/Button'
 import { Tooltip } from 'src/components/Primitives'
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'

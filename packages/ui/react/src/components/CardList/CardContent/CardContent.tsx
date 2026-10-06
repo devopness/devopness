@@ -1,6 +1,6 @@
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { Alert } from 'src/components/Forms/Alert'
-import { Button } from 'src/components/Buttons'
+import { Button } from 'src/components/Primitives/Button'
 import { Link } from 'src/components/Primitives'
 import { Skeleton, Tooltip } from 'src/components/Primitives'
 import { getColor } from 'src/colors'
