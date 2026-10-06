@@ -56,6 +56,7 @@
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "prepublishOnly": "npm run lint && npm test && npm run build",
+    "pretest": "node scripts/check-node-runtime.js",
     "storybook": "storybook dev -p 6006",
     "test": "vitest"
   },
