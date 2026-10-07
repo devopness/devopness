@@ -199,7 +199,10 @@ const MAX_STEPS = 6
  */
 const ELEMENT_NOT_FOUND = -1
 
-const StyleStepIcon = ({ active, icon }: StyleStepIconProps): React.JSX.Element => (
+const StyleStepIcon = ({
+  active,
+  icon,
+}: StyleStepIconProps): React.JSX.Element => (
   <StepIconRoot $active={active}>{icon}</StepIconRoot>
 )
 
