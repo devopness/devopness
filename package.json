@@ -18,6 +18,11 @@
     "vite-plus": "1.0.0"
   },
   "overrides": {
+    "vite-plus": "1.0.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "babel-plugin-istanbul": {
       "test-exclude": "^7.0.1"
     },
