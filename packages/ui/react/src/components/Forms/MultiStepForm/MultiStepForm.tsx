@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 import {
   CancelButton,
@@ -56,7 +56,7 @@ type StepperDataProps = {
    * This property receives the component responsible for the step. The code
    * snippet in which it forms part of the form.
    */
-  component: JSX.Element
+  component: React.JSX.Element
   /**
    * This property, which receives a list of field names that make up part of
    * each step of the form, is used to validate the fields for each step.
@@ -199,7 +199,7 @@ const MAX_STEPS = 6
  */
 const ELEMENT_NOT_FOUND = -1
 
-const StyleStepIcon = ({ active, icon }: StyleStepIconProps): JSX.Element => (
+const StyleStepIcon = ({ active, icon }: StyleStepIconProps): React.JSX.Element => (
   <StepIconRoot $active={active}>{icon}</StepIconRoot>
 )
 
@@ -268,7 +268,7 @@ const MultiStepForm = <T,>({
   initialStep = 0,
   trackEvents = true,
   onTrackEvent,
-}: MultiStepFormProps<T>): JSX.Element => {
+}: MultiStepFormProps<T>): React.JSX.Element => {
   const isSingleStep = steppersData.length === 1
 
   const validatedInitialStep = Number.isFinite(initialStep)
