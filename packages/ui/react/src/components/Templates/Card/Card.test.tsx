@@ -247,7 +247,7 @@ describe('Card', () => {
     })
 
     it('passes footer linkAs through to the rendered link component', () => {
-      const FooterLink = ({
+      const FooterNavigationLink = ({
         children,
         to,
         ...props
@@ -267,7 +267,7 @@ describe('Card', () => {
           footer={[
             {
               label: 'view all',
-              linkAs: FooterLink,
+              linkAs: FooterNavigationLink,
               url: '/projects',
             },
           ]}
@@ -300,11 +300,11 @@ describe('Card', () => {
         />
       )
 
-      const addLink = screen.getByText('Add').closest('a')
-      const viewAllLink = screen.getByText('view all').closest('a')
+      const addNavigationLink = screen.getByText('Add').closest('a')
+      const viewAllNavigationLink = screen.getByText('view all').closest('a')
 
-      expect(addLink).toHaveAttribute('href', '/projects/add')
-      expect(viewAllLink).toHaveAttribute('href', '/projects')
+      expect(addNavigationLink).toHaveAttribute('href', '/projects/add')
+      expect(viewAllNavigationLink).toHaveAttribute('href', '/projects')
     })
 
     it('renders footer items with icons', () => {
@@ -527,7 +527,7 @@ describe('Card', () => {
 
       const link = screen.getByText('Test Card').closest('a')
       expect(link).toHaveAttribute('href', '/test-url')
-      // Default target is _blank for @devopness/ui-react:Link component
+      // Default target is _blank for @devopness/ui-react:NavigationLink component
       expect(link).toHaveAttribute('target', '_blank')
 
       rerender(

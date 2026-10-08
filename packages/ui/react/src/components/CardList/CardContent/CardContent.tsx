@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { Alert } from 'src/components/Forms/Alert'
 import { Button } from 'src/components/Primitives/Button'
-import { Link } from 'src/components/Primitives'
+import { NavigationLink } from 'src/components/Primitives'
 import { Skeleton, Tooltip } from 'src/components/Primitives'
 import { getColor } from 'src/colors'
 import ConditionalWrapper from 'src/utils/ConditialWrapper'
@@ -80,10 +80,10 @@ type CardContentProps = {
 
   /**
    * Renders internal links (resource rows and "add resource") as this
-   * component instead of a plain `<a>` — e.g. your router's `Link` — so
+   * component instead of a plain `<a>` — e.g. your router's `NavigationLink` — so
    * navigation goes through client-side routing.
    *
-   * @see {Link}
+   * @see {NavigationLink}
    */
   linkAs?: React.ElementType
 
@@ -225,7 +225,7 @@ const AddResource = ({
         <ConditionalWrapper
           condition={!isDisabled}
           wrapper={(children) => (
-            <Link
+            <NavigationLink
               as={linkAs}
               hideExternalUrlIcon
               hideUnderline
@@ -238,7 +238,7 @@ const AddResource = ({
               }}
             >
               {children}
-            </Link>
+            </NavigationLink>
           )}
         >
           <Button
@@ -279,7 +279,7 @@ const ResourceItem = ({ resource, linkAs }: ResourceItemProps) => {
       title={resource.name}
       disableHover={!isOverflowing}
     >
-      <Link
+      <NavigationLink
         as={linkAs}
         hideExternalUrlIcon
         hideUnderline
@@ -295,7 +295,7 @@ const ResourceItem = ({ resource, linkAs }: ResourceItemProps) => {
         <StyledResourceName ref={elementRef}>
           {resource.name}
         </StyledResourceName>
-      </Link>
+      </NavigationLink>
     </Tooltip>
   )
 }
