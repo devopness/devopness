@@ -19,8 +19,8 @@ import { Button } from 'src/components/Primitives/Button'
 import { ConditionalWrapper } from 'src/components/helpers'
 import type { IconProps } from 'src/components/Primitives/Icon'
 import { Icon } from 'src/components/Primitives/Icon'
-import type { LinkProps } from 'src/components/Primitives/Link'
-import { Link } from 'src/components/Primitives/Link'
+import type { NavigationLinkProps } from 'src/components/Primitives/NavigationLink'
+import { NavigationLink } from 'src/components/Primitives/NavigationLink'
 import type { TooltipProps } from 'src/components/Primitives/Tooltip'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 import type { Unwrap } from 'src/components/types'
@@ -80,11 +80,11 @@ type DropdownOption = {
    */
   label?: string
   /**
-   * Link properties
+   * NavigationLink properties
    *
-   * @see {Link}
+   * @see {NavigationLink}
    */
-  linkProps?: LinkProps
+  linkProps?: NavigationLinkProps
   /**
    * Event handler called when this option is clicked.
    */
@@ -96,9 +96,9 @@ type DropdownOption = {
    */
   tooltip?: TooltipProps['title']
   /**
-   * Transforms label to a Link and point user to this url
+   * Transforms label to a NavigationLink and point user to this url
    *
-   * @see {Link}
+   * @see {NavigationLink}
    */
   url?: string
 }
@@ -351,7 +351,7 @@ const Dropdown = ({
                       key={index}
                     >
                       {option.url ? (
-                        <Link
+                        <NavigationLink
                           to={option.url}
                           hideUnderline
                           {...option.linkProps}
@@ -428,7 +428,7 @@ const Dropdown = ({
                               </ExternalUrlIcon>
                             )}
                           </MenuOption>
-                        </Link>
+                        </NavigationLink>
                       ) : (
                         <MenuOption
                           id={`option_${index.toString()}`}

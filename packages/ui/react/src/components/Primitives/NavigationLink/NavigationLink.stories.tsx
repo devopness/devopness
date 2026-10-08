@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Link } from '.'
+import { NavigationLink } from '.'
 
 const meta = {
-  component: Link,
+  component: NavigationLink,
   argTypes: {
     children: {
       control: 'text',
     },
   },
-} satisfies Meta<typeof Link>
+} satisfies Meta<typeof NavigationLink>
 
 type Story = StoryObj<typeof meta>
 
 const Primary: Story = {
   args: {
     to: 'http://www.devopness.com',
-    children: 'Link',
+    children: 'NavigationLink',
     target: '_blank',
   },
 }

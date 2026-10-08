@@ -7,12 +7,12 @@ import { getFont } from 'src/fonts'
 //   A: Styled Component v5.1 Transient prop format
 //      Read more @ https://styled-components.com/docs/api#transient-props
 
-type StyledLinkProps = {
+type StyledNavigationLinkProps = {
   $showUnderline: boolean
   $showUnderlineOnHover: boolean
 }
 
-const StyledLink = styled.a<StyledLinkProps>`
+const StyledNavigationLink = styled.a<StyledNavigationLinkProps>`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -33,4 +33,4 @@ const StyledLink = styled.a<StyledLinkProps>`
   }
 `
 
-export { StyledLink }
+export { StyledNavigationLink }

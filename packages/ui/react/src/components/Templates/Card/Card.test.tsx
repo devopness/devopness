@@ -527,7 +527,7 @@ describe('Card', () => {
 
       const link = screen.getByText('Test Card').closest('a')
       expect(link).toHaveAttribute('href', '/test-url')
-      // Default target is _blank for @devopness/ui-react:Link component
+      // Default target is _blank for @devopness/ui-react:NavigationLink component
       expect(link).toHaveAttribute('target', '_blank')
 
       rerender(
