@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { iconLoader } from 'src/icons'
-import { NavigationLink } from 'src/components/Primitives/NavigationNavigationLink'
+import { NavigationLink } from 'src/components/Primitives/NavigationLink'
 
 import {
   CardBodyContent,

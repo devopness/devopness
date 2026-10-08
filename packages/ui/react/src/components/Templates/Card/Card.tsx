@@ -1,7 +1,7 @@
 import {
   StyledAddCta,
   StyledAddCtaButton,
-  StyledAddCtaNavigationLink,
+  StyledAddCtaLink,
   StyledAvatar,
   StyledContainer,
   StyledFooter,
@@ -16,8 +16,8 @@ import type { Color } from 'src/colors'
 import { Button } from 'src/components/Primitives/Button'
 import type { IconProps } from 'src/components/Primitives/Icon'
 import { Icon } from 'src/components/Primitives/Icon'
-import type { NavigationNavigationLinkProps } from 'src/components/Primitives/NavigationNavigationLink'
-import { NavigationLink } from 'src/components/Primitives/NavigationNavigationLink'
+import type { NavigationLinkProps } from 'src/components/Primitives/NavigationLink'
+import { NavigationLink } from 'src/components/Primitives/NavigationLink'
 import type { TooltipProps } from 'src/components/Primitives/Tooltip'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 
@@ -42,9 +42,7 @@ type CardFooterItem = {
   /**
    * URL to navigate to when footer item is clicked
    */
-  url?:
-    | NavigationNavigationLinkProps['to']
-    | Omit<NavigationNavigationLinkProps, 'style'>
+  url?: NavigationLinkProps['to'] | Omit<NavigationLinkProps, 'style'>
   /**
    * NavigationLink component override used for in-site navigation
    */
@@ -90,7 +88,7 @@ type CardProps = React.PropsWithChildren<{
    */
   addUrl?:
     | string
-    | (Omit<NavigationNavigationLinkProps, 'style'> & {
+    | (Omit<NavigationLinkProps, 'style'> & {
         disabled?: boolean
         disabledTooltip?: string
         tooltip?: string
@@ -110,9 +108,7 @@ type CardProps = React.PropsWithChildren<{
   /**
    * URL to navigate to when card is clicked
    */
-  url?:
-    | NavigationNavigationLinkProps['to']
-    | Omit<NavigationNavigationLinkProps, 'style'>
+  url?: NavigationLinkProps['to'] | Omit<NavigationLinkProps, 'style'>
 }>
 
 /**
@@ -219,7 +215,7 @@ const Card = ({ children, ...props }: CardProps) => (
           if (typeof addUrl === 'string') {
             return (
               <StyledAddCta>
-                <StyledAddCtaNavigationLink
+                <StyledAddCtaLink
                   hideExternalUrlIcon
                   hideUnderline
                   target="_self"
@@ -229,7 +225,7 @@ const Card = ({ children, ...props }: CardProps) => (
                     name="add"
                     size={24}
                   />
-                </StyledAddCtaNavigationLink>
+                </StyledAddCtaLink>
               </StyledAddCta>
             )
           }
@@ -251,7 +247,7 @@ const Card = ({ children, ...props }: CardProps) => (
                     />
                   </StyledAddCtaButton>
                 ) : (
-                  <StyledAddCtaNavigationLink
+                  <StyledAddCtaLink
                     aria-label={tooltip ?? 'add'}
                     hideExternalUrlIcon
                     hideUnderline
@@ -262,7 +258,7 @@ const Card = ({ children, ...props }: CardProps) => (
                       name="add"
                       size={24}
                     />
-                  </StyledAddCtaNavigationLink>
+                  </StyledAddCtaLink>
                 )}
               </Tooltip>
             </StyledAddCta>
