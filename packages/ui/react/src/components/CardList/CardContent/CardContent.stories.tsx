@@ -19,9 +19,9 @@ const mockResources: CardContentProps['resources'] = [
 ]
 
 /**
- * Stands in for a router's own `NavigationLink` (e.g. `devopness-web-app`'s
- * `CustomDevopnessLink`, a `styled(NavigationLink)` from `@tanstack/react-router`).
- * Deliberately styled to look nothing like `NavigationLink`'s own styles, so the
+ * Stands in for a router's own `Link` (e.g. `devopness-web-app`'s
+ * `CustomDevopnessLink`, a `styled(Link)` from `@tanstack/react-router`).
+ * Deliberately styled to look nothing like `Link`'s own styles, so the
  * `WithCustomLinkAs` story below makes it obvious which styling wins once
  * `linkAs` composes the two styled-components definitions.
  */
@@ -81,9 +81,9 @@ const ErrorState: Story = {
 
 /**
  * Renders internal links through `MockRouterLink` via `linkAs`, standing in
- * for a real client-side-router `NavigationLink`. Use this story to visually confirm
+ * for a real client-side-router `Link`. Use this story to visually confirm
  * `MockRouterLink`'s own styling (bold, green, no underline) isn't overridden
- * by `NavigationLink`'s own generated styles before relying on `linkAs` in an app.
+ * by `Link`'s own generated styles before relying on `linkAs` in an app.
  */
 const WithCustomLinkAs: Story = {
   args: {

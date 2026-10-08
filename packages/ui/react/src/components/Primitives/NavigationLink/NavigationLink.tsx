@@ -14,7 +14,7 @@ type NavigationLinkProps = Omit<
 > & {
   /**
    * Renders the link as a different component instead of a plain `<a>` —
-   * e.g. your router's `NavigationLink` — so navigation can go through client-side
+   * e.g. your router's `Link` — so navigation can go through client-side
    * routing instead of a full page load. The `to` prop is only forwarded
    * to that component (never to a plain `<a>`, to avoid leaking unknown
    * DOM attributes).

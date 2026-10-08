@@ -247,7 +247,7 @@ describe('Card', () => {
     })
 
     it('passes footer linkAs through to the rendered link component', () => {
-      const FooterNavigationLink = ({
+      const FooterLink = ({
         children,
         to,
         ...props
@@ -267,7 +267,7 @@ describe('Card', () => {
           footer={[
             {
               label: 'view all',
-              linkAs: FooterNavigationLink,
+              linkAs: FooterLink,
               url: '/projects',
             },
           ]}
@@ -300,11 +300,11 @@ describe('Card', () => {
         />
       )
 
-      const addNavigationLink = screen.getByText('Add').closest('a')
-      const viewAllNavigationLink = screen.getByText('view all').closest('a')
+      const addLink = screen.getByText('Add').closest('a')
+      const viewAllLink = screen.getByText('view all').closest('a')
 
-      expect(addNavigationLink).toHaveAttribute('href', '/projects/add')
-      expect(viewAllNavigationLink).toHaveAttribute('href', '/projects')
+      expect(addLink).toHaveAttribute('href', '/projects/add')
+      expect(viewAllLink).toHaveAttribute('href', '/projects')
     })
 
     it('renders footer items with icons', () => {

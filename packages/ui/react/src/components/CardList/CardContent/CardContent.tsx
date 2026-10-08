@@ -80,7 +80,7 @@ type CardContentProps = {
 
   /**
    * Renders internal links (resource rows and "add resource") as this
-   * component instead of a plain `<a>` — e.g. your router's `NavigationLink` — so
+   * component instead of a plain `<a>` — e.g. your router's `Link` — so
    * navigation goes through client-side routing.
    *
    * @see {NavigationLink}
