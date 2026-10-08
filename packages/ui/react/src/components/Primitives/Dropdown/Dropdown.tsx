@@ -19,8 +19,8 @@ import { Button } from 'src/components/Primitives/Button'
 import { ConditionalWrapper } from 'src/components/helpers'
 import type { IconProps } from 'src/components/Primitives/Icon'
 import { Icon } from 'src/components/Primitives/Icon'
-import type { NavigationNavigationLinkProps } from 'src/components/Primitives/NavigationNavigationLink'
-import { NavigationLink } from 'src/components/Primitives/NavigationNavigationLink'
+import type { NavigationLinkProps } from 'src/components/Primitives/NavigationLink'
+import { NavigationLink } from 'src/components/Primitives/NavigationLink'
 import type { TooltipProps } from 'src/components/Primitives/Tooltip'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
 import type { Unwrap } from 'src/components/types'
@@ -84,7 +84,7 @@ type DropdownOption = {
    *
    * @see {NavigationLink}
    */
-  linkProps?: NavigationNavigationLinkProps
+  linkProps?: NavigationLinkProps
   /**
    * Event handler called when this option is clicked.
    */
