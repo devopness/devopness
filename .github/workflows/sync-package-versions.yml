@@ -130,6 +130,9 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
+      - name: Install workspace dependencies for changelog formatters
+        run: npm install --workspaces
+
       - name: Format generated changelogs
         # We format every generated CHANGELOG.md before the sync commit is created.
         run: npm run format:changelogs
