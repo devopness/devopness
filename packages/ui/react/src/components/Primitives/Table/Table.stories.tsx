@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import type { Meta } from '@storybook/react-vite'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { Column } from 'react-table'
 
 import { Button } from 'src/components/Primitives/Button'
 import { CheckBox } from 'src/components/Primitives/CheckBox'
 import { Status } from 'src/components/Primitives/Status'
-import { Tooltip } from 'src/components/Primitives/Tooltip'
 import { ActionStatus } from 'src/constants'
 import { type Icon } from 'src/icons'
 import { getColor } from 'src/colors'
@@ -125,193 +124,111 @@ const columnsDefault: Column<RowData>[] = [
   },
 ]
 
-function Default() {
-  return (
-    <Table<RowData>
-      columns={columnsDefault}
-      data={rowsDefault}
-      hoverColor={getColor('indigo.10')}
-    />
-  )
-}
-
-function Loading() {
-  return (
-    <Table
-      columns={[]}
-      isLoading={true}
-      loadingTableCells={[
-        {
-          name: 'Name',
-          rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
-        },
-        {
-          name: 'Framework',
-          rowVariation: TableLoadingRowVariation.BAR_EFFECT,
-        },
-        { name: 'Language', rowVariation: TableLoadingRowVariation.BAR_EFFECT },
-        {
-          name: 'Public Directory',
-          rowVariation: TableLoadingRowVariation.BAR_EFFECT,
-        },
-        {
-          name: '',
-          rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
-          alignEnd: true,
-        },
-      ]}
-      data={[]}
-    />
-  )
-}
-
-function Empty() {
-  return (
-    <Table<RowData>
-      columns={columnsDefault}
-      data={[]}
-      hoverColor={getColor('indigo.10')}
-    />
-  )
-}
-
-function HeadCheckbox({
-  data,
-  selected,
-  setSelected,
-}: {
-  data: { rows: Array<{ original: RowData }> }
-  selected: string[]
-  setSelected: (value: string[]) => void
-}) {
-  const ids = data.rows.map(({ original }) => original.name)
-  const checked = ids.length > 0 && ids.every((id) => selected.includes(id))
-  return (
-    <CheckBox
-      isChecked={checked}
-      isStroke={!checked && selected.length > 0}
-      onClick={() => setSelected(checked ? [] : ids)}
-    />
-  )
-}
-
-function RowCheckbox({
-  data,
-  selected,
-  setSelected,
-}: {
-  data: { row: { original: RowData } }
-  selected: string[]
-  setSelected: (value: string[]) => void
-}) {
-  const id = data.row.original.name
-  const checked = selected.includes(id)
-  return (
-    <CheckBox
-      isChecked={checked}
-      onClick={() =>
-        setSelected(
-          checked ? selected.filter((item) => item !== id) : [...selected, id]
-        )
-      }
-    />
-  )
-}
-
-function WithCheckbox() {
+function DefaultComponent(args: any) {
   const [selected, setSelected] = useState<string[]>([])
-  const columns: Column<RowData>[] = [
-    columnsDefault[0],
-    columnsDefault[1],
-    columnsDefault[2],
-    columnsDefault[3],
+
+  const loadingTableCells = [
     {
-      accessor: 'actions',
-      Header: (data) => (
-        <HeadCheckbox
-          data={data}
-          selected={selected}
-          setSelected={setSelected}
-        />
-      ),
-      Cell: (data) => (
-        <RowCheckbox
-          data={data}
-          selected={selected}
-          setSelected={setSelected}
-        />
-      ),
+      name: 'Name',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+    },
+    {
+      name: 'Status',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: 'Language',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: 'Public Directory',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: '',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT,
+      alignEnd: true,
     },
   ]
-  return (
-    <Table<RowData>
-      columns={columns}
-      data={rowsDefault}
-      hoverColor={getColor('indigo.10')}
-    />
-  )
-}
 
-interface TooltipRow extends RowData {
-  servers: string[]
-}
-
-const tooltipRows: TooltipRow[] = rowsDefault.map((row, index) => ({
-  ...row,
-  servers: Array.from({ length: index + 1 }, (_, item) => `server ${item + 1}`),
-}))
-
-function WithTooltip() {
-  const columns: Column<TooltipRow>[] = [
+  const columns: Column<ActionRow>[] = [
     {
       accessor: 'name',
       Header: 'Name',
       Cell: ({ row }) => (
         <TableCellWrapper
           icon={row.original.icon}
-          value={
-            <Tooltip
-              title={row.original.name}
-              enableOnlyWithEllipsisPoints
-            >
-              {row.original.name}
-            </Tooltip>
-          }
+          value={row.original.name}
           iconBackgroundColor={getColor('purple.800')}
         />
       ),
     },
     {
-      accessor: 'framework',
-      Header: 'Framework',
-      Cell: ({ value }) => (
-        <Tooltip
-          title={value}
-          enableOnlyWithEllipsisPoints
-        >
-          {value}
-        </Tooltip>
-      ),
+      accessor: 'status',
+      Header: 'Status',
+      Cell: ({ row }) => STATUS_CONTENTS[row.original.status],
     },
-    { accessor: 'lang', Header: 'Language' },
-    { accessor: 'directory', Header: 'Public Directory' },
     {
-      accessor: 'servers',
-      Header: 'Servers',
-      Cell: ({ value }) => (
-        <Tooltip title={value.join('\n')}>
-          <span>{value.length}</span>
-        </Tooltip>
-      ),
+      accessor: 'language',
+      Header: 'Language',
+      Cell: ({ value }) => value || '—',
+    },
+    {
+      accessor: 'directory',
+      Header: 'Public Directory',
+      Cell: ({ value }) => value || '—',
+    },
+    {
+      accessor: 'actions',
+      Header: ({ rows: tableRows }) => {
+        const rowIds = tableRows.map((row) => row.original.name)
+        const isChecked =
+          rowIds.length > 0 && rowIds.every((id) => selected.includes(id))
+
+        return (
+          <CheckBox
+            isChecked={isChecked}
+            isStroke={!isChecked && selected.length > 0}
+            onClick={() => setSelected(isChecked ? [] : rowIds)}
+          />
+        )
+      },
+      Cell: ({ row }) => {
+        const id = row.original.name
+        const isChecked = selected.includes(id)
+
+        return (
+          <CheckBox
+            isChecked={isChecked}
+            onClick={() =>
+              setSelected(
+                isChecked
+                  ? selected.filter((selectedId) => selectedId !== id)
+                  : [...selected, id]
+              )
+            }
+          />
+        )
+      },
     },
   ]
   return (
-    <Table<TooltipRow>
+    <Table<ActionRow>
       columns={columns}
-      data={tooltipRows}
-      hoverColor={getColor('indigo.10')}
+      data={actionRows}
+      loadingTableCells={loadingTableCells}
+      {...args}
     />
   )
+}
+
+const Default: StoryObj<typeof Table> = {
+  render: (args) => <DefaultComponent {...args} />,
+  args: {
+    hoverColor: getColor('indigo.10'),
+    alignEndLastColumn: true,
+    isLoading: false,
+  },
 }
 
 interface StepsRow {
@@ -333,7 +250,7 @@ const stepsData: StepsRow[] = [
   },
 ]
 
-function WithSteps() {
+function WithStepsComponent(args: any) {
   const columns: Column<StepsRow>[] = [
     {
       accessor: 'name',
@@ -361,17 +278,154 @@ function WithSteps() {
         ) : null,
     },
   ]
+
+  const loadingTableCells = [
+    {
+      name: 'Daemon',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+    },
+    {
+      name: '',
+      rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
+    },
+  ]
+
   return (
     <Table<StepsRow>
       columns={columns}
       data={stepsData}
       layout="indented"
-      hoverColor={getColor('indigo.10')}
       customSubRowInjection={() => (
         <pre style={{ margin: 0 }}>Install dependencies\nDone</pre>
       )}
+      loadingTableCells={loadingTableCells}
+      {...args}
     />
   )
+}
+
+const WithSteps: StoryObj<typeof Table> = {
+  render: (args) => <WithStepsComponent {...args} />,
+  args: {
+    hoverColor: getColor('indigo.10'),
+    alignEndLastColumn: true,
+    isLoading: false,
+  },
+}
+
+function LoadingComponent(args: any) {
+  const loadingTableCells = [
+    {
+      name: 'Name',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+    },
+    {
+      name: 'Framework',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    { name: 'Language', rowVariation: TableLoadingRowVariation.BAR_EFFECT },
+    {
+      name: 'Public Directory',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: '',
+      rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
+      alignEnd: true,
+    },
+  ]
+
+  const columns = [
+    { accessor: 'name', Header: 'Name' },
+    { accessor: 'framework', Header: 'Framework' },
+    { accessor: 'language', Header: 'Language' },
+    { accessor: 'publicDirectory', Header: 'Public Directory' },
+    {
+      accessor: 'actions',
+      Header: '',
+      Cell: () => (
+        <div style={{ textAlign: 'right' }}>
+          <Button>Actions</Button>
+        </div>
+      ),
+    },
+  ]
+
+  const data = [
+    {
+      name: 'server-name',
+      framework: 'React',
+      language: 'TypeScript',
+      publicDirectory: '/public',
+      actions: null,
+    },
+    {
+      name: 'api-server',
+      framework: 'Node.js',
+      language: 'JavaScript',
+      publicDirectory: '/dist',
+      actions: null,
+    },
+  ]
+
+  return (
+    <Table
+      columns={columns}
+      loadingTableCells={loadingTableCells}
+      data={data}
+      {...args}
+    />
+  )
+}
+
+const Loading: StoryObj<typeof Table> = {
+  render: (args) => <LoadingComponent {...args} />,
+  args: {
+    isLoading: true,
+    hoverColor: getColor('indigo.10'),
+    alignEndLastColumn: true,
+  },
+}
+
+function EmptyComponent(args: any) {
+  const loadingTableCells = [
+    {
+      name: 'Name',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+    },
+    {
+      name: 'Framework',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    { name: 'Language', rowVariation: TableLoadingRowVariation.BAR_EFFECT },
+    {
+      name: 'Public Directory',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: '',
+      rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
+      alignEnd: true,
+    },
+  ]
+
+  return (
+    <Table<RowData>
+      columns={columnsDefault}
+      data={[]}
+      loadingTableCells={loadingTableCells}
+      {...args}
+    />
+  )
+}
+
+const Empty: StoryObj<typeof Table> = {
+  render: (args) => <EmptyComponent {...args} />,
+  args: {
+    hoverColor: getColor('indigo.10'),
+    alignEndLastColumn: true,
+    isLoading: false,
+  },
 }
 
 interface ActionRow {
@@ -512,155 +566,36 @@ const actionRows: ActionRow[] = [
   },
 ]
 
-function WithActionStates() {
-  const columns: Column<ActionRow>[] = [
+function WithPaginationComponent(args: any) {
+  const loadingTableCells = [
     {
-      accessor: 'name',
-      Header: 'Name',
-      Cell: ({ row }) => (
-        <TableCellWrapper
-          icon={row.original.icon}
-          value={row.original.name}
-          iconBackgroundColor={getColor('purple.800')}
-        />
-      ),
+      name: 'Name',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
     },
     {
-      accessor: 'status',
-      Header: 'Status',
-      Cell: ({ row }) => STATUS_CONTENTS[row.original.status],
+      name: 'Framework',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    { name: 'Language', rowVariation: TableLoadingRowVariation.BAR_EFFECT },
+    {
+      name: 'Public Directory',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
     },
     {
-      accessor: 'language',
-      Header: 'Language',
-      Cell: ({ value }) => value || '—',
+      name: 'Build Command',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
     },
     {
-      accessor: 'directory',
-      Header: 'Public Directory',
-      Cell: ({ value }) => value || '—',
+      name: 'Created At',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
     },
     {
-      accessor: 'actions',
-      Header: '',
-      Cell: (
-        <Grid>
-          <Button typeSize="medium">Deploy</Button>
-        </Grid>
-      ),
-    },
-  ]
-  return (
-    <Table<ActionRow>
-      columns={columns}
-      data={actionRows}
-      hoverColor={getColor('indigo.10')}
-    />
-  )
-}
-
-interface MediumRow {
-  name: { value: string; icon: Icon }
-  actions?: React.ReactNode
-}
-
-function MediumSizeTableDefaultWithCheckbox() {
-  const [selected, setSelected] = useState<string[]>([])
-  const rows: MediumRow[] = [
-    { name: { value: 'Machine 1', icon: 'aws' } },
-    { name: { value: 'Machine 2', icon: 'server' } },
-    { name: { value: 'Machine 3', icon: 'digitalocean' } },
-  ]
-  const columns: Column<MediumRow>[] = [
-    {
-      accessor: 'name',
-      Header: 'Servers name',
-      Cell: ({ value }) => (
-        <TableCellWrapper
-          icon={value.icon}
-          value={value.value}
-          iconBackgroundColor={getColor('purple.800')}
-        />
-      ),
-    },
-    {
-      accessor: 'actions',
-      Header: ({ rows: tableRows }) => {
-        const rowIds = tableRows.map((row) => row.original.name.value)
-        const isChecked =
-          rowIds.length > 0 && rowIds.every((id) => selected.includes(id))
-
-        return (
-          <CheckBox
-            isChecked={isChecked}
-            isStroke={!isChecked && selected.length > 0}
-            onClick={() => setSelected(isChecked ? [] : rowIds)}
-          />
-        )
-      },
-      Cell: ({ row }) => {
-        const id = row.original.name.value
-        const isChecked = selected.includes(id)
-
-        return (
-          <CheckBox
-            isChecked={isChecked}
-            onClick={() =>
-              setSelected(
-                isChecked
-                  ? selected.filter((selectedId) => selectedId !== id)
-                  : [...selected, id]
-              )
-            }
-          />
-        )
-      },
+      name: '',
+      rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
+      alignEnd: true,
     },
   ]
 
-  return (
-    <Table<MediumRow>
-      smallContainer
-      columns={columns}
-      data={rows}
-      hoverColor={getColor('indigo.10')}
-    />
-  )
-}
-
-function MediumSizeTableLoading() {
-  return (
-    <Table
-      columns={[]}
-      loadingTableCells={[
-        {
-          name: 'Name',
-          rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
-        },
-        {
-          name: '',
-          rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
-          alignEnd: true,
-        },
-      ]}
-      isLoading={true}
-      data={[]}
-    />
-  )
-}
-
-function MediumSizeTableEmpty() {
-  return (
-    <Table<MediumRow>
-      smallContainer
-      columns={[{ accessor: 'name', Header: 'Servers name' }]}
-      data={[]}
-      hoverColor={getColor('indigo.10')}
-    />
-  )
-}
-
-function WithPagination() {
   const columns: Column<RowData>[] = [
     ...columnsDefault.slice(0, -1),
     { accessor: 'buildCommand', Header: 'Build Command' },
@@ -691,64 +626,133 @@ function WithPagination() {
     <Table
       columns={columns}
       data={rowsDefault}
-      paginationData={{
-        pageCount: 10,
-        paginationProps: {
-          lastPaginateAction: () => alert('last page action'),
-          firstPaginateAction: () => alert('first page action'),
-          previousPaginateAction: () => alert('previous page action'),
-          nextPaginateAction: () => alert('next page action'),
-        },
-      }}
+      loadingTableCells={loadingTableCells}
+      {...args}
     />
   )
 }
 
-function WithCustomEmptyState() {
+const WithPagination: StoryObj<typeof Table> = {
+  render: (args) => <WithPaginationComponent {...args} />,
+  args: {
+    hoverColor: getColor('indigo.10'),
+    alignEndLastColumn: true,
+    isLoading: false,
+    paginationData: {
+      pageCount: 10,
+      paginationProps: {
+        lastPaginateAction: () => alert('last page action'),
+        firstPaginateAction: () => alert('first page action'),
+        previousPaginateAction: () => alert('previous page action'),
+        nextPaginateAction: () => alert('next page action'),
+      },
+    },
+  },
+}
+
+function WithCustomEmptyStateComponent(args: any) {
+  const loadingTableCells = [
+    {
+      name: 'Name',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+    },
+    {
+      name: 'Framework',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    { name: 'Language', rowVariation: TableLoadingRowVariation.BAR_EFFECT },
+    {
+      name: 'Public Directory',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: '',
+      rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
+      alignEnd: true,
+    },
+  ]
+
   return (
     <Table
       columns={columnsDefault}
-      isEmpty={true}
-      emptyData={{
-        isSmallContainer: true,
-        message: 'No data found.',
-        image: 'https://assets.devopness.com/images/logo-devopness-primary.svg',
-      }}
       data={[]}
-      paginationData={{
-        pageCount: 10,
-        paginationProps: {
-          lastPaginateAction: () => alert('last page action'),
-          firstPaginateAction: () => alert('first page action'),
-          previousPaginateAction: () => alert('previous page action'),
-          nextPaginateAction: () => alert('next page action'),
-        },
-      }}
+      loadingTableCells={loadingTableCells}
+      {...args}
     />
   )
 }
 
-function WithFixedHeight() {
+const WithCustomEmptyState: StoryObj<typeof Table> = {
+  render: (args) => <WithCustomEmptyStateComponent {...args} />,
+  args: {
+    hoverColor: getColor('indigo.10'),
+    alignEndLastColumn: true,
+    isLoading: false,
+    isEmpty: true,
+    emptyData: {
+      isSmallContainer: true,
+      message: 'No data found.',
+      image: 'https://assets.devopness.com/images/logo-devopness-primary.svg',
+    },
+    paginationData: {
+      pageCount: 10,
+      paginationProps: {
+        lastPaginateAction: () => alert('last page action'),
+        firstPaginateAction: () => alert('first page action'),
+        previousPaginateAction: () => alert('previous page action'),
+        nextPaginateAction: () => alert('next page action'),
+      },
+    },
+  },
+}
+
+function WithFixedHeightComponent(args: any) {
+  const loadingTableCells = [
+    {
+      name: 'Name',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+    },
+    {
+      name: 'Framework',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    { name: 'Language', rowVariation: TableLoadingRowVariation.BAR_EFFECT },
+    {
+      name: 'Public Directory',
+      rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+    },
+    {
+      name: '',
+      rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
+      alignEnd: true,
+    },
+  ]
+
   return (
     <Table
-      height="200px"
       columns={columnsDefault}
       data={rowsDefault}
+      loadingTableCells={loadingTableCells}
+      {...args}
     />
   )
+}
+
+const WithFixedHeight: StoryObj<typeof Table> = {
+  render: (args) => <WithFixedHeightComponent {...args} />,
+  args: {
+    hoverColor: getColor('indigo.10'),
+    alignEndLastColumn: true,
+    isLoading: false,
+    height: '200px',
+  },
 }
 
 export {
   Default,
   Empty,
   Loading,
-  MediumSizeTableDefaultWithCheckbox,
-  MediumSizeTableEmpty,
-  MediumSizeTableLoading,
-  WithActionStates,
-  WithCheckbox,
   WithSteps,
-  WithTooltip,
   WithPagination,
   WithCustomEmptyState,
   WithFixedHeight,
