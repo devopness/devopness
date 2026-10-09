@@ -340,6 +340,15 @@ function LoadingComponent(args: any) {
     { accessor: 'framework', Header: 'Framework' },
     { accessor: 'language', Header: 'Language' },
     { accessor: 'publicDirectory', Header: 'Public Directory' },
+    {
+      accessor: 'actions',
+      Header: '',
+      Cell: () => (
+        <div style={{ textAlign: 'right' }}>
+          <Button>Actions</Button>
+        </div>
+      ),
+    },
   ]
 
   const data = [
@@ -348,12 +357,14 @@ function LoadingComponent(args: any) {
       framework: 'React',
       language: 'TypeScript',
       publicDirectory: '/public',
+      actions: null,
     },
     {
       name: 'api-server',
       framework: 'Node.js',
       language: 'JavaScript',
       publicDirectory: '/dist',
+      actions: null,
     },
   ]
 
