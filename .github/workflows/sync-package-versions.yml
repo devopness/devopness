@@ -130,10 +130,20 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
+      - name: Format generated changelogs
+        # We format every generated CHANGELOG.md before the sync commit is created.
+        run: npm run format:changelogs
+
+      - name: Fix package lint for '${{ matrix.name }}'
+        if: matrix.post_version_sync_commands != ''
+        working-directory: ${{ matrix.path }}
+        # We do this before the commit so the sync PR does not fail later on package lint.
+        run: npm run lint:fix
+
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: sync '${{ matrix.name }}' version"
-          file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock'
+          file_pattern: '${{ matrix.path }}/pyproject.toml ${{ matrix.path }}/*.lock ${{ matrix.path }}/CHANGELOG.md'
           commit_user_name: ${{ vars.DEVOPNESS_AUTOMATIONS_USERNAME }}
           commit_user_email: ${{ vars.DEVOPNESS_AUTOMATIONS_EMAIL }}
 
