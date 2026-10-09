@@ -278,6 +278,18 @@ function WithStepsComponent(args: any) {
         ) : null,
     },
   ]
+
+  const loadingTableCells = [
+    {
+      name: 'Daemon',
+      rowVariation: TableLoadingRowVariation.CHECKBOX_EFFECT_WITH_BAR,
+    },
+    {
+      name: '',
+      rowVariation: TableLoadingRowVariation.BUTTON_EFFECT,
+    },
+  ]
+
   return (
     <Table<StepsRow>
       columns={columns}
@@ -286,6 +298,7 @@ function WithStepsComponent(args: any) {
       customSubRowInjection={() => (
         <pre style={{ margin: 0 }}>Install dependencies\nDone</pre>
       )}
+      loadingTableCells={loadingTableCells}
       {...args}
     />
   )
@@ -322,11 +335,33 @@ function LoadingComponent(args: any) {
     },
   ]
 
+  const columns = [
+    { accessor: 'name', Header: 'Name' },
+    { accessor: 'framework', Header: 'Framework' },
+    { accessor: 'language', Header: 'Language' },
+    { accessor: 'publicDirectory', Header: 'Public Directory' },
+  ]
+
+  const data = [
+    {
+      name: 'server-name',
+      framework: 'React',
+      language: 'TypeScript',
+      publicDirectory: '/public',
+    },
+    {
+      name: 'api-server',
+      framework: 'Node.js',
+      language: 'JavaScript',
+      publicDirectory: '/dist',
+    },
+  ]
+
   return (
     <Table
-      columns={[]}
+      columns={columns}
       loadingTableCells={loadingTableCells}
-      data={[]}
+      data={data}
       {...args}
     />
   )
