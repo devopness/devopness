@@ -1,18 +1,31 @@
 ## Description of changes
-- [x] Add a release workflow cleanup step so generated changelog files are kept in a linted state before the release PR is created.
+<!-- 
+Short description of how this PR's makes the world a better place for Devopness users or team members:
+* Example: Click on element <X> on page/route <Y> will <some new behavior> [instead of <some old behavior>]
+
+If the PR is still in draft state, please add a **Why draft?** section clarifying what's the help or feedback you need, or mention what needs to be done before the PR is ready to be reviewed.
+
+- Keep PRs single-purpose and minimal; avoid unrelated cleanup.
+-->
+- [ ] <add one check list item here for each meaningful change on this PR>
 
 ## GitHub issues resolved by this PR
-N/A
+<!-- 
+Check list box of GitHub issues completed by this PR.
+Use `N/A` if this PR is not fixing any existing issue.
+-->
+
+- [ ] closes #ISSUE-NUMBER
 
 ## Quality Assurance
-- Once the changes in this PR are merged and deployed, release PR generation will not leave `CHANGELOG.md` in a state that fails the repo lint checks.
+
+<!-- Please complete this checklist before requesting a review of your pull request. -->
+
+- Once the changes in this PR are merged and deployed, success criteria is: 
+
+<!-- Use a concrete, verifiable, success criteria. Keep it short -->
 
 ## More info
-Evidence from the failing PR branch:
-- CI lint failure: https://github.com/devopness/devopness/actions/runs/37910719713/job/113754963732?pr=3712
-  - `packages/ui/react` failed on `npm run lint`
-  - error: `Formatting issues found` in `CHANGELOG.md`
-  - suggestion: `vp check --fix`
-- Release publish failure: https://github.com/devopness/devopness/actions/runs/37910719713/job/113754963732?pr=3712#step:6:12
-  - `changesets/action` tried to publish `@devopness/ui-react@2.209.3`
-  - publish failed because `npm run lint && npm test && npm run build` exited with code 1
+<!-- 
+More info to help repository maintainers when reviewing your PR: links, images, videos, ... 
+-->
