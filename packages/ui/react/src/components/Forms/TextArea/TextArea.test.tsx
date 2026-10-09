@@ -36,7 +36,7 @@ describe('TextArea', () => {
   })
 
   it('forwards ref to textarea element', () => {
-    const ref = { current: null as HTMLTextAreaElement | null }
+    const ref = { current: {} as HTMLTextAreaElement }
     renderWithTheme(<TextArea inputRef={ref} />)
     expect(ref.current).toBeInstanceOf(HTMLTextAreaElement)
   })
