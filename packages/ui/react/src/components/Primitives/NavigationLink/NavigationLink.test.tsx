@@ -3,23 +3,23 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { Link } from '.'
+import { NavigationLink } from '.'
 import { getColor } from 'src/colors'
 
 const LINK_PROPS = {
   url: 'https://www.devopness.com',
 }
 
-describe('Link', () => {
+describe('NavigationLink', () => {
   it('render correctly', () => {
-    render(<Link to={LINK_PROPS.url}>LinkComponent</Link>)
+    render(<NavigationLink to={LINK_PROPS.url}>LinkComponent</NavigationLink>)
 
     const expectedText = screen.getByText('LinkComponent')
     expect(expectedText).toBeInTheDocument()
   })
 
   it('render correctly without props.children', () => {
-    render(<Link to={LINK_PROPS.url} />)
+    render(<NavigationLink to={LINK_PROPS.url} />)
 
     const expectedText = screen.getByText('https://www.devopness.com')
     expect(expectedText).toBeInTheDocument()
@@ -27,7 +27,7 @@ describe('Link', () => {
 
   it('render correctly with color', () => {
     render(
-      <Link
+      <NavigationLink
         color="purple.800"
         to={LINK_PROPS.url}
       />
@@ -45,7 +45,7 @@ describe('Link', () => {
     } satisfies React.CSSProperties
 
     render(
-      <Link
+      <NavigationLink
         style={styles}
         to={LINK_PROPS.url}
       />
@@ -73,12 +73,12 @@ describe('Link', () => {
     )
 
     render(
-      <Link
+      <NavigationLink
         as={CustomLink}
         to={LINK_PROPS.url}
       >
         LinkComponent
-      </Link>
+      </NavigationLink>
     )
 
     const customLink = screen.getByTestId('custom-link')

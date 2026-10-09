@@ -61,7 +61,7 @@ describe('Review', () => {
       />
     )
     const value = screen.getByText('Score: 85%')
-    expect(value).toHaveStyle('font-weight: bold')
+    expect(value).toHaveStyle('font-weight: 700')
   })
 
   it('applies custom background color', () => {

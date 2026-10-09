@@ -9,7 +9,7 @@ import {
 } from './Alert.styled'
 import type { Color } from 'src/colors'
 import { getColor } from 'src/colors'
-import { Button } from 'src/components/Buttons'
+import { Button } from 'src/components/Primitives/Button'
 import type { Icon } from 'src/icons'
 import { iconLoader } from 'src/icons'
 

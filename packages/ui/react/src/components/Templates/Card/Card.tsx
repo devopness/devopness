@@ -13,13 +13,41 @@ import {
   StyledTitle,
 } from './Card.styled'
 import type { Color } from 'src/colors'
-import { Button } from 'src/components/Buttons/Button'
+import { Button } from 'src/components/Primitives/Button'
 import type { IconProps } from 'src/components/Primitives/Icon'
 import { Icon } from 'src/components/Primitives/Icon'
-import type { LinkProps } from 'src/components/Primitives/Link'
-import { Link } from 'src/components/Primitives/Link'
+import type { NavigationLinkProps } from 'src/components/Primitives/NavigationLink'
+import { NavigationLink } from 'src/components/Primitives/NavigationLink'
 import type { TooltipProps } from 'src/components/Primitives/Tooltip'
 import { Tooltip } from 'src/components/Primitives/Tooltip'
+
+type CardFooterItem = {
+  /**
+   * Icon to display next to the label
+   */
+  icon?: IconProps['name'] | IconProps
+  /**
+   * Text to display in the footer item
+   */
+  label?:
+    | string
+    | {
+        content: string
+        style?: React.CSSProperties
+      }
+  /**
+   * Tooltip text to show on hover
+   */
+  tooltip?: string | Omit<TooltipProps, 'children'>
+  /**
+   * URL to navigate to when footer item is clicked
+   */
+  url?: NavigationLinkProps['to'] | Omit<NavigationLinkProps, 'style'>
+  /**
+   * NavigationLink component override used for in-site navigation
+   */
+  linkAs?: React.ElementType
+}
 
 type CardProps = React.PropsWithChildren<{
   /**
@@ -31,29 +59,7 @@ type CardProps = React.PropsWithChildren<{
   /**
    * Array of footer items to be rendered at the bottom of the card
    */
-  footer?: {
-    /**
-     * Icon to display next to the label
-     */
-    icon?: IconProps['name'] | IconProps
-    /**
-     * Text to display in the footer item
-     */
-    label?:
-      | string
-      | {
-          content: string
-          style?: React.CSSProperties
-        }
-    /**
-     * Tooltip text to show on hover
-     */
-    tooltip?: string | Omit<TooltipProps, 'children'>
-    /**
-     * URL to navigate to when footer item is clicked
-     */
-    url?: LinkProps['to'] | Omit<LinkProps, 'style'>
-  }[]
+  footer?: CardFooterItem[]
   /**
    * Props for the header
    */
@@ -82,7 +88,7 @@ type CardProps = React.PropsWithChildren<{
    */
   addUrl?:
     | string
-    | (Omit<LinkProps, 'style'> & {
+    | (Omit<NavigationLinkProps, 'style'> & {
         disabled?: boolean
         disabledTooltip?: string
         tooltip?: string
@@ -102,7 +108,7 @@ type CardProps = React.PropsWithChildren<{
   /**
    * URL to navigate to when card is clicked
    */
-  url?: LinkProps['to'] | Omit<LinkProps, 'style'>
+  url?: NavigationLinkProps['to'] | Omit<NavigationLinkProps, 'style'>
 }>
 
 /**
@@ -187,14 +193,14 @@ const Card = ({ children, ...props }: CardProps) => (
           enableOnlyWithEllipsisPoints
         >
           {props.url ? (
-            <Link
+            <NavigationLink
               hideExternalUrlIcon
               hideUnderline
               {...(typeof props.url === 'object' ? props.url : undefined)}
               to={typeof props.url === 'object' ? props.url.to : props.url}
             >
               <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
-            </Link>
+            </NavigationLink>
           ) : (
             <StyledTitle {...props.titleProps}>{props.title}</StyledTitle>
           )}
@@ -278,7 +284,9 @@ const Card = ({ children, ...props }: CardProps) => (
                 : footer.tooltip
             }
           >
-            <Link
+            <NavigationLink
+              as={footer.linkAs}
+              target={footer.linkAs ? '_self' : undefined}
               hideExternalUrlIcon
               hideUnderline
               style={{
@@ -315,7 +323,7 @@ const Card = ({ children, ...props }: CardProps) => (
                   <StyledFooterLabel>{footer.label}</StyledFooterLabel>
                 )}
               </Button>
-            </Link>
+            </NavigationLink>
           </Tooltip>
         ))}
       </StyledFooter>

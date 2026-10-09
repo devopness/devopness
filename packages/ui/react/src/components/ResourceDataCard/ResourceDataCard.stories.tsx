@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Button } from 'src/components/Buttons'
+import { Button } from 'src/components/Primitives/Button'
 import { ResourceDataCard } from './ResourceDataCard'
 import { getResourceCardAvatar } from './helpers'
 

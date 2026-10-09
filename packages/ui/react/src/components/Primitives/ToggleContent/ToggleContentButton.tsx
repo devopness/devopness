@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react'
 
-import { Button } from 'src/components/Buttons'
+import { Button } from 'src/components/Primitives/Button'
 import type { Icon } from 'src/icons'
 
 /**
