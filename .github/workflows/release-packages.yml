@@ -50,15 +50,14 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Prepare changeset version hook
-        # `changesets/action` executes the version command before it stages the release PR.
-        # We wrap it so generated CHANGELOG files are normalized before the release PR is created.
+        # `changesets/action` runs the version step before it stages the release PR.
+        # We wrap it so generated CHANGELOG files are normalized before commit creation.
         # We do not want to block a release just because a generated CHANGELOG.md is not perfectly formatted.
         # If anything is still off, we run package lint:fix so the release PR is created with the fixes already applied.
         run: |
           cat > /tmp/cs-version.sh << 'EOF'
           #!/bin/sh
           # Keep the version step strict so the formatter failure surfaces immediately.
-          # Keep the version step strict so the release still stops on real errors.
           set -e
           npx changeset version
           npm run format:changelogs
