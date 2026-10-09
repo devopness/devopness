@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.209.3
+
+### Patch Changes
+
+- [#3710](https://github.com/devopness/devopness/pull/3710) [`3ba5bd3`](https://github.com/devopness/devopness/commit/3ba5bd3aeb47fed48f041b90fcfd6349359b02fc) Thanks [@therealrinku](https://github.com/therealrinku)! - Rename the `Link` primitive to `NavigationLink` to avoid naming conflicts with router and framework link components.
+
 ## 2.209.2
 
 ### Patch Changes
@@ -268,16 +274,13 @@
   (`mobile` / `tablet` / `desktop`) and default to `1` / `2` / `4`.
 
   ```tsx
-  import { CardGrid } from '@devopness/ui-react'
+  import { CardGrid } from "@devopness/ui-react";
 
-  ;<CardGrid rowHeight="160px">
+  <CardGrid rowHeight="160px">
     {items.map((item) => (
-      <Card
-        key={item.id}
-        {...item}
-      />
+      <Card key={item.id} {...item} />
     ))}
-  </CardGrid>
+  </CardGrid>;
   ```
 
 ## 2.190.1
@@ -574,8 +577,8 @@
     name="age"
     value={age}
     onChange={(e) => setAge(e.target.value)}
-    validation={{ type: 'number', min: 0, max: 100 }}
-    labelProps={{ value: 'Age' }}
+    validation={{ type: "number", min: 0, max: 100 }}
+    labelProps={{ value: "Age" }}
   />
   ```
 
@@ -598,8 +601,8 @@
   ```tsx
   <Select
     options={[
-      { label: 'Yes', value: true },
-      { label: 'No', value: false },
+      { label: "Yes", value: true },
+      { label: "No", value: false },
     ]}
     onChange={setValue}
   />
@@ -753,11 +756,7 @@
   ### Example Usage
 
   ```tsx
-  <ToggleContent
-    isSensitiveContent
-    showWarning
-    hiddenContentPlaceholder="*****"
-  >
+  <ToggleContent isSensitiveContent showWarning hiddenContentPlaceholder="*****">
     <span>Secret value</span>
   </ToggleContent>
   ```
@@ -766,7 +765,7 @@
   <ToggleContentButton
     showContent={showFileContent}
     onClick={() => {
-      yourFunction
+      yourFunction;
     }}
   />
   ```
@@ -788,10 +787,10 @@
 
   ```tsx
   <Autocomplete
-    inputProps={{ placeholder: 'Type something' }}
+    inputProps={{ placeholder: "Type something" }}
     autocompleteProps={{
-      options: ['Option 1', 'Option 2'],
-      value: '',
+      options: ["Option 1", "Option 2"],
+      value: "",
       onChange: (event, value) => console.log(value),
     }}
   />
@@ -839,11 +838,11 @@
   <RadioInput
     name="exampleRadio"
     data={[
-      { value: 'gitlab', label: 'Gitlab', icon: 'gitlab' },
+      { value: "gitlab", label: "Gitlab", icon: "gitlab" },
       {
-        value: 'github',
-        label: 'Github',
-        icon: { name: 'github', color: 'blue' },
+        value: "github",
+        label: "Github",
+        icon: { name: "github", color: "blue" },
       },
     ]}
   />
@@ -867,11 +866,11 @@
   ```tsx
   <SourceAndHash
     commit={{
-      hash: 'abcd123456',
-      url: 'https://github.com/repo/commit/abcd123456',
-      message: 'Fix bug',
+      hash: "abcd123456",
+      url: "https://github.com/repo/commit/abcd123456",
+      message: "Fix bug",
     }}
-    deployment={{ source_ref: 'feature/new-feature', source_type: 'branch' }}
+    deployment={{ source_ref: "feature/new-feature", source_type: "branch" }}
     maxDisplayCharacters={8}
   />
   ```
@@ -891,9 +890,9 @@
 
   ```tsx
   <TextArea
-    label={{ children: 'Comments' }}
+    label={{ children: "Comments" }}
     placeholder="Write your message..."
-    error={{ message: 'Required field' }}
+    error={{ message: "Required field" }}
     isResizable={false}
   />
   ```
@@ -934,10 +933,7 @@
 
   ```tsx
   <Illustration>
-    <img
-      src="logo.png"
-      alt="Logo"
-    />
+    <img src="logo.png" alt="Logo" />
   </Illustration>
   ```
 
@@ -956,11 +952,7 @@
   ### Example Usage
 
   ```tsx
-  <FormText
-    title="Form Section"
-    subTitle="Optional description here"
-    subTitleColor="#ef4444"
-  />
+  <FormText title="Form Section" subTitle="Optional description here" subTitleColor="#ef4444" />
   ```
 
   This component improves form section readability and consistency across the application.
@@ -981,7 +973,7 @@
   ```tsx
   <Container
     shouldHaveTopMargin={false}
-    styles={{ backgroundWrapperContent: '#f5f5f5', height: 400 }}
+    styles={{ backgroundWrapperContent: "#f5f5f5", height: 400 }}
   >
     <p>Page content here</p>
   </Container>
@@ -1112,16 +1104,16 @@
   ```tsx
   <Dropdown
     id="example-dropdown"
-    options={[{ label: 'Option 1' }, { label: 'Option 2' }]}
+    options={[{ label: "Option 1" }, { label: "Option 2" }]}
     anchorType="button"
     label="Open Menu"
     popoverProps={{
       slotProps: {
         paper: {
-          marginTop: '5px',
-          minWidth: '250px',
-          borderRadius: '12px',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+          marginTop: "5px",
+          minWidth: "250px",
+          borderRadius: "12px",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
         },
       },
     }}
@@ -1233,17 +1225,13 @@
   <Input
     type="password"
     placeholder="Enter your password"
-    icon={iconLoader('lock')}
+    icon={iconLoader("lock")}
     iconPosition="left"
   />
   ```
 
   ```tsx
-  <Icon
-    name="email"
-    size={14}
-    color="blue.950"
-  />
+  <Icon name="email" size={14} color="blue.950" />
   ```
 
   These improvements enhance the flexibility and accessibility of the `Input` component and expand the available icon set for consistent UI design.
@@ -1263,20 +1251,13 @@
   ### Example Usage
 
   ```tsx
-  <Text
-    variant="h4"
-    isSmall
-  >
+  <Text variant="h4" isSmall>
     Loading data...
   </Text>
   ```
 
   ```tsx
-  <Loader
-    variant="circle"
-    color={getColor('purple.800')}
-    text="Please wait..."
-  />
+  <Loader variant="circle" color={getColor("purple.800")} text="Please wait..." />
   ```
 
   These new components enhance UI consistency and developer experience by providing ready-to-use typography and loading visuals.
@@ -1331,9 +1312,9 @@
   <Dropdown
     options={[
       {
-        label: 'Log out',
+        label: "Log out",
         onClick: async () => {
-          await api.logout()
+          await api.logout();
         },
       },
     ]}
@@ -1341,11 +1322,7 @@
   ```
 
   ```tsx
-  <Icon
-    name={discord}
-    size={14}
-    color={'blue.950'}
-  />
+  <Icon name={discord} size={14} color={"blue.950"} />
   ```
 
   This improves reusability and flexibility while ensuring the component gracefully handles both sync and async handlers and also adds support for a new icon.
@@ -1362,11 +1339,7 @@
   ### Example Usage
 
   ```tsx
-  <Icon
-    name={home}
-    size={14}
-    color={'blue.950'}
-  />
+  <Icon name={home} size={14} color={"blue.950"} />
   ```
 
   This enables a new icon to be used when importing <Icon />.
@@ -1445,14 +1418,14 @@
 
     ```tsx
     // Actions
-    ;('add', 'remove', 'edit')
+    ("add", "remove", "edit");
 
     // States
-    ;('loading', 'error', 'success')
+    ("loading", "error", "success");
 
     // Variants
-    ;('checkOutline', 'checkFilled')
-    ;('eyeOpen', 'eyeClosed')
+    ("checkOutline", "checkFilled");
+    ("eyeOpen", "eyeClosed");
     ```
 
   ### Migration Guide
@@ -1502,17 +1475,17 @@
     title="Example Card"
     url={{
       hideExternalUrlIcon: true,
-      rel: 'noopener',
-      target: '_blank',
-      to: '/dashboard',
+      rel: "noopener",
+      target: "_blank",
+      to: "/dashboard",
     }}
     footer={[
       {
-        label: 'View Details',
+        label: "View Details",
         url: {
           hideExternalUrlIcon: true,
-          target: '_self',
-          to: '/details',
+          target: "_self",
+          to: "/details",
         },
       },
     ]}
@@ -1538,8 +1511,8 @@
   <Card
     title="Example Card"
     headerProps={{
-      backgroundColor: 'blue.100',
-      borderBottomColor: 'purple.500', // New prop
+      backgroundColor: "blue.100",
+      borderBottomColor: "purple.500", // New prop
     }}
   />
   ```
@@ -1570,13 +1543,13 @@
   <Card
     title="Environment"
     subtitle="Overview of current environments"
-    avatarProps={{ backgroundColor: 'blue.500' }}
+    avatarProps={{ backgroundColor: "blue.500" }}
     icon="cubes"
     footer={[
       {
-        label: 'View All',
-        url: '/environments',
-        tooltip: 'View all environments',
+        label: "View All",
+        url: "/environments",
+        tooltip: "View all environments",
       },
     ]}
   />
@@ -1643,10 +1616,10 @@ This change helps users quickly identify and fix form validation issues by autom
   <Dropdown
     options={[
       {
-        label: 'Documentation',
-        url: 'https://docs.example.com',
+        label: "Documentation",
+        url: "https://docs.example.com",
         linkProps: {
-          target: '_blank',
+          target: "_blank",
           hideExternalUrlIcon: true,
         },
       },
@@ -1776,8 +1749,8 @@ This change helps users quickly identify and fix form validation issues by autom
 
   ```ts
   // dist/components/Buttons/Button/Button.d.ts#L2-L3
-  import { getColor } from 'src/colors'
-  import { Icon } from 'src/icons'
+  import { getColor } from "src/colors";
+  import { Icon } from "src/icons";
   ```
 
   This resulted in props like `ButtonProps.icon` being `any`
@@ -1794,8 +1767,8 @@ This change helps users quickly identify and fix form validation issues by autom
 
   ```ts
   // dist/components/Buttons/Button/Button.d.ts#L2-L3
-  import { getColor } from '../../../colors'
-  import { Icon } from '../../../icons'
+  import { getColor } from "../../../colors";
+  import { Icon } from "../../../icons";
   ```
 
   ```ts
