@@ -231,6 +231,75 @@ const Default: StoryObj<typeof Table> = {
   },
 }
 
+interface StepsRow {
+  name: string
+  rowType: 'row' | 'subrow'
+  disabled: boolean
+  subRows?: StepsRow[]
+}
+
+const stepsData: StepsRow[] = [
+  {
+    name: 'Cache cleaner',
+    rowType: 'row',
+    disabled: false,
+    subRows: [
+      { name: 'www.petshop.com', rowType: 'subrow', disabled: false },
+      { name: 'www.bookstore.com', rowType: 'subrow', disabled: false },
+    ],
+  },
+]
+
+function WithStepsComponent(args: any) {
+  const columns: Column<StepsRow>[] = [
+    {
+      accessor: 'name',
+      Header: 'Daemon',
+      Cell: ({ row, value }) => (
+        <TableCellWrapper
+          icon={row.original.rowType === 'subrow' ? 'devices' : 'eyeOutline'}
+          value={value}
+          iconBackgroundColor={getColor('purple.800')}
+        />
+      ),
+    },
+    {
+      id: 'expander',
+      Header: '',
+      Cell: ({ row }) =>
+        row.canExpand || row.original.rowType === 'subrow' ? (
+          <Button
+            type="button"
+            typeSize="medium"
+            onClick={() => row.toggleRowExpanded()}
+          >
+            {row.isExpanded ? 'Hide' : 'Show'} log
+          </Button>
+        ) : null,
+    },
+  ]
+  return (
+    <Table<StepsRow>
+      columns={columns}
+      data={stepsData}
+      layout="indented"
+      customSubRowInjection={() => (
+        <pre style={{ margin: 0 }}>Install dependencies\nDone</pre>
+      )}
+      {...args}
+    />
+  )
+}
+
+const WithSteps: StoryObj<typeof Table> = {
+  render: (args) => <WithStepsComponent {...args} />,
+  args: {
+    hoverColor: getColor('indigo.10'),
+    alignEndLastColumn: true,
+    isLoading: false,
+  },
+}
+
 function LoadingComponent(args: any) {
   const loadingTableCells = [
     {
@@ -637,6 +706,7 @@ export {
   Default,
   Empty,
   Loading,
+  WithSteps,
   WithPagination,
   WithCustomEmptyState,
   WithFixedHeight,
