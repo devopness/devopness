@@ -286,7 +286,7 @@ function WithStepsComponent(args: any) {
     },
     {
       name: '',
-      rowVariation: TableLoadingRowVariation.BUTTON_EFFECT,
+      rowVariation: TableLoadingRowVariation.ONE_BUTTON_EFFECT,
     },
   ]
 
