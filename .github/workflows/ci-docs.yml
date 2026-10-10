@@ -5,10 +5,6 @@ on:
       - opened
       - synchronize
 
-defaults:
-  run:
-    working-directory: docs
-
 jobs:
   detect-changes:
     name: Detect changes in Docs
@@ -34,6 +30,9 @@ jobs:
     needs: detect-changes
     if: ${{ needs.detect-changes.outputs.changes == 'true' }}
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: docs
 
     strategy:
       matrix:
@@ -45,8 +44,8 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
-          persist-credentials: true
-          fetch-depth: 0
+          persist-credentials: false
+          fetch-depth: 1
 
       - name: Create `.env` file
         run: |
@@ -56,6 +55,8 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
           registry-url: https://registry.npmjs.org
 
       - name: install
@@ -80,12 +81,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-
       - name: Fail if build did not succeed
         run: |
           if [ "${{ needs.build.result }}" = "failure" ] || [ "${{ needs.build.result }}" = "cancelled" ]; then

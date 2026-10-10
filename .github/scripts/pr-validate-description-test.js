@@ -33,9 +33,12 @@ const FIXTURE = path.join(
   "pr-validate-description-test-fixture.json"
 );
 
-function runScript() {
+function runScript(env = {}) {
   try {
-    const output = execSync(`node "${SCRIPT}"`, { encoding: "utf8" });
+    const output = execSync(`node "${SCRIPT}"`, {
+      encoding: "utf8",
+      env: { ...process.env, ...env },
+    });
     return { exitCode: 0, output };
   } catch (error) {
     return { exitCode: error.status ?? 1, output: error.stdout + error.stderr };
@@ -81,6 +84,21 @@ test(
     fs.writeFileSync(TMP_JSON, rawJson, "utf8");
 
     const { exitCode, output } = runScript();
+    assert.strictEqual(
+      exitCode,
+      0,
+      `Expected exit code 0 but got ${exitCode}.\nOutput:\n${output}`
+    );
+  }
+);
+
+test(
+  "PR_DESCRIPTION_JSON environment variable with shell-significant characters passes validation without disk file",
+  () => {
+    const rawJson = fs.readFileSync(FIXTURE, "utf8");
+    cleanup();
+
+    const { exitCode, output } = runScript({ PR_DESCRIPTION_JSON: rawJson });
     assert.strictEqual(
       exitCode,
       0,
