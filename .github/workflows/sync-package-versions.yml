@@ -130,16 +130,10 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: bash -c "${{ matrix.post_version_sync_commands }}"
 
-      - name: Prepare npm 11 for changelog formatting
-        # GitHub-hosted runners provide npm 10.9.9 by default here. We enable Corepack so
-        # the job uses the npm version pinned in package.json and avoids workspace install issues.
-        run: |
-          npm --version
-          corepack enable
-          npm --version
-
       - name: Install workspace dependencies for changelog formatters
-        run: npm install --workspaces
+        # Use the npm version pinned in package.json so workspace resolution is
+        # consistent with local release tooling and does not rely on the runner default.
+        run: npx --yes npm@11.17.0 install --workspaces
 
       - name: Format generated changelogs
         # We format every generated CHANGELOG.md before the sync commit is created.
@@ -199,16 +193,10 @@ jobs:
         with:
           node-version: '24.x'
 
-      - name: Prepare npm 11 for lockfile sync
-        # GitHub-hosted runners provide npm 10.9.9 by default here. We enable Corepack so
-        # the job uses the npm version pinned in package.json and avoids workspace install issues.
-        run: |
-          npm --version
-          corepack enable
-          npm --version
-
       - name: Sync workspace versions in lockfile
-        run: npm install --workspaces
+        # Use the npm version pinned in package.json so the generated lockfile matches
+        # the repo's package manager contract instead of the runner default.
+        run: npx --yes npm@11.17.0 install --workspaces
 
       - name: Rebase onto latest remote to avoid non-fast-forward push
         run: |
