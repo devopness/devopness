@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 
 import type { CardProps } from './Card'
 import { getColor } from 'src/colors'
-import { Link } from 'src/components/Primitives/Link'
+import { NavigationLink } from 'src/components/Primitives/NavigationLink'
 import type { TransientProps } from 'src/components/types'
 import { getFont } from 'src/fonts'
 
@@ -38,7 +38,7 @@ const StyledAddCta = styled.div`
   justify-content: center;
 `
 
-const StyledAddCtaLink = styled(Link)`
+const StyledAddCtaLink = styled(NavigationLink)`
   border-radius: 50%;
   display: inline-flex;
   align-items: center;

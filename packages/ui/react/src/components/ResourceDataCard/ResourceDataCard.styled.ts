@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { Link } from 'src/components/Primitives/Link'
+import { NavigationLink } from 'src/components/Primitives/NavigationLink'
 import { getColor } from 'src/colors'
 import { getFont } from 'src/fonts'
 
@@ -197,7 +197,7 @@ const ActionsContainer = styled.div`
   }
 `
 
-const CardFooter = styled(Link)`
+const CardFooter = styled(NavigationLink)`
   display: flex;
   align-items: center;
   justify-content: center;

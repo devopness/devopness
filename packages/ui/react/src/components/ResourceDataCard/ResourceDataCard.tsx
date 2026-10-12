@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { iconLoader } from 'src/icons'
-import { Link } from 'src/components/Primitives/Link'
+import { NavigationLink } from 'src/components/Primitives/NavigationLink'
 
 import {
   CardBodyContent,
@@ -104,14 +104,14 @@ const ResourceDataCard = ({
                   <DataValue>
                     {item.icon && iconLoader(item.icon, 20, 'gray.600')}
                     {item.isUrl && item.url ? (
-                      <Link
+                      <NavigationLink
                         to={item.url}
                         target={item.isExternalUrl ? '_blank' : '_self'}
                         hideExternalUrlIcon
                         style={{ fontSize: '13px' }}
                       >
                         {item.value}
-                      </Link>
+                      </NavigationLink>
                     ) : (
                       item.value
                     )}

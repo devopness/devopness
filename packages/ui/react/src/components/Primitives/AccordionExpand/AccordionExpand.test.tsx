@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { Link } from '../Link'
+import { NavigationLink } from '../NavigationLink'
 import { AccordionExpand } from './AccordionExpand'
 
 describe('AccordionExpand', () => {
@@ -17,7 +17,7 @@ describe('AccordionExpand', () => {
       <AccordionExpand
         label="Test Accordion"
         items={items}
-        navigationComponent={Link}
+        navigationComponent={NavigationLink}
       />
     )
     expect(screen.getByText('Test Accordion')).toBeInTheDocument()
@@ -28,7 +28,7 @@ describe('AccordionExpand', () => {
       <AccordionExpand
         label="Test Accordion"
         items={items}
-        navigationComponent={Link}
+        navigationComponent={NavigationLink}
       />
     )
     fireEvent.click(screen.getByText('Test Accordion'))

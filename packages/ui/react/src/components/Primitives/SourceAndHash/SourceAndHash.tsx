@@ -1,4 +1,4 @@
-import { Link } from '../Link'
+import { NavigationLink } from '../NavigationLink'
 import { Tooltip } from '../Tooltip'
 import { SourceAndHashSpan } from './SourceAndHash.styled'
 
@@ -79,7 +79,7 @@ const SourceAndHash = ({
       {...tooltipOptions}
       title={tooltipOptions?.title ?? commit.message}
     >
-      <Link
+      <NavigationLink
         target="_blank"
         to={commit.url}
       >
@@ -87,7 +87,7 @@ const SourceAndHash = ({
         {source_ref && deployment.source_type !== 'commit' && (
           <SourceAndHashSpan>({source_ref})</SourceAndHashSpan>
         )}
-      </Link>
+      </NavigationLink>
     </Tooltip>
   )
 }

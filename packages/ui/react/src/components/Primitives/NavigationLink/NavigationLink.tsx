@@ -1,14 +1,14 @@
 import type { HTMLProps } from 'react'
 import React from 'react'
 
-import { StyledLink } from './Link.styled'
+import { StyledNavigationLink } from './NavigationLink.styled'
 import type { Color } from 'src/colors'
 import { getColor } from 'src/colors'
 import type { IconProps } from 'src/components/Primitives/Icon'
 import { Icon } from 'src/components/Primitives/Icon'
 import type { Unwrap } from 'src/components/types'
 
-type LinkProps = Omit<
+type NavigationLinkProps = Omit<
   HTMLProps<HTMLAnchorElement>,
   'href' | 'target' | 'color' | 'ref' | 'as'
 > & {
@@ -64,7 +64,7 @@ type LinkProps = Omit<
 /**
  * Display a hyperlink to other application pages or external resources
  */
-const Link = ({
+const NavigationLink = ({
   as,
   target = '_blank',
   children,
@@ -80,8 +80,8 @@ const Link = ({
   hideExternalUrlIcon = false,
   iconProps,
   ...props
-}: React.PropsWithChildren<LinkProps>) => (
-  <StyledLink
+}: React.PropsWithChildren<NavigationLinkProps>) => (
+  <StyledNavigationLink
     as={as}
     rel={rel}
     {...(as ? { to: href } : { href })}
@@ -98,8 +98,8 @@ const Link = ({
         {...iconProps}
       />
     )}
-  </StyledLink>
+  </StyledNavigationLink>
 )
 
-export type { LinkProps }
-export { Link }
+export type { NavigationLinkProps }
+export { NavigationLink }

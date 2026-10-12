@@ -1,7 +1,7 @@
 export * from './Dropdown'
 export type { IconProps } from './Icon'
 export { Icon as IconComponent } from './Icon'
-export * from './Link'
+export * from './NavigationLink'
 export * from './Tooltip'
 export * from './ErrorBanner'
 export * from './ErrorMessage'

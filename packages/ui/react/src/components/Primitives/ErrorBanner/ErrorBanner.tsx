@@ -13,7 +13,7 @@
  */
 import { getColor } from '../../../colors'
 import { getFont } from '../../../fonts'
-import { Link } from '../Link'
+import { NavigationLink } from '../NavigationLink'
 
 type ErrorBannerProps = {
   title: string
@@ -76,7 +76,7 @@ const ErrorBanner = ({
           </span>
         )}
         {action && (
-          <Link
+          <NavigationLink
             to={action.href}
             target="_self"
             hideExternalUrlIcon
@@ -86,7 +86,7 @@ const ErrorBanner = ({
             }}
           >
             {action.label}
-          </Link>
+          </NavigationLink>
         )}
       </div>
     </div>

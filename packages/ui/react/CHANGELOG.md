@@ -1,5 +1,17 @@
 # @devopness/ui-react
 
+## 2.209.4
+
+### Patch Changes
+
+- [#3665](https://github.com/devopness/devopness/pull/3665) [`f540b43`](https://github.com/devopness/devopness/commit/f540b43f08d360c071cdda3b457d326595a03bf1) Thanks [@therealrinku](https://github.com/therealrinku)! - Cleanup stories for `Table` component and add controls
+
+## 2.209.3
+
+### Patch Changes
+
+- [#3710](https://github.com/devopness/devopness/pull/3710) [`3ba5bd3`](https://github.com/devopness/devopness/commit/3ba5bd3aeb47fed48f041b90fcfd6349359b02fc) Thanks [@therealrinku](https://github.com/therealrinku)! - Rename the `Link` primitive to `NavigationLink` to avoid naming conflicts with router and framework link components.
+
 ## 2.209.2
 
 ### Patch Changes
