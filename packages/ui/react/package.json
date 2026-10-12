@@ -101,8 +101,8 @@
     "storybook": "10.6.1",
     "typescript": "^7.0.2",
     "vite": "^8.3.2",
-    "vite-plugin-dts": "^5.1.1",
-    "vite-plus": "1.0.0",
+    "vite-plugin-dts": "^5.1.2",
+    "vite-plus": "1.1.0",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^5.0.3"
   },
