@@ -62,7 +62,7 @@
   "dependencies": {
     "@mui/icons-material": "9.5.0",
     "@mui/material": "9.5.0",
-    "@mui/styled-engine-sc": "9.4.0",
+    "@mui/styled-engine-sc": "9.5.0",
     "@radix-ui/react-slot": "^1.4.0",
     "@radix-ui/themes": "^3.3.0",
     "@types/react-table": "^7.7.20",
