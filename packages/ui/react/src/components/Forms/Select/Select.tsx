@@ -48,7 +48,7 @@ type SelectProps<TOption> = Omit<
 > &
   Pick<Parameters<typeof ErrorMessage>[0], 'error'> & {
     /** Ref to the underlying input element (may be callback inputRef or object ref) */
-    inputRef?: React.RefObject<HTMLSelectElement>
+    inputRef?: React.RefObject<HTMLSelectElement | null>
     /** Options available in the dropdown */
     options: OptionProps<TOption>[]
     /** Public style overrides for placeholder and value */

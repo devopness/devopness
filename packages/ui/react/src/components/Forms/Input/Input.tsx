@@ -17,7 +17,7 @@ import { iconLoader } from 'src/icons'
 
 type SharedProps = React.InputHTMLAttributes<HTMLInputElement> & {
   /** React ref for direct DOM manipulation */
-  ref?: React.Ref<HTMLInputElement>
+  ref?: React.Ref<HTMLInputElement | null>
   /** Error message configuration */
   error?: ErrorMessageProps['error']
   /** Props passed directly to a Label component */

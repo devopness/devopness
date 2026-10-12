@@ -51,9 +51,9 @@ type MapFieldProps = {
   labelProps?: LabelProps
   /** Element reference */
   inputRef?:
-    | RefObject<HTMLInputElement>
-    | RefObject<HTMLTextAreaElement>
-    | RefObject<HTMLSelectElement>
+    | RefObject<HTMLInputElement | null>
+    | RefObject<HTMLTextAreaElement | null>
+    | RefObject<HTMLSelectElement | null>
     | ((
         instance:
           | HTMLTextAreaElement
@@ -88,9 +88,9 @@ type DynamicFieldProps = {
   labelProps?: LabelProps
   /** Element reference */
   inputRef?:
-    | RefObject<HTMLInputElement>
-    | RefObject<HTMLTextAreaElement>
-    | RefObject<HTMLSelectElement>
+    | RefObject<HTMLInputElement | null>
+    | RefObject<HTMLTextAreaElement | null>
+    | RefObject<HTMLSelectElement | null>
     | ((
         instance:
           | HTMLTextAreaElement
@@ -113,7 +113,7 @@ const MapField = ({ type, inputRef, labelProps, ...props }: MapFieldProps) =>
     string: (
       <Input
         labelProps={labelProps}
-        ref={inputRef as RefObject<HTMLInputElement>}
+        ref={inputRef as RefObject<HTMLInputElement | null>}
         {...props}
         type={props.sensitive ? 'password' : 'text'}
       />
@@ -121,21 +121,21 @@ const MapField = ({ type, inputRef, labelProps, ...props }: MapFieldProps) =>
     text: (
       <TextArea
         label={labelProps}
-        inputRef={inputRef as RefObject<HTMLTextAreaElement>}
+        inputRef={inputRef as RefObject<HTMLTextAreaElement | null>}
         {...props}
       />
     ),
     number: (
       <Input
         labelProps={labelProps}
-        ref={inputRef as RefObject<HTMLInputElement>}
+        ref={inputRef as RefObject<HTMLInputElement | null>}
         {...props}
         type={type}
       />
     ),
     boolean: (
       <Select
-        inputRef={inputRef as RefObject<HTMLSelectElement>}
+        inputRef={inputRef as RefObject<HTMLSelectElement | null>}
         {...props}
         options={[
           {

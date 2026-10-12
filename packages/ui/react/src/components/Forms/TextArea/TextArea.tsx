@@ -10,7 +10,7 @@ import { ErrorMessage, Label } from 'src/components/Primitives'
 type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   /** Reference to the underlying textarea element. Can be RefObject or callback ref */
   inputRef?:
-    | RefObject<HTMLTextAreaElement>
+    | RefObject<HTMLTextAreaElement | null>
     | ((instance: HTMLTextAreaElement | null) => void)
 
   /** Error information to display below the textarea. */
