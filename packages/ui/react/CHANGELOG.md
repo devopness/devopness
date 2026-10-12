@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.210.0
+
+### Minor Changes
+
+- [#3708](https://github.com/devopness/devopness/pull/3708) [`e841670`](https://github.com/devopness/devopness/commit/e8416702121e3a054a734ce93b3043dc8924f9d6) Thanks [@therealrinku](https://github.com/therealrinku)! - Update `@devopness/ui-react` to use react v19.3.0, react-dom v19.3.0 and their matching type definitions.
+
 ## 2.209.4
 
 ### Patch Changes
