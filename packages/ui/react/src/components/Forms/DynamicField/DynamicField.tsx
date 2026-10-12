@@ -51,9 +51,9 @@ type MapFieldProps = {
   labelProps?: LabelProps
   /** Element reference */
   inputRef?:
-    | RefObject<HTMLInputElement>
-    | RefObject<HTMLTextAreaElement>
-    | RefObject<HTMLSelectElement>
+    | RefObject<HTMLInputElement | null>
+    | RefObject<HTMLTextAreaElement | null>
+    | RefObject<HTMLSelectElement | null>
     | ((
         instance:
           | HTMLTextAreaElement
@@ -88,9 +88,9 @@ type DynamicFieldProps = {
   labelProps?: LabelProps
   /** Element reference */
   inputRef?:
-    | RefObject<HTMLInputElement>
-    | RefObject<HTMLTextAreaElement>
-    | RefObject<HTMLSelectElement>
+    | RefObject<HTMLInputElement | null>
+    | RefObject<HTMLTextAreaElement | null>
+    | RefObject<HTMLSelectElement | null>
     | ((
         instance:
           | HTMLTextAreaElement
