@@ -24,7 +24,6 @@ export default defineConfig({
       'src/api/generated/**/*',
       'tsconfig.json',
       'vite.config.ts',
-      'typedoc.json',
     ],
   },
   lint: {
@@ -37,7 +36,6 @@ export default defineConfig({
       'coverage',
       'node_modules',
       'src/api/generated/**/*',
-      'typedoc.json',
     ],
   },
 })

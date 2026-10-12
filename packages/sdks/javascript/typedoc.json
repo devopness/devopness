@@ -1,9 +1,0 @@
-{
-  "out": "docs-sdk-js",
-  "entryPoints": [
-    "src/index.ts"
-  ],
-  "excludePrivate": true,
-  "excludeProtected": true,
-  "hideGenerator": true
-}
