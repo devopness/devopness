@@ -68,8 +68,8 @@ type TableProps<T extends object = {}> = Omit<
   TableOptions<T>,
   'data' | 'columns' | 'getCoreRowModel'
 > & {
-  columns: readonly ColumnWithAlignment<T>[]
-  data: readonly T[]
+  columns?: readonly ColumnWithAlignment<T>[]
+  data?: readonly T[]
   /** Custom table content padding. */
   padding?: string
   /** Uses the compact table spacing. */
