@@ -130,10 +130,11 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
   const tableInstance = useReactTable({
     ...props,
     data: dataTable,
-    columns: props.columns as ColumnDef<T, unknown>[],
+    columns: (props.columns ?? []) as ColumnDef<T, unknown>[],
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
-    getSubRows: (row) => (row as T & TableRowMetadata<T>).subRows,
+    getSubRows:
+      props.getSubRows ?? ((row) => (row as T & TableRowMetadata<T>).subRows),
     autoResetPageIndex: !skipPageRef.current.autoReset,
     autoResetAll: !skipPageRef.current.autoReset,
     state: props.state,
