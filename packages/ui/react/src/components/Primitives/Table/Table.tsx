@@ -3,7 +3,6 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import type {
   Cell,
   CellContext,
-  Column,
   ColumnDef,
   Header,
   Row,
@@ -57,8 +56,11 @@ type ColumnWithAlignment<T extends RowData> = ColumnDef<T> & {
   alignColumn?: 'left' | 'center' | 'right'
 }
 
-type TableColumn<T extends RowData> = Column<T, unknown>
-type TableCellProps<T extends RowData, TValue = unknown> = CellContext<T, TValue>
+type TableColumn<T extends RowData> = ColumnDef<T>
+type TableCellProps<T extends RowData, TValue = unknown> = CellContext<
+  T,
+  TValue
+>
 type TableRow<T extends RowData> = Row<T>
 type TableRowOriginalProps<T extends RowData> = Row<T>['original']
 
