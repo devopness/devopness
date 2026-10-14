@@ -38,11 +38,13 @@ type FixedLine = {
 }
 
 /** Optional metadata read from each row by `Table`. */
-type TableRowMetadata = {
+type TableRowMetadata<T extends object> = {
   /** Identifier used to reset expanded rows when the table changes. */
   tableId?: string | number
   /** Row type used by the indented layout. */
   rowType?: string
+  /** Nested rows used by TanStack Table's expansion model. */
+  subRows?: T[]
   /** Fixed line styling for the row. */
   fixedLine?: FixedLine
   /** Disables interaction with the row and renders it with reduced opacity. */
@@ -110,13 +112,15 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
     columns: props.columns as ColumnDef<T, unknown>[],
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
+    getSubRows: (row) => (row as T & TableRowMetadata<T>).subRows,
     autoResetPageIndex: !skipPageRef.current.autoReset,
     autoResetAll: !skipPageRef.current.autoReset,
     state: props.state,
   }) as TableInstance<T>
 
   const isIndented = props.layout === 'indented'
-  const tableId = (dataTable[0] as (T & TableRowMetadata) | undefined)?.tableId
+  const tableId = (dataTable[0] as (T & TableRowMetadata<T>) | undefined)
+    ?.tableId
 
   useEffect(() => {
     tableInstance.toggleAllRowsExpanded(false)
@@ -175,7 +179,7 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
 
           <tbody>
             {rows.map((row: Row<T>) => {
-              const original = row.original as T & TableRowMetadata
+              const original = row.original as T & TableRowMetadata<T>
               const isIndentedSubrow =
                 isIndented && original.rowType?.toLowerCase() === 'subrow'
 

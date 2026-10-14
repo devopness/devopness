@@ -268,13 +268,18 @@ function WithStepsComponent(args: any) {
       header: '',
       cell: ({ row }) =>
         row.getCanExpand() || row.original.rowType === 'subrow' ? (
-          <Button
-            type="button"
-            typeSize="medium"
-            onClick={() => row.toggleExpanded()}
-          >
-            {row.getIsExpanded() ? 'Hide' : 'Show'} log
-          </Button>
+          <Grid>
+            <Button
+              type="button"
+              typeSize="medium"
+              onClick={(event) => {
+                event.stopPropagation()
+                row.toggleExpanded()
+              }}
+            >
+              {row.getIsExpanded() ? 'Hide' : 'Show'} log
+            </Button>
+          </Grid>
         ) : null,
     },
   ]
