@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.211.0
+
+### Minor Changes
+
+- [#3722](https://github.com/devopness/devopness/pull/3722) [`37d7975`](https://github.com/devopness/devopness/commit/37d7975d1af9f69bcdc7f5eecc982479618057b7) Thanks [@therealrinku](https://github.com/therealrinku)! - Migrate the Devopness React table primitive from `react-table` v7 to `@tanstack/react-table` v8, remove the old table typings shim, and add TanStack-compatible table type exports for consumers.
+
 ## 2.210.0
 
 ### Minor Changes
