@@ -178,8 +178,11 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                   <th
                     key={header.id}
                     className="translate"
-                    {...(isIndented && i === 0 ? { colSpan: 2 } : {})}
-                    {...(header.colSpan > 1 ? { colSpan: header.colSpan } : {})}
+                    {...(isIndented && i === 0
+                      ? { colSpan: header.colSpan + 1 }
+                      : header.colSpan > 1
+                        ? { colSpan: header.colSpan }
+                        : {})}
                   >
                     <TableCellWrapper
                       $alignColumn={
