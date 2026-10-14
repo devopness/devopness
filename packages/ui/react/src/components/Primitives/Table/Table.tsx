@@ -2,6 +2,8 @@ import type { ReactElement, ReactNode } from 'react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import type {
   Cell,
+  CellContext,
+  Column,
   ColumnDef,
   Header,
   Row,
@@ -54,6 +56,11 @@ type TableRowMetadata<T extends object> = {
 type ColumnWithAlignment<T extends RowData> = ColumnDef<T> & {
   alignColumn?: 'left' | 'center' | 'right'
 }
+
+type TableColumn<T extends RowData> = Column<T, unknown>
+type TableCellProps<T extends RowData, TValue = unknown> = CellContext<T, TValue>
+type TableRow<T extends RowData> = Row<T>
+type TableRowOriginalProps<T extends RowData> = Row<T>['original']
 
 type TableProps<T extends object = {}> = Omit<
   TableOptions<T>,
@@ -253,4 +260,5 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
   )
 }
 
+export type { TableCellProps, TableColumn, TableRow, TableRowOriginalProps }
 export { Table }
