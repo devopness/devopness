@@ -61,17 +61,29 @@ type TableProps<T extends object = {}> = Omit<
 > & {
   columns: readonly ColumnWithAlignment<T>[]
   data: readonly T[]
+  /** Custom table content padding. */
   padding?: string
+  /** Uses the compact table spacing. */
   smallContainer?: boolean
+  /** Disables table interaction and dims the table. */
   disabledTable?: boolean
+  /** Header text color. */
   headerColor?: string
+  /** Aligns the final column to the end when enabled. */
   alignEndLastColumn?: boolean
+  /** Maximum width for header cells. */
   headerMaxWidth?: string
+  /** Maximum width for body cells. */
   cellMaxWidth?: string
+  /** Allows cell content to render outside its clipped cell. */
   cellOverflowVisible?: boolean
+  /** Explicit width for rendered cell values. */
   cellWidth?: string
+  /** Row hover background color. */
   hoverColor?: string
+  /** Enables the indented row layout. */
   layout?: 'indented'
+  /** Renders custom content below an expanded row with no subrows. */
   customSubRowInjection?: (row: Row<T>) => ReactNode
 } & TableWrapperProps
 
