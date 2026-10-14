@@ -246,11 +246,15 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                   {row.getIsExpanded() &&
                   props.customSubRowInjection &&
                   !row.subRows.length ? (
-                    <tr>
-                      <td colSpan={row.getVisibleCells().length}>
+                    <TableTr className="expanded-tr">
+                      {isIndented ? <TableIndentation /> : null}
+                      <td
+                        colSpan={row.getVisibleCells().length}
+                        className="expanded-td"
+                      >
                         {props.customSubRowInjection(row)}
                       </td>
-                    </tr>
+                    </TableTr>
                   ) : null}
                 </Fragment>
               )
