@@ -58,7 +58,6 @@ export default defineConfig({
         'react-dom',
         'react/jsx-runtime',
         'react/jsx-dev-runtime',
-        'react-table',
         /^react(\/.*)?$/,
       ],
       output: {

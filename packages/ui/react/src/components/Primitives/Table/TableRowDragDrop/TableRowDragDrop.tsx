@@ -1,13 +1,13 @@
-// Note: This version of react-table is no longer maintained
-// Long term ideal solution would be to migrate to tanstack/react-table
-// Docs: https://tanstack.com/table/latest
-
 import type { ReactElement } from 'react'
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import type { Cell, ColumnInstance, Row, TableOptions } from 'react-table'
-import { useTable } from 'react-table'
+import type { ColumnDef, Row, TableOptions } from '@tanstack/react-table'
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table'
 
 import { TableWrapper, type TableWrapperProps } from '../TableWrapper'
 
@@ -56,13 +56,13 @@ const moveArrayItem = <T,>(items: T[], fromIndex: number, toIndex: number) => {
 /**
  * Renders a table whose rows can be reordered with drag and drop.
  *
- * Rows should expose a stable `id` property so React Table can identify them.
+ * Rows should expose a stable `id` property so TanStack Table can identify them.
  * When an `id` is not provided, the row index is used as its identity.
  *
  * @example
  * ```tsx
  * <TableRowDragDrop
- *   columns={[{ Header: "Name", accessor: "name" }]}
+ *   columns={[{ header: "Name", accessorKey: "name" }]}
  *   data={[{ id: "one", name: "First" }, { id: "two", name: "Second" }]}
  *   onDrag={(isDragging) => setDragging(isDragging)}
  *   onDrop={(move, rows) => saveOrder(move, rows)}
@@ -95,18 +95,15 @@ function TableRowDragDrop<T extends object = {}>({
     return String(rowWithId.id ?? index)
   }, [])
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-    visibleColumns,
-  } = useTable<T>({
+  const table = useReactTable<T>({
     data: sortedData,
-    columns,
+    columns: columns as ColumnDef<T, unknown>[],
     getRowId,
+    getCoreRowModel: getCoreRowModel(),
   })
+  const headerGroups = table.getHeaderGroups()
+  const rows = table.getRowModel().rows
+  const visibleColumnCount = table.getVisibleLeafColumns().length
 
   const moveRow = (dragIndex: number, hoverIndex: number) => {
     setMoving((currentMoving) => ({
@@ -129,54 +126,40 @@ function TableRowDragDrop<T extends object = {}>({
     >
       <DndProvider backend={HTML5Backend}>
         <TableStyled $smallContainer>
-          <BaseTable {...getTableProps()}>
+          <BaseTable>
             <thead>
-              {headerGroups.map((headerGroup) => {
-                const { key: headerGroupKey, ...headerGroupProps } =
-                  headerGroup.getHeaderGroupProps()
-                return (
-                  <tr
-                    key={headerGroupKey}
-                    {...headerGroupProps}
-                  >
-                    <th />
-                    {headerGroup.headers.map((column) => {
-                      const { key: columnKey, ...columnProps } =
-                        column.getHeaderProps()
-                      return (
-                        <th
-                          key={columnKey}
-                          {...columnProps}
-                        >
-                          {column.render('Header')}
-                        </th>
-                      )
-                    })}
-                  </tr>
-                )
-              })}
+              {headerGroups.map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  <th />
+                  {headerGroup.headers.map((header) => (
+                    <th key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </th>
+                  ))}
+                </tr>
+              ))}
             </thead>
-            <tbody {...getTableBodyProps()}>
-              {rows.map((row, index) => {
-                prepareRow(row)
-                const { key: rowKey, ...rowProps } = row.getRowProps()
-                return (
-                  <TableRow<T>
-                    key={rowKey}
-                    visibleColumns={visibleColumns}
-                    index={index}
-                    row={row}
-                    onDrag={onDrag}
-                    onDrop={() => {
-                      if (!moving) return
-                      onDrop(moving, sortedData)
-                      setMoving(null)
-                    }}
-                    moveRow={moveRow}
-                    {...rowProps}
-                  />
-                )
-              })}
+            <tbody>
+              {rows.map((row, index) => (
+                <TableRow<T>
+                  key={row.id}
+                  visibleColumnCount={visibleColumnCount}
+                  index={index}
+                  row={row}
+                  onDrag={onDrag}
+                  onDrop={() => {
+                    if (!moving) return
+                    onDrop(moving, sortedData)
+                    setMoving(null)
+                  }}
+                  moveRow={moveRow}
+                />
+              ))}
             </tbody>
           </BaseTable>
         </TableStyled>
@@ -190,7 +173,7 @@ const DND_ITEM_TYPE = 'row'
 interface TableRowParams<T extends object> {
   row: Row<T>
   index: number
-  visibleColumns: ColumnInstance<T>[]
+  visibleColumnCount: number
   moveRow(dragIndex: number, hoverIndex: number): void
   onDrop(): void
   onDrag(isDragging: boolean): void
@@ -202,7 +185,7 @@ function TableRow<T extends object>({
   moveRow,
   onDrop,
   onDrag,
-  visibleColumns,
+  visibleColumnCount,
 }: TableRowParams<T>) {
   const dropRef = useRef<HTMLTableRowElement>(null)
   const dragRef = useRef<HTMLTableCellElement>(null)
@@ -253,7 +236,6 @@ function TableRow<T extends object>({
   preview(drop(dropRef))
   drag(dragRef)
 
-  const { key: rowPropsKey, ...rowPropsRest } = row.getRowProps()
   const rowMetadata = row.original as T & DragDropRowMetadata
   const blockDrag =
     rowMetadata.blockDrag && typeof rowMetadata.blockDrag === 'object'
@@ -261,43 +243,34 @@ function TableRow<T extends object>({
       : undefined
 
   return (
-    <Fragment key={`fragment-${rowPropsKey}`}>
-      <TableTr
-        ref={dropRef}
-        style={{ opacity: isDragging ? 0 : 1 }}
-        $lineBackgroundColor={rowMetadata.fixedLine?.lineBackgroundColor}
-        $lineHoverColor={rowMetadata.fixedLine?.lineHoverColor}
-        $fixedLineEnabled={rowMetadata.fixedLine?.activated}
-        $disabledRow={rowMetadata.disabled}
-        $numberOfColumns={visibleColumns.length}
-        {...rowPropsRest}
+    <TableTr
+      ref={dropRef}
+      style={{ opacity: isDragging ? 0 : 1 }}
+      $lineBackgroundColor={rowMetadata.fixedLine?.lineBackgroundColor}
+      $lineHoverColor={rowMetadata.fixedLine?.lineHoverColor}
+      $fixedLineEnabled={rowMetadata.fixedLine?.activated}
+      $disabledRow={rowMetadata.disabled}
+      $numberOfColumns={visibleColumnCount}
+    >
+      <td
+        title={blockDrag?.message || ''}
+        className={blockDrag ? 'drag-cell-block' : 'drag-cell'}
+        ref={blockDrag ? undefined : dragRef}
       >
-        <td
-          title={blockDrag?.message || ''}
-          className={blockDrag ? 'drag-cell-block' : 'drag-cell'}
-          ref={blockDrag ? undefined : dragRef}
-        >
-          {iconLoader(
-            'dragHandle',
-            18,
-            getColor(blockDrag ? 'slate.300' : 'gray.615'),
-            1,
-            'drag row'
-          )}
+        {iconLoader(
+          'dragHandle',
+          18,
+          getColor(blockDrag ? 'slate.300' : 'gray.615'),
+          1,
+          'drag row'
+        )}
+      </td>
+      {row.getVisibleCells().map((cell) => (
+        <td key={cell.id}>
+          {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </td>
-        {row.cells.map((cell: Cell<T, unknown>) => {
-          const { key: cellKey, ...cellProps } = cell.getCellProps()
-          return (
-            <td
-              key={cellKey}
-              {...cellProps}
-            >
-              {cell.render('Cell')}
-            </td>
-          )
-        })}
-      </TableTr>
-    </Fragment>
+      ))}
+    </TableTr>
   )
 }
 
