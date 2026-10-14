@@ -86,8 +86,8 @@ describe('drag and drop table', () => {
     const component = renderTestsList({})
     const tableHeader = component.container.getElementsByTagName('thead')[0]
 
-    mockedTableColumns.forEach(({ Header }) => {
-      expect(within(tableHeader).getByText(Header as string)).toBeTruthy()
+    mockedTableColumns.forEach(({ header }) => {
+      expect(within(tableHeader).getByText(header as string)).toBeTruthy()
     })
   })
 
@@ -95,7 +95,7 @@ describe('drag and drop table', () => {
     const onDrop = vi.fn()
     const onDrag = vi.fn()
     const data = [{ name: 'First' }, { name: 'Second' }]
-    const columns = [{ Header: 'Name', accessor: 'name' as const }]
+    const columns = [{ header: 'Name', accessorKey: 'name' as const }]
 
     const component = render(
       <TableRowDragDrop

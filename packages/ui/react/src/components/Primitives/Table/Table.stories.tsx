@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { Column } from 'react-table'
+import type { ColumnDef } from '@tanstack/react-table'
 
 import { Button } from 'src/components/Primitives/Button'
 import { CheckBox } from 'src/components/Primitives/CheckBox'
@@ -98,11 +98,11 @@ const rowsDefault: RowData[] = [
   },
 ]
 
-const columnsDefault: Column<RowData>[] = [
+const columnsDefault: ColumnDef<RowData>[] = [
   {
-    accessor: 'name',
-    Header: 'Name',
-    Cell: ({ row }) => (
+    accessorKey: 'name',
+    header: 'Name',
+    cell: ({ row }) => (
       <TableCellWrapper
         icon={row.original.icon}
         value={row.original.name}
@@ -110,13 +110,13 @@ const columnsDefault: Column<RowData>[] = [
       />
     ),
   },
-  { accessor: 'framework', Header: 'Framework' },
-  { accessor: 'lang', Header: 'Language' },
-  { accessor: 'directory', Header: 'Public Directory' },
+  { accessorKey: 'framework', header: 'Framework' },
+  { accessorKey: 'lang', header: 'Language' },
+  { accessorKey: 'directory', header: 'Public Directory' },
   {
-    accessor: 'actions',
-    Header: '',
-    Cell: (
+    accessorKey: 'actions',
+    header: '',
+    cell: () => (
       <Grid>
         <Button typeSize="medium">link servers</Button>
       </Grid>
@@ -151,11 +151,11 @@ function DefaultComponent(args: any) {
     },
   ]
 
-  const columns: Column<ActionRow>[] = [
+  const columns: ColumnDef<ActionRow>[] = [
     {
-      accessor: 'name',
-      Header: 'Name',
-      Cell: ({ row }) => (
+      accessorKey: 'name',
+      header: 'Name',
+      cell: ({ row }) => (
         <TableCellWrapper
           icon={row.original.icon}
           value={row.original.name}
@@ -164,24 +164,24 @@ function DefaultComponent(args: any) {
       ),
     },
     {
-      accessor: 'status',
-      Header: 'Status',
-      Cell: ({ row }) => STATUS_CONTENTS[row.original.status],
+      accessorKey: 'status',
+      header: 'Status',
+      cell: ({ row }) => STATUS_CONTENTS[row.original.status],
     },
     {
-      accessor: 'language',
-      Header: 'Language',
-      Cell: ({ value }) => value || '—',
+      accessorKey: 'language',
+      header: 'Language',
+      cell: ({ getValue }) => getValue() || '—',
     },
     {
-      accessor: 'directory',
-      Header: 'Public Directory',
-      Cell: ({ value }) => value || '—',
+      accessorKey: 'directory',
+      header: 'Public Directory',
+      cell: ({ getValue }) => getValue() || '—',
     },
     {
-      accessor: 'actions',
-      Header: ({ rows: tableRows }) => {
-        const rowIds = tableRows.map((row) => row.original.name)
+      accessorKey: 'actions',
+      header: ({ table }) => {
+        const rowIds = table.getRowModel().rows.map((row) => row.original.name)
         const isChecked =
           rowIds.length > 0 && rowIds.every((id) => selected.includes(id))
 
@@ -193,7 +193,7 @@ function DefaultComponent(args: any) {
           />
         )
       },
-      Cell: ({ row }) => {
+      cell: ({ row }) => {
         const id = row.original.name
         const isChecked = selected.includes(id)
 
@@ -251,30 +251,35 @@ const stepsData: StepsRow[] = [
 ]
 
 function WithStepsComponent(args: any) {
-  const columns: Column<StepsRow>[] = [
+  const columns: ColumnDef<StepsRow>[] = [
     {
-      accessor: 'name',
-      Header: 'Daemon',
-      Cell: ({ row, value }) => (
+      accessorKey: 'name',
+      header: 'Daemon',
+      cell: ({ row, getValue }) => (
         <TableCellWrapper
           icon={row.original.rowType === 'subrow' ? 'devices' : 'eyeOutline'}
-          value={value}
+          value={getValue<string>()}
           iconBackgroundColor={getColor('purple.800')}
         />
       ),
     },
     {
       id: 'expander',
-      Header: '',
-      Cell: ({ row }) =>
-        row.canExpand || row.original.rowType === 'subrow' ? (
-          <Button
-            type="button"
-            typeSize="medium"
-            onClick={() => row.toggleRowExpanded()}
-          >
-            {row.isExpanded ? 'Hide' : 'Show'} log
-          </Button>
+      header: '',
+      cell: ({ row }) =>
+        row.getCanExpand() || row.original.rowType === 'subrow' ? (
+          <Grid>
+            <Button
+              type="button"
+              typeSize="medium"
+              onClick={(event) => {
+                event.stopPropagation()
+                row.toggleExpanded()
+              }}
+            >
+              {row.getIsExpanded() ? 'Hide' : 'Show'} log
+            </Button>
+          </Grid>
         ) : null,
     },
   ]
@@ -336,14 +341,14 @@ function LoadingComponent(args: any) {
   ]
 
   const columns = [
-    { accessor: 'name', Header: 'Name' },
-    { accessor: 'framework', Header: 'Framework' },
-    { accessor: 'language', Header: 'Language' },
-    { accessor: 'publicDirectory', Header: 'Public Directory' },
+    { accessorKey: 'name', header: 'Name' },
+    { accessorKey: 'framework', header: 'Framework' },
+    { accessorKey: 'language', header: 'Language' },
+    { accessorKey: 'publicDirectory', header: 'Public Directory' },
     {
-      accessor: 'actions',
-      Header: '',
-      Cell: () => (
+      accessorKey: 'actions',
+      header: '',
+      cell: () => (
         <div style={{ textAlign: 'right' }}>
           <Button>Actions</Button>
         </div>
@@ -596,14 +601,14 @@ function WithPaginationComponent(args: any) {
     },
   ]
 
-  const columns: Column<RowData>[] = [
+  const columns: ColumnDef<RowData>[] = [
     ...columnsDefault.slice(0, -1),
-    { accessor: 'buildCommand', Header: 'Build Command' },
-    { accessor: 'createdAt', Header: 'Created At' },
+    { accessorKey: 'buildCommand', header: 'Build Command' },
+    { accessorKey: 'createdAt', header: 'Created At' },
     {
-      accessor: 'actions',
-      Header: () => <Button icon="link">link ssh key</Button>,
-      Cell: () => (
+      accessorKey: 'actions',
+      header: () => <Button icon="link">link ssh key</Button>,
+      cell: () => (
         <ColumnWrapper>
           <Button typeSize="medium">Accept</Button>
           <Button typeSize="medium">Deploy</Button>

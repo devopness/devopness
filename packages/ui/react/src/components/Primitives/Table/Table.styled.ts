@@ -287,5 +287,3 @@ export {
   TableTr,
   TableStyled,
 }
-
-export type { BaseTableProps, TableTrProps, TableWrapperProps }
