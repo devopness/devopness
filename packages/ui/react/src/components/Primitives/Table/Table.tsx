@@ -179,6 +179,7 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                     key={header.id}
                     className="translate"
                     {...(isIndented && i === 0 ? { colSpan: 2 } : {})}
+                    {...(header.colSpan > 1 ? { colSpan: header.colSpan } : {})}
                   >
                     <TableCellWrapper
                       $alignColumn={
