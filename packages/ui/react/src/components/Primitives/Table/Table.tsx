@@ -111,7 +111,6 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
     autoResetPageIndex: !skipPageRef.current.autoReset,
-    autoResetFilters: !skipPageRef.current.autoReset,
     autoResetAll: !skipPageRef.current.autoReset,
     state: props.state,
   }) as TableInstance<T>
@@ -156,7 +155,10 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                     {...(isIndented && i === 0 ? { colSpan: 2 } : {})}
                   >
                     <TableCellWrapper
-                      $alignColumn={header.column.columnDef.alignColumn}
+                      $alignColumn={
+                        (header.column.columnDef as ColumnWithAlignment<T>)
+                          .alignColumn
+                      }
                     >
                       {header.isPlaceholder
                         ? null
@@ -204,8 +206,8 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                           : {})}
                       >
                         <TableCellValue
-                          $cellWidth={props.cellWidth}
-                          $cellOverflowVisible={props.cellOverflowVisible}
+                          width={props.cellWidth}
+                          $overflowVisible={props.cellOverflowVisible}
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
