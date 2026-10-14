@@ -131,11 +131,8 @@ function TableRowDragDrop<T extends object = {}>({
               {headerGroups.map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   <th />
-                  {headerGroup.headers.map((header, index) => (
-                    <th
-                      key={header.id}
-                      {...(index === 0 ? { colSpan: 2 } : {})}
-                    >
+                  {headerGroup.headers.map((header) => (
+                    <th key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
