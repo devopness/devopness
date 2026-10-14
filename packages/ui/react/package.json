@@ -65,7 +65,7 @@
     "@mui/styled-engine-sc": "9.5.0",
     "@radix-ui/react-slot": "^1.4.0",
     "@radix-ui/themes": "^3.3.0",
-    "@types/react-table": "^7.7.20",
+    "@tanstack/react-table": "^8.21.3",
     "classnames": "^2.5.1",
     "framer-motion": "^14.0.0",
     "ldrs": "^1.1.9",
@@ -109,9 +109,9 @@
     "vitest": "^5.0.3"
   },
   "peerDependencies": {
+    "@tanstack/react-table": "^8.21.3",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0",
-    "react-table": "^7.8.0"
+    "react-dom": "^19.3.0"
   },
   "overrides": {
     "styled-components": "$styled-components",
