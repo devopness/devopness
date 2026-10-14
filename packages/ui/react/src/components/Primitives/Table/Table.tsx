@@ -231,15 +231,23 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                           ? { colSpan: 2 }
                           : {})}
                       >
-                        <TableCellValue
-                          width={props.cellWidth}
-                          $overflowVisible={props.cellOverflowVisible}
+                        <TableCellWrapper
+                          $alignColumn={
+                            (cell.column.columnDef as ColumnWithAlignment<T>)
+                              .alignColumn
+                          }
+                          className="cell-wrapper"
                         >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </TableCellValue>
+                          <TableCellValue
+                            width={props.cellWidth}
+                            $overflowVisible={props.cellOverflowVisible}
+                          >
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </TableCellValue>
+                        </TableCellWrapper>
                       </td>
                     ))}
                   </TableTr>
