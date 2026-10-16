@@ -1,8 +1,9 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
-import type { ColumnDef } from '@tanstack/react-table'
+import type { CellContext, ColumnDef } from '@tanstack/react-table'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Table } from './Table'
+import { TableLoadingRowVariation } from './TableLoading/TableLoading'
 
 type TestRow = {
   id: number
@@ -39,7 +40,10 @@ describe('Table', () => {
   })
 
   it('renders custom cell content through column cell callbacks', () => {
-    const cellSpy = vi.fn(({ getValue }) => `name:${getValue<string>()}`)
+    const cellSpy = vi.fn(
+      ({ getValue }: CellContext<TestRow, unknown>) =>
+        `name:${String(getValue())}`
+    )
     const callbackColumns: ColumnDef<TestRow>[] = [
       { header: 'Name', accessorKey: 'name', cell: cellSpy },
     ]
@@ -62,8 +66,14 @@ describe('Table', () => {
         data={data}
         isLoading
         loadingTableCells={[
-          { name: 'Name', rowVariation: 'BAR_EFFECT' },
-          { name: 'Status', rowVariation: 'BAR_EFFECT' },
+          {
+            name: 'Name',
+            rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+          },
+          {
+            name: 'Status',
+            rowVariation: TableLoadingRowVariation.BAR_EFFECT,
+          },
         ]}
       />
     )
@@ -94,7 +104,8 @@ describe('Table', () => {
       <Table
         columns={columns}
         data={[]}
-        emptyDataMessage="No rows"
+        isEmpty
+        emptyData={{ message: 'No rows' }}
       />
     )
 
@@ -169,7 +180,7 @@ describe('Table', () => {
     expect(paginationProps.lastPaginateAction).toHaveBeenCalledTimes(1)
   })
 
-  it('expands rows and renders custom subrow content', () => {
+  it('expands rows and renders nested subrows', () => {
     const expandableColumns: ColumnDef<TestRow>[] = [
       { header: 'Name', accessorKey: 'name' },
       { header: 'Status', accessorKey: 'status' },
@@ -188,7 +199,6 @@ describe('Table', () => {
       <Table
         columns={expandableColumns}
         data={expandableData}
-        customSubRowInjection={() => <span>Custom child</span>}
       />
     )
 
@@ -200,6 +210,22 @@ describe('Table', () => {
     const body = container.querySelector('tbody')
     expect(body).toBeTruthy()
     expect(within(body as HTMLElement).getByText('Child')).toBeTruthy()
+  })
+
+  it('renders custom subrow content for expanded leaf rows', () => {
+    const { container } = render(
+      <Table
+        columns={columns}
+        data={[data[0]]}
+        getRowCanExpand={() => true}
+        customSubRowInjection={() => <span>Custom child</span>}
+      />
+    )
+
+    fireEvent.click(screen.getByText('Alpha').closest('tr') as HTMLElement)
+
+    const body = container.querySelector('tbody')
+    expect(body).toBeTruthy()
     expect(within(body as HTMLElement).getByText('Custom child')).toBeTruthy()
   })
 })
