@@ -204,12 +204,15 @@ describe('Table', () => {
 
     const parentRow = screen.getByText('Parent').closest('tr')
     expect(parentRow).toBeTruthy()
-
-    fireEvent.click(parentRow as HTMLElement)
-
     const body = container.querySelector('tbody')
     expect(body).toBeTruthy()
+    expect(within(body as HTMLElement).queryByText('Child')).toBeNull()
+
+    fireEvent.click(parentRow as HTMLElement)
     expect(within(body as HTMLElement).getByText('Child')).toBeTruthy()
+
+    fireEvent.click(parentRow as HTMLElement)
+    expect(within(body as HTMLElement).queryByText('Child')).toBeNull()
   })
 
   it('renders custom subrow content for expanded leaf rows', () => {
@@ -222,10 +225,16 @@ describe('Table', () => {
       />
     )
 
-    fireEvent.click(screen.getByText('Alpha').closest('tr') as HTMLElement)
-
+    const parentRow = screen.getByText('Alpha').closest('tr')
+    expect(parentRow).toBeTruthy()
     const body = container.querySelector('tbody')
     expect(body).toBeTruthy()
+    expect(within(body as HTMLElement).queryByText('Custom child')).toBeNull()
+
+    fireEvent.click(parentRow as HTMLElement)
     expect(within(body as HTMLElement).getByText('Custom child')).toBeTruthy()
+
+    fireEvent.click(parentRow as HTMLElement)
+    expect(within(body as HTMLElement).queryByText('Custom child')).toBeNull()
   })
 })
