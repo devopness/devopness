@@ -3,12 +3,12 @@ ARG ALPINE_VERSION="3.21"
 FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION}
 
 # --- System dependencies installation ---
-RUN apk update && apk add --no-cache bash openjdk11-jre
+RUN apk update && apk add --no-cache bash openjdk11-jre && rm -rf /var/cache/apk/*
 
 WORKDIR /sdk
 
 # --- Package dependencies installation ---
-RUN pip install poetry
+RUN pip install --no-cache-dir "poetry>=2.0,<3.0"
 
 ENV POETRY_VIRTUALENVS_CREATE=false
 

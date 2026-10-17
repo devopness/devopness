@@ -42,7 +42,29 @@ const path = require("path");
 
 const inputFilePath = path.join(__dirname, "tmp-pr-description-data.json");
 
-let prDescription = JSON.parse(fs.readFileSync(inputFilePath, "utf8"));
+let rawData = process.env.PR_DESCRIPTION_JSON;
+if (!rawData && fs.existsSync(inputFilePath)) {
+  rawData = fs.readFileSync(inputFilePath, "utf8");
+}
+
+if (!rawData) {
+  fail(
+    "PR Description",
+    `Could not find PR description data. Neither PR_DESCRIPTION_JSON environment variable nor ${inputFilePath} is available.`
+  );
+  process.exit(1);
+}
+
+let prDescription;
+try {
+  prDescription = JSON.parse(rawData);
+} catch (error) {
+  fail(
+    "PR Description",
+    `Failed to parse PR description data as JSON: ${error.message}`
+  );
+  process.exit(1);
+}
 
 validateDescriptionOfChanges(prDescription.Description_of_changes);
 validateResolvedIssuesSection(prDescription.GitHub_issues_resolved_by_this_PR);
@@ -84,7 +106,13 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
 
   const descriptionText = descriptionOfChanges.bodies
     .filter((item) => item.type === "list")
-    .map((item) => item.raw.trim())
+    .map(
+      (item) =>
+        item.raw?.trim() ??
+        item.items?.map((subItem) => subItem.raw?.trim() ?? "").join(" ") ??
+        "",
+    )
+    .filter(Boolean)
     .join(" ");
 
   // Matches checkbox items that only contain placeholder text: "- [ ] <...>"
