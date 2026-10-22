@@ -1,23 +1,16 @@
 import type { ReactElement, ReactNode } from 'react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import type {
-  Cell,
   CellContext,
   ColumnDef,
-  Header,
   Row,
   RowData,
-  Table as TableInstance,
   TableOptions,
 } from '@tanstack/react-table'
-import {
-  flexRender,
-  getCoreRowModel,
-  getExpandedRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
+import { flexRender, useTable } from '@tanstack/react-table'
 
 import { TableWrapper, type TableWrapperProps } from './TableWrapper'
+import { tableFeatureSet, type TableFeatureSet } from './table-features'
 
 import {
   BaseTable,
@@ -39,7 +32,7 @@ type FixedLine = {
 }
 
 /** Optional metadata read from each row by `Table`. */
-type TableRowMetadata<T extends object> = {
+type TableRowMetadata<T extends RowData> = {
   /** Identifier used to reset expanded rows when the table changes. */
   tableId?: string | number
   /** Row type used by the indented layout. */
@@ -52,21 +45,29 @@ type TableRowMetadata<T extends object> = {
   disabled?: boolean
 }
 
-type ColumnWithAlignment<T extends RowData> = ColumnDef<T> & {
-  alignColumn?: 'left' | 'center' | 'right'
-}
-
-type TableColumn<T extends RowData> = ColumnDef<T>
-type TableCellProps<T extends RowData, TValue = unknown> = CellContext<
+type TableColumn<T extends RowData, TValue = any> = ColumnDef<
+  TableFeatureSet,
   T,
   TValue
 >
-type TableRow<T extends RowData> = Row<T>
-type TableRowOriginalProps<T extends RowData> = Row<T>['original']
+type ColumnWithAlignment<T extends RowData> = TableColumn<T> & {
+  alignColumn?: 'left' | 'center' | 'right'
+}
 
-type TableProps<T extends object = {}> = Omit<
-  TableOptions<T>,
-  'data' | 'columns' | 'getCoreRowModel'
+type TableCellProps<T extends RowData, TValue = unknown> = CellContext<
+  TableFeatureSet,
+  T,
+  TValue
+>
+type TableRow<T extends RowData> = Row<TableFeatureSet, T>
+type TableRowOriginalProps<T extends RowData> = Row<
+  TableFeatureSet,
+  T
+>['original']
+
+type TableProps<T extends RowData = {}> = Omit<
+  TableOptions<TableFeatureSet, T>,
+  'data' | 'columns' | 'features'
 > & {
   columns?: readonly ColumnWithAlignment<T>[]
   data?: readonly T[]
@@ -93,11 +94,11 @@ type TableProps<T extends object = {}> = Omit<
   /** Enables the indented row layout. */
   layout?: 'indented'
   /** Renders custom content below an expanded row with no subrows. */
-  customSubRowInjection?: (row: Row<T>) => ReactNode
+  customSubRowInjection?: (row: TableRow<T>) => ReactNode
 } & TableWrapperProps
 
 /**
- * A generic table built on TanStack Table v8 with Devopness styling and expansion support.
+ * A generic table built on TanStack Table with Devopness styling and expansion support.
  *
  * @example
  * ```tsx
@@ -112,7 +113,7 @@ type TableProps<T extends object = {}> = Omit<
  * />
  * ```
  */
-function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
+function Table<T extends RowData = {}>(props: TableProps<T>): ReactElement {
   const [dataTable, setDataTable] = useState<T[]>([])
   const skipPageRef = useRef({ autoReset: false })
 
@@ -127,18 +128,22 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
     skipPageRef.current.autoReset = false
   }, [])
 
-  const tableInstance = useReactTable({
+  const tableInstance = useTable({
     ...props,
+    features: tableFeatureSet,
     data: dataTable,
-    columns: (props.columns ?? []) as ColumnDef<T, unknown>[],
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
+    columns: (props.columns ?? []) as TableColumn<T>[],
     getSubRows:
       props.getSubRows ?? ((row) => (row as T & TableRowMetadata<T>).subRows),
-    autoResetPageIndex: !skipPageRef.current.autoReset,
+    getRowCanExpand:
+      props.getRowCanExpand ??
+      ((row) =>
+        row.subRows.length > 0 ||
+        (row.original as T & TableRowMetadata<T>).rowType?.toLowerCase() ===
+          'subrow'),
     autoResetAll: !skipPageRef.current.autoReset,
     state: props.state,
-  }) as TableInstance<T>
+  })
 
   const isIndented = props.layout === 'indented'
   const tableId = (dataTable[0] as (T & TableRowMetadata<T>) | undefined)
@@ -146,7 +151,7 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
 
   useEffect(() => {
     tableInstance.toggleAllRowsExpanded(false)
-  }, [tableId, tableInstance])
+  }, [tableId])
 
   const headerGroups = tableInstance.getHeaderGroups()
   const rows = tableInstance.getRowModel().rows
@@ -174,7 +179,7 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header: Header<T, unknown>, i) => (
+                {headerGroup.headers.map((header, i) => (
                   <th
                     key={header.id}
                     className="translate"
@@ -204,7 +209,7 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
           </thead>
 
           <tbody>
-            {rows.map((row: Row<T>) => {
+            {rows.map((row) => {
               const original = row.original as T & TableRowMetadata<T>
               const isIndentedSubrow =
                 isIndented && original.rowType?.toLowerCase() === 'subrow'
@@ -227,7 +232,7 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
                   >
                     {isIndentedSubrow ? <TableIndentation /> : null}
 
-                    {row.getVisibleCells().map((cell: Cell<T, unknown>, i) => (
+                    {row.getVisibleCells().map((cell, i) => (
                       <td
                         key={cell.id}
                         className="translate normal-td"
@@ -279,5 +284,11 @@ function Table<T extends object = {}>(props: TableProps<T>): ReactElement {
   )
 }
 
-export type { TableCellProps, TableColumn, TableRow, TableRowOriginalProps }
+export type {
+  TableCellProps,
+  TableColumn,
+  TableFeatureSet,
+  TableRow,
+  TableRowOriginalProps,
+}
 export { Table }
