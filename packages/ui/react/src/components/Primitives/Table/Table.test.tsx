@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { Table, type TableCellProps, type TableColumn } from './Table'
+import { Table, type TableColumn } from './Table'
 import { TableLoadingRowVariation } from './TableLoading/TableLoading'
 
 type TestRow = {
@@ -39,12 +39,13 @@ describe('Table', () => {
     expect(screen.getByText('Beta')).toBeTruthy()
   })
 
-  it('renders custom cell content through column cell callbacks', () => {
-    const cellSpy = vi.fn(
-      ({ getValue }: TableCellProps<TestRow>) => `name:${String(getValue())}`
-    )
+  it('infers the cell context from the table column type', () => {
     const callbackColumns: TableColumn<TestRow>[] = [
-      { header: 'Name', accessorKey: 'name', cell: cellSpy },
+      {
+        id: 'name-cell',
+        accessorKey: 'name',
+        cell: (data) => `name:${data.row.original.name}`,
+      },
     ]
 
     render(
@@ -54,8 +55,36 @@ describe('Table', () => {
       />
     )
 
-    expect(cellSpy).toHaveBeenCalledTimes(1)
     expect(screen.getByText('name:Alpha')).toBeTruthy()
+  })
+
+  it('supports row selection APIs in cell callbacks', () => {
+    const selectionColumns: TableColumn<TestRow>[] = [
+      {
+        id: 'selection',
+        header: 'Selection',
+        cell: ({ row }) => (
+          <button
+            type="button"
+            onClick={row.getToggleSelectedHandler()}
+          >
+            {row.getIsSelected() ? 'Selected' : 'Select'}
+          </button>
+        ),
+      },
+    ]
+
+    render(
+      <Table
+        columns={selectionColumns}
+        data={[data[0]]}
+        enableRowSelection
+      />
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'Select' }))
+
+    expect(screen.getByRole('button', { name: 'Selected' })).toBeTruthy()
   })
 
   it('renders loading placeholders when loading is enabled', () => {
