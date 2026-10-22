@@ -38,7 +38,7 @@ describe('Container', () => {
       </Container>
     )
     const wrapper = getByText('Styled Content').parentElement
-    expect(wrapper).toHaveStyle('background: red')
+    expect(wrapper).toHaveStyle('background-color: rgb(255, 0, 0)')
     expect(wrapper).toHaveStyle('height: 200px')
   })
 })

@@ -135,8 +135,8 @@ const InputText = styled.input<InputTextProps>`
     ${
       $hasIcon &&
       css`
-      padding-${$iconPosition === 'left' ? 'left' : 'right'}: 8px;
-    `
+        padding-${$iconPosition === 'left' ? 'left' : 'right'}: 8px;
+      `
     }
 
     &::placeholder {
