@@ -142,8 +142,7 @@ The security of your data is important to us but remember that no method of tran
 ## 10. Your Data Protection Rights Under General Data Protection Regulation (GDPR)‍
 
 If you are a resident of the European Union (EU) and European Economic Area (EEA), you have certain data protection rights, covered by GDPR. – See more at
-‍
-https://eur-lex.europa.eu/eli/reg/2016/679/oj
+‍https://eur-lex.europa.eu/eli/reg/2016/679/oj
 
 We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.
 
@@ -201,8 +200,7 @@ If you submit a request to stop selling your personal information, we will stop 
 Please note, if you ask us to delete or stop selling your data, it may impact your experience with us, and you may not be able to participate in certain programs or membership services which require the usage of your personal information to function. But in no circumstances, we will discriminate against you for exercising your rights.
 
 To exercise your California data protection rights described above, please send your request(s) to legal@devopness.com .
-‍
-Your data protection rights, described above, are covered by the CCPA, short for the California Consumer Privacy Act. To find out more, visit the official California Legislative Information website. The CCPA took effect on 01/01/2020.
+‍Your data protection rights, described above, are covered by the CCPA, short for the California Consumer Privacy Act. To find out more, visit the official California Legislative Information website. The CCPA took effect on 01/01/2020.
 
 ## 13. Service Providers
 
