@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ColumnDef } from '@tanstack/react-table'
 
 import { Button } from 'src/components/Primitives/Button'
 import { CheckBox } from 'src/components/Primitives/CheckBox'
@@ -11,7 +10,7 @@ import { getColor } from 'src/colors'
 
 import { TableCellWrapper } from './TableCellWrapper/TableCellWrapper'
 import { TableLoadingRowVariation } from './TableLoading/TableLoading'
-import { Table } from './Table'
+import { Table, type TableColumn } from './Table'
 
 const Grid = ({ children }: { children: React.ReactNode }) => (
   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
@@ -98,7 +97,7 @@ const rowsDefault: RowData[] = [
   },
 ]
 
-const columnsDefault: ColumnDef<RowData>[] = [
+const columnsDefault: TableColumn<RowData>[] = [
   {
     accessorKey: 'name',
     header: 'Name',
@@ -151,7 +150,7 @@ function DefaultComponent(args: any) {
     },
   ]
 
-  const columns: ColumnDef<ActionRow>[] = [
+  const columns: TableColumn<ActionRow>[] = [
     {
       accessorKey: 'name',
       header: 'Name',
@@ -251,7 +250,7 @@ const stepsData: StepsRow[] = [
 ]
 
 function WithStepsComponent(args: any) {
-  const columns: ColumnDef<StepsRow>[] = [
+  const columns: TableColumn<StepsRow>[] = [
     {
       accessorKey: 'name',
       header: 'Daemon',
@@ -601,7 +600,7 @@ function WithPaginationComponent(args: any) {
     },
   ]
 
-  const columns: ColumnDef<RowData>[] = [
+  const columns: TableColumn<RowData>[] = [
     ...columnsDefault.slice(0, -1),
     { accessorKey: 'buildCommand', header: 'Build Command' },
     { accessorKey: 'createdAt', header: 'Created At' },

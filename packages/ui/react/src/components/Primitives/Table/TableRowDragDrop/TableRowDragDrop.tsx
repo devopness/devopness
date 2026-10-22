@@ -2,14 +2,16 @@ import type { ReactElement } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import type { ColumnDef, Row, TableOptions } from '@tanstack/react-table'
-import {
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
+import type { RowData, TableOptions } from '@tanstack/react-table'
+import { flexRender, useTable } from '@tanstack/react-table'
 
 import { TableWrapper, type TableWrapperProps } from '../TableWrapper'
+import type {
+  TableColumn,
+  TableFeatureSet,
+  TableRow as TableRowInstance,
+} from '../Table'
+import { tableFeatureSet } from '../table-features'
 
 import { getColor } from 'src/colors'
 import { iconLoader } from 'src/icons'
@@ -36,8 +38,8 @@ type DragDropRowMetadata = {
 }
 
 /** Props for the sortable drag-and-drop table. */
-type TableRowDragDropProps<T extends object = {}> = Pick<
-  TableOptions<T>,
+type TableRowDragDropProps<T extends RowData = {}> = Pick<
+  TableOptions<TableFeatureSet, T>,
   'columns' | 'data'
 > & {
   /** Called after a row is dropped with the new ordering. */
@@ -69,7 +71,7 @@ const moveArrayItem = <T,>(items: T[], fromIndex: number, toIndex: number) => {
  * />
  * ```
  */
-function TableRowDragDrop<T extends object = {}>({
+function TableRowDragDrop<T extends RowData = {}>({
   columns,
   data,
   onDrop,
@@ -95,11 +97,11 @@ function TableRowDragDrop<T extends object = {}>({
     return String(rowWithId.id ?? index)
   }, [])
 
-  const table = useReactTable<T>({
+  const table = useTable({
+    features: tableFeatureSet,
     data: sortedData,
-    columns: columns as ColumnDef<T, unknown>[],
+    columns: columns as TableColumn<T>[],
     getRowId,
-    getCoreRowModel: getCoreRowModel(),
   })
   const headerGroups = table.getHeaderGroups()
   const rows = table.getRowModel().rows
@@ -173,8 +175,8 @@ function TableRowDragDrop<T extends object = {}>({
 
 const DND_ITEM_TYPE = 'row'
 
-interface TableRowParams<T extends object> {
-  row: Row<T>
+interface TableRowParams<T extends RowData> {
+  row: TableRowInstance<T>
   index: number
   visibleColumnCount: number
   moveRow(dragIndex: number, hoverIndex: number): void
@@ -182,7 +184,7 @@ interface TableRowParams<T extends object> {
   onDrag(isDragging: boolean): void
 }
 
-function TableRow<T extends object>({
+function TableRow<T extends RowData>({
   row,
   index,
   moveRow,

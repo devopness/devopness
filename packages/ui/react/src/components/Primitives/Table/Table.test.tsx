@@ -1,18 +1,18 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
-import type { CellContext, ColumnDef } from '@tanstack/react-table'
 import { describe, expect, it, vi } from 'vitest'
 
-import { Table } from './Table'
+import { Table, type TableCellProps, type TableColumn } from './Table'
 import { TableLoadingRowVariation } from './TableLoading/TableLoading'
 
 type TestRow = {
   id: number
   name: string
   status: string
+  rowType?: string
   subRows?: TestRow[]
 }
 
-const columns: ColumnDef<TestRow>[] = [
+const columns: TableColumn<TestRow>[] = [
   { header: 'ID', accessorKey: 'id' },
   { header: 'Name', accessorKey: 'name' },
   { header: 'Status', accessorKey: 'status' },
@@ -41,10 +41,9 @@ describe('Table', () => {
 
   it('renders custom cell content through column cell callbacks', () => {
     const cellSpy = vi.fn(
-      ({ getValue }: CellContext<TestRow, unknown>) =>
-        `name:${String(getValue())}`
+      ({ getValue }: TableCellProps<TestRow>) => `name:${String(getValue())}`
     )
-    const callbackColumns: ColumnDef<TestRow>[] = [
+    const callbackColumns: TableColumn<TestRow>[] = [
       { header: 'Name', accessorKey: 'name', cell: cellSpy },
     ]
 
@@ -181,7 +180,7 @@ describe('Table', () => {
   })
 
   it('expands rows and renders nested subrows', () => {
-    const expandableColumns: ColumnDef<TestRow>[] = [
+    const expandableColumns: TableColumn<TestRow>[] = [
       { header: 'Name', accessorKey: 'name' },
       { header: 'Status', accessorKey: 'status' },
     ]
@@ -236,5 +235,40 @@ describe('Table', () => {
 
     fireEvent.click(parentRow as HTMLElement)
     expect(within(body as HTMLElement).queryByText('Custom child')).toBeNull()
+  })
+
+  it('allows inner step rows to expand and render their log content', () => {
+    const steps: TestRow[] = [
+      {
+        id: 1,
+        name: 'Parent',
+        status: 'Open',
+        subRows: [
+          {
+            id: 2,
+            name: 'Inner step',
+            status: 'Running',
+            rowType: 'subrow',
+          },
+        ],
+      },
+    ]
+    const { container } = render(
+      <Table
+        columns={columns}
+        data={steps}
+        customSubRowInjection={() => <span>Step log</span>}
+      />
+    )
+    const body = container.querySelector('tbody')
+    expect(body).toBeTruthy()
+
+    fireEvent.click(screen.getByText('Parent').closest('tr') as HTMLElement)
+    const innerStepRow = screen.getByText('Inner step').closest('tr')
+    expect(innerStepRow).toBeTruthy()
+    expect(within(body as HTMLElement).queryByText('Step log')).toBeNull()
+
+    fireEvent.click(innerStepRow as HTMLElement)
+    expect(within(body as HTMLElement).getByText('Step log')).toBeTruthy()
   })
 })

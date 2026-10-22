@@ -1,4 +1,4 @@
-import type { ColumnDef } from '@tanstack/react-table'
+import type { TableColumn } from '../Table'
 
 export interface RowData {
   age: string
@@ -37,7 +37,7 @@ export const mockedTableData: RowData[] = [
   { id: 7, age: '45', progress: '78%', name: 'André', lastName: 'Bonfim' },
 ]
 
-export const mockedTableColumns: ColumnDef<RowData>[] = [
+export const mockedTableColumns: TableColumn<RowData>[] = [
   { header: 'ID', accessorKey: 'id' },
   { header: 'Name', accessorKey: 'name' },
   { header: 'Last Name', accessorKey: 'lastName' },
