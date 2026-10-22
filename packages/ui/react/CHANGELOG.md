@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.212.0
+
+### Minor Changes
+
+- [#3733](https://github.com/devopness/devopness/pull/3733) [`2fbeb08`](https://github.com/devopness/devopness/commit/2fbeb08bc48589f7b8fa04dad9754a4cb49b05d3) Thanks [@therealrinku](https://github.com/therealrinku)! - Add `Table` component test coverage for loading, empty, pagination, expansion, and cell rendering behavior and upgrade `@tanstack/react-table` to v9
+
 ## 2.211.0
 
 ### Minor Changes
