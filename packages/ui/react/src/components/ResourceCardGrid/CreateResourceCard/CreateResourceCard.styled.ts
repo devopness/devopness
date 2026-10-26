@@ -9,13 +9,14 @@ const CardContainer = styled.div<{ $disabled?: boolean }>`
   min-width: 0;
   cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  opacity: ${({ $disabled }) => ($disabled ? 0.68 : 1)};
 `
 
-const CardInner = styled.div`
+const CardInner = styled.div<{ $disabled?: boolean }>`
   height: 100%;
   min-height: 0;
-  border: 2px dashed #d1d5db;
-  background-color: #f9fafb;
+  border: 2px dashed ${({ $disabled }) => ($disabled ? '#cbd5e1' : '#d1d5db')};
+  background-color: ${({ $disabled }) => ($disabled ? '#f3f4f6' : '#f9fafb')};
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-radius: 12px;
@@ -26,7 +27,7 @@ const CardInner = styled.div`
   gap: 0.75rem;
   overflow: hidden;
   box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: ${({ $disabled }) => ($disabled ? 'none' : 'all 0.2s ease')};
 
   &:hover {
     border-color: #94a3b8;
@@ -35,6 +36,11 @@ const CardInner = styled.div`
     box-shadow:
       0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  ${CardContainer}[aria-disabled='true'] & {
+    transform: none;
+    box-shadow: none;
   }
 
   ${CardContainer}:hover:not([aria-disabled='true']) & {
@@ -71,6 +77,11 @@ const CreateIconWrapper = styled.div`
     border-color 0.2s ease,
     color 0.2s ease;
 
+  ${CardContainer}[aria-disabled='true'] & {
+    border-color: #cbd5e1;
+    color: #94a3b8;
+  }
+
   ${CardContainer}:hover:not([aria-disabled='true']) & {
     border-color: #94a3b8;
     color: #64748b;
@@ -84,7 +95,11 @@ const Label = styled.span`
   color: #6b7280;
   transition: color 0.2s ease;
 
-  ${CardInner}:hover & {
+  ${CardContainer}[aria-disabled='true'] & {
+    color: #94a3b8;
+  }
+
+  ${CardContainer}:hover:not([aria-disabled='true']) & {
     color: #64748b;
   }
 `

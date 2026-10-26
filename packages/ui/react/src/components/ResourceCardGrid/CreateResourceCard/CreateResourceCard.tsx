@@ -42,7 +42,7 @@ const CreateResourceCard = ({
       role="button"
       tabIndex={createResourceDisabled ? -1 : 0}
     >
-      <CardInner>
+      <CardInner $disabled={createResourceDisabled}>
         <CreateIconWrapper>+</CreateIconWrapper>
         <Label>Add {resourceType}</Label>
       </CardInner>
@@ -52,7 +52,7 @@ const CreateResourceCard = ({
   if (createResourceDisabled && createResourceDisabledReason) {
     return (
       <Tooltip title={createResourceDisabledReason}>
-        <span>{card}</span>
+        <span style={{ display: 'block' }}>{card}</span>
       </Tooltip>
     )
   }
