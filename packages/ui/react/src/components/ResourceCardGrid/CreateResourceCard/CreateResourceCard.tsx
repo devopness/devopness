@@ -1,5 +1,7 @@
 import type { KeyboardEvent } from 'react'
 
+import { Tooltip } from 'src/components/Primitives/Tooltip'
+
 import {
   CardContainer,
   CardInner,
@@ -10,6 +12,8 @@ import {
 type CreateResourceCardProps = {
   resourceType: string
   onClick?: () => void
+  createResourceDisabled?: boolean
+  createResourceDisabledReason?: string
 }
 
 /**
@@ -19,19 +23,23 @@ type CreateResourceCardProps = {
 const CreateResourceCard = ({
   resourceType,
   onClick,
+  createResourceDisabled = false,
+  createResourceDisabledReason,
 }: CreateResourceCardProps) => {
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (createResourceDisabled) return
     if (event.key !== 'Enter' && event.key !== ' ') return
     event.preventDefault()
     onClick?.()
   }
 
-  return (
+  const card = (
     <CardContainer
-      onClick={onClick}
+      aria-disabled={createResourceDisabled}
+      onClick={createResourceDisabled ? undefined : onClick}
       onKeyDown={handleKeyDown}
       role="button"
-      tabIndex={0}
+      tabIndex={createResourceDisabled ? -1 : 0}
     >
       <CardInner>
         <CreateIconWrapper>+</CreateIconWrapper>
@@ -39,6 +47,12 @@ const CreateResourceCard = ({
       </CardInner>
     </CardContainer>
   )
+
+  if (createResourceDisabled && createResourceDisabledReason) {
+    return <Tooltip title={createResourceDisabledReason}>{card}</Tooltip>
+  }
+
+  return card
 }
 
 export type { CreateResourceCardProps }

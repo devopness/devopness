@@ -42,6 +42,31 @@ describe('ResourceCardGrid', () => {
     expect(handleCreate).toHaveBeenCalledTimes(1)
   })
 
+  it('disables the create tile and shows a tooltip when disabled', () => {
+    const handleCreate = vi.fn()
+
+    render(
+      <ResourceCardGrid
+        resourceType="project"
+        resources={[]}
+        onCreateResource={handleCreate}
+        createResourceDisabled
+        createResourceDisabledReason="You do not have permission"
+        pageCount={1}
+        pagination={noopPagination}
+      />
+    )
+
+    const createTile = screen.getByText('Add project')
+    expect(createTile.closest('[role="button"]')).toHaveAttribute(
+      'aria-disabled',
+      'true'
+    )
+
+    fireEvent.click(createTile)
+    expect(handleCreate).not.toHaveBeenCalled()
+  })
+
   it('renders one ResourceCard per resource', () => {
     render(
       <ResourceCardGrid
