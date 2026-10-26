@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import type {
   Props as SelectPropsBase,
   GroupBase,
@@ -183,27 +183,46 @@ const Select = <TOption,>({
     },
   })
 
+  const selectableOptions = options.filter(
+    (option): option is OptionProps<TOption> =>
+      !('options' in option) && !option.isCreateLink
+  )
+
   const shouldGetFirstOption =
     shouldAutoSelectSingleOption &&
     !isReadOnly &&
-    options.filter((option) => !(option as OptionProps<TOption>).isCreateLink)
-      .length === 1
+    selectableOptions.length === 1
+
+  const autoSelectedOptionValue = useRef<{ value: TOption } | null>(null)
 
   useEffect(() => {
-    if (!shouldGetFirstOption) return
+    if (!shouldGetFirstOption) {
+      autoSelectedOptionValue.current = null
+      return
+    }
 
-    const option = options.at(0) as OptionProps<TOption>
+    const option = selectableOptions[0]
 
     if (!isDefined(option)) return
-    if (option.isCreateLink) return
 
-    if (restProps.value) return
+    if (Object.is(autoSelectedOptionValue.current?.value, option.value)) return
 
-    restProps.onChange?.(option, {
+    const selectedValue = restProps.value
+    const hasSelectedValue = Array.isArray(selectedValue)
+      ? selectedValue.length > 0
+      : isDefined(selectedValue)
+
+    if (hasSelectedValue) {
+      autoSelectedOptionValue.current = { value: option.value }
+      return
+    }
+
+    autoSelectedOptionValue.current = { value: option.value }
+    restProps.onChange?.(restProps.isMulti ? [option] : option, {
       action: 'select-option',
       option: option,
     })
-  }, [options, shouldGetFirstOption])
+  }, [options, restProps.isMulti, shouldGetFirstOption])
 
   const SelectComponent = (
     isCreatable && !isReadOnly ? ReactCreatableSelect : ReactSelect
