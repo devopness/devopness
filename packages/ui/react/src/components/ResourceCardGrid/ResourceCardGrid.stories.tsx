@@ -57,16 +57,9 @@ const DisabledCreateTile: Story = {
   args: {
     createResourceDisabled: true,
     onCreateResource: undefined,
-  },
-}
-
-const DisabledCreateTileWithTooltip: Story = {
-  args: {
-    createResourceDisabled: true,
     createResourceDisabledReason: 'You do not have permission to create applications.',
-    onCreateResource: undefined,
   },
 }
 
 export default meta
-export { Default, Empty, WithPagination, DisabledCreateTile, DisabledCreateTileWithTooltip }
+export { Default, Empty, WithPagination, DisabledCreateTile }
