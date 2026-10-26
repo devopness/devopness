@@ -29,7 +29,7 @@ const CardInner = styled.div<{ $disabled?: boolean }>`
   box-sizing: border-box;
   transition: ${({ $disabled }) => ($disabled ? 'none' : 'all 0.2s ease')};
 
-  &:hover {
+  &:hover:not([aria-disabled='true']) {
     border-color: #94a3b8;
     background-color: #f3f4f6;
     transform: translateY(-4px);
@@ -52,7 +52,7 @@ const CardInner = styled.div<{ $disabled?: boolean }>`
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
-  ${CardContainer}:focus-visible & {
+  ${CardContainer}:focus-visible:not([aria-disabled='true']) & {
     outline: 2px solid #6366f1;
     outline-offset: 2px;
     border-color: #6366f1;
@@ -80,6 +80,7 @@ const CreateIconWrapper = styled.div`
   ${CardContainer}[aria-disabled='true'] & {
     border-color: #cbd5e1;
     color: #94a3b8;
+    transition: none;
   }
 
   ${CardContainer}:hover:not([aria-disabled='true']) & {
@@ -97,6 +98,7 @@ const Label = styled.span`
 
   ${CardContainer}[aria-disabled='true'] & {
     color: #94a3b8;
+    transition: none;
   }
 
   ${CardContainer}:hover:not([aria-disabled='true']) & {
