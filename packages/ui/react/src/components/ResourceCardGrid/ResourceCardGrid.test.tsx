@@ -3,6 +3,7 @@ import '@testing-library/jest-dom'
 import { describe, expect, it, vi } from 'vitest'
 
 import { ResourceCardGrid } from './ResourceCardGrid'
+import { testHoverTooltip } from 'src/test-utils'
 
 const noopPagination = {
   firstPaginateAction: vi.fn(),
@@ -42,7 +43,7 @@ describe('ResourceCardGrid', () => {
     expect(handleCreate).toHaveBeenCalledTimes(1)
   })
 
-  it('disables the create tile and shows a tooltip when disabled', () => {
+  it('disables the create tile and shows a tooltip when disabled', async () => {
     const handleCreate = vi.fn()
 
     render(
@@ -57,11 +58,14 @@ describe('ResourceCardGrid', () => {
       />
     )
 
-    const createTile = screen.getByText('Add project')
-    expect(createTile.closest('[role="button"]')).toHaveAttribute(
-      'aria-disabled',
-      'true'
-    )
+    const createTile = screen.getByRole('button', { name: /Add project/ })
+    expect(createTile).toHaveAttribute('aria-disabled', 'true')
+    expect(createTile).toHaveAttribute('tabindex', '-1')
+
+    await testHoverTooltip({
+      element: createTile,
+      tooltipText: 'You do not have permission',
+    })
 
     fireEvent.click(createTile)
     expect(handleCreate).not.toHaveBeenCalled()
