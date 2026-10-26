@@ -1,13 +1,13 @@
 import { getFont } from 'src/fonts'
 import styled from 'styled-components'
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{ $disabled?: boolean }>`
   height: 160px;
   min-height: 160px;
   max-height: 160px;
   width: 100%;
   min-width: 0;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 `
 
@@ -29,6 +29,15 @@ const CardInner = styled.div`
   transition: all 0.2s ease;
 
   &:hover {
+    border-color: #94a3b8;
+    background-color: #f3f4f6;
+    transform: translateY(-4px);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  ${CardContainer}:hover:not([aria-disabled='true']) & {
     border-color: #94a3b8;
     background-color: #f3f4f6;
     transform: translateY(-4px);
@@ -62,7 +71,7 @@ const CreateIconWrapper = styled.div`
     border-color 0.2s ease,
     color 0.2s ease;
 
-  ${CardInner}:hover & {
+  ${CardContainer}:hover:not([aria-disabled='true']) & {
     border-color: #94a3b8;
     color: #64748b;
   }

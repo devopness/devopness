@@ -35,6 +35,7 @@ const CreateResourceCard = ({
 
   const card = (
     <CardContainer
+      $disabled={createResourceDisabled}
       aria-disabled={createResourceDisabled}
       onClick={createResourceDisabled ? undefined : onClick}
       onKeyDown={handleKeyDown}
@@ -49,7 +50,11 @@ const CreateResourceCard = ({
   )
 
   if (createResourceDisabled && createResourceDisabledReason) {
-    return <Tooltip title={createResourceDisabledReason}>{card}</Tooltip>
+    return (
+      <Tooltip title={createResourceDisabledReason}>
+        <span>{card}</span>
+      </Tooltip>
+    )
   }
 
   return card
