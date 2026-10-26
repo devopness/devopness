@@ -1,6 +1,8 @@
 import type { MultiValue, SingleValue } from 'react-select'
 
-import { render, screen } from '@testing-library/react'
+import { useState } from 'react'
+
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -153,9 +155,7 @@ describe('<Select />', () => {
     const user = userEvent.setup()
 
     const AutoSelectingSelect = () => {
-      const [value, setValue] = React.useState<MultiValue<OptionProps<string>>>(
-        []
-      )
+      const [value, setValue] = useState<MultiValue<OptionProps<string>>>([])
       const availableOptions = [{ ...options[0] }]
 
       return (

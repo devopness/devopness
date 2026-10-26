@@ -205,7 +205,12 @@ const Select = <TOption,>({
 
     if (!isDefined(option)) return
 
-    if (Object.is(autoSelectedOptionValue.current?.value, option.value)) return
+    if (
+      autoSelectedOptionValue.current !== null &&
+      Object.is(autoSelectedOptionValue.current.value, option.value)
+    ) {
+      return
+    }
 
     const selectedValue = restProps.value
     const hasSelectedValue = Array.isArray(selectedValue)
