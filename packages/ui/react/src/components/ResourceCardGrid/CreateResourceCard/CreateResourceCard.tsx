@@ -51,8 +51,16 @@ const CreateResourceCard = ({
 
   if (createResourceDisabled && createResourceDisabledReason) {
     return (
-      <Tooltip title={createResourceDisabledReason}>
-        <span style={{ display: 'block' }}>{card}</span>
+      <Tooltip
+        title={createResourceDisabledReason}
+        disableFocusListener={false}
+      >
+        <span
+          tabIndex={0}
+          style={{ display: 'block' }}
+        >
+          {card}
+        </span>
       </Tooltip>
     )
   }
