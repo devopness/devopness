@@ -57,7 +57,8 @@ const DisabledCreateTile: Story = {
   args: {
     createResourceDisabled: true,
     onCreateResource: undefined,
-    createResourceDisabledReason: 'You do not have permission to create applications.',
+    createResourceDisabledReason:
+      'You do not have permission to create applications.',
   },
 }
 
