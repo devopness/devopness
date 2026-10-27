@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { ActionMeta, MultiValue, SingleValue } from 'react-select'
+import type { MultiValue, SingleValue } from 'react-select'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
@@ -77,10 +77,7 @@ const ControlledMultiSelect = () => {
   const [value, setValue] = useState<MultiValue<OptionProps<string>>>([])
 
   const handleChange = (
-    newValue:
-      | MultiValue<OptionProps<string>>
-      | SingleValue<OptionProps<string>>,
-    _: ActionMeta<OptionProps<string>>
+    newValue: MultiValue<OptionProps<string>> | SingleValue<OptionProps<string>>
   ) => {
     setValue(Array.isArray(newValue) ? newValue : [])
   }
