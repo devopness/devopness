@@ -31,12 +31,31 @@
  * symlinks. A real copy works everywhere.
  */
 
-import { cpSync, mkdirSync, readdirSync } from "fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
 const buildOutputDir = join(dirname(fileURLToPath(import.meta.url)), "..", "out");
 const buildOutputDocsDir = join(buildOutputDir, "docs");
+
+const notFoundHtmlPath = join(buildOutputDir, "404.html");
+if (!existsSync(notFoundHtmlPath)) {
+  throw new Error(`post-build: expected 404 page at ${notFoundHtmlPath}`);
+}
+
+const notFoundHtml = readFileSync(notFoundHtmlPath, "utf8");
+const notFoundCta = notFoundHtml.match(
+  /<a\b[^>]*href="([^"]+)"[^>]*>[^<]*Go to Documentation[^<]*<\/a>/,
+);
+
+if (!notFoundCta) {
+  throw new Error("post-build: could not find the 'Go to Documentation' CTA in 404.html");
+}
+
+const notFoundCtaHref = notFoundCta[1];
+if (notFoundCtaHref !== "/docs/") {
+  throw new Error(`post-build: expected 404 CTA to link to "/docs/", found "${notFoundCtaHref}"`);
+}
 
 mkdirSync(buildOutputDocsDir, { recursive: true });
 
