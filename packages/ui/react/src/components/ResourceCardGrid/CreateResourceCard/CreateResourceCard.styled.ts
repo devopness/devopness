@@ -1,21 +1,22 @@
 import { getFont } from 'src/fonts'
 import styled from 'styled-components'
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{ $disabled?: boolean }>`
   height: 160px;
   min-height: 160px;
   max-height: 160px;
   width: 100%;
   min-width: 0;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  opacity: ${({ $disabled }) => ($disabled ? 0.68 : 1)};
 `
 
-const CardInner = styled.div`
+const CardInner = styled.div<{ $disabled?: boolean }>`
   height: 100%;
   min-height: 0;
-  border: 2px dashed #d1d5db;
-  background-color: #f9fafb;
+  border: 2px dashed ${({ $disabled }) => ($disabled ? '#cbd5e1' : '#d1d5db')};
+  background-color: ${({ $disabled }) => ($disabled ? '#f3f4f6' : '#f9fafb')};
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-radius: 12px;
@@ -26,9 +27,9 @@ const CardInner = styled.div`
   gap: 0.75rem;
   overflow: hidden;
   box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: ${({ $disabled }) => ($disabled ? 'none' : 'all 0.2s ease')};
 
-  &:hover {
+  &:hover:not([aria-disabled='true']) {
     border-color: #94a3b8;
     background-color: #f3f4f6;
     transform: translateY(-4px);
@@ -37,7 +38,24 @@ const CardInner = styled.div`
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
-  ${CardContainer}:focus-visible & {
+  ${CardContainer}[aria-disabled='true'] &,
+  ${CardContainer}[aria-disabled='true']:hover & {
+    transform: none;
+    box-shadow: none;
+    border-color: #cbd5e1;
+    background-color: #f3f4f6;
+  }
+
+  ${CardContainer}:hover:not([aria-disabled='true']) & {
+    border-color: #94a3b8;
+    background-color: #f3f4f6;
+    transform: translateY(-4px);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  ${CardContainer}:focus-visible:not([aria-disabled='true']) & {
     outline: 2px solid #6366f1;
     outline-offset: 2px;
     border-color: #6366f1;
@@ -62,7 +80,14 @@ const CreateIconWrapper = styled.div`
     border-color 0.2s ease,
     color 0.2s ease;
 
-  ${CardInner}:hover & {
+  ${CardContainer}[aria-disabled='true'] &,
+  ${CardContainer}[aria-disabled='true']:hover & {
+    border-color: #cbd5e1;
+    color: #94a3b8;
+    transition: none;
+  }
+
+  ${CardContainer}:hover:not([aria-disabled='true']) & {
     border-color: #94a3b8;
     color: #64748b;
   }
@@ -75,7 +100,13 @@ const Label = styled.span`
   color: #6b7280;
   transition: color 0.2s ease;
 
-  ${CardInner}:hover & {
+  ${CardContainer}[aria-disabled='true'] &,
+  ${CardContainer}[aria-disabled='true']:hover & {
+    color: #94a3b8;
+    transition: none;
+  }
+
+  ${CardContainer}:hover:not([aria-disabled='true']) & {
     color: #64748b;
   }
 `

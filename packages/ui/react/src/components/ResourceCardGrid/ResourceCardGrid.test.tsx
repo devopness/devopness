@@ -1,8 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { ResourceCardGrid } from './ResourceCardGrid'
+import { testHoverTooltip } from 'src/test-utils'
 
 const noopPagination = {
   firstPaginateAction: vi.fn(),
@@ -40,6 +42,44 @@ describe('ResourceCardGrid', () => {
 
     fireEvent.click(screen.getByText('Add project'))
     expect(handleCreate).toHaveBeenCalledTimes(1)
+  })
+
+  it('disables the create tile and shows a tooltip when disabled', async () => {
+    const user = userEvent.setup()
+    const handleCreate = vi.fn()
+
+    render(
+      <ResourceCardGrid
+        resourceType="project"
+        resources={[]}
+        onCreateResource={handleCreate}
+        createResourceDisabled
+        createResourceDisabledReason="You do not have permission"
+        pageCount={1}
+        pagination={noopPagination}
+      />
+    )
+
+    const createTile = screen.getByRole('button', { name: /Add project/ })
+    expect(createTile).toHaveAttribute('aria-disabled', 'true')
+    expect(createTile).toHaveAttribute('tabindex', '-1')
+    expect(createTile.parentElement).toHaveAttribute('tabindex', '0')
+
+    await testHoverTooltip({
+      element: createTile,
+      tooltipText: 'You do not have permission',
+    })
+
+    await user.tab()
+    expect(createTile.parentElement).toHaveFocus()
+    expect(
+      await screen.findByRole('tooltip', {
+        name: 'You do not have permission',
+      })
+    ).toBeVisible()
+
+    fireEvent.click(createTile)
+    expect(handleCreate).not.toHaveBeenCalled()
   })
 
   it('renders one ResourceCard per resource', () => {
