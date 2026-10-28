@@ -1,5 +1,12 @@
 # @devopness/ui-react
 
+## 2.213.0
+
+### Minor Changes
+
+- [#3781](https://github.com/devopness/devopness/pull/3781) [`3201c29`](https://github.com/devopness/devopness/commit/3201c290b9801dd85b405b759638d7afa889e0a9) Thanks [@therealrinku](https://github.com/therealrinku)! - - Externalize `@tanstack/react-table` library to prevent runtime error of `require` function not being available in consumer app
+  - Pass props `disabled` and `readOnly` to native input in `Input` component to prevent readOnly fields being editable
+
 ## 2.212.1
 
 ### Patch Changes
