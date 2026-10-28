@@ -339,7 +339,9 @@ const MultiStepForm = <T,>({
       name: 'Show Step',
       stepName: getCurrentStepLabel(),
     })
-    updateCurrentStep && updateCurrentStep(stepCurrent)
+    if (updateCurrentStep) {
+      updateCurrentStep(stepCurrent)
+    }
   }, [stepCurrent, updateCurrentStep])
 
   const getStepFields = () => {
