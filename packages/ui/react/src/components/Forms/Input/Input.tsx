@@ -148,6 +148,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             $readOnly={readOnly}
             $publicStyle={publicStyle}
             $removeArrows={removeArrows}
+            disabled={disabled}
+            readOnly={readOnly}
             aria-invalid={hasError}
             aria-errormessage={error ? errorId : undefined}
             aria-describedby={error ? errorId : undefined}
