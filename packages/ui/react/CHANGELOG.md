@@ -1,5 +1,13 @@
 # @devopness/ui-react
 
+## 2.212.1
+
+### Patch Changes
+
+- [#3774](https://github.com/devopness/devopness/pull/3774) [`8cf62bf`](https://github.com/devopness/devopness/commit/8cf62bfc2bf964478bb389b39f8817e34a2e3bd8) Thanks [@therealrinku](https://github.com/therealrinku)! - Add missing feature of automatic selection of the only available option in multi select mode in `Select` component.
+
+- [#3775](https://github.com/devopness/devopness/pull/3775) [`84888d2`](https://github.com/devopness/devopness/commit/84888d20ec8e8c9a8654019d62e02faf19a05539) Thanks [@therealrinku](https://github.com/therealrinku)! - Add disabled-state support and tooltip messaging to the resource grid create tile.
+
 ## 2.212.0
 
 ### Minor Changes
