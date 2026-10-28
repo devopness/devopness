@@ -2,6 +2,7 @@ import '@testing-library/jest-dom'
 import { MdOutlineEmail } from 'react-icons/md'
 
 import { render, screen, fireEvent } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
 import { Input } from './Input'
@@ -143,6 +144,28 @@ describe('Input', () => {
   })
 
   describe('interactions', () => {
+    it('does not allow editing when read-only', async () => {
+      const user = userEvent.setup()
+      const handleChange = vi.fn()
+
+      render(
+        <Input
+          type="text"
+          defaultValue="initial"
+          readOnly
+          onChange={handleChange}
+        />
+      )
+
+      const input = screen.getByRole('textbox')
+      expect(input).toHaveAttribute('readonly')
+
+      await user.type(input, ' edited')
+
+      expect(input).toHaveValue('initial')
+      expect(handleChange).not.toHaveBeenCalled()
+    })
+
     it('handles input changes', () => {
       const handleChange = vi.fn()
       render(
