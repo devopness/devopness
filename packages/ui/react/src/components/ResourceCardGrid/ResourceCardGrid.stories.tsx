@@ -53,5 +53,14 @@ const WithPagination: Story = {
   },
 }
 
+const DisabledCreateTile: Story = {
+  args: {
+    createResourceDisabled: true,
+    onCreateResource: undefined,
+    createResourceDisabledReason:
+      'You do not have permission to create applications.',
+  },
+}
+
 export default meta
-export { Default, Empty, WithPagination }
+export { Default, Empty, WithPagination, DisabledCreateTile }

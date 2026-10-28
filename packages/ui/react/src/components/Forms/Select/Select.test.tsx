@@ -1,6 +1,8 @@
 import type { MultiValue, SingleValue } from 'react-select'
 
-import { render, screen } from '@testing-library/react'
+import { useState } from 'react'
+
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -127,5 +129,72 @@ describe('<Select />', () => {
     await user.type(input, 'xyz')
 
     expect(screen.getByText('No match for "xyz"')).toBeInTheDocument()
+  })
+
+  it('should auto-select a single option as an array in multi-select mode', async () => {
+    const handleChange = vi.fn()
+
+    render(
+      <Select
+        options={[options[0]]}
+        isMulti
+        value={[]}
+        onChange={handleChange}
+      />
+    )
+
+    await waitFor(() => {
+      expect(handleChange).toHaveBeenCalledWith([options[0]], {
+        action: 'select-option',
+        option: options[0],
+      })
+    })
+  })
+
+  it('should allow removing the auto-selected option in multi-select mode', async () => {
+    const user = userEvent.setup()
+
+    const AutoSelectingSelect = () => {
+      const [value, setValue] = useState<MultiValue<OptionProps<string>>>([])
+      const availableOptions = [{ ...options[0] }]
+
+      return (
+        <Select
+          options={availableOptions}
+          isMulti
+          value={value}
+          onChange={(newValue) =>
+            setValue(Array.isArray(newValue) ? newValue : [])
+          }
+        />
+      )
+    }
+
+    render(<AutoSelectingSelect />)
+
+    const removeOptionButton = await screen.findByLabelText('Remove Option A')
+    await user.click(removeOptionButton)
+
+    await waitFor(() => {
+      expect(screen.queryByLabelText('Remove Option A')).not.toBeInTheDocument()
+    })
+  })
+
+  it('should auto-select a single option in single-select mode', async () => {
+    const handleChange = vi.fn()
+
+    render(
+      <Select
+        options={[options[0]]}
+        onChange={handleChange}
+      />
+    )
+
+    await waitFor(() => {
+      expect(handleChange).toHaveBeenCalledWith(options[0], {
+        action: 'select-option',
+        option: options[0],
+      })
+    })
   })
 })

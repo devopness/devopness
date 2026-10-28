@@ -17,6 +17,10 @@ type ResourceCardGridProps = {
   resources: (ResourceCardProps & { id?: string | number })[]
   /** Called when the create tile is clicked */
   onCreateResource?: () => void
+  /** Disables the create tile */
+  createResourceDisabled?: boolean
+  /** Tooltip shown when the create tile is disabled */
+  createResourceDisabledReason?: string
   /** Total number of pages; pagination controls only render when greater than 1 */
   pageCount: number
   /** Props forwarded to `Pagination` */
@@ -45,6 +49,8 @@ const ResourceCardGrid = ({
   resourceType,
   resources,
   onCreateResource,
+  createResourceDisabled = false,
+  createResourceDisabledReason,
   pageCount,
   pagination,
 }: ResourceCardGridProps) => (
@@ -56,6 +62,8 @@ const ResourceCardGrid = ({
       <CreateResourceCard
         resourceType={resourceType}
         onClick={onCreateResource}
+        createResourceDisabled={createResourceDisabled}
+        createResourceDisabledReason={createResourceDisabledReason}
       />
 
       {resources.map((resource) => (
