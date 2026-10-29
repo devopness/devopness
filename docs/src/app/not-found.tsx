@@ -61,7 +61,7 @@ export default function NotFound() {
           to enable reverse proxy integration with the main Devopness website.
         </p>
         <Link
-          href="/docs/"
+          href="/"
           style={{
             display: "inline-block",
             padding: "12px 24px",

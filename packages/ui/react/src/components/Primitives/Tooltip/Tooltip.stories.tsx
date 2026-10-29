@@ -45,7 +45,7 @@ const Default: Story = {
       exclude: ['ref', 'children', 'enableOnlyWithEllipsisPoints'],
     },
   },
-  render: ({ children: _, ...props }) => (
+  render: (props) => (
     <Tooltip {...props}>
       <Button>Tooltip button</Button>
     </Tooltip>
