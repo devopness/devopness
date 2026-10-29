@@ -249,7 +249,13 @@ describe('Table', () => {
     expect(body).toBeTruthy()
     expect(within(body as HTMLElement).queryByText('Child')).toBeNull()
 
+    fireEvent.click(screen.getByText('Parent'))
+    expect(within(body as HTMLElement).queryByText('Child')).toBeNull()
+
     fireEvent.click(screen.getByRole('button', { name: 'Expand Parent' }))
+    expect(within(body as HTMLElement).getByText('Child')).toBeTruthy()
+
+    fireEvent.click(screen.getByText('Parent'))
     expect(within(body as HTMLElement).getByText('Child')).toBeTruthy()
 
     fireEvent.click(screen.getByRole('button', { name: 'Collapse Parent' }))
