@@ -228,7 +228,6 @@ function Table<T extends RowData = {}>(props: TableProps<T>): ReactElement {
                     $tdMaxWidth={props.cellMaxWidth}
                     $disabledRow={original.disabled || props.disabledTable}
                     className={isIndentedSubrow ? 'indented' : ''}
-                    onClick={row.getToggleExpandedHandler()}
                   >
                     {isIndentedSubrow ? <TableIndentation /> : null}
 

@@ -23,6 +23,20 @@ const data: TestRow[] = [
   { id: 2, name: 'Beta', status: 'Degraded' },
 ]
 
+const expanderColumn: TableColumn<TestRow> = {
+  id: 'expander',
+  cell: ({ row }) =>
+    row.getCanExpand() ? (
+      <button
+        type="button"
+        aria-label={`${row.getIsExpanded() ? 'Collapse' : 'Expand'} ${row.original.name}`}
+        onClick={row.getToggleExpandedHandler()}
+      >
+        {row.getIsExpanded() ? 'Collapse' : 'Expand'}
+      </button>
+    ) : null,
+}
+
 describe('Table', () => {
   it('renders headers and cell content', () => {
     render(
@@ -212,6 +226,7 @@ describe('Table', () => {
     const expandableColumns: TableColumn<TestRow>[] = [
       { header: 'Name', accessorKey: 'name' },
       { header: 'Status', accessorKey: 'status' },
+      expanderColumn,
     ]
 
     const expandableData: TestRow[] = [
@@ -230,39 +245,35 @@ describe('Table', () => {
       />
     )
 
-    const parentRow = screen.getByText('Parent').closest('tr')
-    expect(parentRow).toBeTruthy()
     const body = container.querySelector('tbody')
     expect(body).toBeTruthy()
     expect(within(body as HTMLElement).queryByText('Child')).toBeNull()
 
-    fireEvent.click(parentRow as HTMLElement)
+    fireEvent.click(screen.getByRole('button', { name: 'Expand Parent' }))
     expect(within(body as HTMLElement).getByText('Child')).toBeTruthy()
 
-    fireEvent.click(parentRow as HTMLElement)
+    fireEvent.click(screen.getByRole('button', { name: 'Collapse Parent' }))
     expect(within(body as HTMLElement).queryByText('Child')).toBeNull()
   })
 
   it('renders custom subrow content for expanded leaf rows', () => {
     const { container } = render(
       <Table
-        columns={columns}
+        columns={[...columns, expanderColumn]}
         data={[data[0]]}
         getRowCanExpand={() => true}
         customSubRowInjection={() => <span>Custom child</span>}
       />
     )
 
-    const parentRow = screen.getByText('Alpha').closest('tr')
-    expect(parentRow).toBeTruthy()
     const body = container.querySelector('tbody')
     expect(body).toBeTruthy()
     expect(within(body as HTMLElement).queryByText('Custom child')).toBeNull()
 
-    fireEvent.click(parentRow as HTMLElement)
+    fireEvent.click(screen.getByRole('button', { name: 'Expand Alpha' }))
     expect(within(body as HTMLElement).getByText('Custom child')).toBeTruthy()
 
-    fireEvent.click(parentRow as HTMLElement)
+    fireEvent.click(screen.getByRole('button', { name: 'Collapse Alpha' }))
     expect(within(body as HTMLElement).queryByText('Custom child')).toBeNull()
   })
 
@@ -284,7 +295,7 @@ describe('Table', () => {
     ]
     const { container } = render(
       <Table
-        columns={columns}
+        columns={[...columns, expanderColumn]}
         data={steps}
         customSubRowInjection={() => <span>Step log</span>}
       />
@@ -292,12 +303,11 @@ describe('Table', () => {
     const body = container.querySelector('tbody')
     expect(body).toBeTruthy()
 
-    fireEvent.click(screen.getByText('Parent').closest('tr') as HTMLElement)
-    const innerStepRow = screen.getByText('Inner step').closest('tr')
-    expect(innerStepRow).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Expand Parent' }))
+    expect(screen.getByText('Inner step')).toBeTruthy()
     expect(within(body as HTMLElement).queryByText('Step log')).toBeNull()
 
-    fireEvent.click(innerStepRow as HTMLElement)
+    fireEvent.click(screen.getByRole('button', { name: 'Expand Inner step' }))
     expect(within(body as HTMLElement).getByText('Step log')).toBeTruthy()
   })
 })
