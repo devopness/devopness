@@ -1,5 +1,11 @@
 # @devopness/ui-react
 
+## 2.213.1
+
+### Patch Changes
+
+- [#3784](https://github.com/devopness/devopness/pull/3784) [`b3315ef`](https://github.com/devopness/devopness/commit/b3315ef319c49186485e37c10730da57e5fe190a) Thanks [@therealrinku](https://github.com/therealrinku)! - Remove auto expand collapse on row click on `Table` component
+
 ## 2.213.0
 
 ### Minor Changes
