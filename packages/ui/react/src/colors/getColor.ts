@@ -164,7 +164,10 @@ const getOpacity = <
 
   return `${color}${Math.floor(opacity * 255)
     .toString(16)
-    .padStart(2, '0')}` as `${Extract<HexColor, `#${string}`>}${Opacity extends keyof OpacityFromFloatToHex
+    .padStart(
+      2,
+      '0'
+    )}` as `${Extract<HexColor, `#${string}`>}${Opacity extends keyof OpacityFromFloatToHex
     ? OpacityFromFloatToHex[Opacity]
     : `${HexDigit}${HexDigit}`}`
 }
