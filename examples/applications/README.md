@@ -12,6 +12,7 @@ Each subfolder provides a sample implementation using different technologies and
 |----------------------------------------|--------------------------------------------------|
 | [/node-express](node-express/)         | Example application using Node.js (Express)     |
 | [/php-laravel](php-laravel/)           | Example application using Laravel (PHP)          |
+| [/python-fastapi](python-fastapi/)     | Example application using Python (FastAPI)       |
 | [/ruby-rails](ruby-rails/)             | Example application using Ruby on Rails         |
 
 ## 🙋 Issues
