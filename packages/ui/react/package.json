@@ -98,7 +98,7 @@
     "@vitejs/plugin-react": "^6.2.1",
     "jsdom": "^31.0.0",
     "react": "^19.3.1",
-    "react-dom": "^19.3.0",
+    "react-dom": "^19.3.1",
     "storybook": "10.6.6",
     "typescript": "^7.0.2",
     "unplugin-dts": "^1.1.2",
@@ -110,7 +110,7 @@
   },
   "peerDependencies": {
     "react": "^19.3.1",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.1"
   },
   "overrides": {
     "styled-components": "$styled-components",
