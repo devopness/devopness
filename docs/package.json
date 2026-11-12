@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "dotenv-expand": "^1000.0.0",
-    "fumadocs-core": "16.17.8",
-    "fumadocs-mdx": "15.4.10",
-    "fumadocs-openapi": "^12.5.5",
-    "fumadocs-ui": "16.17.8",
-    "lucide-react": "^1.59.0",
-    "next": "16.4.3",
+    "fumadocs-core": "16.18.1",
+    "fumadocs-mdx": "15.5.0",
+    "fumadocs-openapi": "^12.6.0",
+    "fumadocs-ui": "16.18.1",
+    "lucide-react": "^1.70.0",
+    "next": "16.4.5",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "remark-directive": "^4.0.0",
@@ -25,14 +25,14 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.5",
     "@types/mdx": "^2.0.14",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.3.0",
-    "postcss": "^8.5.30",
+    "postcss": "^8.5.32",
     "tailwindcss": "^4.2.4",
     "typescript": "^7.0.2",
-    "vite-plus": "1.4.0"
+    "vite-plus": "1.5.0"
   }
 }
