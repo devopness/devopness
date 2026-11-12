@@ -64,7 +64,7 @@ describe('Icon', () => {
     const subjectIcon = screen.getByLabelText('test-icon-tag')
     expect(subjectIcon).toBeInTheDocument()
     expect(subjectIcon.getAttribute('color')).toEqual(
-      `${getColor('green.800')}0`
+      `${getColor('green.800')}00`
     )
   })
 })
