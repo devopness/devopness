@@ -1,5 +1,11 @@
 # @devopness/sdk-python
 
+## 2.8.6
+
+### Patch Changes
+
+- [#3819](https://github.com/devopness/devopness/pull/3819) [`70ff0d6`](https://github.com/devopness/devopness/commit/70ff0d69c36446a1d2053033c35fe4cc09f34194) Thanks [@Diegiwg](https://github.com/Diegiwg)! - Fix the SDK to handle API errors that return a single value, like `30`, instead of a list.
+
 ## 2.8.5
 
 ### Patch Changes
