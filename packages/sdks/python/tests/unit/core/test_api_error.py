@@ -56,6 +56,40 @@ class DevopnessApiErrorTests(unittest.TestCase):
                 "      Must be at least 10 characters."
             ) in string_output
 
+    @patch("httpx.Client.put")
+    def test_devopness_api_error_with_scalar_error_values(
+        self,
+        mock: Mock,
+    ) -> None:
+        url = "https://api.devopness.com/network-rules/12724"
+        mock.return_value = httpx.Response(
+            status_code=429,
+            json={
+                "message": "Too Many Requests",
+                "errors": {
+                    "retry_after_seconds": 30,
+                },
+            },
+            request=httpx.Request("PUT", url),
+        )
+
+        with httpx.Client() as client:
+            response = client.put(url)
+
+            with self.assertRaises(httpx.HTTPStatusError) as raises:
+                response.raise_for_status()
+
+            error = DevopnessApiError(raises.exception)
+
+            assert error.status_code == 429
+            assert error.message == "Too Many Requests"
+            assert error.errors is not None
+            assert error.errors["retry_after_seconds"] == 30
+
+            string_output = str(error)
+            assert "retry_after_seconds" in string_output
+            assert "30" in string_output
+
     @patch("httpx.Client.get")
     def test_devopness_api_error_with_simple_error_message(
         self,
