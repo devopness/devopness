@@ -7,6 +7,19 @@ from devopness.core import DevopnessApiError
 
 
 class DevopnessApiErrorTests(unittest.TestCase):
+    def test_devopness_api_error_formats_scalar_and_nested_error_values(self) -> None:
+        assert DevopnessApiError._format_error_values("message") == ["message"]
+        assert DevopnessApiError._format_error_values(None) == ["None"]
+        assert DevopnessApiError._format_error_values({"code": 429}) == [
+            '{"code": 429}'
+        ]
+        assert DevopnessApiError._format_error_values([]) == [""]
+        assert DevopnessApiError._format_error_values(["one", ["two", []]]) == [
+            "one",
+            "two",
+            "",
+        ]
+
     @patch("httpx.Client.post")
     def test_devopness_api_error_with_validation_errors(
         self,
@@ -55,6 +68,86 @@ class DevopnessApiErrorTests(unittest.TestCase):
                 "  - description:\n"
                 "      Must be at least 10 characters."
             ) in string_output
+
+    @patch("httpx.Client.put")
+    def test_devopness_api_error_with_scalar_error_values(
+        self,
+        mock: Mock,
+    ) -> None:
+        url = "https://api.devopness.com/network-rules/12724"
+        mock.return_value = httpx.Response(
+            status_code=429,
+            json={
+                "message": "Too Many Requests",
+                "errors": {
+                    "retry_after_seconds": 30,
+                },
+            },
+            request=httpx.Request("PUT", url),
+        )
+
+        with httpx.Client() as client:
+            response = client.put(url)
+
+            with self.assertRaises(httpx.HTTPStatusError) as raises:
+                response.raise_for_status()
+
+            error = DevopnessApiError(raises.exception)
+
+            assert error.status_code == 429
+            assert error.message == "Too Many Requests"
+            assert error.errors is not None
+            assert error.errors["retry_after_seconds"] == 30
+
+            string_output = str(error)
+            assert "retry_after_seconds" in string_output
+            assert "30" in string_output
+
+    @patch("httpx.Client.put")
+    def test_devopness_api_error_string_output_handles_nested_error_values(
+        self,
+        mock: Mock,
+    ) -> None:
+        url = "https://api.devopness.com/network-rules/12724"
+        mock.return_value = httpx.Response(
+            status_code=422,
+            json={
+                "message": "Validation failed",
+                "errors": {
+                    "string_error": "message stays whole",
+                    "none_error": None,
+                    "dict_error": {"code": 429},
+                    "nested_error": ["one", ["two", []]],
+                },
+            },
+            request=httpx.Request("PUT", url),
+        )
+
+        with httpx.Client() as client:
+            response = client.put(url)
+
+            with self.assertRaises(httpx.HTTPStatusError) as raises:
+                response.raise_for_status()
+
+            error = DevopnessApiError(raises.exception)
+
+            assert str(error) == (
+                "\nDevopness SDK Error: API Request Failed\n\n"
+                "Request: PUT https://api.devopness.com/network-rules/12724\n"
+                "Status Code: 422\n"
+                "Message: Validation failed\n"
+                "Errors:\n"
+                "  - string_error:\n"
+                "      message stays whole\n"
+                "  - none_error:\n"
+                "      None\n"
+                "  - dict_error:\n"
+                '      {"code": 429}\n'
+                "  - nested_error:\n"
+                "      one\n"
+                "      two\n"
+                "      "
+            )
 
     @patch("httpx.Client.get")
     def test_devopness_api_error_with_simple_error_message(

@@ -35,7 +35,7 @@ class DevopnessApiError(DevopnessSdkError):
     request_url: str | None = None
     request_method: str | None = None
     message: str
-    errors: dict[str, list[str]] | None = None
+    errors: dict[str, object] | None = None
 
     def __init__(self, err: httpx.HTTPStatusError) -> None:
         e_res = err.response
@@ -86,10 +86,28 @@ class DevopnessApiError(DevopnessSdkError):
         if self.errors:
             lines.append("Errors:")
 
-            for field, errors in self.errors.items():
-                lines.extend([f"  - {field}:", *[f"      {error}" for error in errors]])
+            for field, field_errors in self.errors.items():
+                lines.append(f"  - {field}:")
+
+                for error in self._format_error_values(field_errors):
+                    lines.append(f"      {error}")
 
         return "\n".join(lines)
+
+    @staticmethod
+    def _format_error_values(value: object) -> list[str]:
+        if isinstance(value, dict):
+            return [json.dumps(value, ensure_ascii=False)]
+
+        if isinstance(value, (list, tuple, set)):
+            formatted_values: list[str] = []
+
+            for item in value:
+                formatted_values.extend(DevopnessApiError._format_error_values(item))
+
+            return formatted_values or [""]
+
+        return [str(value)]
 
 
 async def raise_devopness_api_error(err: httpx.HTTPStatusError) -> None:
