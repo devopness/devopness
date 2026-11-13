@@ -1,11 +1,5 @@
 # @devopness/ui-react
 
-## 2.213.2
-
-### Patch Changes
-
-- [#3796](https://github.com/devopness/devopness/pull/3796) [`11f6453`](https://github.com/devopness/devopness/commit/11f64537dab1f8b42ab55278e07452e9485e516f) Thanks [@pratik340](https://github.com/pratik340)! - Fix `getOpacity` returning invalid hex alpha values for low opacity inputs such as `0` and `0.05` by flooring and zero-padding the alpha channel.
-
 ## 2.213.1
 
 ### Patch Changes

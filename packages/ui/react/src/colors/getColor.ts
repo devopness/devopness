@@ -162,12 +162,7 @@ const getOpacity = <
 ) => {
   if (!color.startsWith('#')) return color as Exclude<HexColor, `#${string}`>
 
-  return `${color}${Math.floor(opacity * 255)
-    .toString(16)
-    .padStart(
-      2,
-      '0'
-    )}` as `${Extract<HexColor, `#${string}`>}${Opacity extends keyof OpacityFromFloatToHex
+  return `${color}${(opacity * 255).toString(16).slice(0, 2)}` as `${Extract<HexColor, `#${string}`>}${Opacity extends keyof OpacityFromFloatToHex
     ? OpacityFromFloatToHex[Opacity]
     : `${HexDigit}${HexDigit}`}`
 }
