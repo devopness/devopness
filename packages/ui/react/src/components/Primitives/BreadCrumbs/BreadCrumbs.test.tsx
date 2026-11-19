@@ -24,7 +24,13 @@ describe('BreadCrumbs', () => {
       </ThemeProvider>
     )
 
-    expect(screen.getByText('Projects')).toBeInTheDocument()
-    expect(screen.getByText('Projects').parentElement).toBeInTheDocument()
+    const label = screen.getByText('Projects')
+    expect(label).toBeInTheDocument()
+    expect(label).toHaveStyle({
+      display: 'block',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    })
   })
 })
