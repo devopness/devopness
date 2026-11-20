@@ -19719,9 +19719,13 @@
         }
       },
       "HookTriggerPayload": {
-        "type": "object",
         "description": "Free-form JSON payload sent to trigger an incoming hook.",
-        "additionalProperties": true,
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": true
+          }
+        ],
         "example": {
           "event_id": 9001,
           "id": 123,
