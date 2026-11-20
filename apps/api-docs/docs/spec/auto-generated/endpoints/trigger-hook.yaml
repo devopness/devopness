@@ -44,3 +44,10 @@ responses:
       application/json:
         schema:
           $ref: '#/components/schemas/ApiError'
+requestBody:
+  description: 'A free-form JSON object.'
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/HookTriggerPayload'
