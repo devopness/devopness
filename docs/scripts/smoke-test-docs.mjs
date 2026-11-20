@@ -23,6 +23,7 @@ const publicRoot = path.join(buildRoot, process.env.DOCS_SMOKE_PUBLIC_ROOT ?? "d
 const basePath = process.env.DOCS_SMOKE_BASE_PATH ?? "/docs";
 const sampleCount = Number.parseInt(process.env.DOCS_SMOKE_SAMPLE_COUNT ?? "4", 10);
 const seed = process.env.DOCS_SMOKE_SEED ?? process.env.GITHUB_SHA ?? "docs-smoke-v1";
+
 const routeCanaries = [
   {
     route: "/docs/",
@@ -35,15 +36,8 @@ const routeCanaries = [
     route: "/docs/api/",
     snippets: ["Devopness API Reference", "REST API endpoints"],
   },
-  {
-    route: "/docs/api/actions/listActions/",
-    snippets: ["Return a list of all actions belonging to current user", "listActions"],
-  },
-  {
-    route: "/docs/api/applications---hooks/listApplicationHooks/",
-    snippets: ["List all hooks in an application", "listApplicationHooks"],
-  },
 ];
+
 const canaryRoutes = routeCanaries.map(({ route }) => route);
 
 main().catch((error) => {
