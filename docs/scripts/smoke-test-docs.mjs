@@ -23,10 +23,28 @@ const publicRoot = path.join(buildRoot, process.env.DOCS_SMOKE_PUBLIC_ROOT ?? "d
 const basePath = process.env.DOCS_SMOKE_BASE_PATH ?? "/docs";
 const sampleCount = Number.parseInt(process.env.DOCS_SMOKE_SAMPLE_COUNT ?? "4", 10);
 const seed = process.env.DOCS_SMOKE_SEED ?? process.env.GITHUB_SHA ?? "docs-smoke-v1";
-const canaryRoutes = [
-  "/docs/",
-  "/docs/api/",
+const routeCanaries = [
+  {
+    route: "/docs/",
+    snippets: [
+      "Get started with Devopness",
+      "Deploy applications and provision cloud infrastructure",
+    ],
+  },
+  {
+    route: "/docs/api/",
+    snippets: ["Devopness API Reference", "REST API endpoints"],
+  },
+  {
+    route: "/docs/api/actions/listActions/",
+    snippets: ["Return a list of all actions belonging to current user", "listActions"],
+  },
+  {
+    route: "/docs/api/applications---hooks/listApplicationHooks/",
+    snippets: ["List all hooks in an application", "listApplicationHooks"],
+  },
 ];
+const canaryRoutes = routeCanaries.map(({ route }) => route);
 
 main().catch((error) => {
   console.error(error instanceof Error ? error.message : String(error));
@@ -41,7 +59,7 @@ main().catch((error) => {
  * 2. discover the routes that exist
  * 3. choose canaries and a deterministic sample
  * 4. serve the output locally
- * 5. request each route and check
+ * 5. request each route and check both status and content
  */
 async function main() {
   await assertDirectory(publicRoot);
@@ -133,7 +151,9 @@ function createLocalFileServer(rootDirectory) {
  * Validate one route against the local server.
  *
  * A healthy page must return HTTP 200 and must not render the visible 404 shell
- * content that appears when the route resolves to the wrong page.
+ * content that appears when the route resolves to the wrong page. For the
+ * scripted canaries, the response also needs to contain the expected page text
+ * so we catch "200 but wrong content" regressions.
  */
 async function validateRoute(baseUrl, route) {
   const response = await fetch(`${baseUrl}${route}`, { redirect: "manual" });
@@ -148,7 +168,31 @@ async function validateRoute(baseUrl, route) {
     throw new Error(`smoke-test: ${route} rendered the 404 shell`);
   }
 
+  validateRouteContent(route, html, visibleText);
+
   console.log(`smoke-test: ok ${route}`);
+}
+
+/**
+ * Check that a canary route still renders the expected content.
+ *
+ * The content checks stay deliberately small. They only guard a handful of
+ * high-value pages whose text is stable and easy to recognize.
+ */
+function validateRouteContent(route, html, visibleText) {
+  const expectation = routeCanaries.find((candidate) => candidate.route === route);
+
+  if (!expectation) {
+    return;
+  }
+
+  const haystack = `${visibleText}\n${html}`;
+
+  for (const snippet of expectation.snippets) {
+    if (!haystack.includes(snippet)) {
+      throw new Error(`smoke-test: ${route} is missing expected content: ${snippet}`);
+    }
+  }
 }
 
 /**
