@@ -46,9 +46,9 @@ export interface HookVariable {
     required?: boolean;
     /**
      * Optional variable assumes the default value if it\'s not given on the request to trigger the hook. If an application variable already exists with the same name, the hook value still overrides it.
-     * @type {string | number | boolean | Array<string | number | boolean | object>}
+     * @type {string | number | boolean | Array<string | number | boolean | any>}
      * @memberof HookVariable
      */
-    default_value?: string | number | boolean | Array<string | number | boolean | object> | null;
+    default_value?: string | number | boolean | Array<string | number | boolean | any> | null;
 }
 
