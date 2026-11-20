@@ -34,3 +34,9 @@ index.ts
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+# Supporting helper emitted by newer typescript-axios versions, unused by our custom templates.
+common.ts
+
+# API docs markdown emitted by this generator version, unused by the docs site.
+docs/
