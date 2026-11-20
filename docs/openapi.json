@@ -4640,6 +4640,17 @@
               }
             }
           }
+        },
+        "requestBody": {
+          "description": "A free-form JSON object.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HookTriggerPayload"
+              }
+            }
+          }
         }
       }
     },
@@ -19492,7 +19503,7 @@
         "properties": {
           "variables": {
             "type": "array",
-            "description": "List of variables to incoming hook",
+            "description": "List of variables to incoming hook. During application deploy, Devopness exposes them as application environment variables. If a hook variable has the same name as an application variable, the hook value overrides it. Pipeline steps can read the value with shell syntax such as `$NAME` or `${NAME}`.",
             "items": {
               "$ref": "#/components/schemas/HookVariable"
             }
@@ -19940,6 +19951,21 @@
           "Accept": "application/json"
         }
       },
+      "HookTriggerPayload": {
+        "type": "object",
+        "description": "Free-form JSON payload sent to trigger an incoming hook.",
+        "additionalProperties": true,
+        "example": {
+          "event_id": 9001,
+          "id": 123,
+          "title": "Fix login flow",
+          "open": true,
+          "labels": [
+            "bug",
+            "urgent"
+          ]
+        }
+      },
       "HookTriggerResponse": {
         "type": "object",
         "properties": {
@@ -20074,11 +20100,11 @@
       },
       "HookVariable": {
         "type": "object",
-        "description": "Variable that can be defined on trigger a incoming hook",
+        "description": "Variable that can be defined on an incoming hook and exposed as an application environment variable during deploy.",
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the variable",
+            "description": "The application environment variable name that will be available during deploy.",
             "example": "environment_id"
           },
           "path": {
@@ -20127,7 +20153,7 @@
               }
             ],
             "nullable": true,
-            "description": "Optional variable assumes the default value if it's not given on the request to trigger the hook",
+            "description": "Optional variable assumes the default value if it's not given on the request to trigger the hook. If an application variable already exists with the same name, the hook value still overrides it.",
             "example": null,
             "required": [
               "name",
