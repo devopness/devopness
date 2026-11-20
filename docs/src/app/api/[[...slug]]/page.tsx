@@ -9,14 +9,13 @@ import { CanonicalApiRoot } from "@/components/canonical-api-root";
 import { OpenAPIPage } from "@/components/openapi-page";
 import { getGithubDocsEditUrl, getGithubDocsRawUrl } from "@/lib/constants";
 import { isRedundantDocsHref, normalizeInternalDocUrl } from "@/lib/internal-doc-links";
-import { getApiReferenceSource } from "@/lib/openapi";
+import { getApiReferenceSource, isOpenAPIPageData } from "@/lib/openapi";
 import { getMDXComponents } from "@/mdx-components";
 
 type ApiPageData = {
   body?: React.FC<{ components?: Record<string, unknown> }>;
   toc?: ComponentProps<typeof DocsPage>["toc"];
   getText?: (kind: "processed") => Promise<string>;
-  getAPIPageProps?: () => ComponentProps<typeof OpenAPIPage>;
 };
 
 /**
@@ -81,9 +80,9 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
     );
   }
 
-  const apiPageProps = data.getAPIPageProps?.call(data);
+  if (!isOpenAPIPageData(page.data)) notFound();
 
-  if (!apiPageProps) notFound();
+  const apiPageProps = page.data.getOpenAPIPageProps();
 
   return (
     <DocsPage>

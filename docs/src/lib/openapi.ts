@@ -1,8 +1,13 @@
 import { basename, extname, join } from "node:path";
 import { cache } from "react";
 
-import { loader } from "fumadocs-core/source";
-import { createOpenAPI, openapiPlugin, openapiSource } from "fumadocs-openapi/server";
+import { loader, type PageData } from "fumadocs-core/source";
+import {
+  createOpenAPI,
+  type OpenAPIPageData,
+  openapiPlugin,
+  openapiSource,
+} from "fumadocs-openapi/server";
 import { apiRefCollection } from "fumadocs-mdx:collections/server";
 
 import { acronymSpacingPlugin } from "@/lib/page-tree";
@@ -10,6 +15,17 @@ import { acronymSpacingPlugin } from "@/lib/page-tree";
 const openApiSpecPath = join(process.cwd(), "openapi.json");
 
 export const API_REFERENCE_BASE_URL = "/api";
+
+/**
+ * Narrow a merged source page to a generated OpenAPI page.
+ *
+ * The source combines manual MDX pages with generated OpenAPI pages, so the
+ * page data type is widened. Checking against the upstream type keeps the
+ * route in sync with the installed `fumadocs-openapi` API.
+ */
+export function isOpenAPIPageData(data: PageData): data is OpenAPIPageData {
+  return "getOpenAPIPageProps" in data && typeof data.getOpenAPIPageProps === "function";
+}
 
 export const openapi = createOpenAPI({
   input: [openApiSpecPath],
