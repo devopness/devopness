@@ -8,7 +8,8 @@
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "postinstall": "fumadocs-mdx",
-    "start": "next start"
+    "start": "next start",
+    "smoke:docs": "node scripts/smoke-test-docs.mjs"
   },
   "dependencies": {
     "dotenv-expand": "^1000.0.0",
