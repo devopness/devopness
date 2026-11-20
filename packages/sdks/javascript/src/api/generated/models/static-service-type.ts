@@ -11,39 +11,24 @@
  * Do not edit the class manually.
  */
 
-
 import { ServiceType } from './service-type';
-import { StaticServiceTypeSupportedVersions } from './static-service-type-supported-versions';
+import { StaticServiceTypeSupportedVersionsInner } from './static-service-type-supported-versions-inner';
 
-/**
- * 
- * @export
- * @interface StaticServiceType
- */
 export interface StaticServiceType {
-    /**
-     * 
-     * @type {ServiceType}
-     * @memberof StaticServiceType
-     */
-    value: ServiceType;
+    'value': ServiceType;
     /**
      * Displayable version of the service name
-     * @type {string}
-     * @memberof StaticServiceType
      */
-    human_readable: string;
+    'human_readable': string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-     * @type {string}
-     * @memberof StaticServiceType
      */
-    hint: string;
+    'hint': string;
     /**
      * List of service versions supported by Devopness
-     * @type {Array<StaticServiceTypeSupportedVersions>}
-     * @memberof StaticServiceType
      */
-    supported_versions: Array<StaticServiceTypeSupportedVersions>;
+    'supported_versions': Array<StaticServiceTypeSupportedVersionsInner>;
 }
+
+
 

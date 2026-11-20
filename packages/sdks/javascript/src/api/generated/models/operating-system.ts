@@ -11,38 +11,21 @@
  * Do not edit the class manually.
  */
 
-
 import { OperatingSystemVersion } from './operating-system-version';
 
-/**
- * 
- * @export
- * @interface OperatingSystem
- */
 export interface OperatingSystem {
     /**
      * The name of the operating system
-     * @type {string}
-     * @memberof OperatingSystem
      */
-    code: string;
+    'code': string;
     /**
      * The formatted name of the operating system
-     * @type {string}
-     * @memberof OperatingSystem
      */
-    name: string;
+    'name': string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-     * @type {string}
-     * @memberof OperatingSystem
      */
-    hint: string;
-    /**
-     * 
-     * @type {Array<OperatingSystemVersion>}
-     * @memberof OperatingSystem
-     */
-    supported_versions: Array<OperatingSystemVersion>;
+    'hint': string;
+    'supported_versions': Array<OperatingSystemVersion>;
 }
 

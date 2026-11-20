@@ -11,39 +11,19 @@
  * Do not edit the class manually.
  */
 
-
 import { TeamRelation } from './team-relation';
 import { UserRelation } from './user-relation';
 
-/**
- * 
- * @export
- * @interface Member
- */
 export interface Member {
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof Member
-     */
-    user: UserRelation | null;
-    /**
-     * 
-     * @type {TeamRelation}
-     * @memberof Member
-     */
-    team: TeamRelation | null;
+    'user': UserRelation | null;
+    'team': TeamRelation | null;
     /**
      * The date and time when the record was created
-     * @type {string}
-     * @memberof Member
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
-     * @type {string}
-     * @memberof Member
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

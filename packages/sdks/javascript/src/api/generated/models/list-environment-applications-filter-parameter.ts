@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface ListEnvironmentApplicationsFilterParameter
- */
 export interface ListEnvironmentApplicationsFilterParameter {
     /**
      * Search applications by name. Case insensitive.  Example: `?filter[name]=app`
-     * @type {string}
-     * @memberof ListEnvironmentApplicationsFilterParameter
      */
-    name?: string;
+    'name'?: string;
 }
 

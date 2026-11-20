@@ -12,24 +12,14 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface NetworkUpdate
- */
 export interface NetworkUpdate {
     /**
      * The unique ID of the given Network.
-     * @type {number}
-     * @memberof NetworkUpdate
      */
-    id: number;
+    'id': number;
     /**
      * The ID of the cloud credential.
-     * @type {number}
-     * @memberof NetworkUpdate
      */
-    credential_id: number;
+    'credential_id': number;
 }
 

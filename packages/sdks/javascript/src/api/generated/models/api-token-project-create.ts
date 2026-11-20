@@ -12,30 +12,18 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface ApiTokenProjectCreate
- */
 export interface ApiTokenProjectCreate {
     /**
      * Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.
-     * @type {string}
-     * @memberof ApiTokenProjectCreate
      */
-    name: string;
+    'name': string;
     /**
      * The ID of the role that the token is associated with.
-     * @type {number}
-     * @memberof ApiTokenProjectCreate
      */
-    role_id: number;
+    'role_id': number;
     /**
      * The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.
-     * @type {string}
-     * @memberof ApiTokenProjectCreate
      */
-    expires_at: string;
+    'expires_at': string;
 }
 

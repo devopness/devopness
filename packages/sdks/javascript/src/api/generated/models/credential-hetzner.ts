@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface CredentialHetzner
- */
 export interface CredentialHetzner {
     /**
      * The API token used to authenticate to Hetzner
-     * @type {string}
-     * @memberof CredentialHetzner
      */
-    api_token: string;
+    'api_token': string;
 }
 

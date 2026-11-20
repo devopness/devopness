@@ -12,16 +12,17 @@
  */
 
 
-
 /**
  * Environment\'s type
- * @export
- * @enum {string}
  */
-export enum EnvironmentType {
-    Development = 'development',
-    Production = 'production',
-    Staging = 'staging'
-}
+
+export const EnvironmentType = {
+    Development: 'development',
+    Production: 'production',
+    Staging: 'staging',
+} as const;
+
+export type EnvironmentType = typeof EnvironmentType[keyof typeof EnvironmentType];
+
 
 

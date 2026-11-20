@@ -12,24 +12,14 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface OrganizationCreate
- */
 export interface OrganizationCreate {
     /**
      * The Name of the organization. Must not be greater than 255 characters.
-     * @type {string}
-     * @memberof OrganizationCreate
      */
-    name: string;
+    'name': string;
     /**
      * The URL Slug of the organization. Must not be greater than 30 characters.
-     * @type {string}
-     * @memberof OrganizationCreate
      */
-    url_slug?: string;
+    'url_slug'?: string;
 }
 

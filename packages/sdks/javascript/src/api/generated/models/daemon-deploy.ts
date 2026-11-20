@@ -12,24 +12,14 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface DaemonDeploy
- */
 export interface DaemonDeploy {
     /**
      * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof DaemonDeploy
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
     /**
      * Optional comment provided when triggering this action. Must not be greater than 255 characters.
-     * @type {string}
-     * @memberof DaemonDeploy
      */
-    trigger_comment?: string;
+    'trigger_comment'?: string;
 }
 

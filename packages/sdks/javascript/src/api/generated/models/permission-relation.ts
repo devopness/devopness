@@ -11,32 +11,20 @@
  * Do not edit the class manually.
  */
 
-
 import { StaticPermission } from './static-permission';
 
-/**
- * 
- * @export
- * @interface PermissionRelation
- */
 export interface PermissionRelation {
     /**
      * The type of resource this permission affects
-     * @type {string}
-     * @memberof PermissionRelation
      */
-    resource_type: string;
+    'resource_type': string;
     /**
      * Human readable resource name
-     * @type {string}
-     * @memberof PermissionRelation
      */
-    human_readable: string;
+    'human_readable': string;
     /**
      * List of permissions available for this resource
-     * @type {Array<StaticPermission>}
-     * @memberof PermissionRelation
      */
-    permissions: Array<StaticPermission>;
+    'permissions': Array<StaticPermission>;
 }
 

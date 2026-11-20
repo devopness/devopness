@@ -12,24 +12,14 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface PersonalAccessTokenUserCreate
- */
 export interface PersonalAccessTokenUserCreate {
     /**
      * Name of the token. Must be at least 3 characters. Must not be greater than 255 characters.
-     * @type {string}
-     * @memberof PersonalAccessTokenUserCreate
      */
-    name: string;
+    'name': string;
     /**
      * The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.
-     * @type {string}
-     * @memberof PersonalAccessTokenUserCreate
      */
-    expires_at: string;
+    'expires_at': string;
 }
 

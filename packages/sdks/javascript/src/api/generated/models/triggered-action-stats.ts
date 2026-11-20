@@ -11,44 +11,28 @@
  * Do not edit the class manually.
  */
 
-
 import { TriggeredActionSummary } from './triggered-action-summary';
 
 /**
  * Information about the action that was triggered
- * @export
- * @interface TriggeredActionStats
  */
 export interface TriggeredActionStats {
     /**
      * Type of resource used in the action
-     * @type {string}
-     * @memberof TriggeredActionStats
      */
-    resource_type?: string;
+    'resource_type'?: string;
     /**
      * Type of action
-     * @type {string}
-     * @memberof TriggeredActionStats
      */
-    action_type?: string;
+    'action_type'?: string;
     /**
      * Human readable version of the resource type
-     * @type {string}
-     * @memberof TriggeredActionStats
      */
-    resource_type_human_readable?: string;
+    'resource_type_human_readable'?: string;
     /**
      * Type of action human readable
-     * @type {string}
-     * @memberof TriggeredActionStats
      */
-    action_type_human_readable?: string;
-    /**
-     * 
-     * @type {TriggeredActionSummary}
-     * @memberof TriggeredActionStats
-     */
-    summary?: TriggeredActionSummary;
+    'action_type_human_readable'?: string;
+    'summary'?: TriggeredActionSummary;
 }
 

@@ -11,44 +11,25 @@
  * Do not edit the class manually.
  */
 
-
 import { NetworkProvisionInput } from './network-provision-input';
 
-/**
- * 
- * @export
- * @interface ActionTargetNetworkData
- */
 export interface ActionTargetNetworkData {
     /**
      * The unique id of the network
-     * @type {number}
-     * @memberof ActionTargetNetworkData
      */
-    id: number;
+    'id': number;
     /**
      * The networks\'s name
-     * @type {string}
-     * @memberof ActionTargetNetworkData
      */
-    name: string;
+    'name': string;
     /**
      * The name of the network\'s cloud provider.
-     * @type {string}
-     * @memberof ActionTargetNetworkData
      */
-    provider_name?: string;
+    'provider_name'?: string;
     /**
      * The human readable version of the cloud provider\'s name
-     * @type {string}
-     * @memberof ActionTargetNetworkData
      */
-    provider_name_human_readable?: string;
-    /**
-     * 
-     * @type {NetworkProvisionInput}
-     * @memberof ActionTargetNetworkData
-     */
-    provision_input: NetworkProvisionInput;
+    'provider_name_human_readable'?: string;
+    'provision_input': NetworkProvisionInput;
 }
 

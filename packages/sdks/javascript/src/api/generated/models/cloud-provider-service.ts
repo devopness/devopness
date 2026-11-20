@@ -11,47 +11,21 @@
  * Do not edit the class manually.
  */
 
-
 import { CloudProviderServiceCode } from './cloud-provider-service-code';
 import { CloudProviderServiceRegion } from './cloud-provider-service-region';
 import { CloudProviderServiceResourceType } from './cloud-provider-service-resource-type';
 import { ProviderRelation } from './provider-relation';
 
-/**
- * 
- * @export
- * @interface CloudProviderService
- */
 export interface CloudProviderService {
-    /**
-     * 
-     * @type {CloudProviderServiceCode}
-     * @memberof CloudProviderService
-     */
-    code: CloudProviderServiceCode;
+    'code': CloudProviderServiceCode;
     /**
      * The full name of the cloud service
-     * @type {string}
-     * @memberof CloudProviderService
      */
-    name: string;
-    /**
-     * 
-     * @type {ProviderRelation}
-     * @memberof CloudProviderService
-     */
-    provider?: ProviderRelation;
-    /**
-     * 
-     * @type {Array<CloudProviderServiceRegion>}
-     * @memberof CloudProviderService
-     */
-    regions?: Array<CloudProviderServiceRegion>;
-    /**
-     * 
-     * @type {Array<CloudProviderServiceResourceType>}
-     * @memberof CloudProviderService
-     */
-    resource_types?: Array<CloudProviderServiceResourceType>;
+    'name': string;
+    'provider'?: ProviderRelation;
+    'regions'?: Array<CloudProviderServiceRegion>;
+    'resource_types'?: Array<CloudProviderServiceResourceType>;
 }
+
+
 

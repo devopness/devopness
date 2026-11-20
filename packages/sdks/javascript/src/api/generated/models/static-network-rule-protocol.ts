@@ -11,33 +11,17 @@
  * Do not edit the class manually.
  */
 
-
 import { NetworkRuleProtocol } from './network-rule-protocol';
 import { StaticNetworkRuleProtocolDefaults } from './static-network-rule-protocol-defaults';
 
-/**
- * 
- * @export
- * @interface StaticNetworkRuleProtocol
- */
 export interface StaticNetworkRuleProtocol {
-    /**
-     * 
-     * @type {NetworkRuleProtocol}
-     * @memberof StaticNetworkRuleProtocol
-     */
-    value: NetworkRuleProtocol;
+    'value': NetworkRuleProtocol;
     /**
      * The formatted name to be displayed in user interfaces
-     * @type {string}
-     * @memberof StaticNetworkRuleProtocol
      */
-    human_readable: string;
-    /**
-     * 
-     * @type {StaticNetworkRuleProtocolDefaults}
-     * @memberof StaticNetworkRuleProtocol
-     */
-    defaults: StaticNetworkRuleProtocolDefaults;
+    'human_readable': string;
+    'defaults': StaticNetworkRuleProtocolDefaults;
 }
+
+
 

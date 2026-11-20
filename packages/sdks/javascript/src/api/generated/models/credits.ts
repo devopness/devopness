@@ -12,30 +12,21 @@
  */
 
 
-
 /**
  * The user\'s active subscription credits
- * @export
- * @interface Credits
  */
 export interface Credits {
     /**
      * Total credits that can be used to perform actions in the subscription period
-     * @type {number}
-     * @memberof Credits
      */
-    limit?: number;
+    'limit'?: number;
     /**
      * Total credits that were used to perform actions
-     * @type {number}
-     * @memberof Credits
      */
-    used?: number;
+    'used'?: number;
     /**
      * Total credits available to use to perform actions
-     * @type {number}
-     * @memberof Credits
      */
-    remaining?: number;
+    'remaining'?: number;
 }
 

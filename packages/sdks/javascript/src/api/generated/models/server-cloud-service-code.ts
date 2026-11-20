@@ -12,19 +12,20 @@
  */
 
 
-
 /**
  * The name of the cloud service used to provide the cloud instance
- * @export
- * @enum {string}
  */
-export enum ServerCloudServiceCode {
-    AwsEc2 = 'aws-ec2',
-    AzureRm = 'azure-rm',
-    DigitaloceanDroplet = 'digitalocean-droplet',
-    GcpGce = 'gcp-gce',
-    HetznerHcloud = 'hetzner-hcloud',
-    SelfHostedCustom = 'self-hosted-custom'
-}
+
+export const ServerCloudServiceCode = {
+    AwsEc2: 'aws-ec2',
+    AzureRm: 'azure-rm',
+    DigitaloceanDroplet: 'digitalocean-droplet',
+    GcpGce: 'gcp-gce',
+    HetznerHcloud: 'hetzner-hcloud',
+    SelfHostedCustom: 'self-hosted-custom',
+} as const;
+
+export type ServerCloudServiceCode = typeof ServerCloudServiceCode[keyof typeof ServerCloudServiceCode];
+
 
 

@@ -12,17 +12,18 @@
  */
 
 
-
 /**
  * The network protocol to which this rule is applied.
- * @export
- * @enum {string}
  */
-export enum NetworkRuleProtocol {
-    Any = 'any',
-    Icmp = 'icmp',
-    Tcp = 'tcp',
-    Udp = 'udp'
-}
+
+export const NetworkRuleProtocol = {
+    Any: 'any',
+    Icmp: 'icmp',
+    Tcp: 'tcp',
+    Udp: 'udp',
+} as const;
+
+export type NetworkRuleProtocol = typeof NetworkRuleProtocol[keyof typeof NetworkRuleProtocol];
+
 
 

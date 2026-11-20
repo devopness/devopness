@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface UserUrl
- */
 export interface UserUrl {
     /**
      * The URL leading to a billing management page
-     * @type {string}
-     * @memberof UserUrl
      */
-    billing_management_url: string;
+    'billing_management_url': string;
 }
 

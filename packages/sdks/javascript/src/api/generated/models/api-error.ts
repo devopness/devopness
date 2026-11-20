@@ -11,26 +11,13 @@
  * Do not edit the class manually.
  */
 
-
 import { ApiErrorErrors } from './api-error-errors';
 
-/**
- * 
- * @export
- * @interface ApiError
- */
 export interface ApiError {
     /**
      * The main exception raised by the server
-     * @type {string}
-     * @memberof ApiError
      */
-    message: string;
-    /**
-     * 
-     * @type {ApiErrorErrors}
-     * @memberof ApiError
-     */
-    errors?: ApiErrorErrors;
+    'message': string;
+    'errors'?: ApiErrorErrors;
 }
 

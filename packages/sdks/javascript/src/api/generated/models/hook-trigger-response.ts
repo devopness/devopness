@@ -12,24 +12,14 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface HookTriggerResponse
- */
 export interface HookTriggerResponse {
     /**
      * Message containing information about the hook being triggered
-     * @type {string}
-     * @memberof HookTriggerResponse
      */
-    message: string;
+    'message': string;
     /**
      * Optional error object containing details of the server error
-     * @type {any}
-     * @memberof HookTriggerResponse
      */
-    errors: any | null;
+    'errors': object | null;
 }
 

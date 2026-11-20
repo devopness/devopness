@@ -11,33 +11,15 @@
  * Do not edit the class manually.
  */
 
-
 import { CredentialProviderType } from './credential-provider-type';
 import { ProviderSettings } from './provider-settings';
 
-/**
- * 
- * @export
- * @interface CredentialSetting
- */
 export interface CredentialSetting {
-    /**
-     * 
-     * @type {CredentialProviderType}
-     * @memberof CredentialSetting
-     */
-    provider: CredentialProviderType;
+    'provider': CredentialProviderType;
     /**
      * Numeric ID of the organization to which the credential belongs to
-     * @type {number}
-     * @memberof CredentialSetting
      */
-    organization_id: number;
-    /**
-     * 
-     * @type {ProviderSettings}
-     * @memberof CredentialSetting
-     */
-    settings: ProviderSettings;
+    'organization_id': number;
+    'settings': ProviderSettings;
 }
 

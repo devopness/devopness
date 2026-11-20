@@ -11,20 +11,15 @@
  * Do not edit the class manually.
  */
 
-
 import { HookVariable } from './hook-variable';
 
 /**
  * Settings to an incoming hook
- * @export
- * @interface HookIncomingSettings
  */
 export interface HookIncomingSettings {
     /**
      * List of variables to incoming hook. During application deploy, Devopness exposes them as application environment variables. If a hook variable has the same name as an application variable, the hook value overrides it. Pipeline steps can read the value with shell syntax such as `$NAME` or `${NAME}`.
-     * @type {Array<HookVariable>}
-     * @memberof HookIncomingSettings
      */
-    variables?: Array<HookVariable>;
+    'variables'?: Array<HookVariable>;
 }
 

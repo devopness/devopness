@@ -12,24 +12,14 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface DaemonStop
- */
 export interface DaemonStop {
     /**
      * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof DaemonStop
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
     /**
      * Optional comment provided when triggering this action. Must not be greater than 255 characters.
-     * @type {string}
-     * @memberof DaemonStop
      */
-    trigger_comment?: string;
+    'trigger_comment'?: string;
 }
 

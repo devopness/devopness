@@ -11,39 +11,21 @@
  * Do not edit the class manually.
  */
 
-
 import { ServiceInitialState } from './service-initial-state';
 import { ServiceType } from './service-type';
 
-/**
- * 
- * @export
- * @interface BlueprintService
- */
 export interface BlueprintService {
     /**
      * Indicates if the service will start automatically on operating system boot
-     * @type {boolean}
-     * @memberof BlueprintService
      */
-    auto_start?: boolean;
-    /**
-     * 
-     * @type {ServiceInitialState}
-     * @memberof BlueprintService
-     */
-    initial_state?: ServiceInitialState;
-    /**
-     * 
-     * @type {ServiceType}
-     * @memberof BlueprintService
-     */
-    type: ServiceType;
+    'auto_start'?: boolean;
+    'initial_state'?: ServiceInitialState;
+    'type': ServiceType;
     /**
      * The service version
-     * @type {string}
-     * @memberof BlueprintService
      */
-    version: string;
+    'version': string;
 }
+
+
 

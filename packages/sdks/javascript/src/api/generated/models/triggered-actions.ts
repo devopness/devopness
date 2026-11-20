@@ -11,27 +11,11 @@
  * Do not edit the class manually.
  */
 
-
 import { TriggeredActionStats } from './triggered-action-stats';
 import { TriggeredActionSummary } from './triggered-action-summary';
 
-/**
- * 
- * @export
- * @interface TriggeredActions
- */
 export interface TriggeredActions {
-    /**
-     * 
-     * @type {TriggeredActionSummary}
-     * @memberof TriggeredActions
-     */
-    summary?: TriggeredActionSummary;
-    /**
-     * 
-     * @type {Array<TriggeredActionStats>}
-     * @memberof TriggeredActions
-     */
-    operations?: Array<TriggeredActionStats>;
+    'summary'?: TriggeredActionSummary;
+    'operations'?: Array<TriggeredActionStats>;
 }
 

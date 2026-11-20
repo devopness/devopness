@@ -11,44 +11,28 @@
  * Do not edit the class manually.
  */
 
-
+import { HookVariableDefaultValue } from './hook-variable-default-value';
 import { HookVariableType } from './hook-variable-type';
 
 /**
  * Variable that can be defined on an incoming hook and exposed as an application environment variable during deploy.
- * @export
- * @interface HookVariable
  */
 export interface HookVariable {
     /**
      * The application environment variable name that will be available during deploy.
-     * @type {string}
-     * @memberof HookVariable
      */
-    name?: string;
+    'name'?: string;
     /**
      * A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the `name` will be used instead.
-     * @type {string}
-     * @memberof HookVariable
      */
-    path?: string;
-    /**
-     * 
-     * @type {HookVariableType}
-     * @memberof HookVariable
-     */
-    type?: HookVariableType;
+    'path'?: string;
+    'type'?: HookVariableType;
     /**
      * Defines if the variable is required
-     * @type {boolean}
-     * @memberof HookVariable
      */
-    required?: boolean;
-    /**
-     * Optional variable assumes the default value if it\'s not given on the request to trigger the hook. If an application variable already exists with the same name, the hook value still overrides it.
-     * @type {string | number | boolean | Array<string | number | boolean | any>}
-     * @memberof HookVariable
-     */
-    default_value?: string | number | boolean | Array<string | number | boolean | any> | null;
+    'required'?: boolean;
+    'default_value'?: HookVariableDefaultValue | null;
 }
+
+
 

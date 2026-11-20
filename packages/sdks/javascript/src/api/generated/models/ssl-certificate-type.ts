@@ -12,16 +12,17 @@
  */
 
 
-
 /**
  * The certificate type, indicating its scope
- * @export
- * @enum {string}
  */
-export enum SslCertificateType {
-    SingleDomain = 'single-domain',
-    MultiDomain = 'multi-domain',
-    Wildcard = 'wildcard'
-}
+
+export const SslCertificateType = {
+    SingleDomain: 'single-domain',
+    MultiDomain: 'multi-domain',
+    Wildcard: 'wildcard',
+} as const;
+
+export type SslCertificateType = typeof SslCertificateType[keyof typeof SslCertificateType];
+
 
 

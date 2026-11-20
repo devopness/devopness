@@ -11,82 +11,47 @@
  * Do not edit the class manually.
  */
 
-
 import { ApiTokenStatus } from './api-token-status';
 import { ApiTokenType } from './api-token-type';
 import { UserRelation } from './user-relation';
 
-/**
- * 
- * @export
- * @interface PersonalAccessToken
- */
 export interface PersonalAccessToken {
     /**
      * Unique identifier of the Token
-     * @type {string}
-     * @memberof PersonalAccessToken
      */
-    id: string;
+    'id': string;
     /**
      * Name of the Token
-     * @type {string}
-     * @memberof PersonalAccessToken
      */
-    name: string;
-    /**
-     * 
-     * @type {ApiTokenType}
-     * @memberof PersonalAccessToken
-     */
-    type: ApiTokenType;
+    'name': string;
+    'type': ApiTokenType;
     /**
      * The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.
-     * @type {string}
-     * @memberof PersonalAccessToken
      */
-    token: string | null;
-    /**
-     * 
-     * @type {ApiTokenStatus}
-     * @memberof PersonalAccessToken
-     */
-    status: ApiTokenStatus;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof PersonalAccessToken
-     */
-    user: UserRelation | null;
+    'token': string | null;
+    'status': ApiTokenStatus;
+    'user': UserRelation | null;
     /**
      * Last time the Token was used
-     * @type {string}
-     * @memberof PersonalAccessToken
      */
-    last_used_at: string | null;
+    'last_used_at': string | null;
     /**
      * Expiration date of the Token
-     * @type {string}
-     * @memberof PersonalAccessToken
      */
-    expires_at: string;
+    'expires_at': string;
     /**
      * Revocation date of the Token
-     * @type {string}
-     * @memberof PersonalAccessToken
      */
-    revoked_at: string | null;
+    'revoked_at': string | null;
     /**
      * Last time the Token was updated
-     * @type {string}
-     * @memberof PersonalAccessToken
      */
-    updated_at: string;
+    'updated_at': string;
     /**
      * Creation date of the Token
-     * @type {string}
-     * @memberof PersonalAccessToken
      */
-    created_at: string;
+    'created_at': string;
 }
+
+
 

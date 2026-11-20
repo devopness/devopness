@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface TeamEnvironmentLink
- */
 export interface TeamEnvironmentLink {
     /**
      * The role\'s ID to link to the team.
-     * @type {number}
-     * @memberof TeamEnvironmentLink
      */
-    role_id: number;
+    'role_id': number;
 }
 

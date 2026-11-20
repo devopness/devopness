@@ -11,20 +11,15 @@
  * Do not edit the class manually.
  */
 
-
 import { BlueprintService } from './blueprint-service';
 
 /**
  * The blueprint specification
- * @export
- * @interface ServerBlueprintSpec
  */
 export interface ServerBlueprintSpec {
     /**
      * The service names and their respective versions for a blueprint.
-     * @type {Array<BlueprintService>}
-     * @memberof ServerBlueprintSpec
      */
-    services?: Array<BlueprintService>;
+    'services'?: Array<BlueprintService>;
 }
 

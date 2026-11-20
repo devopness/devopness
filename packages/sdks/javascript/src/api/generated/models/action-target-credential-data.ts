@@ -11,51 +11,29 @@
  * Do not edit the class manually.
  */
 
-
 import { ProviderCode } from './provider-code';
 import { ProviderType } from './provider-type';
 
-/**
- * 
- * @export
- * @interface ActionTargetCredentialData
- */
 export interface ActionTargetCredentialData {
     /**
      * The unique id of the credential
-     * @type {number}
-     * @memberof ActionTargetCredentialData
      */
-    id: number;
+    'id': number;
     /**
      * The name of the credential
-     * @type {string}
-     * @memberof ActionTargetCredentialData
      */
-    name: string;
-    /**
-     * 
-     * @type {ProviderType}
-     * @memberof ActionTargetCredentialData
-     */
-    provider_type: ProviderType;
-    /**
-     * 
-     * @type {ProviderCode}
-     * @memberof ActionTargetCredentialData
-     */
-    provider_code: ProviderCode;
+    'name': string;
+    'provider_type': ProviderType;
+    'provider_code': ProviderCode;
     /**
      * The name of the cloud provider of the credential
-     * @type {string}
-     * @memberof ActionTargetCredentialData
      */
-    provider_name: string;
+    'provider_name': string;
     /**
      * The human readable version of the provider name
-     * @type {string}
-     * @memberof ActionTargetCredentialData
      */
-    provider_name_human_readable: string;
+    'provider_name_human_readable': string;
 }
+
+
 

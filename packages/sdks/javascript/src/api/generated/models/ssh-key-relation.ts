@@ -11,68 +11,41 @@
  * Do not edit the class manually.
  */
 
-
 import { ActionRelationShallow } from './action-relation-shallow';
 
-/**
- * 
- * @export
- * @interface SshKeyRelation
- */
 export interface SshKeyRelation {
     /**
      * The Id of the given SSH public key
-     * @type {number}
-     * @memberof SshKeyRelation
      */
-    id: number;
+    'id': number;
     /**
      * The Id of the user to which the SSH key belongs to
-     * @type {number}
-     * @memberof SshKeyRelation
      */
-    created_by?: number;
+    'created_by'?: number;
     /**
      * The project id to which the SSH public key belongs to
-     * @type {number}
-     * @memberof SshKeyRelation
      */
-    project_id?: number;
+    'project_id'?: number;
     /**
      * The environment id to which the SSH public key belongs to
-     * @type {number}
-     * @memberof SshKeyRelation
      */
-    environment_id: number;
+    'environment_id': number;
     /**
      * The name entered by the user to uniquely identify the public SSH key
-     * @type {string}
-     * @memberof SshKeyRelation
      */
-    name: string;
+    'name': string;
     /**
      * The hashed fingerprint of the public key
-     * @type {string}
-     * @memberof SshKeyRelation
      */
-    fingerprint: string;
-    /**
-     * 
-     * @type {ActionRelationShallow}
-     * @memberof SshKeyRelation
-     */
-    last_action?: ActionRelationShallow | null;
+    'fingerprint': string;
+    'last_action'?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
-     * @type {string}
-     * @memberof SshKeyRelation
      */
-    created_at?: string;
+    'created_at'?: string;
     /**
      * The date and time when the record was last updated
-     * @type {string}
-     * @memberof SshKeyRelation
      */
-    updated_at?: string;
+    'updated_at'?: string;
 }
 

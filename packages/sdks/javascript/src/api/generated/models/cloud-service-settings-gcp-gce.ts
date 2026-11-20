@@ -11,45 +11,25 @@
  * Do not edit the class manually.
  */
 
-
 import { CloudOsVersionCode } from './cloud-os-version-code';
 import { CloudResourceInstanceSpec } from './cloud-resource-instance-spec';
 
-/**
- * 
- * @export
- * @interface CloudServiceSettingsGcpGce
- */
 export interface CloudServiceSettingsGcpGce {
     /**
      * The instance type to be launched on the cloud provider
-     * @type {string}
-     * @memberof CloudServiceSettingsGcpGce
      */
-    instance_type: string;
+    'instance_type': string;
     /**
      * Datacenter region where the cloud instance will be launched
-     * @type {string}
-     * @memberof CloudServiceSettingsGcpGce
      */
-    region: string;
+    'region': string;
     /**
      * Human readable version of the server region
-     * @type {string}
-     * @memberof CloudServiceSettingsGcpGce
      */
-    region_human_readable?: string;
-    /**
-     * 
-     * @type {CloudResourceInstanceSpec}
-     * @memberof CloudServiceSettingsGcpGce
-     */
-    instance_spec?: CloudResourceInstanceSpec;
-    /**
-     * 
-     * @type {CloudOsVersionCode}
-     * @memberof CloudServiceSettingsGcpGce
-     */
-    os_version_code: CloudOsVersionCode | null;
+    'region_human_readable'?: string;
+    'instance_spec'?: CloudResourceInstanceSpec;
+    'os_version_code': CloudOsVersionCode | null;
 }
+
+
 

@@ -11,64 +11,35 @@
  * Do not edit the class manually.
  */
 
-
-import { HookIncomingSettings } from './hook-incoming-settings';
-import { HookOutgoingSettings } from './hook-outgoing-settings';
+import { HookPipelineCreateSettings } from './hook-pipeline-create-settings';
 import { HookTriggerWhen } from './hook-trigger-when';
 
-/**
- * 
- * @export
- * @interface HookUpdate
- */
 export interface HookUpdate {
     /**
      * The unique ID of the given Hook. Must be a valid UUID.
-     * @type {string}
-     * @memberof HookUpdate
      */
-    id: string;
+    'id': string;
     /**
      * The name of the outgoing hook. Must not be greater than 60 characters.
-     * @type {string}
-     * @memberof HookUpdate
      */
-    name: string;
+    'name': string;
     /**
      * Determines if the hook is currently active.
-     * @type {boolean}
-     * @memberof HookUpdate
      */
-    active?: boolean;
+    'active'?: boolean;
     /**
      * Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources.
-     * @type {boolean}
-     * @memberof HookUpdate
      */
-    requires_secret?: boolean;
+    'requires_secret'?: boolean;
     /**
      * The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 20 characters.
-     * @type {string}
-     * @memberof HookUpdate
      */
-    secret_algorithm?: string;
+    'secret_algorithm'?: string;
     /**
      * The name of the HTTP request header from which the request digital signature should be extracted. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 64 characters.
-     * @type {string}
-     * @memberof HookUpdate
      */
-    secret_header_name?: string;
-    /**
-     * 
-     * @type {HookTriggerWhen}
-     * @memberof HookUpdate
-     */
-    trigger_when?: HookTriggerWhen;
-    /**
-     * 
-     * @type {HookIncomingSettings | HookOutgoingSettings}
-     * @memberof HookUpdate
-     */
-    settings?: HookIncomingSettings | HookOutgoingSettings;
+    'secret_header_name'?: string;
+    'trigger_when'?: HookTriggerWhen;
+    'settings'?: HookPipelineCreateSettings;
 }
 

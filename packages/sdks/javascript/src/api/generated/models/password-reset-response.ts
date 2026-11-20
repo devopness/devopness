@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface PasswordResetResponse
- */
 export interface PasswordResetResponse {
     /**
      * Message with information about the response
-     * @type {string}
-     * @memberof PasswordResetResponse
      */
-    message: string;
+    'message': string;
 }
 

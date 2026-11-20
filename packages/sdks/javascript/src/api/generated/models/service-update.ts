@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface ServiceUpdate
- */
 export interface ServiceUpdate {
     /**
      * The unique ID of the given Service.
-     * @type {number}
-     * @memberof ServiceUpdate
      */
-    id: number;
+    'id': number;
 }
 

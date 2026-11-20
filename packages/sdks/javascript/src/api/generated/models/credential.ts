@@ -11,95 +11,51 @@
  * Do not edit the class manually.
  */
 
-
 import { ActionRelationShallow } from './action-relation-shallow';
 import { OrganizationRelation } from './organization-relation';
 import { ProviderRelation } from './provider-relation';
 import { UserRelation } from './user-relation';
 
-/**
- * 
- * @export
- * @interface Credential
- */
 export interface Credential {
     /**
      * The unique ID of the credential
-     * @type {number}
-     * @memberof Credential
      */
-    id: number;
+    'id': number;
     /**
      * The name of the credential
-     * @type {string}
-     * @memberof Credential
      */
-    name: string;
-    /**
-     * 
-     * @type {ProviderRelation}
-     * @memberof Credential
-     */
-    provider: ProviderRelation;
+    'name': string;
+    'provider': ProviderRelation;
     /**
      * The type of the credential
-     * @type {string}
-     * @memberof Credential
      */
-    provider_type: string;
+    'provider_type': string;
     /**
      * The human readable version of the type of the credential
-     * @type {string}
-     * @memberof Credential
      */
-    provider_type_human_readable: string;
+    'provider_type_human_readable': string;
     /**
      * The authentication type of the credential
-     * @type {string}
-     * @memberof Credential
      */
-    provider_auth_type: string;
+    'provider_auth_type': string;
     /**
      * The human readable version of the authentication type
-     * @type {string}
-     * @memberof Credential
      */
-    provider_auth_type_human_readable: string;
+    'provider_auth_type_human_readable': string;
     /**
      * If this credential is active or not
-     * @type {boolean}
-     * @memberof Credential
      */
-    active: boolean;
-    /**
-     * 
-     * @type {OrganizationRelation}
-     * @memberof Credential
-     */
-    organization?: OrganizationRelation | null;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof Credential
-     */
-    created_by_user: UserRelation | null;
-    /**
-     * 
-     * @type {ActionRelationShallow}
-     * @memberof Credential
-     */
-    last_action?: ActionRelationShallow | null;
+    'active': boolean;
+    'organization'?: OrganizationRelation | null;
+    'created_by_user': UserRelation | null;
+    'last_action'?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
-     * @type {string}
-     * @memberof Credential
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
-     * @type {string}
-     * @memberof Credential
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

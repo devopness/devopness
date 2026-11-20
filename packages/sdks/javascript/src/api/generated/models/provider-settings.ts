@@ -11,7 +11,6 @@
  * Do not edit the class manually.
  */
 
-
 import { CloudProviderService } from './cloud-provider-service';
 import { CloudProviderSettings } from './cloud-provider-settings';
 import { ProviderInputSettings } from './provider-input-settings';
@@ -21,7 +20,6 @@ import { SourceProviderSettings } from './source-provider-settings';
 /**
  * @type ProviderSettings
  * Settings related to a supported provider
- * @export
  */
 export type ProviderSettings = CloudProviderSettings | SourceProviderSettings;
 

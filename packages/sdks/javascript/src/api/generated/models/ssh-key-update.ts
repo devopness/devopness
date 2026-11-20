@@ -12,24 +12,14 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface SshKeyUpdate
- */
 export interface SshKeyUpdate {
     /**
      * The unique ID of the given SSH Key.
-     * @type {number}
-     * @memberof SshKeyUpdate
      */
-    id: number;
+    'id': number;
     /**
      * The ssh key\'s name. Must not be greater than 60 characters.
-     * @type {string}
-     * @memberof SshKeyUpdate
      */
-    name: string;
+    'name': string;
 }
 

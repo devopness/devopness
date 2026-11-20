@@ -11,44 +11,25 @@
  * Do not edit the class manually.
  */
 
-
 import { ResourceSummaryItemSummary } from './resource-summary-item-summary';
 
-/**
- * 
- * @export
- * @interface ResourceSummaryItem
- */
 export interface ResourceSummaryItem {
     /**
      * The type of the resource
-     * @type {string}
-     * @memberof ResourceSummaryItem
      */
-    resource_type: string;
+    'resource_type': string;
     /**
      * The plural name of the resource type
-     * @type {string}
-     * @memberof ResourceSummaryItem
      */
-    resource_type_plural: string;
+    'resource_type_plural': string;
     /**
      * The human readable name of the resource type
-     * @type {string}
-     * @memberof ResourceSummaryItem
      */
-    resource_type_human_readable: string;
+    'resource_type_human_readable': string;
     /**
      * The human readable plural name of the resource type
-     * @type {string}
-     * @memberof ResourceSummaryItem
      */
-    resource_type_human_readable_plural: string;
-    /**
-     * 
-     * @type {ResourceSummaryItemSummary}
-     * @memberof ResourceSummaryItem
-     */
-    summary: ResourceSummaryItemSummary;
+    'resource_type_human_readable_plural': string;
+    'summary': ResourceSummaryItemSummary;
 }
 

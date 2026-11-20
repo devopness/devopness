@@ -11,51 +11,33 @@
  * Do not edit the class manually.
  */
 
-
 import { RepositoryBranch } from './repository-branch';
 import { RepositoryTag } from './repository-tag';
 
-/**
- * 
- * @export
- * @interface Repository
- */
 export interface Repository {
     /**
      * The name of the repository
-     * @type {string}
-     * @memberof Repository
      */
-    name: string;
+    'name': string;
     /**
      * The name of the user/account on the Version Control System
-     * @type {string}
-     * @memberof Repository
      */
-    user_name: string;
+    'user_name': string;
     /**
      * The fully qualified repository name. Usually composed of user_name/name
-     * @type {string}
-     * @memberof Repository
      */
-    full_name: string;
+    'full_name': string;
     /**
      * The URL for viewing repository details on the provider\'s web application
-     * @type {string}
-     * @memberof Repository
      */
-    html_url: string;
+    'html_url': string;
     /**
      * List of repository branches
-     * @type {Array<RepositoryBranch>}
-     * @memberof Repository
      */
-    branches: Array<RepositoryBranch>;
+    'branches': Array<RepositoryBranch>;
     /**
      * List of repository tags
-     * @type {Array<RepositoryTag>}
-     * @memberof Repository
      */
-    tags: Array<RepositoryTag>;
+    'tags': Array<RepositoryTag>;
 }
 

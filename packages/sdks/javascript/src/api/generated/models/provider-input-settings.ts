@@ -11,44 +11,28 @@
  * Do not edit the class manually.
  */
 
-
 import { ProviderInputSettingsValidation } from './provider-input-settings-validation';
 
 /**
  * Input settings for credentials of specific provider
- * @export
- * @interface ProviderInputSettings
  */
 export interface ProviderInputSettings {
     /**
      * The name of a credential input field
-     * @type {string}
-     * @memberof ProviderInputSettings
      */
-    name: string;
+    'name': string;
     /**
      * The human readable version of the input field name
-     * @type {string}
-     * @memberof ProviderInputSettings
      */
-    name_human_readable: string;
-    /**
-     * 
-     * @type {ProviderInputSettingsValidation}
-     * @memberof ProviderInputSettings
-     */
-    validation: ProviderInputSettingsValidation;
+    'name_human_readable': string;
+    'validation': ProviderInputSettingsValidation;
     /**
      * The default value of the input field
-     * @type {string}
-     * @memberof ProviderInputSettings
      */
-    default_value: string | null;
+    'default_value': string | null;
     /**
      * Defines if the input field data is a sensitive content
-     * @type {boolean}
-     * @memberof ProviderInputSettings
      */
-    sensitive: boolean;
+    'sensitive': boolean;
 }
 

@@ -12,15 +12,16 @@
  */
 
 
-
 /**
  * The possible types of users.
- * @export
- * @enum {string}
  */
-export enum UserType {
-    User = 'user',
-    Org = 'org'
-}
+
+export const UserType = {
+    User: 'user',
+    Org: 'org',
+} as const;
+
+export type UserType = typeof UserType[keyof typeof UserType];
+
 
 

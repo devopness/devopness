@@ -11,27 +11,16 @@
  * Do not edit the class manually.
  */
 
+import { HookTriggerWhenConditionsInner } from './hook-trigger-when-conditions-inner';
 
-import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-condition';
-import { TriggerWhenCondition } from './trigger-when-condition';
-
-/**
- * 
- * @export
- * @interface HookTriggerWhen
- */
 export interface HookTriggerWhen {
     /**
      * List of events that will trigger an outgoing hook
-     * @type {Array<string>}
-     * @memberof HookTriggerWhen
      */
-    events?: Array<string>;
+    'events'?: Array<string>;
     /**
      * Conditions that must be met to trigger the hook
-     * @type {Array<TriggerWhenCondition | HookOutgoingTriggerWhenCondition>}
-     * @memberof HookTriggerWhen
      */
-    conditions?: Array<TriggerWhenCondition | HookOutgoingTriggerWhenCondition>;
+    'conditions'?: Array<HookTriggerWhenConditionsInner>;
 }
 

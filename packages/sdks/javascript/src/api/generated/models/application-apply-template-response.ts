@@ -11,7 +11,6 @@
  * Do not edit the class manually.
  */
 
-
 import { ApplicationLastDeployments } from './application-last-deployments';
 import { CredentialRelation } from './credential-relation';
 import { CronJobRelation } from './cron-job-relation';
@@ -22,185 +21,95 @@ import { ServiceRelation } from './service-relation';
 import { UserRelation } from './user-relation';
 import { VirtualHostRelation } from './virtual-host-relation';
 
-/**
- * 
- * @export
- * @interface ApplicationApplyTemplateResponse
- */
 export interface ApplicationApplyTemplateResponse {
     /**
      * Unique ID of the application
-     * @type {number}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    id: number;
+    'id': number;
     /**
      * Numeric ID of the project to which the application belongs to
-     * @type {number}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    project_id: number;
+    'project_id': number;
     /**
      * Numeric ID of the environment to which the application belongs to
-     * @type {number}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    environment_id: number;
+    'environment_id': number;
     /**
      * The id of the user who created the application and to whom the application belongs
-     * @type {number}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    created_by: number;
+    'created_by': number;
     /**
      * The application\'s unique name
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    name: string;
+    'name': string;
     /**
      * The full name of a repository (`repository_owner/repository_name`) containing the application source code.
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    repository: string;
+    'repository': string;
     /**
      * The name part of a repository full name (`repository_owner/repository_name`)
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    repository_name: string;
+    'repository_name': string;
     /**
      * The owner part of a repository full name (`repository_owner/repository_name`)
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    repository_owner: string;
+    'repository_owner': string;
     /**
      * The version control branch that, by default, will be used when a deployment is triggered and no other branch name is informed.
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    default_branch: string;
+    'default_branch': string;
     /**
      * The programming language runtime environment to be used to serve the application. E.g.: if a front-end web app is developed using Node.js and should be served statically (an SPA application, for instance), then this field value should be `nodejs` and the framework should be `html`.
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    programming_language: string;
+    'programming_language': string;
     /**
      * The human readable version of the programming language of the application.
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    programming_language_human_readable: string;
+    'programming_language_human_readable': string;
     /**
      * The language runtime engine version to be used to execute this application on the deployed servers
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    engine_version: string;
+    'engine_version': string;
     /**
      * The base framework on top of which the application has been implemented - it might have impact on the steps to be performed during application deployment
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    framework: string;
+    'framework': string;
     /**
      * The human readable version of the framework of the application.
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    framework_human_readable: string;
+    'framework_human_readable': string;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    root_directory: string;
+    'root_directory': string;
     /**
      * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers. OR The number of deployment artifacts to be retained in the user\'s servers, making it easier and faster to rollback to previous versions
-     * @type {number}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    deployments_keep: number;
+    'deployments_keep': number;
     /**
      * Indicates command that Devopness must execute to install application dependencies
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    install_dependencies_command: string | null;
+    'install_dependencies_command': string | null;
     /**
      * The optional command that should be executed once during deployment to build the source code and get the application in a ready state
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    build_command: string | null;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    created_by_user: UserRelation | null;
-    /**
-     * 
-     * @type {ApplicationLastDeployments}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    last_deployments: ApplicationLastDeployments;
-    /**
-     * 
-     * @type {EnvironmentRelation}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    environment: EnvironmentRelation | null;
-    /**
-     * 
-     * @type {Array<ServerRelation>}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    servers: Array<ServerRelation>;
-    /**
-     * 
-     * @type {CredentialRelation}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    credential: CredentialRelation | null;
-    /**
-     * 
-     * @type {Array<ServiceRelation>}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    services: Array<ServiceRelation>;
-    /**
-     * 
-     * @type {Array<CronJobRelation>}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    cronjobs: Array<CronJobRelation>;
-    /**
-     * 
-     * @type {Array<VirtualHostRelation>}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    virtual_hosts: Array<VirtualHostRelation>;
-    /**
-     * 
-     * @type {Array<DaemonRelation>}
-     * @memberof ApplicationApplyTemplateResponse
-     */
-    daemons: Array<DaemonRelation>;
+    'build_command': string | null;
+    'created_by_user': UserRelation | null;
+    'last_deployments': ApplicationLastDeployments;
+    'environment': EnvironmentRelation | null;
+    'servers': Array<ServerRelation>;
+    'credential': CredentialRelation | null;
+    'services': Array<ServiceRelation>;
+    'cronjobs': Array<CronJobRelation>;
+    'virtual_hosts': Array<VirtualHostRelation>;
+    'daemons': Array<DaemonRelation>;
     /**
      * The date and time when the record was created
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
-     * @type {string}
-     * @memberof ApplicationApplyTemplateResponse
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

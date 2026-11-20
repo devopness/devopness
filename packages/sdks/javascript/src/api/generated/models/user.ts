@@ -11,32 +11,19 @@
  * Do not edit the class manually.
  */
 
-
 import { UserType } from './user-type';
 
-/**
- * 
- * @export
- * @interface User
- */
 export interface User {
     /**
      * The unique ID of the user
-     * @type {number}
-     * @memberof User
      */
-    id: number;
+    'id': number;
     /**
      * The URL Slug of the user
-     * @type {string}
-     * @memberof User
      */
-    url_slug?: string;
-    /**
-     * 
-     * @type {UserType}
-     * @memberof User
-     */
-    type: UserType;
+    'url_slug'?: string;
+    'type': UserType;
 }
+
+
 

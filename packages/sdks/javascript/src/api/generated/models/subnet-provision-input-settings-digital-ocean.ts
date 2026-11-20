@@ -12,30 +12,18 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface SubnetProvisionInputSettingsDigitalOcean
- */
 export interface SubnetProvisionInputSettingsDigitalOcean {
     /**
      * The cloud provider region where the subnet will be created
-     * @type {string}
-     * @memberof SubnetProvisionInputSettingsDigitalOcean
      */
-    region: string;
+    'region': string;
     /**
      * Human readable version of the subnet region
-     * @type {string}
-     * @memberof SubnetProvisionInputSettingsDigitalOcean
      */
-    region_human_readable?: string;
+    'region_human_readable'?: string;
     /**
      * The IP CIDR range of the subnet
-     * @type {string}
-     * @memberof SubnetProvisionInputSettingsDigitalOcean
      */
-    cidr_block: string;
+    'cidr_block': string;
 }
 

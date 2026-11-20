@@ -11,76 +11,41 @@
  * Do not edit the class manually.
  */
 
-
 import { OrganizationRelation } from './organization-relation';
 import { RoleRelation } from './role-relation';
 import { UserRelation } from './user-relation';
 
-/**
- * 
- * @export
- * @interface Role
- */
 export interface Role {
     /**
      * The unique ID of the given role
-     * @type {number}
-     * @memberof Role
      */
-    id: number;
+    'id': number;
     /**
      * The name of the given role
-     * @type {string}
-     * @memberof Role
      */
-    name: string;
+    'name': string;
     /**
      * Description of this role
-     * @type {string}
-     * @memberof Role
      */
-    description: string;
+    'description': string;
     /**
      * Defines if the role is predefined or a custom role for specific organization
-     * @type {boolean}
-     * @memberof Role
      */
-    is_predefined: boolean;
+    'is_predefined': boolean;
     /**
      * The list of permissions granted for this role
-     * @type {Array<string>}
-     * @memberof Role
      */
-    permissions: Array<string>;
-    /**
-     * 
-     * @type {RoleRelation}
-     * @memberof Role
-     */
-    parent: RoleRelation | null;
-    /**
-     * 
-     * @type {OrganizationRelation}
-     * @memberof Role
-     */
-    organization?: OrganizationRelation | null;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof Role
-     */
-    created_by_user?: UserRelation | null;
+    'permissions': Array<string>;
+    'parent': RoleRelation | null;
+    'organization'?: OrganizationRelation | null;
+    'created_by_user'?: UserRelation | null;
     /**
      * The date and time when the record was created
-     * @type {string}
-     * @memberof Role
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
-     * @type {string}
-     * @memberof Role
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

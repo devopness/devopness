@@ -11,41 +11,21 @@
  * Do not edit the class manually.
  */
 
-
 import { LanguageRuntime } from './language-runtime';
 import { ScriptRunner } from './script-runner';
 import { Template } from './template';
 import { VariableTargets } from './variable-targets';
 
-/**
- * 
- * @export
- * @interface ApplicationOptions
- */
 export interface ApplicationOptions {
     /**
      * The list of VariableTarget
-     * @type {Array<VariableTargets>}
-     * @memberof ApplicationOptions
      */
-    variable_targets: Array<VariableTargets>;
-    /**
-     * 
-     * @type {Array<LanguageRuntime>}
-     * @memberof ApplicationOptions
-     */
-    language_runtimes: Array<LanguageRuntime>;
-    /**
-     * 
-     * @type {Array<ScriptRunner>}
-     * @memberof ApplicationOptions
-     */
-    script_runners: Array<ScriptRunner>;
+    'variable_targets': Array<VariableTargets>;
+    'language_runtimes': Array<LanguageRuntime>;
+    'script_runners': Array<ScriptRunner>;
     /**
      * The list of templates users can choose from.
-     * @type {Array<Template>}
-     * @memberof ApplicationOptions
      */
-    templates: Array<Template>;
+    'templates': Array<Template>;
 }
 

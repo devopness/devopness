@@ -12,30 +12,12 @@
  */
 
 
-
 /**
  * A subscription plan
- * @export
- * @interface SubscriptionPlan
  */
 export interface SubscriptionPlan {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionPlan
-     */
-    provider_plan_id?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionPlan
-     */
-    human_readable?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubscriptionPlan
-     */
-    allow_subscriptions?: boolean;
+    'provider_plan_id'?: string;
+    'human_readable'?: string;
+    'allow_subscriptions'?: boolean;
 }
 

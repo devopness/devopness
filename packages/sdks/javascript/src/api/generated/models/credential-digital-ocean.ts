@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface CredentialDigitalOcean
- */
 export interface CredentialDigitalOcean {
     /**
      * The API token used to authenticate to DigitalOcean
-     * @type {string}
-     * @memberof CredentialDigitalOcean
      */
-    api_token: string;
+    'api_token': string;
 }
 

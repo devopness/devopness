@@ -11,27 +11,13 @@
  * Do not edit the class manually.
  */
 
-
 import { CloudOsVersionCode } from './cloud-os-version-code';
 import { CloudResourceInstanceSpec } from './cloud-resource-instance-spec';
 
-/**
- * 
- * @export
- * @interface CloudServiceSettingsSelfHostedCustom
- */
 export interface CloudServiceSettingsSelfHostedCustom {
-    /**
-     * 
-     * @type {CloudOsVersionCode}
-     * @memberof CloudServiceSettingsSelfHostedCustom
-     */
-    os_version_code: CloudOsVersionCode | null;
-    /**
-     * 
-     * @type {CloudResourceInstanceSpec}
-     * @memberof CloudServiceSettingsSelfHostedCustom
-     */
-    instance_spec?: CloudResourceInstanceSpec;
+    'os_version_code': CloudOsVersionCode | null;
+    'instance_spec'?: CloudResourceInstanceSpec;
 }
+
+
 

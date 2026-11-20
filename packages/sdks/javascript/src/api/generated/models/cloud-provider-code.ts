@@ -12,18 +12,19 @@
  */
 
 
-
 /**
  * The code of the cloud service provider.
- * @export
- * @enum {string}
  */
-export enum CloudProviderCode {
-    Aws = 'aws',
-    Azure = 'azure',
-    Digitalocean = 'digitalocean',
-    Gcp = 'gcp',
-    Hetzner = 'hetzner'
-}
+
+export const CloudProviderCode = {
+    Aws: 'aws',
+    Azure: 'azure',
+    Digitalocean: 'digitalocean',
+    Gcp: 'gcp',
+    Hetzner: 'hetzner',
+} as const;
+
+export type CloudProviderCode = typeof CloudProviderCode[keyof typeof CloudProviderCode];
+
 
 

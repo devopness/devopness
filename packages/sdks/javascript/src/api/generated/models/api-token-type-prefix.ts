@@ -12,15 +12,16 @@
  */
 
 
-
 /**
  * The prefixes of API Tokens.
- * @export
- * @enum {string}
  */
-export enum ApiTokenTypePrefix {
-    Pat = 'devopness_pat',
-    Proj = 'devopness_proj'
-}
+
+export const ApiTokenTypePrefix = {
+    DevopnessPat: 'devopness_pat',
+    DevopnessProj: 'devopness_proj',
+} as const;
+
+export type ApiTokenTypePrefix = typeof ApiTokenTypePrefix[keyof typeof ApiTokenTypePrefix];
+
 
 

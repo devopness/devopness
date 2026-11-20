@@ -12,18 +12,13 @@
  */
 
 
-
 /**
  * Aggregated data of the resource
- * @export
- * @interface ResourceSummaryItemSummary
  */
 export interface ResourceSummaryItemSummary {
     /**
      * Total number of entries of this resource
-     * @type {number}
-     * @memberof ResourceSummaryItemSummary
      */
-    count: number;
+    'count': number;
 }
 

@@ -11,39 +11,21 @@
  * Do not edit the class manually.
  */
 
-
 import { SubnetProvisionInput } from './subnet-provision-input';
 import { SubnetType } from './subnet-type';
 
-/**
- * 
- * @export
- * @interface SubnetNetworkCreate
- */
 export interface SubnetNetworkCreate {
     /**
      * The subnet\'s name. Must be between 1 and 63 characters.
-     * @type {string}
-     * @memberof SubnetNetworkCreate
      */
-    name: string;
-    /**
-     * 
-     * @type {SubnetType}
-     * @memberof SubnetNetworkCreate
-     */
-    type: SubnetType;
-    /**
-     * 
-     * @type {SubnetProvisionInput}
-     * @memberof SubnetNetworkCreate
-     */
-    provision_input: SubnetProvisionInput;
+    'name': string;
+    'type': SubnetType;
+    'provision_input': SubnetProvisionInput;
     /**
      * The ID of the cloud credential.
-     * @type {number}
-     * @memberof SubnetNetworkCreate
      */
-    credential_id: number;
+    'credential_id': number;
 }
+
+
 

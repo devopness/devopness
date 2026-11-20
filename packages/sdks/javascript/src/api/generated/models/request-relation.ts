@@ -12,54 +12,34 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface RequestRelation
- */
 export interface RequestRelation {
     /**
      * The unique UUID of the hook request
-     * @type {string}
-     * @memberof RequestRelation
      */
-    id: string;
+    'id': string;
     /**
      * The UUID of the hook that the request belongs to
-     * @type {string}
-     * @memberof RequestRelation
      */
-    hook_id: string;
+    'hook_id': string;
     /**
      * The ID of the action that the request belongs to
-     * @type {number}
-     * @memberof RequestRelation
      */
-    action_id: number | null;
+    'action_id': number | null;
     /**
      * The UUID of the request that this request is a retry of
-     * @type {string}
-     * @memberof RequestRelation
      */
-    retry_of: string | null;
+    'retry_of': string | null;
     /**
      * The IP address of the source that triggered the hook
-     * @type {string}
-     * @memberof RequestRelation
      */
-    ip_address: string;
+    'ip_address': string;
     /**
      * The date and time when the record was created
-     * @type {string}
-     * @memberof RequestRelation
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
-     * @type {string}
-     * @memberof RequestRelation
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

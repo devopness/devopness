@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface UserResendVerification
- */
 export interface UserResendVerification {
     /**
      * The user email to resend the verification link to. Must be a valid email address.
-     * @type {string}
-     * @memberof UserResendVerification
      */
-    email: string;
+    'email': string;
 }
 

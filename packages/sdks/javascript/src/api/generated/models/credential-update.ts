@@ -11,32 +11,17 @@
  * Do not edit the class manually.
  */
 
-
 import { CredentialInputSettings } from './credential-input-settings';
 
-/**
- * 
- * @export
- * @interface CredentialUpdate
- */
 export interface CredentialUpdate {
     /**
      * The unique ID of the given Credential.
-     * @type {number}
-     * @memberof CredentialUpdate
      */
-    id: number;
+    'id': number;
     /**
      * The name of the credential. Must not be greater than 60 characters.
-     * @type {string}
-     * @memberof CredentialUpdate
      */
-    name: string;
-    /**
-     * 
-     * @type {CredentialInputSettings}
-     * @memberof CredentialUpdate
-     */
-    settings?: CredentialInputSettings;
+    'name': string;
+    'settings'?: CredentialInputSettings;
 }
 

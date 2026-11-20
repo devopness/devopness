@@ -12,19 +12,20 @@
  */
 
 
-
 /**
  * The application deployment event to which it\'s attached
- * @export
- * @enum {string}
  */
-export enum TriggerEvent {
-    ActivateNewRelease = 'activate-new-release',
-    BuildApplication = 'build-application',
-    CheckAppEnvironment = 'check-app-environment',
-    GetNewRelease = 'get-new-release',
-    InstallDependencies = 'install-dependencies',
-    RemoveOldReleases = 'remove-old-releases'
-}
+
+export const TriggerEvent = {
+    ActivateNewRelease: 'activate-new-release',
+    BuildApplication: 'build-application',
+    CheckAppEnvironment: 'check-app-environment',
+    GetNewRelease: 'get-new-release',
+    InstallDependencies: 'install-dependencies',
+    RemoveOldReleases: 'remove-old-releases',
+} as const;
+
+export type TriggerEvent = typeof TriggerEvent[keyof typeof TriggerEvent];
+
 
 

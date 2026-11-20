@@ -11,7 +11,6 @@
  * Do not edit the class manually.
  */
 
-
 import { SubnetProvisionInputSettingsAws } from './subnet-provision-input-settings-aws';
 import { SubnetProvisionInputSettingsAzure } from './subnet-provision-input-settings-azure';
 import { SubnetProvisionInputSettingsDigitalOcean } from './subnet-provision-input-settings-digital-ocean';
@@ -19,7 +18,6 @@ import { SubnetProvisionInputSettingsGcp } from './subnet-provision-input-settin
 
 /**
  * @type SubnetProvisionInputSettings
- * @export
  */
 export type SubnetProvisionInputSettings = SubnetProvisionInputSettingsAws | SubnetProvisionInputSettingsAzure | SubnetProvisionInputSettingsDigitalOcean | SubnetProvisionInputSettingsGcp;
 

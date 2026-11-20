@@ -11,57 +11,34 @@
  * Do not edit the class manually.
  */
 
-
 import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
-/**
- * 
- * @export
- * @interface OrganizationRelation
- */
 export interface OrganizationRelation {
     /**
      * The unique identifier for the organization
-     * @type {number}
-     * @memberof OrganizationRelation
      */
-    id: number;
+    'id': number;
     /**
      * The name of the organization
-     * @type {string}
-     * @memberof OrganizationRelation
      */
-    name: string;
+    'name': string;
     /**
      * The URL Slug of the organization
-     * @type {string}
-     * @memberof OrganizationRelation
      */
-    url_slug: string;
+    'url_slug': string;
     /**
      * Summary of the resource
-     * @type {Array<ResourceSummaryItem>}
-     * @memberof OrganizationRelation
      */
-    resource_summary?: Array<ResourceSummaryItem>;
-    /**
-     * 
-     * @type {UserRelation}
-     * @memberof OrganizationRelation
-     */
-    owner?: UserRelation | null;
+    'resource_summary'?: Array<ResourceSummaryItem>;
+    'owner'?: UserRelation | null;
     /**
      * The date and time when the organization was created
-     * @type {string}
-     * @memberof OrganizationRelation
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the organization was last updated
-     * @type {string}
-     * @memberof OrganizationRelation
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

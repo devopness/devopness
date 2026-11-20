@@ -11,60 +11,25 @@
  * Do not edit the class manually.
  */
 
-
 import { EnvironmentRelation } from './environment-relation';
 import { OrganizationRelation } from './organization-relation';
 import { ProjectRelation } from './project-relation';
 import { RoleRelation } from './role-relation';
 import { TeamRelation } from './team-relation';
 
-/**
- * 
- * @export
- * @interface TeamMembershipRelation
- */
 export interface TeamMembershipRelation {
-    /**
-     * 
-     * @type {TeamRelation}
-     * @memberof TeamMembershipRelation
-     */
-    team: TeamRelation | null;
-    /**
-     * 
-     * @type {RoleRelation}
-     * @memberof TeamMembershipRelation
-     */
-    role: RoleRelation | null;
-    /**
-     * 
-     * @type {OrganizationRelation}
-     * @memberof TeamMembershipRelation
-     */
-    organization: OrganizationRelation | null;
-    /**
-     * 
-     * @type {ProjectRelation}
-     * @memberof TeamMembershipRelation
-     */
-    project: ProjectRelation | null;
-    /**
-     * 
-     * @type {EnvironmentRelation}
-     * @memberof TeamMembershipRelation
-     */
-    environment: EnvironmentRelation | null;
+    'team': TeamRelation | null;
+    'role': RoleRelation | null;
+    'organization': OrganizationRelation | null;
+    'project': ProjectRelation | null;
+    'environment': EnvironmentRelation | null;
     /**
      * The date and time when the record was created
-     * @type {string}
-     * @memberof TeamMembershipRelation
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
-     * @type {string}
-     * @memberof TeamMembershipRelation
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

@@ -12,24 +12,14 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface CredentialAws
- */
 export interface CredentialAws {
     /**
      * The key used to authenticate on AWS cloud provider
-     * @type {string}
-     * @memberof CredentialAws
      */
-    access_key_id: string;
+    'access_key_id': string;
     /**
      * The secret used to authenticate on AWS cloud provider
-     * @type {string}
-     * @memberof CredentialAws
      */
-    secret_access_key: string;
+    'secret_access_key': string;
 }
 

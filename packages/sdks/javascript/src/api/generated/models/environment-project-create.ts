@@ -11,32 +11,19 @@
  * Do not edit the class manually.
  */
 
-
 import { EnvironmentType } from './environment-type';
 
-/**
- * 
- * @export
- * @interface EnvironmentProjectCreate
- */
 export interface EnvironmentProjectCreate {
-    /**
-     * 
-     * @type {EnvironmentType}
-     * @memberof EnvironmentProjectCreate
-     */
-    type: EnvironmentType;
+    'type': EnvironmentType;
     /**
      * The environment\'s name. Must not be greater than 60 characters.
-     * @type {string}
-     * @memberof EnvironmentProjectCreate
      */
-    name: string;
+    'name': string;
     /**
      * The environment\'s description. Must not be greater than 255 characters.
-     * @type {string}
-     * @memberof EnvironmentProjectCreate
      */
-    description?: string;
+    'description'?: string;
 }
+
+
 

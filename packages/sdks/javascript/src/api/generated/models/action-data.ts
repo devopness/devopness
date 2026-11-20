@@ -11,7 +11,6 @@
  * Do not edit the class manually.
  */
 
-
 import { ActionDeploymentCommit } from './action-deployment-commit';
 import { ActionDeploymentContent } from './action-deployment-content';
 import { ActionDeploymentData } from './action-deployment-data';
@@ -19,7 +18,6 @@ import { ActionDeploymentData } from './action-deployment-data';
 /**
  * @type ActionData
  * Data related to action resource.
- * @export
  */
 export type ActionData = ActionDeploymentData;
 

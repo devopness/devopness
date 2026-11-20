@@ -12,24 +12,17 @@
  */
 
 
-
 /**
  * Total number of environments that user has access to, as owner or team member.
- * @export
- * @interface UserEnvironmentStats
  */
 export interface UserEnvironmentStats {
     /**
      * Total number of environments that user has access to, as owner.
-     * @type {number}
-     * @memberof UserEnvironmentStats
      */
-    owner_of?: number;
+    'owner_of'?: number;
     /**
      * Total number of environments that user has access to, as team member.
-     * @type {number}
-     * @memberof UserEnvironmentStats
      */
-    member_of?: number;
+    'member_of'?: number;
 }
 

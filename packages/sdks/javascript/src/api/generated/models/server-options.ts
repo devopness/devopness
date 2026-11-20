@@ -11,20 +11,12 @@
  * Do not edit the class manually.
  */
 
-
 import { VariableTargets } from './variable-targets';
 
-/**
- * 
- * @export
- * @interface ServerOptions
- */
 export interface ServerOptions {
     /**
      * The list of VariableTarget
-     * @type {Array<VariableTargets>}
-     * @memberof ServerOptions
      */
-    variable_targets: Array<VariableTargets>;
+    'variable_targets': Array<VariableTargets>;
 }
 

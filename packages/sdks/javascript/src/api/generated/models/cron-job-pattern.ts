@@ -12,21 +12,22 @@
  */
 
 
-
 /**
  * A translation of the cron expression to a readable string indicating its execution frequency.
- * @export
- * @enum {string}
  */
-export enum CronJobPattern {
-    EveryMinute = 'Every minute',
-    Hourly = 'Hourly',
-    Daily = 'Daily',
-    TwiceADay = 'Twice a day',
-    Weekly = 'Weekly',
-    Monthly = 'Monthly',
-    Yearly = 'Yearly',
-    Custom = 'Custom'
-}
+
+export const CronJobPattern = {
+    EveryMinute: 'Every minute',
+    Hourly: 'Hourly',
+    Daily: 'Daily',
+    TwiceADay: 'Twice a day',
+    Weekly: 'Weekly',
+    Monthly: 'Monthly',
+    Yearly: 'Yearly',
+    Custom: 'Custom',
+} as const;
+
+export type CronJobPattern = typeof CronJobPattern[keyof typeof CronJobPattern];
+
 
 

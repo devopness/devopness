@@ -11,69 +11,41 @@
  * Do not edit the class manually.
  */
 
-
 import { Language } from './language';
 import { SocialAccountRelation } from './social-account-relation';
 
-/**
- * 
- * @export
- * @interface UserMe
- */
 export interface UserMe {
     /**
      * The unique ID of the given user
-     * @type {number}
-     * @memberof UserMe
      */
-    id: number;
+    'id': number;
     /**
      * User\'s full name
-     * @type {string}
-     * @memberof UserMe
      */
-    name: string;
+    'name': string;
     /**
      * The e-mail that will uniquely identify the user on the system and become its login credential
-     * @type {string}
-     * @memberof UserMe
      */
-    email: string;
+    'email': string;
     /**
      * The URL Slug of the user
-     * @type {string}
-     * @memberof UserMe
      */
-    url_slug?: string;
-    /**
-     * 
-     * @type {Language}
-     * @memberof UserMe
-     */
-    language: Language | null;
+    'url_slug'?: string;
+    'language': Language | null;
     /**
      * Tells if the user is active or not
-     * @type {boolean}
-     * @memberof UserMe
      */
-    active: boolean;
-    /**
-     * 
-     * @type {Array<SocialAccountRelation>}
-     * @memberof UserMe
-     */
-    social_accounts: Array<SocialAccountRelation>;
+    'active': boolean;
+    'social_accounts': Array<SocialAccountRelation>;
     /**
      * The date and time when the record was created
-     * @type {string}
-     * @memberof UserMe
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
-     * @type {string}
-     * @memberof UserMe
      */
-    updated_at: string;
+    'updated_at': string;
 }
+
+
 

@@ -11,32 +11,22 @@
  * Do not edit the class manually.
  */
 
-
 import { VariableTarget } from './variable-target';
 
 /**
  * The object of target defining how the variable key/value pair will be deployed
- * @export
- * @interface VariableTargets
  */
 export interface VariableTargets {
-    /**
-     * 
-     * @type {VariableTarget}
-     * @memberof VariableTargets
-     */
-    name?: VariableTarget;
+    'name'?: VariableTarget;
     /**
      * Human readable version of the variable target name
-     * @type {string}
-     * @memberof VariableTargets
      */
-    name_human_readable?: string;
+    'name_human_readable'?: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-     * @type {string}
-     * @memberof VariableTargets
      */
-    hint?: string;
+    'hint'?: string;
 }
+
+
 

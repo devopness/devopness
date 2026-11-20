@@ -12,15 +12,16 @@
  */
 
 
-
 /**
  * The expected initial state of the service after installed
- * @export
- * @enum {string}
  */
-export enum ServiceInitialState {
-    Started = 'started',
-    Stopped = 'stopped'
-}
+
+export const ServiceInitialState = {
+    Started: 'started',
+    Stopped: 'stopped',
+} as const;
+
+export type ServiceInitialState = typeof ServiceInitialState[keyof typeof ServiceInitialState];
+
 
 

@@ -11,38 +11,23 @@
  * Do not edit the class manually.
  */
 
-
 import { EnvironmentType } from './environment-type';
 
-/**
- * 
- * @export
- * @interface EnvironmentUpdate
- */
 export interface EnvironmentUpdate {
     /**
      * The unique ID of the given Environment.
-     * @type {number}
-     * @memberof EnvironmentUpdate
      */
-    id: number;
-    /**
-     * 
-     * @type {EnvironmentType}
-     * @memberof EnvironmentUpdate
-     */
-    type: EnvironmentType;
+    'id': number;
+    'type': EnvironmentType;
     /**
      * The environment\'s name. Must not be greater than 60 characters.
-     * @type {string}
-     * @memberof EnvironmentUpdate
      */
-    name: string;
+    'name': string;
     /**
      * The environment\'s description. Must not be greater than 255 characters.
-     * @type {string}
-     * @memberof EnvironmentUpdate
      */
-    description?: string;
+    'description'?: string;
 }
+
+
 

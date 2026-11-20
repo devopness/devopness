@@ -11,32 +11,19 @@
  * Do not edit the class manually.
  */
 
-
 import { CronJobPattern } from './cron-job-pattern';
 
-/**
- * 
- * @export
- * @interface StaticCronJobFrequency
- */
 export interface StaticCronJobFrequency {
     /**
      * Frequency pattern to trigger the cronjob
-     * @type {string}
-     * @memberof StaticCronJobFrequency
      */
-    value: string;
-    /**
-     * 
-     * @type {CronJobPattern}
-     * @memberof StaticCronJobFrequency
-     */
-    human_readable: CronJobPattern;
+    'value': string;
+    'human_readable': CronJobPattern;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
-     * @type {string}
-     * @memberof StaticCronJobFrequency
      */
-    hint: string;
+    'hint': string;
 }
+
+
 

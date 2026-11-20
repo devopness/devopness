@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface ServiceStart
- */
 export interface ServiceStart {
     /**
      * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof ServiceStart
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
 }
 

@@ -11,20 +11,9 @@
  * Do not edit the class manually.
  */
 
-
 import { StaticCronJobFrequency } from './static-cron-job-frequency';
 
-/**
- * 
- * @export
- * @interface CronJobOptions
- */
 export interface CronJobOptions {
-    /**
-     * 
-     * @type {Array<StaticCronJobFrequency>}
-     * @memberof CronJobOptions
-     */
-    frequencies: Array<StaticCronJobFrequency>;
+    'frequencies': Array<StaticCronJobFrequency>;
 }
 

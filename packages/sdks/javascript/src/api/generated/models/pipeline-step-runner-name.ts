@@ -12,18 +12,19 @@
  */
 
 
-
 /**
  * Name of the script runner that will run the script
- * @export
- * @enum {string}
  */
-export enum PipelineStepRunnerName {
-    Composer = 'composer',
-    Custom = 'custom',
-    Npm = 'npm',
-    Pip = 'pip',
-    Yarn = 'yarn'
-}
+
+export const PipelineStepRunnerName = {
+    Composer: 'composer',
+    Custom: 'custom',
+    Npm: 'npm',
+    Pip: 'pip',
+    Yarn: 'yarn',
+} as const;
+
+export type PipelineStepRunnerName = typeof PipelineStepRunnerName[keyof typeof PipelineStepRunnerName];
+
 
 

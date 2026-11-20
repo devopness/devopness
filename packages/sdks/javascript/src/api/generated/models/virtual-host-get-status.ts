@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface VirtualHostGetStatus
- */
 export interface VirtualHostGetStatus {
     /**
      * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof VirtualHostGetStatus
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
 }
 

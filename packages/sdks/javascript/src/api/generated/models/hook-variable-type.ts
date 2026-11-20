@@ -12,17 +12,18 @@
  */
 
 
-
 /**
  * The variable type
- * @export
- * @enum {string}
  */
-export enum HookVariableType {
-    String = 'string',
-    Integer = 'integer',
-    Array = 'array',
-    Boolean = 'boolean'
-}
+
+export const HookVariableType = {
+    String: 'string',
+    Integer: 'integer',
+    Array: 'array',
+    Boolean: 'boolean',
+} as const;
+
+export type HookVariableType = typeof HookVariableType[keyof typeof HookVariableType];
+
 
 

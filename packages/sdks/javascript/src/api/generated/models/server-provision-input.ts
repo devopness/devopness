@@ -11,38 +11,20 @@
  * Do not edit the class manually.
  */
 
-
-import { CloudServiceSettingsAwsEc2 } from './cloud-service-settings-aws-ec2';
-import { CloudServiceSettingsAzureRm } from './cloud-service-settings-azure-rm';
-import { CloudServiceSettingsDigitalOceanDroplet } from './cloud-service-settings-digital-ocean-droplet';
-import { CloudServiceSettingsGcpGce } from './cloud-service-settings-gcp-gce';
-import { CloudServiceSettingsHetznerHcloud } from './cloud-service-settings-hetzner-hcloud';
-import { CloudServiceSettingsSelfHostedCustom } from './cloud-service-settings-self-hosted-custom';
 import { ServerCloudServiceCode } from './server-cloud-service-code';
+import { ServerProvisionInputSettings } from './server-provision-input-settings';
 
 /**
  * Configuration used to launch cloud instance
- * @export
- * @interface ServerProvisionInput
  */
 export interface ServerProvisionInput {
     /**
      * The ID of the subnet where to create the server. If not defined, create the server on the default subnet of the cloud provider
-     * @type {number}
-     * @memberof ServerProvisionInput
      */
-    subnet_id?: number;
-    /**
-     * 
-     * @type {ServerCloudServiceCode}
-     * @memberof ServerProvisionInput
-     */
-    cloud_service_code: ServerCloudServiceCode;
-    /**
-     * Configuration used to provision the cloud resource.
-     * @type {CloudServiceSettingsAwsEc2 | CloudServiceSettingsAzureRm | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsHetznerHcloud | CloudServiceSettingsSelfHostedCustom}
-     * @memberof ServerProvisionInput
-     */
-    settings?: CloudServiceSettingsAwsEc2 | CloudServiceSettingsAzureRm | CloudServiceSettingsDigitalOceanDroplet | CloudServiceSettingsGcpGce | CloudServiceSettingsHetznerHcloud | CloudServiceSettingsSelfHostedCustom;
+    'subnet_id'?: number;
+    'cloud_service_code': ServerCloudServiceCode;
+    'settings'?: ServerProvisionInputSettings;
 }
+
+
 

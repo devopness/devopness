@@ -12,16 +12,17 @@
  */
 
 
-
 /**
  * The name of a cloud resource type
- * @export
- * @enum {string}
  */
-export enum CloudResourceType {
-    Network = 'network',
-    Server = 'server',
-    Subnet = 'subnet'
-}
+
+export const CloudResourceType = {
+    Network: 'network',
+    Server: 'server',
+    Subnet: 'subnet',
+} as const;
+
+export type CloudResourceType = typeof CloudResourceType[keyof typeof CloudResourceType];
+
 
 

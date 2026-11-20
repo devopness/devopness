@@ -12,18 +12,13 @@
  */
 
 
-
 /**
  * List of default values for this protocol
- * @export
- * @interface StaticNetworkRuleProtocolDefaults
  */
 export interface StaticNetworkRuleProtocolDefaults {
     /**
      * The default port for the protocol
-     * @type {number}
-     * @memberof StaticNetworkRuleProtocolDefaults
      */
-    port: number | null;
+    'port': number | null;
 }
 

@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface SslCertificateDeploy
- */
 export interface SslCertificateDeploy {
     /**
      * List of valid resource IDs
-     * @type {Array<number>}
-     * @memberof SslCertificateDeploy
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
 }
 

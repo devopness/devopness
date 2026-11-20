@@ -11,20 +11,15 @@
  * Do not edit the class manually.
  */
 
-
 import { SourceProviderAuthMethodSettings } from './source-provider-auth-method-settings';
 
 /**
  * Settings for source providers
- * @export
- * @interface SourceProviderSettings
  */
 export interface SourceProviderSettings {
     /**
      * Available authentication methods for this source provider
-     * @type {Array<SourceProviderAuthMethodSettings>}
-     * @memberof SourceProviderSettings
      */
-    auth_methods: Array<SourceProviderAuthMethodSettings>;
+    'auth_methods': Array<SourceProviderAuthMethodSettings>;
 }
 

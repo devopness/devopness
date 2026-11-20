@@ -11,20 +11,15 @@
  * Do not edit the class manually.
  */
 
-
-import { ApiErrorErrorsFieldName } from './api-error-errors-field-name';
+import { ApiErrorErrorsFieldNameInner } from './api-error-errors-field-name-inner';
 
 /**
  * Optional error object containing details of the server error
- * @export
- * @interface ApiErrorErrors
  */
 export interface ApiErrorErrors {
     /**
      * Error message specific to each field included in the errors object
-     * @type {Array<ApiErrorErrorsFieldName>}
-     * @memberof ApiErrorErrors
      */
-    field_name?: Array<ApiErrorErrorsFieldName>;
+    'field_name'?: Array<ApiErrorErrorsFieldNameInner>;
 }
 

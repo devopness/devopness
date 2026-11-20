@@ -12,18 +12,10 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface LanguageRuntimeEngineVersions
- */
-export interface LanguageRuntimeEngineVersions {
+export interface OsUsersInner {
     /**
-     * 
-     * @type {string}
-     * @memberof LanguageRuntimeEngineVersions
+     * Operating system username
      */
-    version?: string;
+    'name': string;
 }
 

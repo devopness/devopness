@@ -12,48 +12,30 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface SearchResourceRelation
- */
 export interface SearchResourceRelation {
     /**
      * The matched resource type
-     * @type {string}
-     * @memberof SearchResourceRelation
      */
-    resource_type: string;
+    'resource_type': string;
     /**
      * The matched resource ID
-     * @type {number}
-     * @memberof SearchResourceRelation
      */
-    resource_id: number;
+    'resource_id': number;
     /**
      * The display name shown to the user
-     * @type {string}
-     * @memberof SearchResourceRelation
      */
-    resource_name: string;
+    'resource_name': string;
     /**
      * The organization that owns or contains the resource
-     * @type {number}
-     * @memberof SearchResourceRelation
      */
-    organization_id?: number;
+    'organization_id'?: number;
     /**
      * The project that contains the resource when applicable
-     * @type {number}
-     * @memberof SearchResourceRelation
      */
-    project_id?: number;
+    'project_id'?: number;
     /**
      * The environment that contains the resource when applicable
-     * @type {number}
-     * @memberof SearchResourceRelation
      */
-    environment_id?: number;
+    'environment_id'?: number;
 }
 

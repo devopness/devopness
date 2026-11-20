@@ -11,32 +11,20 @@
  * Do not edit the class manually.
  */
 
-
 import { Commit } from './commit';
 
 /**
  * A repository branch
- * @export
- * @interface RepositoryBranch
  */
 export interface RepositoryBranch {
     /**
      * The name of the branch
-     * @type {string}
-     * @memberof RepositoryBranch
      */
-    name: string;
+    'name': string;
     /**
      * The full name of the repository (`owner/repository`)
-     * @type {string}
-     * @memberof RepositoryBranch
      */
-    repo_full_name: string;
-    /**
-     * 
-     * @type {Commit}
-     * @memberof RepositoryBranch
-     */
-    commit: Commit;
+    'repo_full_name': string;
+    'commit': Commit;
 }
 

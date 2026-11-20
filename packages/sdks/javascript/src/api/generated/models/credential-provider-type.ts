@@ -12,34 +12,25 @@
  */
 
 
-
 /**
  * The type of the provider on which a credential was issued and belongs to
- * @export
- * @interface CredentialProviderType
  */
 export interface CredentialProviderType {
     /**
      * Type of provider.
-     * @type {string}
-     * @memberof CredentialProviderType
      */
-    type: CredentialProviderTypeTypeEnum;
+    'type': CredentialProviderTypeTypeEnum;
     /**
      * Human readable version of provider type
-     * @type {string}
-     * @memberof CredentialProviderType
      */
-    type_human_readable: string;
+    'type_human_readable': string;
 }
 
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CredentialProviderTypeTypeEnum {
-    CloudProvider = 'cloud_provider',
-    SourceProvider = 'source_provider'
-}
+export const CredentialProviderTypeTypeEnum = {
+    CloudProvider: 'cloud_provider',
+    SourceProvider: 'source_provider',
+} as const;
+
+export type CredentialProviderTypeTypeEnum = typeof CredentialProviderTypeTypeEnum[keyof typeof CredentialProviderTypeTypeEnum];
 
 

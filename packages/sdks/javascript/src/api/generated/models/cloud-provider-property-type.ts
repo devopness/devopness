@@ -13,16 +13,14 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum CloudProviderPropertyType {
-    String = 'string',
-    Text = 'text',
-    Integer = 'integer',
-    Boolean = 'boolean'
-}
+export const CloudProviderPropertyType = {
+    String: 'string',
+    Text: 'text',
+    Integer: 'integer',
+    Boolean: 'boolean',
+} as const;
+
+export type CloudProviderPropertyType = typeof CloudProviderPropertyType[keyof typeof CloudProviderPropertyType];
+
 
 

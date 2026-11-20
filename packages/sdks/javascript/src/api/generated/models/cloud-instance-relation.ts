@@ -12,72 +12,46 @@
  */
 
 
-
-/**
- * 
- * @export
- * @interface CloudInstanceRelation
- */
 export interface CloudInstanceRelation {
     /**
      * The name of the cloud instance
-     * @type {string}
-     * @memberof CloudInstanceRelation
      */
-    name: string;
+    'name': string;
     /**
      * The type of the cloud instance
-     * @type {string}
-     * @memberof CloudInstanceRelation
      */
-    type: string;
+    'type': string;
     /**
      * The family to which the instance belongs
-     * @type {string}
-     * @memberof CloudInstanceRelation
      */
-    family: string;
+    'family': string;
     /**
      * The type of CPU used in the cloud server (x86_64 or arm64)
-     * @type {string}
-     * @memberof CloudInstanceRelation
      */
-    architecture: string | null;
+    'architecture': string | null;
     /**
      * The default disk size (in GB) used to instance
-     * @type {number}
-     * @memberof CloudInstanceRelation
      */
-    default_disk_size: number;
+    'default_disk_size': number;
     /**
      * The price per hour of the instance
-     * @type {number}
-     * @memberof CloudInstanceRelation
      */
-    price_hourly: number;
+    'price_hourly': number;
     /**
      * The price per month of the instance
-     * @type {number}
-     * @memberof CloudInstanceRelation
      */
-    price_monthly: number;
+    'price_monthly': number;
     /**
      * The currency of the prices
-     * @type {string}
-     * @memberof CloudInstanceRelation
      */
-    price_currency: string;
+    'price_currency': string;
     /**
      * The number of virtual CPU of the instance
-     * @type {number}
-     * @memberof CloudInstanceRelation
      */
-    vcpus: number;
+    'vcpus': number;
     /**
      * The RAM memory size (in MB) of the instance
-     * @type {number}
-     * @memberof CloudInstanceRelation
      */
-    memory: number;
+    'memory': number;
 }
 

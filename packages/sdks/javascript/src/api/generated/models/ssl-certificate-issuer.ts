@@ -12,15 +12,16 @@
  */
 
 
-
 /**
  * The entity or certification authority (CA) who issued the certificate
- * @export
- * @enum {string}
  */
-export enum SslCertificateIssuer {
-    Custom = 'custom',
-    LetsEncrypt = 'lets-encrypt'
-}
+
+export const SslCertificateIssuer = {
+    Custom: 'custom',
+    LetsEncrypt: 'lets-encrypt',
+} as const;
+
+export type SslCertificateIssuer = typeof SslCertificateIssuer[keyof typeof SslCertificateIssuer];
+
 
 

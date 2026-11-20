@@ -12,19 +12,20 @@
  */
 
 
-
 /**
  * A formatted version of the `provider` field value, aligned with the provider\'s name branding
- * @export
- * @enum {string}
  */
-export enum SocialAccountDisplayableName {
-    Bitbucket = 'Bitbucket',
-    Clerk = 'Clerk',
-    Facebook = 'Facebook',
-    GitHub = 'GitHub',
-    GitLab = 'GitLab',
-    Google = 'Google'
-}
+
+export const SocialAccountDisplayableName = {
+    Bitbucket: 'Bitbucket',
+    Clerk: 'Clerk',
+    Facebook: 'Facebook',
+    GitHub: 'GitHub',
+    GitLab: 'GitLab',
+    Google: 'Google',
+} as const;
+
+export type SocialAccountDisplayableName = typeof SocialAccountDisplayableName[keyof typeof SocialAccountDisplayableName];
+
 
 
