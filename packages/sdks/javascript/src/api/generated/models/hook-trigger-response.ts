@@ -24,12 +24,12 @@ export interface HookTriggerResponse {
      * @type {string}
      * @memberof HookTriggerResponse
      */
-    'message': string;
+    message: string;
     /**
      * Optional error object containing details of the server error
-     * @type {object}
+     * @type {any}
      * @memberof HookTriggerResponse
      */
-    'errors': object | null;
+    errors: any | null;
 }
 

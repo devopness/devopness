@@ -25,30 +25,30 @@ export interface ResourceSummaryItem {
      * @type {string}
      * @memberof ResourceSummaryItem
      */
-    'resource_type': string;
+    resource_type: string;
     /**
      * The plural name of the resource type
      * @type {string}
      * @memberof ResourceSummaryItem
      */
-    'resource_type_plural': string;
+    resource_type_plural: string;
     /**
      * The human readable name of the resource type
      * @type {string}
      * @memberof ResourceSummaryItem
      */
-    'resource_type_human_readable': string;
+    resource_type_human_readable: string;
     /**
      * The human readable plural name of the resource type
      * @type {string}
      * @memberof ResourceSummaryItem
      */
-    'resource_type_human_readable_plural': string;
+    resource_type_human_readable_plural: string;
     /**
      * 
      * @type {ResourceSummaryItemSummary}
      * @memberof ResourceSummaryItem
      */
-    'summary': ResourceSummaryItemSummary;
+    summary: ResourceSummaryItemSummary;
 }
 

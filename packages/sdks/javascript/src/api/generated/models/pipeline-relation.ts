@@ -26,90 +26,90 @@ export interface PipelineRelation {
      * @type {number}
      * @memberof PipelineRelation
      */
-    'id': number;
+    id: number;
     /**
      * The pipeline\'s name
      * @type {string}
      * @memberof PipelineRelation
      */
-    'name': string;
+    name: string;
     /**
      * ID of the environment this pipeline belongs to
      * @type {number}
      * @memberof PipelineRelation
      */
-    'environment_id': number;
+    environment_id: number;
     /**
      * ID of the project this pipeline belongs to
      * @type {number}
      * @memberof PipelineRelation
      */
-    'project_id': number;
+    project_id: number;
     /**
      * ID of the organization this pipeline belongs to
      * @type {number}
      * @memberof PipelineRelation
      */
-    'organization_id': number;
+    organization_id: number;
     /**
      * The pipeline\'s resource type
      * @type {string}
      * @memberof PipelineRelation
      */
-    'resource_type': string;
+    resource_type: string;
     /**
      * Human readable version of the resource type
      * @type {string}
      * @memberof PipelineRelation
      */
-    'resource_type_human_readable': string;
+    resource_type_human_readable: string;
     /**
      * The pipeline\'s resource ID
      * @type {number}
      * @memberof PipelineRelation
      */
-    'resource_id': number;
+    resource_id: number;
     /**
      * The resource operation associated to the pipeline.
      * @type {string}
      * @memberof PipelineRelation
      */
-    'operation': string;
+    operation: string;
     /**
      * Human readable version of the operation
      * @type {string}
      * @memberof PipelineRelation
      */
-    'operation_human_readable': string;
+    operation_human_readable: string;
     /**
      * Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.
      * @type {number}
      * @memberof PipelineRelation
      */
-    'max_parallel_actions': number;
+    max_parallel_actions: number;
     /**
      * 
      * @type {PipelineTriggerWhen}
      * @memberof PipelineRelation
      */
-    'trigger_when': PipelineTriggerWhen | null;
+    trigger_when: PipelineTriggerWhen | null;
     /**
      * 
      * @type {UserRelation}
      * @memberof PipelineRelation
      */
-    'created_by_user': UserRelation | null;
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof PipelineRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof PipelineRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

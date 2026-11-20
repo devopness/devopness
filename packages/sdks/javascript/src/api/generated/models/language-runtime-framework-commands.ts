@@ -24,12 +24,12 @@ export interface LanguageRuntimeFrameworkCommands {
      * @type {Array<string>}
      * @memberof LanguageRuntimeFrameworkCommands
      */
-    'build'?: Array<string>;
+    build?: Array<string>;
     /**
      * Available dependencies installation command options for the stack
      * @type {Array<string>}
      * @memberof LanguageRuntimeFrameworkCommands
      */
-    'dependencies'?: Array<string>;
+    dependencies?: Array<string>;
 }
 

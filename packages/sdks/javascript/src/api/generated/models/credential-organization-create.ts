@@ -27,32 +27,30 @@ export interface CredentialOrganizationCreate {
      * @type {string}
      * @memberof CredentialOrganizationCreate
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {ProviderCode}
      * @memberof CredentialOrganizationCreate
      */
-    'provider_code': ProviderCode;
+    provider_code: ProviderCode;
     /**
      * 
      * @type {ProviderType}
      * @memberof CredentialOrganizationCreate
      */
-    'provider_type': ProviderType;
+    provider_type: ProviderType;
     /**
      * If this credential is active or not.
      * @type {boolean}
      * @memberof CredentialOrganizationCreate
      */
-    'active': boolean;
+    active: boolean;
     /**
      * 
      * @type {CredentialInputSettings}
      * @memberof CredentialOrganizationCreate
      */
-    'settings': CredentialInputSettings;
+    settings: CredentialInputSettings;
 }
-
-
 

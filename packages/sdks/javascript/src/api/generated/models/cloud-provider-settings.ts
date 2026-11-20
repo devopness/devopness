@@ -26,12 +26,12 @@ export interface CloudProviderSettings {
      * @type {Array<ProviderInputSettings>}
      * @memberof CloudProviderSettings
      */
-    'input_settings': Array<ProviderInputSettings>;
+    input_settings: Array<ProviderInputSettings>;
     /**
      * 
      * @type {Array<CloudProviderService>}
      * @memberof CloudProviderSettings
      */
-    'cloud_services': Array<CloudProviderService>;
+    cloud_services: Array<CloudProviderService>;
 }
 

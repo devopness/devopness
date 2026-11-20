@@ -24,12 +24,12 @@ export interface NetworkUpdate {
      * @type {number}
      * @memberof NetworkUpdate
      */
-    'id': number;
+    id: number;
     /**
      * The ID of the cloud credential.
      * @type {number}
      * @memberof NetworkUpdate
      */
-    'credential_id': number;
+    credential_id: number;
 }
 

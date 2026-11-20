@@ -25,12 +25,12 @@ export interface RepositoryTag {
      * @type {string}
      * @memberof RepositoryTag
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {RepositoryTagCommit}
      * @memberof RepositoryTag
      */
-    'commit': RepositoryTagCommit;
+    commit: RepositoryTagCommit;
 }
 

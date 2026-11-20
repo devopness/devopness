@@ -28,98 +28,96 @@ export interface ActionTarget {
      * @type {number}
      * @memberof ActionTarget
      */
-    'id': number;
+    id: number;
     /**
      * The type of the cloud resource on which the action must be performed
      * @type {string}
      * @memberof ActionTarget
      */
-    'resource_type': string;
+    resource_type: string;
     /**
      * Human readable version of the resource type
      * @type {string}
      * @memberof ActionTarget
      */
-    'resource_type_human_readable'?: string;
+    resource_type_human_readable?: string;
     /**
      * The Id of the cloud resource on which the action must be performed
      * @type {number}
      * @memberof ActionTarget
      */
-    'resource_id': number;
+    resource_id: number;
     /**
      * 
      * @type {ActionStatus}
      * @memberof ActionTarget
      */
-    'status': ActionStatus;
+    status: ActionStatus;
     /**
      * Human readable version of the action status
      * @type {string}
      * @memberof ActionTarget
      */
-    'status_human_readable'?: string;
+    status_human_readable?: string;
     /**
      * 
      * @type {ActionStatusReasonCode}
      * @memberof ActionTarget
      */
-    'status_reason_code': ActionStatusReasonCode;
+    status_reason_code: ActionStatusReasonCode;
     /**
      * Human readable version of the status reason code
      * @type {string}
      * @memberof ActionTarget
      */
-    'status_reason_human_readable'?: string;
+    status_reason_human_readable?: string;
     /**
      * The total number of steps to complete the action
      * @type {number}
      * @memberof ActionTarget
      */
-    'total_steps': number | null;
+    total_steps: number | null;
     /**
      * 
      * @type {ActionStep}
      * @memberof ActionTarget
      */
-    'current_step': ActionStep | null;
+    current_step: ActionStep | null;
     /**
      * The list of action steps
      * @type {Array<ActionStep>}
      * @memberof ActionTarget
      */
-    'steps'?: Array<ActionStep>;
+    steps?: Array<ActionStep>;
     /**
      * 
      * @type {ActionTargetData}
      * @memberof ActionTarget
      */
-    'resource_data': ActionTargetData | null;
+    resource_data: ActionTargetData | null;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof ActionTarget
      */
-    'started_at'?: string | null;
+    started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof ActionTarget
      */
-    'completed_at'?: string | null;
+    completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ActionTarget
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ActionTarget
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

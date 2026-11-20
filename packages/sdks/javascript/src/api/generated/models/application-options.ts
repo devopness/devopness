@@ -28,24 +28,24 @@ export interface ApplicationOptions {
      * @type {Array<VariableTargets>}
      * @memberof ApplicationOptions
      */
-    'variable_targets': Array<VariableTargets>;
+    variable_targets: Array<VariableTargets>;
     /**
      * 
      * @type {Array<LanguageRuntime>}
      * @memberof ApplicationOptions
      */
-    'language_runtimes': Array<LanguageRuntime>;
+    language_runtimes: Array<LanguageRuntime>;
     /**
      * 
      * @type {Array<ScriptRunner>}
      * @memberof ApplicationOptions
      */
-    'script_runners': Array<ScriptRunner>;
+    script_runners: Array<ScriptRunner>;
     /**
      * The list of templates users can choose from.
      * @type {Array<Template>}
      * @memberof ApplicationOptions
      */
-    'templates': Array<Template>;
+    templates: Array<Template>;
 }
 

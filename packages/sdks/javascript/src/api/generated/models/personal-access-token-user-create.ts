@@ -24,12 +24,12 @@ export interface PersonalAccessTokenUserCreate {
      * @type {string}
      * @memberof PersonalAccessTokenUserCreate
      */
-    'name': string;
+    name: string;
     /**
      * The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.
      * @type {string}
      * @memberof PersonalAccessTokenUserCreate
      */
-    'expires_at': string;
+    expires_at: string;
 }
 

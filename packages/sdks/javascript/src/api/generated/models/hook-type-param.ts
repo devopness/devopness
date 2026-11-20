@@ -18,13 +18,9 @@
  * @export
  * @enum {string}
  */
-
-export const HookTypeParam = {
-    Incoming: 'incoming',
-    Outgoing: 'outgoing'
-} as const;
-
-export type HookTypeParam = typeof HookTypeParam[keyof typeof HookTypeParam];
-
+export enum HookTypeParam {
+    Incoming = 'incoming',
+    Outgoing = 'outgoing'
+}
 
 

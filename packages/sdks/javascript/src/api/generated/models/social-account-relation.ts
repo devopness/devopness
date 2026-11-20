@@ -26,56 +26,54 @@ export interface SocialAccountRelation {
      * @type {number}
      * @memberof SocialAccountRelation
      */
-    'id': number;
+    id: number;
     /**
      * The current user\'s ID
      * @type {number}
      * @memberof SocialAccountRelation
      */
-    'user_id': number;
+    user_id: number;
     /**
      * 
      * @type {SocialAccountProvider}
      * @memberof SocialAccountRelation
      */
-    'provider': SocialAccountProvider;
+    provider: SocialAccountProvider;
     /**
      * 
      * @type {SocialAccountDisplayableName}
      * @memberof SocialAccountRelation
      */
-    'provider_human_readable': SocialAccountDisplayableName;
+    provider_human_readable: SocialAccountDisplayableName;
     /**
      * The nickname of the user on the Source Authentication provider
      * @type {string}
      * @memberof SocialAccountRelation
      */
-    'provider_user_nickname': string;
+    provider_user_nickname: string;
     /**
      * Tells if the social account provider is a Source Code Provider/Version Control System. e.g. false for Facebook, true for Github
      * @type {boolean}
      * @memberof SocialAccountRelation
      */
-    'is_vcs': boolean;
+    is_vcs: boolean;
     /**
      * The date and time indicating when the authentication token will expire at
      * @type {string}
      * @memberof SocialAccountRelation
      */
-    'token_expires_at': string | null;
+    token_expires_at: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof SocialAccountRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof SocialAccountRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

@@ -18,14 +18,10 @@
  * @export
  * @enum {string}
  */
-
-export const SslCertificateValidationLevel = {
-    Dv: 'DV',
-    Ov: 'OV',
-    Ev: 'EV'
-} as const;
-
-export type SslCertificateValidationLevel = typeof SslCertificateValidationLevel[keyof typeof SslCertificateValidationLevel];
-
+export enum SslCertificateValidationLevel {
+    DV = 'DV',
+    OV = 'OV',
+    EV = 'EV'
+}
 
 

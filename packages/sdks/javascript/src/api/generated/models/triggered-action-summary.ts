@@ -24,36 +24,36 @@ export interface TriggeredActionSummary {
      * @type {number}
      * @memberof TriggeredActionSummary
      */
-    'count'?: number;
+    count?: number;
     /**
      * Total of actions that were triggered by the user with status queued
      * @type {number}
      * @memberof TriggeredActionSummary
      */
-    'queued'?: number;
+    queued?: number;
     /**
      * Total of actions that were triggered by the user with status pending
      * @type {number}
      * @memberof TriggeredActionSummary
      */
-    'pending'?: number;
+    pending?: number;
     /**
      * Total of actions that were triggered by the user with status in_progress
      * @type {number}
      * @memberof TriggeredActionSummary
      */
-    'in_progress'?: number;
+    in_progress?: number;
     /**
      * Total of actions that were triggered by the user with status completed
      * @type {number}
      * @memberof TriggeredActionSummary
      */
-    'completed'?: number;
+    completed?: number;
     /**
      * Total of actions that were triggered by the user with status failed
      * @type {number}
      * @memberof TriggeredActionSummary
      */
-    'failed'?: number;
+    failed?: number;
 }
 

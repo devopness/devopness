@@ -25,18 +25,18 @@ export interface CredentialUpdate {
      * @type {number}
      * @memberof CredentialUpdate
      */
-    'id': number;
+    id: number;
     /**
      * The name of the credential. Must not be greater than 60 characters.
      * @type {string}
      * @memberof CredentialUpdate
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {CredentialInputSettings}
      * @memberof CredentialUpdate
      */
-    'settings'?: CredentialInputSettings;
+    settings?: CredentialInputSettings;
 }
 

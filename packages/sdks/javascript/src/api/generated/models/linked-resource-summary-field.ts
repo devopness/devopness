@@ -24,18 +24,18 @@ export interface LinkedResourceSummaryField {
      * @type {string}
      * @memberof LinkedResourceSummaryField
      */
-    'field_name': string;
+    field_name: string;
     /**
      * Human readable version of the field name
      * @type {string}
      * @memberof LinkedResourceSummaryField
      */
-    'field_name_human_readable': string;
+    field_name_human_readable: string;
     /**
      * The field value
      * @type {string}
      * @memberof LinkedResourceSummaryField
      */
-    'value': string;
+    value: string;
 }
 

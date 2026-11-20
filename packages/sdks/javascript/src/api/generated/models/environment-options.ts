@@ -25,6 +25,6 @@ export interface EnvironmentOptions {
      * @type {Array<StaticEnvironmentType>}
      * @memberof EnvironmentOptions
      */
-    'types': Array<StaticEnvironmentType>;
+    types: Array<StaticEnvironmentType>;
 }
 

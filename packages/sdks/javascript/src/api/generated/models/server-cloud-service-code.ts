@@ -18,17 +18,13 @@
  * @export
  * @enum {string}
  */
-
-export const ServerCloudServiceCode = {
-    AwsEc2: 'aws-ec2',
-    AzureRm: 'azure-rm',
-    DigitaloceanDroplet: 'digitalocean-droplet',
-    GcpGce: 'gcp-gce',
-    HetznerHcloud: 'hetzner-hcloud',
-    SelfHostedCustom: 'self-hosted-custom'
-} as const;
-
-export type ServerCloudServiceCode = typeof ServerCloudServiceCode[keyof typeof ServerCloudServiceCode];
-
+export enum ServerCloudServiceCode {
+    AwsEc2 = 'aws-ec2',
+    AzureRm = 'azure-rm',
+    DigitaloceanDroplet = 'digitalocean-droplet',
+    GcpGce = 'gcp-gce',
+    HetznerHcloud = 'hetzner-hcloud',
+    SelfHostedCustom = 'self-hosted-custom'
+}
 
 

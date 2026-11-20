@@ -25,18 +25,18 @@ export interface UserProfileOptions {
      * @type {StaticBillingInfo}
      * @memberof UserProfileOptions
      */
-    'billing': StaticBillingInfo;
+    billing: StaticBillingInfo;
     /**
      * Supported languages
      * @type {Array<string>}
      * @memberof UserProfileOptions
      */
-    'languages': Array<string>;
+    languages: Array<string>;
     /**
      * Supported time zones
      * @type {Array<string>}
      * @memberof UserProfileOptions
      */
-    'timezones': Array<string>;
+    timezones: Array<string>;
 }
 

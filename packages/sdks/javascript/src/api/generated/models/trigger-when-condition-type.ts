@@ -18,12 +18,8 @@
  * @export
  * @enum {string}
  */
-
-export const TriggerWhenConditionType = {
-    RequestBody: 'request_body'
-} as const;
-
-export type TriggerWhenConditionType = typeof TriggerWhenConditionType[keyof typeof TriggerWhenConditionType];
-
+export enum TriggerWhenConditionType {
+    RequestBody = 'request_body'
+}
 
 

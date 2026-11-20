@@ -24,6 +24,6 @@ export interface SshKeyDeploy {
      * @type {Array<number>}
      * @memberof SshKeyDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

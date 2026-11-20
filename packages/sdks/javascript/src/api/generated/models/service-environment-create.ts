@@ -27,32 +27,30 @@ export interface ServiceEnvironmentCreate {
      * @type {Array<ResourceToBeLinked>}
      * @memberof ServiceEnvironmentCreate
      */
-    'linked_resources'?: Array<ResourceToBeLinked>;
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * Tells if the service should start automatically on operating system boot.
      * @type {boolean}
      * @memberof ServiceEnvironmentCreate
      */
-    'auto_start'?: boolean;
+    auto_start?: boolean;
     /**
      * 
      * @type {ServiceInitialState}
      * @memberof ServiceEnvironmentCreate
      */
-    'initial_state'?: ServiceInitialState;
+    initial_state?: ServiceInitialState;
     /**
      * 
      * @type {ServiceType}
      * @memberof ServiceEnvironmentCreate
      */
-    'type': ServiceType;
+    type: ServiceType;
     /**
      * The service version to be installed. Must be at least 1 character. Must not be greater than 30 characters.
      * @type {string}
      * @memberof ServiceEnvironmentCreate
      */
-    'version': string;
+    version: string;
 }
-
-
 

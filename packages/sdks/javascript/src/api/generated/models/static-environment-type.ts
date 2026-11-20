@@ -24,18 +24,18 @@ export interface StaticEnvironmentType {
      * @type {string}
      * @memberof StaticEnvironmentType
      */
-    'value': string;
+    value: string;
     /**
      * The formatted name to be displayed in user interfaces
      * @type {string}
      * @memberof StaticEnvironmentType
      */
-    'human_readable': string;
+    human_readable: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof StaticEnvironmentType
      */
-    'hint': string;
+    hint: string;
 }
 

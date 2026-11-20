@@ -24,6 +24,6 @@ export interface ServiceStop {
      * @type {Array<number>}
      * @memberof ServiceStop
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

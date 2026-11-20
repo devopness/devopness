@@ -24,18 +24,18 @@ export interface SocialAccountStatus {
      * @type {string}
      * @memberof SocialAccountStatus
      */
-    'provider': string;
+    provider: string;
     /**
      * If the account is currently connected
      * @type {boolean}
      * @memberof SocialAccountStatus
      */
-    'connected': boolean;
+    connected: boolean;
     /**
      * URL of the connection
      * @type {string}
      * @memberof SocialAccountStatus
      */
-    'connect_url': string;
+    connect_url: string;
 }
 

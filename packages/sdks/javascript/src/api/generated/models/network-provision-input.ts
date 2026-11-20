@@ -26,14 +26,12 @@ export interface NetworkProvisionInput {
      * @type {ServerCloudServiceCode}
      * @memberof NetworkProvisionInput
      */
-    'cloud_service_code': ServerCloudServiceCode;
+    cloud_service_code: ServerCloudServiceCode;
     /**
      * 
      * @type {NetworkProvisionInputSettings}
      * @memberof NetworkProvisionInput
      */
-    'settings': NetworkProvisionInputSettings;
+    settings: NetworkProvisionInputSettings;
 }
-
-
 

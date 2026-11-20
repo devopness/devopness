@@ -25,6 +25,6 @@ export interface ServerBlueprintSpec {
      * @type {Array<BlueprintService>}
      * @memberof ServerBlueprintSpec
      */
-    'services'?: Array<BlueprintService>;
+    services?: Array<BlueprintService>;
 }
 

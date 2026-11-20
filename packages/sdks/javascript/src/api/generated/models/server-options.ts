@@ -25,6 +25,6 @@ export interface ServerOptions {
      * @type {Array<VariableTargets>}
      * @memberof ServerOptions
      */
-    'variable_targets': Array<VariableTargets>;
+    variable_targets: Array<VariableTargets>;
 }
 

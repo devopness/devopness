@@ -26,12 +26,12 @@ export interface CredentialOptions {
      * @type {Array<CredentialProviderType>}
      * @memberof CredentialOptions
      */
-    'provider_types': Array<CredentialProviderType>;
+    provider_types: Array<CredentialProviderType>;
     /**
      * The list of supported credential providers
      * @type {Array<CredentialProvider>}
      * @memberof CredentialOptions
      */
-    'supported_providers': Array<CredentialProvider>;
+    supported_providers: Array<CredentialProvider>;
 }
 

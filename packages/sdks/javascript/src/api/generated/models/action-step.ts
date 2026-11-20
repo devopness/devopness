@@ -26,86 +26,84 @@ export interface ActionStep {
      * @type {number}
      * @memberof ActionStep
      */
-    'id': number;
+    id: number;
     /**
      * The unique id of the action linked to this step
      * @type {number}
      * @memberof ActionStep
      */
-    'action_id': number;
+    action_id: number;
     /**
      * The unique id of the action target linked to this step
      * @type {number}
      * @memberof ActionStep
      */
-    'action_target_id': number;
+    action_target_id: number;
     /**
      * Name of the action describing your purpose
      * @type {string}
      * @memberof ActionStep
      */
-    'name': string | null;
+    name: string | null;
     /**
      * A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed.
      * @type {string}
      * @memberof ActionStep
      */
-    'description'?: string | null;
+    description?: string | null;
     /**
      * The execution order of the given step
      * @type {number}
      * @memberof ActionStep
      */
-    'order': number;
+    order: number;
     /**
      * 
      * @type {ActionStatus}
      * @memberof ActionStep
      */
-    'status': ActionStatus;
+    status: ActionStatus;
     /**
      * Human readable version of the action status
      * @type {string}
      * @memberof ActionStep
      */
-    'status_human_readable'?: string;
+    status_human_readable?: string;
     /**
      * 
      * @type {ActionStatusReasonCode}
      * @memberof ActionStep
      */
-    'status_reason_code'?: ActionStatusReasonCode;
+    status_reason_code?: ActionStatusReasonCode;
     /**
      * Human readable version of the status reason code
      * @type {string}
      * @memberof ActionStep
      */
-    'status_reason_human_readable'?: string;
+    status_reason_human_readable?: string;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof ActionStep
      */
-    'started_at'?: string | null;
+    started_at?: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof ActionStep
      */
-    'completed_at'?: string | null;
+    completed_at?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ActionStep
      */
-    'created_at'?: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ActionStep
      */
-    'updated_at'?: string;
+    updated_at?: string;
 }
-
-
 

@@ -24,6 +24,6 @@ export interface ResourceSummaryItemSummary {
      * @type {number}
      * @memberof ResourceSummaryItemSummary
      */
-    'count': number;
+    count: number;
 }
 

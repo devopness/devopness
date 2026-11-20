@@ -18,20 +18,16 @@
  * @export
  * @enum {string}
  */
-
-export const ServiceType = {
-    Docker: 'docker',
-    Mysql: 'mysql',
-    NewrelicInfra: 'newrelic-infra',
-    Nginx: 'nginx',
-    Php: 'php',
-    Postgresql: 'postgresql',
-    Redis: 'redis',
-    Supervisor: 'supervisor',
-    Ufw: 'ufw'
-} as const;
-
-export type ServiceType = typeof ServiceType[keyof typeof ServiceType];
-
+export enum ServiceType {
+    Docker = 'docker',
+    Mysql = 'mysql',
+    NewrelicInfra = 'newrelic-infra',
+    Nginx = 'nginx',
+    Php = 'php',
+    Postgresql = 'postgresql',
+    Redis = 'redis',
+    Supervisor = 'supervisor',
+    Ufw = 'ufw'
+}
 
 

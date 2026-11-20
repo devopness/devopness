@@ -25,54 +25,54 @@ export interface LinkedResourceData {
      * @type {number}
      * @memberof LinkedResourceData
      */
-    'id': number;
+    id: number;
     /**
      * Resource name
      * @type {string}
      * @memberof LinkedResourceData
      */
-    'name': string;
+    name: string;
     /**
      * The summary of linked resource fields
      * @type {Array<LinkedResourceSummaryField>}
      * @memberof LinkedResourceData
      */
-    'summary_fields'?: Array<LinkedResourceSummaryField>;
+    summary_fields?: Array<LinkedResourceSummaryField>;
     /**
      * The ID of the environment this resource belongs to
      * @type {number}
      * @memberof LinkedResourceData
      */
-    'environment_id'?: number | null;
+    environment_id?: number | null;
     /**
      * The name of the environment this resource belongs to
      * @type {string}
      * @memberof LinkedResourceData
      */
-    'environment_name'?: string | null;
+    environment_name?: string | null;
     /**
      * The ID of the project this resource belongs to
      * @type {number}
      * @memberof LinkedResourceData
      */
-    'project_id'?: number | null;
+    project_id?: number | null;
     /**
      * The name of the project this resource belongs to
      * @type {string}
      * @memberof LinkedResourceData
      */
-    'project_name'?: string | null;
+    project_name?: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof LinkedResourceData
      */
-    'created_at'?: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof LinkedResourceData
      */
-    'updated_at'?: string;
+    updated_at?: string;
 }
 

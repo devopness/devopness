@@ -26,20 +26,18 @@ export interface StaticNetworkRuleProtocol {
      * @type {NetworkRuleProtocol}
      * @memberof StaticNetworkRuleProtocol
      */
-    'value': NetworkRuleProtocol;
+    value: NetworkRuleProtocol;
     /**
      * The formatted name to be displayed in user interfaces
      * @type {string}
      * @memberof StaticNetworkRuleProtocol
      */
-    'human_readable': string;
+    human_readable: string;
     /**
      * 
      * @type {StaticNetworkRuleProtocolDefaults}
      * @memberof StaticNetworkRuleProtocol
      */
-    'defaults': StaticNetworkRuleProtocolDefaults;
+    defaults: StaticNetworkRuleProtocolDefaults;
 }
-
-
 

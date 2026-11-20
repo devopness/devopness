@@ -24,6 +24,6 @@ export interface UserResendVerification {
      * @type {string}
      * @memberof UserResendVerification
      */
-    'email': string;
+    email: string;
 }
 

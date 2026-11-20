@@ -24,6 +24,6 @@ export interface VirtualHostGetStatus {
      * @type {Array<number>}
      * @memberof VirtualHostGetStatus
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

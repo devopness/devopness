@@ -27,68 +27,66 @@ export interface PersonalAccessTokenRotateResponse {
      * @type {string}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'id': string;
+    id: string;
     /**
      * Name of the Token
      * @type {string}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {ApiTokenType}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'type': ApiTokenType;
+    type: ApiTokenType;
     /**
      * The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.
      * @type {string}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'token': string | null;
+    token: string | null;
     /**
      * 
      * @type {ApiTokenStatus}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'status': ApiTokenStatus;
+    status: ApiTokenStatus;
     /**
      * 
      * @type {UserRelation}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'user': UserRelation | null;
+    user: UserRelation | null;
     /**
      * Last time the Token was used
      * @type {string}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'last_used_at': string | null;
+    last_used_at: string | null;
     /**
      * Expiration date of the Token
      * @type {string}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'expires_at': string;
+    expires_at: string;
     /**
      * Revocation date of the Token
      * @type {string}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'revoked_at': string | null;
+    revoked_at: string | null;
     /**
      * Last time the Token was updated
      * @type {string}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'updated_at': string;
+    updated_at: string;
     /**
      * Creation date of the Token
      * @type {string}
      * @memberof PersonalAccessTokenRotateResponse
      */
-    'created_at': string;
+    created_at: string;
 }
-
-
 

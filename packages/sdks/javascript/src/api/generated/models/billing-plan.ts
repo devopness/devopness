@@ -24,30 +24,30 @@ export interface BillingPlan {
      * @type {number}
      * @memberof BillingPlan
      */
-    'id'?: number;
+    id?: number;
     /**
      * The provider ID of the billing plan
      * @type {string}
      * @memberof BillingPlan
      */
-    'provider_plan_id'?: string;
+    provider_plan_id?: string;
     /**
      * The price of the billing plan
      * @type {number}
      * @memberof BillingPlan
      */
-    'price'?: number;
+    price?: number;
     /**
      * The credit limit of the billing plan
      * @type {number}
      * @memberof BillingPlan
      */
-    'credit_limit'?: number;
+    credit_limit?: number;
     /**
      * The billing period of the billing plan
      * @type {string}
      * @memberof BillingPlan
      */
-    'billing_period'?: string;
+    billing_period?: string;
 }
 

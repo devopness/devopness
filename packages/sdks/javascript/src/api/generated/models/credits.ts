@@ -24,18 +24,18 @@ export interface Credits {
      * @type {number}
      * @memberof Credits
      */
-    'limit'?: number;
+    limit?: number;
     /**
      * Total credits that were used to perform actions
      * @type {number}
      * @memberof Credits
      */
-    'used'?: number;
+    used?: number;
     /**
      * Total credits available to use to perform actions
      * @type {number}
      * @memberof Credits
      */
-    'remaining'?: number;
+    remaining?: number;
 }
 

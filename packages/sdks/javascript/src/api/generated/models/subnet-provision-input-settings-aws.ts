@@ -24,24 +24,24 @@ export interface SubnetProvisionInputSettingsAws {
      * @type {string}
      * @memberof SubnetProvisionInputSettingsAws
      */
-    'region'?: string;
+    region?: string;
     /**
      * Human readable version of the subnet region
      * @type {string}
      * @memberof SubnetProvisionInputSettingsAws
      */
-    'region_human_readable'?: string;
+    region_human_readable?: string;
     /**
      * The cloud provider availability zone where the subnet will be created
      * @type {string}
      * @memberof SubnetProvisionInputSettingsAws
      */
-    'zone': string;
+    zone: string;
     /**
      * The IP CIDR range of the subnet
      * @type {string}
      * @memberof SubnetProvisionInputSettingsAws
      */
-    'cidr_block': string;
+    cidr_block: string;
 }
 

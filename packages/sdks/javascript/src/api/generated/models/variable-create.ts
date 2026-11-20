@@ -26,38 +26,36 @@ export interface VariableCreate {
      * @type {string}
      * @memberof VariableCreate
      */
-    'key': string;
+    key: string;
     /**
      * The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content.                 When variable is of type `symlink`, this is the destination path, for example `${APP_SHARED_DIR}/node_modules`. Must not be greater than 21504 characters.
      * @type {string}
      * @memberof VariableCreate
      */
-    'value': string;
+    value: string;
     /**
      * A text describing the variable, provided by the end user. Must not be greater than 255 characters.
      * @type {string}
      * @memberof VariableCreate
      */
-    'description'?: string;
+    description?: string;
     /**
      * 
      * @type {VariableTarget}
      * @memberof VariableCreate
      */
-    'target': VariableTarget;
+    target: VariableTarget;
     /**
      * 
      * @type {VariableType}
      * @memberof VariableCreate
      */
-    'type': VariableType;
+    type: VariableType;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs.
      * @type {boolean}
      * @memberof VariableCreate
      */
-    'hidden': boolean;
+    hidden: boolean;
 }
-
-
 

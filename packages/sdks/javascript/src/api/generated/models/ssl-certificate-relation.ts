@@ -28,68 +28,66 @@ export interface SslCertificateRelation {
      * @type {number}
      * @memberof SslCertificateRelation
      */
-    'id': number;
+    id: number;
     /**
      * The name given to SSL certificate
      * @type {string}
      * @memberof SslCertificateRelation
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {SslCertificateType}
      * @memberof SslCertificateRelation
      */
-    'type': SslCertificateType;
+    type: SslCertificateType;
     /**
      * 
      * @type {SslCertificateIssuer}
      * @memberof SslCertificateRelation
      */
-    'issuer': SslCertificateIssuer;
+    issuer: SslCertificateIssuer;
     /**
      * 
      * @type {SslCertificateValidationLevel}
      * @memberof SslCertificateRelation
      */
-    'validation_level': SslCertificateValidationLevel;
+    validation_level: SslCertificateValidationLevel;
     /**
      * Tells if the certificate is active for all linked servers and applications
      * @type {boolean}
      * @memberof SslCertificateRelation
      */
-    'active': boolean;
+    active: boolean;
     /**
      * 
      * @type {ActionRelationShallow}
      * @memberof SslCertificateRelation
      */
-    'last_action'?: ActionRelationShallow | null;
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when this certificate will no longer be valid, down to minute precision
      * @type {string}
      * @memberof SslCertificateRelation
      */
-    'expires_at': string | null;
+    expires_at: string | null;
     /**
      * The date and time when this certificate was renewed for the last time
      * @type {string}
      * @memberof SslCertificateRelation
      */
-    'last_renewed_at': string | null;
+    last_renewed_at: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof SslCertificateRelation
      */
-    'created_at'?: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof SslCertificateRelation
      */
-    'updated_at'?: string;
+    updated_at?: string;
 }
-
-
 

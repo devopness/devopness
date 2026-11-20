@@ -24,24 +24,24 @@ export interface CredentialAzure {
      * @type {string}
      * @memberof CredentialAzure
      */
-    'tenant_id': string;
+    tenant_id: string;
     /**
      * ID that identifies your billing account where Azure resources are stored
      * @type {string}
      * @memberof CredentialAzure
      */
-    'subscription_id': string;
+    subscription_id: string;
     /**
      * ID that identifies the application when connecting to Azure
      * @type {string}
      * @memberof CredentialAzure
      */
-    'client_id': string;
+    client_id: string;
     /**
      * Secret password used by the application to authenticate to Azure
      * @type {string}
      * @memberof CredentialAzure
      */
-    'client_secret': string;
+    client_secret: string;
 }
 

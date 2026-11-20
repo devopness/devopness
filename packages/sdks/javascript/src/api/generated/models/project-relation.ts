@@ -13,7 +13,6 @@
 
 
 import { OrganizationRelation } from './organization-relation';
-import { OsUsersInner } from './os-users-inner';
 import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
@@ -28,66 +27,66 @@ export interface ProjectRelation {
      * @type {number}
      * @memberof ProjectRelation
      */
-    'id': number;
+    id: number;
     /**
      * The id of the user that own the project
      * @type {number}
      * @memberof ProjectRelation
      */
-    'user_id': number;
+    user_id: number;
     /**
      * The project\'s name
      * @type {string}
      * @memberof ProjectRelation
      */
-    'name': string;
+    name: string;
     /**
      * A URL path to the project\'s logo image
      * @type {string}
      * @memberof ProjectRelation
      */
-    'logo_url': string | null;
+    logo_url: string | null;
     /**
      * Summary of the resource
      * @type {Array<ResourceSummaryItem>}
      * @memberof ProjectRelation
      */
-    'resource_summary'?: Array<ResourceSummaryItem>;
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * The list of the operating system users found in all the servers linked to a project
-     * @type {Array<OsUsersInner>}
+     * @type {Array<any>}
      * @memberof ProjectRelation
      */
-    'os_users': Array<OsUsersInner>;
+    os_users: Array<any>;
     /**
      * 
      * @type {OrganizationRelation}
      * @memberof ProjectRelation
      */
-    'organization': OrganizationRelation | null;
+    organization: OrganizationRelation | null;
     /**
      * 
      * @type {UserRelation}
      * @memberof ProjectRelation
      */
-    'created_by_user': UserRelation | null;
+    created_by_user: UserRelation | null;
     /**
      * Number of credits used in the current monthly billing cycle by actions of resources in the project.
      * @type {number}
      * @memberof ProjectRelation
      */
-    'used_credits'?: number;
+    used_credits?: number;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ProjectRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ProjectRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

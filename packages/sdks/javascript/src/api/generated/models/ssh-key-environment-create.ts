@@ -25,18 +25,18 @@ export interface SshKeyEnvironmentCreate {
      * @type {Array<ResourceToBeLinked>}
      * @memberof SshKeyEnvironmentCreate
      */
-    'linked_resources'?: Array<ResourceToBeLinked>;
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The ssh key\'s name. Must not be greater than 60 characters.
      * @type {string}
      * @memberof SshKeyEnvironmentCreate
      */
-    'name': string;
+    name: string;
     /**
      * The public key of the ssh key.
      * @type {string}
      * @memberof SshKeyEnvironmentCreate
      */
-    'public_key': string;
+    public_key: string;
 }
 

@@ -24,6 +24,6 @@ export interface ServiceGetStatus {
      * @type {Array<number>}
      * @memberof ServiceGetStatus
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

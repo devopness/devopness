@@ -26,12 +26,12 @@ export interface VirtualHostOptions {
      * @type {Array<VariableTargets>}
      * @memberof VirtualHostOptions
      */
-    'variable_targets': Array<VariableTargets>;
+    variable_targets: Array<VariableTargets>;
     /**
      * 
      * @type {Array<StaticVirtualHostType>}
      * @memberof VirtualHostOptions
      */
-    'virtual_host_types': Array<StaticVirtualHostType>;
+    virtual_host_types: Array<StaticVirtualHostType>;
 }
 

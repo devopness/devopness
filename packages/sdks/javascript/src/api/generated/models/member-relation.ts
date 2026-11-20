@@ -25,18 +25,18 @@ export interface MemberRelation {
      * @type {UserRelation}
      * @memberof MemberRelation
      */
-    'user': UserRelation | null;
+    user: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof MemberRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof MemberRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

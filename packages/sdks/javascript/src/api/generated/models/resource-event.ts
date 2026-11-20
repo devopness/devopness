@@ -25,18 +25,18 @@ export interface ResourceEvent {
      * @type {string}
      * @memberof ResourceEvent
      */
-    'resource_type': string;
+    resource_type: string;
     /**
      * The resource ID.
      * @type {number}
      * @memberof ResourceEvent
      */
-    'resource_id': number;
+    resource_id: number;
     /**
      * 
      * @type {Subscription}
      * @memberof ResourceEvent
      */
-    'resource_data': Subscription | null;
+    resource_data: Subscription | null;
 }
 

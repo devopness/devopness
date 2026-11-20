@@ -26,32 +26,30 @@ export interface ProviderRelation {
      * @type {boolean}
      * @memberof ProviderRelation
      */
-    'active': boolean;
+    active: boolean;
     /**
      * 
      * @type {ProviderCode}
      * @memberof ProviderRelation
      */
-    'code': ProviderCode;
+    code: ProviderCode;
     /**
      * Human readable version of provider code
      * @type {string}
      * @memberof ProviderRelation
      */
-    'code_human_readable': string;
+    code_human_readable: string;
     /**
      * 
      * @type {ProviderType}
      * @memberof ProviderRelation
      */
-    'type': ProviderType;
+    type: ProviderType;
     /**
      * Human readable version of provider type
      * @type {string}
      * @memberof ProviderRelation
      */
-    'type_human_readable'?: string;
+    type_human_readable?: string;
 }
-
-
 

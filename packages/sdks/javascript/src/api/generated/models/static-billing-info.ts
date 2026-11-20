@@ -25,6 +25,6 @@ export interface StaticBillingInfo {
      * @type {Array<SubscriptionPlan>}
      * @memberof StaticBillingInfo
      */
-    'subscription_plans'?: Array<SubscriptionPlan>;
+    subscription_plans?: Array<SubscriptionPlan>;
 }
 

@@ -24,6 +24,6 @@ export interface NetworkRuleDeploy {
      * @type {Array<number>}
      * @memberof NetworkRuleDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

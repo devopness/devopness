@@ -25,24 +25,24 @@ export interface OperatingSystem {
      * @type {string}
      * @memberof OperatingSystem
      */
-    'code': string;
+    code: string;
     /**
      * The formatted name of the operating system
      * @type {string}
      * @memberof OperatingSystem
      */
-    'name': string;
+    name: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof OperatingSystem
      */
-    'hint': string;
+    hint: string;
     /**
      * 
      * @type {Array<OperatingSystemVersion>}
      * @memberof OperatingSystem
      */
-    'supported_versions': Array<OperatingSystemVersion>;
+    supported_versions: Array<OperatingSystemVersion>;
 }
 

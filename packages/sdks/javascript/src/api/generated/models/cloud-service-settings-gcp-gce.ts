@@ -26,32 +26,30 @@ export interface CloudServiceSettingsGcpGce {
      * @type {string}
      * @memberof CloudServiceSettingsGcpGce
      */
-    'instance_type': string;
+    instance_type: string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
      * @memberof CloudServiceSettingsGcpGce
      */
-    'region': string;
+    region: string;
     /**
      * Human readable version of the server region
      * @type {string}
      * @memberof CloudServiceSettingsGcpGce
      */
-    'region_human_readable'?: string;
+    region_human_readable?: string;
     /**
      * 
      * @type {CloudResourceInstanceSpec}
      * @memberof CloudServiceSettingsGcpGce
      */
-    'instance_spec'?: CloudResourceInstanceSpec;
+    instance_spec?: CloudResourceInstanceSpec;
     /**
      * 
      * @type {CloudOsVersionCode}
      * @memberof CloudServiceSettingsGcpGce
      */
-    'os_version_code': CloudOsVersionCode | null;
+    os_version_code: CloudOsVersionCode | null;
 }
-
-
 

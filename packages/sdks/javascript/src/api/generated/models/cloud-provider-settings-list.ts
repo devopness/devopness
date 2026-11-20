@@ -25,6 +25,6 @@ export interface CloudProviderSettingsList {
      * @type {Array<CloudProviderInputSettings>}
      * @memberof CloudProviderSettingsList
      */
-    'credential'?: Array<CloudProviderInputSettings>;
+    credential?: Array<CloudProviderInputSettings>;
 }
 

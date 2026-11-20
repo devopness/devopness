@@ -26,48 +26,48 @@ export interface Organization {
      * @type {number}
      * @memberof Organization
      */
-    'id': number;
+    id: number;
     /**
      * The name of the organization
      * @type {string}
      * @memberof Organization
      */
-    'name': string;
+    name: string;
     /**
      * The URL Slug of the organization
      * @type {string}
      * @memberof Organization
      */
-    'url_slug': string;
+    url_slug: string;
     /**
      * Summary of the resource
      * @type {Array<ResourceSummaryItem>}
      * @memberof Organization
      */
-    'resource_summary'?: Array<ResourceSummaryItem>;
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * The list of permissions granted for this role
      * @type {Array<string>}
      * @memberof Organization
      */
-    'current_user_permissions': Array<string>;
+    current_user_permissions: Array<string>;
     /**
      * 
      * @type {UserRelation}
      * @memberof Organization
      */
-    'owner': UserRelation | null;
+    owner: UserRelation | null;
     /**
      * The date and time when the organization was created
      * @type {string}
      * @memberof Organization
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the organization was last updated
      * @type {string}
      * @memberof Organization
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

@@ -24,18 +24,18 @@ export interface ScriptRunner {
      * @type {string}
      * @memberof ScriptRunner
      */
-    'value': string;
+    value: string;
     /**
      * The formatted name of the runner
      * @type {string}
      * @memberof ScriptRunner
      */
-    'human_readable': string;
+    human_readable: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof ScriptRunner
      */
-    'hint': string;
+    hint: string;
 }
 

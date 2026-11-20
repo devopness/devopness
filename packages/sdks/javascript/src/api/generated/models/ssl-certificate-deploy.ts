@@ -24,6 +24,6 @@ export interface SslCertificateDeploy {
      * @type {Array<number>}
      * @memberof SslCertificateDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

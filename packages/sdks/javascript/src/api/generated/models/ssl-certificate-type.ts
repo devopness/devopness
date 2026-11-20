@@ -18,14 +18,10 @@
  * @export
  * @enum {string}
  */
-
-export const SslCertificateType = {
-    SingleDomain: 'single-domain',
-    MultiDomain: 'multi-domain',
-    Wildcard: 'wildcard'
-} as const;
-
-export type SslCertificateType = typeof SslCertificateType[keyof typeof SslCertificateType];
-
+export enum SslCertificateType {
+    SingleDomain = 'single-domain',
+    MultiDomain = 'multi-domain',
+    Wildcard = 'wildcard'
+}
 
 

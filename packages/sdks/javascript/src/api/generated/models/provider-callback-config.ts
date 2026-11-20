@@ -24,24 +24,24 @@ export interface ProviderCallbackConfig {
      * @type {string}
      * @memberof ProviderCallbackConfig
      */
-    'field': string;
+    field: string;
     /**
      * The query parameter name in the callback URL
      * @type {string}
      * @memberof ProviderCallbackConfig
      */
-    'query_string': string;
+    query_string: string;
     /**
      * Whether this parameter is required in the callback
      * @type {boolean}
      * @memberof ProviderCallbackConfig
      */
-    'required': boolean;
+    required: boolean;
     /**
      * The expected data type of the parameter value
      * @type {string}
      * @memberof ProviderCallbackConfig
      */
-    'type': string;
+    type: string;
 }
 

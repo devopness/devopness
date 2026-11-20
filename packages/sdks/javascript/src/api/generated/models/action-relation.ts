@@ -35,128 +35,126 @@ export interface ActionRelation {
      * @type {number}
      * @memberof ActionRelation
      */
-    'id': number;
+    id: number;
     /**
      * 
      * @type {ActionStatus}
      * @memberof ActionRelation
      */
-    'status': ActionStatus;
+    status: ActionStatus;
     /**
      * Human readable version of action status
      * @type {string}
      * @memberof ActionRelation
      */
-    'status_human_readable': string;
+    status_human_readable: string;
     /**
      * 
      * @type {ActionStatusReasonCode}
      * @memberof ActionRelation
      */
-    'status_reason_code': ActionStatusReasonCode;
+    status_reason_code: ActionStatusReasonCode;
     /**
      * Human readable version of the status reason code
      * @type {string}
      * @memberof ActionRelation
      */
-    'status_reason_human_readable': string;
+    status_reason_human_readable: string;
     /**
      * 
      * @type {ActionType}
      * @memberof ActionRelation
      */
-    'type': ActionType;
+    type: ActionType;
     /**
      * Human readable version of the action type
      * @type {string}
      * @memberof ActionRelation
      */
-    'type_human_readable': string;
+    type_human_readable: string;
     /**
      * The permalink URL to the action details on Devopness web app
      * @type {string}
      * @memberof ActionRelation
      */
-    'url_web_permalink': string;
+    url_web_permalink: string;
     /**
      * Optional comment attached to this action
      * @type {string}
      * @memberof ActionRelation
      */
-    'trigger_comment': string | null;
+    trigger_comment: string | null;
     /**
      * 
      * @type {ActionData}
      * @memberof ActionRelation
      */
-    'action_data'?: ActionData | null;
+    action_data?: ActionData | null;
     /**
      * 
      * @type {ActionTriggeredFrom}
      * @memberof ActionRelation
      */
-    'triggered_from': ActionTriggeredFrom;
+    triggered_from: ActionTriggeredFrom;
     /**
      * 
      * @type {ActionResource}
      * @memberof ActionRelation
      */
-    'resource': ActionResource;
+    resource: ActionResource;
     /**
      * 
      * @type {OrganizationRelation}
      * @memberof ActionRelation
      */
-    'organization': OrganizationRelation | null;
+    organization: OrganizationRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof ActionRelation
      */
-    'project': ProjectRelation | null;
+    project: ProjectRelation | null;
     /**
      * 
      * @type {EnvironmentRelation}
      * @memberof ActionRelation
      */
-    'environment': EnvironmentRelation | null;
+    environment: EnvironmentRelation | null;
     /**
      * 
      * @type {ActionSummary}
      * @memberof ActionRelation
      */
-    'summary'?: ActionSummary;
+    summary?: ActionSummary;
     /**
      * List of actions dispatched to cloud resource targets
      * @type {Array<ActionTarget>}
      * @memberof ActionRelation
      */
-    'targets'?: Array<ActionTarget>;
+    targets?: Array<ActionTarget>;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof ActionRelation
      */
-    'started_at': string | null;
+    started_at: string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof ActionRelation
      */
-    'completed_at': string | null;
+    completed_at: string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ActionRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ActionRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

@@ -24,6 +24,6 @@ export interface ListEnvironmentApplicationsFilterParameter {
      * @type {string}
      * @memberof ListEnvironmentApplicationsFilterParameter
      */
-    'name'?: string;
+    name?: string;
 }
 

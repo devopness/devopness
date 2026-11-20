@@ -18,16 +18,12 @@
  * @export
  * @enum {string}
  */
-
-export const TeamInvitationStatus = {
-    Accepted: 'accepted',
-    Expired: 'expired',
-    Pending: 'pending',
-    Rejected: 'rejected',
-    Active: 'active'
-} as const;
-
-export type TeamInvitationStatus = typeof TeamInvitationStatus[keyof typeof TeamInvitationStatus];
-
+export enum TeamInvitationStatus {
+    Accepted = 'accepted',
+    Expired = 'expired',
+    Pending = 'pending',
+    Rejected = 'rejected',
+    Active = 'active'
+}
 
 

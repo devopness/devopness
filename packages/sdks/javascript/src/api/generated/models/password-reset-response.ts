@@ -24,6 +24,6 @@ export interface PasswordResetResponse {
      * @type {string}
      * @memberof PasswordResetResponse
      */
-    'message': string;
+    message: string;
 }
 

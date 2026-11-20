@@ -25,6 +25,6 @@ export interface PipelineTriggerWhen {
      * @type {Array<TriggerWhenCondition>}
      * @memberof PipelineTriggerWhen
      */
-    'conditions'?: Array<TriggerWhenCondition>;
+    conditions?: Array<TriggerWhenCondition>;
 }
 

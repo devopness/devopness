@@ -24,30 +24,30 @@ export interface ActionSummaryTarget {
      * @type {number}
      * @memberof ActionSummaryTarget
      */
-    'count': number;
+    count: number;
     /**
      * The number of action targets pending
      * @type {number}
      * @memberof ActionSummaryTarget
      */
-    'pending': number;
+    pending: number;
     /**
      * The number of action targets in progress
      * @type {number}
      * @memberof ActionSummaryTarget
      */
-    'in_progress': number;
+    in_progress: number;
     /**
      * The number of action targets completed
      * @type {number}
      * @memberof ActionSummaryTarget
      */
-    'completed': number;
+    completed: number;
     /**
      * The number of action targets failed
      * @type {number}
      * @memberof ActionSummaryTarget
      */
-    'failed': number;
+    failed: number;
 }
 

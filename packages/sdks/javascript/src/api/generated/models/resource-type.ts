@@ -18,24 +18,20 @@
  * @export
  * @enum {string}
  */
-
-export const ResourceType = {
-    Application: 'application',
-    Credential: 'credential',
-    Cronjob: 'cronjob',
-    Daemon: 'daemon',
-    Deployment: 'deployment',
-    Network: 'network',
-    NetworkRule: 'network-rule',
-    Server: 'server',
-    Service: 'service',
-    SshKey: 'ssh-key',
-    SslCertificate: 'ssl-certificate',
-    Subnet: 'subnet',
-    VirtualHost: 'virtual-host'
-} as const;
-
-export type ResourceType = typeof ResourceType[keyof typeof ResourceType];
-
+export enum ResourceType {
+    Application = 'application',
+    Credential = 'credential',
+    Cronjob = 'cronjob',
+    Daemon = 'daemon',
+    Deployment = 'deployment',
+    Network = 'network',
+    NetworkRule = 'network-rule',
+    Server = 'server',
+    Service = 'service',
+    SshKey = 'ssh-key',
+    SslCertificate = 'ssl-certificate',
+    Subnet = 'subnet',
+    VirtualHost = 'virtual-host'
+}
 
 

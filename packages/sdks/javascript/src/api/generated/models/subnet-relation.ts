@@ -27,68 +27,66 @@ export interface SubnetRelation {
      * @type {number}
      * @memberof SubnetRelation
      */
-    'id': number;
+    id: number;
     /**
      * Numeric ID of the project to which the subnet belongs to
      * @type {number}
      * @memberof SubnetRelation
      */
-    'project_id': number;
+    project_id: number;
     /**
      * Numeric ID of the environment to which the subnet belongs to
      * @type {number}
      * @memberof SubnetRelation
      */
-    'environment_id': number;
+    environment_id: number;
     /**
      * The id of the user who created the subnet
      * @type {number}
      * @memberof SubnetRelation
      */
-    'created_by': number;
+    created_by: number;
     /**
      * 
      * @type {NetworkRelation}
      * @memberof SubnetRelation
      */
-    'network'?: NetworkRelation | null;
+    network?: NetworkRelation | null;
     /**
      * The subnet\'s name
      * @type {string}
      * @memberof SubnetRelation
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {SubnetType}
      * @memberof SubnetRelation
      */
-    'type': SubnetType;
+    type: SubnetType;
     /**
      * True if this subnet is auto-generated or false if this was created by the user
      * @type {boolean}
      * @memberof SubnetRelation
      */
-    'is_auto_generated': boolean;
+    is_auto_generated: boolean;
     /**
      * 
      * @type {SubnetProvisionInput}
      * @memberof SubnetRelation
      */
-    'provision_input': SubnetProvisionInput;
+    provision_input: SubnetProvisionInput;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof SubnetRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof SubnetRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

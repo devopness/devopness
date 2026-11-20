@@ -14,10 +14,16 @@
 
 
 /**
- * The request body that should be send to target URL
+ * 
  * @export
- * @interface HookOutgoingSettingsRequestBody
+ * @interface LanguageRuntimeEngineVersions
  */
-export interface HookOutgoingSettingsRequestBody {
+export interface LanguageRuntimeEngineVersions {
+    /**
+     * 
+     * @type {string}
+     * @memberof LanguageRuntimeEngineVersions
+     */
+    version?: string;
 }
 

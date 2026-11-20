@@ -24,6 +24,6 @@ export interface VirtualHostDeploy {
      * @type {Array<number>}
      * @memberof VirtualHostDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

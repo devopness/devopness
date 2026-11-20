@@ -25,12 +25,12 @@ export interface ActionHookRequest {
      * @type {HookRequestRelation}
      * @memberof ActionHookRequest
      */
-    'incoming'?: HookRequestRelation | null;
+    incoming?: HookRequestRelation | null;
     /**
      * 
      * @type {HookRequestRelation}
      * @memberof ActionHookRequest
      */
-    'outgoing'?: HookRequestRelation | null;
+    outgoing?: HookRequestRelation | null;
 }
 

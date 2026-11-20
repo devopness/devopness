@@ -26,18 +26,18 @@ export interface ActionDeploymentData {
      * @type {string}
      * @memberof ActionDeploymentData
      */
-    'release_name': string;
+    release_name: string;
     /**
      * 
      * @type {ActionDeploymentCommit}
      * @memberof ActionDeploymentData
      */
-    'commit': ActionDeploymentCommit;
+    commit: ActionDeploymentCommit;
     /**
      * 
      * @type {ActionDeploymentContent}
      * @memberof ActionDeploymentData
      */
-    'deployment': ActionDeploymentContent;
+    deployment: ActionDeploymentContent;
 }
 

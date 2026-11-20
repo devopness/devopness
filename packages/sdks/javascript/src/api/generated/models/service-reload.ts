@@ -24,6 +24,6 @@ export interface ServiceReload {
      * @type {Array<number>}
      * @memberof ServiceReload
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

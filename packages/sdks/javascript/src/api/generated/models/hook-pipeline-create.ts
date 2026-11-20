@@ -12,7 +12,8 @@
  */
 
 
-import { HookPipelineCreateSettings } from './hook-pipeline-create-settings';
+import { HookIncomingSettings } from './hook-incoming-settings';
+import { HookOutgoingSettings } from './hook-outgoing-settings';
 import { HookTriggerWhen } from './hook-trigger-when';
 
 /**
@@ -26,42 +27,42 @@ export interface HookPipelineCreate {
      * @type {string}
      * @memberof HookPipelineCreate
      */
-    'name': string;
+    name: string;
     /**
      * Determines if the hook is currently active.
      * @type {boolean}
      * @memberof HookPipelineCreate
      */
-    'active'?: boolean;
+    active?: boolean;
     /**
      * Tells if requests to this hook must only be accepted when a HTTP header is sent with a message authentication code ([HMAC](https://en.wikipedia.org/wiki/HMAC)) generated based on the secret provided by Devopness and shared by user with external sources. This field is required when <code>type</code> is <code>in</code>.
      * @type {boolean}
      * @memberof HookPipelineCreate
      */
-    'requires_secret'?: boolean;
+    requires_secret?: boolean;
     /**
      * The cryptographic hash function to be used by Devopness when validating digitally signed incoming requests for hooks that require secret validation. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 20 characters.
      * @type {string}
      * @memberof HookPipelineCreate
      */
-    'secret_algorithm'?: string;
+    secret_algorithm?: string;
     /**
      * The name of the HTTP request header from which the request digital signature should be extracted. This field is required when <code>requires_secret</code> is <code>true</code>. Must not be greater than 64 characters.
      * @type {string}
      * @memberof HookPipelineCreate
      */
-    'secret_header_name'?: string;
+    secret_header_name?: string;
     /**
      * 
      * @type {HookTriggerWhen}
      * @memberof HookPipelineCreate
      */
-    'trigger_when'?: HookTriggerWhen;
+    trigger_when?: HookTriggerWhen;
     /**
      * 
-     * @type {HookPipelineCreateSettings}
+     * @type {HookIncomingSettings | HookOutgoingSettings}
      * @memberof HookPipelineCreate
      */
-    'settings'?: HookPipelineCreateSettings;
+    settings?: HookIncomingSettings | HookOutgoingSettings;
 }
 

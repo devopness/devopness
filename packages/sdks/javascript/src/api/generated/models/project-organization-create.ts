@@ -24,18 +24,18 @@ export interface ProjectOrganizationCreate {
      * @type {string}
      * @memberof ProjectOrganizationCreate
      */
-    'name': string;
+    name: string;
     /**
      * A base64 string representation of the logo image.
      * @type {string}
      * @memberof ProjectOrganizationCreate
      */
-    'logo_image'?: string;
+    logo_image?: string;
     /**
      * A URL path to the project\'s logo image. Must be a valid URL.
      * @type {string}
      * @memberof ProjectOrganizationCreate
      */
-    'logo_url'?: string;
+    logo_url?: string;
 }
 

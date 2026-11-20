@@ -24,24 +24,24 @@ export interface CloudProviderRelation {
      * @type {string}
      * @memberof CloudProviderRelation
      */
-    'code': string;
+    code: string;
     /**
      * Cloud provider name
      * @type {string}
      * @memberof CloudProviderRelation
      */
-    'name': string;
+    name: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof CloudProviderRelation
      */
-    'hint': string;
+    hint: string;
     /**
      * The provider\'s logo URL.
      * @type {string}
      * @memberof CloudProviderRelation
      */
-    'logo_url': string;
+    logo_url: string;
 }
 

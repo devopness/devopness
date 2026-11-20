@@ -29,86 +29,84 @@ export interface TeamInvitationRelation {
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'id': string;
+    id: string;
     /**
      * 
      * @type {TeamInvitationType}
      * @memberof TeamInvitationRelation
      */
-    'type': TeamInvitationType;
+    type: TeamInvitationType;
     /**
      * The email of the user that has been invited to team
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'email': string | null;
+    email: string | null;
     /**
      * 
      * @type {TeamInvitationStatus}
      * @memberof TeamInvitationRelation
      */
-    'status': TeamInvitationStatus;
+    status: TeamInvitationStatus;
     /**
      * Human readable version of the invitation status
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'status_human_readable': string;
+    status_human_readable: string;
     /**
      * The URL to accept the public invitation
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'public_accept_url': string | null;
+    public_accept_url: string | null;
     /**
      * The IP of the user who accepted the invitation
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'accepted_from_ip': string | null;
+    accepted_from_ip: string | null;
     /**
      * 
      * @type {UserRelation}
      * @memberof TeamInvitationRelation
      */
-    'created_by_user': UserRelation | null;
+    created_by_user: UserRelation | null;
     /**
      * 
      * @type {TeamRelation}
      * @memberof TeamInvitationRelation
      */
-    'team': TeamRelation | null;
+    team: TeamRelation | null;
     /**
      * 
      * @type {OrganizationRelation}
      * @memberof TeamInvitationRelation
      */
-    'organization': OrganizationRelation | null;
+    organization: OrganizationRelation | null;
     /**
      * The date and time when the invitation was accepted
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'accepted_at': string | null;
+    accepted_at: string | null;
     /**
      * The date and time when the invitation will expire
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'expires_at': string;
+    expires_at: string;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof TeamInvitationRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

@@ -28,74 +28,72 @@ export interface ApiTokenRotateResponse {
      * @type {string}
      * @memberof ApiTokenRotateResponse
      */
-    'id': string;
+    id: string;
     /**
      * Name of the Token
      * @type {string}
      * @memberof ApiTokenRotateResponse
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {ApiTokenType}
      * @memberof ApiTokenRotateResponse
      */
-    'type': ApiTokenType;
+    type: ApiTokenType;
     /**
      * The plain text value of the Token. The API token value is only displayed/returned once when the token is generated. Users must keep it in a safe place, as it cannot be retrieved again at a later time.
      * @type {string}
      * @memberof ApiTokenRotateResponse
      */
-    'token': string | null;
+    token: string | null;
     /**
      * 
      * @type {ApiTokenStatus}
      * @memberof ApiTokenRotateResponse
      */
-    'status': ApiTokenStatus;
+    status: ApiTokenStatus;
     /**
      * 
      * @type {RoleRelation}
      * @memberof ApiTokenRotateResponse
      */
-    'role': RoleRelation | null;
+    role: RoleRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof ApiTokenRotateResponse
      */
-    'project': ProjectRelation | null;
+    project: ProjectRelation | null;
     /**
      * Last time the Token was used
      * @type {string}
      * @memberof ApiTokenRotateResponse
      */
-    'last_used_at': string | null;
+    last_used_at: string | null;
     /**
      * Expiration date of the Token
      * @type {string}
      * @memberof ApiTokenRotateResponse
      */
-    'expires_at': string;
+    expires_at: string;
     /**
      * Revocation date of the Token
      * @type {string}
      * @memberof ApiTokenRotateResponse
      */
-    'revoked_at': string | null;
+    revoked_at: string | null;
     /**
      * Last time the Token was updated
      * @type {string}
      * @memberof ApiTokenRotateResponse
      */
-    'updated_at': string;
+    updated_at: string;
     /**
      * Creation date of the Token
      * @type {string}
      * @memberof ApiTokenRotateResponse
      */
-    'created_at': string;
+    created_at: string;
 }
-
-
 

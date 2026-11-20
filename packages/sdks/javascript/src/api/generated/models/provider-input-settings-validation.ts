@@ -24,36 +24,36 @@ export interface ProviderInputSettingsValidation {
      * @type {boolean}
      * @memberof ProviderInputSettingsValidation
      */
-    'required'?: boolean;
+    required?: boolean;
     /**
      * 
      * @type {string}
      * @memberof ProviderInputSettingsValidation
      */
-    'type'?: string;
+    type?: string;
     /**
      * 
      * @type {number}
      * @memberof ProviderInputSettingsValidation
      */
-    'min'?: number;
+    min?: number;
     /**
      * 
      * @type {number}
      * @memberof ProviderInputSettingsValidation
      */
-    'max'?: number;
+    max?: number;
     /**
      * 
      * @type {Array<string>}
      * @memberof ProviderInputSettingsValidation
      */
-    'allowed_values'?: Array<string>;
+    allowed_values?: Array<string>;
     /**
      * If true, this field should not be shown to the user (system-provided, like OAuth callback_code)
      * @type {boolean}
      * @memberof ProviderInputSettingsValidation
      */
-    'hidden'?: boolean;
+    hidden?: boolean;
 }
 

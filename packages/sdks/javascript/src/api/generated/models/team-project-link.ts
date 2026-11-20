@@ -24,6 +24,6 @@ export interface TeamProjectLink {
      * @type {number}
      * @memberof TeamProjectLink
      */
-    'role_id': number;
+    role_id: number;
 }
 

@@ -27,68 +27,66 @@ export interface EnvironmentRelation {
      * @type {number}
      * @memberof EnvironmentRelation
      */
-    'id': number;
+    id: number;
     /**
      * 
      * @type {EnvironmentType}
      * @memberof EnvironmentRelation
      */
-    'type': EnvironmentType;
+    type: EnvironmentType;
     /**
      * The human readable version of the type
      * @type {string}
      * @memberof EnvironmentRelation
      */
-    'type_human_readable': string;
+    type_human_readable: string;
     /**
      * Environment\'s name
      * @type {string}
      * @memberof EnvironmentRelation
      */
-    'name': string;
+    name: string;
     /**
      * Environment\'s description
      * @type {string}
      * @memberof EnvironmentRelation
      */
-    'description': string | null;
+    description: string | null;
     /**
      * Number of credits used in the current monthly billing cycle by actions of resources in the environment.
      * @type {number}
      * @memberof EnvironmentRelation
      */
-    'used_credits'?: number;
+    used_credits?: number;
     /**
      * Summary of the resource
      * @type {Array<ResourceSummaryItem>}
      * @memberof EnvironmentRelation
      */
-    'resource_summary'?: Array<ResourceSummaryItem>;
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof EnvironmentRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof EnvironmentRelation
      */
-    'updated_at': string;
+    updated_at: string;
     /**
      * The date and time when the record was archived
      * @type {string}
      * @memberof EnvironmentRelation
      */
-    'archived_at': string | null;
+    archived_at: string | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof EnvironmentRelation
      */
-    'project': ProjectRelation | null;
+    project: ProjectRelation | null;
 }
-
-
 

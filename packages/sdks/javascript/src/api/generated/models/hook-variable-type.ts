@@ -18,15 +18,11 @@
  * @export
  * @enum {string}
  */
-
-export const HookVariableType = {
-    String: 'string',
-    Integer: 'integer',
-    Array: 'array',
-    Boolean: 'boolean'
-} as const;
-
-export type HookVariableType = typeof HookVariableType[keyof typeof HookVariableType];
-
+export enum HookVariableType {
+    String = 'string',
+    Integer = 'integer',
+    Array = 'array',
+    Boolean = 'boolean'
+}
 
 

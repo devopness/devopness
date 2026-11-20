@@ -24,18 +24,18 @@ export interface SubscriptionPlan {
      * @type {string}
      * @memberof SubscriptionPlan
      */
-    'provider_plan_id'?: string;
+    provider_plan_id?: string;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionPlan
      */
-    'human_readable'?: string;
+    human_readable?: string;
     /**
      * 
      * @type {boolean}
      * @memberof SubscriptionPlan
      */
-    'allow_subscriptions'?: boolean;
+    allow_subscriptions?: boolean;
 }
 

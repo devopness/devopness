@@ -25,6 +25,6 @@ export interface HookIncomingSettings {
      * @type {Array<HookVariable>}
      * @memberof HookIncomingSettings
      */
-    'variables'?: Array<HookVariable>;
+    variables?: Array<HookVariable>;
 }
 

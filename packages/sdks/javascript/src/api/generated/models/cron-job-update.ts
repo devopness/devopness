@@ -24,36 +24,36 @@ export interface CronJobUpdate {
      * @type {number}
      * @memberof CronJobUpdate
      */
-    'id': number;
+    id: number;
     /**
      * A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.
      * @type {string}
      * @memberof CronJobUpdate
      */
-    'pattern': string;
+    pattern: string;
     /**
      * The name of the cron job. Must not be greater than 60 characters.
      * @type {string}
      * @memberof CronJobUpdate
      */
-    'name': string;
+    name: string;
     /**
      * The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.
      * @type {string}
      * @memberof CronJobUpdate
      */
-    'command': string;
+    command: string;
     /**
      * The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.
      * @type {string}
      * @memberof CronJobUpdate
      */
-    'run_as_user': string;
+    run_as_user: string;
     /**
      * Numeric ID of the application to which the cron job belongs to.
      * @type {number}
      * @memberof CronJobUpdate
      */
-    'application_id'?: number;
+    application_id?: number;
 }
 

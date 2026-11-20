@@ -18,13 +18,9 @@
  * @export
  * @enum {string}
  */
-
-export const TeamInvitationType = {
-    Private: 'private',
-    Public: 'public'
-} as const;
-
-export type TeamInvitationType = typeof TeamInvitationType[keyof typeof TeamInvitationType];
-
+export enum TeamInvitationType {
+    Private = 'private',
+    Public = 'public'
+}
 
 

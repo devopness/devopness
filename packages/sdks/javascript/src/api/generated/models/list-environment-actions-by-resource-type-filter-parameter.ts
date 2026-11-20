@@ -24,18 +24,18 @@ export interface ListEnvironmentActionsByResourceTypeFilterParameter {
      * @type {number}
      * @memberof ListEnvironmentActionsByResourceTypeFilterParameter
      */
-    'resource_id'?: number;
+    resource_id?: number;
     /**
      * Action status. Supported values: pending, waiting, skipped, queued, in-progress, completed, failed.  Example: `?filter[status]=queued`
      * @type {string}
      * @memberof ListEnvironmentActionsByResourceTypeFilterParameter
      */
-    'status'?: string;
+    status?: string;
     /**
      * Action operation name.  Example: `?filter[operation]=deploy`
      * @type {string}
      * @memberof ListEnvironmentActionsByResourceTypeFilterParameter
      */
-    'operation'?: string;
+    operation?: string;
 }
 

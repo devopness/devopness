@@ -24,12 +24,12 @@ export interface TeamOrganizationCreate {
      * @type {string}
      * @memberof TeamOrganizationCreate
      */
-    'name': string;
+    name: string;
     /**
      * The URL to team\'s image. Must be a valid URL.
      * @type {string}
      * @memberof TeamOrganizationCreate
      */
-    'photo_url'?: string;
+    photo_url?: string;
 }
 

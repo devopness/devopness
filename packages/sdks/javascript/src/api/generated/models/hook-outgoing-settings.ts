@@ -13,7 +13,6 @@
 
 
 import { HookOutgoingRequestHeader } from './hook-outgoing-request-header';
-import { HookOutgoingSettingsRequestBody } from './hook-outgoing-settings-request-body';
 
 /**
  * Settings to an outgoing hook
@@ -26,12 +25,12 @@ export interface HookOutgoingSettings {
      * @type {Array<HookOutgoingRequestHeader>}
      * @memberof HookOutgoingSettings
      */
-    'request_headers'?: Array<HookOutgoingRequestHeader>;
+    request_headers?: Array<HookOutgoingRequestHeader>;
     /**
-     * 
-     * @type {HookOutgoingSettingsRequestBody}
+     * The request body that should be send to target URL
+     * @type {string | any | Array<any>}
      * @memberof HookOutgoingSettings
      */
-    'request_body'?: HookOutgoingSettingsRequestBody;
+    request_body?: string | any | Array<any>;
 }
 

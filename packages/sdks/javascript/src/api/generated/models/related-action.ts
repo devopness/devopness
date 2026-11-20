@@ -27,56 +27,54 @@ export interface RelatedAction {
      * @type {number}
      * @memberof RelatedAction
      */
-    'id': number;
+    id: number;
     /**
      * 
      * @type {ActionStatus}
      * @memberof RelatedAction
      */
-    'status': ActionStatus;
+    status: ActionStatus;
     /**
      * Human readable version of the action status
      * @type {string}
      * @memberof RelatedAction
      */
-    'status_human_readable'?: string;
+    status_human_readable?: string;
     /**
      * 
      * @type {ActionType}
      * @memberof RelatedAction
      */
-    'type': ActionType;
+    type: ActionType;
     /**
      * Human readable version of the action type
      * @type {string}
      * @memberof RelatedAction
      */
-    'type_human_readable': string;
+    type_human_readable: string;
     /**
      * The name of the resource
      * @type {string}
      * @memberof RelatedAction
      */
-    'resource_name'?: string;
+    resource_name?: string;
     /**
      * 
      * @type {ResourceType}
      * @memberof RelatedAction
      */
-    'resource_type': ResourceType;
+    resource_type: ResourceType;
     /**
      * Human readable version of the resource type
      * @type {string}
      * @memberof RelatedAction
      */
-    'resource_type_human_readable': string;
+    resource_type_human_readable: string;
     /**
      * The permalink URL to the action details on Devopness web app
      * @type {string}
      * @memberof RelatedAction
      */
-    'url_web_permalink': string;
+    url_web_permalink: string;
 }
-
-
 

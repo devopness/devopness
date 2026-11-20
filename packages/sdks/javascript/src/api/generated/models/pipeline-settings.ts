@@ -26,30 +26,30 @@ export interface PipelineSettings {
      * @type {number}
      * @memberof PipelineSettings
      */
-    'max_pipelines_per_resource'?: number;
+    max_pipelines_per_resource?: number;
     /**
      * Indicates whether the user has permission to manage the pipeline for the resource operation
      * @type {boolean}
      * @memberof PipelineSettings
      */
-    'is_user_managed'?: boolean;
+    is_user_managed?: boolean;
     /**
      * Indicates whether this resource operation supports an optional trigger comment
      * @type {boolean}
      * @memberof PipelineSettings
      */
-    'supports_trigger_comment'?: boolean;
+    supports_trigger_comment?: boolean;
     /**
      * The list of pipeline setting stage
      * @type {Array<PipelineSettingsStage>}
      * @memberof PipelineSettings
      */
-    'stages'?: Array<PipelineSettingsStage> | null;
+    stages?: Array<PipelineSettingsStage> | null;
     /**
      * The list of pipeline setting variable
      * @type {Array<PipelineSettingsVariable>}
      * @memberof PipelineSettings
      */
-    'variables'?: Array<PipelineSettingsVariable> | null;
+    variables?: Array<PipelineSettingsVariable> | null;
 }
 

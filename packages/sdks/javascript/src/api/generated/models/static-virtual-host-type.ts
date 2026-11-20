@@ -25,20 +25,18 @@ export interface StaticVirtualHostType {
      * @type {VirtualHostType}
      * @memberof StaticVirtualHostType
      */
-    'name': VirtualHostType;
+    name: VirtualHostType;
     /**
      * Human readable version of the virtual host type
      * @type {string}
      * @memberof StaticVirtualHostType
      */
-    'name_human_readable': string;
+    name_human_readable: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof StaticVirtualHostType
      */
-    'hint': string;
+    hint: string;
 }
-
-
 

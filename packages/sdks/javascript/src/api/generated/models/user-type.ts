@@ -18,13 +18,9 @@
  * @export
  * @enum {string}
  */
-
-export const UserType = {
-    User: 'user',
-    Org: 'org'
-} as const;
-
-export type UserType = typeof UserType[keyof typeof UserType];
-
+export enum UserType {
+    User = 'user',
+    Org = 'org'
+}
 
 

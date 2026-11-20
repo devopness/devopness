@@ -24,6 +24,6 @@ export interface CredentialDigitalOcean {
      * @type {string}
      * @memberof CredentialDigitalOcean
      */
-    'api_token': string;
+    api_token: string;
 }
 

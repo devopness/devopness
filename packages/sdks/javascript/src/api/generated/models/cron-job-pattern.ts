@@ -18,19 +18,15 @@
  * @export
  * @enum {string}
  */
-
-export const CronJobPattern = {
-    EveryMinute: 'Every minute',
-    Hourly: 'Hourly',
-    Daily: 'Daily',
-    TwiceADay: 'Twice a day',
-    Weekly: 'Weekly',
-    Monthly: 'Monthly',
-    Yearly: 'Yearly',
-    Custom: 'Custom'
-} as const;
-
-export type CronJobPattern = typeof CronJobPattern[keyof typeof CronJobPattern];
-
+export enum CronJobPattern {
+    EveryMinute = 'Every minute',
+    Hourly = 'Hourly',
+    Daily = 'Daily',
+    TwiceADay = 'Twice a day',
+    Weekly = 'Weekly',
+    Monthly = 'Monthly',
+    Yearly = 'Yearly',
+    Custom = 'Custom'
+}
 
 

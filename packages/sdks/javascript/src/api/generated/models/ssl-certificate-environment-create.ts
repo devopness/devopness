@@ -27,38 +27,36 @@ export interface SslCertificateEnvironmentCreate {
      * @type {number}
      * @memberof SslCertificateEnvironmentCreate
      */
-    'virtual_host_id': number;
+    virtual_host_id: number;
     /**
      * 
      * @type {SslCertificateIssuer}
      * @memberof SslCertificateEnvironmentCreate
      */
-    'issuer': SslCertificateIssuer;
+    issuer: SslCertificateIssuer;
     /**
      * 
      * @type {SslCertificateType}
      * @memberof SslCertificateEnvironmentCreate
      */
-    'type'?: SslCertificateType;
+    type?: SslCertificateType;
     /**
      * 
      * @type {SslCertificateValidationLevel}
      * @memberof SslCertificateEnvironmentCreate
      */
-    'validation_level'?: SslCertificateValidationLevel;
+    validation_level?: SslCertificateValidationLevel;
     /**
      * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.
      * @type {string}
      * @memberof SslCertificateEnvironmentCreate
      */
-    'custom_private_key'?: string;
+    custom_private_key?: string;
     /**
      * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.
      * @type {string}
      * @memberof SslCertificateEnvironmentCreate
      */
-    'custom_certificate'?: string;
+    custom_certificate?: string;
 }
-
-
 

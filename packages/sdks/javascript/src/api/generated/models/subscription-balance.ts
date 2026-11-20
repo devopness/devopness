@@ -25,36 +25,36 @@ export interface SubscriptionBalance {
      * @type {Credits}
      * @memberof SubscriptionBalance
      */
-    'credits'?: Credits;
+    credits?: Credits;
     /**
      * The unit of measurement to count credits
      * @type {string}
      * @memberof SubscriptionBalance
      */
-    'unit'?: string;
+    unit?: string;
     /**
      * The date and time the subscription plan starts
      * @type {string}
      * @memberof SubscriptionBalance
      */
-    'billing_period_started_at'?: string;
+    billing_period_started_at?: string;
     /**
      * The date and time the subscription plan ends
      * @type {string}
      * @memberof SubscriptionBalance
      */
-    'billing_period_ends_at'?: string;
+    billing_period_ends_at?: string;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof SubscriptionBalance
      */
-    'created_at'?: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof SubscriptionBalance
      */
-    'updated_at'?: string;
+    updated_at?: string;
 }
 

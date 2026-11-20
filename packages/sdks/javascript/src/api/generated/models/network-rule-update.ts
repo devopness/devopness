@@ -26,32 +26,30 @@ export interface NetworkRuleUpdate {
      * @type {number}
      * @memberof NetworkRuleUpdate
      */
-    'id': number;
+    id: number;
     /**
      * The rule\'s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof NetworkRuleUpdate
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {NetworkRuleDirection}
      * @memberof NetworkRuleUpdate
      */
-    'direction': NetworkRuleDirection;
+    direction: NetworkRuleDirection;
     /**
      * 
      * @type {NetworkRuleProtocol}
      * @memberof NetworkRuleUpdate
      */
-    'protocol'?: NetworkRuleProtocol;
+    protocol?: NetworkRuleProtocol;
     /**
      * IP address range this rule applies for, defined using CIDR notation.
      * @type {string}
      * @memberof NetworkRuleUpdate
      */
-    'cidr_block': string;
+    cidr_block: string;
 }
-
-
 

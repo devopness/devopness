@@ -18,19 +18,15 @@
  * @export
  * @enum {string}
  */
-
-export const ProviderCode = {
-    Aws: 'aws',
-    Azure: 'azure',
-    Bitbucket: 'bitbucket',
-    Digitalocean: 'digitalocean',
-    Gcp: 'gcp',
-    Github: 'github',
-    Gitlab: 'gitlab',
-    Hetzner: 'hetzner'
-} as const;
-
-export type ProviderCode = typeof ProviderCode[keyof typeof ProviderCode];
-
+export enum ProviderCode {
+    Aws = 'aws',
+    Azure = 'azure',
+    Bitbucket = 'bitbucket',
+    Digitalocean = 'digitalocean',
+    Gcp = 'gcp',
+    Github = 'github',
+    Gitlab = 'gitlab',
+    Hetzner = 'hetzner'
+}
 
 

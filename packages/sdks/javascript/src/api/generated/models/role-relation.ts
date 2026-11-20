@@ -26,54 +26,54 @@ export interface RoleRelation {
      * @type {number}
      * @memberof RoleRelation
      */
-    'id': number;
+    id: number;
     /**
      * The name of the given role
      * @type {string}
      * @memberof RoleRelation
      */
-    'name': string;
+    name: string;
     /**
      * Description of this role
      * @type {string}
      * @memberof RoleRelation
      */
-    'description': string;
+    description: string;
     /**
      * Defines if the role is predefined or a custom role for specific organization
      * @type {boolean}
      * @memberof RoleRelation
      */
-    'is_predefined': boolean;
+    is_predefined: boolean;
     /**
      * The list of permissions granted for this role
      * @type {Array<string>}
      * @memberof RoleRelation
      */
-    'permissions': Array<string>;
+    permissions: Array<string>;
     /**
      * 
      * @type {OrganizationRelation}
      * @memberof RoleRelation
      */
-    'organization'?: OrganizationRelation | null;
+    organization?: OrganizationRelation | null;
     /**
      * 
      * @type {UserRelation}
      * @memberof RoleRelation
      */
-    'created_by_user'?: UserRelation | null;
+    created_by_user?: UserRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof RoleRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof RoleRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

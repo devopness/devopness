@@ -24,6 +24,6 @@ export interface CronJobDeploy {
      * @type {Array<number>}
      * @memberof CronJobDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

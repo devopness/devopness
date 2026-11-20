@@ -27,38 +27,36 @@ export interface NetworkRuleEnvironmentCreate {
      * @type {Array<ResourceToBeLinked>}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    'linked_resources'?: Array<ResourceToBeLinked>;
+    linked_resources?: Array<ResourceToBeLinked>;
     /**
      * The rule\'s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
      * @type {string}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {NetworkRuleDirection}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    'direction': NetworkRuleDirection;
+    direction: NetworkRuleDirection;
     /**
      * 
      * @type {NetworkRuleProtocol}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    'protocol': NetworkRuleProtocol;
+    protocol: NetworkRuleProtocol;
     /**
      * IP address range this rule applies for, defined using CIDR notation.
      * @type {string}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    'cidr_block': string;
+    cidr_block: string;
     /**
      * Network port to be considered by this rule. Must be at least 1. Must not be greater than 65535.
      * @type {number}
      * @memberof NetworkRuleEnvironmentCreate
      */
-    'port': number;
+    port: number;
 }
-
-
 

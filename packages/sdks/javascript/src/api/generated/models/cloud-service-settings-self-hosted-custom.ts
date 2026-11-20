@@ -26,14 +26,12 @@ export interface CloudServiceSettingsSelfHostedCustom {
      * @type {CloudOsVersionCode}
      * @memberof CloudServiceSettingsSelfHostedCustom
      */
-    'os_version_code': CloudOsVersionCode | null;
+    os_version_code: CloudOsVersionCode | null;
     /**
      * 
      * @type {CloudResourceInstanceSpec}
      * @memberof CloudServiceSettingsSelfHostedCustom
      */
-    'instance_spec'?: CloudResourceInstanceSpec;
+    instance_spec?: CloudResourceInstanceSpec;
 }
-
-
 

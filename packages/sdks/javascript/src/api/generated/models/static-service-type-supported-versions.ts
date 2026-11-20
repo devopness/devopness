@@ -17,20 +17,20 @@ import { VariableTargets } from './variable-targets';
 /**
  * 
  * @export
- * @interface StaticServiceTypeSupportedVersionsInner
+ * @interface StaticServiceTypeSupportedVersions
  */
-export interface StaticServiceTypeSupportedVersionsInner {
+export interface StaticServiceTypeSupportedVersions {
     /**
      * The service\'s version that is supported
      * @type {string}
-     * @memberof StaticServiceTypeSupportedVersionsInner
+     * @memberof StaticServiceTypeSupportedVersions
      */
-    'version'?: string;
+    version?: string;
     /**
      * The list of VariableTarget
      * @type {Array<VariableTargets>}
-     * @memberof StaticServiceTypeSupportedVersionsInner
+     * @memberof StaticServiceTypeSupportedVersions
      */
-    'variable_targets'?: Array<VariableTargets>;
+    variable_targets?: Array<VariableTargets>;
 }
 

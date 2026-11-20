@@ -18,14 +18,10 @@
  * @export
  * @enum {string}
  */
-
-export const CloudProviderServiceResourceTypeScope = {
-    Global: 'global',
-    Region: 'region',
-    Zone: 'zone'
-} as const;
-
-export type CloudProviderServiceResourceTypeScope = typeof CloudProviderServiceResourceTypeScope[keyof typeof CloudProviderServiceResourceTypeScope];
-
+export enum CloudProviderServiceResourceTypeScope {
+    Global = 'global',
+    Region = 'region',
+    Zone = 'zone'
+}
 
 

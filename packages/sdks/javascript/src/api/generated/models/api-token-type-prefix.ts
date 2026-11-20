@@ -18,13 +18,9 @@
  * @export
  * @enum {string}
  */
-
-export const ApiTokenTypePrefix = {
-    DevopnessPat: 'devopness_pat',
-    DevopnessProj: 'devopness_proj'
-} as const;
-
-export type ApiTokenTypePrefix = typeof ApiTokenTypePrefix[keyof typeof ApiTokenTypePrefix];
-
+export enum ApiTokenTypePrefix {
+    Pat = 'devopness_pat',
+    Proj = 'devopness_proj'
+}
 
 

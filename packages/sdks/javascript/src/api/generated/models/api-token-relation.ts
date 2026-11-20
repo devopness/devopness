@@ -27,62 +27,60 @@ export interface ApiTokenRelation {
      * @type {string}
      * @memberof ApiTokenRelation
      */
-    'id': string;
+    id: string;
     /**
      * Name of the Token
      * @type {string}
      * @memberof ApiTokenRelation
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {ApiTokenType}
      * @memberof ApiTokenRelation
      */
-    'type': ApiTokenType;
+    type: ApiTokenType;
     /**
      * 
      * @type {ApiTokenStatus}
      * @memberof ApiTokenRelation
      */
-    'status': ApiTokenStatus;
+    status: ApiTokenStatus;
     /**
      * 
      * @type {RoleRelation}
      * @memberof ApiTokenRelation
      */
-    'role': RoleRelation | null;
+    role: RoleRelation | null;
     /**
      * Last time the Token was used
      * @type {string}
      * @memberof ApiTokenRelation
      */
-    'last_used_at': string | null;
+    last_used_at: string | null;
     /**
      * Expiration date of the Token
      * @type {string}
      * @memberof ApiTokenRelation
      */
-    'expires_at': string;
+    expires_at: string;
     /**
      * Revocation date of the Token
      * @type {string}
      * @memberof ApiTokenRelation
      */
-    'revoked_at': string | null;
+    revoked_at: string | null;
     /**
      * Last time the Token was updated
      * @type {string}
      * @memberof ApiTokenRelation
      */
-    'updated_at': string;
+    updated_at: string;
     /**
      * Creation date of the Token
      * @type {string}
      * @memberof ApiTokenRelation
      */
-    'created_at': string;
+    created_at: string;
 }
-
-
 

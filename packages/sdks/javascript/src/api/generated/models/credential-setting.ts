@@ -26,18 +26,18 @@ export interface CredentialSetting {
      * @type {CredentialProviderType}
      * @memberof CredentialSetting
      */
-    'provider': CredentialProviderType;
+    provider: CredentialProviderType;
     /**
      * Numeric ID of the organization to which the credential belongs to
      * @type {number}
      * @memberof CredentialSetting
      */
-    'organization_id': number;
+    organization_id: number;
     /**
      * 
      * @type {ProviderSettings}
      * @memberof CredentialSetting
      */
-    'settings': ProviderSettings;
+    settings: ProviderSettings;
 }
 
