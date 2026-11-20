@@ -71,15 +71,20 @@ export class HooksApiService extends ApiBaseService {
      * 
      * @summary Trigger an incoming hook associated action
      * @param {string} hookId The ID of the hook.
+     * @param {{ [key: string]: object; }} requestBody A free-form JSON object.
      */
-    public async triggerHook(hookId: string): Promise<ApiResponse<HookTriggerResponse>> {
+    public async triggerHook(hookId: string, requestBody: { [key: string]: object; }): Promise<ApiResponse<HookTriggerResponse>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'triggerHook');
         }
 
+        if (requestBody === null || requestBody === undefined) {
+            throw new ArgumentNullException('requestBody', 'triggerHook');
+        }
+
         const requestUrl = '/hooks/{hook_id}/trigger';
 
-        const response = await this.post <HookTriggerResponse>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
+        const response = await this.post <HookTriggerResponse, { [key: string]: object; }>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))), requestBody);
         return new ApiResponse(response);
     }
 
