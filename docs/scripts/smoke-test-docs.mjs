@@ -1,486 +1,271 @@
 #!/usr/bin/env node
 
 /**
- * Docs route smoke test.
+ * Smoke test for the built docs.
  *
- * This script runs against the built docs output to catch runtime regressions
- * that TypeScript and the build step can miss. It discovers routes from the
- * generated HTML, samples a few manual pages and API pages deterministically,
- * and always checks a small set of canary routes.
- *
- * The goal is to fail fast when a dependency update or routing change makes a
- * page render a 404 shell or return a non-200 response, even if the build still
- * succeeds.
+ * Serves the static export locally and requests a deterministic sample of
+ * routes, checking for 404/error shells that a successful build can hide.
  */
 
 import { createServer } from "node:http";
-import { access, readFile, readdir, stat } from "node:fs/promises";
-import { constants as fsConstants } from "node:fs";
+import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 
 const buildRoot = path.resolve(process.cwd(), process.env.DOCS_SMOKE_BUILD_DIR ?? "out");
 const publicRoot = path.join(buildRoot, process.env.DOCS_SMOKE_PUBLIC_ROOT ?? "docs");
 const basePath = process.env.DOCS_SMOKE_BASE_PATH ?? "/docs";
-const sampleCount = Number.parseInt(process.env.DOCS_SMOKE_SAMPLE_COUNT ?? "4", 10);
 const seed = process.env.DOCS_SMOKE_SEED ?? process.env.GITHUB_SHA ?? "docs-smoke-v1";
 
-const routeCanaries = [
-  {
-    route: "/docs/",
-    snippets: [
-      "Get started with Devopness",
-      "Deploy applications and provision cloud infrastructure",
-    ],
-  },
-  {
-    route: "/docs/api/",
-    snippets: ["Devopness API Reference", "REST API endpoints"],
-  },
+const canaries = new Map([
+  [
+    `${basePath}/`,
+    ["Get started with Devopness", "Deploy applications and provision cloud infrastructure"],
+  ],
+  [`${basePath}/api/`, ["Devopness API Reference", "REST API endpoints"]],
+]);
+
+// Ordered by specificity: the last entry is the catch-all for manual pages.
+// Add a new entry here when another docs section needs guaranteed coverage.
+const sections = [
+  { name: "api", prefix: `${basePath}/api/` },
+  { name: "manual", prefix: `${basePath}/` },
 ];
 
-const canaryRoutes = routeCanaries.map(({ route }) => route);
-
 main().catch((error) => {
-  console.error(error instanceof Error ? error.message : String(error));
+  console.error(`smoke-test: ${error instanceof Error ? error.message : String(error)}`);
   process.exitCode = 1;
 });
 
-/**
- * Entry point for the smoke test.
- *
- * The flow stays simple on purpose:
- * 1. read the built docs output
- * 2. discover the routes that exist
- * 3. choose canaries and a deterministic sample
- * 4. serve the output locally
- * 5. request each route and check both status and content
- */
 async function main() {
-  await assertDirectory(publicRoot);
-
-  const discoveredRoutes = await discoverRoutes(publicRoot, basePath);
-  const groupedRoutes = groupRoutes(discoveredRoutes, basePath);
-
-  const routesToCheck = buildRouteList(
-    discoveredRoutes,
-    groupedRoutes,
-    seed,
-    sampleCount,
-    canaryRoutes,
-  );
-
-  if (routesToCheck.length === 0) {
-    throw new Error(`smoke-test: no routes discovered under ${publicRoot}`);
+  const sampleCount = Number.parseInt(process.env.DOCS_SMOKE_SAMPLE_COUNT ?? "4", 10);
+  if (!Number.isInteger(sampleCount) || sampleCount < 1) {
+    throw new Error(`invalid DOCS_SMOKE_SAMPLE_COUNT: ${process.env.DOCS_SMOKE_SAMPLE_COUNT}`);
   }
 
-  const server = createLocalFileServer(buildRoot);
+  await assertDirectory(publicRoot);
+
+  const routes = await discoverRoutes(publicRoot);
+  for (const route of canaries.keys()) {
+    if (!routes.includes(route)) throw new Error(`expected canary route ${route} to exist`);
+  }
+
+  const grouped = groupRoutes(routes);
+  const perSection = Math.max(sampleCount, 5);
+  const routesToCheck = [
+    ...canaries.keys(),
+    ...sections.flatMap(({ name }) => sample(grouped[name] ?? [], `${seed}:${name}`, perSection)),
+  ];
+
+  console.log(`smoke-test: build root ${buildRoot}`);
+  for (const { name } of sections) {
+    console.log(`smoke-test: ${name} routes ${grouped[name]?.length ?? 0}`);
+  }
+  console.log(
+    `smoke-test: checking ${new Set(routesToCheck).size} routes (${perSection} per section, seed ${seed})`,
+  );
+
+  const server = createStaticServer(buildRoot);
   const port = await listen(server);
-  const baseUrl = `http://127.0.0.1:${port}`;
-
   try {
-    console.log(`smoke-test: build root ${buildRoot}`);
-    console.log(
-      `smoke-test: discovered ${groupedRoutes.manual.length} manual routes and ${groupedRoutes.api.length} api routes`,
-    );
-    console.log(`smoke-test: using seed ${seed}`);
-    console.log(`smoke-test: checking ${routesToCheck.length} routes`);
-
-    for (const route of routesToCheck) {
-      await validateRoute(baseUrl, route);
+    for (const route of new Set(routesToCheck)) {
+      await checkRoute(`http://127.0.0.1:${port}`, route);
     }
-
     console.log("smoke-test: all sampled routes passed");
   } finally {
     await close(server);
   }
 }
 
-/**
- * Build the final route list to validate.
- *
- * Canary routes are always checked first. Then the script adds a deterministic
- * sample from manual pages and API pages so the CI run can cover more than a
- * fixed hand-written list without becoming flaky.
- */
-function buildRouteList(discoveredRoutes, groupedRoutes, seedText, count, canaryCandidates) {
-  return dedupe([
-    ...resolveCanaries(discoveredRoutes, canaryCandidates),
-    ...sampleRoutes(groupedRoutes.manual, count, `${seedText}:manual`),
-    ...sampleRoutes(groupedRoutes.api, count, `${seedText}:api`),
-  ]);
+/** Assign every discovered route to exactly one section. */
+function groupRoutes(routes) {
+  const grouped = Object.fromEntries(sections.map(({ name }) => [name, []]));
+
+  for (const route of routes) {
+    if (canaries.has(route)) continue;
+    const section = sections.find(({ prefix }) => route.startsWith(prefix));
+    if (section) grouped[section.name].push(route);
+  }
+
+  return grouped;
 }
 
-/**
- * Start a tiny static server for the built docs output.
- *
- * The smoke test needs a real HTTP server because the breakage we care about
- * happens at request time, not at build time.
- */
-function createLocalFileServer(rootDirectory) {
+/** Pick a stable subset using a hash of the seed and route. */
+function sample(routes, tag, count) {
+  return [...routes]
+    .sort((left, right) => hash(`${tag}:${left}`) - hash(`${tag}:${right}`))
+    .slice(0, count);
+}
+
+function hash(text) {
+  let value = 2166136261;
+  for (const character of text) {
+    value = Math.imul(value ^ character.charCodeAt(0), 16777619);
+  }
+  return value >>> 0;
+}
+
+/** Serve the static export with the same path resolution a host would use. */
+function createStaticServer(root) {
   return createServer(async (request, response) => {
     try {
-      const requestUrl = new URL(request.url ?? "/", "http://127.0.0.1");
-      const filePath = await resolveFileForRequest(rootDirectory, requestUrl.pathname);
+      const pathname = new URL(request.url ?? "/", "http://localhost").pathname;
+      const file = await resolveFile(root, pathname);
 
-      if (!filePath) {
-        response.statusCode = 404;
-        response.setHeader("content-type", "text/plain; charset=utf-8");
+      if (!file) {
+        response.writeHead(404, { "content-type": "text/plain" });
         response.end("not found");
         return;
       }
 
-      const file = await readFile(filePath);
-      response.statusCode = 200;
-      response.setHeader("content-type", contentTypeFor(filePath));
-      response.end(file);
+      response.writeHead(200, { "content-type": contentType(file) });
+      response.end(await readFile(file));
     } catch (error) {
-      response.statusCode = 500;
-      response.setHeader("content-type", "text/plain; charset=utf-8");
+      response.writeHead(500, { "content-type": "text/plain" });
       response.end(error instanceof Error ? error.message : String(error));
     }
   });
 }
 
-/**
- * Validate one route against the local server.
- *
- * A healthy page must return HTTP 200 and must not render the visible 404 shell
- * content that appears when the route resolves to the wrong page. For the
- * scripted canaries, the response also needs to contain the expected page text
- * so we catch "200 but wrong content" regressions.
- */
-async function validateRoute(baseUrl, route) {
-  const response = await fetch(`${baseUrl}${route}`, { redirect: "manual" });
-  const html = await response.text();
-  const visibleText = extractVisibleText(html);
-
-  if (response.status !== 200) {
-    throw new Error(`smoke-test: ${route} returned HTTP ${response.status}`);
-  }
-
-  if (visibleText.includes("Page Not Found")) {
-    throw new Error(`smoke-test: ${route} rendered the 404 shell`);
-  }
-
-  validateRouteContent(route, html, visibleText);
-
-  console.log(`smoke-test: ok ${route}`);
-}
-
-/**
- * Check that a canary route still renders the expected content.
- *
- * The content checks stay deliberately small. They only guard a handful of
- * high-value pages whose text is stable and easy to recognize.
- */
-function validateRouteContent(route, html, visibleText) {
-  const expectation = routeCanaries.find((candidate) => candidate.route === route);
-
-  if (!expectation) {
-    return;
-  }
-
-  const haystack = `${visibleText}\n${html}`;
-
-  for (const snippet of expectation.snippets) {
-    if (!haystack.includes(snippet)) {
-      throw new Error(`smoke-test: ${route} is missing expected content: ${snippet}`);
-    }
-  }
-}
-
-/**
- * Read every route that exists in the built docs output.
- *
- * Routes are discovered from generated HTML files so the smoke test follows the
- * actual output of the docs build, not a hard-coded list.
- */
-async function discoverRoutes(rootDirectory, docsBasePath) {
-  const htmlFiles = await findHtmlFiles(rootDirectory);
-  const routes = [];
-
-  for (const filePath of htmlFiles) {
-    const route = htmlFilePathToRoute(rootDirectory, filePath, docsBasePath);
-    if (route) {
-      routes.push(route);
-    }
-  }
-
-  routes.sort((left, right) => left.localeCompare(right));
-  return routes;
-}
-
-/**
- * Split discovered routes into manual pages and API reference pages.
- */
-function groupRoutes(routes, docsBasePath) {
-  const apiPrefix = `${docsBasePath}/api/`;
-
-  return {
-    manual: routes.filter((route) => route !== `${docsBasePath}/` && !route.startsWith(apiPrefix)),
-    api: routes.filter((route) => route.startsWith(apiPrefix)),
-  };
-}
-
-/**
- * Make sure the canary routes still exist in the built output.
- *
- * These are the routes that have historically caught breakage first, so the
- * smoke test fails immediately if one disappears.
- */
-function resolveCanaries(routes, canaryCandidates) {
-  const discovered = new Set(routes);
-  return canaryCandidates.filter((route) => {
-    if (!discovered.has(route)) {
-      throw new Error(`smoke-test: expected canary route ${route} to exist`);
-    }
-    return true;
-  });
-}
-
-/**
- * Pick a deterministic sample of routes.
- *
- * The seed keeps CI runs stable while still rotating which routes are checked
- * from run to run.
- */
-function sampleRoutes(routes, count, seedText) {
-  if (routes.length === 0) {
-    return [];
-  }
-
-  const available = [...routes];
-  const rng = seededRandom(seedText);
-  shuffleInPlace(available, rng);
-  return available.slice(0, Math.min(count, available.length));
-}
-
-/**
- * Shuffle an array in place using the provided pseudo-random generator.
- */
-function shuffleInPlace(values, random) {
-  for (let index = values.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(random() * (index + 1));
-    [values[index], values[swapIndex]] = [values[swapIndex], values[index]];
-  }
-}
-
-/**
- * Create a small deterministic pseudo-random generator.
- */
-function seededRandom(seedText) {
-  let seedValue = 0x811c9dc5;
-
-  for (const character of seedText) {
-    seedValue ^= character.charCodeAt(0);
-    seedValue = Math.imul(seedValue, 0x01000193);
-  }
-
-  return () => {
-    seedValue += 0x6d2b79f5;
-    let value = seedValue;
-    value = Math.imul(value ^ (value >>> 15), value | 1);
-    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
-    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-/**
- * Find every HTML file under the built docs directory.
- */
-async function findHtmlFiles(directory) {
-  const entries = await readdir(directory, { withFileTypes: true });
-  const files = [];
-
-  for (const entry of entries) {
-    if (entry.name.startsWith(".")) {
-      continue;
-    }
-
-    const entryPath = path.join(directory, entry.name);
-
-    if (entry.isDirectory()) {
-      if (entry.name === "_next") {
-        continue;
-      }
-
-      files.push(...(await findHtmlFiles(entryPath)));
-      continue;
-    }
-
-    if (entry.isFile() && entry.name.endsWith(".html")) {
-      files.push(entryPath);
-    }
-  }
-
-  return files;
-}
-
-/**
- * Convert a built HTML file path into a public route.
- */
-function htmlFilePathToRoute(rootDirectory, filePath, docsBasePath) {
-  const relativePath = path.relative(rootDirectory, filePath).split(path.sep).join("/");
-
-  if (
-    relativePath === "404.html" ||
-    relativePath.startsWith("404/") ||
-    relativePath.startsWith("_next/")
-  ) {
-    return null;
-  }
-
-  let routePath;
-  if (relativePath === "index.html") {
-    routePath = "/";
-  } else if (relativePath.endsWith("/index.html")) {
-    routePath = `/${relativePath.slice(0, -"/index.html".length)}/`;
-  } else if (relativePath.endsWith(".html")) {
-    routePath = `/${relativePath.slice(0, -".html".length)}`;
-  } else {
-    return null;
-  }
-
-  return `${docsBasePath}${routePath}`.replace(/\/+/g, "/");
-}
-
-/**
- * Resolve a request path back to a file in the static export.
- */
-async function resolveFileForRequest(rootDirectory, pathname) {
-  const relativePath = pathname.replace(/^\/+/, "");
-  const candidates = [];
-
-  if (relativePath.length === 0) {
-    candidates.push(path.join(rootDirectory, "index.html"));
-  } else {
-    candidates.push(path.join(rootDirectory, relativePath));
-    candidates.push(path.join(rootDirectory, `${relativePath}.html`));
-    candidates.push(path.join(rootDirectory, relativePath, "index.html"));
-  }
+async function resolveFile(root, pathname) {
+  const relative = pathname.replace(/^\/+/, "");
+  const candidates = relative
+    ? [
+        path.join(root, relative),
+        path.join(root, `${relative}.html`),
+        path.join(root, relative, "index.html"),
+      ]
+    : [path.join(root, "index.html")];
 
   for (const candidate of candidates) {
-    if (await isFile(candidate)) {
-      return candidate;
+    try {
+      if ((await stat(candidate)).isFile()) return candidate;
+    } catch {
+      // Try the next candidate.
     }
   }
-
   return null;
 }
 
-/**
- * Check whether a path points to a file.
- */
-async function isFile(filePath) {
-  try {
-    const fileStat = await stat(filePath);
-    return fileStat.isFile();
-  } catch {
-    return false;
+function contentType(file) {
+  const types = {
+    ".css": "text/css; charset=utf-8",
+    ".html": "text/html; charset=utf-8",
+    ".ico": "image/x-icon",
+    ".jpeg": "image/jpeg",
+    ".jpg": "image/jpeg",
+    ".js": "application/javascript; charset=utf-8",
+    ".json": "application/json; charset=utf-8",
+    ".png": "image/png",
+    ".svg": "image/svg+xml",
+    ".txt": "text/plain; charset=utf-8",
+    ".webp": "image/webp",
+    ".woff2": "font/woff2",
+  };
+  return types[path.extname(file)] ?? "application/octet-stream";
+}
+
+async function checkRoute(baseUrl, route) {
+  const response = await fetch(`${baseUrl}${route}`, {
+    redirect: "manual",
+    signal: AbortSignal.timeout(10_000),
+  });
+  const html = await response.text();
+
+  if (response.status !== 200) throw new Error(`${route} returned HTTP ${response.status}`);
+  if (html.includes('id="__next_error__"'))
+    throw new Error(`${route} rendered the Next.js error shell`);
+
+  const text = visibleText(html);
+  if (text.includes("Page Not Found")) throw new Error(`${route} rendered the 404 shell`);
+  if (!text) throw new Error(`${route} rendered no visible content`);
+
+  for (const snippet of canaries.get(route) ?? []) {
+    if (!text.includes(snippet))
+      throw new Error(`${route} is missing expected content: ${snippet}`);
+  }
+
+  await checkAssets(baseUrl, route, html);
+  console.log(`smoke-test: ok ${route}`);
+}
+
+/** Verify that a sample of the page's static assets is actually served. */
+async function checkAssets(baseUrl, route, html) {
+  const prefix = `${basePath}/_next/static/`;
+  const assets = [...new Set(html.match(new RegExp(`${prefix}[^"'\\s>]+`, "g")) ?? [])].slice(0, 5);
+
+  for (const asset of assets) {
+    const response = await fetch(`${baseUrl}${asset}`, {
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (response.status !== 200) {
+      throw new Error(`${route} asset ${asset} returned HTTP ${response.status}`);
+    }
   }
 }
 
-/**
- * Pick a content type for the HTTP response.
- */
-function contentTypeFor(filePath) {
-  switch (path.extname(filePath)) {
-    case ".html":
-      return "text/html; charset=utf-8";
-    case ".txt":
-      return "text/plain; charset=utf-8";
-    case ".json":
-      return "application/json; charset=utf-8";
-    case ".css":
-      return "text/css; charset=utf-8";
-    case ".js":
-      return "application/javascript; charset=utf-8";
-    case ".svg":
-      return "image/svg+xml";
-    case ".ico":
-      return "image/x-icon";
-    case ".png":
-      return "image/png";
-    case ".jpg":
-    case ".jpeg":
-      return "image/jpeg";
-    case ".webp":
-      return "image/webp";
-    case ".woff2":
-      return "font/woff2";
-    default:
-      return "application/octet-stream";
-  }
-}
-
-/**
- * Strip HTML markup down to visible text.
- */
-function extractVisibleText(html) {
+/** Strip markup and scripts so checks apply to what a visitor can actually read. */
+function visibleText(html) {
   const body = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? html;
+  const entities = {
+    "&amp;": "&",
+    "&lt;": "<",
+    "&gt;": ">",
+    "&nbsp;": " ",
+    "&quot;": '"',
+    "&#39;": "'",
+  };
   return body
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
-    .replace(/<!--([\s\S]*?)-->/g, " ")
+    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/gi, " ")
     .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
+    .replace(/&(?:amp|lt|gt|nbsp|quot|#39);/g, (entity) => entities[entity])
     .replace(/\s+/g, " ")
     .trim();
 }
 
-/**
- * Remove duplicate routes while keeping the list order simple.
- */
-function dedupe(values) {
-  return [...new Set(values)];
-}
+/** Discover routes from the generated HTML files. */
+async function discoverRoutes(root) {
+  const routes = [];
+  for (const file of await findHtmlFiles(root)) {
+    const relative = path.relative(root, file).split(path.sep).join("/");
+    if (relative === "404.html" || relative.startsWith("404/")) continue;
 
-/**
- * Confirm the docs output directory exists before the smoke test starts.
- */
-async function assertDirectory(directory) {
-  await access(directory, fsConstants.R_OK);
-  const directoryStat = await stat(directory);
+    const route =
+      relative === "index.html"
+        ? "/"
+        : relative.endsWith("/index.html")
+          ? `/${relative.slice(0, -"/index.html".length)}/`
+          : `/${relative.replace(/\.html$/, "")}`;
 
-  if (!directoryStat.isDirectory()) {
-    throw new Error(`smoke-test: expected ${directory} to be a directory`);
+    routes.push(`${basePath}${route}`.replace(/\/+/g, "/"));
   }
+  return routes.sort();
 }
 
-/**
- * Listen on a random localhost port and return that port number.
- */
+async function findHtmlFiles(directory) {
+  const files = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    if (entry.name.startsWith(".") || entry.name === "_next") continue;
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) files.push(...(await findHtmlFiles(entryPath)));
+    else if (entry.isFile() && entry.name.endsWith(".html")) files.push(entryPath);
+  }
+  return files;
+}
+
+async function assertDirectory(directory) {
+  const info = await stat(directory);
+  if (!info.isDirectory()) throw new Error(`expected ${directory} to be a directory`);
+}
+
 function listen(server) {
-  return new Promise((resolvePromise, rejectPromise) => {
-    server.once("error", rejectPromise);
-    server.listen(0, "127.0.0.1", () => {
-      const address = server.address();
-      if (!address || typeof address === "string") {
-        rejectPromise(new Error("smoke-test: could not determine local port"));
-        return;
-      }
-      resolvePromise(address.port);
-    });
+  return new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(0, "127.0.0.1", () => resolve(server.address().port));
   });
 }
 
-/**
- * Close the temporary local server.
- */
 function close(server) {
-  return new Promise((resolvePromise, rejectPromise) => {
-    server.close((error) => {
-      if (error) {
-        rejectPromise(error);
-        return;
-      }
-      resolvePromise();
-    });
+  return new Promise((resolve, reject) => {
+    server.close((error) => (error ? reject(error) : resolve()));
   });
 }
