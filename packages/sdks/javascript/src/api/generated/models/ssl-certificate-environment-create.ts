@@ -11,27 +11,52 @@
  * Do not edit the class manually.
  */
 
+
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
 
+/**
+ * 
+ * @export
+ * @interface SslCertificateEnvironmentCreate
+ */
 export interface SslCertificateEnvironmentCreate {
     /**
      * The ID of the virtual host to which this SSL certificate will be issued.
+     * @type {number}
+     * @memberof SslCertificateEnvironmentCreate
      */
-    'virtual_host_id': number;
-    'issuer': SslCertificateIssuer;
-    'type'?: SslCertificateType;
-    'validation_level'?: SslCertificateValidationLevel;
+    virtual_host_id: number;
+    /**
+     * 
+     * @type {SslCertificateIssuer}
+     * @memberof SslCertificateEnvironmentCreate
+     */
+    issuer: SslCertificateIssuer;
+    /**
+     * 
+     * @type {SslCertificateType}
+     * @memberof SslCertificateEnvironmentCreate
+     */
+    type?: SslCertificateType;
+    /**
+     * 
+     * @type {SslCertificateValidationLevel}
+     * @memberof SslCertificateEnvironmentCreate
+     */
+    validation_level?: SslCertificateValidationLevel;
     /**
      * The private key provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.
+     * @type {string}
+     * @memberof SslCertificateEnvironmentCreate
      */
-    'custom_private_key'?: string;
+    custom_private_key?: string;
     /**
      * The contents of the certificate provided by the Certification Authority, when the certificate has not been automatically issued through `devopness`. This field is required when <code>issuer</code> is <code>custom</code>. Must be at least 100 characters. Must not be greater than 4096 characters.
+     * @type {string}
+     * @memberof SslCertificateEnvironmentCreate
      */
-    'custom_certificate'?: string;
+    custom_certificate?: string;
 }
-
-
 

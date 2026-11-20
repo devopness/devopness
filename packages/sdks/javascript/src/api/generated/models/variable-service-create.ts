@@ -11,29 +11,51 @@
  * Do not edit the class manually.
  */
 
+
 import { VariableTarget } from './variable-target';
 import { VariableType } from './variable-type';
 
+/**
+ * 
+ * @export
+ * @interface VariableServiceCreate
+ */
 export interface VariableServiceCreate {
     /**
      * The unique key used to identify the variable on the target. Must not be greater than 100 characters.
+     * @type {string}
+     * @memberof VariableServiceCreate
      */
-    'key': string;
+    key: string;
     /**
      * The value to be assigned to this variable when deployed to its target.                 When variable is of type `file`, this is the file content. Must not be greater than 21504 characters.
+     * @type {string}
+     * @memberof VariableServiceCreate
      */
-    'value': string;
+    value: string;
     /**
      * A text describing the variable, provided by the end user.
+     * @type {string}
+     * @memberof VariableServiceCreate
      */
-    'description'?: string;
-    'target': VariableTarget;
-    'type': VariableType;
+    description?: string;
+    /**
+     * 
+     * @type {VariableTarget}
+     * @memberof VariableServiceCreate
+     */
+    target: VariableTarget;
+    /**
+     * 
+     * @type {VariableType}
+     * @memberof VariableServiceCreate
+     */
+    type: VariableType;
     /**
      * Indicates if the variable value should be visible or not in the deployment logs.
+     * @type {boolean}
+     * @memberof VariableServiceCreate
      */
-    'hidden': boolean;
+    hidden: boolean;
 }
-
-
 

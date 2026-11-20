@@ -12,20 +12,19 @@
  */
 
 
+
 /**
  * The code of the cloud service provider
+ * @export
+ * @enum {string}
  */
-
-export const StaticCloudProviderCode = {
-    Aws: 'aws',
-    Azure: 'azure',
-    Digitalocean: 'digitalocean',
-    Gcp: 'gcp',
-    Hetzner: 'hetzner',
-    SelfHosted: 'self-hosted',
-} as const;
-
-export type StaticCloudProviderCode = typeof StaticCloudProviderCode[keyof typeof StaticCloudProviderCode];
-
+export enum StaticCloudProviderCode {
+    Aws = 'aws',
+    Azure = 'azure',
+    Digitalocean = 'digitalocean',
+    Gcp = 'gcp',
+    Hetzner = 'hetzner',
+    SelfHosted = 'self-hosted'
+}
 
 

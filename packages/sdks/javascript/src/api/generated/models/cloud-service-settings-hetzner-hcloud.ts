@@ -11,29 +11,51 @@
  * Do not edit the class manually.
  */
 
+
 import { CloudOsVersionCode } from './cloud-os-version-code';
 import { CloudResourceInstanceSpec } from './cloud-resource-instance-spec';
 
+/**
+ * 
+ * @export
+ * @interface CloudServiceSettingsHetznerHcloud
+ */
 export interface CloudServiceSettingsHetznerHcloud {
     /**
      * The instance type to be launched on the cloud provider
+     * @type {string}
+     * @memberof CloudServiceSettingsHetznerHcloud
      */
-    'instance_type': string;
+    instance_type: string;
     /**
      * Datacenter region where the cloud instance will be launched
+     * @type {string}
+     * @memberof CloudServiceSettingsHetznerHcloud
      */
-    'region': string;
+    region: string;
     /**
      * Human readable version of the server region
+     * @type {string}
+     * @memberof CloudServiceSettingsHetznerHcloud
      */
-    'region_human_readable'?: string;
-    'instance_spec'?: CloudResourceInstanceSpec;
+    region_human_readable?: string;
+    /**
+     * 
+     * @type {CloudResourceInstanceSpec}
+     * @memberof CloudServiceSettingsHetznerHcloud
+     */
+    instance_spec?: CloudResourceInstanceSpec;
     /**
      * The storage\'s size of the cloud instance
+     * @type {number}
+     * @memberof CloudServiceSettingsHetznerHcloud
      */
-    'storage_size': number;
-    'os_version_code': CloudOsVersionCode | null;
+    storage_size: number;
+    /**
+     * 
+     * @type {CloudOsVersionCode}
+     * @memberof CloudServiceSettingsHetznerHcloud
+     */
+    os_version_code: CloudOsVersionCode | null;
 }
-
-
 

@@ -11,12 +11,20 @@
  * Do not edit the class manually.
  */
 
+
 import { TriggerWhenCondition } from './trigger-when-condition';
 
+/**
+ * 
+ * @export
+ * @interface PipelineTriggerWhen
+ */
 export interface PipelineTriggerWhen {
     /**
      * Conditions that must be met to trigger the pipeline
+     * @type {Array<TriggerWhenCondition>}
+     * @memberof PipelineTriggerWhen
      */
-    'conditions'?: Array<TriggerWhenCondition>;
+    conditions?: Array<TriggerWhenCondition>;
 }
 

@@ -11,9 +11,20 @@
  * Do not edit the class manually.
  */
 
+
 import { Subscription } from './subscription';
 
+/**
+ * 
+ * @export
+ * @interface UserBilling
+ */
 export interface UserBilling {
-    'active_subscription': Subscription | null;
+    /**
+     * 
+     * @type {Subscription}
+     * @memberof UserBilling
+     */
+    active_subscription: Subscription | null;
 }
 

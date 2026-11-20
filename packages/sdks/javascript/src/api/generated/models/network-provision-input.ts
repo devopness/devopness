@@ -11,16 +11,27 @@
  * Do not edit the class manually.
  */
 
+
 import { NetworkProvisionInputSettings } from './network-provision-input-settings';
 import { ServerCloudServiceCode } from './server-cloud-service-code';
 
 /**
  * Network provision input parameters
+ * @export
+ * @interface NetworkProvisionInput
  */
 export interface NetworkProvisionInput {
-    'cloud_service_code': ServerCloudServiceCode;
-    'settings': NetworkProvisionInputSettings;
+    /**
+     * 
+     * @type {ServerCloudServiceCode}
+     * @memberof NetworkProvisionInput
+     */
+    cloud_service_code: ServerCloudServiceCode;
+    /**
+     * 
+     * @type {NetworkProvisionInputSettings}
+     * @memberof NetworkProvisionInput
+     */
+    settings: NetworkProvisionInputSettings;
 }
-
-
 

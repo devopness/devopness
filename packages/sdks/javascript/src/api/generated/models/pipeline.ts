@@ -11,65 +11,113 @@
  * Do not edit the class manually.
  */
 
+
 import { PipelineTriggerWhen } from './pipeline-trigger-when';
 import { ResourceType } from './resource-type';
 import { Step } from './step';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface Pipeline
+ */
 export interface Pipeline {
     /**
      * The unique ID of the given pipeline
+     * @type {number}
+     * @memberof Pipeline
      */
-    'id': number;
+    id: number;
     /**
      * The pipeline\'s name
+     * @type {string}
+     * @memberof Pipeline
      */
-    'name': string;
+    name: string;
     /**
      * ID of the environment this pipeline belongs to
+     * @type {number}
+     * @memberof Pipeline
      */
-    'environment_id': number;
+    environment_id: number;
     /**
      * ID of the project this pipeline belongs to
+     * @type {number}
+     * @memberof Pipeline
      */
-    'project_id': number;
+    project_id: number;
     /**
      * ID of the organization this pipeline belongs to
+     * @type {number}
+     * @memberof Pipeline
      */
-    'organization_id': number;
-    'resource_type': ResourceType;
+    organization_id: number;
+    /**
+     * 
+     * @type {ResourceType}
+     * @memberof Pipeline
+     */
+    resource_type: ResourceType;
     /**
      * Human readable version of the resource type
+     * @type {string}
+     * @memberof Pipeline
      */
-    'resource_type_human_readable': string;
+    resource_type_human_readable: string;
     /**
      * The pipeline\'s resource ID
+     * @type {number}
+     * @memberof Pipeline
      */
-    'resource_id': number;
+    resource_id: number;
     /**
      * The resource operation associated to the pipeline.
+     * @type {string}
+     * @memberof Pipeline
      */
-    'operation': string;
+    operation: string;
     /**
      * Human readable version of the operation
+     * @type {string}
+     * @memberof Pipeline
      */
-    'operation_human_readable': string;
+    operation_human_readable: string;
     /**
      * Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.
+     * @type {number}
+     * @memberof Pipeline
      */
-    'max_parallel_actions': number;
-    'trigger_when': PipelineTriggerWhen | null;
-    'steps': Array<Step>;
-    'created_by_user': UserRelation | null;
+    max_parallel_actions: number;
+    /**
+     * 
+     * @type {PipelineTriggerWhen}
+     * @memberof Pipeline
+     */
+    trigger_when: PipelineTriggerWhen | null;
+    /**
+     * 
+     * @type {Array<Step>}
+     * @memberof Pipeline
+     */
+    steps: Array<Step>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Pipeline
+     */
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof Pipeline
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Pipeline
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface ServiceStop
+ */
 export interface ServiceStop {
     /**
      * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof ServiceStop
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

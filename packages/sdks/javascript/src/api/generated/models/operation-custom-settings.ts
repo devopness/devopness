@@ -12,18 +12,30 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface OperationCustomSettings
+ */
 export interface OperationCustomSettings {
     /**
      * The resource\'s custom operation that are CSP specific
+     * @type {string}
+     * @memberof OperationCustomSettings
      */
-    'operation'?: string;
+    operation?: string;
     /**
      * Human redable version of the resource\'s custom operation
+     * @type {string}
+     * @memberof OperationCustomSettings
      */
-    'operation_human_readable'?: string;
+    operation_human_readable?: string;
     /**
      * Whether the `server:remove` operation will trigger an action or not
+     * @type {boolean}
+     * @memberof OperationCustomSettings
      */
-    'triggers_action'?: boolean;
+    triggers_action?: boolean;
 }
 

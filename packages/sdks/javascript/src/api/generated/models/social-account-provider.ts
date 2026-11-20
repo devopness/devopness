@@ -12,20 +12,19 @@
  */
 
 
+
 /**
  * The name of the Social Authentication provider
+ * @export
+ * @enum {string}
  */
-
-export const SocialAccountProvider = {
-    Bitbucket: 'bitbucket',
-    Clerk: 'clerk',
-    Facebook: 'facebook',
-    Github: 'github',
-    Gitlab: 'gitlab',
-    Google: 'google',
-} as const;
-
-export type SocialAccountProvider = typeof SocialAccountProvider[keyof typeof SocialAccountProvider];
-
+export enum SocialAccountProvider {
+    Bitbucket = 'bitbucket',
+    Clerk = 'clerk',
+    Facebook = 'facebook',
+    Github = 'github',
+    Gitlab = 'gitlab',
+    Google = 'google'
+}
 
 

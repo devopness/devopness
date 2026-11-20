@@ -12,16 +12,15 @@
  */
 
 
+
 /**
  * The language used to show text given to user
+ * @export
+ * @enum {string}
  */
-
-export const Language = {
-    En: 'en',
-    Pt: 'pt',
-} as const;
-
-export type Language = typeof Language[keyof typeof Language];
-
+export enum Language {
+    En = 'en',
+    Pt = 'pt'
+}
 
 

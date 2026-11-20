@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionTargetCredentialData } from './action-target-credential-data';
 import { ActionTargetNetworkData } from './action-target-network-data';
 import { ActionTargetServerData } from './action-target-server-data';
@@ -21,6 +22,7 @@ import { ServerProvisionInput } from './server-provision-input';
 
 /**
  * @type ActionTargetData
+ * @export
  */
 export type ActionTargetData = ActionTargetCredentialData | ActionTargetNetworkData | ActionTargetServerData;
 

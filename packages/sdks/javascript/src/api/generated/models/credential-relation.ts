@@ -11,49 +11,89 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionRelationShallow } from './action-relation-shallow';
 import { ProviderRelation } from './provider-relation';
 import { ProviderType } from './provider-type';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface CredentialRelation
+ */
 export interface CredentialRelation {
     /**
      * The unique ID of the credential
+     * @type {number}
+     * @memberof CredentialRelation
      */
-    'id': number;
+    id: number;
     /**
      * The name of the credential
+     * @type {string}
+     * @memberof CredentialRelation
      */
-    'name': string;
-    'provider': ProviderRelation;
-    'provider_type': ProviderType;
+    name: string;
+    /**
+     * 
+     * @type {ProviderRelation}
+     * @memberof CredentialRelation
+     */
+    provider: ProviderRelation;
+    /**
+     * 
+     * @type {ProviderType}
+     * @memberof CredentialRelation
+     */
+    provider_type: ProviderType;
     /**
      * The human readable version of the type of the credential
+     * @type {string}
+     * @memberof CredentialRelation
      */
-    'provider_type_human_readable': string;
+    provider_type_human_readable: string;
     /**
      * The authentication type of the credential
+     * @type {string}
+     * @memberof CredentialRelation
      */
-    'provider_auth_type': string;
+    provider_auth_type: string;
     /**
      * The human readable version of the authentication type
+     * @type {string}
+     * @memberof CredentialRelation
      */
-    'provider_auth_type_human_readable': string;
+    provider_auth_type_human_readable: string;
     /**
      * If this credential is active or not
+     * @type {boolean}
+     * @memberof CredentialRelation
      */
-    'active': boolean;
-    'created_by_user': UserRelation | null;
-    'last_action'?: ActionRelationShallow | null;
+    active: boolean;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof CredentialRelation
+     */
+    created_by_user: UserRelation | null;
+    /**
+     * 
+     * @type {ActionRelationShallow}
+     * @memberof CredentialRelation
+     */
+    last_action?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof CredentialRelation
      */
-    'created_at'?: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof CredentialRelation
      */
-    'updated_at'?: string;
+    updated_at?: string;
 }
-
-
 

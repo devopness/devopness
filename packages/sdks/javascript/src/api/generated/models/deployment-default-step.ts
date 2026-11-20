@@ -11,19 +11,32 @@
  * Do not edit the class manually.
  */
 
+
 import { TriggerEvent } from './trigger-event';
 
+/**
+ * 
+ * @export
+ * @interface DeploymentDefaultStep
+ */
 export interface DeploymentDefaultStep {
-    'value': TriggerEvent;
+    /**
+     * 
+     * @type {TriggerEvent}
+     * @memberof DeploymentDefaultStep
+     */
+    value: TriggerEvent;
     /**
      * Formatted name of the event
+     * @type {string}
+     * @memberof DeploymentDefaultStep
      */
-    'human_readable': string;
+    human_readable: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+     * @type {string}
+     * @memberof DeploymentDefaultStep
      */
-    'hint': string;
+    hint: string;
 }
-
-
 

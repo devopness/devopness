@@ -11,15 +11,33 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionTargetData } from './action-target-data';
 import { ActionTargetLogStep } from './action-target-log-step';
 
+/**
+ * 
+ * @export
+ * @interface Log
+ */
 export interface Log {
-    'target': ActionTargetData | null;
-    'step': ActionTargetLogStep | null;
+    /**
+     * 
+     * @type {ActionTargetData}
+     * @memberof Log
+     */
+    target: ActionTargetData | null;
+    /**
+     * 
+     * @type {ActionTargetLogStep}
+     * @memberof Log
+     */
+    step: ActionTargetLogStep | null;
     /**
      * The date and time when the requested log record was last updated
+     * @type {string}
+     * @memberof Log
      */
-    'updated_at': string | null;
+    updated_at: string | null;
 }
 

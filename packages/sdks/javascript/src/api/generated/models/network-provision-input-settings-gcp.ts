@@ -12,14 +12,24 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface NetworkProvisionInputSettingsGcp
+ */
 export interface NetworkProvisionInputSettingsGcp {
     /**
      * The cloud provider region where the network will be created
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsGcp
      */
-    'region': string;
+    region: string;
     /**
      * Human readable version of the network region
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsGcp
      */
-    'region_human_readable'?: string;
+    region_human_readable?: string;
 }
 

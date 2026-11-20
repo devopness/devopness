@@ -12,17 +12,16 @@
  */
 
 
+
 /**
  * The type of the deployment
+ * @export
+ * @enum {string}
  */
-
-export const DeploymentType = {
-    Deploy: 'deploy',
-    Redeploy: 'redeploy',
-    Rollback: 'rollback',
-} as const;
-
-export type DeploymentType = typeof DeploymentType[keyof typeof DeploymentType];
-
+export enum DeploymentType {
+    Deploy = 'deploy',
+    Redeploy = 'redeploy',
+    Rollback = 'rollback'
+}
 
 

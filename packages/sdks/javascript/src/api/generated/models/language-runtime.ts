@@ -11,25 +11,39 @@
  * Do not edit the class manually.
  */
 
-import { LanguageRuntimeEngineVersionsInner } from './language-runtime-engine-versions-inner';
+
+import { LanguageRuntimeEngineVersions } from './language-runtime-engine-versions';
 import { LanguageRuntimeFramework } from './language-runtime-framework';
 
+/**
+ * 
+ * @export
+ * @interface LanguageRuntime
+ */
 export interface LanguageRuntime {
     /**
      * The internal name/code of the language runtime
+     * @type {string}
+     * @memberof LanguageRuntime
      */
-    'name': string;
+    name: string;
     /**
      * The formatted name to be displayed in user interfaces
+     * @type {string}
+     * @memberof LanguageRuntime
      */
-    'name_human_readable': string;
+    name_human_readable: string;
     /**
      * The list of the supported versions of the runtime engine
+     * @type {Array<LanguageRuntimeEngineVersions>}
+     * @memberof LanguageRuntime
      */
-    'engine_versions': Array<LanguageRuntimeEngineVersionsInner>;
+    engine_versions: Array<LanguageRuntimeEngineVersions>;
     /**
      * The list of supported frameworks built on top of the runtime engine
+     * @type {Array<LanguageRuntimeFramework>}
+     * @memberof LanguageRuntime
      */
-    'frameworks': Array<LanguageRuntimeFramework>;
+    frameworks: Array<LanguageRuntimeFramework>;
 }
 

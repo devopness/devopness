@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface TeamOrganizationLink
+ */
 export interface TeamOrganizationLink {
     /**
      * The role\'s ID to link to the team.
+     * @type {number}
+     * @memberof TeamOrganizationLink
      */
-    'role_id': number;
+    role_id: number;
 }
 

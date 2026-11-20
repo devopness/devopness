@@ -11,15 +11,20 @@
  * Do not edit the class manually.
  */
 
+
 import { SubscriptionPlan } from './subscription-plan';
 
 /**
  * Information about billing, such as subscription plans.
+ * @export
+ * @interface StaticBillingInfo
  */
 export interface StaticBillingInfo {
     /**
      * The list of subscription plans
+     * @type {Array<SubscriptionPlan>}
+     * @memberof StaticBillingInfo
      */
-    'subscription_plans'?: Array<SubscriptionPlan>;
+    subscription_plans?: Array<SubscriptionPlan>;
 }
 

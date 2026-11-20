@@ -11,49 +11,82 @@
  * Do not edit the class manually.
  */
 
+
 import { OrganizationRelation } from './organization-relation';
-import { OsUsersInner } from './os-users-inner';
 import { ResourceSummaryItem } from './resource-summary-item';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface Project
+ */
 export interface Project {
     /**
      * The Id of the project
+     * @type {number}
+     * @memberof Project
      */
-    'id': number;
+    id: number;
     /**
      * The id of the user that own the project
+     * @type {number}
+     * @memberof Project
      */
-    'user_id': number;
+    user_id: number;
     /**
      * The project\'s name
+     * @type {string}
+     * @memberof Project
      */
-    'name': string;
+    name: string;
     /**
      * A URL path to the project\'s logo image
+     * @type {string}
+     * @memberof Project
      */
-    'logo_url': string | null;
+    logo_url: string | null;
     /**
      * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
+     * @memberof Project
      */
-    'resource_summary'?: Array<ResourceSummaryItem>;
+    resource_summary?: Array<ResourceSummaryItem>;
     /**
      * The list of the operating system users found in all the servers linked to a project
+     * @type {Array<any>}
+     * @memberof Project
      */
-    'os_users': Array<OsUsersInner>;
-    'organization': OrganizationRelation | null;
+    os_users: Array<any>;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof Project
+     */
+    organization: OrganizationRelation | null;
     /**
      * The list of permissions granted for this role
+     * @type {Array<string>}
+     * @memberof Project
      */
-    'current_user_permissions': Array<string>;
-    'created_by_user': UserRelation | null;
+    current_user_permissions: Array<string>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Project
+     */
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof Project
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Project
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

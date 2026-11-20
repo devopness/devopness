@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionRelation } from './action-relation';
 import { CredentialRelation } from './credential-relation';
 import { EnvironmentRelation } from './environment-relation';
@@ -18,36 +19,83 @@ import { NetworkProvisionInput } from './network-provision-input';
 import { ProjectRelation } from './project-relation';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface Network
+ */
 export interface Network {
     /**
      * The unique id of the given record
+     * @type {number}
+     * @memberof Network
      */
-    'id': number;
+    id: number;
     /**
      * The name of the cloud provider
+     * @type {string}
+     * @memberof Network
      */
-    'provider_name': string;
+    provider_name: string;
     /**
      * The human readable version of the provider\'s name
+     * @type {string}
+     * @memberof Network
      */
-    'provider_name_human_readable': string;
+    provider_name_human_readable: string;
     /**
      * The networks\'s name
+     * @type {string}
+     * @memberof Network
      */
-    'name': string;
-    'provision_input': NetworkProvisionInput;
-    'created_by_user': UserRelation | null;
-    'project': ProjectRelation | null;
-    'environment': EnvironmentRelation | null;
-    'credential': CredentialRelation | null;
-    'last_action': ActionRelation | null;
+    name: string;
+    /**
+     * 
+     * @type {NetworkProvisionInput}
+     * @memberof Network
+     */
+    provision_input: NetworkProvisionInput;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Network
+     */
+    created_by_user: UserRelation | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof Network
+     */
+    project: ProjectRelation | null;
+    /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof Network
+     */
+    environment: EnvironmentRelation | null;
+    /**
+     * 
+     * @type {CredentialRelation}
+     * @memberof Network
+     */
+    credential: CredentialRelation | null;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof Network
+     */
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof Network
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Network
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

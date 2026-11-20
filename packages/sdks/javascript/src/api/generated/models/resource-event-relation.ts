@@ -12,38 +12,60 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface ResourceEventRelation
+ */
 export interface ResourceEventRelation {
     /**
      * The ID of the given resource event
+     * @type {number}
+     * @memberof ResourceEventRelation
      */
-    'id': number;
+    id: number;
     /**
      * The type of resource event
+     * @type {string}
+     * @memberof ResourceEventRelation
      */
-    'event_type': string;
+    event_type: string;
     /**
      * The event\'s resource type
+     * @type {string}
+     * @memberof ResourceEventRelation
      */
-    'resource_type': string;
+    resource_type: string;
     /**
      * The event\'s resource ID
+     * @type {number}
+     * @memberof ResourceEventRelation
      */
-    'resource_id': number;
+    resource_id: number;
     /**
      * 
+     * @type {string}
+     * @memberof ResourceEventRelation
      */
-    'message': string | null;
+    message: string | null;
     /**
      * 
+     * @type {number}
+     * @memberof ResourceEventRelation
      */
-    'triggered_by': number | null;
+    triggered_by: number | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof ResourceEventRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof ResourceEventRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

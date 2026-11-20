@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface ServiceGetStatus
+ */
 export interface ServiceGetStatus {
     /**
      * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof ServiceGetStatus
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

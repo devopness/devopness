@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface ServerCommand
+ */
 export interface ServerCommand {
     /**
      * The Shell Script command to be executed in an existing Linux server in order to connect it to the `devopness`
+     * @type {string}
+     * @memberof ServerCommand
      */
-    'connect_command': string;
+    connect_command: string;
 }
 

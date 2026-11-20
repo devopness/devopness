@@ -12,14 +12,24 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface DaemonRestart
+ */
 export interface DaemonRestart {
     /**
      * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof DaemonRestart
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
     /**
      * Optional comment provided when triggering this action. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof DaemonRestart
      */
-    'trigger_comment'?: string;
+    trigger_comment?: string;
 }
 

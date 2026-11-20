@@ -11,16 +11,26 @@
  * Do not edit the class manually.
  */
 
+
 import { VariableTargets } from './variable-targets';
 
-export interface StaticServiceTypeSupportedVersionsInner {
+/**
+ * 
+ * @export
+ * @interface StaticServiceTypeSupportedVersions
+ */
+export interface StaticServiceTypeSupportedVersions {
     /**
      * The service\'s version that is supported
+     * @type {string}
+     * @memberof StaticServiceTypeSupportedVersions
      */
-    'version'?: string;
+    version?: string;
     /**
      * The list of VariableTarget
+     * @type {Array<VariableTargets>}
+     * @memberof StaticServiceTypeSupportedVersions
      */
-    'variable_targets'?: Array<VariableTargets>;
+    variable_targets?: Array<VariableTargets>;
 }
 

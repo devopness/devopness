@@ -11,40 +11,62 @@
  * Do not edit the class manually.
  */
 
+
 import { LanguageRuntimeFrameworkCommands } from './language-runtime-framework-commands';
 
 /**
  * Default values that apply to apps created in devopness using this framework
+ * @export
+ * @interface LanguageRuntimeFrameworkDefaults
  */
 export interface LanguageRuntimeFrameworkDefaults {
     /**
      * The version control branch that, by default, will be retrieved and deployed. This might be overriden by client apps API calls when actually triggering a new deployment.
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
      */
-    'default_branch'?: string;
+    default_branch?: string;
     /**
      * The language runtime engine version to be used to execute this application code on the deployed servers
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
      */
-    'engine_version'?: string;
+    engine_version?: string;
     /**
      * The base framework on top of which the application has been implemented - if any
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
      */
-    'framework'?: string;
+    framework?: string;
     /**
      * The relative directory where package manager\'s manifest files (`package.json`, `composer.json`, `yarn.lock`, etc) are located. It needs to be set for applications where the actual source code is not located in the top level directory of the repository.
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
      */
-    'root_directory'?: string;
+    root_directory?: string;
     /**
      * The number of deployment history, logs and artifacts to keep stored in both devopness servers and user\'s servers
+     * @type {number}
+     * @memberof LanguageRuntimeFrameworkDefaults
      */
-    'deployments_keep'?: number;
-    'commands'?: LanguageRuntimeFrameworkCommands;
+    deployments_keep?: number;
+    /**
+     * 
+     * @type {LanguageRuntimeFrameworkCommands}
+     * @memberof LanguageRuntimeFrameworkDefaults
+     */
+    commands?: LanguageRuntimeFrameworkCommands;
     /**
      * Indicates command that Devopness must execute to install application dependencies
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
      */
-    'install_dependencies_command'?: string | null;
+    install_dependencies_command?: string | null;
     /**
      * The optional command that should be executed once during deployment to build the source code and get the application in a ready state
+     * @type {string}
+     * @memberof LanguageRuntimeFrameworkDefaults
      */
-    'build_command'?: string | null;
+    build_command?: string | null;
 }
 

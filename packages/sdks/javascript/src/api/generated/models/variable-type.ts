@@ -12,17 +12,16 @@
  */
 
 
+
 /**
  * The type of the key/value pair
+ * @export
+ * @enum {string}
  */
-
-export const VariableType = {
-    File: 'file',
-    Symlink: 'symlink',
-    Variable: 'variable',
-} as const;
-
-export type VariableType = typeof VariableType[keyof typeof VariableType];
-
+export enum VariableType {
+    File = 'file',
+    Symlink = 'symlink',
+    Variable = 'variable'
+}
 
 

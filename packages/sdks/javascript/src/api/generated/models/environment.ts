@@ -11,52 +11,89 @@
  * Do not edit the class manually.
  */
 
+
 import { EnvironmentType } from './environment-type';
 import { ResourceSummaryItem } from './resource-summary-item';
 import { TeamRelation } from './team-relation';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface Environment
+ */
 export interface Environment {
     /**
      * Unique id of the given record
+     * @type {number}
+     * @memberof Environment
      */
-    'id': number;
-    'type': EnvironmentType;
+    id: number;
+    /**
+     * 
+     * @type {EnvironmentType}
+     * @memberof Environment
+     */
+    type: EnvironmentType;
     /**
      * The human readable version of the type
+     * @type {string}
+     * @memberof Environment
      */
-    'type_human_readable': string;
+    type_human_readable: string;
     /**
      * Environment\'s name
+     * @type {string}
+     * @memberof Environment
      */
-    'name': string;
+    name: string;
     /**
      * Environment\'s description
+     * @type {string}
+     * @memberof Environment
      */
-    'description': string | null;
+    description: string | null;
     /**
      * Indicates whether the record was archived
+     * @type {boolean}
+     * @memberof Environment
      */
-    'is_archived': boolean;
+    is_archived: boolean;
     /**
      * Summary of the resource
+     * @type {Array<ResourceSummaryItem>}
+     * @memberof Environment
      */
-    'resource_summary'?: Array<ResourceSummaryItem>;
-    'teams': Array<TeamRelation>;
+    resource_summary?: Array<ResourceSummaryItem>;
+    /**
+     * 
+     * @type {Array<TeamRelation>}
+     * @memberof Environment
+     */
+    teams: Array<TeamRelation>;
     /**
      * The list of permissions granted for this role
+     * @type {Array<string>}
+     * @memberof Environment
      */
-    'current_user_permissions': Array<string>;
-    'created_by_user': UserRelation | null;
+    current_user_permissions: Array<string>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof Environment
+     */
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof Environment
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof Environment
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

@@ -11,12 +11,20 @@
  * Do not edit the class manually.
  */
 
+
 import { SubnetProvisionInputSettings } from './subnet-provision-input-settings';
 
 /**
  * Subnet provision input parameters
+ * @export
+ * @interface SubnetProvisionInput
  */
 export interface SubnetProvisionInput {
-    'settings': SubnetProvisionInputSettings;
+    /**
+     * 
+     * @type {SubnetProvisionInputSettings}
+     * @memberof SubnetProvisionInput
+     */
+    settings: SubnetProvisionInputSettings;
 }
 

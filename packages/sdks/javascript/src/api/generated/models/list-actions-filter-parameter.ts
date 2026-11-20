@@ -12,34 +12,54 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface ListActionsFilterParameter
+ */
 export interface ListActionsFilterParameter {
     /**
      * Organization ID.  Example: `?filter[organization_id]=123`
+     * @type {number}
+     * @memberof ListActionsFilterParameter
      */
-    'organization_id'?: number;
+    organization_id?: number;
     /**
      * Project ID.  Example: `?filter[project_id]=456`
+     * @type {number}
+     * @memberof ListActionsFilterParameter
      */
-    'project_id'?: number;
+    project_id?: number;
     /**
      * Environment ID.  Example: `?filter[environment_id]=789`
+     * @type {number}
+     * @memberof ListActionsFilterParameter
      */
-    'environment_id'?: number;
+    environment_id?: number;
     /**
      * Resource type.  Example: `?filter[resource_type]=application`
+     * @type {string}
+     * @memberof ListActionsFilterParameter
      */
-    'resource_type'?: string;
+    resource_type?: string;
     /**
      * Resource ID.  Example: `?filter[resource_id]=321`
+     * @type {number}
+     * @memberof ListActionsFilterParameter
      */
-    'resource_id'?: number;
+    resource_id?: number;
     /**
      * Action status. Supported values: pending, waiting, skipped, queued, in-progress, completed, failed.  Example: `?filter[status]=queued`
+     * @type {string}
+     * @memberof ListActionsFilterParameter
      */
-    'status'?: string;
+    status?: string;
     /**
      * Action operation name.  Example: `?filter[operation]=deploy`
+     * @type {string}
+     * @memberof ListActionsFilterParameter
      */
-    'operation'?: string;
+    operation?: string;
 }
 

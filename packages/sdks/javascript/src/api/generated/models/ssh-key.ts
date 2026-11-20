@@ -11,47 +11,89 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionRelation } from './action-relation';
 import { EnvironmentRelation } from './environment-relation';
 import { ServerRelation } from './server-relation';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface SshKey
+ */
 export interface SshKey {
     /**
      * The Id of the given SSH public key
+     * @type {number}
+     * @memberof SshKey
      */
-    'id': number;
+    id: number;
     /**
      * The id of the user to which the SSH key belongs to
+     * @type {number}
+     * @memberof SshKey
      */
-    'created_by'?: number;
+    created_by?: number;
     /**
      * The project id to which the SSH public key belongs to
+     * @type {number}
+     * @memberof SshKey
      */
-    'project_id'?: number;
+    project_id?: number;
     /**
      * The environment id to which the SSH public key belongs to
+     * @type {number}
+     * @memberof SshKey
      */
-    'environment_id': number;
+    environment_id: number;
     /**
      * The name entered by the user to uniquely identify the public SSH key
+     * @type {string}
+     * @memberof SshKey
      */
-    'name': string;
+    name: string;
     /**
      * The hashed fingerprint of the public key
+     * @type {string}
+     * @memberof SshKey
      */
-    'fingerprint': string;
-    'created_by_user': UserRelation | null;
-    'environment': EnvironmentRelation | null;
-    'servers': Array<ServerRelation>;
-    'last_action': ActionRelation | null;
+    fingerprint: string;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof SshKey
+     */
+    created_by_user: UserRelation | null;
+    /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof SshKey
+     */
+    environment: EnvironmentRelation | null;
+    /**
+     * 
+     * @type {Array<ServerRelation>}
+     * @memberof SshKey
+     */
+    servers: Array<ServerRelation>;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof SshKey
+     */
+    last_action: ActionRelation | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof SshKey
      */
-    'created_at'?: string;
+    created_at?: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof SshKey
      */
-    'updated_at'?: string;
+    updated_at?: string;
 }
 

@@ -11,25 +11,45 @@
  * Do not edit the class manually.
  */
 
+
 import { NetworkRuleDirection } from './network-rule-direction';
 import { NetworkRuleProtocol } from './network-rule-protocol';
 
+/**
+ * 
+ * @export
+ * @interface NetworkRuleUpdate
+ */
 export interface NetworkRuleUpdate {
     /**
      * The unique ID of the given Network Rule.
+     * @type {number}
+     * @memberof NetworkRuleUpdate
      */
-    'id': number;
+    id: number;
     /**
      * The rule\'s name/description/reminder. Must be at least 3 characters. Must not be greater than 60 characters.
+     * @type {string}
+     * @memberof NetworkRuleUpdate
      */
-    'name': string;
-    'direction': NetworkRuleDirection;
-    'protocol'?: NetworkRuleProtocol;
+    name: string;
+    /**
+     * 
+     * @type {NetworkRuleDirection}
+     * @memberof NetworkRuleUpdate
+     */
+    direction: NetworkRuleDirection;
+    /**
+     * 
+     * @type {NetworkRuleProtocol}
+     * @memberof NetworkRuleUpdate
+     */
+    protocol?: NetworkRuleProtocol;
     /**
      * IP address range this rule applies for, defined using CIDR notation.
+     * @type {string}
+     * @memberof NetworkRuleUpdate
      */
-    'cidr_block': string;
+    cidr_block: string;
 }
-
-
 

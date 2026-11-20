@@ -11,20 +11,32 @@
  * Do not edit the class manually.
  */
 
+
 import { BillingPlan } from './billing-plan';
 
+/**
+ * 
+ * @export
+ * @interface BillingPlansOptionsRelation
+ */
 export interface BillingPlansOptionsRelation {
     /**
      * Product name of the plan
+     * @type {string}
+     * @memberof BillingPlansOptionsRelation
      */
-    'name': string;
+    name: string;
     /**
      * A short text describing the target audience of the product
+     * @type {string}
+     * @memberof BillingPlansOptionsRelation
      */
-    'hint': string | null;
+    hint: string | null;
     /**
      * The list of plans available for billing
+     * @type {Array<BillingPlan>}
+     * @memberof BillingPlansOptionsRelation
      */
-    'plans': Array<BillingPlan>;
+    plans: Array<BillingPlan>;
 }
 

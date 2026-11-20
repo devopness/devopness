@@ -12,29 +12,28 @@
  */
 
 
+
 /**
  * The target defining how the variable key/value pair will be deployed
+ * @export
+ * @enum {string}
  */
-
-export const VariableTarget = {
-    MyCnf: 'my-cnf',
-    NewrelicInfraYml: 'newrelic-infra-yml',
-    NginxHttpServer: 'nginx-http-server',
-    NginxHttp: 'nginx-http',
-    NginxMain: 'nginx-main',
-    OsEnvVar: 'os-env-var',
-    PhpCliPhpIni: 'php-cli_php-ini',
-    PhpFpmPhpFpmConf: 'php-fpm_php-fpm-conf',
-    PhpFpmPhpIni: 'php-fpm_php-ini',
-    PhpFpmPoolDWwwConf: 'php-fpm_pool-d-www-conf',
-    RedisConf: 'redis-conf',
-    ResourceConfigFile: 'resource-config-file',
-    ResourceSymlink: 'resource-symlink',
-    SupervisordConf: 'supervisord-conf',
-    SysctlConf: 'sysctl-conf',
-} as const;
-
-export type VariableTarget = typeof VariableTarget[keyof typeof VariableTarget];
-
+export enum VariableTarget {
+    MyCnf = 'my-cnf',
+    NewrelicInfraYml = 'newrelic-infra-yml',
+    NginxHttpServer = 'nginx-http-server',
+    NginxHttp = 'nginx-http',
+    NginxMain = 'nginx-main',
+    OsEnvVar = 'os-env-var',
+    PhpCliPhpIni = 'php-cli_php-ini',
+    PhpFpmPhpFpmConf = 'php-fpm_php-fpm-conf',
+    PhpFpmPhpIni = 'php-fpm_php-ini',
+    PhpFpmPoolDWwwConf = 'php-fpm_pool-d-www-conf',
+    RedisConf = 'redis-conf',
+    ResourceConfigFile = 'resource-config-file',
+    ResourceSymlink = 'resource-symlink',
+    SupervisordConf = 'supervisord-conf',
+    SysctlConf = 'sysctl-conf'
+}
 
 

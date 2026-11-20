@@ -12,33 +12,48 @@
  */
 
 
+
 /**
  * One template shown to users when creating an application.
+ * @export
+ * @interface Template
  */
 export interface Template {
     /**
      * The unique template ID.
+     * @type {string}
+     * @memberof Template
      */
-    'id': string;
+    id: string;
     /**
      * The internal template name used inside Devopness.
+     * @type {string}
+     * @memberof Template
      */
-    'name': string;
+    name: string;
     /**
      * The display name users see in the UI.
+     * @type {string}
+     * @memberof Template
      */
-    'title': string;
+    title: string;
     /**
      * A short summary explaining what the template does.
+     * @type {string}
+     * @memberof Template
      */
-    'description'?: string | null;
+    description?: string | null;
     /**
      * The template version string.
+     * @type {string}
+     * @memberof Template
      */
-    'version': string;
+    version: string;
     /**
      * The raw template file content used to build the application request.
+     * @type {any}
+     * @memberof Template
      */
-    'manifest'?: object | null;
+    manifest?: any | null;
 }
 

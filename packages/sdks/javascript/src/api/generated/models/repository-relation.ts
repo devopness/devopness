@@ -12,22 +12,36 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface RepositoryRelation
+ */
 export interface RepositoryRelation {
     /**
      * The name of the repository
+     * @type {string}
+     * @memberof RepositoryRelation
      */
-    'name': string;
+    name: string;
     /**
      * The name of the user/account on the Version Control System
+     * @type {string}
+     * @memberof RepositoryRelation
      */
-    'user_name': string;
+    user_name: string;
     /**
      * The fully qualified repository name. Usually composed of user_name/name
+     * @type {string}
+     * @memberof RepositoryRelation
      */
-    'full_name': string;
+    full_name: string;
     /**
      * The URL for viewing repository details on the provider\'s web application
+     * @type {string}
+     * @memberof RepositoryRelation
      */
-    'html_url': string;
+    html_url: string;
 }
 

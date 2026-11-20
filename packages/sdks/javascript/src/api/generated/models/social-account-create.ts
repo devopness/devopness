@@ -11,15 +11,26 @@
  * Do not edit the class manually.
  */
 
+
 import { SourceProviderName } from './source-provider-name';
 
+/**
+ * 
+ * @export
+ * @interface SocialAccountCreate
+ */
 export interface SocialAccountCreate {
-    'provider': SourceProviderName;
+    /**
+     * 
+     * @type {SourceProviderName}
+     * @memberof SocialAccountCreate
+     */
+    provider: SourceProviderName;
     /**
      * The temporary code forwarded by the OAuth provider as a parameter to our callback URL. Must be at least 8 characters.
+     * @type {string}
+     * @memberof SocialAccountCreate
      */
-    'callback_code': string;
+    callback_code: string;
 }
-
-
 

@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface CredentialGoogleCloud
+ */
 export interface CredentialGoogleCloud {
     /**
      * The JSON key to service account of Google Cloud provider
+     * @type {string}
+     * @memberof CredentialGoogleCloud
      */
-    'service_account_key': string;
+    service_account_key: string;
 }
 

@@ -11,12 +11,20 @@
  * Do not edit the class manually.
  */
 
+
 import { StaticServiceType } from './static-service-type';
 
+/**
+ * 
+ * @export
+ * @interface ServiceOptions
+ */
 export interface ServiceOptions {
     /**
      * List of service types
+     * @type {Array<StaticServiceType>}
+     * @memberof ServiceOptions
      */
-    'types': Array<StaticServiceType>;
+    types: Array<StaticServiceType>;
 }
 

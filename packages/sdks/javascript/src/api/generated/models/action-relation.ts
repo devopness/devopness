@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionData } from './action-data';
 import { ActionResource } from './action-resource';
 import { ActionStatus } from './action-status';
@@ -23,62 +24,137 @@ import { EnvironmentRelation } from './environment-relation';
 import { OrganizationRelation } from './organization-relation';
 import { ProjectRelation } from './project-relation';
 
+/**
+ * 
+ * @export
+ * @interface ActionRelation
+ */
 export interface ActionRelation {
     /**
      * The Id of the given action
+     * @type {number}
+     * @memberof ActionRelation
      */
-    'id': number;
-    'status': ActionStatus;
+    id: number;
+    /**
+     * 
+     * @type {ActionStatus}
+     * @memberof ActionRelation
+     */
+    status: ActionStatus;
     /**
      * Human readable version of action status
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'status_human_readable': string;
-    'status_reason_code': ActionStatusReasonCode;
+    status_human_readable: string;
+    /**
+     * 
+     * @type {ActionStatusReasonCode}
+     * @memberof ActionRelation
+     */
+    status_reason_code: ActionStatusReasonCode;
     /**
      * Human readable version of the status reason code
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'status_reason_human_readable': string;
-    'type': ActionType;
+    status_reason_human_readable: string;
+    /**
+     * 
+     * @type {ActionType}
+     * @memberof ActionRelation
+     */
+    type: ActionType;
     /**
      * Human readable version of the action type
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'type_human_readable': string;
+    type_human_readable: string;
     /**
      * The permalink URL to the action details on Devopness web app
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'url_web_permalink': string;
+    url_web_permalink: string;
     /**
      * Optional comment attached to this action
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'trigger_comment': string | null;
-    'action_data'?: ActionData | null;
-    'triggered_from': ActionTriggeredFrom;
-    'resource': ActionResource;
-    'organization': OrganizationRelation | null;
-    'project': ProjectRelation | null;
-    'environment': EnvironmentRelation | null;
-    'summary'?: ActionSummary;
+    trigger_comment: string | null;
+    /**
+     * 
+     * @type {ActionData}
+     * @memberof ActionRelation
+     */
+    action_data?: ActionData | null;
+    /**
+     * 
+     * @type {ActionTriggeredFrom}
+     * @memberof ActionRelation
+     */
+    triggered_from: ActionTriggeredFrom;
+    /**
+     * 
+     * @type {ActionResource}
+     * @memberof ActionRelation
+     */
+    resource: ActionResource;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof ActionRelation
+     */
+    organization: OrganizationRelation | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof ActionRelation
+     */
+    project: ProjectRelation | null;
+    /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof ActionRelation
+     */
+    environment: EnvironmentRelation | null;
+    /**
+     * 
+     * @type {ActionSummary}
+     * @memberof ActionRelation
+     */
+    summary?: ActionSummary;
     /**
      * List of actions dispatched to cloud resource targets
+     * @type {Array<ActionTarget>}
+     * @memberof ActionRelation
      */
-    'targets'?: Array<ActionTarget>;
+    targets?: Array<ActionTarget>;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'started_at': string | null;
+    started_at: string | null;
     /**
      * The date and time when the action has finished execution
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'completed_at': string | null;
+    completed_at: string | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof ActionRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

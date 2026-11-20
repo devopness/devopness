@@ -11,15 +11,33 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionDeploymentCommit } from './action-deployment-commit';
 import { ActionDeploymentContent } from './action-deployment-content';
 
+/**
+ * 
+ * @export
+ * @interface ActionDeploymentData
+ */
 export interface ActionDeploymentData {
     /**
      * The name generated to release created by this deployment
+     * @type {string}
+     * @memberof ActionDeploymentData
      */
-    'release_name': string;
-    'commit': ActionDeploymentCommit;
-    'deployment': ActionDeploymentContent;
+    release_name: string;
+    /**
+     * 
+     * @type {ActionDeploymentCommit}
+     * @memberof ActionDeploymentData
+     */
+    commit: ActionDeploymentCommit;
+    /**
+     * 
+     * @type {ActionDeploymentContent}
+     * @memberof ActionDeploymentData
+     */
+    deployment: ActionDeploymentContent;
 }
 

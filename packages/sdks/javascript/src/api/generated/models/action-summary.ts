@@ -11,9 +11,20 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionSummaryTarget } from './action-summary-target';
 
+/**
+ * 
+ * @export
+ * @interface ActionSummary
+ */
 export interface ActionSummary {
-    'targets': ActionSummaryTarget;
+    /**
+     * 
+     * @type {ActionSummaryTarget}
+     * @memberof ActionSummary
+     */
+    targets: ActionSummaryTarget;
 }
 

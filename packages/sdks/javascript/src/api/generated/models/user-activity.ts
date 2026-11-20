@@ -11,15 +11,41 @@
  * Do not edit the class manually.
  */
 
+
 import { TriggeredActions } from './triggered-actions';
 import { UserEnvironmentStats } from './user-environment-stats';
 import { UserProjectStats } from './user-project-stats';
 import { UserTeamStats } from './user-team-stats';
 
+/**
+ * 
+ * @export
+ * @interface UserActivity
+ */
 export interface UserActivity {
-    'projects': UserProjectStats;
-    'environments': UserEnvironmentStats;
-    'teams': UserTeamStats;
-    'triggered_actions': TriggeredActions;
+    /**
+     * 
+     * @type {UserProjectStats}
+     * @memberof UserActivity
+     */
+    projects: UserProjectStats;
+    /**
+     * 
+     * @type {UserEnvironmentStats}
+     * @memberof UserActivity
+     */
+    environments: UserEnvironmentStats;
+    /**
+     * 
+     * @type {UserTeamStats}
+     * @memberof UserActivity
+     */
+    teams: UserTeamStats;
+    /**
+     * 
+     * @type {TriggeredActions}
+     * @memberof UserActivity
+     */
+    triggered_actions: TriggeredActions;
 }
 

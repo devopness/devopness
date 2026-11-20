@@ -12,16 +12,15 @@
  */
 
 
+
 /**
  * The direction of network traffic a network rule is applied. `Inbound` applies to ingress/incoming traffic originating from outside into your network. `Outbound` applies to egress traffic, originating inside your network to external networks.
+ * @export
+ * @enum {string}
  */
-
-export const NetworkRuleDirection = {
-    Inbound: 'inbound',
-    Outbound: 'outbound',
-} as const;
-
-export type NetworkRuleDirection = typeof NetworkRuleDirection[keyof typeof NetworkRuleDirection];
-
+export enum NetworkRuleDirection {
+    Inbound = 'inbound',
+    Outbound = 'outbound'
+}
 
 

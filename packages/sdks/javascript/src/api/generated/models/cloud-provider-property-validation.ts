@@ -11,27 +11,44 @@
  * Do not edit the class manually.
  */
 
+
 import { CloudProviderPropertyType } from './cloud-provider-property-type';
 
+/**
+ * 
+ * @export
+ * @interface CloudProviderPropertyValidation
+ */
 export interface CloudProviderPropertyValidation {
     /**
      * Defines if the property is required
+     * @type {boolean}
+     * @memberof CloudProviderPropertyValidation
      */
-    'required': boolean;
-    'type': CloudProviderPropertyType;
+    required: boolean;
+    /**
+     * 
+     * @type {CloudProviderPropertyType}
+     * @memberof CloudProviderPropertyValidation
+     */
+    type: CloudProviderPropertyType;
     /**
      * The minimum allowed property value. For properties of type `string` the validation checks the length of the property value
+     * @type {number}
+     * @memberof CloudProviderPropertyValidation
      */
-    'min': number;
+    min: number;
     /**
      * The maximum allowed property value. For properties of type `string` the validation checks the length of the property value
+     * @type {number}
+     * @memberof CloudProviderPropertyValidation
      */
-    'max': number;
+    max: number;
     /**
      * List of allowed values for the property. If empty, any value is allowed
+     * @type {Array<string>}
+     * @memberof CloudProviderPropertyValidation
      */
-    'allowed_values': Array<string>;
+    allowed_values: Array<string>;
 }
-
-
 

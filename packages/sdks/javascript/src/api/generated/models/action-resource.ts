@@ -11,24 +11,50 @@
  * Do not edit the class manually.
  */
 
-import { ActionResourceData } from './action-resource-data';
+
+import { ApplicationRelation } from './application-relation';
+import { CredentialRelation } from './credential-relation';
+import { CronJobRelation } from './cron-job-relation';
+import { DaemonRelation } from './daemon-relation';
+import { NetworkRelation } from './network-relation';
+import { NetworkRuleRelation } from './network-rule-relation';
 import { ResourceType } from './resource-type';
+import { ServerRelation } from './server-relation';
+import { ServiceRelation } from './service-relation';
+import { SshKeyRelation } from './ssh-key-relation';
+import { SslCertificateRelation } from './ssl-certificate-relation';
+import { SubnetRelation } from './subnet-relation';
+import { VirtualHostRelation } from './virtual-host-relation';
 
 /**
  * The resource that triggered an action
+ * @export
+ * @interface ActionResource
  */
 export interface ActionResource {
     /**
      * The unique id of the resource
+     * @type {number}
+     * @memberof ActionResource
      */
-    'id': number;
-    'type': ResourceType;
+    id: number;
+    /**
+     * 
+     * @type {ResourceType}
+     * @memberof ActionResource
+     */
+    type: ResourceType;
     /**
      * Human readable version of the resource type
+     * @type {string}
+     * @memberof ActionResource
      */
-    'type_human_readable': string;
-    'data'?: ActionResourceData | null;
+    type_human_readable: string;
+    /**
+     * The resource data of type specified on `resource.type`
+     * @type {ApplicationRelation | CredentialRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | SubnetRelation | VirtualHostRelation}
+     * @memberof ActionResource
+     */
+    data?: ApplicationRelation | CredentialRelation | CronJobRelation | DaemonRelation | NetworkRelation | NetworkRuleRelation | ServerRelation | ServiceRelation | SshKeyRelation | SslCertificateRelation | SubnetRelation | VirtualHostRelation | null;
 }
-
-
 

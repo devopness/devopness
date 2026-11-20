@@ -12,16 +12,15 @@
  */
 
 
+
 /**
  *  * `hook`: the action have been triggered by an `incoming hook`. * `manual`: the action have been manually triggered. 
+ * @export
+ * @enum {string}
  */
-
-export const ActionTriggerType = {
-    Hook: 'hook',
-    Manual: 'manual',
-} as const;
-
-export type ActionTriggerType = typeof ActionTriggerType[keyof typeof ActionTriggerType];
-
+export enum ActionTriggerType {
+    Hook = 'hook',
+    Manual = 'manual'
+}
 
 

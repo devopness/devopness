@@ -12,18 +12,30 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface TeamUpdate
+ */
 export interface TeamUpdate {
     /**
      * The unique ID of the given Team.
+     * @type {number}
+     * @memberof TeamUpdate
      */
-    'id': number;
+    id: number;
     /**
      * The name of the team. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof TeamUpdate
      */
-    'name': string;
+    name: string;
     /**
      * The URL to team\'s image. Must be a valid URL.
+     * @type {string}
+     * @memberof TeamUpdate
      */
-    'photo_url'?: string;
+    photo_url?: string;
 }
 

@@ -12,26 +12,42 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface ServerUpdate
+ */
 export interface ServerUpdate {
     /**
      * The unique ID of the given Server.
+     * @type {number}
+     * @memberof ServerUpdate
      */
-    'id': number;
+    id: number;
     /**
      * Public ipv4 address for server access.
+     * @type {string}
+     * @memberof ServerUpdate
      */
-    'ip_address'?: string;
+    ip_address?: string;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server. Must be between 22 and 65535.
+     * @type {number}
+     * @memberof ServerUpdate
      */
-    'ssh_port'?: number;
+    ssh_port?: number;
     /**
      * Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server. Must be between 0 and 10.
+     * @type {number}
+     * @memberof ServerUpdate
      */
-    'max_parallel_actions'?: number;
+    max_parallel_actions?: number;
     /**
      * The ID of the cloud credential.
+     * @type {string}
+     * @memberof ServerUpdate
      */
-    'credential_id'?: string;
+    credential_id?: string;
 }
 

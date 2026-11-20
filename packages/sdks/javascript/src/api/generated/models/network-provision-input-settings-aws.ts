@@ -12,18 +12,30 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface NetworkProvisionInputSettingsAws
+ */
 export interface NetworkProvisionInputSettingsAws {
     /**
      * The cloud provider region where the network will be created
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsAws
      */
-    'region': string;
+    region: string;
     /**
      * Human readable version of the network region
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsAws
      */
-    'region_human_readable'?: string;
+    region_human_readable?: string;
     /**
      * The IP CIDR range of the network
+     * @type {string}
+     * @memberof NetworkProvisionInputSettingsAws
      */
-    'cidr_block': string;
+    cidr_block: string;
 }
 

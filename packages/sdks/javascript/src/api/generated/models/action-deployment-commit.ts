@@ -12,45 +12,66 @@
  */
 
 
+
 /**
  * Informations about the commit used on this deployment
+ * @export
+ * @interface ActionDeploymentCommit
  */
 export interface ActionDeploymentCommit {
     /**
      * The repository of the deployed application
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'repository': string;
+    repository: string;
     /**
      * The author of the commit
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'author_name': string;
+    author_name: string;
     /**
      * The commit author\'s email
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'author_email': string;
+    author_email: string;
     /**
      * The date and time when the commit was created
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'committed_at': string;
+    committed_at: string;
     /**
      * The commit hash used on deployment
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'hash': string;
+    hash: string;
     /**
      * The commit message
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'message': string;
+    message: string;
     /**
      * The commit URL on the source provider
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'url': string;
+    url: string;
     /**
      * The URL to clone the repository on the specific commit
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'clone_url': string;
+    clone_url: string;
     /**
      * The URL to download the commit source code
+     * @type {string}
+     * @memberof ActionDeploymentCommit
      */
-    'download_url': string;
+    download_url: string;
 }
 

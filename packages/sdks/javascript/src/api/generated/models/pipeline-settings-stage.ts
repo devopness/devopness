@@ -12,15 +12,30 @@
  */
 
 
+
 /**
  * Step to be performed in the pipeline
+ * @export
+ * @interface PipelineSettingsStage
  */
 export interface PipelineSettingsStage {
-    'value'?: string;
-    'human_readable'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PipelineSettingsStage
+     */
+    value?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PipelineSettingsStage
+     */
+    human_readable?: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+     * @type {string}
+     * @memberof PipelineSettingsStage
      */
-    'hint'?: string;
+    hint?: string;
 }
 

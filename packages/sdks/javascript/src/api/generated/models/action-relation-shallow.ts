@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionData } from './action-data';
 import { ActionStatus } from './action-status';
 import { ActionStatusReasonCode } from './action-status-reason-code';
@@ -19,54 +20,107 @@ import { ActionTarget } from './action-target';
 import { ActionTriggeredFrom } from './action-triggered-from';
 import { ActionType } from './action-type';
 
+/**
+ * 
+ * @export
+ * @interface ActionRelationShallow
+ */
 export interface ActionRelationShallow {
     /**
      * The Id of the action
+     * @type {number}
+     * @memberof ActionRelationShallow
      */
-    'id': number;
-    'status': ActionStatus;
+    id: number;
+    /**
+     * 
+     * @type {ActionStatus}
+     * @memberof ActionRelationShallow
+     */
+    status: ActionStatus;
     /**
      * Human readable version of the action status
+     * @type {string}
+     * @memberof ActionRelationShallow
      */
-    'status_human_readable': string;
-    'status_reason_code': ActionStatusReasonCode;
+    status_human_readable: string;
+    /**
+     * 
+     * @type {ActionStatusReasonCode}
+     * @memberof ActionRelationShallow
+     */
+    status_reason_code: ActionStatusReasonCode;
     /**
      * Human readable version of the status reason code
+     * @type {string}
+     * @memberof ActionRelationShallow
      */
-    'status_reason_human_readable': string;
-    'type': ActionType;
+    status_reason_human_readable: string;
+    /**
+     * 
+     * @type {ActionType}
+     * @memberof ActionRelationShallow
+     */
+    type: ActionType;
     /**
      * Human readable version of the action type
+     * @type {string}
+     * @memberof ActionRelationShallow
      */
-    'type_human_readable': string;
+    type_human_readable: string;
     /**
      * Permalink to view the action on Devopness web
+     * @type {string}
+     * @memberof ActionRelationShallow
      */
-    'url_web_permalink': string;
-    'action_data'?: ActionData | null;
-    'triggered_from'?: ActionTriggeredFrom;
-    'summary'?: ActionSummary;
+    url_web_permalink: string;
+    /**
+     * 
+     * @type {ActionData}
+     * @memberof ActionRelationShallow
+     */
+    action_data?: ActionData | null;
+    /**
+     * 
+     * @type {ActionTriggeredFrom}
+     * @memberof ActionRelationShallow
+     */
+    triggered_from?: ActionTriggeredFrom;
+    /**
+     * 
+     * @type {ActionSummary}
+     * @memberof ActionRelationShallow
+     */
+    summary?: ActionSummary;
     /**
      * List of actions dispatched to cloud resource targets
+     * @type {Array<ActionTarget>}
+     * @memberof ActionRelationShallow
      */
-    'targets'?: Array<ActionTarget>;
+    targets?: Array<ActionTarget>;
     /**
      * When the action started
+     * @type {string}
+     * @memberof ActionRelationShallow
      */
-    'started_at': string | null;
+    started_at: string | null;
     /**
      * When the action completed
+     * @type {string}
+     * @memberof ActionRelationShallow
      */
-    'completed_at': string | null;
+    completed_at: string | null;
     /**
      * When the action was created
+     * @type {string}
+     * @memberof ActionRelationShallow
      */
-    'created_at': string;
+    created_at: string;
     /**
      * When the action was last updated
+     * @type {string}
+     * @memberof ActionRelationShallow
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

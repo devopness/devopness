@@ -13,22 +13,24 @@
 
 
 
-export const ActionType = {
-    CheckProvisioned: 'check_provisioned',
-    Configure: 'configure',
-    Delete: 'delete',
-    Deploy: 'deploy',
-    GetStatus: 'get_status',
-    Provision: 'provision',
-    Reload: 'reload',
-    Remove: 'remove',
-    Restart: 'restart',
-    RotateKey: 'rotate_key',
-    Start: 'start',
-    Stop: 'stop',
-} as const;
-
-export type ActionType = typeof ActionType[keyof typeof ActionType];
-
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum ActionType {
+    CheckProvisioned = 'check_provisioned',
+    Configure = 'configure',
+    Delete = 'delete',
+    Deploy = 'deploy',
+    GetStatus = 'get_status',
+    Provision = 'provision',
+    Reload = 'reload',
+    Remove = 'remove',
+    Restart = 'restart',
+    RotateKey = 'rotate_key',
+    Start = 'start',
+    Stop = 'stop'
+}
 
 

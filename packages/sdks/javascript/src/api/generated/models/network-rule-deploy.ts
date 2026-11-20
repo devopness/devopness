@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface NetworkRuleDeploy
+ */
 export interface NetworkRuleDeploy {
     /**
      * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof NetworkRuleDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

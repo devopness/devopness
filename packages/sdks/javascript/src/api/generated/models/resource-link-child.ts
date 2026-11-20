@@ -11,37 +11,62 @@
  * Do not edit the class manually.
  */
 
+
 import { LinkedResourceData } from './linked-resource-data';
 
+/**
+ * 
+ * @export
+ * @interface ResourceLinkChild
+ */
 export interface ResourceLinkChild {
     /**
      * The link type to related resource (`child` or `parent`)
+     * @type {string}
+     * @memberof ResourceLinkChild
      */
-    'link_type': string;
+    link_type: string;
     /**
      * The linked resource ID
+     * @type {number}
+     * @memberof ResourceLinkChild
      */
-    'resource_id': number;
+    resource_id: number;
     /**
      * The linked resource type
+     * @type {string}
+     * @memberof ResourceLinkChild
      */
-    'resource_type': string;
+    resource_type: string;
     /**
      * Human readable resource type
+     * @type {string}
+     * @memberof ResourceLinkChild
      */
-    'resource_type_human_readable': string;
+    resource_type_human_readable: string;
     /**
      * If false, the link cannot be manually removed
+     * @type {boolean}
+     * @memberof ResourceLinkChild
      */
-    'can_be_unlinked': boolean;
-    'linked_resource_data': LinkedResourceData;
+    can_be_unlinked: boolean;
+    /**
+     * 
+     * @type {LinkedResourceData}
+     * @memberof ResourceLinkChild
+     */
+    linked_resource_data: LinkedResourceData;
     /**
      * The date and time when the resource link was created
+     * @type {string}
+     * @memberof ResourceLinkChild
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the resource link was last updated
+     * @type {string}
+     * @memberof ResourceLinkChild
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

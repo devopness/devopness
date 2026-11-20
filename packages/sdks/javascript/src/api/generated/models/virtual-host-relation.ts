@@ -11,47 +11,90 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionRelationShallow } from './action-relation-shallow';
 import { ApplicationRelation } from './application-relation';
 import { SslCertificateRelation } from './ssl-certificate-relation';
 import { UserRelation } from './user-relation';
 import { VirtualHostType } from './virtual-host-type';
 
+/**
+ * 
+ * @export
+ * @interface VirtualHostRelation
+ */
 export interface VirtualHostRelation {
     /**
      * Unique ID of the Virtual Host
+     * @type {number}
+     * @memberof VirtualHostRelation
      */
-    'id': number;
-    'type': VirtualHostType;
+    id: number;
+    /**
+     * 
+     * @type {VirtualHostType}
+     * @memberof VirtualHostRelation
+     */
+    type: VirtualHostType;
     /**
      * The human readable version of the type
+     * @type {string}
+     * @memberof VirtualHostRelation
      */
-    'type_human_readable'?: string;
+    type_human_readable?: string;
     /**
      * The name of the Virtual Host
+     * @type {string}
+     * @memberof VirtualHostRelation
      */
-    'name': string;
-    'application': ApplicationRelation | null;
+    name: string;
+    /**
+     * 
+     * @type {ApplicationRelation}
+     * @memberof VirtualHostRelation
+     */
+    application: ApplicationRelation | null;
     /**
      * The document root location served by this virtual host. When the virtual host is linked to an application, the value is relative to that application directory. When no application is linked, the value is an absolute path
+     * @type {string}
+     * @memberof VirtualHostRelation
      */
-    'root_directory': string | null;
+    root_directory: string | null;
     /**
      * The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket)
+     * @type {string}
+     * @memberof VirtualHostRelation
      */
-    'application_listen_address': string | null;
-    'ssl_certificate': SslCertificateRelation | null;
-    'last_action'?: ActionRelationShallow | null;
-    'created_by_user'?: UserRelation | null;
+    application_listen_address: string | null;
+    /**
+     * 
+     * @type {SslCertificateRelation}
+     * @memberof VirtualHostRelation
+     */
+    ssl_certificate: SslCertificateRelation | null;
+    /**
+     * 
+     * @type {ActionRelationShallow}
+     * @memberof VirtualHostRelation
+     */
+    last_action?: ActionRelationShallow | null;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof VirtualHostRelation
+     */
+    created_by_user?: UserRelation | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof VirtualHostRelation
      */
-    'created_at'?: string;
+    created_at?: string;
     /**
      * The date and time when the record was updated
+     * @type {string}
+     * @memberof VirtualHostRelation
      */
-    'updated_at'?: string;
+    updated_at?: string;
 }
-
-
 

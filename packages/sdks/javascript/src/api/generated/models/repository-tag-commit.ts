@@ -12,14 +12,24 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface RepositoryTagCommit
+ */
 export interface RepositoryTagCommit {
     /**
      * The commit comment\'s full hash that uniquely identify it
+     * @type {string}
+     * @memberof RepositoryTagCommit
      */
-    'hash': string;
+    hash: string;
     /**
      * The direct URL for accessing commit details on the provider\'s web application
+     * @type {string}
+     * @memberof RepositoryTagCommit
      */
-    'url': string;
+    url: string;
 }
 

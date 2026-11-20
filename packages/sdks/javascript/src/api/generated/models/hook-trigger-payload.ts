@@ -12,6 +12,12 @@
  */
 
 
-export interface TriggerWhenConditionAcceptedValuesInner {
-}
+
+/**
+ * @type HookTriggerPayload
+ * Free-form JSON payload sent to trigger an incoming hook.
+ * @export
+ */
+export type HookTriggerPayload = { [key: string]: any; };
+
 

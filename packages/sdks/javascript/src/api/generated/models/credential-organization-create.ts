@@ -11,23 +11,46 @@
  * Do not edit the class manually.
  */
 
+
 import { CredentialInputSettings } from './credential-input-settings';
 import { ProviderCode } from './provider-code';
 import { ProviderType } from './provider-type';
 
+/**
+ * 
+ * @export
+ * @interface CredentialOrganizationCreate
+ */
 export interface CredentialOrganizationCreate {
     /**
      * The name of the credential. Must not be greater than 60 characters.
+     * @type {string}
+     * @memberof CredentialOrganizationCreate
      */
-    'name': string;
-    'provider_code': ProviderCode;
-    'provider_type': ProviderType;
+    name: string;
+    /**
+     * 
+     * @type {ProviderCode}
+     * @memberof CredentialOrganizationCreate
+     */
+    provider_code: ProviderCode;
+    /**
+     * 
+     * @type {ProviderType}
+     * @memberof CredentialOrganizationCreate
+     */
+    provider_type: ProviderType;
     /**
      * If this credential is active or not.
+     * @type {boolean}
+     * @memberof CredentialOrganizationCreate
      */
-    'active': boolean;
-    'settings': CredentialInputSettings;
+    active: boolean;
+    /**
+     * 
+     * @type {CredentialInputSettings}
+     * @memberof CredentialOrganizationCreate
+     */
+    settings: CredentialInputSettings;
 }
-
-
 

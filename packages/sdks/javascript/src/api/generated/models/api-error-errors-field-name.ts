@@ -12,9 +12,18 @@
  */
 
 
+
 /**
- * The request body that should be send to target URL
+ * 
+ * @export
+ * @interface ApiErrorErrorsFieldName
  */
-export interface HookOutgoingSettingsRequestBody {
+export interface ApiErrorErrorsFieldName {
+    /**
+     * Field name and respective error message
+     * @type {string}
+     * @memberof ApiErrorErrorsFieldName
+     */
+    field?: string;
 }
 

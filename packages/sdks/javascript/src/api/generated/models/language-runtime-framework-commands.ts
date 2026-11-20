@@ -12,17 +12,24 @@
  */
 
 
+
 /**
  * List of available commands to be chosen by user to be executed when building and deploying an application of a given stack
+ * @export
+ * @interface LanguageRuntimeFrameworkCommands
  */
 export interface LanguageRuntimeFrameworkCommands {
     /**
      * Available build command options for the stack
+     * @type {Array<string>}
+     * @memberof LanguageRuntimeFrameworkCommands
      */
-    'build'?: Array<string>;
+    build?: Array<string>;
     /**
      * Available dependencies installation command options for the stack
+     * @type {Array<string>}
+     * @memberof LanguageRuntimeFrameworkCommands
      */
-    'dependencies'?: Array<string>;
+    dependencies?: Array<string>;
 }
 

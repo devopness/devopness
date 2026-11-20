@@ -11,13 +11,26 @@
  * Do not edit the class manually.
  */
 
+
 import { HookRequestRelation } from './hook-request-relation';
 
 /**
  * The incoming and outgoing hook request linked to this action
+ * @export
+ * @interface ActionHookRequest
  */
 export interface ActionHookRequest {
-    'incoming'?: HookRequestRelation | null;
-    'outgoing'?: HookRequestRelation | null;
+    /**
+     * 
+     * @type {HookRequestRelation}
+     * @memberof ActionHookRequest
+     */
+    incoming?: HookRequestRelation | null;
+    /**
+     * 
+     * @type {HookRequestRelation}
+     * @memberof ActionHookRequest
+     */
+    outgoing?: HookRequestRelation | null;
 }
 

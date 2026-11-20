@@ -12,17 +12,16 @@
  */
 
 
+
 /**
  * The possible status of API tokens.
+ * @export
+ * @enum {string}
  */
-
-export const ApiTokenStatus = {
-    Active: 'active',
-    Expired: 'expired',
-    Revoked: 'revoked',
-} as const;
-
-export type ApiTokenStatus = typeof ApiTokenStatus[keyof typeof ApiTokenStatus];
-
+export enum ApiTokenStatus {
+    Active = 'active',
+    Expired = 'expired',
+    Revoked = 'revoked'
+}
 
 

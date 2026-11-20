@@ -11,40 +11,57 @@
  * Do not edit the class manually.
  */
 
+
 import { ProviderCallbackConfig } from './provider-callback-config';
 import { ProviderInputSettings } from './provider-input-settings';
 
 /**
  * Authentication method settings for source providers
+ * @export
+ * @interface SourceProviderAuthMethodSettings
  */
 export interface SourceProviderAuthMethodSettings {
     /**
      * The authentication type identifier
+     * @type {string}
+     * @memberof SourceProviderAuthMethodSettings
      */
-    'auth_type': string;
+    auth_type: string;
     /**
      * Human-readable name for the authentication method
+     * @type {string}
+     * @memberof SourceProviderAuthMethodSettings
      */
-    'auth_type_human_readable'?: string;
+    auth_type_human_readable?: string;
     /**
      * Hint text explaining the authentication flow
+     * @type {string}
+     * @memberof SourceProviderAuthMethodSettings
      */
-    'hint'?: string;
+    hint?: string;
     /**
      * Whether this authentication method is recommended for this provider
+     * @type {boolean}
+     * @memberof SourceProviderAuthMethodSettings
      */
-    'recommended'?: boolean;
+    recommended?: boolean;
     /**
      * The URL to redirect the user for authentication. For OAuth methods, this is the authorization URL. For application installation methods (e.g., GitHub App), this is the installation URL.
+     * @type {string}
+     * @memberof SourceProviderAuthMethodSettings
      */
-    'connect_url'?: string;
+    connect_url?: string;
     /**
      * The list of input settings for credentials of specific provider
+     * @type {Array<ProviderInputSettings>}
+     * @memberof SourceProviderAuthMethodSettings
      */
-    'input_settings': Array<ProviderInputSettings>;
+    input_settings: Array<ProviderInputSettings>;
     /**
      * Configuration mapping for extracting authentication parameters from OAuth/provider callback URLs.
+     * @type {Array<ProviderCallbackConfig>}
+     * @memberof SourceProviderAuthMethodSettings
      */
-    'provider_config'?: Array<ProviderCallbackConfig>;
+    provider_config?: Array<ProviderCallbackConfig>;
 }
 

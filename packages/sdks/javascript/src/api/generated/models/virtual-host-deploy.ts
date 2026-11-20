@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface VirtualHostDeploy
+ */
 export interface VirtualHostDeploy {
     /**
      * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof VirtualHostDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

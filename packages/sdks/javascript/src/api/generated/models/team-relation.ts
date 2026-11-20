@@ -11,31 +11,57 @@
  * Do not edit the class manually.
  */
 
+
 import { OrganizationRelation } from './organization-relation';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface TeamRelation
+ */
 export interface TeamRelation {
     /**
      * The unique ID of the given team
+     * @type {number}
+     * @memberof TeamRelation
      */
-    'id': number;
+    id: number;
     /**
      * The name of the given team
+     * @type {string}
+     * @memberof TeamRelation
      */
-    'name': string;
+    name: string;
     /**
      * The URL to team\'s image
+     * @type {string}
+     * @memberof TeamRelation
      */
-    'photo_url': string | null;
-    'organization'?: OrganizationRelation | null;
-    'created_by_user': UserRelation | null;
+    photo_url: string | null;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof TeamRelation
+     */
+    organization?: OrganizationRelation | null;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof TeamRelation
+     */
+    created_by_user: UserRelation | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof TeamRelation
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof TeamRelation
      */
-    'updated_at': string;
+    updated_at: string;
 }
 

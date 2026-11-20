@@ -12,22 +12,36 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface RoleUpdate
+ */
 export interface RoleUpdate {
     /**
      * The unique ID of the given Role.
+     * @type {number}
+     * @memberof RoleUpdate
      */
-    'id': number;
+    id: number;
     /**
      * The role\'s name. Must be at least 2 characters. Must not be greater than 60 characters.
+     * @type {string}
+     * @memberof RoleUpdate
      */
-    'name': string;
+    name: string;
     /**
      * Description of this role. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof RoleUpdate
      */
-    'description'?: string;
+    description?: string;
     /**
      * The list of permissions granted for this role
+     * @type {Array<string>}
+     * @memberof RoleUpdate
      */
-    'permissions': Array<string>;
+    permissions: Array<string>;
 }
 

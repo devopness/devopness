@@ -11,15 +11,20 @@
  * Do not edit the class manually.
  */
 
+
 import { CloudProviderInputSettings } from './cloud-provider-input-settings';
 
 /**
  * Settings of the cloud provider
+ * @export
+ * @interface CloudProviderSettingsList
  */
 export interface CloudProviderSettingsList {
     /**
      * Settings of the cloud provider credential
+     * @type {Array<CloudProviderInputSettings>}
+     * @memberof CloudProviderSettingsList
      */
-    'credential'?: Array<CloudProviderInputSettings>;
+    credential?: Array<CloudProviderInputSettings>;
 }
 

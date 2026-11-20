@@ -11,43 +11,76 @@
  * Do not edit the class manually.
  */
 
+
 import { ApiTokenStatus } from './api-token-status';
 import { ApiTokenType } from './api-token-type';
 import { RoleRelation } from './role-relation';
 
+/**
+ * 
+ * @export
+ * @interface ApiTokenRelation
+ */
 export interface ApiTokenRelation {
     /**
      * Unique identifier of the Token
+     * @type {string}
+     * @memberof ApiTokenRelation
      */
-    'id': string;
+    id: string;
     /**
      * Name of the Token
+     * @type {string}
+     * @memberof ApiTokenRelation
      */
-    'name': string;
-    'type': ApiTokenType;
-    'status': ApiTokenStatus;
-    'role': RoleRelation | null;
+    name: string;
+    /**
+     * 
+     * @type {ApiTokenType}
+     * @memberof ApiTokenRelation
+     */
+    type: ApiTokenType;
+    /**
+     * 
+     * @type {ApiTokenStatus}
+     * @memberof ApiTokenRelation
+     */
+    status: ApiTokenStatus;
+    /**
+     * 
+     * @type {RoleRelation}
+     * @memberof ApiTokenRelation
+     */
+    role: RoleRelation | null;
     /**
      * Last time the Token was used
+     * @type {string}
+     * @memberof ApiTokenRelation
      */
-    'last_used_at': string | null;
+    last_used_at: string | null;
     /**
      * Expiration date of the Token
+     * @type {string}
+     * @memberof ApiTokenRelation
      */
-    'expires_at': string;
+    expires_at: string;
     /**
      * Revocation date of the Token
+     * @type {string}
+     * @memberof ApiTokenRelation
      */
-    'revoked_at': string | null;
+    revoked_at: string | null;
     /**
      * Last time the Token was updated
+     * @type {string}
+     * @memberof ApiTokenRelation
      */
-    'updated_at': string;
+    updated_at: string;
     /**
      * Creation date of the Token
+     * @type {string}
+     * @memberof ApiTokenRelation
      */
-    'created_at': string;
+    created_at: string;
 }
-
-
 

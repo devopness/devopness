@@ -11,17 +11,32 @@
  * Do not edit the class manually.
  */
 
+
 import { NetworkProvisionInput } from './network-provision-input';
 
+/**
+ * 
+ * @export
+ * @interface NetworkEnvironmentCreate
+ */
 export interface NetworkEnvironmentCreate {
     /**
      * The network\'s name. Must not be one of <code>default</code> Must be between 1 and 63 characters.
+     * @type {string}
+     * @memberof NetworkEnvironmentCreate
      */
-    'name': string;
-    'provision_input': NetworkProvisionInput;
+    name: string;
+    /**
+     * 
+     * @type {NetworkProvisionInput}
+     * @memberof NetworkEnvironmentCreate
+     */
+    provision_input: NetworkProvisionInput;
     /**
      * The ID of the cloud credential.
+     * @type {number}
+     * @memberof NetworkEnvironmentCreate
      */
-    'credential_id': number;
+    credential_id: number;
 }
 

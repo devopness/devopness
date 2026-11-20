@@ -11,47 +11,90 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionRelation } from './action-relation';
 import { SslCertificateIssuer } from './ssl-certificate-issuer';
 import { SslCertificateType } from './ssl-certificate-type';
 import { SslCertificateValidationLevel } from './ssl-certificate-validation-level';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface SslCertificate
+ */
 export interface SslCertificate {
     /**
      * The unique ID of the given SSL certificate
+     * @type {number}
+     * @memberof SslCertificate
      */
-    'id': number;
+    id: number;
     /**
      * The name given to SSL certificate
+     * @type {string}
+     * @memberof SslCertificate
      */
-    'name': string;
-    'type': SslCertificateType;
-    'issuer': SslCertificateIssuer;
-    'validation_level': SslCertificateValidationLevel;
+    name: string;
+    /**
+     * 
+     * @type {SslCertificateType}
+     * @memberof SslCertificate
+     */
+    type: SslCertificateType;
+    /**
+     * 
+     * @type {SslCertificateIssuer}
+     * @memberof SslCertificate
+     */
+    issuer: SslCertificateIssuer;
+    /**
+     * 
+     * @type {SslCertificateValidationLevel}
+     * @memberof SslCertificate
+     */
+    validation_level: SslCertificateValidationLevel;
     /**
      * Tells if the certificate is active for all linked servers and applications
+     * @type {boolean}
+     * @memberof SslCertificate
      */
-    'active': boolean;
-    'created_by_user': UserRelation | null;
-    'last_action': ActionRelation | null;
+    active: boolean;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof SslCertificate
+     */
+    created_by_user: UserRelation | null;
+    /**
+     * 
+     * @type {ActionRelation}
+     * @memberof SslCertificate
+     */
+    last_action: ActionRelation | null;
     /**
      * The date and time when this certificate will no longer be valid, down to minute precision
+     * @type {string}
+     * @memberof SslCertificate
      */
-    'expires_at': string | null;
+    expires_at: string | null;
     /**
      * The date and time when this certificate was renewed for the last time
+     * @type {string}
+     * @memberof SslCertificate
      */
-    'last_renewed_at': string | null;
+    last_renewed_at: string | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof SslCertificate
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof SslCertificate
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

@@ -11,17 +11,32 @@
  * Do not edit the class manually.
  */
 
+
 import { StaticBillingInfo } from './static-billing-info';
 
+/**
+ * 
+ * @export
+ * @interface UserProfileOptions
+ */
 export interface UserProfileOptions {
-    'billing': StaticBillingInfo;
+    /**
+     * 
+     * @type {StaticBillingInfo}
+     * @memberof UserProfileOptions
+     */
+    billing: StaticBillingInfo;
     /**
      * Supported languages
+     * @type {Array<string>}
+     * @memberof UserProfileOptions
      */
-    'languages': Array<string>;
+    languages: Array<string>;
     /**
      * Supported time zones
+     * @type {Array<string>}
+     * @memberof UserProfileOptions
      */
-    'timezones': Array<string>;
+    timezones: Array<string>;
 }
 

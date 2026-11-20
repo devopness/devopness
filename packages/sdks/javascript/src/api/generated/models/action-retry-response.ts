@@ -11,6 +11,7 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionData } from './action-data';
 import { ActionHookRequest } from './action-hook-request';
 import { ActionResource } from './action-resource';
@@ -26,77 +27,173 @@ import { ProjectRelation } from './project-relation';
 import { RelatedAction } from './related-action';
 import { UserRelation } from './user-relation';
 
+/**
+ * 
+ * @export
+ * @interface ActionRetryResponse
+ */
 export interface ActionRetryResponse {
     /**
      * The Id of the given action
+     * @type {number}
+     * @memberof ActionRetryResponse
      */
-    'id': number;
+    id: number;
     /**
      * The ID of the pipeline executed by this action
+     * @type {number}
+     * @memberof ActionRetryResponse
      */
-    'pipeline_id': number | null;
+    pipeline_id: number | null;
     /**
      * The Id of the parent action that this action is a retry of
+     * @type {number}
+     * @memberof ActionRetryResponse
      */
-    'retry_of': number | null;
-    'status': ActionStatus;
+    retry_of: number | null;
+    /**
+     * 
+     * @type {ActionStatus}
+     * @memberof ActionRetryResponse
+     */
+    status: ActionStatus;
     /**
      * Human readable version of action status
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'status_human_readable': string;
-    'status_reason_code': ActionStatusReasonCode;
+    status_human_readable: string;
+    /**
+     * 
+     * @type {ActionStatusReasonCode}
+     * @memberof ActionRetryResponse
+     */
+    status_reason_code: ActionStatusReasonCode;
     /**
      * Human readable version of the status reason code
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'status_reason_human_readable': string;
-    'type': ActionType;
+    status_reason_human_readable: string;
+    /**
+     * 
+     * @type {ActionType}
+     * @memberof ActionRetryResponse
+     */
+    type: ActionType;
     /**
      * Human readable version of the action type
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'type_human_readable': string;
+    type_human_readable: string;
     /**
      * The permalink URL to the action details on Devopness web app
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'url_web_permalink': string;
+    url_web_permalink: string;
     /**
      * Optional comment attached to this action
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'trigger_comment': string | null;
-    'action_data': ActionData | null;
-    'triggered_from': ActionTriggeredFrom;
-    'parent': RelatedAction | null;
+    trigger_comment: string | null;
+    /**
+     * 
+     * @type {ActionData}
+     * @memberof ActionRetryResponse
+     */
+    action_data: ActionData | null;
+    /**
+     * 
+     * @type {ActionTriggeredFrom}
+     * @memberof ActionRetryResponse
+     */
+    triggered_from: ActionTriggeredFrom;
+    /**
+     * 
+     * @type {RelatedAction}
+     * @memberof ActionRetryResponse
+     */
+    parent: RelatedAction | null;
     /**
      * List of related actions
+     * @type {Array<RelatedAction>}
+     * @memberof ActionRetryResponse
      */
-    'children': Array<RelatedAction>;
-    'triggered_by_user'?: UserRelation | null;
-    'resource': ActionResource;
-    'summary': ActionSummary;
-    'environment': EnvironmentRelation | null;
-    'project': ProjectRelation | null;
-    'organization': OrganizationRelation | null;
+    children: Array<RelatedAction>;
+    /**
+     * 
+     * @type {UserRelation}
+     * @memberof ActionRetryResponse
+     */
+    triggered_by_user?: UserRelation | null;
+    /**
+     * 
+     * @type {ActionResource}
+     * @memberof ActionRetryResponse
+     */
+    resource: ActionResource;
+    /**
+     * 
+     * @type {ActionSummary}
+     * @memberof ActionRetryResponse
+     */
+    summary: ActionSummary;
+    /**
+     * 
+     * @type {EnvironmentRelation}
+     * @memberof ActionRetryResponse
+     */
+    environment: EnvironmentRelation | null;
+    /**
+     * 
+     * @type {ProjectRelation}
+     * @memberof ActionRetryResponse
+     */
+    project: ProjectRelation | null;
+    /**
+     * 
+     * @type {OrganizationRelation}
+     * @memberof ActionRetryResponse
+     */
+    organization: OrganizationRelation | null;
     /**
      * List of actions dispatched to cloud resource targets
+     * @type {Array<ActionTarget>}
+     * @memberof ActionRetryResponse
      */
-    'targets'?: Array<ActionTarget>;
-    'hook_requests'?: ActionHookRequest;
+    targets?: Array<ActionTarget>;
+    /**
+     * 
+     * @type {ActionHookRequest}
+     * @memberof ActionRetryResponse
+     */
+    hook_requests?: ActionHookRequest;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'started_at': string | null;
+    started_at: string | null;
     /**
      * The date and time when the action has finished execution
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'completed_at': string | null;
+    completed_at: string | null;
     /**
      * The date and time when the record was created
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'created_at': string;
+    created_at: string;
     /**
      * The date and time when the record was last updated
+     * @type {string}
+     * @memberof ActionRetryResponse
      */
-    'updated_at': string;
+    updated_at: string;
 }
-
-
 

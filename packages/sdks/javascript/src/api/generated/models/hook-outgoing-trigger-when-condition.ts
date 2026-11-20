@@ -12,14 +12,24 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface HookOutgoingTriggerWhenCondition
+ */
 export interface HookOutgoingTriggerWhenCondition {
     /**
      * A dot-notation path of the outgoing hook variable to be used as the value to evaluate this condition.
+     * @type {string}
+     * @memberof HookOutgoingTriggerWhenCondition
      */
-    'path': string;
+    path: string;
     /**
      * List of accepted values for this condition.
+     * @type {Array<string>}
+     * @memberof HookOutgoingTriggerWhenCondition
      */
-    'accepted_values': Array<string>;
+    accepted_values: Array<string>;
 }
 

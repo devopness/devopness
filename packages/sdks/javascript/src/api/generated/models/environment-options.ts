@@ -11,12 +11,20 @@
  * Do not edit the class manually.
  */
 
+
 import { StaticEnvironmentType } from './static-environment-type';
 
+/**
+ * 
+ * @export
+ * @interface EnvironmentOptions
+ */
 export interface EnvironmentOptions {
     /**
      * The supported environments types
+     * @type {Array<StaticEnvironmentType>}
+     * @memberof EnvironmentOptions
      */
-    'types': Array<StaticEnvironmentType>;
+    types: Array<StaticEnvironmentType>;
 }
 

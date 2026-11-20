@@ -11,13 +11,26 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionRelationShallow } from './action-relation-shallow';
 
 /**
  * Latest deployment created to application and the more recent completed deployment
+ * @export
+ * @interface ApplicationLastDeployments
  */
 export interface ApplicationLastDeployments {
-    'latest'?: ActionRelationShallow | null;
-    'live'?: ActionRelationShallow | null;
+    /**
+     * 
+     * @type {ActionRelationShallow}
+     * @memberof ApplicationLastDeployments
+     */
+    latest?: ActionRelationShallow | null;
+    /**
+     * 
+     * @type {ActionRelationShallow}
+     * @memberof ApplicationLastDeployments
+     */
+    live?: ActionRelationShallow | null;
 }
 

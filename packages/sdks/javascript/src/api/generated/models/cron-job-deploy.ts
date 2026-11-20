@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface CronJobDeploy
+ */
 export interface CronJobDeploy {
     /**
      * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof CronJobDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

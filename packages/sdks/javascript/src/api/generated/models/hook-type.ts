@@ -12,16 +12,15 @@
  */
 
 
+
 /**
  * The type of hook (incoming or outgoing)
+ * @export
+ * @enum {string}
  */
-
-export const HookType = {
-    In: 'in',
-    Out: 'out',
-} as const;
-
-export type HookType = typeof HookType[keyof typeof HookType];
-
+export enum HookType {
+    In = 'in',
+    Out = 'out'
+}
 
 

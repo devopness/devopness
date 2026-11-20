@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface UserRefreshToken
+ */
 export interface UserRefreshToken {
     /**
      * A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint.
+     * @type {string}
+     * @memberof UserRefreshToken
      */
-    'refresh_token': string;
+    refresh_token: string;
 }
 

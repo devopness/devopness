@@ -11,33 +11,52 @@
  * Do not edit the class manually.
  */
 
+
 import { ResourceOperation } from './resource-operation';
 import { ResourceType } from './resource-type';
 import { ResourceTypeRelated } from './resource-type-related';
 
+/**
+ * 
+ * @export
+ * @interface ResourceTypeRelation
+ */
 export interface ResourceTypeRelation {
-    'resource_type': ResourceType;
+    /**
+     * 
+     * @type {ResourceType}
+     * @memberof ResourceTypeRelation
+     */
+    resource_type: ResourceType;
     /**
      * Human readable version of the resource type
+     * @type {string}
+     * @memberof ResourceTypeRelation
      */
-    'resource_type_human_readable': string;
+    resource_type_human_readable: string;
     /**
      * Human readable version of the resource type, in plural form
+     * @type {string}
+     * @memberof ResourceTypeRelation
      */
-    'resource_type_human_readable_plural': string;
+    resource_type_human_readable_plural: string;
     /**
      * A list of resource operations
+     * @type {Array<ResourceOperation>}
+     * @memberof ResourceTypeRelation
      */
-    'supported_operations': Array<ResourceOperation>;
+    supported_operations: Array<ResourceOperation>;
     /**
      * A list of related resources
+     * @type {Array<ResourceTypeRelated>}
+     * @memberof ResourceTypeRelation
      */
-    'can_be_child_of': Array<ResourceTypeRelated>;
+    can_be_child_of: Array<ResourceTypeRelated>;
     /**
      * A list of related resources
+     * @type {Array<ResourceTypeRelated>}
+     * @memberof ResourceTypeRelation
      */
-    'can_be_parent_of': Array<ResourceTypeRelated>;
+    can_be_parent_of: Array<ResourceTypeRelated>;
 }
-
-
 

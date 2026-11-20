@@ -11,25 +11,45 @@
  * Do not edit the class manually.
  */
 
+
 import { ProviderCode } from './provider-code';
 import { ProviderType } from './provider-type';
 
+/**
+ * 
+ * @export
+ * @interface ProviderRelation
+ */
 export interface ProviderRelation {
     /**
      * Tells if the provider is active or not
+     * @type {boolean}
+     * @memberof ProviderRelation
      */
-    'active': boolean;
-    'code': ProviderCode;
+    active: boolean;
+    /**
+     * 
+     * @type {ProviderCode}
+     * @memberof ProviderRelation
+     */
+    code: ProviderCode;
     /**
      * Human readable version of provider code
+     * @type {string}
+     * @memberof ProviderRelation
      */
-    'code_human_readable': string;
-    'type': ProviderType;
+    code_human_readable: string;
+    /**
+     * 
+     * @type {ProviderType}
+     * @memberof ProviderRelation
+     */
+    type: ProviderType;
     /**
      * Human readable version of provider type
+     * @type {string}
+     * @memberof ProviderRelation
      */
-    'type_human_readable'?: string;
+    type_human_readable?: string;
 }
-
-
 

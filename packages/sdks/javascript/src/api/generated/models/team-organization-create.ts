@@ -12,14 +12,24 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface TeamOrganizationCreate
+ */
 export interface TeamOrganizationCreate {
     /**
      * The name of the team. Must not be greater than 255 characters.
+     * @type {string}
+     * @memberof TeamOrganizationCreate
      */
-    'name': string;
+    name: string;
     /**
      * The URL to team\'s image. Must be a valid URL.
+     * @type {string}
+     * @memberof TeamOrganizationCreate
      */
-    'photo_url'?: string;
+    photo_url?: string;
 }
 

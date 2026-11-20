@@ -12,18 +12,48 @@
  */
 
 
+
 /**
  * The validation rules that apply for the input field
+ * @export
+ * @interface ProviderInputSettingsValidation
  */
 export interface ProviderInputSettingsValidation {
-    'required'?: boolean;
-    'type'?: string;
-    'min'?: number;
-    'max'?: number;
-    'allowed_values'?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProviderInputSettingsValidation
+     */
+    required?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProviderInputSettingsValidation
+     */
+    type?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProviderInputSettingsValidation
+     */
+    min?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProviderInputSettingsValidation
+     */
+    max?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ProviderInputSettingsValidation
+     */
+    allowed_values?: Array<string>;
     /**
      * If true, this field should not be shown to the user (system-provided, like OAuth callback_code)
+     * @type {boolean}
+     * @memberof ProviderInputSettingsValidation
      */
-    'hidden'?: boolean;
+    hidden?: boolean;
 }
 

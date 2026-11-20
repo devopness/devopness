@@ -11,16 +11,26 @@
  * Do not edit the class manually.
  */
 
+
 import { RepositoryTagCommit } from './repository-tag-commit';
 
 /**
  * A repository tag
+ * @export
+ * @interface RepositoryTag
  */
 export interface RepositoryTag {
     /**
      * The name of the tag
+     * @type {string}
+     * @memberof RepositoryTag
      */
-    'name': string;
-    'commit': RepositoryTagCommit;
+    name: string;
+    /**
+     * 
+     * @type {RepositoryTagCommit}
+     * @memberof RepositoryTag
+     */
+    commit: RepositoryTagCommit;
 }
 

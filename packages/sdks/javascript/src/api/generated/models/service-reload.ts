@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface ServiceReload
+ */
 export interface ServiceReload {
     /**
      * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof ServiceReload
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

@@ -12,10 +12,18 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface SshKeyDeploy
+ */
 export interface SshKeyDeploy {
     /**
      * List of valid resource IDs
+     * @type {Array<number>}
+     * @memberof SshKeyDeploy
      */
-    'servers'?: Array<number>;
+    servers?: Array<number>;
 }
 

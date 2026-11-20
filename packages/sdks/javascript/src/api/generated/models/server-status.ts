@@ -12,22 +12,21 @@
  */
 
 
+
 /**
  * The status of the server
+ * @export
+ * @enum {string}
  */
-
-export const ServerStatus = {
-    Configuring: 'configuring',
-    Failed: 'failed',
-    Pending: 'pending',
-    Provisioned: 'provisioned',
-    Provisioning: 'provisioning',
-    Restarting: 'restarting',
-    Running: 'running',
-    Stopped: 'stopped',
-} as const;
-
-export type ServerStatus = typeof ServerStatus[keyof typeof ServerStatus];
-
+export enum ServerStatus {
+    Configuring = 'configuring',
+    Failed = 'failed',
+    Pending = 'pending',
+    Provisioned = 'provisioned',
+    Provisioning = 'provisioning',
+    Restarting = 'restarting',
+    Running = 'running',
+    Stopped = 'stopped'
+}
 
 

@@ -11,19 +11,32 @@
  * Do not edit the class manually.
  */
 
+
 import { NetworkRuleDirection } from './network-rule-direction';
 
+/**
+ * 
+ * @export
+ * @interface StaticNetworkRuleDirection
+ */
 export interface StaticNetworkRuleDirection {
-    'value': NetworkRuleDirection;
+    /**
+     * 
+     * @type {NetworkRuleDirection}
+     * @memberof StaticNetworkRuleDirection
+     */
+    value: NetworkRuleDirection;
     /**
      * The formatted name to be displayed in user interfaces
+     * @type {string}
+     * @memberof StaticNetworkRuleDirection
      */
-    'human_readable': string;
+    human_readable: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
+     * @type {string}
+     * @memberof StaticNetworkRuleDirection
      */
-    'hint': string;
+    hint: string;
 }
-
-
 

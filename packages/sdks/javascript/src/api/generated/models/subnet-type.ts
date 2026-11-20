@@ -12,15 +12,14 @@
  */
 
 
+
 /**
  * The subnet\'s type: `public` or `private`. A `public` subnet is typically used to host resources that have a public IP address and are accessible from the public internet. `Example`: a server hosting an API or web app. A `private` subnet is typically used to host resources that should not be accessible from the public internet, such as database servers or internal applications. A server in a private subnet will not have a public IP address associated to it.
+ * @export
+ * @enum {string}
  */
-
-export const SubnetType = {
-    Public: 'public',
-} as const;
-
-export type SubnetType = typeof SubnetType[keyof typeof SubnetType];
-
+export enum SubnetType {
+    Public = 'public'
+}
 
 

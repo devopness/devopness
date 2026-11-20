@@ -11,42 +11,70 @@
  * Do not edit the class manually.
  */
 
+
 import { ActionStatus } from './action-status';
 import { ActionType } from './action-type';
 import { ResourceType } from './resource-type';
 
 /**
  * Action related to another action
+ * @export
+ * @interface RelatedAction
  */
 export interface RelatedAction {
     /**
      * The Id of the given action
+     * @type {number}
+     * @memberof RelatedAction
      */
-    'id': number;
-    'status': ActionStatus;
+    id: number;
+    /**
+     * 
+     * @type {ActionStatus}
+     * @memberof RelatedAction
+     */
+    status: ActionStatus;
     /**
      * Human readable version of the action status
+     * @type {string}
+     * @memberof RelatedAction
      */
-    'status_human_readable'?: string;
-    'type': ActionType;
+    status_human_readable?: string;
+    /**
+     * 
+     * @type {ActionType}
+     * @memberof RelatedAction
+     */
+    type: ActionType;
     /**
      * Human readable version of the action type
+     * @type {string}
+     * @memberof RelatedAction
      */
-    'type_human_readable': string;
+    type_human_readable: string;
     /**
      * The name of the resource
+     * @type {string}
+     * @memberof RelatedAction
      */
-    'resource_name'?: string;
-    'resource_type': ResourceType;
+    resource_name?: string;
+    /**
+     * 
+     * @type {ResourceType}
+     * @memberof RelatedAction
+     */
+    resource_type: ResourceType;
     /**
      * Human readable version of the resource type
+     * @type {string}
+     * @memberof RelatedAction
      */
-    'resource_type_human_readable': string;
+    resource_type_human_readable: string;
     /**
      * The permalink URL to the action details on Devopness web app
+     * @type {string}
+     * @memberof RelatedAction
      */
-    'url_web_permalink': string;
+    url_web_permalink: string;
 }
-
-
 

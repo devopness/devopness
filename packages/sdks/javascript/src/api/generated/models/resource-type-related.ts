@@ -11,26 +11,38 @@
  * Do not edit the class manually.
  */
 
+
 import { ResourceType } from './resource-type';
 
 /**
  * A related resource type
+ * @export
+ * @interface ResourceTypeRelated
  */
 export interface ResourceTypeRelated {
-    'resource_type'?: ResourceType;
+    /**
+     * 
+     * @type {ResourceType}
+     * @memberof ResourceTypeRelated
+     */
+    resource_type?: ResourceType;
     /**
      * Human readable version of the resource type name
+     * @type {string}
+     * @memberof ResourceTypeRelated
      */
-    'resource_type_human_readable'?: string;
+    resource_type_human_readable?: string;
     /**
      * Plural human readable version of the resource type name
+     * @type {string}
+     * @memberof ResourceTypeRelated
      */
-    'resource_type_human_readable_plural'?: string;
+    resource_type_human_readable_plural?: string;
     /**
      * If true, the relation with this resource type can be changed manually by the user
+     * @type {boolean}
+     * @memberof ResourceTypeRelated
      */
-    'can_be_linked'?: boolean;
+    can_be_linked?: boolean;
 }
-
-
 

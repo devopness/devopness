@@ -12,17 +12,16 @@
  */
 
 
+
 /**
  * The \'source type\' from which the application source code will be retrieved and deployed. It can be one of `branch`, `tag` or `commit`. If not provided, the application\'s default branch will be used.
+ * @export
+ * @enum {string}
  */
-
-export const SourceType = {
-    Branch: 'branch',
-    Commit: 'commit',
-    Tag: 'tag',
-} as const;
-
-export type SourceType = typeof SourceType[keyof typeof SourceType];
-
+export enum SourceType {
+    Branch = 'branch',
+    Commit = 'commit',
+    Tag = 'tag'
+}
 
 

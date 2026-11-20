@@ -10,12 +10,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+
 import { ApiBaseService } from "../../../services/ApiBaseService";
 import { ApiResponse } from "../../../common/ApiResponse";
 import { ArgumentNullException } from "../../../common/Exceptions";
 import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
+import { HookTriggerPayload } from '../../generated/models';
 import { HookTriggerResponse } from '../../generated/models';
 import { HookTypeParam } from '../../generated/models';
 import { HookUpdate } from '../../generated/models';
@@ -70,20 +72,20 @@ export class HooksApiService extends ApiBaseService {
      * 
      * @summary Trigger an incoming hook associated action
      * @param {string} hookId The ID of the hook.
-     * @param {{ [key: string]: any; }} requestBody A free-form JSON object.
+     * @param {HookTriggerPayload} hookTriggerPayload A free-form JSON object.
      */
-    public async triggerHook(hookId: string, requestBody: { [key: string]: any; }): Promise<ApiResponse<HookTriggerResponse>> {
+    public async triggerHook(hookId: string, hookTriggerPayload: HookTriggerPayload): Promise<ApiResponse<HookTriggerResponse>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'triggerHook');
         }
 
-        if (requestBody === null || requestBody === undefined) {
-            throw new ArgumentNullException('requestBody', 'triggerHook');
+        if (hookTriggerPayload === null || hookTriggerPayload === undefined) {
+            throw new ArgumentNullException('hookTriggerPayload', 'triggerHook');
         }
 
         const requestUrl = '/hooks/{hook_id}/trigger';
 
-        const response = await this.post <HookTriggerResponse, { [key: string]: any; }>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))), requestBody);
+        const response = await this.post <HookTriggerResponse, HookTriggerPayload>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))), hookTriggerPayload);
         return new ApiResponse(response);
     }
 

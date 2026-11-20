@@ -11,17 +11,32 @@
  * Do not edit the class manually.
  */
 
+
 import { Subscription } from './subscription';
 
+/**
+ * 
+ * @export
+ * @interface ResourceEvent
+ */
 export interface ResourceEvent {
     /**
      * The resource type to create events for.
+     * @type {string}
+     * @memberof ResourceEvent
      */
-    'resource_type': string;
+    resource_type: string;
     /**
      * The resource ID.
+     * @type {number}
+     * @memberof ResourceEvent
      */
-    'resource_id': number;
-    'resource_data': Subscription | null;
+    resource_id: number;
+    /**
+     * 
+     * @type {Subscription}
+     * @memberof ResourceEvent
+     */
+    resource_data: Subscription | null;
 }
 

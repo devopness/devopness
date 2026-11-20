@@ -12,17 +12,24 @@
  */
 
 
+
 /**
  * Hardware spec of the selected instance type.
+ * @export
+ * @interface CloudResourceInstanceSpec
  */
 export interface CloudResourceInstanceSpec {
     /**
      * The RAM memory size (in MB) of the selected instance type
+     * @type {number}
+     * @memberof CloudResourceInstanceSpec
      */
-    'memory': number;
+    memory: number;
     /**
      * The number of virtual CPUs of the selected instance type
+     * @type {number}
+     * @memberof CloudResourceInstanceSpec
      */
-    'vcpus': number;
+    vcpus: number;
 }
 

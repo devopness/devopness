@@ -12,22 +12,36 @@
  */
 
 
+
+/**
+ * 
+ * @export
+ * @interface UserRefreshTokenResponse
+ */
 export interface UserRefreshTokenResponse {
     /**
      * The type of the authorization token being issued
+     * @type {string}
+     * @memberof UserRefreshTokenResponse
      */
-    'token_type': string;
+    token_type: string;
     /**
      * The number of seconds remaining to the token expiration time, to be counted since the token issue date and time
+     * @type {number}
+     * @memberof UserRefreshTokenResponse
      */
-    'expires_in': number;
+    expires_in: number;
     /**
      * The issued JWT access token
+     * @type {string}
+     * @memberof UserRefreshTokenResponse
      */
-    'access_token': string;
+    access_token: string;
     /**
      * A token to be used after the original access token has expired, to issue a new token without requiring a new request to the /users/login endpoint
+     * @type {string}
+     * @memberof UserRefreshTokenResponse
      */
-    'refresh_token': string;
+    refresh_token: string;
 }
 
