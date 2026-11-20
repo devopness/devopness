@@ -28,9 +28,9 @@ export interface HookOutgoingSettings {
     request_headers?: Array<HookOutgoingRequestHeader>;
     /**
      * The request body that should be send to target URL
-     * @type {string | object | Array<object>}
+     * @type {string | any | Array<any>}
      * @memberof HookOutgoingSettings
      */
-    request_body?: string | object | Array<object>;
+    request_body?: string | any | Array<any>;
 }
 

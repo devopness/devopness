@@ -8,13 +8,14 @@
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "postinstall": "fumadocs-mdx",
-    "start": "next start"
+    "start": "next start",
+    "smoke:docs": "node scripts/smoke-test-docs.mjs"
   },
   "dependencies": {
     "dotenv-expand": "^1000.0.0",
     "fumadocs-core": "16.19.3",
     "fumadocs-mdx": "15.6.2",
-    "fumadocs-openapi": "^12.6.4",
+    "fumadocs-openapi": "^12.6.6",
     "fumadocs-ui": "16.19.3",
     "lucide-react": "^1.73.0",
     "next": "16.4.6",

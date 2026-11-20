@@ -23,4 +23,10 @@ codeUsages.add("python", python);
 /**
  * Client wrapper for the generated OpenAPI page component.
  */
-export const OpenAPIPage = createOpenAPIPage({ codeUsages });
+export const OpenAPIPage = createOpenAPIPage({
+  codeUsages,
+  // Disabled until the playground can clone free-form JSON bodies safely.
+  // Upstream issue: https://github.com/fuma-nama/fumadocs/issues/3882
+  // Upstream fix: https://github.com/fuma-nama/fumadocs/pull/3883
+  playground: { enabled: false },
+});

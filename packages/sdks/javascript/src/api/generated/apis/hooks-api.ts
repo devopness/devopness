@@ -17,6 +17,7 @@ import { ArgumentNullException } from "../../../common/Exceptions";
 import { parseQueryString } from "../../../common/utils";
 import { ApiError } from '../../generated/models';
 import { Hook } from '../../generated/models';
+import { HookTriggerPayload } from '../../generated/models';
 import { HookTriggerResponse } from '../../generated/models';
 import { HookTypeParam } from '../../generated/models';
 import { HookUpdate } from '../../generated/models';
@@ -71,15 +72,20 @@ export class HooksApiService extends ApiBaseService {
      * 
      * @summary Trigger an incoming hook associated action
      * @param {string} hookId The ID of the hook.
+     * @param {HookTriggerPayload} hookTriggerPayload A free-form JSON object.
      */
-    public async triggerHook(hookId: string): Promise<ApiResponse<HookTriggerResponse>> {
+    public async triggerHook(hookId: string, hookTriggerPayload: HookTriggerPayload): Promise<ApiResponse<HookTriggerResponse>> {
         if (hookId === null || hookId === undefined) {
             throw new ArgumentNullException('hookId', 'triggerHook');
         }
 
+        if (hookTriggerPayload === null || hookTriggerPayload === undefined) {
+            throw new ArgumentNullException('hookTriggerPayload', 'triggerHook');
+        }
+
         const requestUrl = '/hooks/{hook_id}/trigger';
 
-        const response = await this.post <HookTriggerResponse>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))));
+        const response = await this.post <HookTriggerResponse, HookTriggerPayload>(requestUrl.replace(`{${"hook_id"}}`, encodeURIComponent(String(hookId))), hookTriggerPayload);
         return new ApiResponse(response);
     }
 

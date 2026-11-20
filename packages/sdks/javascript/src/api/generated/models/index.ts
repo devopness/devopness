@@ -122,6 +122,7 @@ export * from './hook-pipeline-create';
 export * from './hook-relation';
 export * from './hook-request';
 export * from './hook-request-relation';
+export * from './hook-trigger-payload';
 export * from './hook-trigger-response';
 export * from './hook-trigger-when';
 export * from './hook-type';

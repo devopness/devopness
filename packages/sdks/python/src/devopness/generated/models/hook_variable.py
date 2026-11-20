@@ -26,7 +26,7 @@ class HookVariable(DevopnessBaseModel):
     HookVariable
 
     Attributes:
-        name (str, optional): The name of the variable
+        name (str, optional): The application environment variable name that will be available during deploy.
         path (str, optional): A dot-notation path of the variable to be used as the value to evaluate this condition. If not defined the &#x60;name&#x60; will be used instead.
         type (HookVariableType, optional):
         required (bool, optional): Defines if the variable is required
@@ -35,7 +35,7 @@ class HookVariable(DevopnessBaseModel):
 
     name: StrictStr | None = Field(
         default=None,
-        description="The name of the variable",
+        description="The application environment variable name that will be available during deploy.",
         json_schema_extra={"examples": ["environment_id"]},
     )
     path: StrictStr | None = Field(
