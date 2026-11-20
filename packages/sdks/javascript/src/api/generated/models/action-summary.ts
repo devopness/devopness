@@ -25,6 +25,6 @@ export interface ActionSummary {
      * @type {ActionSummaryTarget}
      * @memberof ActionSummary
      */
-    targets: ActionSummaryTarget;
+    'targets': ActionSummaryTarget;
 }
 

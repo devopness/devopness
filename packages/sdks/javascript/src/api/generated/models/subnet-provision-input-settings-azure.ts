@@ -24,18 +24,18 @@ export interface SubnetProvisionInputSettingsAzure {
      * @type {string}
      * @memberof SubnetProvisionInputSettingsAzure
      */
-    region?: string;
+    'region'?: string;
     /**
      * Human readable version of the subnet region
      * @type {string}
      * @memberof SubnetProvisionInputSettingsAzure
      */
-    region_human_readable?: string;
+    'region_human_readable'?: string;
     /**
      * The IP CIDR range of the subnet
      * @type {string}
      * @memberof SubnetProvisionInputSettingsAzure
      */
-    cidr_block: string;
+    'cidr_block': string;
 }
 

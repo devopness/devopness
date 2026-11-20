@@ -18,10 +18,14 @@
  * @export
  * @enum {string}
  */
-export enum SourceProviderDisplayableName {
-    Bitbucket = 'Bitbucket',
-    GitHub = 'GitHub',
-    GitLab = 'GitLab'
-}
+
+export const SourceProviderDisplayableName = {
+    Bitbucket: 'Bitbucket',
+    GitHub: 'GitHub',
+    GitLab: 'GitLab'
+} as const;
+
+export type SourceProviderDisplayableName = typeof SourceProviderDisplayableName[keyof typeof SourceProviderDisplayableName];
+
 
 

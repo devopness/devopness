@@ -18,13 +18,17 @@
  * @export
  * @enum {string}
  */
-export enum SocialAccountProvider {
-    Bitbucket = 'bitbucket',
-    Clerk = 'clerk',
-    Facebook = 'facebook',
-    Github = 'github',
-    Gitlab = 'gitlab',
-    Google = 'google'
-}
+
+export const SocialAccountProvider = {
+    Bitbucket: 'bitbucket',
+    Clerk: 'clerk',
+    Facebook: 'facebook',
+    Github: 'github',
+    Gitlab: 'gitlab',
+    Google: 'google'
+} as const;
+
+export type SocialAccountProvider = typeof SocialAccountProvider[keyof typeof SocialAccountProvider];
+
 
 

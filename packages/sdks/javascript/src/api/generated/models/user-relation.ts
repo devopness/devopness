@@ -25,48 +25,50 @@ export interface UserRelation {
      * @type {number}
      * @memberof UserRelation
      */
-    id: number;
+    'id': number;
     /**
      * User\'s full name
      * @type {string}
      * @memberof UserRelation
      */
-    name: string;
+    'name': string;
     /**
      * The e-mail that will uniquely identify the user on the system and become its login credential
      * @type {string}
      * @memberof UserRelation
      */
-    email: string;
+    'email': string;
     /**
      * The URL Slug of the user
      * @type {string}
      * @memberof UserRelation
      */
-    url_slug: string;
+    'url_slug': string;
     /**
      * 
      * @type {Language}
      * @memberof UserRelation
      */
-    language?: Language | null;
+    'language'?: Language | null;
     /**
      * Tells if the user is active or not
      * @type {boolean}
      * @memberof UserRelation
      */
-    active?: boolean;
+    'active'?: boolean;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof UserRelation
      */
-    created_at?: string;
+    'created_at'?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof UserRelation
      */
-    updated_at?: string;
+    'updated_at'?: string;
 }
+
+
 

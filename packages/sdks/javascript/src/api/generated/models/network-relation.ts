@@ -27,78 +27,78 @@ export interface NetworkRelation {
      * @type {number}
      * @memberof NetworkRelation
      */
-    id: number;
+    'id': number;
     /**
      * Numeric ID of the project to which the network belongs to
      * @type {number}
      * @memberof NetworkRelation
      */
-    project_id: number;
+    'project_id': number;
     /**
      * Numeric ID of the environment to which the network belongs to
      * @type {number}
      * @memberof NetworkRelation
      */
-    environment_id: number;
+    'environment_id': number;
     /**
      * The id of the user who created the network
      * @type {number}
      * @memberof NetworkRelation
      */
-    created_by: number;
+    'created_by': number;
     /**
      * If true, the network is auto-generated
      * @type {boolean}
      * @memberof NetworkRelation
      */
-    is_auto_generated: boolean;
+    'is_auto_generated': boolean;
     /**
      * The name of the cloud provider
      * @type {string}
      * @memberof NetworkRelation
      */
-    provider_name: string;
+    'provider_name': string;
     /**
      * The human readable version of the provider\'s name
      * @type {string}
      * @memberof NetworkRelation
      */
-    provider_name_human_readable: string;
+    'provider_name_human_readable': string;
     /**
      * 
      * @type {Credential}
      * @memberof NetworkRelation
      */
-    credential?: Credential;
+    'credential'?: Credential;
     /**
      * The networks\'s name
      * @type {string}
      * @memberof NetworkRelation
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {NetworkProvisionInput}
      * @memberof NetworkRelation
      */
-    provision_input: NetworkProvisionInput;
+    'provision_input': NetworkProvisionInput;
     /**
      * 
      * @type {ActionRelationShallow}
      * @memberof NetworkRelation
      */
-    last_action?: ActionRelationShallow | null;
+    'last_action'?: ActionRelationShallow | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof NetworkRelation
      */
-    created_at?: string;
+    'created_at'?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof NetworkRelation
      */
-    updated_at?: string;
+    'updated_at'?: string;
 }
 

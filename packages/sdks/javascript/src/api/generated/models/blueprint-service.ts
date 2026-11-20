@@ -26,24 +26,26 @@ export interface BlueprintService {
      * @type {boolean}
      * @memberof BlueprintService
      */
-    auto_start?: boolean;
+    'auto_start'?: boolean;
     /**
      * 
      * @type {ServiceInitialState}
      * @memberof BlueprintService
      */
-    initial_state?: ServiceInitialState;
+    'initial_state'?: ServiceInitialState;
     /**
      * 
      * @type {ServiceType}
      * @memberof BlueprintService
      */
-    type: ServiceType;
+    'type': ServiceType;
     /**
      * The service version
      * @type {string}
      * @memberof BlueprintService
      */
-    version: string;
+    'version': string;
 }
+
+
 

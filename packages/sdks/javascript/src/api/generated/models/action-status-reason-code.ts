@@ -18,16 +18,20 @@
  * @export
  * @enum {string}
  */
-export enum ActionStatusReasonCode {
-    COMPLETED = 'COMPLETED',
-    FAILEDINSUFFICIENTCREDITS = 'FAILED_INSUFFICIENT_CREDITS',
-    FAILED = 'FAILED',
-    INPROGRESS = 'IN_PROGRESS',
-    PENDING = 'PENDING',
-    QUEUED = 'QUEUED',
-    SKIPPED = 'SKIPPED',
-    WAITINGCONCURRENCYPIPELINE = 'WAITING_CONCURRENCY_PIPELINE',
-    WAITINGCONCURRENCYTARGET = 'WAITING_CONCURRENCY_TARGET'
-}
+
+export const ActionStatusReasonCode = {
+    Completed: 'COMPLETED',
+    FailedInsufficientCredits: 'FAILED_INSUFFICIENT_CREDITS',
+    Failed: 'FAILED',
+    InProgress: 'IN_PROGRESS',
+    Pending: 'PENDING',
+    Queued: 'QUEUED',
+    Skipped: 'SKIPPED',
+    WaitingConcurrencyPipeline: 'WAITING_CONCURRENCY_PIPELINE',
+    WaitingConcurrencyTarget: 'WAITING_CONCURRENCY_TARGET'
+} as const;
+
+export type ActionStatusReasonCode = typeof ActionStatusReasonCode[keyof typeof ActionStatusReasonCode];
+
 
 

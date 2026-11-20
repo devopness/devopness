@@ -24,30 +24,30 @@ export interface PipelineSettingsVariable {
      * @type {string}
      * @memberof PipelineSettingsVariable
      */
-    name?: string;
+    'name'?: string;
     /**
      * 
      * @type {string}
      * @memberof PipelineSettingsVariable
      */
-    human_readable?: string;
+    'human_readable'?: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof PipelineSettingsVariable
      */
-    hint?: string;
+    'hint'?: string;
     /**
      * 
      * @type {string}
      * @memberof PipelineSettingsVariable
      */
-    type?: string;
+    'type'?: string;
     /**
      * 
      * @type {boolean}
      * @memberof PipelineSettingsVariable
      */
-    required?: boolean;
+    'required'?: boolean;
 }
 

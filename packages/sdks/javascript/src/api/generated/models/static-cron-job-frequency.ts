@@ -25,18 +25,20 @@ export interface StaticCronJobFrequency {
      * @type {string}
      * @memberof StaticCronJobFrequency
      */
-    value: string;
+    'value': string;
     /**
      * 
      * @type {CronJobPattern}
      * @memberof StaticCronJobFrequency
      */
-    human_readable: CronJobPattern;
+    'human_readable': CronJobPattern;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof StaticCronJobFrequency
      */
-    hint: string;
+    'hint': string;
 }
+
+
 

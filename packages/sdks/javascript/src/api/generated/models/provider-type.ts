@@ -18,9 +18,13 @@
  * @export
  * @enum {string}
  */
-export enum ProviderType {
-    CloudProvider = 'cloud_provider',
-    SourceProvider = 'source_provider'
-}
+
+export const ProviderType = {
+    CloudProvider: 'cloud_provider',
+    SourceProvider: 'source_provider'
+} as const;
+
+export type ProviderType = typeof ProviderType[keyof typeof ProviderType];
+
 
 

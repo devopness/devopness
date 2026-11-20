@@ -25,18 +25,18 @@ export interface ResourceOperation {
      * @type {string}
      * @memberof ResourceOperation
      */
-    operation?: string;
+    'operation'?: string;
     /**
      * 
      * @type {string}
      * @memberof ResourceOperation
      */
-    operation_human_readable?: string;
+    'operation_human_readable'?: string;
     /**
      * 
      * @type {PipelineSettings}
      * @memberof ResourceOperation
      */
-    pipeline_settings?: PipelineSettings;
+    'pipeline_settings'?: PipelineSettings;
 }
 

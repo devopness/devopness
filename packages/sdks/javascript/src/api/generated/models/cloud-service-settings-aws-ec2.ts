@@ -26,36 +26,38 @@ export interface CloudServiceSettingsAwsEc2 {
      * @type {string}
      * @memberof CloudServiceSettingsAwsEc2
      */
-    instance_type: string;
+    'instance_type': string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
      * @memberof CloudServiceSettingsAwsEc2
      */
-    region: string;
+    'region': string;
     /**
      * Human readable version of the server region
      * @type {string}
      * @memberof CloudServiceSettingsAwsEc2
      */
-    region_human_readable?: string;
+    'region_human_readable'?: string;
     /**
      * 
      * @type {CloudResourceInstanceSpec}
      * @memberof CloudServiceSettingsAwsEc2
      */
-    instance_spec?: CloudResourceInstanceSpec;
+    'instance_spec'?: CloudResourceInstanceSpec;
     /**
      * The storage\'s size of the cloud instance
      * @type {number}
      * @memberof CloudServiceSettingsAwsEc2
      */
-    storage_size: number;
+    'storage_size': number;
     /**
      * 
      * @type {CloudOsVersionCode}
      * @memberof CloudServiceSettingsAwsEc2
      */
-    os_version_code: CloudOsVersionCode | null;
+    'os_version_code': CloudOsVersionCode | null;
 }
+
+
 

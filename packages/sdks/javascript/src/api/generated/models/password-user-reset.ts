@@ -24,24 +24,24 @@ export interface PasswordUserReset {
      * @type {string}
      * @memberof PasswordUserReset
      */
-    token: string;
+    'token': string;
     /**
      * The email of the user to reset the password.
      * @type {string}
      * @memberof PasswordUserReset
      */
-    email: string;
+    'email': string;
     /**
      * The new password to define to user account.
      * @type {string}
      * @memberof PasswordUserReset
      */
-    password: string;
+    'password': string;
     /**
      * The new password again.
      * @type {string}
      * @memberof PasswordUserReset
      */
-    password_confirmation: string;
+    'password_confirmation': string;
 }
 

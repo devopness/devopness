@@ -25,24 +25,26 @@ export interface ActionPipelineCreate {
      * @type {Array<number>}
      * @memberof ActionPipelineCreate
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
     /**
      * Optional comment provided when triggering this action. Must not be greater than 255 characters. Must not be greater than 255 characters.
      * @type {string}
      * @memberof ActionPipelineCreate
      */
-    trigger_comment?: string;
+    'trigger_comment'?: string;
     /**
      * 
      * @type {SourceType}
      * @memberof ActionPipelineCreate
      */
-    source_type?: SourceType;
+    'source_type'?: SourceType;
     /**
      * A git reference pointing to a commit in a source provider repository from which the application source code will be retrieved and deployed. It can be a branch name, tag name or a specific commit hash. Must not be greater than 200 characters.
      * @type {string}
      * @memberof ActionPipelineCreate
      */
-    source_ref?: string;
+    'source_ref'?: string;
 }
+
+
 

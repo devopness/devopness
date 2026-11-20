@@ -24,18 +24,18 @@ export interface RoleOrganizationCreate {
      * @type {string}
      * @memberof RoleOrganizationCreate
      */
-    name: string;
+    'name': string;
     /**
      * Description of this role. Must not be greater than 255 characters.
      * @type {string}
      * @memberof RoleOrganizationCreate
      */
-    description?: string;
+    'description'?: string;
     /**
      * The list of permissions granted for this role
      * @type {Array<string>}
      * @memberof RoleOrganizationCreate
      */
-    permissions: Array<string>;
+    'permissions': Array<string>;
 }
 

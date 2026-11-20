@@ -18,9 +18,13 @@
  * @export
  * @enum {string}
  */
-export enum VirtualHostType {
-    IpBased = 'ip-based',
-    NameBased = 'name-based'
-}
+
+export const VirtualHostType = {
+    IpBased: 'ip-based',
+    NameBased: 'name-based'
+} as const;
+
+export type VirtualHostType = typeof VirtualHostType[keyof typeof VirtualHostType];
+
 
 

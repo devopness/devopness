@@ -26,24 +26,24 @@ export interface Member {
      * @type {UserRelation}
      * @memberof Member
      */
-    user: UserRelation | null;
+    'user': UserRelation | null;
     /**
      * 
      * @type {TeamRelation}
      * @memberof Member
      */
-    team: TeamRelation | null;
+    'team': TeamRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Member
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Member
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

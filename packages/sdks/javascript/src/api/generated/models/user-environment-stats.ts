@@ -24,12 +24,12 @@ export interface UserEnvironmentStats {
      * @type {number}
      * @memberof UserEnvironmentStats
      */
-    owner_of?: number;
+    'owner_of'?: number;
     /**
      * Total number of environments that user has access to, as team member.
      * @type {number}
      * @memberof UserEnvironmentStats
      */
-    member_of?: number;
+    'member_of'?: number;
 }
 

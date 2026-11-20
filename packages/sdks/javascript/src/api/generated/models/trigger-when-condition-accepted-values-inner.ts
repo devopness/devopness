@@ -16,14 +16,8 @@
 /**
  * 
  * @export
- * @interface ApiErrorErrorsFieldName
+ * @interface TriggerWhenConditionAcceptedValuesInner
  */
-export interface ApiErrorErrorsFieldName {
-    /**
-     * Field name and respective error message
-     * @type {string}
-     * @memberof ApiErrorErrorsFieldName
-     */
-    field?: string;
+export interface TriggerWhenConditionAcceptedValuesInner {
 }
 

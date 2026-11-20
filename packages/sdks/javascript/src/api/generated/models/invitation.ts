@@ -28,78 +28,80 @@ export interface Invitation {
      * @type {string}
      * @memberof Invitation
      */
-    id: string;
+    'id': string;
     /**
      * 
      * @type {TeamInvitationType}
      * @memberof Invitation
      */
-    type: TeamInvitationType;
+    'type': TeamInvitationType;
     /**
      * The email of the user that has been invited to team
      * @type {string}
      * @memberof Invitation
      */
-    email: string | null;
+    'email': string | null;
     /**
      * 
      * @type {TeamInvitationStatus}
      * @memberof Invitation
      */
-    status: TeamInvitationStatus;
+    'status': TeamInvitationStatus;
     /**
      * Human readable version of the invitation status
      * @type {string}
      * @memberof Invitation
      */
-    status_human_readable: string;
+    'status_human_readable': string;
     /**
      * The URL to accept the public invitation
      * @type {string}
      * @memberof Invitation
      */
-    public_accept_url: string | null;
+    'public_accept_url': string | null;
     /**
      * The IP of the user who accepted the invitation
      * @type {string}
      * @memberof Invitation
      */
-    accepted_from_ip: string | null;
+    'accepted_from_ip': string | null;
     /**
      * 
      * @type {UserRelation}
      * @memberof Invitation
      */
-    created_by_user: UserRelation | null;
+    'created_by_user': UserRelation | null;
     /**
      * 
      * @type {TeamRelation}
      * @memberof Invitation
      */
-    team: TeamRelation | null;
+    'team': TeamRelation | null;
     /**
      * The date and time when the invitation was accepted
      * @type {string}
      * @memberof Invitation
      */
-    accepted_at: string | null;
+    'accepted_at': string | null;
     /**
      * The date and time when the invitation will expire
      * @type {string}
      * @memberof Invitation
      */
-    expires_at: string;
+    'expires_at': string;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Invitation
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Invitation
      */
-    updated_at: string;
+    'updated_at': string;
 }
+
+
 

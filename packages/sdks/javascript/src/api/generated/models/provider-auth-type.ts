@@ -18,10 +18,14 @@
  * @export
  * @enum {string}
  */
-export enum ProviderAuthType {
-    Oauth = 'oauth',
-    Application = 'application',
-    ApiCredentials = 'api_credentials'
-}
+
+export const ProviderAuthType = {
+    Oauth: 'oauth',
+    Application: 'application',
+    ApiCredentials: 'api_credentials'
+} as const;
+
+export type ProviderAuthType = typeof ProviderAuthType[keyof typeof ProviderAuthType];
+
 
 

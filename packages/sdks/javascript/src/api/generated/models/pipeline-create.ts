@@ -25,24 +25,24 @@ export interface PipelineCreate {
      * @type {string}
      * @memberof PipelineCreate
      */
-    name: string;
+    'name': string;
     /**
      * The resource operation associated to the pipeline. Must not be greater than 20 characters.
      * @type {string}
      * @memberof PipelineCreate
      */
-    operation: string;
+    'operation': string;
     /**
      * Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.
      * @type {number}
      * @memberof PipelineCreate
      */
-    max_parallel_actions?: number;
+    'max_parallel_actions'?: number;
     /**
      * 
      * @type {PipelineTriggerWhen}
      * @memberof PipelineCreate
      */
-    trigger_when?: PipelineTriggerWhen | null;
+    'trigger_when'?: PipelineTriggerWhen | null;
 }
 

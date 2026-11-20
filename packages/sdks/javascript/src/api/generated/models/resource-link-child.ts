@@ -25,48 +25,48 @@ export interface ResourceLinkChild {
      * @type {string}
      * @memberof ResourceLinkChild
      */
-    link_type: string;
+    'link_type': string;
     /**
      * The linked resource ID
      * @type {number}
      * @memberof ResourceLinkChild
      */
-    resource_id: number;
+    'resource_id': number;
     /**
      * The linked resource type
      * @type {string}
      * @memberof ResourceLinkChild
      */
-    resource_type: string;
+    'resource_type': string;
     /**
      * Human readable resource type
      * @type {string}
      * @memberof ResourceLinkChild
      */
-    resource_type_human_readable: string;
+    'resource_type_human_readable': string;
     /**
      * If false, the link cannot be manually removed
      * @type {boolean}
      * @memberof ResourceLinkChild
      */
-    can_be_unlinked: boolean;
+    'can_be_unlinked': boolean;
     /**
      * 
      * @type {LinkedResourceData}
      * @memberof ResourceLinkChild
      */
-    linked_resource_data: LinkedResourceData;
+    'linked_resource_data': LinkedResourceData;
     /**
      * The date and time when the resource link was created
      * @type {string}
      * @memberof ResourceLinkChild
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the resource link was last updated
      * @type {string}
      * @memberof ResourceLinkChild
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

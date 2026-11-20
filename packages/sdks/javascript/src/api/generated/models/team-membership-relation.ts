@@ -29,42 +29,42 @@ export interface TeamMembershipRelation {
      * @type {TeamRelation}
      * @memberof TeamMembershipRelation
      */
-    team: TeamRelation | null;
+    'team': TeamRelation | null;
     /**
      * 
      * @type {RoleRelation}
      * @memberof TeamMembershipRelation
      */
-    role: RoleRelation | null;
+    'role': RoleRelation | null;
     /**
      * 
      * @type {OrganizationRelation}
      * @memberof TeamMembershipRelation
      */
-    organization: OrganizationRelation | null;
+    'organization': OrganizationRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof TeamMembershipRelation
      */
-    project: ProjectRelation | null;
+    'project': ProjectRelation | null;
     /**
      * 
      * @type {EnvironmentRelation}
      * @memberof TeamMembershipRelation
      */
-    environment: EnvironmentRelation | null;
+    'environment': EnvironmentRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof TeamMembershipRelation
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof TeamMembershipRelation
      */
-    updated_at: string;
+    'updated_at': string;
 }
 

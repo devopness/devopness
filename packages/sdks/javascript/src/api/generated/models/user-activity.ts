@@ -28,24 +28,24 @@ export interface UserActivity {
      * @type {UserProjectStats}
      * @memberof UserActivity
      */
-    projects: UserProjectStats;
+    'projects': UserProjectStats;
     /**
      * 
      * @type {UserEnvironmentStats}
      * @memberof UserActivity
      */
-    environments: UserEnvironmentStats;
+    'environments': UserEnvironmentStats;
     /**
      * 
      * @type {UserTeamStats}
      * @memberof UserActivity
      */
-    teams: UserTeamStats;
+    'teams': UserTeamStats;
     /**
      * 
      * @type {TriggeredActions}
      * @memberof UserActivity
      */
-    triggered_actions: TriggeredActions;
+    'triggered_actions': TriggeredActions;
 }
 

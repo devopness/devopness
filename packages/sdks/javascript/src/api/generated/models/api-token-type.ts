@@ -18,9 +18,13 @@
  * @export
  * @enum {string}
  */
-export enum ApiTokenType {
-    PersonalAccessToken = 'personal_access_token',
-    ProjectApiToken = 'project_api_token'
-}
+
+export const ApiTokenType = {
+    PersonalAccessToken: 'personal_access_token',
+    ProjectApiToken: 'project_api_token'
+} as const;
+
+export type ApiTokenType = typeof ApiTokenType[keyof typeof ApiTokenType];
+
 
 

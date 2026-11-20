@@ -18,8 +18,12 @@
  * @export
  * @enum {string}
  */
-export enum SubnetType {
-    Public = 'public'
-}
+
+export const SubnetType = {
+    Public: 'public'
+} as const;
+
+export type SubnetType = typeof SubnetType[keyof typeof SubnetType];
+
 
 

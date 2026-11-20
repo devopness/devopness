@@ -25,30 +25,30 @@ export interface ActionTargetNetworkData {
      * @type {number}
      * @memberof ActionTargetNetworkData
      */
-    id: number;
+    'id': number;
     /**
      * The networks\'s name
      * @type {string}
      * @memberof ActionTargetNetworkData
      */
-    name: string;
+    'name': string;
     /**
      * The name of the network\'s cloud provider.
      * @type {string}
      * @memberof ActionTargetNetworkData
      */
-    provider_name?: string;
+    'provider_name'?: string;
     /**
      * The human readable version of the cloud provider\'s name
      * @type {string}
      * @memberof ActionTargetNetworkData
      */
-    provider_name_human_readable?: string;
+    'provider_name_human_readable'?: string;
     /**
      * 
      * @type {NetworkProvisionInput}
      * @memberof ActionTargetNetworkData
      */
-    provision_input: NetworkProvisionInput;
+    'provision_input': NetworkProvisionInput;
 }
 

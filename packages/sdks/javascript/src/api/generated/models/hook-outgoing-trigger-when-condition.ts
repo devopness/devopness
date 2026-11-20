@@ -24,12 +24,12 @@ export interface HookOutgoingTriggerWhenCondition {
      * @type {string}
      * @memberof HookOutgoingTriggerWhenCondition
      */
-    path: string;
+    'path': string;
     /**
      * List of accepted values for this condition.
      * @type {Array<string>}
      * @memberof HookOutgoingTriggerWhenCondition
      */
-    accepted_values: Array<string>;
+    'accepted_values': Array<string>;
 }
 

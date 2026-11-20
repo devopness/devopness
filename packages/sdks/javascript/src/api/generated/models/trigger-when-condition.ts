@@ -12,6 +12,7 @@
  */
 
 
+import { TriggerWhenConditionAcceptedValuesInner } from './trigger-when-condition-accepted-values-inner';
 import { TriggerWhenConditionType } from './trigger-when-condition-type';
 
 /**
@@ -25,24 +26,26 @@ export interface TriggerWhenCondition {
      * @type {string}
      * @memberof TriggerWhenCondition
      */
-    name?: string;
+    'name'?: string;
     /**
      * 
      * @type {TriggerWhenConditionType}
      * @memberof TriggerWhenCondition
      */
-    type: TriggerWhenConditionType;
+    'type': TriggerWhenConditionType;
     /**
      * A dot-notation path of the request body attribute to be used as the value to evaluate this condition.
      * @type {string}
      * @memberof TriggerWhenCondition
      */
-    path: string;
+    'path': string;
     /**
      * List of accepted values for this condition.
-     * @type {Array<boolean | number | string>}
+     * @type {Array<TriggerWhenConditionAcceptedValuesInner>}
      * @memberof TriggerWhenCondition
      */
-    accepted_values: Array<boolean | number | string>;
+    'accepted_values': Array<TriggerWhenConditionAcceptedValuesInner>;
 }
+
+
 

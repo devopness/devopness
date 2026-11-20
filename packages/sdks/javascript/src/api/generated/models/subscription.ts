@@ -25,84 +25,84 @@ export interface Subscription {
      * @type {number}
      * @memberof Subscription
      */
-    id?: number;
+    'id'?: number;
     /**
      * The ID of the user this subscription belongs to
      * @type {number}
      * @memberof Subscription
      */
-    user_id?: number;
+    'user_id'?: number;
     /**
      * The plan name of this subscription
      * @type {string}
      * @memberof Subscription
      */
-    plan_name?: string;
+    'plan_name'?: string;
     /**
      * Status of this subscription
      * @type {string}
      * @memberof Subscription
      */
-    status?: string;
+    'status'?: string;
     /**
      * Amount of plans purchased in this subscription
      * @type {number}
      * @memberof Subscription
      */
-    quantity?: number;
+    'quantity'?: number;
     /**
      * Unitary price of the subscribed plan
      * @type {number}
      * @memberof Subscription
      */
-    price_unit?: number;
+    'price_unit'?: number;
     /**
      * Total price of this subscription (quantity x price_unit)
      * @type {number}
      * @memberof Subscription
      */
-    price_total?: number;
+    'price_total'?: number;
     /**
      * Currency of the prices
      * @type {string}
      * @memberof Subscription
      */
-    price_currency?: string;
+    'price_currency'?: string;
     /**
      * If not null, indicates the date when this subscription was cancelled
      * @type {string}
      * @memberof Subscription
      */
-    cancelled_at?: string | null;
+    'cancelled_at'?: string | null;
     /**
      * Indicates the date and time when this subscription ends
      * @type {string}
      * @memberof Subscription
      */
-    ends_at?: string;
+    'ends_at'?: string;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Subscription
      */
-    created_at?: string;
+    'created_at'?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Subscription
      */
-    updated_at?: string;
+    'updated_at'?: string;
     /**
      * 
      * @type {SubscriptionBalance}
      * @memberof Subscription
      */
-    current_balance?: SubscriptionBalance | null;
+    'current_balance'?: SubscriptionBalance | null;
     /**
      * The list of subscription balances
      * @type {Array<SubscriptionBalance>}
      * @memberof Subscription
      */
-    balances?: Array<SubscriptionBalance>;
+    'balances'?: Array<SubscriptionBalance>;
 }
 

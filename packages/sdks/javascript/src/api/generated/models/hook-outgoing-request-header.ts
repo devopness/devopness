@@ -24,12 +24,12 @@ export interface HookOutgoingRequestHeader {
      * @type {string}
      * @memberof HookOutgoingRequestHeader
      */
-    name: string;
+    'name': string;
     /**
      * Value of the HTTP header.
      * @type {string}
      * @memberof HookOutgoingRequestHeader
      */
-    value: string;
+    'value': string;
 }
 

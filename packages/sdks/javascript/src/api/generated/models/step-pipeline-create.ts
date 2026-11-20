@@ -25,36 +25,38 @@ export interface StepPipelineCreate {
      * @type {string}
      * @memberof StepPipelineCreate
      */
-    name?: string;
+    'name'?: string;
     /**
      * A short text describing the command. Can be helpful for other team members to understand why a pipeline step is needed. Must not be greater than 255 characters.
      * @type {string}
      * @memberof StepPipelineCreate
      */
-    description?: string;
+    'description'?: string;
     /**
      * The pipeline step\'s type. Must not be greater than 20 characters.
      * @type {string}
      * @memberof StepPipelineCreate
      */
-    type?: string;
+    'type'?: string;
     /**
      * A command line or multiline bash script. Must be at least 10 characters. Must not be greater than 300 characters.
      * @type {string}
      * @memberof StepPipelineCreate
      */
-    command: string;
+    'command': string;
     /**
      * 
      * @type {PipelineStepRunnerName}
      * @memberof StepPipelineCreate
      */
-    runner: PipelineStepRunnerName;
+    'runner': PipelineStepRunnerName;
     /**
      * The name of the Unix user on behalf of which the script will be executed. Must not be greater than 60 characters.
      * @type {string}
      * @memberof StepPipelineCreate
      */
-    run_as_user?: string;
+    'run_as_user'?: string;
 }
+
+
 

@@ -24,40 +24,38 @@ export interface CredentialProvider {
      * @type {string}
      * @memberof CredentialProvider
      */
-    code: string;
+    'code': string;
     /**
      * The provider name
      * @type {string}
      * @memberof CredentialProvider
      */
-    name: string;
+    'name': string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof CredentialProvider
      */
-    hint: string;
+    'hint': string;
     /**
      * Type of provider.
      * @type {string}
      * @memberof CredentialProvider
      */
-    type: CredentialProviderTypeEnum;
+    'type': CredentialProviderTypeEnum;
     /**
      * Human readable version of provider type
      * @type {string}
      * @memberof CredentialProvider
      */
-    type_human_readable: string;
+    'type_human_readable': string;
 }
 
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CredentialProviderTypeEnum {
-    CloudProvider = 'cloud_provider',
-    SourceProvider = 'source_provider'
-}
+export const CredentialProviderTypeEnum = {
+    CloudProvider: 'cloud_provider',
+    SourceProvider: 'source_provider'
+} as const;
+
+export type CredentialProviderTypeEnum = typeof CredentialProviderTypeEnum[keyof typeof CredentialProviderTypeEnum];
 
 

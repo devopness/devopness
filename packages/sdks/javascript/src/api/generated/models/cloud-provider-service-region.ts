@@ -24,24 +24,24 @@ export interface CloudProviderServiceRegion {
      * @type {string}
      * @memberof CloudProviderServiceRegion
      */
-    code: string;
+    'code': string;
     /**
      * The formatted name of the region
      * @type {string}
      * @memberof CloudProviderServiceRegion
      */
-    name: string;
+    'name': string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof CloudProviderServiceRegion
      */
-    hint: string;
+    'hint': string;
     /**
      * List of availability zones of the cloud provider region
      * @type {Array<string>}
      * @memberof CloudProviderServiceRegion
      */
-    zones: Array<string>;
+    'zones': Array<string>;
 }
 

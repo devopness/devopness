@@ -18,10 +18,14 @@
  * @export
  * @enum {string}
  */
-export enum SourceType {
-    Branch = 'branch',
-    Commit = 'commit',
-    Tag = 'tag'
-}
+
+export const SourceType = {
+    Branch: 'branch',
+    Commit: 'commit',
+    Tag: 'tag'
+} as const;
+
+export type SourceType = typeof SourceType[keyof typeof SourceType];
+
 
 

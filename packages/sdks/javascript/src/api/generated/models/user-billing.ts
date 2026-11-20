@@ -25,6 +25,6 @@ export interface UserBilling {
      * @type {Subscription}
      * @memberof UserBilling
      */
-    active_subscription: Subscription | null;
+    'active_subscription': Subscription | null;
 }
 

@@ -24,30 +24,30 @@ export interface VirtualHostUpdate {
      * @type {number}
      * @memberof VirtualHostUpdate
      */
-    id: number;
+    'id': number;
     /**
      * The name of the virtual host, unique within the environment. For `name-based` type, it must be a valid domain name (e.g., `my-app.example.com`). For `ip-based` type, it must be a valid IPv4 address or an IPv4 address with port (e.g., `127.0.0.1:3000`). Must not be greater than 255 characters.
      * @type {string}
      * @memberof VirtualHostUpdate
      */
-    name: string;
+    'name': string;
     /**
      * The document root location to be served for this virtual host. When the virtual host is linked to an application, the value must be a relative path within that application directory. When no application is linked, the value must be an absolute path. Must start with one of <code>/</code> Must not be greater than 255 characters.
      * @type {string}
      * @memberof VirtualHostUpdate
      */
-    root_directory?: string;
+    'root_directory'?: string;
     /**
      * The network name or IP address on which the application linked to this virtual host is configured to listen for incoming requests. A valid address has `http` or `https` protocol, a domain name or IP address, an optional port and optional path. You can also specify a UNIX-socket using `unix:` protocol. Examples: `http://127.0.0.1:8080` (for applications exposing port `8080`, for example running in a Docker container), `http://127.0.0.1:3000` (for applications kept alive by a daemon/background process that listens on port `3000`), `unix:/var/run/example.sock` (for applications listening on a custom socket). Must not be greater than 255 characters.
      * @type {string}
      * @memberof VirtualHostUpdate
      */
-    application_listen_address?: string | null;
+    'application_listen_address'?: string | null;
     /**
      * The ID of the application to be associated with the virtual host. When set, the value of `root_directory` will be relative to this application directory.
      * @type {number}
      * @memberof VirtualHostUpdate
      */
-    application_id?: number | null;
+    'application_id'?: number | null;
 }
 

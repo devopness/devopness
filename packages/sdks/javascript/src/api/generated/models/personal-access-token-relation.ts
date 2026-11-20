@@ -27,60 +27,62 @@ export interface PersonalAccessTokenRelation {
      * @type {string}
      * @memberof PersonalAccessTokenRelation
      */
-    id: string;
+    'id': string;
     /**
      * Name of the Token
      * @type {string}
      * @memberof PersonalAccessTokenRelation
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {ApiTokenType}
      * @memberof PersonalAccessTokenRelation
      */
-    type: ApiTokenType;
+    'type': ApiTokenType;
     /**
      * 
      * @type {ApiTokenStatus}
      * @memberof PersonalAccessTokenRelation
      */
-    status: ApiTokenStatus;
+    'status': ApiTokenStatus;
     /**
      * 
      * @type {UserRelation}
      * @memberof PersonalAccessTokenRelation
      */
-    user: UserRelation | null;
+    'user': UserRelation | null;
     /**
      * Last time the Token was used
      * @type {string}
      * @memberof PersonalAccessTokenRelation
      */
-    last_used_at: string | null;
+    'last_used_at': string | null;
     /**
      * Expiration date of the Token
      * @type {string}
      * @memberof PersonalAccessTokenRelation
      */
-    expires_at: string;
+    'expires_at': string;
     /**
      * Revocation date of the Token
      * @type {string}
      * @memberof PersonalAccessTokenRelation
      */
-    revoked_at: string | null;
+    'revoked_at': string | null;
     /**
      * Last time the Token was updated
      * @type {string}
      * @memberof PersonalAccessTokenRelation
      */
-    updated_at: string;
+    'updated_at': string;
     /**
      * Creation date of the Token
      * @type {string}
      * @memberof PersonalAccessTokenRelation
      */
-    created_at: string;
+    'created_at': string;
 }
+
+
 

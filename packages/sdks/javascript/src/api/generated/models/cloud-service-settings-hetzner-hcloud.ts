@@ -26,36 +26,38 @@ export interface CloudServiceSettingsHetznerHcloud {
      * @type {string}
      * @memberof CloudServiceSettingsHetznerHcloud
      */
-    instance_type: string;
+    'instance_type': string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
      * @memberof CloudServiceSettingsHetznerHcloud
      */
-    region: string;
+    'region': string;
     /**
      * Human readable version of the server region
      * @type {string}
      * @memberof CloudServiceSettingsHetznerHcloud
      */
-    region_human_readable?: string;
+    'region_human_readable'?: string;
     /**
      * 
      * @type {CloudResourceInstanceSpec}
      * @memberof CloudServiceSettingsHetznerHcloud
      */
-    instance_spec?: CloudResourceInstanceSpec;
+    'instance_spec'?: CloudResourceInstanceSpec;
     /**
      * The storage\'s size of the cloud instance
      * @type {number}
      * @memberof CloudServiceSettingsHetznerHcloud
      */
-    storage_size: number;
+    'storage_size': number;
     /**
      * 
      * @type {CloudOsVersionCode}
      * @memberof CloudServiceSettingsHetznerHcloud
      */
-    os_version_code: CloudOsVersionCode | null;
+    'os_version_code': CloudOsVersionCode | null;
 }
+
+
 

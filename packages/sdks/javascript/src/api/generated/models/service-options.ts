@@ -25,6 +25,6 @@ export interface ServiceOptions {
      * @type {Array<StaticServiceType>}
      * @memberof ServiceOptions
      */
-    types: Array<StaticServiceType>;
+    'types': Array<StaticServiceType>;
 }
 

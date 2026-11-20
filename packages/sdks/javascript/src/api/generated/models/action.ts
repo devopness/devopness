@@ -38,162 +38,164 @@ export interface Action {
      * @type {number}
      * @memberof Action
      */
-    id: number;
+    'id': number;
     /**
      * The ID of the pipeline executed by this action
      * @type {number}
      * @memberof Action
      */
-    pipeline_id: number | null;
+    'pipeline_id': number | null;
     /**
      * The Id of the parent action that this action is a retry of
      * @type {number}
      * @memberof Action
      */
-    retry_of: number | null;
+    'retry_of': number | null;
     /**
      * 
      * @type {ActionStatus}
      * @memberof Action
      */
-    status: ActionStatus;
+    'status': ActionStatus;
     /**
      * Human readable version of action status
      * @type {string}
      * @memberof Action
      */
-    status_human_readable: string;
+    'status_human_readable': string;
     /**
      * 
      * @type {ActionStatusReasonCode}
      * @memberof Action
      */
-    status_reason_code: ActionStatusReasonCode;
+    'status_reason_code': ActionStatusReasonCode;
     /**
      * Human readable version of the status reason code
      * @type {string}
      * @memberof Action
      */
-    status_reason_human_readable: string;
+    'status_reason_human_readable': string;
     /**
      * 
      * @type {ActionType}
      * @memberof Action
      */
-    type: ActionType;
+    'type': ActionType;
     /**
      * Human readable version of the action type
      * @type {string}
      * @memberof Action
      */
-    type_human_readable: string;
+    'type_human_readable': string;
     /**
      * The permalink URL to the action details on Devopness web app
      * @type {string}
      * @memberof Action
      */
-    url_web_permalink: string;
+    'url_web_permalink': string;
     /**
      * Optional comment attached to this action
      * @type {string}
      * @memberof Action
      */
-    trigger_comment: string | null;
+    'trigger_comment': string | null;
     /**
      * 
      * @type {ActionData}
      * @memberof Action
      */
-    action_data: ActionData | null;
+    'action_data': ActionData | null;
     /**
      * 
      * @type {ActionTriggeredFrom}
      * @memberof Action
      */
-    triggered_from: ActionTriggeredFrom;
+    'triggered_from': ActionTriggeredFrom;
     /**
      * 
      * @type {RelatedAction}
      * @memberof Action
      */
-    parent: RelatedAction | null;
+    'parent': RelatedAction | null;
     /**
      * List of related actions
      * @type {Array<RelatedAction>}
      * @memberof Action
      */
-    children: Array<RelatedAction>;
+    'children': Array<RelatedAction>;
     /**
      * 
      * @type {UserRelation}
      * @memberof Action
      */
-    triggered_by_user?: UserRelation | null;
+    'triggered_by_user'?: UserRelation | null;
     /**
      * 
      * @type {ActionResource}
      * @memberof Action
      */
-    resource: ActionResource;
+    'resource': ActionResource;
     /**
      * 
      * @type {ActionSummary}
      * @memberof Action
      */
-    summary: ActionSummary;
+    'summary': ActionSummary;
     /**
      * 
      * @type {EnvironmentRelation}
      * @memberof Action
      */
-    environment: EnvironmentRelation | null;
+    'environment': EnvironmentRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof Action
      */
-    project: ProjectRelation | null;
+    'project': ProjectRelation | null;
     /**
      * 
      * @type {OrganizationRelation}
      * @memberof Action
      */
-    organization: OrganizationRelation | null;
+    'organization': OrganizationRelation | null;
     /**
      * List of actions dispatched to cloud resource targets
      * @type {Array<ActionTarget>}
      * @memberof Action
      */
-    targets?: Array<ActionTarget>;
+    'targets'?: Array<ActionTarget>;
     /**
      * 
      * @type {ActionHookRequest}
      * @memberof Action
      */
-    hook_requests?: ActionHookRequest;
+    'hook_requests'?: ActionHookRequest;
     /**
      * The date and time when the action started execution (i.e., left the `pending/queued` status)
      * @type {string}
      * @memberof Action
      */
-    started_at: string | null;
+    'started_at': string | null;
     /**
      * The date and time when the action has finished execution
      * @type {string}
      * @memberof Action
      */
-    completed_at: string | null;
+    'completed_at': string | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Action
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Action
      */
-    updated_at: string;
+    'updated_at': string;
 }
+
+
 

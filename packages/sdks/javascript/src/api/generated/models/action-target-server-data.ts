@@ -26,48 +26,50 @@ export interface ActionTargetServerData {
      * @type {number}
      * @memberof ActionTargetServerData
      */
-    id: number;
+    'id': number;
     /**
      * The server\'s hostname
      * @type {string}
      * @memberof ActionTargetServerData
      */
-    hostname: string;
+    'hostname': string;
     /**
      * The name of the server\'s provider.
      * @type {string}
      * @memberof ActionTargetServerData
      */
-    provider_name: string;
+    'provider_name': string;
     /**
      * The human readable version of the provider\'s name
      * @type {string}
      * @memberof ActionTargetServerData
      */
-    provider_name_human_readable: string;
+    'provider_name_human_readable': string;
     /**
      * Public ipv4 address for server access
      * @type {string}
      * @memberof ActionTargetServerData
      */
-    ip_address: string | null;
+    'ip_address': string | null;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}
      * @memberof ActionTargetServerData
      */
-    ssh_port: number;
+    'ssh_port': number;
     /**
      * 
      * @type {CloudOsVersionCode}
      * @memberof ActionTargetServerData
      */
-    os_version_code: CloudOsVersionCode | null;
+    'os_version_code': CloudOsVersionCode | null;
     /**
      * 
      * @type {ServerProvisionInput}
      * @memberof ActionTargetServerData
      */
-    provision_input: ServerProvisionInput;
+    'provision_input': ServerProvisionInput;
 }
+
+
 

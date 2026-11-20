@@ -24,18 +24,18 @@ export interface NetworkProvisionInputSettingsAzure {
      * @type {string}
      * @memberof NetworkProvisionInputSettingsAzure
      */
-    region: string;
+    'region': string;
     /**
      * Human readable version of the network region
      * @type {string}
      * @memberof NetworkProvisionInputSettingsAzure
      */
-    region_human_readable?: string;
+    'region_human_readable'?: string;
     /**
      * The IP CIDR range of the network
      * @type {string}
      * @memberof NetworkProvisionInputSettingsAzure
      */
-    cidr_block: string;
+    'cidr_block': string;
 }
 

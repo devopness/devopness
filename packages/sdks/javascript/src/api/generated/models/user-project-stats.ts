@@ -24,12 +24,12 @@ export interface UserProjectStats {
      * @type {number}
      * @memberof UserProjectStats
      */
-    owner_of?: number;
+    'owner_of'?: number;
     /**
      * Total number of projects that user has access to, as team member.
      * @type {number}
      * @memberof UserProjectStats
      */
-    member_of?: number;
+    'member_of'?: number;
 }
 

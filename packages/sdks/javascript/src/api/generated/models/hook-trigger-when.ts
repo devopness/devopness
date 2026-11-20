@@ -12,8 +12,7 @@
  */
 
 
-import { HookOutgoingTriggerWhenCondition } from './hook-outgoing-trigger-when-condition';
-import { TriggerWhenCondition } from './trigger-when-condition';
+import { HookTriggerWhenConditionsInner } from './hook-trigger-when-conditions-inner';
 
 /**
  * 
@@ -26,12 +25,12 @@ export interface HookTriggerWhen {
      * @type {Array<string>}
      * @memberof HookTriggerWhen
      */
-    events?: Array<string>;
+    'events'?: Array<string>;
     /**
      * Conditions that must be met to trigger the hook
-     * @type {Array<TriggerWhenCondition | HookOutgoingTriggerWhenCondition>}
+     * @type {Array<HookTriggerWhenConditionsInner>}
      * @memberof HookTriggerWhen
      */
-    conditions?: Array<TriggerWhenCondition | HookOutgoingTriggerWhenCondition>;
+    'conditions'?: Array<HookTriggerWhenConditionsInner>;
 }
 

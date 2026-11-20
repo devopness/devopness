@@ -24,6 +24,6 @@ export interface ServiceUpdate {
      * @type {number}
      * @memberof ServiceUpdate
      */
-    id: number;
+    'id': number;
 }
 

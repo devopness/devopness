@@ -26,12 +26,12 @@ export interface TriggeredActions {
      * @type {TriggeredActionSummary}
      * @memberof TriggeredActions
      */
-    summary?: TriggeredActionSummary;
+    'summary'?: TriggeredActionSummary;
     /**
      * 
      * @type {Array<TriggeredActionStats>}
      * @memberof TriggeredActions
      */
-    operations?: Array<TriggeredActionStats>;
+    'operations'?: Array<TriggeredActionStats>;
 }
 

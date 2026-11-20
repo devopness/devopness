@@ -24,18 +24,18 @@ export interface SubnetProvisionInputSettingsGcp {
      * @type {string}
      * @memberof SubnetProvisionInputSettingsGcp
      */
-    region: string;
+    'region': string;
     /**
      * Human readable version of the subnet region
      * @type {string}
      * @memberof SubnetProvisionInputSettingsGcp
      */
-    region_human_readable?: string;
+    'region_human_readable'?: string;
     /**
      * The IP CIDR range of the subnet
      * @type {string}
      * @memberof SubnetProvisionInputSettingsGcp
      */
-    cidr_block: string;
+    'cidr_block': string;
 }
 

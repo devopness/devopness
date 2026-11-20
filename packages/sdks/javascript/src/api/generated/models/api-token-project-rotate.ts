@@ -24,12 +24,12 @@ export interface ApiTokenProjectRotate {
      * @type {string}
      * @memberof ApiTokenProjectRotate
      */
-    id: string;
+    'id': string;
     /**
      * The date and time when the token expires. Must be a valid date. Must be a date after <code>now</code>. Must be a date before <code>now +1 year</code>.
      * @type {string}
      * @memberof ApiTokenProjectRotate
      */
-    expires_at: string;
+    'expires_at': string;
 }
 

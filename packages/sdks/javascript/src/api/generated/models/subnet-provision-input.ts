@@ -25,6 +25,6 @@ export interface SubnetProvisionInput {
      * @type {SubnetProvisionInputSettings}
      * @memberof SubnetProvisionInput
      */
-    settings: SubnetProvisionInputSettings;
+    'settings': SubnetProvisionInputSettings;
 }
 

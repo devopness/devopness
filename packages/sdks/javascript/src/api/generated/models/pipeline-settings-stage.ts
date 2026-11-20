@@ -24,18 +24,18 @@ export interface PipelineSettingsStage {
      * @type {string}
      * @memberof PipelineSettingsStage
      */
-    value?: string;
+    'value'?: string;
     /**
      * 
      * @type {string}
      * @memberof PipelineSettingsStage
      */
-    human_readable?: string;
+    'human_readable'?: string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof PipelineSettingsStage
      */
-    hint?: string;
+    'hint'?: string;
 }
 

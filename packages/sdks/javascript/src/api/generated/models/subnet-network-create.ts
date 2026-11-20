@@ -26,24 +26,26 @@ export interface SubnetNetworkCreate {
      * @type {string}
      * @memberof SubnetNetworkCreate
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {SubnetType}
      * @memberof SubnetNetworkCreate
      */
-    type: SubnetType;
+    'type': SubnetType;
     /**
      * 
      * @type {SubnetProvisionInput}
      * @memberof SubnetNetworkCreate
      */
-    provision_input: SubnetProvisionInput;
+    'provision_input': SubnetProvisionInput;
     /**
      * The ID of the cloud credential.
      * @type {number}
      * @memberof SubnetNetworkCreate
      */
-    credential_id: number;
+    'credential_id': number;
 }
+
+
 

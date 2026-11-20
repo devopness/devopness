@@ -24,6 +24,6 @@ export interface ServiceRestart {
      * @type {Array<number>}
      * @memberof ServiceRestart
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
 }
 

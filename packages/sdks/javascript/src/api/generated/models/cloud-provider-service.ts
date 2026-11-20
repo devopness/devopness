@@ -28,30 +28,32 @@ export interface CloudProviderService {
      * @type {CloudProviderServiceCode}
      * @memberof CloudProviderService
      */
-    code: CloudProviderServiceCode;
+    'code': CloudProviderServiceCode;
     /**
      * The full name of the cloud service
      * @type {string}
      * @memberof CloudProviderService
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {ProviderRelation}
      * @memberof CloudProviderService
      */
-    provider?: ProviderRelation;
+    'provider'?: ProviderRelation;
     /**
      * 
      * @type {Array<CloudProviderServiceRegion>}
      * @memberof CloudProviderService
      */
-    regions?: Array<CloudProviderServiceRegion>;
+    'regions'?: Array<CloudProviderServiceRegion>;
     /**
      * 
      * @type {Array<CloudProviderServiceResourceType>}
      * @memberof CloudProviderService
      */
-    resource_types?: Array<CloudProviderServiceResourceType>;
+    'resource_types'?: Array<CloudProviderServiceResourceType>;
 }
+
+
 

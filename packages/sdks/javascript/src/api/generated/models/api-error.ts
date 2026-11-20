@@ -25,12 +25,12 @@ export interface ApiError {
      * @type {string}
      * @memberof ApiError
      */
-    message: string;
+    'message': string;
     /**
      * 
      * @type {ApiErrorErrors}
      * @memberof ApiError
      */
-    errors?: ApiErrorErrors;
+    'errors'?: ApiErrorErrors;
 }
 

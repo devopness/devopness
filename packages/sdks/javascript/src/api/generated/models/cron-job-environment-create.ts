@@ -25,36 +25,36 @@ export interface CronJobEnvironmentCreate {
      * @type {Array<ResourceToBeLinked>}
      * @memberof CronJobEnvironmentCreate
      */
-    linked_resources?: Array<ResourceToBeLinked>;
+    'linked_resources'?: Array<ResourceToBeLinked>;
     /**
      * The name of the cron job. Must not be greater than 60 characters.
      * @type {string}
      * @memberof CronJobEnvironmentCreate
      */
-    name: string;
+    'name': string;
     /**
      * The command line to be executed when running the cron job. Must be at least 5 characters. Must not be greater than 255 characters.
      * @type {string}
      * @memberof CronJobEnvironmentCreate
      */
-    command: string;
+    'command': string;
     /**
      * A cron expression consisting of Minute, Hour, Day of Month, Month and Day of Week subexpressions.
      * @type {string}
      * @memberof CronJobEnvironmentCreate
      */
-    pattern: string;
+    'pattern': string;
     /**
      * The name of the system user on behalf of which the cron job will be executed. Must not be greater than 60 characters.
      * @type {string}
      * @memberof CronJobEnvironmentCreate
      */
-    run_as_user: string;
+    'run_as_user': string;
     /**
      * Numeric ID of the application to which the cron job belongs to.
      * @type {number}
      * @memberof CronJobEnvironmentCreate
      */
-    application_id?: number;
+    'application_id'?: number;
 }
 

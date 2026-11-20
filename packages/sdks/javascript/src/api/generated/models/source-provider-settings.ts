@@ -25,6 +25,6 @@ export interface SourceProviderSettings {
      * @type {Array<SourceProviderAuthMethodSettings>}
      * @memberof SourceProviderSettings
      */
-    auth_methods: Array<SourceProviderAuthMethodSettings>;
+    'auth_methods': Array<SourceProviderAuthMethodSettings>;
 }
 

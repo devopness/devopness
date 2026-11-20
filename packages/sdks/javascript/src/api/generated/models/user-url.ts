@@ -24,6 +24,6 @@ export interface UserUrl {
      * @type {string}
      * @memberof UserUrl
      */
-    billing_management_url: string;
+    'billing_management_url': string;
 }
 

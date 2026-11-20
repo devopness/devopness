@@ -26,36 +26,36 @@ export interface CloudProvider {
      * @type {string}
      * @memberof CloudProvider
      */
-    code: string;
+    'code': string;
     /**
      * Cloud provider name
      * @type {string}
      * @memberof CloudProvider
      */
-    name: string;
+    'name': string;
     /**
      * Descriptive text to help users to know what data is stored in the field and optional extra information on how to enter data to the field
      * @type {string}
      * @memberof CloudProvider
      */
-    hint?: string;
+    'hint'?: string;
     /**
      * The provider\'s logo URL.
      * @type {string}
      * @memberof CloudProvider
      */
-    logo_url: string;
+    'logo_url': string;
     /**
      * 
      * @type {Array<CloudProviderService>}
      * @memberof CloudProvider
      */
-    cloud_services?: Array<CloudProviderService>;
+    'cloud_services'?: Array<CloudProviderService>;
     /**
      * 
      * @type {CloudProviderSettingsList}
      * @memberof CloudProvider
      */
-    settings?: CloudProviderSettingsList;
+    'settings'?: CloudProviderSettingsList;
 }
 

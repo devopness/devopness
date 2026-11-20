@@ -24,12 +24,12 @@ export interface ApplicationPipeline {
      * @type {number}
      * @memberof ApplicationPipeline
      */
-    id: number;
+    'id': number;
     /**
      * The pipeline\'s name
      * @type {string}
      * @memberof ApplicationPipeline
      */
-    name: string;
+    'name': string;
 }
 

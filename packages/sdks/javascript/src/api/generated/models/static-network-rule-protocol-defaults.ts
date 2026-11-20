@@ -24,6 +24,6 @@ export interface StaticNetworkRuleProtocolDefaults {
      * @type {number}
      * @memberof StaticNetworkRuleProtocolDefaults
      */
-    port: number | null;
+    'port': number | null;
 }
 

@@ -26,30 +26,32 @@ export interface CloudServiceSettingsDigitalOceanDroplet {
      * @type {string}
      * @memberof CloudServiceSettingsDigitalOceanDroplet
      */
-    instance_type: string;
+    'instance_type': string;
     /**
      * Datacenter region where the cloud instance will be launched
      * @type {string}
      * @memberof CloudServiceSettingsDigitalOceanDroplet
      */
-    region: string;
+    'region': string;
     /**
      * Human readable version of the server region
      * @type {string}
      * @memberof CloudServiceSettingsDigitalOceanDroplet
      */
-    region_human_readable?: string;
+    'region_human_readable'?: string;
     /**
      * 
      * @type {CloudResourceInstanceSpec}
      * @memberof CloudServiceSettingsDigitalOceanDroplet
      */
-    instance_spec?: CloudResourceInstanceSpec;
+    'instance_spec'?: CloudResourceInstanceSpec;
     /**
      * 
      * @type {CloudOsVersionCode}
      * @memberof CloudServiceSettingsDigitalOceanDroplet
      */
-    os_version_code: CloudOsVersionCode | null;
+    'os_version_code': CloudOsVersionCode | null;
 }
+
+
 

@@ -12,6 +12,7 @@
  */
 
 
+import { CloudProviderInputSettingsDefaultValue } from './cloud-provider-input-settings-default-value';
 import { CloudProviderPropertyValidation } from './cloud-provider-property-validation';
 
 /**
@@ -25,30 +26,30 @@ export interface CloudProviderInputSettings {
      * @type {string}
      * @memberof CloudProviderInputSettings
      */
-    name: string;
+    'name': string;
     /**
      * Human readable version of the property\'s name
      * @type {string}
      * @memberof CloudProviderInputSettings
      */
-    name_human_readable: string;
+    'name_human_readable': string;
     /**
-     * Default property\'s value
-     * @type {string | number | boolean}
+     * 
+     * @type {CloudProviderInputSettingsDefaultValue}
      * @memberof CloudProviderInputSettings
      */
-    default_value: string | number | boolean | null;
+    'default_value': CloudProviderInputSettingsDefaultValue | null;
     /**
      * Defines if the property data is a sensitive content
      * @type {boolean}
      * @memberof CloudProviderInputSettings
      */
-    sensitive: boolean;
+    'sensitive': boolean;
     /**
      * 
      * @type {CloudProviderPropertyValidation}
      * @memberof CloudProviderInputSettings
      */
-    validation: CloudProviderPropertyValidation;
+    'validation': CloudProviderPropertyValidation;
 }
 

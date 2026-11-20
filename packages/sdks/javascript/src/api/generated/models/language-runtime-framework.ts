@@ -25,18 +25,18 @@ export interface LanguageRuntimeFramework {
      * @type {string}
      * @memberof LanguageRuntimeFramework
      */
-    name: string;
+    'name': string;
     /**
      * The formatted name to be displayed in user interfaces
      * @type {string}
      * @memberof LanguageRuntimeFramework
      */
-    name_human_readable: string;
+    'name_human_readable': string;
     /**
      * 
      * @type {LanguageRuntimeFrameworkDefaults}
      * @memberof LanguageRuntimeFramework
      */
-    defaults: LanguageRuntimeFrameworkDefaults;
+    'defaults': LanguageRuntimeFrameworkDefaults;
 }
 

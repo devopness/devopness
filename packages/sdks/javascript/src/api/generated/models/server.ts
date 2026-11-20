@@ -35,138 +35,140 @@ export interface Server {
      * @type {number}
      * @memberof Server
      */
-    id: number;
+    'id': number;
     /**
      * The id of the user who created the server and to whom the server belongs
      * @type {number}
      * @memberof Server
      */
-    created_by: number;
+    'created_by': number;
     /**
      * The server\'s name
      * @type {string}
      * @memberof Server
      */
-    name: string;
+    'name': string;
     /**
      * The server\'s hostname
      * @type {string}
      * @memberof Server
      */
-    hostname: string;
+    'hostname': string;
     /**
      * The name of the server\'s provider.
      * @type {string}
      * @memberof Server
      */
-    provider_name: string;
+    'provider_name': string;
     /**
      * The human readable version of the provider\'s name
      * @type {string}
      * @memberof Server
      */
-    provider_name_human_readable: string;
+    'provider_name_human_readable': string;
     /**
      * 
      * @type {ServerCloudServiceCode}
      * @memberof Server
      */
-    cloud_service_code: ServerCloudServiceCode;
+    'cloud_service_code': ServerCloudServiceCode;
     /**
      * Public ipv4 address for server access
      * @type {string}
      * @memberof Server
      */
-    ip_address?: string;
+    'ip_address'?: string;
     /**
      * The network port to which the SSH daemon is listening to SSH connections on the server
      * @type {number}
      * @memberof Server
      */
-    ssh_port: number;
+    'ssh_port': number;
     /**
      * 
      * @type {OperatingSystemVersion}
      * @memberof Server
      */
-    os: OperatingSystemVersion;
+    'os': OperatingSystemVersion;
     /**
      * 
      * @type {CloudOsVersionCode}
      * @memberof Server
      */
-    os_version_code: CloudOsVersionCode | null;
+    'os_version_code': CloudOsVersionCode | null;
     /**
      * Tells if the server is active or not
      * @type {boolean}
      * @memberof Server
      */
-    active: boolean;
+    'active': boolean;
     /**
      * 
      * @type {ServerStatus}
      * @memberof Server
      */
-    status: ServerStatus;
+    'status': ServerStatus;
     /**
      * Maximum number of actions that can run in parallel on this server. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run on this server,
      * @type {number}
      * @memberof Server
      */
-    max_parallel_actions: number;
+    'max_parallel_actions': number;
     /**
      * 
      * @type {ServerBlueprint}
      * @memberof Server
      */
-    blueprint: ServerBlueprint;
+    'blueprint': ServerBlueprint;
     /**
      * 
      * @type {ServerProvisionInput}
      * @memberof Server
      */
-    provision_input: ServerProvisionInput;
+    'provision_input': ServerProvisionInput;
     /**
      * 
      * @type {UserRelation}
      * @memberof Server
      */
-    created_by_user: UserRelation | null;
+    'created_by_user': UserRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof Server
      */
-    project: ProjectRelation | null;
+    'project': ProjectRelation | null;
     /**
      * 
      * @type {ActionRelation}
      * @memberof Server
      */
-    last_action: ActionRelation | null;
+    'last_action': ActionRelation | null;
     /**
      * 
      * @type {EnvironmentRelation}
      * @memberof Server
      */
-    environment: EnvironmentRelation | null;
+    'environment': EnvironmentRelation | null;
     /**
      * 
      * @type {CredentialRelation}
      * @memberof Server
      */
-    credential: CredentialRelation | null;
+    'credential': CredentialRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Server
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Server
      */
-    updated_at: string;
+    'updated_at': string;
 }
+
+
 

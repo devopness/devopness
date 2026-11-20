@@ -26,12 +26,12 @@ export interface NetworkRuleOptions {
      * @type {Array<StaticNetworkRuleDirection>}
      * @memberof NetworkRuleOptions
      */
-    directions: Array<StaticNetworkRuleDirection>;
+    'directions': Array<StaticNetworkRuleDirection>;
     /**
      * The supported network rule\'s protocols
      * @type {Array<StaticNetworkRuleProtocol>}
      * @memberof NetworkRuleOptions
      */
-    protocols: Array<StaticNetworkRuleProtocol>;
+    'protocols': Array<StaticNetworkRuleProtocol>;
 }
 

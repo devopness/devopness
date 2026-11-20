@@ -18,14 +18,18 @@
  * @export
  * @enum {string}
  */
-export enum ActionStatus {
-    Pending = 'pending',
-    Waiting = 'waiting',
-    Skipped = 'skipped',
-    Queued = 'queued',
-    InProgress = 'in-progress',
-    Completed = 'completed',
-    Failed = 'failed'
-}
+
+export const ActionStatus = {
+    Pending: 'pending',
+    Waiting: 'waiting',
+    Skipped: 'skipped',
+    Queued: 'queued',
+    InProgress: 'in-progress',
+    Completed: 'completed',
+    Failed: 'failed'
+} as const;
+
+export type ActionStatus = typeof ActionStatus[keyof typeof ActionStatus];
+
 
 

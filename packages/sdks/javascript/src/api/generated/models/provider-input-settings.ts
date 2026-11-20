@@ -25,30 +25,30 @@ export interface ProviderInputSettings {
      * @type {string}
      * @memberof ProviderInputSettings
      */
-    name: string;
+    'name': string;
     /**
      * The human readable version of the input field name
      * @type {string}
      * @memberof ProviderInputSettings
      */
-    name_human_readable: string;
+    'name_human_readable': string;
     /**
      * 
      * @type {ProviderInputSettingsValidation}
      * @memberof ProviderInputSettings
      */
-    validation: ProviderInputSettingsValidation;
+    'validation': ProviderInputSettingsValidation;
     /**
      * The default value of the input field
      * @type {string}
      * @memberof ProviderInputSettings
      */
-    default_value: string | null;
+    'default_value': string | null;
     /**
      * Defines if the input field data is a sensitive content
      * @type {boolean}
      * @memberof ProviderInputSettings
      */
-    sensitive: boolean;
+    'sensitive': boolean;
 }
 

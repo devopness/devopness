@@ -24,18 +24,18 @@ export interface EnvironmentLink {
      * @type {number}
      * @memberof EnvironmentLink
      */
-    id: number;
+    'id': number;
     /**
      * Environment\'s name
      * @type {string}
      * @memberof EnvironmentLink
      */
-    name?: string | null;
+    'name'?: string | null;
     /**
      * A list of server IDs to which the item link/unlink operations must be performed
      * @type {Array<number>}
      * @memberof EnvironmentLink
      */
-    servers: Array<number>;
+    'servers': Array<number>;
 }
 

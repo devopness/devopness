@@ -32,78 +32,80 @@ export interface Subnet {
      * @type {number}
      * @memberof Subnet
      */
-    id: number;
+    'id': number;
     /**
      * The subnet\'s name
      * @type {string}
      * @memberof Subnet
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {SubnetType}
      * @memberof Subnet
      */
-    type: SubnetType;
+    'type': SubnetType;
     /**
      * True if this subnet is auto-generated or false if this was created by the user
      * @type {boolean}
      * @memberof Subnet
      */
-    is_auto_generated: boolean;
+    'is_auto_generated': boolean;
     /**
      * 
      * @type {SubnetProvisionInput}
      * @memberof Subnet
      */
-    provision_input: SubnetProvisionInput;
+    'provision_input': SubnetProvisionInput;
     /**
      * 
      * @type {UserRelation}
      * @memberof Subnet
      */
-    created_by_user: UserRelation | null;
+    'created_by_user': UserRelation | null;
     /**
      * 
      * @type {ProjectRelation}
      * @memberof Subnet
      */
-    project: ProjectRelation | null;
+    'project': ProjectRelation | null;
     /**
      * 
      * @type {EnvironmentRelation}
      * @memberof Subnet
      */
-    environment: EnvironmentRelation | null;
+    'environment': EnvironmentRelation | null;
     /**
      * 
      * @type {NetworkRelation}
      * @memberof Subnet
      */
-    network: NetworkRelation | null;
+    'network': NetworkRelation | null;
     /**
      * 
      * @type {CredentialRelation}
      * @memberof Subnet
      */
-    credential: CredentialRelation | null;
+    'credential': CredentialRelation | null;
     /**
      * 
      * @type {ActionRelation}
      * @memberof Subnet
      */
-    last_action: ActionRelation | null;
+    'last_action': ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof Subnet
      */
-    created_at: string;
+    'created_at': string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof Subnet
      */
-    updated_at: string;
+    'updated_at': string;
 }
+
+
 

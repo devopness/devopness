@@ -25,18 +25,20 @@ export interface User {
      * @type {number}
      * @memberof User
      */
-    id: number;
+    'id': number;
     /**
      * The URL Slug of the user
      * @type {string}
      * @memberof User
      */
-    url_slug?: string;
+    'url_slug'?: string;
     /**
      * 
      * @type {UserType}
      * @memberof User
      */
-    type: UserType;
+    'type': UserType;
 }
+
+
 

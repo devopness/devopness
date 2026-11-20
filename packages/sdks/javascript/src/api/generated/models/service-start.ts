@@ -24,6 +24,6 @@ export interface ServiceStart {
      * @type {Array<number>}
      * @memberof ServiceStart
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
 }
 

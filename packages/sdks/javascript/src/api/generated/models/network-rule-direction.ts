@@ -18,9 +18,13 @@
  * @export
  * @enum {string}
  */
-export enum NetworkRuleDirection {
-    Inbound = 'inbound',
-    Outbound = 'outbound'
-}
+
+export const NetworkRuleDirection = {
+    Inbound: 'inbound',
+    Outbound: 'outbound'
+} as const;
+
+export type NetworkRuleDirection = typeof NetworkRuleDirection[keyof typeof NetworkRuleDirection];
+
 
 

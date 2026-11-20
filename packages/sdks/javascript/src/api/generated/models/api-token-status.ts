@@ -18,10 +18,14 @@
  * @export
  * @enum {string}
  */
-export enum ApiTokenStatus {
-    Active = 'active',
-    Expired = 'expired',
-    Revoked = 'revoked'
-}
+
+export const ApiTokenStatus = {
+    Active: 'active',
+    Expired: 'expired',
+    Revoked: 'revoked'
+} as const;
+
+export type ApiTokenStatus = typeof ApiTokenStatus[keyof typeof ApiTokenStatus];
+
 
 

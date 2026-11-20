@@ -28,72 +28,72 @@ export interface SshKey {
      * @type {number}
      * @memberof SshKey
      */
-    id: number;
+    'id': number;
     /**
      * The id of the user to which the SSH key belongs to
      * @type {number}
      * @memberof SshKey
      */
-    created_by?: number;
+    'created_by'?: number;
     /**
      * The project id to which the SSH public key belongs to
      * @type {number}
      * @memberof SshKey
      */
-    project_id?: number;
+    'project_id'?: number;
     /**
      * The environment id to which the SSH public key belongs to
      * @type {number}
      * @memberof SshKey
      */
-    environment_id: number;
+    'environment_id': number;
     /**
      * The name entered by the user to uniquely identify the public SSH key
      * @type {string}
      * @memberof SshKey
      */
-    name: string;
+    'name': string;
     /**
      * The hashed fingerprint of the public key
      * @type {string}
      * @memberof SshKey
      */
-    fingerprint: string;
+    'fingerprint': string;
     /**
      * 
      * @type {UserRelation}
      * @memberof SshKey
      */
-    created_by_user: UserRelation | null;
+    'created_by_user': UserRelation | null;
     /**
      * 
      * @type {EnvironmentRelation}
      * @memberof SshKey
      */
-    environment: EnvironmentRelation | null;
+    'environment': EnvironmentRelation | null;
     /**
      * 
      * @type {Array<ServerRelation>}
      * @memberof SshKey
      */
-    servers: Array<ServerRelation>;
+    'servers': Array<ServerRelation>;
     /**
      * 
      * @type {ActionRelation}
      * @memberof SshKey
      */
-    last_action: ActionRelation | null;
+    'last_action': ActionRelation | null;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof SshKey
      */
-    created_at?: string;
+    'created_at'?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof SshKey
      */
-    updated_at?: string;
+    'updated_at'?: string;
 }
 

@@ -25,36 +25,36 @@ export interface ServerBlueprint {
      * @type {number}
      * @memberof ServerBlueprint
      */
-    id?: number;
+    'id'?: number;
     /**
      * Name of the blueprint
      * @type {string}
      * @memberof ServerBlueprint
      */
-    name?: string;
+    'name'?: string;
     /**
      * The blueprint type
      * @type {string}
      * @memberof ServerBlueprint
      */
-    type?: string;
+    'type'?: string;
     /**
      * 
      * @type {ServerBlueprintSpec}
      * @memberof ServerBlueprint
      */
-    spec?: ServerBlueprintSpec;
+    'spec'?: ServerBlueprintSpec;
     /**
      * The date and time when the record was created
      * @type {string}
      * @memberof ServerBlueprint
      */
-    created_at?: string;
+    'created_at'?: string;
     /**
      * The date and time when the record was last updated
      * @type {string}
      * @memberof ServerBlueprint
      */
-    updated_at?: string;
+    'updated_at'?: string;
 }
 

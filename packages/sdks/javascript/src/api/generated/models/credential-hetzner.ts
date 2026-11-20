@@ -24,6 +24,6 @@ export interface CredentialHetzner {
      * @type {string}
      * @memberof CredentialHetzner
      */
-    api_token: string;
+    'api_token': string;
 }
 

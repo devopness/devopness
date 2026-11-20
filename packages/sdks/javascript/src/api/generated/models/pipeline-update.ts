@@ -25,24 +25,24 @@ export interface PipelineUpdate {
      * @type {number}
      * @memberof PipelineUpdate
      */
-    id: number;
+    'id': number;
     /**
      * The pipeline\'s name. Must be at least 3 characters. Must not be greater than 80 characters.
      * @type {string}
      * @memberof PipelineUpdate
      */
-    name: string;
+    'name': string;
     /**
      * Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline. Must be between 0 and 10.
      * @type {number}
      * @memberof PipelineUpdate
      */
-    max_parallel_actions?: number;
+    'max_parallel_actions'?: number;
     /**
      * 
      * @type {PipelineTriggerWhen}
      * @memberof PipelineUpdate
      */
-    trigger_when?: PipelineTriggerWhen | null;
+    'trigger_when'?: PipelineTriggerWhen | null;
 }
 

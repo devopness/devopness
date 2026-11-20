@@ -25,18 +25,18 @@ export interface BillingPlansOptionsRelation {
      * @type {string}
      * @memberof BillingPlansOptionsRelation
      */
-    name: string;
+    'name': string;
     /**
      * A short text describing the target audience of the product
      * @type {string}
      * @memberof BillingPlansOptionsRelation
      */
-    hint: string | null;
+    'hint': string | null;
     /**
      * The list of plans available for billing
      * @type {Array<BillingPlan>}
      * @memberof BillingPlansOptionsRelation
      */
-    plans: Array<BillingPlan>;
+    'plans': Array<BillingPlan>;
 }
 

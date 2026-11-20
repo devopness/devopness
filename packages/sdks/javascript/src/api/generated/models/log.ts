@@ -26,18 +26,18 @@ export interface Log {
      * @type {ActionTargetData}
      * @memberof Log
      */
-    target: ActionTargetData | null;
+    'target': ActionTargetData | null;
     /**
      * 
      * @type {ActionTargetLogStep}
      * @memberof Log
      */
-    step: ActionTargetLogStep | null;
+    'step': ActionTargetLogStep | null;
     /**
      * The date and time when the requested log record was last updated
      * @type {string}
      * @memberof Log
      */
-    updated_at: string | null;
+    'updated_at': string | null;
 }
 

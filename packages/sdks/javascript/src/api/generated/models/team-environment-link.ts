@@ -24,6 +24,6 @@ export interface TeamEnvironmentLink {
      * @type {number}
      * @memberof TeamEnvironmentLink
      */
-    role_id: number;
+    'role_id': number;
 }
 

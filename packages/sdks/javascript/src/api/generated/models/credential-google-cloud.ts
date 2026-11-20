@@ -24,6 +24,6 @@ export interface CredentialGoogleCloud {
      * @type {string}
      * @memberof CredentialGoogleCloud
      */
-    service_account_key: string;
+    'service_account_key': string;
 }
 

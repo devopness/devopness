@@ -24,12 +24,12 @@ export interface ResourceToBeLinked {
      * @type {string}
      * @memberof ResourceToBeLinked
      */
-    resource_type: string;
+    'resource_type': string;
     /**
      * The ID of the resource to be linked
      * @type {number}
      * @memberof ResourceToBeLinked
      */
-    resource_id: number;
+    'resource_id': number;
 }
 

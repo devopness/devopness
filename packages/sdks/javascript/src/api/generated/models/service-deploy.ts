@@ -24,6 +24,6 @@ export interface ServiceDeploy {
      * @type {Array<number>}
      * @memberof ServiceDeploy
      */
-    servers?: Array<number>;
+    'servers'?: Array<number>;
 }
 
