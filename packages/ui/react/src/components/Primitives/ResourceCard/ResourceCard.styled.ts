@@ -74,6 +74,7 @@ const Name = styled.span`
   font-weight: 600;
   color: #111827;
   line-height: 1.3;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
