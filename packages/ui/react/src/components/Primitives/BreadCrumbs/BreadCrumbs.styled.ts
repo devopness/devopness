@@ -116,12 +116,12 @@ export const NodeContentContainer = styled.div`
 export const NodeContent = styled.div<{ $zIndex?: number; $order: number }>`
   display: grid;
   min-width: 0;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   grid-column-gap: 10px;
   align-items: center;
   height: 63px;
   z-index: ${({ $zIndex = 0 }) => $zIndex + 5};
-  padding: 0 30px 0 15px;
+  padding: 0 20px 0 15px;
 `
 
 export const ContentBadge = styled.span<{
@@ -151,6 +151,7 @@ export const ContentBadge = styled.span<{
 `
 
 export const CrumbText = styled.span`
+  display: block;
   color: ${getColor('blue.800')};
   font-family: ${getFont('roboto')};
   font-weight: bold;
@@ -158,6 +159,7 @@ export const CrumbText = styled.span`
   line-height: normal;
   user-select: none;
   min-width: 0;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
