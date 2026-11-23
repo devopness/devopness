@@ -107,6 +107,33 @@ describe('Steppers', () => {
     expect(screen.getByTestId('step3')).toHaveStyle('display: none')
   })
 
+  it('tracks fields when steps are loaded after the form mounts', async () => {
+    const trigger = vi.fn().mockResolvedValue(false)
+    const methods = createFormMethods({ trigger })
+    const { rerender } = renderWithTheme(
+      <MultiStepForm<FormValues>
+        {...methods}
+        steppersData={[]}
+      />
+    )
+
+    rerender(
+      <ThemeProvider theme={theme}>
+        <MultiStepForm<FormValues>
+          {...methods}
+          steppersData={steppersData}
+        />
+      </ThemeProvider>
+    )
+
+    await userEvent.click(screen.getByText('Next'))
+
+    await waitFor(() => {
+      expect(trigger).toHaveBeenCalledWith(['name'])
+    })
+    expect(screen.getByTestId('step2')).toHaveStyle('display: none')
+  })
+
   it('does not render the stepper header for a single step form', () => {
     const methods = createFormMethods()
     renderWithTheme(

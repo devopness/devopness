@@ -1,12 +1,6 @@
 'use client'
 
-import React, {
-  Fragment,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { Fragment, useEffect, useLayoutEffect, useState } from 'react'
 
 import {
   CancelButton,
@@ -292,17 +286,17 @@ const MultiStepForm = <T,>({
   const [mountedStepFieldNames, setMountedStepFieldNames] = useState<string[]>(
     []
   )
-  const currentStepContainerRef = useRef<HTMLDivElement>(null)
+  const [currentStepContainer, setCurrentStepContainer] =
+    useState<HTMLDivElement | null>(null)
 
   const hasSomeInputError = Object.keys(errors).length > 0
 
   useLayoutEffect(() => {
-    const container = currentStepContainerRef.current
-    if (!container) return
+    if (!currentStepContainer) return
 
     const updateMountedStepFieldNames = () => {
       const nextFieldNames = Array.from(
-        container.querySelectorAll<HTMLElement>('[name]'),
+        currentStepContainer.querySelectorAll<HTMLElement>('[name]'),
         (field) => field.getAttribute('name')
       ).filter((name): name is string => name !== null)
 
@@ -317,7 +311,7 @@ const MultiStepForm = <T,>({
     updateMountedStepFieldNames()
 
     const observer = new MutationObserver(updateMountedStepFieldNames)
-    observer.observe(container, {
+    observer.observe(currentStepContainer, {
       attributes: true,
       attributeFilter: ['name'],
       childList: true,
@@ -325,7 +319,7 @@ const MultiStepForm = <T,>({
     })
 
     return () => observer.disconnect()
-  }, [stepCurrent])
+  }, [currentStepContainer])
 
   const trackEvent = (event: StepperTrackEvent) => {
     if (!trackEvents) return
@@ -468,7 +462,7 @@ const MultiStepForm = <T,>({
       return steppersData.map((step, index) => (
         <DisplayStep
           key={`step${index}`}
-          ref={index === stepCurrent ? currentStepContainerRef : undefined}
+          ref={index === stepCurrent ? setCurrentStepContainer : undefined}
           disabled={index !== stepCurrent}
           data-testid={`step${index + 1}`}
         >
