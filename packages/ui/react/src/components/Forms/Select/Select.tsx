@@ -18,6 +18,7 @@ import {
   Placeholder,
 } from './CustomComponents'
 import { ReactSelect, Container, ReactCreatableSelect } from './Select.styled'
+import { getColor } from 'src/colors'
 import { ErrorMessage } from 'src/components/Primitives'
 import type { Icon } from 'src/icons'
 import { isDefined, typedMemo } from 'src/utils/type-guards'
@@ -158,6 +159,14 @@ const Select = <TOption,>({
       flexShrink: 1,
       minWidth: '2px',
     }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? getColor('purple.800')
+        : state.isFocused
+          ? getColor('purple.275')
+          : 'transparent',
+    }),
   }
 
   const customTheme = useCallback((theme: Theme): Theme => {
@@ -166,8 +175,8 @@ const Select = <TOption,>({
       ...restTheme,
       colors: {
         ...colors,
-        primary50: '#786efdcc',
-        primary: '#786efdcc',
+        primary50: getColor('purple.100'),
+        primary: getColor('purple.800'),
       },
     }
   }, [])
