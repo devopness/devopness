@@ -106,7 +106,7 @@
     "vite-plugin-dts": "^5.1.2",
     "vite-plus": "1.7.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.1"
   },
   "peerDependencies": {
     "react": "^19.3.0",
