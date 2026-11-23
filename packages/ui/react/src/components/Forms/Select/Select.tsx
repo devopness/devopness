@@ -175,8 +175,8 @@ const Select = <TOption,>({
       ...restTheme,
       colors: {
         ...colors,
-        primary50: getColor('purple.100'),
-        primary: getColor('purple.800'),
+        primary50: '#786efdcc',
+        primary: '#786efdcc',
       },
     }
   }, [])
