@@ -508,6 +508,73 @@ describe('Steppers', () => {
     })
   })
 
+  it('enables Next after an errored conditional field is unmounted', async () => {
+    const trigger = vi.fn().mockResolvedValue(true)
+    const methods = createFormMethods({
+      trigger,
+      getValues: () => ({ name: '', zone: '' }),
+      errors: { zone: { type: 'required' } },
+    })
+
+    const ConditionalLocationStep = () => {
+      const [showZone, setShowZone] = useState(true)
+
+      return (
+        <>
+          <input
+            aria-label="name"
+            name="name"
+          />
+          {showZone && (
+            <input
+              aria-label="zone"
+              name="zone"
+            />
+          )}
+          <button
+            type="button"
+            onClick={() => setShowZone(false)}
+          >
+            Hide zone
+          </button>
+        </>
+      )
+    }
+
+    renderWithTheme(
+      <MultiStepForm
+        {...methods}
+        steppersData={[
+          {
+            label: 'Location',
+            component: <ConditionalLocationStep />,
+            validateFields: ['name', 'zone'],
+          },
+          {
+            label: 'Confirmation',
+            component: <div>Confirmation step</div>,
+            validateFields: [],
+          },
+        ]}
+      />
+    )
+
+    expect(screen.getByText('Next').closest('button')).toBeDisabled()
+
+    await userEvent.click(screen.getByText('Hide zone'))
+
+    await waitFor(() => {
+      expect(screen.getByText('Next').closest('button')).not.toBeDisabled()
+    })
+
+    await userEvent.click(screen.getByText('Next'))
+
+    await waitFor(() => {
+      expect(trigger).toHaveBeenCalledWith(['name'])
+      expect(screen.getByTestId('step2')).not.toHaveStyle('display: none')
+    })
+  })
+
   it('clears the api error when field value changes and advances to next step on clicking next', async () => {
     const methods = createFormMethods({
       getValues: () => ({

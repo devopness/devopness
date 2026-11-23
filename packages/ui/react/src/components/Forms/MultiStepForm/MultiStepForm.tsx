@@ -1,6 +1,12 @@
 'use client'
 
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import React, {
+  Fragment,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import {
   CancelButton,
@@ -283,9 +289,43 @@ const MultiStepForm = <T,>({
     error
   )
   const [fieldList, setFieldList] = useState<string[]>([])
+  const [mountedStepFieldNames, setMountedStepFieldNames] = useState<string[]>(
+    []
+  )
   const currentStepContainerRef = useRef<HTMLDivElement>(null)
 
   const hasSomeInputError = Object.keys(errors).length > 0
+
+  useLayoutEffect(() => {
+    const container = currentStepContainerRef.current
+    if (!container) return
+
+    const updateMountedStepFieldNames = () => {
+      const nextFieldNames = Array.from(
+        container.querySelectorAll<HTMLElement>('[name]'),
+        (field) => field.getAttribute('name')
+      ).filter((name): name is string => name !== null)
+
+      setMountedStepFieldNames((currentFieldNames) =>
+        currentFieldNames.length === nextFieldNames.length &&
+        currentFieldNames.every((name, index) => name === nextFieldNames[index])
+          ? currentFieldNames
+          : nextFieldNames
+      )
+    }
+
+    updateMountedStepFieldNames()
+
+    const observer = new MutationObserver(updateMountedStepFieldNames)
+    observer.observe(container, {
+      attributes: true,
+      attributeFilter: ['name'],
+      childList: true,
+      subtree: true,
+    })
+
+    return () => observer.disconnect()
+  }, [stepCurrent])
 
   const trackEvent = (event: StepperTrackEvent) => {
     if (!trackEvents) return
@@ -353,15 +393,7 @@ const MultiStepForm = <T,>({
 
     const { validateFields } = currentStepData
 
-    const mountedFieldNames = new Set(
-      Array.from(
-        currentStepContainerRef.current?.querySelectorAll<HTMLElement>(
-          '[name]'
-        ) ?? []
-      )
-        .map((field) => field.getAttribute('name'))
-        .filter((name): name is string => name !== null)
-    )
+    const mountedFieldNames = new Set(mountedStepFieldNames)
 
     const stepFields: string[] = validateFields.filter(
       (fieldName) =>
