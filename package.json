@@ -14,7 +14,7 @@
     "format:changelogs": "vp fmt \"packages/*/*/CHANGELOG.md\""
   },
   "devDependencies": {
-    "jsdom": "^31.0.0",
+    "jsdom": "^31.0.1",
     "vite-plus": "1.7.0"
   },
   "overrides": {
