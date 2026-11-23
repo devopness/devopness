@@ -1,5 +1,25 @@
 # @devopness/sdk-python
 
+## 2.8.7
+
+### Patch Changes
+
+- [#3844](https://github.com/devopness/devopness/pull/3844) [`f7bdd3f`](https://github.com/devopness/devopness/commit/f7bdd3f4b9f28582fb1dc2d0f6f5c0c40b0e207f) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fixed incoming hook triggers so you can send the payload that should reach the hook.
+
+  ```python
+  from devopness import DevopnessClient
+
+  devopness = DevopnessClient()
+
+  devopness.hooks.trigger_hook(
+      hook_id,
+      {
+          "event_id": 123,
+          "title": "Fix login flow",
+      },
+  )
+  ```
+
 ## 2.8.6
 
 ### Patch Changes
