@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 
 import {
   CancelButton,
@@ -283,6 +283,7 @@ const MultiStepForm = <T,>({
     error
   )
   const [fieldList, setFieldList] = useState<string[]>([])
+  const currentStepContainerRef = useRef<HTMLDivElement>(null)
 
   const hasSomeInputError = Object.keys(errors).length > 0
 
@@ -352,8 +353,19 @@ const MultiStepForm = <T,>({
 
     const { validateFields } = currentStepData
 
-    const stepFields: string[] = validateFields.filter((fieldName) =>
-      fieldList.includes(fieldName)
+    const mountedFieldNames = new Set(
+      Array.from(
+        currentStepContainerRef.current?.querySelectorAll<HTMLElement>(
+          '[name]'
+        ) ?? []
+      )
+        .map((field) => field.getAttribute('name'))
+        .filter((name): name is string => name !== null)
+    )
+
+    const stepFields: string[] = validateFields.filter(
+      (fieldName) =>
+        fieldList.includes(fieldName) && mountedFieldNames.has(fieldName)
     )
 
     return stepFields
@@ -424,6 +436,7 @@ const MultiStepForm = <T,>({
       return steppersData.map((step, index) => (
         <DisplayStep
           key={`step${index}`}
+          ref={index === stepCurrent ? currentStepContainerRef : undefined}
           disabled={index !== stepCurrent}
           data-testid={`step${index + 1}`}
         >

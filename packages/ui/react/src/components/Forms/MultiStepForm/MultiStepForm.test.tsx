@@ -439,7 +439,12 @@ describe('Steppers', () => {
     const nestedSteps: StepperDataProps[] = [
       {
         label: 'Repository',
-        component: <div>Repository step</div>,
+        component: (
+          <div>
+            Repository step
+            <input name="repository.name" />
+          </div>
+        ),
         validateFields: ['repository.name'],
       },
       {
@@ -462,6 +467,45 @@ describe('Steppers', () => {
       expect(trigger).toHaveBeenCalledWith(['repository.name'])
     })
     expect(screen.getByTestId('step2')).toHaveStyle('display: none')
+  })
+
+  it('only validates declared fields mounted in the current step', async () => {
+    const trigger = vi.fn().mockResolvedValue(true)
+    const methods = createFormMethods({
+      trigger,
+      getValues: () => ({ name: '', email: '', token: '', zone: '' }),
+    })
+    const stepsWithUnmountedField: StepperDataProps[] = [
+      {
+        label: 'Location',
+        component: (
+          <input
+            aria-label="name"
+            name="name"
+          />
+        ),
+        validateFields: ['name', 'zone'],
+      },
+      {
+        label: 'Contact',
+        component: <div>Contact step</div>,
+        validateFields: ['email'],
+      },
+    ]
+
+    renderWithTheme(
+      <MultiStepForm
+        {...methods}
+        steppersData={stepsWithUnmountedField}
+      />
+    )
+
+    await userEvent.click(screen.getByText('Next'))
+
+    await waitFor(() => {
+      expect(trigger).toHaveBeenCalledWith(['name'])
+      expect(screen.getByTestId('step2')).not.toHaveStyle('display: none')
+    })
   })
 
   it('clears the api error when field value changes and advances to next step on clicking next', async () => {
