@@ -30,7 +30,7 @@ Compile a Vite + React repository into static HTML, CSS, and JavaScript assets (
 - A connected Git source provider (GitHub, GitLab, or Bitbucket) containing your Vite + React repository
 - Your credential can read the target repository
 
-## Before you deploy
+## Deploy options
 
 When creating or configuring your application in Devopness, set these fields:
 
@@ -65,7 +65,8 @@ Try these prompts in Devopness MCP:
 
 - "In organization `ORG_NAME`, project `PROJECT_NAME`, and environment `ENVIRONMENT_NAME`, create a Node.js application named `my-vite-app` from repository `OWNER/REPO` on branch `main` with build command `npm ci && npm run build`."
 - "Add a `.env` configuration file to `my-vite-app` with `VITE_API_URL=https://example.com`, create a Virtual Host on `SERVER_IP_OR_DOMAIN` serving the static `dist` directory, and deploy `my-vite-app`."
-- When creating an incoming deploy webhook via Devopness MCP for a GitHub repository, set `secret_header_name` to `X-Hub-Signature-256` so GitHub push deliveries validate properly.
+
+Incoming webhook creation is API-only, not available through MCP. Use the [API reference](/docs/api) and [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide. For GitHub, set `secret_header_name` to `X-Hub-Signature-256`.
 
 ## Verify
 
@@ -91,10 +92,10 @@ Add a **Virtual Host** in the same environment so Nginx serves your compiled `di
 
 ### Build fails with out-of-memory error on small VMs
 
-Running `npm run build` with Vite on servers with 1 GB RAM (such as AWS `t3.micro` or GCP `e2-micro`) can exhaust available memory. Enable at least 2 GB of swap space on your server before deploying:
+Running `npm run build` with Vite on servers with 1 GB RAM (such as AWS `t3.micro` or GCP `e2-micro`) can exhaust available memory. Connect to your server via SSH and run the following commands with `sudo` (or as `root`, since Devopness SSH sessions log in as the non-root `devopness` user) to enable at least 2 GB of swap space before deploying:
 
 ```bash
-fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
+sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
 ```
 
 ### Updated environment variables do not appear after deploy
