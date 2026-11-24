@@ -51,9 +51,9 @@ export interface Template {
     version: string;
     /**
      * The raw template file content used to build the application request.
-     * @type {object}
+     * @type {any}
      * @memberof Template
      */
-    manifest?: object | null;
+    manifest?: any | null;
 }
 

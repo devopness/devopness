@@ -67,7 +67,7 @@
     "@radix-ui/themes": "^3.3.0",
     "@tanstack/react-table": "^9.3.1",
     "classnames": "^2.5.1",
-    "framer-motion": "^14.13.0",
+    "framer-motion": "^14.14.0",
     "ldrs": "^1.1.9",
     "lodash": "^4.18.1",
     "material-ui-popup-state": "^5.3.7",
@@ -88,7 +88,7 @@
     "@storybook/react-vite": "10.6.7",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/react": "^16.3.3",
-    "@testing-library/user-event": "^14.6.10",
+    "@testing-library/user-event": "^14.6.13",
     "@types/lodash": "^4.17.27",
     "@types/node": "^26.6.6",
     "@types/path-browserify": "^1.0.3",
@@ -96,7 +96,7 @@
     "@types/react-dom": "^19.3.0",
     "@typescript/typescript6": "^6.0.2",
     "@vitejs/plugin-react": "^6.3.0",
-    "jsdom": "^31.0.0",
+    "jsdom": "^31.0.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "storybook": "10.6.7",
@@ -104,9 +104,9 @@
     "unplugin-dts": "^1.1.2",
     "vite": "^8.3.8",
     "vite-plugin-dts": "^5.1.2",
-    "vite-plus": "1.6.0",
+    "vite-plus": "1.7.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.1"
   },
   "peerDependencies": {
     "react": "^19.3.0",

@@ -58,16 +58,16 @@ export interface HookRequest {
     url: string;
     /**
      * The headers of the request
-     * @type {object}
+     * @type {any}
      * @memberof HookRequest
      */
-    request_headers: object;
+    request_headers: any;
     /**
      * The body of the request
-     * @type {object}
+     * @type {any}
      * @memberof HookRequest
      */
-    request_body: object;
+    request_body: any;
     /**
      * The response status code
      * @type {number}
@@ -76,16 +76,16 @@ export interface HookRequest {
     response_status_code: number;
     /**
      * The headers of the response
-     * @type {object}
+     * @type {any}
      * @memberof HookRequest
      */
-    response_headers: object;
+    response_headers: any;
     /**
      * The body of the response
-     * @type {object}
+     * @type {any}
      * @memberof HookRequest
      */
-    response_body: object;
+    response_body: any;
     /**
      * 
      * @type {HookRelation}

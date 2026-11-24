@@ -13,7 +13,7 @@ from .hook_variable_default_value_one_of_inner import (
 )
 
 #: OneOf Type
-#: Optional variable assumes the default value if it's not given on the request to trigger the hook
+#: Optional variable assumes the default value if it's not given on the request to trigger the hook. If an application variable already exists with the same name, the hook value still overrides it.
 HookVariableDefaultValue = Union[
     list[HookVariableDefaultValueOneOfInner],
     bool,
