@@ -1,5 +1,22 @@
 # @devopness/sdk-js
 
+## 3.6.6
+
+### Patch Changes
+
+- [#3844](https://github.com/devopness/devopness/pull/3844) [`f7bdd3f`](https://github.com/devopness/devopness/commit/f7bdd3f4b9f28582fb1dc2d0f6f5c0c40b0e207f) Thanks [@devopness-automations](https://github.com/devopness-automations)! - Fixed incoming hook triggers so you can send the payload that should reach the hook.
+
+  ```ts
+  import { DevopnessApiClient } from "@devopness/sdk-js";
+
+  const devopness = new DevopnessApiClient();
+
+  await devopness.hooks.triggerHook(hookId, {
+    event_id: 123,
+    title: "Fix login flow",
+  });
+  ```
+
 ## 3.6.5
 
 ### Patch Changes

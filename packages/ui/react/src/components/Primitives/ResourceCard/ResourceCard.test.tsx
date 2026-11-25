@@ -3,12 +3,41 @@ import '@testing-library/jest-dom'
 import { describe, expect, it, vi } from 'vitest'
 
 import { ResourceCard } from './ResourceCard'
+import { testHoverTooltip } from 'src/test-utils'
 
 describe('ResourceCard', () => {
   describe('renders correctly', () => {
     it('with the name text', () => {
       render(<ResourceCard name="Test Project" />)
       expect(screen.getByText('Test Project')).toBeInTheDocument()
+    })
+
+    it('truncates long names with an ellipsis', () => {
+      const name = 'A very long resource title that should overflow the card'
+      render(<ResourceCard name={name} />)
+
+      expect(screen.getByText(name)).toHaveStyle({
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'normal',
+      })
+    })
+
+    it('shows a tooltip when a name is truncated by the line clamp', async () => {
+      const name = 'A very long resource title that should overflow the card'
+      render(<ResourceCard name={name} />)
+
+      const nameElement = screen.getByText(name)
+      Object.defineProperties(nameElement, {
+        clientHeight: { configurable: true, value: 20 },
+        scrollHeight: { configurable: true, value: 40 },
+      })
+      fireEvent(window, new Event('resize'))
+
+      await testHoverTooltip({
+        element: nameElement,
+        tooltipText: name,
+      })
     })
 
     it('with the first letter of the name as the avatar initial (uppercased)', () => {
