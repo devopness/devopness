@@ -107,6 +107,33 @@ describe('Steppers', () => {
     expect(screen.getByTestId('step3')).toHaveStyle('display: none')
   })
 
+  it('tracks fields when steps are loaded after the form mounts', async () => {
+    const trigger = vi.fn().mockResolvedValue(false)
+    const methods = createFormMethods({ trigger })
+    const { rerender } = renderWithTheme(
+      <MultiStepForm<FormValues>
+        {...methods}
+        steppersData={[]}
+      />
+    )
+
+    rerender(
+      <ThemeProvider theme={theme}>
+        <MultiStepForm<FormValues>
+          {...methods}
+          steppersData={steppersData}
+        />
+      </ThemeProvider>
+    )
+
+    await userEvent.click(screen.getByText('Next'))
+
+    await waitFor(() => {
+      expect(trigger).toHaveBeenCalledWith(['name'])
+    })
+    expect(screen.getByTestId('step2')).toHaveStyle('display: none')
+  })
+
   it('does not render the stepper header for a single step form', () => {
     const methods = createFormMethods()
     renderWithTheme(
@@ -439,7 +466,12 @@ describe('Steppers', () => {
     const nestedSteps: StepperDataProps[] = [
       {
         label: 'Repository',
-        component: <div>Repository step</div>,
+        component: (
+          <div>
+            Repository step
+            <input name="repository.name" />
+          </div>
+        ),
         validateFields: ['repository.name'],
       },
       {
@@ -462,6 +494,112 @@ describe('Steppers', () => {
       expect(trigger).toHaveBeenCalledWith(['repository.name'])
     })
     expect(screen.getByTestId('step2')).toHaveStyle('display: none')
+  })
+
+  it('only validates declared fields mounted in the current step', async () => {
+    const trigger = vi.fn().mockResolvedValue(true)
+    const methods = createFormMethods({
+      trigger,
+      getValues: () => ({ name: '', email: '', token: '', zone: '' }),
+    })
+    const stepsWithUnmountedField: StepperDataProps[] = [
+      {
+        label: 'Location',
+        component: (
+          <input
+            aria-label="name"
+            name="name"
+          />
+        ),
+        validateFields: ['name', 'zone'],
+      },
+      {
+        label: 'Contact',
+        component: <div>Contact step</div>,
+        validateFields: ['email'],
+      },
+    ]
+
+    renderWithTheme(
+      <MultiStepForm
+        {...methods}
+        steppersData={stepsWithUnmountedField}
+      />
+    )
+
+    await userEvent.click(screen.getByText('Next'))
+
+    await waitFor(() => {
+      expect(trigger).toHaveBeenCalledWith(['name'])
+      expect(screen.getByTestId('step2')).not.toHaveStyle('display: none')
+    })
+  })
+
+  it('enables Next after an errored conditional field is unmounted', async () => {
+    const trigger = vi.fn().mockResolvedValue(true)
+    const methods = createFormMethods({
+      trigger,
+      getValues: () => ({ name: '', zone: '' }),
+      errors: { zone: { type: 'required' } },
+    })
+
+    const ConditionalLocationStep = () => {
+      const [showZone, setShowZone] = useState(true)
+
+      return (
+        <>
+          <input
+            aria-label="name"
+            name="name"
+          />
+          {showZone && (
+            <input
+              aria-label="zone"
+              name="zone"
+            />
+          )}
+          <button
+            type="button"
+            onClick={() => setShowZone(false)}
+          >
+            Hide zone
+          </button>
+        </>
+      )
+    }
+
+    renderWithTheme(
+      <MultiStepForm
+        {...methods}
+        steppersData={[
+          {
+            label: 'Location',
+            component: <ConditionalLocationStep />,
+            validateFields: ['name', 'zone'],
+          },
+          {
+            label: 'Confirmation',
+            component: <div>Confirmation step</div>,
+            validateFields: [],
+          },
+        ]}
+      />
+    )
+
+    expect(screen.getByText('Next').closest('button')).toBeDisabled()
+
+    await userEvent.click(screen.getByText('Hide zone'))
+
+    await waitFor(() => {
+      expect(screen.getByText('Next').closest('button')).not.toBeDisabled()
+    })
+
+    await userEvent.click(screen.getByText('Next'))
+
+    await waitFor(() => {
+      expect(trigger).toHaveBeenCalledWith(['name'])
+      expect(screen.getByTestId('step2')).not.toHaveStyle('display: none')
+    })
   })
 
   it('clears the api error when field value changes and advances to next step on clicking next', async () => {
