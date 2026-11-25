@@ -53,7 +53,7 @@ To create the `.env` file, see [Add a File](/docs/files/add-file).
 
 Try this prompt in Devopness MCP:
 
-```text
+```shell
 Use Devopness MCP to create an application in https://app.devopness.com/projects/{project_id}/environments/{environment_id} and deploy <repo_url> following guidelines from https://devopness.com/docs/applications/deploy-vite-react-application
 ```
 
