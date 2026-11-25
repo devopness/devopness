@@ -13,6 +13,9 @@
         "modelPackage": "generated/models",
         "skipValidateSpec": true,
         "minimalUpdate": true,
+        "typeMappings": {
+          "object": "any"
+        },
         "additionalProperties": {
           "withSeparateModelsAndApi": true,
           "supportsES6": false

@@ -27,10 +27,10 @@ export interface ApplicationEnvironmentApplyTemplate {
     template_id?: string;
     /**
      * Key/value pairs used to fill template placeholders before an application is created. Each template decides which inputs it accepts.
-     * @type {{ [key: string]: object; }}
+     * @type {{ [key: string]: any; }}
      * @memberof ApplicationEnvironmentApplyTemplate
      */
-    template_inputs: { [key: string]: object; };
+    template_inputs: { [key: string]: any; };
     /**
      * Raw YAML for a custom template manifest. Must not be greater than 21504 characters.
      * @type {string}

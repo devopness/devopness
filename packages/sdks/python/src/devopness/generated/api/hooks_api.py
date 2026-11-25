@@ -85,12 +85,14 @@ class HooksApiService(DevopnessBaseService):
     def trigger_hook(
         self,
         hook_id: str,
+        request_body: dict[str, object],
     ) -> DevopnessResponse[HookTriggerResponse]:
         """
         Trigger an incoming hook associated action
 
         Attributes:
             hook_id (str): The ID of the hook.
+            request_body (Dict[str, object]): A free-form JSON object.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -102,7 +104,7 @@ class HooksApiService(DevopnessBaseService):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = self._post(endpoint)
+        response = self._post(endpoint, request_body)
 
         return DevopnessResponse(response, HookTriggerResponse)
 
@@ -207,12 +209,14 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
     async def trigger_hook(
         self,
         hook_id: str,
+        request_body: dict[str, object],
     ) -> DevopnessResponse[HookTriggerResponse]:
         """
         Trigger an incoming hook associated action
 
         Attributes:
             hook_id (str): The ID of the hook.
+            request_body (Dict[str, object]): A free-form JSON object.
 
         Raises:
             DevopnessApiError: If an API request error occurs.
@@ -224,7 +228,7 @@ class HooksApiServiceAsync(DevopnessBaseServiceAsync):
         ]
 
         endpoint: str = "".join(endpoint_parts)
-        response = await self._post(endpoint)
+        response = await self._post(endpoint, request_body)
 
         return await DevopnessResponse.from_async(response, HookTriggerResponse)
 

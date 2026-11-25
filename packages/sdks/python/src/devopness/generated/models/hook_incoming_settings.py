@@ -22,11 +22,12 @@ class HookIncomingSettings(DevopnessBaseModel):
     HookIncomingSettings
 
     Attributes:
-        variables (List[HookVariable], optional): List of variables to incoming hook
+        variables (List[HookVariable], optional): List of variables to incoming hook. During application deploy, Devopness exposes them as application environment variables. If a hook variable has the same name as an application variable, the hook value overrides it. Pipeline steps can read the value with shell syntax such as &#x60;$NAME&#x60; or &#x60;${NAME}&#x60;.
     """
 
     variables: list[HookVariable] | None = Field(
-        default=None, description="List of variables to incoming hook"
+        default=None,
+        description="List of variables to incoming hook. During application deploy, Devopness exposes them as application environment variables. If a hook variable has the same name as an application variable, the hook value overrides it. Pipeline steps can read the value with shell syntax such as `$NAME` or `${NAME}`.",
     )
 
 

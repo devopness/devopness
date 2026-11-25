@@ -73,6 +73,12 @@ jobs:
       - name: build
         run: npm run build
 
+      - name: smoke test docs routes
+        # Build-time checks do not catch docs pages that render a 404 shell after
+        # a dependency or routing contract change. This runtime smoke test
+        # exercises sampled manual and API routes against the built app.
+        run: npm run smoke:docs
+
   verify-build:
     name: Verify build of Docs web app
     needs: [build, detect-changes]

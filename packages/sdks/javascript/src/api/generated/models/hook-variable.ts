@@ -15,13 +15,13 @@
 import { HookVariableType } from './hook-variable-type';
 
 /**
- * Variable that can be defined on trigger a incoming hook
+ * Variable that can be defined on an incoming hook and exposed as an application environment variable during deploy.
  * @export
  * @interface HookVariable
  */
 export interface HookVariable {
     /**
-     * The name of the variable
+     * The application environment variable name that will be available during deploy.
      * @type {string}
      * @memberof HookVariable
      */
@@ -45,10 +45,10 @@ export interface HookVariable {
      */
     required?: boolean;
     /**
-     * Optional variable assumes the default value if it\'s not given on the request to trigger the hook
-     * @type {string | number | boolean | Array<string | number | boolean | object>}
+     * Optional variable assumes the default value if it\'s not given on the request to trigger the hook. If an application variable already exists with the same name, the hook value still overrides it.
+     * @type {string | number | boolean | Array<string | number | boolean | any>}
      * @memberof HookVariable
      */
-    default_value?: string | number | boolean | Array<string | number | boolean | object> | null;
+    default_value?: string | number | boolean | Array<string | number | boolean | any> | null;
 }
 

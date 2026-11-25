@@ -54,10 +54,10 @@ export interface Project {
     resource_summary?: Array<ResourceSummaryItem>;
     /**
      * The list of the operating system users found in all the servers linked to a project
-     * @type {Array<object>}
+     * @type {Array<any>}
      * @memberof Project
      */
-    os_users: Array<object>;
+    os_users: Array<any>;
     /**
      * 
      * @type {OrganizationRelation}

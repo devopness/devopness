@@ -141,9 +141,7 @@ const ReactSelect = styled(Select)`
     height: auto;
     padding: 0;
 
-    &--is-selected,
-    &--is-focused {
-      background-color: ${getColor('purple.800')};
+    &--is-selected {
       color: ${getColor('white')};
     }
   }
@@ -217,9 +215,7 @@ const ReactCreatableSelect = styled(CreatableSelect)`
     height: auto;
     padding: 0;
 
-    &--is-selected,
-    &--is-focused {
-      background-color: ${getColor('purple.800')};
+    &--is-selected {
       color: ${getColor('white')};
     }
   }
