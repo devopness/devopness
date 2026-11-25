@@ -54,7 +54,7 @@ To create the `.env` file, see [Add a File](/docs/files/add-file).
 Try this prompt in Devopness MCP:
 
 ```text
-Use Devopness MCP to create an application in https://devopness.com<project_id>/environments/<environment_id> and deploy <repo_url> following guidelines from https://devopness.com/docs/applications/deploy-vite-react-application
+Use Devopness MCP to create an application in https://app.devopness.com/projects/{project_id}/environments/{environment_id} and deploy <repo_url> following guidelines from https://devopness.com/docs/applications/deploy-vite-react-application
 ```
 
 Incoming webhook creation is API-only, not available through MCP. Use the [API reference](/docs/api) and [Create an Incoming Webhook](/docs/webhooks/create-incoming-webhook) guide. For GitHub, set `secret_header_name` to `X-Hub-Signature-256`.
