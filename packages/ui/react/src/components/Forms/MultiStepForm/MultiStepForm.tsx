@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useLayoutEffect, useState } from 'react'
 
 import {
   CancelButton,
@@ -283,8 +283,43 @@ const MultiStepForm = <T,>({
     error
   )
   const [fieldList, setFieldList] = useState<string[]>([])
+  const [mountedStepFieldNames, setMountedStepFieldNames] = useState<string[]>(
+    []
+  )
+  const [currentStepContainer, setCurrentStepContainer] =
+    useState<HTMLDivElement | null>(null)
 
   const hasSomeInputError = Object.keys(errors).length > 0
+
+  useLayoutEffect(() => {
+    if (!currentStepContainer) return
+
+    const updateMountedStepFieldNames = () => {
+      const nextFieldNames = Array.from(
+        currentStepContainer.querySelectorAll<HTMLElement>('[name]'),
+        (field) => field.getAttribute('name')
+      ).filter((name): name is string => name !== null)
+
+      setMountedStepFieldNames((currentFieldNames) =>
+        currentFieldNames.length === nextFieldNames.length &&
+        currentFieldNames.every((name, index) => name === nextFieldNames[index])
+          ? currentFieldNames
+          : nextFieldNames
+      )
+    }
+
+    updateMountedStepFieldNames()
+
+    const observer = new MutationObserver(updateMountedStepFieldNames)
+    observer.observe(currentStepContainer, {
+      attributes: true,
+      attributeFilter: ['name'],
+      childList: true,
+      subtree: true,
+    })
+
+    return () => observer.disconnect()
+  }, [currentStepContainer])
 
   const trackEvent = (event: StepperTrackEvent) => {
     if (!trackEvents) return
@@ -352,8 +387,11 @@ const MultiStepForm = <T,>({
 
     const { validateFields } = currentStepData
 
-    const stepFields: string[] = validateFields.filter((fieldName) =>
-      fieldList.includes(fieldName)
+    const mountedFieldNames = new Set(mountedStepFieldNames)
+
+    const stepFields: string[] = validateFields.filter(
+      (fieldName) =>
+        fieldList.includes(fieldName) && mountedFieldNames.has(fieldName)
     )
 
     return stepFields
@@ -424,6 +462,7 @@ const MultiStepForm = <T,>({
       return steppersData.map((step, index) => (
         <DisplayStep
           key={`step${index}`}
+          ref={index === stepCurrent ? setCurrentStepContainer : undefined}
           disabled={index !== stepCurrent}
           data-testid={`step${index + 1}`}
         >

@@ -8,6 +8,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { Select } from './index'
 import type { OptionProps } from './index'
+import { getColor } from 'src/colors'
 
 const options: OptionProps<string>[] = [
   { label: 'Option A', value: 'A' },
@@ -49,6 +50,31 @@ describe('<Select />', () => {
       | SingleValue<OptionProps<string>>
       | MultiValue<OptionProps<string>>
     expect(selectedValue).toMatchObject({ value: 'A', label: 'Option A' })
+  })
+
+  it('should distinguish focused and selected options', async () => {
+    const user = userEvent.setup()
+
+    render(
+      <Select
+        options={options}
+        value={options[0]}
+        menuIsOpen
+      />
+    )
+
+    const selectedOption = screen.getByRole('option', { name: 'Option A' })
+    expect(selectedOption).toHaveStyle({
+      backgroundColor: getColor('purple.800'),
+      color: getColor('white'),
+    })
+
+    const focusedOption = screen.getByRole('option', { name: 'Option B' })
+    await user.hover(focusedOption)
+    expect(focusedOption).toHaveStyle({
+      backgroundColor: getColor('purple.275'),
+      color: getColor('blue.950'),
+    })
   })
 
   it('should show error message when error prop is provided', () => {
