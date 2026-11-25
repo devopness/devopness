@@ -8,20 +8,21 @@
     "lint": "vp check",
     "lint:fix": "vp check --fix",
     "postinstall": "fumadocs-mdx",
-    "start": "next start"
+    "start": "next start",
+    "smoke:docs": "node scripts/smoke-test-docs.mjs"
   },
   "dependencies": {
     "dotenv-expand": "^1000.0.0",
-    "fumadocs-core": "16.19.3",
-    "fumadocs-mdx": "15.6.2",
-    "fumadocs-openapi": "^12.6.4",
-    "fumadocs-ui": "16.19.3",
-    "lucide-react": "^1.73.0",
+    "fumadocs-core": "16.19.6",
+    "fumadocs-mdx": "15.6.4",
+    "fumadocs-openapi": "^12.6.7",
+    "fumadocs-ui": "16.19.6",
+    "lucide-react": "^1.77.0",
     "next": "16.4.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "remark-directive": "^4.0.0",
-    "tailwind-merge": "^3.7.0",
+    "tailwind-merge": "^3.7.1",
     "zod": "^4.6.7"
   },
   "devDependencies": {
@@ -33,6 +34,6 @@
     "postcss": "^8.5.33",
     "tailwindcss": "^4.2.4",
     "typescript": "^7.0.2",
-    "vite-plus": "1.6.0"
+    "vite-plus": "1.7.0"
   }
 }

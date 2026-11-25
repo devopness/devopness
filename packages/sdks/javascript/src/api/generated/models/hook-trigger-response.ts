@@ -27,9 +27,9 @@ export interface HookTriggerResponse {
     message: string;
     /**
      * Optional error object containing details of the server error
-     * @type {object}
+     * @type {any}
      * @memberof HookTriggerResponse
      */
-    errors: object | null;
+    errors: any | null;
 }
 
