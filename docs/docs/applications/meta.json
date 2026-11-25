@@ -8,6 +8,7 @@
     "deploy-application",
     "link-server-to-application",
     "deploy-application-using-incoming-hook",
-    "integrate-application-deployments-to-ci-workflows"
+    "integrate-application-deployments-to-ci-workflows",
+    "deploy-vite-react-application"
   ]
 }
