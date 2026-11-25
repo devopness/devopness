@@ -39,7 +39,7 @@ type TooltipComponentProps = Unwrap<
     disableHover?: boolean
     /**
      * If `true`, hover in the tooltip is disabled and enabled only when the
-     * element reaches the limit of the width of the contained element.
+     * content overflows horizontally or is truncated by a line clamp.
      */
     enableOnlyWithEllipsisPoints?: boolean
     /**
@@ -52,6 +52,19 @@ type TooltipComponentProps = Unwrap<
 >
 
 const DEFAULT_BACKGROUND_COLOR = getColor('blue.950')
+
+const hasLineClampedOverflow = (element: HTMLElement) =>
+  Array.from(element.querySelectorAll<HTMLElement>('*')).some((child) => {
+    const lineClamp = window
+      .getComputedStyle(child)
+      .getPropertyValue('-webkit-line-clamp')
+
+    return (
+      lineClamp !== '' &&
+      lineClamp !== 'none' &&
+      child.scrollHeight > child.clientHeight
+    )
+  })
 
 const BaseTooltip = ({ className, ...tooltipProps }: TooltipProps) => (
   <MuiTooltip
@@ -99,7 +112,9 @@ const Tooltip = ({
   const disableHoverListener = enableOnlyWithEllipsisPoints && !isOverflowed
 
   const checkOverflow = (windowRefValue: HTMLSpanElement) => {
-    const next = windowRefValue.scrollWidth > windowRefValue.clientWidth
+    const next =
+      windowRefValue.scrollWidth > windowRefValue.clientWidth ||
+      hasLineClampedOverflow(windowRefValue)
 
     setIsOverflowed((previousValue) =>
       previousValue === next ? previousValue : next
