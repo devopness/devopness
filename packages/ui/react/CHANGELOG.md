@@ -1,5 +1,17 @@
 # @devopness/ui-react
 
+## 2.213.3
+
+### Patch Changes
+
+- [#3855](https://github.com/devopness/devopness/pull/3855) [`ccafe55`](https://github.com/devopness/devopness/commit/ccafe558571081a83d5d0db51f213bf91d21d7dc) Thanks [@therealrinku](https://github.com/therealrinku)! - Update `MultiStepForm` so it only validates the fields that are currently mounted and prevents issues of blocking user to progress in the form when such fields aren't yet mounted on the dom.
+
+- [#3843](https://github.com/devopness/devopness/pull/3843) [`e496245`](https://github.com/devopness/devopness/commit/e4962456f84dfe3475b2da44d5da73c19886f4d0) Thanks [@therealrinku](https://github.com/therealrinku)! - Correctly show elipsis when `BreadCrumbs` component crumb text is overflown
+
+- [#3832](https://github.com/devopness/devopness/pull/3832) [`0c8c2c5`](https://github.com/devopness/devopness/commit/0c8c2c57c8e1d606d10cf3bd788a67c2b7ad61c1) Thanks [@therealrinku](https://github.com/therealrinku)! - Handle line clamp properly and show tooltip when elipsis is shown on resource card
+
+- [#3854](https://github.com/devopness/devopness/pull/3854) [`a5b5a3a`](https://github.com/devopness/devopness/commit/a5b5a3a0f409f963a261b26ed7d0783b8bbb9270) Thanks [@therealrinku](https://github.com/therealrinku)! - Update hover state background color of `Select` component options to be more clear and distinguishable from selected state
+
 ## 2.213.2
 
 ### Patch Changes
