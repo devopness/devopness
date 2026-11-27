@@ -196,7 +196,12 @@ describe('Input', () => {
 
   describe('password visibility toggle', () => {
     const renderPasswordInput = () => {
-      render(<Input type="password" data-testid="password-input" />)
+      render(
+        <Input
+          type="password"
+          data-testid="password-input"
+        />
+      )
 
       return {
         input: screen.getByTestId('password-input') as HTMLInputElement,
