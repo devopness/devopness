@@ -194,6 +194,92 @@ describe('Input', () => {
     })
   })
 
+  describe('password visibility toggle', () => {
+    const renderPasswordInput = () => {
+      render(<Input type="password" data-testid="password-input" />)
+
+      return {
+        input: screen.getByTestId('password-input') as HTMLInputElement,
+        toggle: screen.getByRole('button', { name: 'Show password' }),
+      }
+    }
+
+    it('toggles visibility with Enter', () => {
+      const { input, toggle } = renderPasswordInput()
+
+      toggle.focus()
+      expect(toggle).toHaveFocus()
+
+      fireEvent.keyDown(toggle, { key: 'Enter' })
+
+      expect(input).toHaveAttribute('type', 'text')
+      expect(toggle).toHaveAttribute('aria-pressed', 'true')
+      expect(toggle).toHaveAttribute('aria-label', 'Hide password')
+    })
+
+    it('toggles visibility with Space and toggles back on subsequent Space', () => {
+      const { input, toggle } = renderPasswordInput()
+
+      fireEvent.keyDown(toggle, { key: ' ' })
+
+      expect(input).toHaveAttribute('type', 'text')
+      expect(toggle).toHaveAttribute('aria-pressed', 'true')
+      expect(toggle).toHaveAttribute('aria-label', 'Hide password')
+
+      fireEvent.keyDown(toggle, { key: ' ' })
+
+      expect(input).toHaveAttribute('type', 'password')
+      expect(toggle).toHaveAttribute('aria-pressed', 'false')
+      expect(toggle).toHaveAttribute('aria-label', 'Show password')
+    })
+
+    it('does not toggle visibility with unrelated keys', () => {
+      const { input, toggle } = renderPasswordInput()
+
+      fireEvent.keyDown(toggle, { key: 'Escape' })
+      fireEvent.keyDown(toggle, { key: 'Tab' })
+      fireEvent.keyDown(toggle, { key: 'a' })
+
+      expect(input).toHaveAttribute('type', 'password')
+      expect(toggle).toHaveAttribute('aria-pressed', 'false')
+      expect(toggle).toHaveAttribute('aria-label', 'Show password')
+    })
+
+    it('keeps toggling visibility with mouse clicks', () => {
+      const { input, toggle } = renderPasswordInput()
+
+      fireEvent.click(toggle)
+
+      expect(input).toHaveAttribute('type', 'text')
+      expect(toggle).toHaveAttribute('aria-pressed', 'true')
+      expect(toggle).toHaveAttribute('aria-label', 'Hide password')
+
+      fireEvent.click(toggle)
+
+      expect(input).toHaveAttribute('type', 'password')
+      expect(toggle).toHaveAttribute('aria-pressed', 'false')
+      expect(toggle).toHaveAttribute('aria-label', 'Show password')
+    })
+
+    it('supports realistic keyboard interaction with userEvent', async () => {
+      const user = userEvent.setup()
+      const { input, toggle } = renderPasswordInput()
+
+      toggle.focus()
+      await user.keyboard('{Enter}')
+
+      expect(input).toHaveAttribute('type', 'text')
+      expect(toggle).toHaveAttribute('aria-pressed', 'true')
+      expect(toggle).toHaveAttribute('aria-label', 'Hide password')
+
+      await user.keyboard(' ')
+
+      expect(input).toHaveAttribute('type', 'password')
+      expect(toggle).toHaveAttribute('aria-pressed', 'false')
+      expect(toggle).toHaveAttribute('aria-label', 'Show password')
+    })
+  })
+
   describe('accessibility', () => {
     it('has appropriate ARIA attributes when there is an error', () => {
       render(
