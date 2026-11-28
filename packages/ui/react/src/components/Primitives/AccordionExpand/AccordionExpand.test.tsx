@@ -60,4 +60,38 @@ describe('AccordionExpand', () => {
     fireEvent.click(screen.getByText('Disabled Option'))
     expect(onClick).not.toHaveBeenCalled()
   })
+
+  it('blocks navigation when item with url is disabled', () => {
+    render(
+      <AccordionExpand
+        label="Test Accordion"
+        items={[{ label: 'Disabled Link', url: '/test', isDisabled: true }]}
+        navigationComponent={NavigationLink}
+      />
+    )
+    fireEvent.click(screen.getByText('Test Accordion'))
+
+    const isNavigationAllowed = fireEvent.click(
+      screen.getByText('Disabled Link')
+    )
+
+    expect(isNavigationAllowed).toBe(false)
+  })
+
+  it('allows navigation when item with url is enabled', () => {
+    render(
+      <AccordionExpand
+        label="Test Accordion"
+        items={[{ label: 'Enabled Link', url: '/test' }]}
+        navigationComponent={NavigationLink}
+      />
+    )
+    fireEvent.click(screen.getByText('Test Accordion'))
+
+    const isNavigationAllowed = fireEvent.click(
+      screen.getByText('Enabled Link')
+    )
+
+    expect(isNavigationAllowed).toBe(true)
+  })
 })

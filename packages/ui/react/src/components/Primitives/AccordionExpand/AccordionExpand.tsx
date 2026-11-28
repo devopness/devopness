@@ -138,7 +138,11 @@ const AccordionExpand = ({
                   cursor: option.isDisabled ? 'not-allowed' : 'pointer',
                 }}
                 onClick={(e) => {
-                  if (option.isDisabled) return
+                  if (option.isDisabled) {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    return
+                  }
                   if (option.onClick) {
                     e.preventDefault()
                     e.stopPropagation()
